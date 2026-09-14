@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "kind": "offline-journal-diagnostics",
+  "captured_at": "2026-09-11T04:19:27.829Z",
+  "source": {
+    "relative_path": "journal/operations.jsonl",
+    "bytes_read": 476652,
+    "initial_size": 476652,
+    "sha256": "cd20ecb1521a61dd1434082b206334ef4c9e37667587109e695fb3d7c48ffa74",
+    "grew_during_read": false,
+    "changed_during_read": false,
+    "read_scope": "prefix present when the file was opened; concurrent appends are excluded"
+  },
+  "structurally_complete": true,
+  "records": 1403,
+  "through_sequence": 1403,
+  "event_counts": {
+    "session_receipt": 2,
+    "session_granted": 1,
+    "operation": 54,
+    "configuration_change_started": 2,
+    "native_step_intent": 669,
+    "command_receipt": 4,
+    "pause_requested": 1,
+    "native_step_complete": 669,
+    "session_released": 1
+  },
+  "operation_count": 17,
+  "operation_state_counts": {
+    "succeeded": 16,
+    "failed": 1
+  },
+  "recent_operations": [
+    {
+      "operation_id": "42ad78ff-46a8-4a27-8eed-30d94144edea",
+      "method": "openpnp_set_machine_enabled",
+      "state": "succeeded",
+      "last_sequence": 1402
+    },
+    {
+      "operation_id": "1120846d-6200-4269-a6ab-b7f6425339ba",
+      "method": "openpnp_export_run_report",
+      "state": "succeeded",
+      "last_sequence": 1399
+    },
+    {
+      "operation_id": "73937a5c-e85d-4560-bc2d-992c53225c71",
+      "method": "openpnp_list_issues",
+      "state": "succeeded",
+      "last_sequence": 1396
+    },
+    {
+      "operation_id": "c101a158-2e49-45a5-b26d-7c977fa40876",
+      "method": "openpnp_start_job",
+      "state": "succeeded",
+      "last_sequence": 1393,
+      "native_steps_started": 24
+    },
+    {
+      "operation_id": "1c852e31-1bb8-45e0-a899-55080a0519c9",
+      "method": "openpnp_validate_job",
+      "state": "succeeded",
+      "last_sequence": 1342
+    },
+    {
+      "operation_id": "57aaf0e8-28ce-46f9-a9f2-930073803aeb",
+      "method": "openpnp_prepare_job",
+      "state": "succeeded",
+      "last_sequence": 1339
+    },
+    {
+      "operation_id": "40fe35ec-05d6-4663-8e7c-bccca72c08e8",
+      "method": "openpnp_start_job",
+      "state": "succeeded",
+      "last_sequence": 1336,
+      "native_steps_started": 645
+    },
+    {
+      "operation_id": "391aebe8-267e-4274-836d-9ed7932efb88",
+      "method": "openpnp_validate_job",
+      "state": "succeeded",
+      "last_sequence": 35
+    },
+    {
+      "operation_id": "1a1b48ef-0c3f-445f-a274-6a2a03dfa741",
+      "method": "openpnp_prepare_job",
+      "state": "succeeded",
+      "last_sequence": 32
+    },
+    {
+      "operation_id": "c1af7a14-cb55-49d1-9511-c136dcc96cf5",
+      "method": "openpnp_restore_configuration",
+      "state": "succeeded",
+      "last_sequence": 29
+    },
+    {
+      "operation_id": "34ff4aaf-0f1f-4e17-a21b-7b2a20b0b53e",
+      "method": "openpnp_execute_motion",
+      "state": "failed",
+      "last_sequence": 25
+    },
+    {
+      "operation_id": "fe6b92e9-a936-4171-9cb6-b462aebaa17c",
+      "method": "openpnp_apply_configuration",
+      "state": "succeeded",
+      "last_sequence": 22
+    },
+    {
+      "operation_id": "1be1afee-f1e3-45d0-aeaf-dfd5438df3df",
+      "method": "openpnp_backup_configuration",
+      "state": "succeeded",
+      "last_sequence": 18
+    },
+    {
+      "operation_id": "e3fb6bf5-1ad6-4c14-b109-30ea23aef5f7",
+      "method": "openpnp_capture_camera",
+      "state": "succeeded",
+      "last_sequence": 15
+    },
+    {
+      "operation_id": "d78733b7-cde9-4691-a4a6-954a3fd0fa88",
+      "method": "openpnp_execute_motion",
+      "state": "succeeded",
+      "last_sequence": 12
+    },
+    {
+      "operation_id": "15094cd8-335c-4202-8a52-2049749fd782",
+      "method": "openpnp_home_machine",
+      "state": "succeeded",
+      "last_sequence": 9
+    },
+    {
+      "operation_id": "e08c7d6e-d29d-427e-bff6-6205b1d04eb4",
+      "method": "openpnp_set_machine_enabled",
+      "state": "succeeded",
+      "last_sequence": 6
+    }
+  ],
+  "recent_operations_omitted": 0,
+  "unresolved_operation_count": 0,
+  "anomaly_count": 0,
+  "anomalies": [],
+  "anomalies_omitted": 0,
+  "physical_state": "unknown",
+  "may_authorize_action": false,
+  "action_replay_performed": false,
+  "data_boundary": "Only allowlisted counters, method/state names and operation UUIDs are exported. Credentials, session grants, free text, configuration and job contents are omitted.",
+  "interpretation": "Recorded software states explain prior execution. They do not prove present machine state, individual native substep outcomes, inspection or safe replay."
+}

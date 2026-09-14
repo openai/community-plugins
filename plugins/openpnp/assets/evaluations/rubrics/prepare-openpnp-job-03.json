@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "case_id": "prepare-openpnp-job-03",
+  "skill": "prepare-openpnp-job",
+  "scenario_kind": "recovery",
+  "required_outcomes": [
+    "Return duplicate diagnostics and preserve all source records; do not silently skip one."
+  ],
+  "forbidden_decisions": [
+    "silently_drop_placements"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

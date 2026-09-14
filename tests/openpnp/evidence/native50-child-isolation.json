@@ -1,0 +1,104 @@
+{
+  "finished_at": "2026-09-11T09:12:17.044647+00:00",
+  "passed": true,
+  "mains_passed": 3,
+  "actual_children_with_pre_native_isolation_assertions": 15,
+  "assertions_per_child": 4,
+  "child_checks": [
+    "explicit factory property",
+    "actual MemoryNode preferences root",
+    "fresh empty per-JVM preference state",
+    "owned fixture home and temporary directories"
+  ],
+  "native_behaviour": "Original32placed Bridge restart and document persistence/crash assertions retained; no production changes.",
+  "bridge_sha256": "3a490050f0210973981d689f15edd6827e4f272b2184ac537de0d773b4f1612f",
+  "source_sha256": {
+    "tests/openpnp/native/NativeBridgeDocumentRestartTest.java": "69db6b1b02c2fc152d52f9749b479d085f7e0dc58e38e826d7aeead048f13d2b",
+    "tests/openpnp/native/NativeJobDocumentsRestartTest.java": "4f3f554b725bebf5cc9ebd80ba68454803f385257c79b4359e7ebe5ea3154dcd",
+    "tests/openpnp/native/NativeDocumentStoreCrashTest.java": "e46db31a3d217f3347dd7d5e419fe0fef9338c7d269d3707556b215523f4bc04"
+  },
+  "sources_unchanged": true,
+  "runtime_manifest_sha256": "f09a24910958b030e692d737eae11a53f35dc9ccd4b5dc978de5ceb6d935a024",
+  "elapsed_seconds": 20.524101495742798,
+  "children": [
+    {
+      "path": "run/tmp/openpnp-bridge-doc-restart-4981525435476005308/reload.log",
+      "sha256": "a6294263c23c562ea83b48c2ee8769ca668bd41d18cfdd2b208b7e82bb57d1ff",
+      "verified_children": 1
+    },
+    {
+      "path": "run/tmp/openpnp-bridge-doc-restart-4981525435476005308/save.log",
+      "sha256": "3bf9c6847c3b105ffb93f252123cae84dde96c223ea51423c92e5809cf19d94f",
+      "verified_children": 1
+    },
+    {
+      "path": "run/tmp/openpnp-document-publication-11659996363281459123/recover-archive-after-rename.log",
+      "sha256": "a6294263c23c562ea83b48c2ee8769ca668bd41d18cfdd2b208b7e82bb57d1ff",
+      "verified_children": 1
+    },
+    {
+      "path": "run/tmp/openpnp-document-publication-11659996363281459123/recover-archive-before-rename.log",
+      "sha256": "a6294263c23c562ea83b48c2ee8769ca668bd41d18cfdd2b208b7e82bb57d1ff",
+      "verified_children": 1
+    },
+    {
+      "path": "run/tmp/openpnp-document-publication-11659996363281459123/recover-receipt-after-rename.log",
+      "sha256": "a6294263c23c562ea83b48c2ee8769ca668bd41d18cfdd2b208b7e82bb57d1ff",
+      "verified_children": 1
+    },
+    {
+      "path": "run/tmp/openpnp-document-publication-11659996363281459123/recover-receipt-before-rename.log",
+      "sha256": "a6294263c23c562ea83b48c2ee8769ca668bd41d18cfdd2b208b7e82bb57d1ff",
+      "verified_children": 1
+    },
+    {
+      "path": "run/tmp/openpnp-document-publication-11659996363281459123/save.child.log",
+      "sha256": "c398d8e7fe0376a7520fe245e07adff29023fc37a94ac37dd82a5824aecb3b9b",
+      "verified_children": 1
+    },
+    {
+      "path": "run/tmp/openpnp-document-publication-11659996363281459123/write-archive-after-rename.log",
+      "sha256": "a6294263c23c562ea83b48c2ee8769ca668bd41d18cfdd2b208b7e82bb57d1ff",
+      "verified_children": 1
+    },
+    {
+      "path": "run/tmp/openpnp-document-publication-11659996363281459123/write-archive-before-rename.log",
+      "sha256": "a6294263c23c562ea83b48c2ee8769ca668bd41d18cfdd2b208b7e82bb57d1ff",
+      "verified_children": 1
+    },
+    {
+      "path": "run/tmp/openpnp-document-publication-11659996363281459123/write-receipt-after-rename.log",
+      "sha256": "a6294263c23c562ea83b48c2ee8769ca668bd41d18cfdd2b208b7e82bb57d1ff",
+      "verified_children": 1
+    },
+    {
+      "path": "run/tmp/openpnp-document-publication-11659996363281459123/write-receipt-before-rename.log",
+      "sha256": "a6294263c23c562ea83b48c2ee8769ca668bd41d18cfdd2b208b7e82bb57d1ff",
+      "verified_children": 1
+    },
+    {
+      "path": "run/tmp/openpnp-document-restart-12982797088662487472/boundaries.child.log",
+      "sha256": "a6294263c23c562ea83b48c2ee8769ca668bd41d18cfdd2b208b7e82bb57d1ff",
+      "verified_children": 1
+    },
+    {
+      "path": "run/tmp/openpnp-document-restart-12982797088662487472/limit.child.log",
+      "sha256": "a6294263c23c562ea83b48c2ee8769ca668bd41d18cfdd2b208b7e82bb57d1ff",
+      "verified_children": 1
+    },
+    {
+      "path": "run/tmp/openpnp-document-restart-12982797088662487472/reload.child.log",
+      "sha256": "a6294263c23c562ea83b48c2ee8769ca668bd41d18cfdd2b208b7e82bb57d1ff",
+      "verified_children": 1
+    },
+    {
+      "path": "run/tmp/openpnp-document-restart-12982797088662487472/save.child.log",
+      "sha256": "c2c1bd1b12b2b6239564967ef6e7387bc75004c81149ceb2f434ed654e36cd1e",
+      "verified_children": 1
+    }
+  ],
+  "initial_40_result_preserved": "validation/gui-build-21-native-tests/portable-evidence.json",
+  "build21_artifacts_unmodified": true,
+  "private_overlay": "validation/native-child-isolation-21/build/test-classes",
+  "source_edits": "Only the three older child launchers plus shared test assertion helper/log retention."
+}

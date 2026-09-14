@@ -1,0 +1,20 @@
+{
+  "scope": "Selected material-only native observations; no credentials or full journal copied. Native same-process Bridge reconstruction, not fresh-JVM crash qualification.",
+  "entries": {
+    "completed": {
+      "sha256": "50dca2ca4591b1fb6b505f34119d1d7df03e00e2e596d2c983f5fcd741b48030",
+      "source": "validation/mcp-material-04/material/evidence/mcp-native-material-loads.json",
+      "source_sha256": "322abee4b97f649842052c512b607d9838c83180d7b375a183e846361d854d8b"
+    },
+    "unknown": {
+      "sha256": "562021a838bd046fc12bd15b28a6a36eeb4815a8564f7b00dba71e9594d1215e",
+      "source": "validation/native-tests-01/tmp/material-load-native-10916314957738522386/observations.json",
+      "source_sha256": "b103528fb1915fe8a551165795c8736d2d1fa5d1bee74d989580f970b86bc1d6"
+    },
+    "recovered": {
+      "sha256": "fee8e7feb219e6da6c96e4b7172d4677ce658ba77d71ceec0d85cae15a691a95",
+      "source": "validation/native-tests-01/tmp/material-load-native-10916314957738522386/observations.json",
+      "source_sha256": "b103528fb1915fe8a551165795c8736d2d1fa5d1bee74d989580f970b86bc1d6"
+    }
+  }
+}

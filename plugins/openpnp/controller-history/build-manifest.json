@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+  "main_class": "org.openpnp.codex.ControllerHistoryMain",
+  "helper_sha256": "8ad8c257013db2180ca89f6e2c72ba77689e666bbda01169e23e3e3bc4f98d51",
+  "source_sha256": "9fd20dc89fd33f73a0eae986f4f220265b5f075d33c3c4b4efa77696b9c19d12",
+  "source_archive_sha256": "d0f44d3e2b18ef693e62e4d1a42af32c62ad452ba930b7e57b6e8e0332646a50",
+  "reducer_class_sha256": "8a4955256b3ae7f72e6e9aaa1629b3460b68cb4ca8b49fc06c5fdf81c3d40418",
+  "reducer_source_sha256": "55508b5624d43e29bb744a6ecdc457eb1dc8793ca865b17dafa7367138ff5ee2",
+  "journal_json_class_sha256": "f421e9162db4bdb979ac3d24141ec8fb4b0cb170a8b644b7f0d746efc4a36a23",
+  "journal_json_source_sha256": "61053170793eb45f85ff674046d1a946be960c778b3a43fa39999933a21d9174",
+  "built_against_bridge_sha256": "62b17d35cb4d39c531fdd6698dece3f41ad19f92e604e35b3fc9f8e9c8aac907",
+  "gson_sha256": "853a55c219993a781d0884d42793d27e120efefab06c1ff86fb59c22c2a3cef1",
+  "runtime_manifest_sha256": "007f28c38d244186aec519de0d919b474b2dd54fc671883e8207c50ab75619de",
+  "compiler_sha256": "5e5855eda29ab49e8bcc56b344df2f9159f91e27949f725435dc4660d57b2ffd",
+  "java_release": 11,
+  "build_script_sha256": "c470714eee3eb39bad8792de055961de75a13db0146838335de778b4bf5750f4",
+  "scope": "Offline recorded history; helper-only classes; matching actual Bridge reducer and exact-number dependency; no native authority or physical qualification"
+}

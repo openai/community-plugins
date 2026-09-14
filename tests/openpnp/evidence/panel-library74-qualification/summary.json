@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-11T20:55:21.764831+00:00",
+  "scope": "Bounded simulator/package qualification of panel-library74 and existing workflows on exact Q74 artifacts.",
+  "bounded_simulator_package_qualification_passed": true,
+  "status": "passed",
+  "identities": {
+    "bridge_sha256": "97ac5292becbec033c9580bf9e061bf067e9a91224bf4fb7b44b5867240f5542",
+    "mcp_sha256": "3ee308132569e1f36fbdc4c563ca7235834a9a464a8cc49c957c5c5a6d7634e1",
+    "catalog_sha256": "a4b367df6012a387c4093d633f9df4e58f4e7aebb50bfd6c639d119283f584e6",
+    "native_sha256": "810773c1defa9a0200cce437d3f426d4c08419fb3f471d693f9e5c5f38f78f0b",
+    "macos_runtime_sha256": "fb9459433a7475515a9f4340d401232e4fd284697db416f4fa89ba86abd8c84d"
+  },
+  "source_freeze": {
+    "source": "panel-library74-qualification/validation/qualification-inputs74.json",
+    "sha256": "35a4ae39cb432938718c86944964690a36385cbeb3da40fdcf054b1833f5c13a",
+    "bytes": 112127
+  },
+  "counts": {
+    "macos_native_mains": 79,
+    "linux_native_mains": 79,
+    "production_source_pairs": 49,
+    "production_classes": 166,
+    "test_sources": 97,
+    "test_classes": 194,
+    "Node_runs": [
+      {
+        "major": 22,
+        "counts": {
+          "tests": 394,
+          "pass": 378,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 16,
+          "todo": 0
+        },
+        "outer": {
+          "state": "passed",
+          "exit_code": 0,
+          "elapsed_seconds": 58.74222479201853,
+          "inputs_unchanged": true,
+          "input_count": 806,
+          "report": {
+            "source": "panel-library74-integration/validation/panel-library74-node22-attempt01/report.json",
+            "sha256": "24052c9209d0ac6555185b81b30af487a0f2cf691132516186af734ec5793165",
+            "bytes": 9628
+          }
+        },
+        "input_root": "R74 prequalification; exact806 byte map equals Q74"
+      },
+      {
+        "major": 24,
+        "counts": {
+          "tests": 394,
+          "pass": 378,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 16,
+          "todo": 0
+        },
+        "outer": {
+          "state": "passed",
+          "exit_code": 0,
+          "elapsed_seconds": 69.62868941598572,
+          "inputs_unchanged": true,
+          "input_count": 806,
+          "report": {
+            "source": "panel-library74-qualification/validation/node24-attempt01/report.json",
+            "sha256": "c4ec2dc5d2ab2bcd711b8218e782073c1a34e69b120a5c2dcd7641b3145937b5",
+            "bytes": 9811
+          }
+        },
+        "input_root": "Q74"
+      },
+      {
+        "major": 26,
+        "counts": {
+          "tests": 394,
+          "pass": 378,
+          "fail": 0,
+          "cancelled": 0,
+          "skipped": 16,
+          "todo": 0
+        },
+        "outer": {
+          "state": "passed",
+          "exit_code": 0,
+          "elapsed_seconds": 78.54537641594652,
+          "inputs_unchanged": true,
+          "input_count": 806,
+          "report": {
+            "source": "panel-library74-qualification/validation/node26-attempt01/report.json",
+            "sha256": "e3d32b958da569a0bec21c4ea7d0f0018a2c75a74faa5ac81687f4493a62a314",
+            "bytes": 9687
+          }
+        },
+        "input_root": "Q74"
+      }
+    ],
+    "MCP_suites": 16,
+    "MCP_native_Complete_hooks": 327,
+    "MCP_matched_actions": 1308,
+    "MCP_native_PNGs": 27,
+    "MCP_distinct_PNG_hashes": 10,
+    "GUI_modes": 6,
+    "GUI_native_Complete_hooks": 72,
+    "GUI_matched_actions": 288,
+    "GUI_separate_uncertain_feed": 1,
+    "GUI_takeover_observed_terminal_state": "succeeded",
+    "controller_checks": 15,
+    "current_history_valid": 7,
+    "current_history_malformed_refusals": 3,
+    "official_plugin_structures": 1,
+    "official_skill_structures": 14
+  },
+  "frozen_input_count": 806,
+  "frozen_inputs_unchanged": true,
+  "focused_evidence": "../panel-library74-focused/summary.json",
+  "focused_summary_sha256": "f72cf20249159c9722142911b678dd3c3c5bc8a43253f50c082dd636f1a59a88",
+  "native_vs_physical": "Native Complete/action-return hooks are simulator observations, not independent physical inspection. GUI, full MCP, focused MCP and model-only transfer checks remain separate counts.",
+  "known_scope_limits": [
+    "No physical or independent-placement inspection",
+    "No continuous endurance or hosted CI execution",
+    "No uniform fresh blind/live success for all fourteen skills",
+    "No promotion or full implementation-plan completion",
+    "Focused effects are separate and never added to full MCP totals",
+    "Post-Q five-file skill documentation overlay and its fresh blind rerun stay separately scoped",
+    "Panel library archive v3 transfers bounded saved direct-board-child native definitions. Fresh operational identity and source counter preservation do not grant arbitrary configuration or physical authority.",
+    "Same-byte/shared definitions and pseudo-listener/lifecycle behavior are precisely scoped native model tests; the actual MCP panel-library workflow has no source job execution and two fresh-target placements.",
+    "Dedicated GUI unknown-feed preservation is distinct from takeover observed after known successful publication."
+  ],
+  "physical_qualification": false,
+  "independently_inspected_placements": 0,
+  "continuous_endurance_qualification": false,
+  "hosted_ci_qualification": false,
+  "uniform_skill_behavior_qualification": false,
+  "post_Q_skill_overlay_included": false,
+  "full_implementation_plan_completed": false,
+  "promotion_performed": false,
+  "requirement_status": {
+    "R01": "partial",
+    "R02": "partial",
+    "R03": "partial",
+    "R04": "partial",
+    "R05": "partial",
+    "R06": "partial",
+    "R07": "partial",
+    "R08": "partial",
+    "R09": "partial",
+    "R10": "partial",
+    "R11": "partial",
+    "R12": "partial",
+    "R13": "partial",
+    "R14": "partial",
+    "R15": "partial",
+    "R16": "partial",
+    "R17": "partial",
+    "R18": "partial"
+  }
+}

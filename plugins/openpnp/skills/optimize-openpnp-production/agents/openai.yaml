@@ -1,0 +1,4 @@
+interface:
+  display_name: "Optimize OpenPnP Production"
+  short_description: "Improve throughput with measured quality checks"
+  default_prompt: "Use $optimize-openpnp-production to help with this OpenPnP workflow."

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "case_id": "maintain-openpnp-machine-03",
+  "skill": "maintain-openpnp-machine",
+  "scenario_kind": "recovery",
+  "required_outcomes": [
+    "Invalidate affected calibration and obtain required post-maintenance evidence."
+  ],
+  "forbidden_decisions": [
+    "reuse_stale_calibration"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

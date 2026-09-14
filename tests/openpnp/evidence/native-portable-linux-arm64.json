@@ -1,0 +1,1804 @@
+{
+  "schema_version": 1,
+  "result": "passed",
+  "created_at": "2026-09-11T08:19:36.506170+00:00",
+  "scope": {
+    "simulation_only": true,
+    "native_mains": 35,
+    "linux_gui_qualified": false,
+    "linux_mcp_qualified": false,
+    "physical_machine_qualified": false,
+    "eight_hour_soak_performed": false,
+    "package_published_by_this_run": false
+  },
+  "platform": {
+    "container_os": "linux",
+    "architecture": "arm64",
+    "variant": "v8",
+    "base_distribution": "Ubuntu24.04.2LTS",
+    "observed_kernel": "Linux <container> 6.8.0-100-generic #100-Ubuntu SMP PREEMPT_DYNAMIC Tue Jan 13 16:39:21 UTC 2026 aarch64 aarch64 aarch64 GNU/Linux",
+    "image_reference": "maven:3.9.9-eclipse-temurin-17@sha256:f58d59b6273e785ac0a4477f6e9b5ba1d7731c75b906c0f7b34076f1851318cc",
+    "observed_image_id": "sha256:f58d59b6273e785ac0a4477f6e9b5ba1d7731c75b906c0f7b34076f1851318cc",
+    "observed_container_image_id": "sha256:f58d59b6273e785ac0a4477f6e9b5ba1d7731c75b906c0f7b34076f1851318cc",
+    "repo_digests": [
+      "maven@sha256:f58d59b6273e785ac0a4477f6e9b5ba1d7731c75b906c0f7b34076f1851318cc"
+    ]
+  },
+  "jdk": {
+    "observed_version": "openjdk version \"17.0.15\" 2025-04-15\nOpenJDK Runtime Environment Temurin-17.0.15+6 (build 17.0.15+6)\nOpenJDK 64-Bit Server VM Temurin-17.0.15+6 (build 17.0.15+6, mixed mode, sharing)\n",
+    "compiler": "javac17.0.15",
+    "component_sha256": {
+      "bin/java": "b2268f04642ca690d9bd9bf2726fb3398fbb02357d3b9efe940873e54b607d30",
+      "bin/javac": "c85f7f454fc6c84b94278c68710377cfe3ce80ab44e6f1286462a2ffed80aeaa",
+      "release": "548dbca85e70e8080a0d4098ca88fd42a059b0d5530cc4570ba4e42486543194",
+      "lib/modules": "d45e2f82b263936a8d379410598ca897de7c3b2e85bc2978759887ee0ada816a"
+    }
+  },
+  "build_tools": {
+    "python": "3.12.3-0ubuntu2.1",
+    "patch": "2.7.6-7build3",
+    "git": "1:2.43.0-1ubuntu7.2",
+    "observation_sha256": "85df41b18ed56bb8efe430e2155fc6abe41cb11437907618aa99de4f54e8676c",
+    "installed_in_disposable_container": true
+  },
+  "bounds": {
+    "jvm_max_heap_bytes_argument": 2147483648,
+    "exit_on_out_of_memory": true,
+    "headless": true,
+    "per_main_timeout_seconds": 240,
+    "outer_timeout_seconds": 3600,
+    "docker_memory_limit_bytes": 0,
+    "docker_cpu_quota": 0,
+    "resource_note": "Zero Docker resource limits mean no explicit container cap. JVM arguments and native capacity boundary assertions are recorded; this is not sustained-load or peak-memory qualification."
+  },
+  "inputs": {
+    "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+    "upstream_tree": "27975ce36b191cbae25b8b16560332bb89a61014",
+    "stock_runtime_manifest_sha256": "fe6eec2a0c1c25155a58bcee28043d13081d7d886840a370bf47abbcf1cf8b57",
+    "stock_runtime_files": [
+      {
+        "path": "LICENSE.txt",
+        "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+      },
+      {
+        "path": "lib/activation-1.1.1.jar",
+        "sha256": "ae475120e9fcd99b4b00b38329bd61cdc5eb754eee03fe66c01f50e137724f99"
+      },
+      {
+        "path": "lib/apiguardian-api-1.1.0.jar",
+        "sha256": "a9aae9ff8ae3e17a2a18f79175e82b16267c246fbbd3ca9dfbbb290b08dcfdd4"
+      },
+      {
+        "path": "lib/asm-7.3.1.jar",
+        "sha256": "2f67e11ceec819ebd88ddee5300aba699b1cbab2e20c22e97cf027d3be93959b"
+      },
+      {
+        "path": "lib/asm-analysis-7.3.1.jar",
+        "sha256": "46b8a8efd4b94facb5ab4b35afe30ee0546ae7a43d2c64e6def56c2f168fefa5"
+      },
+      {
+        "path": "lib/asm-commons-7.3.1.jar",
+        "sha256": "87cd8bb3c6bf6bcbb33fca48060c5065f66ebf6a3d7de9bf18bff51bcf156ebc"
+      },
+      {
+        "path": "lib/asm-tree-7.3.1.jar",
+        "sha256": "f91a4a8aa868c5c4665bb4fd134019a91f9f8b9216527fba295e3c8b5422b78b"
+      },
+      {
+        "path": "lib/asm-util-7.3.1.jar",
+        "sha256": "182128592742ed4883ac82bf205f137b6bfbe1234c68e6feb13759e75a85b729"
+      },
+      {
+        "path": "lib/avalon-framework-api-4.3.1.jar",
+        "sha256": "bca4c94b5e53acee3c97fe11cce0749d682d5591bf4a217cd45273adeb08c60f"
+      },
+      {
+        "path": "lib/avalon-framework-impl-4.3.1.jar",
+        "sha256": "1a429bd5ba87c55b9c84648d0404eb6499b7c05a2c9f21b1bb9621fbf117589f"
+      },
+      {
+        "path": "lib/batik-anim-1.7.jar",
+        "sha256": "60f020a29b01ecf1c8b72630f97352a353ada91a922541892741006161f32c4b"
+      },
+      {
+        "path": "lib/batik-awt-util-1.7.jar",
+        "sha256": "61611a77c5f8d7d748d11c1e226bab904effcd893ad0256d5be72eca857cfef3"
+      },
+      {
+        "path": "lib/batik-bridge-1.7.jar",
+        "sha256": "e7c5a7d772c4f2eef5d34842019440a7ec3f4b00375a9a8350af4804823c832d"
+      },
+      {
+        "path": "lib/batik-css-1.7.jar",
+        "sha256": "91694732cee7c2b2b8bf6792842867407eaa816be065087f1f444fc06b46b578"
+      },
+      {
+        "path": "lib/batik-dom-1.7.jar",
+        "sha256": "7a02277b4d97c8fe68696f214c152628ee80835b9d3c85c97236d38c210ce931"
+      },
+      {
+        "path": "lib/batik-ext-1.7.jar",
+        "sha256": "de85a6de7cdd36ee9ff28dfe7e03d515be92a702d61028f8928c0cd56f1ee375"
+      },
+      {
+        "path": "lib/batik-gvt-1.7.jar",
+        "sha256": "64acbb6dc4ce2a6eceee205ab96aa299d4e3e4648c45b62584a1c751e1072812"
+      },
+      {
+        "path": "lib/batik-js-1.7.jar",
+        "sha256": "f7d917d038b136702461e3dbd5f83dd9946b664398d88f090284447b8e00fbba"
+      },
+      {
+        "path": "lib/batik-parser-1.7.jar",
+        "sha256": "1ab8db369007bc4ec12b01465a657dd47e05ad08c37dce85bf9ceb78232660a0"
+      },
+      {
+        "path": "lib/batik-script-1.7.jar",
+        "sha256": "a631659faacabe358e7d8548a71bee4ec9b2ee2c07fa52f88f99c2cf04c72aa5"
+      },
+      {
+        "path": "lib/batik-svg-dom-1.7.jar",
+        "sha256": "3ec7e519f3f89f04bc0596efe0a09d8423f53aaff2654ff2d3bca595aebb7cda"
+      },
+      {
+        "path": "lib/batik-svggen-1.7.jar",
+        "sha256": "38c90060eebbfc457eb0b3a5ac7776c1b4d9708b9d0b34332f04b63ed76d1a40"
+      },
+      {
+        "path": "lib/batik-transcoder-1.7.jar",
+        "sha256": "08a25d1fa6329751c1bcea5274624c7ee9c23ae955b9872bc14ac6804dd7300a"
+      },
+      {
+        "path": "lib/batik-util-1.7.jar",
+        "sha256": "9e3f1f53bfccdc942dbe2ceaa94ffe23c63ba3703e40941572205420dfcad81e"
+      },
+      {
+        "path": "lib/batik-xml-1.7.jar",
+        "sha256": "b09ffcdf6b7ff3a97c4db23ce2767e90015081e766a81e220c4b1c47dfcba1b2"
+      },
+      {
+        "path": "lib/beansbinding-1.2.1.jar",
+        "sha256": "2c7b4e8d3af02d7410e350e20da92e65aa48c69250b855387721705f7dccfd99"
+      },
+      {
+        "path": "lib/bridj-0.6.2.jar",
+        "sha256": "a344c1d7430700c6d6aa3a322ec65f3e4a4fab3777c99f5dff4f64a9ec47c09c"
+      },
+      {
+        "path": "lib/bsh-2.0b5.jar",
+        "sha256": "6232199563807354b3bcb5aceb3dc136502f022c6b0ef743987a83f66fee5a5c"
+      },
+      {
+        "path": "lib/byte-buddy-1.10.18.jar",
+        "sha256": "7a1fc6eabf10dd3085e62e7cb3281084f00ab92a736e0980fc99a1460fa1f5ce"
+      },
+      {
+        "path": "lib/byte-buddy-agent-1.10.18.jar",
+        "sha256": "c5b5f85433a9e281fd1ee82d5b8e142e5c494670b29970e627f13e189ff1dc2e"
+      },
+      {
+        "path": "lib/classgraph-4.8.141.jar",
+        "sha256": "4a99956890765d019697a1c5d2f045c79a6c914bbe76a26739d72ae43b2f541a"
+      },
+      {
+        "path": "lib/commons-beanutils-1.9.3.jar",
+        "sha256": "c058e39c7c64203d3a448f3adb588cb03d6378ed808485618f26e137f29dae73"
+      },
+      {
+        "path": "lib/commons-codec-1.6.jar",
+        "sha256": "54b34e941b8e1414bd3e40d736efd3481772dc26db3296f6aa45cec9f6203d86"
+      },
+      {
+        "path": "lib/commons-collections-3.2.2.jar",
+        "sha256": "eeeae917917144a68a741d4c0dff66aa5c5c5fd85593ff217bced3fc8ca783b8"
+      },
+      {
+        "path": "lib/commons-io-2.7.jar",
+        "sha256": "4547858fff38bbf15262d520685b184a3dce96897bc1844871f055b96e8f6e95"
+      },
+      {
+        "path": "lib/commons-lang3-3.12.0.jar",
+        "sha256": "d919d904486c037f8d193412da0c92e22a9fa24230b9d67a57855c5c31c7e94e"
+      },
+      {
+        "path": "lib/commons-logging-1.2.jar",
+        "sha256": "daddea1ea0be0f56978ab3006b8ac92834afeefbd9b7e4e6316fca57df0fa636"
+      },
+      {
+        "path": "lib/commons-math3-3.6.1.jar",
+        "sha256": "1e56d7b058d28b65abd256b8458e3885b674c1d588fa43cd7d1cbb9c7ef2b308"
+      },
+      {
+        "path": "lib/commons-pool2-2.11.1.jar",
+        "sha256": "ea0505ee7515e58b1ac0e686e4d1a5d9f7d808e251a61bc371aa0595b9963f83"
+      },
+      {
+        "path": "lib/core-3.3.0.jar",
+        "sha256": "bba7724e02a997cec38213af77133ee8e24b0d5cf5fa7ecbc16a4fa93f11ee0d"
+      },
+      {
+        "path": "lib/flatlaf-1.0.jar",
+        "sha256": "135d8d5ac39fec29d9b3ff52cb30726d3f976b0698615be32534fd7924f29ec7"
+      },
+      {
+        "path": "lib/flatlaf-extras-1.0.jar",
+        "sha256": "df2ec4d31b4ae1c249aec00c112654d9eed4979a95e95bc73bc6063e6a106eb4"
+      },
+      {
+        "path": "lib/fop-0.94.jar",
+        "sha256": "98afa42bcf60aa228f36239815dc0c91f129ef3f7d1a08896707925f2341df80"
+      },
+      {
+        "path": "lib/gson-2.2.3.jar",
+        "sha256": "853a55c219993a781d0884d42793d27e120efefab06c1ff86fb59c22c2a3cef1"
+      },
+      {
+        "path": "lib/gst1-java-core-1.4.0.jar",
+        "sha256": "f0726b2f74753c184abf0281aefe664fdec853ec051b79a5eb64e4e79089ca47"
+      },
+      {
+        "path": "lib/guava-14.0.1.jar",
+        "sha256": "d69df3331840605ef0e5fe4add60f2d28e870e3820937ea29f713d2035d9ab97"
+      },
+      {
+        "path": "lib/httpasyncclient-4.1.1.jar",
+        "sha256": "27cb2c5eba8e85799f38b7cb0341406ef967e061f91018c68733ec6856ff7633"
+      },
+      {
+        "path": "lib/httpclient-4.5.2.jar",
+        "sha256": "0dffc621400d6c632f55787d996b8aeca36b30746a716e079a985f24d8074057"
+      },
+      {
+        "path": "lib/httpcore-4.4.4.jar",
+        "sha256": "f7bc09dc8a7003822d109634ffd3845d579d12e725ae54673e323a7ce7f5e325"
+      },
+      {
+        "path": "lib/httpcore-nio-4.4.4.jar",
+        "sha256": "f21be11ed00a7c655204c03d3ff38c2e8ac88db0913da3598ce5f9ffd686ae1f"
+      },
+      {
+        "path": "lib/httpmime-4.5.2.jar",
+        "sha256": "231a3f7e4962053db2be8461d5422e68fc458a3a7dd7d8ada803a348e21f8f07"
+      },
+      {
+        "path": "lib/jSerialComm-2.10.2.jar",
+        "sha256": "e5c915fdaeeef4971ef8c00118c6a86d7653da0534d76bc013824a2438306fae"
+      },
+      {
+        "path": "lib/javase-2.2.jar",
+        "sha256": "cc32f41b3fcff840bcdd08f14d24e7c170e382bd5c5a81a072ac075e66cc8426"
+      },
+      {
+        "path": "lib/javassist-3.27.0-GA.jar",
+        "sha256": "0730bdb1547a5a3f458d60400d804078d80f329c5b5dbc2498a4e220de8f7013"
+      },
+      {
+        "path": "lib/javax.xml.soap-api-1.4.0.jar",
+        "sha256": "141374e33be99768611a2d42b9d33571a0c5b9763beca9c2dc90900d8cc8f767"
+      },
+      {
+        "path": "lib/jaxb-api-2.2.11.jar",
+        "sha256": "273d82f8653b53ad9d00ce2b2febaef357e79a273560e796ff3fcfec765f8910"
+      },
+      {
+        "path": "lib/jaxb-core-2.2.11.jar",
+        "sha256": "b13da0c655a3d590a2a945553648c407e6347648c9f7a3f811b7b3a8a1974baa"
+      },
+      {
+        "path": "lib/jaxb-impl-2.2.11.jar",
+        "sha256": "f91793a96f185a2fc004c86a37086f060985854ce6b19935e03c4de51e3201d2"
+      },
+      {
+        "path": "lib/jaxws-api-2.3.0.jar",
+        "sha256": "c261f75c1a25ecb17d1936efe34a34236b5d0e79415b34ffb9324359a30a8c08"
+      },
+      {
+        "path": "lib/jcodec-0.1.9.jar",
+        "sha256": "180a1440d94365c332d3db632902bf0642b60a4b224fb1037a23f40229052b71"
+      },
+      {
+        "path": "lib/jcodec-javase-0.1.9.jar",
+        "sha256": "06aece877ce564394a0a99767691285058980eab2499116eedae7444fe42db15"
+      },
+      {
+        "path": "lib/jfreechart-1.5.3.jar",
+        "sha256": "23bd63ece2284d6578ed51f336cd33681c53f817e4595a705690922a3c0f0f44"
+      },
+      {
+        "path": "lib/jgoodies-common-1.8.0.jar",
+        "sha256": "bc2336a74aaf7233aae156a1750953941248544247ff0d97fa58d84e3ebf0735"
+      },
+      {
+        "path": "lib/jgoodies-forms-1.8.0.jar",
+        "sha256": "a2ae46793814fa6c42dabb561c59336029907a3c03d1b82f977f1ed6a4e5011e"
+      },
+      {
+        "path": "lib/jna-5.8.0.jar",
+        "sha256": "930273cc1c492f25661ea62413a6da3fd7f6e01bf1c4dcc0817fc8696a7b07ac"
+      },
+      {
+        "path": "lib/json-20160212.jar",
+        "sha256": "0aaf0e7e286ece88fb60b9ba14dd45c05a48e55618876efb7d1b6f19c25e7a29"
+      },
+      {
+        "path": "lib/junit-jupiter-api-5.7.1.jar",
+        "sha256": "ce7b985bc469e2625759a4ebc45533c70581a05a348278c1d6408e9b2e35e314"
+      },
+      {
+        "path": "lib/junit-jupiter-engine-5.7.1.jar",
+        "sha256": "56616c9350b3624f76cffef6b24ce7bb222915bfd5688f96d3cf4cef34f077cb"
+      },
+      {
+        "path": "lib/junit-platform-commons-1.7.1.jar",
+        "sha256": "7c546be86864718fbaceb79fa84ff1d3a516500fc428f1b21d061c2e0fbc5a4b"
+      },
+      {
+        "path": "lib/junit-platform-engine-1.7.1.jar",
+        "sha256": "37df5a9cd6dbc1f754ba2b46f96b8874a83660e1796bf38c738f022dcf86c23f"
+      },
+      {
+        "path": "lib/jython-standalone-2.7.1.jar",
+        "sha256": "c4410d1a731948131a71f24c4e1ed0c5326711265b474b173acab2723c258c4b"
+      },
+      {
+        "path": "lib/l2fprod-common-annotations-1.0.3.jar",
+        "sha256": "f2300e025a798dc64281525fc99a71ccd58c23a95f93f8309a86701d9a887688"
+      },
+      {
+        "path": "lib/l2fprod-properties-editor-1.0.3.jar",
+        "sha256": "b4abdee067de9a0a1baf6f65878c13a6890a3d72cb4aaddc4b5dbbf88fad1159"
+      },
+      {
+        "path": "lib/mockito-core-3.6.28.jar",
+        "sha256": "8f6bb5d54f0de3453215745f2844b1f0dc00b24abcb41c97059562743a83a9b2"
+      },
+      {
+        "path": "lib/nashorn-core-15.4.jar",
+        "sha256": "6f816e84dfd63a81d4eaa7829c08337bbaff3ec683ff3bf6bbd90d017a00dc6f"
+      },
+      {
+        "path": "lib/objenesis-3.1.jar",
+        "sha256": "cdb3d038c188de6f46ffd5cd930be2d5e5dba59c53b26437995d534e3db2fb80"
+      },
+      {
+        "path": "lib/onvif-java-lib-2016-03-16.jar",
+        "sha256": "4e3669278ce51a0b61f984333811541a7e2d2cf1cd6c8bc2841bf40a14e64f99"
+      },
+      {
+        "path": "lib/opencv-4.5.5-1.jar",
+        "sha256": "847c3255a3a47af0860ded022a8d51b3b5946d29c6002c91da72f3d36c0e5832"
+      },
+      {
+        "path": "lib/openpnp-capture-java-0.0.28-0.jar",
+        "sha256": "f72037f28b15e32b6ea2246ed6eec7cb02baef871d66a14ba08690df4ada6226"
+      },
+      {
+        "path": "lib/opentest4j-1.2.0.jar",
+        "sha256": "58812de60898d976fb81ef3b62da05c6604c18fd4a249f5044282479fc286af2"
+      },
+      {
+        "path": "lib/pastebin4j-1.2.1.jar",
+        "sha256": "2144e5675e929cf53a9b84f44f726480ae515c5aa3adc595dfee2515a6290949"
+      },
+      {
+        "path": "lib/serializer-2.7.2.jar",
+        "sha256": "e8f5b4340d3b12a0cfa44ac2db4be4e0639e479ae847df04c4ed8b521734bb4a"
+      },
+      {
+        "path": "lib/simple-xml-2.9.0.jar",
+        "sha256": "18c2793164c942253b9c44520fd861de7fd87509d63a7bd30cbfb38eb5acc78e"
+      },
+      {
+        "path": "lib/slf4j-api-1.7.2.jar",
+        "sha256": "3bae789b401333b2a1d1603b7fa573e19908628191707203f6eb708cdee2c052"
+      },
+      {
+        "path": "lib/stax-1.2.0.jar",
+        "sha256": "df6905a047b05e23bc91f03ba57ac2f87c1ddf83e048aa0e5bd13169d5ebf0d9"
+      },
+      {
+        "path": "lib/stax-api-1.0.1.jar",
+        "sha256": "d1968436fc216c901fb9b82c7e878b50fd1d30091676da95b2edd3a9c0ccf92e"
+      },
+      {
+        "path": "lib/svgSalamander-1.1.2.4.jar",
+        "sha256": "f30a5c5fc4d73d7f2aa4cf086ddc03cf2b387316c04fc4bf1ff94411afd51fd8"
+      },
+      {
+        "path": "lib/swingx-all-1.6.4.jar",
+        "sha256": "5bc8bb080fdf3ef968485ae90f7877fbcfc05b2cfe4753824acb5a36a1ee2036"
+      },
+      {
+        "path": "lib/tinylog-1.3.jar",
+        "sha256": "0cd9a85b5b1393bac2dbd4422ad573194920af71caf99f10b3812fc7194c07fe"
+      },
+      {
+        "path": "lib/unirest-java-1.4.9.jar",
+        "sha256": "88d9d28faa03d05deab9b4813597aee231c4ea5279edbb13d2ef35db118127f9"
+      },
+      {
+        "path": "lib/utils-1.07.00.jar",
+        "sha256": "9e135fee1b2143d4e609872bc0d736ea36b751a7ddddb11d84e08b042829475a"
+      },
+      {
+        "path": "lib/webcam-capture-0.3.10.jar",
+        "sha256": "a6cf33a1f4722619dd3c1b99709116f3f31f56a289c6f75af0bbbd19e5a9b10b"
+      },
+      {
+        "path": "lib/xalan-2.7.2.jar",
+        "sha256": "a44bd80e82cb0f4cfac0dac8575746223802514e3cec9dc75235bc0de646af14"
+      },
+      {
+        "path": "lib/xml-apis-1.3.04.jar",
+        "sha256": "d404aa881eb9c5f7a4fb546e84ea11506cd417a72b5972e88eff17f43f9f8a64"
+      },
+      {
+        "path": "lib/xml-apis-ext-1.3.04.jar",
+        "sha256": "d0b4887dc34d57de49074a58affad439a013d0baffa1a8034f8ef2a5ea191646"
+      },
+      {
+        "path": "lib/xmlgraphics-commons-1.2.jar",
+        "sha256": "2fff00adf9a2fec136113882610564336f8d92f2ad09fc4f893c8990e54628a7"
+      },
+      {
+        "path": "lib/xpp3-1.1.3.3.jar",
+        "sha256": "b14a6716def83417542d5515677d947fecd2597c125f2c82aa9be8792f66b5ee"
+      },
+      {
+        "path": "openpnp-gui-0.0.1-alpha-SNAPSHOT.jar",
+        "sha256": "518491253ff3b6767362d4a163c932989fa6d71b76fc1bb0e5f35da5cb7a4e43"
+      },
+      {
+        "path": "samples/pnp-test/.gitignore",
+        "sha256": "f7347226d57841a43583b2a8574967258db0274132ba3805050d501f98453986"
+      },
+      {
+        "path": "samples/pnp-test/pnp-test-panelized.job.xml",
+        "sha256": "e2de1f9b208fdb6a8924f813a8f9de34f220b48e3830a3d4f7bd1abef7127631"
+      },
+      {
+        "path": "samples/pnp-test/pnp-test.board.xml",
+        "sha256": "3a681e67aff14a4abaa7fde952b90b4a7920a468d152420820c3594f93071164"
+      },
+      {
+        "path": "samples/pnp-test/pnp-test.brd",
+        "sha256": "a99d35f362a783356dee060e16f8d4ec308ccaf1920650df6bbc2d440ded84c7"
+      },
+      {
+        "path": "samples/pnp-test/pnp-test.job.xml",
+        "sha256": "28176cc574d758d900ee4892b46b88873b716efb4253ba0cd15a8c11aefbf257"
+      },
+      {
+        "path": "samples/pnp-test/pnp-test.panel.xml",
+        "sha256": "1f853ec72e64aa24d78ed217725bd72f1f3690b797471f87bf0b69aaa9f6ffc4"
+      },
+      {
+        "path": "samples/pnp-test/pnp-test.pxm",
+        "sha256": "e9045c4160c0dd8b7c01c7e2995d44a09d211cdb5feba5e56a28dce7a5eb0032"
+      },
+      {
+        "path": "samples/pnp-test/rotate.js",
+        "sha256": "d87d46d545d3be8990488ca6a8c15198c05359effa8b6a1d9ca8bc7f6975778d"
+      },
+      {
+        "path": "samples/pnp-test/rotate.scr",
+        "sha256": "8c8f135a6ef3da41e71db6151b4d38264c2970b0cf6101b2d2f766a79b07ca19"
+      },
+      {
+        "path": "samples/pnp-test/tape.js",
+        "sha256": "4fcba16bc019cac5c460b19171d48b3e98f067bd3af677a6b0b7adcd250a54c5"
+      },
+      {
+        "path": "samples/pnp-test/tape.scr",
+        "sha256": "b2a1e033c01922ea5f2fd81fd62e40dc3f820c0a4b60f66f5da90e03788405fe"
+      }
+    ],
+    "source_sha256": {
+      "plugins/openpnp/bridge/bootstrap.js": "c6c9ab3e882ab3c7b2f6b79f86d956c510a6fa3e4abc20f73f3c7412ab3fd696",
+      "plugins/openpnp/bridge/upstream-patches/gui-ownership.patch": "d1444b049ebc459379e6d5932bda732b4b072554e718d29ee2a3543291356fd0",
+      "plugins/openpnp/bridge/upstream-patches/native-action-observer.patch": "62a19ff58d2b8dcfc0ed213ef9136b2b507d70e32f30db47cfcac566e09b2496",
+      "plugins/openpnp/bridge/upstream-patches/native-board-load-history.patch": "35f99a216e30f4790df1c7d7a55988858f52a26ba6f461e324d5a86b8e1436fe",
+      "scripts/openpnp-build-native-docker.sh": "84575c0869822d5b4aa3d6136fa06e4d688718c66e45587d5440ed7d984f2513",
+      "scripts/openpnp-build-native-gui.py": "372bd4834d1bc406ce86d4531c14e68f781b216274ca7f1338eb5d0f9619491c",
+      "scripts/openpnp-build-native.py": "dde7460d19b7e85a934e6d581ebe1112b3c2941de92a4ddf3fc5096c5cd8fa1d",
+      "scripts/openpnp-build-native.sh": "0ea0e1926b314429044cf7cd04604e56f07a7f0d2ef04fae40da5f526fa5f43c",
+      "scripts/openpnp-test-native-candidate.py": "b76d227ff13b2d0efe767079562b61ce690d5a63fe7da1879de53125e3e1c0d7",
+      "src/openpnp/java/org/openpnp/codex/Bridge.java": "2b9a126a5b68c9d2aa7961d9c8d30a62e40ca4244993e6bbbb13e1669de2c404",
+      "src/openpnp/java/org/openpnp/codex/BuildManifest.java": "707038c3f604862a2dda606e47d3dfbea35a9374f68ab91a6944690b10e9ea8d",
+      "src/openpnp/java/org/openpnp/codex/CanonicalJobImporter.java": "8130fead0a099df612bd1cc30b346f2442d395d3843935041c1e911df2be186e",
+      "src/openpnp/java/org/openpnp/codex/GuiBootstrap.java": "389df166e5ac0ec22c278bf650fec560a6711ef05bc0062af3144b742bb9bc95",
+      "src/openpnp/java/org/openpnp/codex/GuiExampleScripts.java": "7ae0532aaa6aeb7397b9b8b7ae862327fd1b304d5db1f641bc4b84823c66542c",
+      "src/openpnp/java/org/openpnp/codex/GuiOwnership.java": "079348ab974e5b08cc3173c3fe0e1ea74a6e43ea074a2c9f0a562eacc2a92d2e",
+      "src/openpnp/java/org/openpnp/codex/GuiSimulatorController.java": "6b541fb3ca233cce99e816987911a8c950a6c1d472bdb453240fffbddce3c4b3",
+      "src/openpnp/java/org/openpnp/codex/IsolatedPreferencesFactory.java": "4e2f804606abb7d5257f480f55642755b952b41d24dd168cac5b2dfeec2372bc",
+      "src/openpnp/java/org/openpnp/codex/NativeActionLedger.java": "e54ecb0b094ceaeef0ef021353995e26422aa42dc97e27e1adfec1838eb42a69",
+      "src/openpnp/java/org/openpnp/codex/NativeAdoptedSimulatorMain.java": "b44a9e8c4d3429c8471986290f81054667f9a34f8585023f6ed24bcc292127fd",
+      "src/openpnp/java/org/openpnp/codex/NativeBoardLoads.java": "c6439a5f39e041b6b36c2557bf8f486e37cd650508dedbf5d3826a67da078b0c",
+      "src/openpnp/java/org/openpnp/codex/NativeConfigurationSnapshots.java": "d01f81afbb2c16365f8cc87555c89fdba4a2dad8416a4631eed72f248642482f",
+      "src/openpnp/java/org/openpnp/codex/NativeDocumentStore.java": "96f7c779984269c264e1d394668442dfe506377e1ef0bd8dd69f4647e2b8b6a0",
+      "src/openpnp/java/org/openpnp/codex/NativeJobDocuments.java": "66375db53ff8bc4e443322e668371c5e1d6f318a510ec1e5f09d2505c2006f12",
+      "src/openpnp/java/org/openpnp/codex/NativeJobPreflight.java": "8163b65bc83c26df5806c1643a5f9311bec89169c813a982716feef43e69f3c3",
+      "src/openpnp/java/org/openpnp/codex/NativePlacementEdits.java": "6ce949eaac02f0ffc45023a62688430214eb9d6d0acf736c0555787744acf741",
+      "src/openpnp/java/org/openpnp/codex/NativePortableConfiguration.java": "a370618bbf49d90f73053400307b76750ba1924c1dadf36ad3fa9bfde8f8563f",
+      "src/openpnp/java/org/openpnp/codex/NativePortableConfigurationMain.java": "4d185b3b01306570f7f2c7b0df4da9f67a8ddc1ddbb4ff0130662901f3eff7f4",
+      "src/openpnp/java/org/openpnp/codex/NativePortableLaunch.java": "091abe806523d4f37d6fa2becb728b40302b2b24961d413d1d9ab832141551e7",
+      "src/openpnp/java/org/openpnp/codex/NativePortableLimits.java": "1a338d702336891be85bfe89acd20e773d0792b522f6c48ada4fca55706a45e9",
+      "src/openpnp/java/org/openpnp/codex/NativePortablePipelines.java": "161473067f492a16637ad26abec2b488aacf413d7810eb2b2bc37a193b22a9e8",
+      "src/openpnp/java/org/openpnp/codex/NativeSettings.java": "ca7fed7406888a68bb6c2b81ea56feb3b2c2d72d2ddbf7d9f932eb9db6bf7f45",
+      "src/openpnp/java/org/openpnp/codex/NativeVisionSettings.java": "72de29d9f77ba10f451cf01ba4f4db80436a50d2d81d2e1e751502731958576c",
+      "src/openpnp/java/org/openpnp/codex/SimulatorMain.java": "fc4e1a984cb902b3bb7ab3f59007a61fbf386d5930b32774ef11c170dcd9a311",
+      "tests/openpnp/native/NativeActionLedgerTest.java": "ba6f8d0085399990e926313e92036da2bcedc0bf48aa4d844a20bc5d8c53d7a4",
+      "tests/openpnp/native/NativeBoardLoadBridgeTest.java": "a0090a4fe4369e76bf7d88e05b88589fcf1aaa7f8012500c014d86f6f1cbb815",
+      "tests/openpnp/native/NativeBoardLoadsReviewTest.java": "6549ce0a09b04c946967f88bb59d13af1eaa1363599bbcc994035960e294e48a",
+      "tests/openpnp/native/NativeBoardLoadsTest.java": "3f100915aa13f90d6e2f642ae9f5e4c5d3c8523a63c63dd11ad4383ada5ebbb5",
+      "tests/openpnp/native/NativeBoundaryTest.java": "3488a8b48adb14cf4e5e0dab2cdb0a980fad6c2b5820a517aaa542ad7fc1797c",
+      "tests/openpnp/native/NativeBridgeDocumentRestartTest.java": "eebac6e93694496c61ea24756f13db84e4d9acb6e7cb7efae81107f693407fe9",
+      "tests/openpnp/native/NativeBridgeTest.java": "251dd173665e46dfb90bf96a76347b37fdbcd7b10afe34037f2877899a13790d",
+      "tests/openpnp/native/NativeCanonicalIdentityTest.java": "772a0df7630f6098cbb0e857872215d40ca3002e06ee9c51107fe03ed61ed8e4",
+      "tests/openpnp/native/NativeCapabilityTest.java": "47c1d873f687065b88083df24e01214286a4825a7d0b11e6fd2ad08040f53784",
+      "tests/openpnp/native/NativeConfigurationSnapshotsDecodeTest.java": "e35e6966e4f3b2328a4dce790bc64a468683366a1f72f3f5c66d4ce671837392",
+      "tests/openpnp/native/NativeConfigurationSnapshotsTest.java": "520031b996cefb0102a8d7be89352a3ba9ea09719da4ecbce3f27f28a888c536",
+      "tests/openpnp/native/NativeDocumentStoreCrashTest.java": "d39c911d4afab46e9cae39f6888e56cbed435ec9456f6902f3c6cfbc72842114",
+      "tests/openpnp/native/NativeEffectBoundaryTest.java": "df1e3dfd495999aa6680517732abead327f8ecb56e1cde23ca65fad88f8fd4fe",
+      "tests/openpnp/native/NativeExecutorOwnershipTest.java": "609e16a7afc10d518059b425749498945f7e5770fcf1cb229547c53a5e01ee32",
+      "tests/openpnp/native/NativeGraphLimitsTest.java": "d6bfb0ef9473d3aa9d47e42956bbf190b4d225a4ff5346717810d0f398f2e5ef",
+      "tests/openpnp/native/NativeGuiOwnershipTest.java": "0b650424ea4be706dfe772c0fd53ade49c18f65a3c40d05f953a74d8270d3cbc",
+      "tests/openpnp/native/NativeImportBoundaryTest.java": "7beebecfcac94bc1d235a93e89482eea53a698775b74ae50c59a0eef5542a3d1",
+      "tests/openpnp/native/NativeJobDocumentsRestartTest.java": "e64c648ba5687c33e22b9422f9bbdf7d29dbcfd05db1d176476ee51be3bc8de9",
+      "tests/openpnp/native/NativeJobDocumentsTest.java": "960f2a09076096dd4c5dac00b401b156b7d6dd08063587ead7a30d54a5364516",
+      "tests/openpnp/native/NativeJobPreflightTest.java": "1dab01b4492ff8e47869af423c9b71a5ffc431e1bbd75650191920865bb0266a",
+      "tests/openpnp/native/NativeJournalInputBoundaryTest.java": "ec2657799a72f7e533c298c1a05b79348bb4072de0f9198d00a185c0bd136bd1",
+      "tests/openpnp/native/NativeLedgerRecoveryTest.java": "c11015c0b94bb1f1bedd089829d4d07b27d94fe3f904108ad64005a8b8f28272",
+      "tests/openpnp/native/NativePlacementBenchmark.java": "0dc4ea6bcf6069cdb684077433c8ca54a2aa4abe35ae5f83ac173df7f820ed6c",
+      "tests/openpnp/native/NativePlacementEditsTest.java": "2f494ddf5ce5e01937b6323ab90174314c308636fe9682d1fd2c009f7c2c4250",
+      "tests/openpnp/native/NativePortableAllocationTest.java": "85e97b0eaa635082e2614a848457409c71a6e5606b4fa422cafe8810c3865799",
+      "tests/openpnp/native/NativePortableConfigurationTest.java": "1bae82bce4f6666b3ca7e96fde5679907a2c6b0a5689414e05e14c5a9fd3472d",
+      "tests/openpnp/native/NativePortableJourneyTest.java": "8dd3b113364485a432a72e10596f7e39af382ae09672c1f0e12a79c32e93741b",
+      "tests/openpnp/native/NativePortablePipelineTest.java": "af98ca8d2987791dab3c71fb29fc6598f70978081e23268e0fc17cbc3e18b470",
+      "tests/openpnp/native/NativeRecoveryTest.java": "ca76a8f97dfe938c374a7d577df89326b016a991f882f383bd403d7491a80420",
+      "tests/openpnp/native/NativeSettingsTest.java": "e64e8947c240f23cd76445368689cd80e44885469adf9fb7464f31cefd6866e2",
+      "tests/openpnp/native/NativeStorageBoundaryTest.java": "83d246e45a595bbeee4ce94289ec531a192ae948e67142c803fc5f923d3d6d80",
+      "tests/openpnp/native/NativeSustainedTest.java": "649265f3d8ef44443d6fb2761f84156845dc9c8d30520e3f05f44f6f6c08fd3b",
+      "tests/openpnp/native/NativeTransformTest.java": "4f3758be3ba8efcd3a63b9934691ef7972923790a23c45c4007c169b6155ae47",
+      "tests/openpnp/native/NativeVisionIntegrationTest.java": "1f81a5e2942a2cf9cee39315096bd73fe1425b6af50a101c7c0d3d19b8728a42",
+      "tests/openpnp/native/NativeVisionSettingsReviewTest.java": "ab92224b840e884b97267173923278c4ed4dafe488a9dc1045a11a33b111ad4a",
+      "tests/openpnp/native/NativeVisionSettingsTest.java": "651d9546d6c396a16e48b63a00770cb73c12810792c177dd307858266949affd",
+      "tests/openpnp/native/PlannerSettingsTest.java": "0b154d6fbf44e607580f16233a76dcdfaadd00a06a46a4e2853bbb79517f836e"
+    },
+    "all_unchanged": true,
+    "source_mount_read_only": true,
+    "stock_runtime_mount_read_only": true
+  },
+  "build": {
+    "bridge_sha256": "39239580de6a5c11f4a5e02d96e0b94737f17cc30e11ff8c81df60b3c4ec00a3",
+    "native_jar_sha256": "40ef07e5562cc9e64a1f22e18a9f090dd1e522349858223759b5b13f616f386a",
+    "runtime_manifest_sha256": "57cb2f6f2420095f6cf0436c93ccbbbcccf66804260c74f67fba57ac29b377ec",
+    "manifest_sha256": "598aa45bae55e1cb2de9c11cc9455a15e21eda843587dfac5a155f2043303e5a",
+    "canonical_entrypoint": [
+      "bash",
+      "scripts/openpnp-build-native-docker.sh",
+      "--test",
+      "--output",
+      "validation/native-linux-portable-01/canonical"
+    ],
+    "native_test_count": 35
+  },
+  "cross_platform": {
+    "macos_build": "gui-build-20",
+    "macos_bridge_sha256": "1a1fa425eb220bfed84a6e4c43bdd8fb98c5962f6c8d296ffa67062d134263ee",
+    "production_source_hashes_match": true,
+    "test_source_hashes_match": true,
+    "class_groups": {
+      "bridge-classes": {
+        "linux_count": 67,
+        "macos_count": 67,
+        "identical": true,
+        "different": []
+      },
+      "native-classes": {
+        "linux_count": 90,
+        "macos_count": 90,
+        "identical": true,
+        "different": []
+      },
+      "launcher-classes": {
+        "linux_count": 2,
+        "macos_count": 2,
+        "identical": true,
+        "different": []
+      },
+      "test-classes": {
+        "linux_count": 62,
+        "macos_count": 62,
+        "identical": true,
+        "different": []
+      }
+    },
+    "all_production_class_bytes_identical": true,
+    "bridge_jar_entry_payload_differences": [
+      "META-INF/MANIFEST.MF"
+    ],
+    "bridge_jar_manifests": {
+      "linux_manifest": "Manifest-Version: 1.0\r\nCreated-By: 17.0.15 (Eclipse Adoptium)\r\n\r\n",
+      "macos_manifest": "Manifest-Version: 1.0\r\nCreated-By: 17.0.16 (Eclipse Adoptium)\r\n\r\n"
+    },
+    "comparison_evidence_sha256": "b7da0ddca7d72631362a4981ffb273a0978bf64bfd156fb0511b42c96faed670"
+  },
+  "suite": {
+    "passed_mains": 35,
+    "failed_mains": [],
+    "skipped_mains": [],
+    "exact_requested_sequence_verified": true,
+    "total_explicitly_reported_assertions": 612,
+    "mains_reporting_assertion_counts": 11,
+    "assertion_note": "Assertion counts are summed only when explicitly printed by that main. Other mains print behavioral groups or outcome counts; no count is invented, and placement counts are not summed across nested scenarios.",
+    "elapsed_test_seconds": 159.66363549232483,
+    "elapsed_build_and_test_seconds": 181.14696308295242,
+    "tests": [
+      {
+        "main": "NativeActionLedgerTest",
+        "exit_code": 0,
+        "elapsed_seconds": 5.098111391067505,
+        "log_sha256": "27a1edae41a7524f933e7be5f5c4041ab36e8c8a9f873d135947355bd3872b45",
+        "source_sha256": "ba6f8d0085399990e926313e92036da2bcedc0bf48aa4d844a20bc5d8c53d7a4",
+        "reported_assertion_count": 127,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_NATIVE_ACTION_LEDGER_RESULT",
+            "data": {
+              "passed": [
+                "bounded per-thread Java observer registration and cleanup",
+                "read-only replay rejects duplicate collisions, missing prefix, and wrong action context",
+                "complete: actual native processor, finite feeder, durable disk receipts",
+                "before-feed-fault: actual native processor, finite feeder, durable disk receipts",
+                "after-feed-fault: actual native processor, finite feeder, durable disk receipts",
+                "after-pick-fault: actual native processor, finite feeder, durable disk receipts",
+                "ordinary native post-effect feed Exception cannot trigger another native effect",
+                "ordinary native post-effect pick Exception cannot trigger another native effect",
+                "ordinary authorized processor.abort has durable nested discard/release observations",
+                "observer-contract: unmatched attempts, alignment finally, immutable observations, script ordering and policy lifecycle"
+              ],
+              "assertions": 127,
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+              "simulation_only": true,
+              "physical_qualification": false,
+              "native_feed_effects": 7,
+              "completed_native_placements": 2,
+              "fault_injection": "actual journal FileChannel closed at selected native hook",
+              "class_sha256": {
+                "ledger": "1c249533811752e427145681c5f0527dda80962387b24157f8a9e73d2d664b1c",
+                "scripting": "92e0f7692774530fb901d16da05f29a72b6f8083eec7c0d3ed56c24287fd5171",
+                "native_processor": "f602fb9090cd9a15cccc0b379fc982e5ae0e01f41fbc4e48ed646b16b78ec633"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeBridgeDocumentRestartTest",
+        "exit_code": 0,
+        "elapsed_seconds": 7.313909292221069,
+        "log_sha256": "c6830590f354501688d60b55407b7dd1ac6a4714fa2af92ab6bc2389285f4cb0",
+        "source_sha256": "eebac6e93694496c61ea24756f13db84e4d9acb6e7cb7efae81107f693407fe9",
+        "reported_assertion_count": null,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_NATIVE_BRIDGE_DOCUMENT_RESTART_RESULT",
+            "data": {
+              "passed": [
+                "original native artifact UUID resolves after JVM restart",
+                "32 recorded native placements survive restart",
+                "reloaded job start requires revalidation and has no feed effect"
+              ],
+              "native_jvm_phases": 2,
+              "executed_placements": 32,
+              "hardware_qualified": false
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeExecutorOwnershipTest",
+        "exit_code": 0,
+        "elapsed_seconds": 1.1446523666381836,
+        "log_sha256": "6190dfb5e0dc7c5cfd54747892f7bfdb1db049c792718cc3ee348671678b24e4",
+        "source_sha256": "609e16a7afc10d518059b425749498945f7e5770fcf1cb229547c53a5e01ee32",
+        "reported_assertion_count": null,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_NATIVE_EXECUTOR_OWNERSHIP_RESULT",
+            "data": {
+              "passed_groups": 5,
+              "native_executor": true,
+              "movement_performed": false,
+              "physical_qualification": false
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeLedgerRecoveryTest",
+        "exit_code": 0,
+        "elapsed_seconds": 1.7375991344451904,
+        "log_sha256": "dbb7b5927834dd66081ab7c3c64b643d39551b8adbdd645e62f08d0c4c0c144f",
+        "source_sha256": "c11015c0b94bb1f1bedd089829d4d07b27d94fe3f904108ad64005a8b8f28272",
+        "reported_assertion_count": 29,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_NATIVE_LEDGER_RECOVERY_RESULT",
+            "data": {
+              "passed": [
+                "fault scenario begins with an unconsumed native finite tray",
+                "actual post-feed journal failure fences once outside native retry loops",
+                "exactly one actual native feed occurred before the unknown outcome",
+                "live ledger preserves one pending feed intent",
+                "actual helper action envelopes were forced to disk before failure",
+                "Bridge restart changes the operation owner instance",
+                "Bridge restart preserves the durable machine identity",
+                "first restart preserves the original forced journal prefix",
+                "unresolved native action forces recovered operation unknown",
+                "retained action facts continue to deny automatic replay",
+                "retained native feed outcome remains explicitly unknown",
+                "expected native refusal: RECOVERY_REQUIRED",
+                "durable abandonment is cancelled while its prior physical outcome stays unknown",
+                "explicit abandonment keeps the exact unknown action facts",
+                "lost reconciliation response replays the durable cancelled receipt",
+                "recovery and explicit abandonment perform no native feed or action replay",
+                "durable abandonment is cancelled while its prior physical outcome stays unknown",
+                "retained action facts continue to deny automatic replay",
+                "retained native feed outcome remains explicitly unknown",
+                "second restart preserves the unresolved facts without reopening the abandoned operation",
+                "second restart preserves the complete abandonment journal prefix",
+                "second restart exposes the original cancelled reconciliation receipt",
+                "bounded planning admission remains open after second restart and prior explicit abandonment",
+                "two Bridge restarts and planning preserve the one-feed count without action replay",
+                "native job validates while the machine is enabled and homed",
+                "expected native refusal: MACHINE_DISABLED",
+                "disabled start does not strand an accepted operation outside the native wrapper",
+                "disabled start is refused before durable operation admission",
+                "disabled-job admission regression performs no feed or native job action"
+              ],
+              "assertions": 29,
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+              "simulation_only": true,
+              "physical_qualification": false,
+              "process_crash_test": false,
+              "bridge_restarts_after_fault": 2,
+              "native_feed_effects": 1,
+              "completed_native_placements": 0,
+              "fault_injection": "actual FileChannel closed after native tray feed before outcome append",
+              "admission_envelope": "fixture; action envelopes from actual native processor hooks",
+              "journal_sha256": "d6352556c669b0009bdee10b1e64e8167881a08568daa0d05343699bcf10e8b3",
+              "evidence_directory": "<candidate>/validation/native-linux-portable-01/canonical/native-tests/tmp/openpnp-native-ledger-recovery-7540685466504545853"
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeJournalInputBoundaryTest",
+        "exit_code": 0,
+        "elapsed_seconds": 1.6847126483917236,
+        "log_sha256": "34f70d4a0e618ac3dfc2c62f9099e2f6ea009cc68fe23d519d0bfd9021889650",
+        "source_sha256": "ec2657799a72f7e533c298c1a05b79348bb4072de0f9198d00a185c0bd136bd1",
+        "reported_assertion_count": 35,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_NATIVE_JOURNAL_INPUT_RESULT",
+            "data": {
+              "assertions": 35,
+              "passed": [
+                "oversized-single-record: constructor reports bounded malformed-journal refusal",
+                "oversized-single-record: rejected journal remains byte-identical",
+                "oversized-single-record: refusal has no native enabled/homed/feed/nozzle effect",
+                "oversized-single-record: same-JVM repaired retry acquires the journal lock and reads its original sequence",
+                "oversized-single-record: repaired constructor has no stale fault or native executor work",
+                "oversized-single-record: repaired read-only Bridge preserves native model state",
+                "oversized-single-record: exact rejected evidence remains retained after repair",
+                "nested-beyond-depth-64: constructor reports bounded malformed-journal refusal",
+                "nested-beyond-depth-64: rejected journal remains byte-identical",
+                "nested-beyond-depth-64: refusal has no native enabled/homed/feed/nozzle effect",
+                "nested-beyond-depth-64: same-JVM repaired retry acquires the journal lock and reads its original sequence",
+                "nested-beyond-depth-64: repaired constructor has no stale fault or native executor work",
+                "nested-beyond-depth-64: repaired read-only Bridge preserves native model state",
+                "nested-beyond-depth-64: exact rejected evidence remains retained after repair",
+                "missing-final-newline: constructor reports bounded malformed-journal refusal",
+                "missing-final-newline: rejected journal remains byte-identical",
+                "missing-final-newline: refusal has no native enabled/homed/feed/nozzle effect",
+                "missing-final-newline: same-JVM repaired retry acquires the journal lock and reads its original sequence",
+                "missing-final-newline: repaired constructor has no stale fault or native executor work",
+                "missing-final-newline: repaired read-only Bridge preserves native model state",
+                "missing-final-newline: exact rejected evidence remains retained after repair",
+                "malformed-utf8: constructor reports bounded malformed-journal refusal",
+                "malformed-utf8: rejected journal remains byte-identical",
+                "malformed-utf8: refusal has no native enabled/homed/feed/nozzle effect",
+                "malformed-utf8: same-JVM repaired retry acquires the journal lock and reads its original sequence",
+                "malformed-utf8: repaired constructor has no stale fault or native executor work",
+                "malformed-utf8: repaired read-only Bridge preserves native model state",
+                "malformed-utf8: exact rejected evidence remains retained after repair",
+                "global-sequence-gap: constructor reports bounded malformed-journal refusal",
+                "global-sequence-gap: rejected journal remains byte-identical",
+                "global-sequence-gap: refusal has no native enabled/homed/feed/nozzle effect",
+                "global-sequence-gap: same-JVM repaired retry acquires the journal lock and reads its original sequence",
+                "global-sequence-gap: repaired constructor has no stale fault or native executor work",
+                "global-sequence-gap: repaired read-only Bridge preserves native model state",
+                "global-sequence-gap: exact rejected evidence remains retained after repair"
+              ],
+              "cases": [
+                {
+                  "case": "oversized-single-record",
+                  "rejected_input_bytes": 8388610,
+                  "rejected_input_sha256": "abaab5d894e9c4255a14f1be662d6e754a4612fb56c258d70879fb50dbe26dac",
+                  "expected_failure_class": "IOException",
+                  "same_jvm_retry_succeeded": true
+                },
+                {
+                  "case": "nested-beyond-depth-64",
+                  "rejected_input_bytes": 174,
+                  "rejected_input_sha256": "9555b2bcba796fd1e0cad739adc7ac62bd1355391ee455321946707549597304",
+                  "expected_failure_class": "IOException",
+                  "same_jvm_retry_succeeded": true
+                },
+                {
+                  "case": "missing-final-newline",
+                  "rejected_input_bytes": 127,
+                  "rejected_input_sha256": "efc32cb572e726cb3104f709440a9929a669c1793c1cd50014f307c98c0d62cd",
+                  "expected_failure_class": "IOException",
+                  "same_jvm_retry_succeeded": true
+                },
+                {
+                  "case": "malformed-utf8",
+                  "rejected_input_bytes": 47,
+                  "rejected_input_sha256": "6da12cb06b7f5ac871b3e4fa604bb7aa09c2f7f39b26f95b42b881ecb53f0d68",
+                  "expected_failure_class": "IOException",
+                  "same_jvm_retry_succeeded": true
+                },
+                {
+                  "case": "global-sequence-gap",
+                  "rejected_input_bytes": 256,
+                  "rejected_input_sha256": "8e8380562ac2103caa96bbad7e1bc6269471139265a71df2514c68b0c9d5de99",
+                  "expected_failure_class": "IOException",
+                  "same_jvm_retry_succeeded": true
+                }
+              ],
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+              "simulation_only": true,
+              "physical_qualification": false,
+              "native_mutations": 0,
+              "native_feed_effects": 0,
+              "process_crash_test": false,
+              "constructor_retry_scope": "same JVM, same native configuration and repaired test journal; original rejected bytes retained",
+              "evidence_directory": "<candidate>/validation/native-linux-portable-01/canonical/native-tests/tmp/openpnp-native-journal-input-3793664831034203531"
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeEffectBoundaryTest",
+        "exit_code": 0,
+        "elapsed_seconds": 1.5902576446533203,
+        "log_sha256": "28b4d699076b98a86f87e14b79f411d1d2271b20728e06523ecfa127f3c806d5",
+        "source_sha256": "df1e3dfd495999aa6680517732abead327f8ecb56e1cde23ca65fad88f8fd4fe",
+        "reported_assertion_count": null,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_NATIVE_EFFECT_BOUNDARY_RESULT",
+            "data": {
+              "passed_groups": 5,
+              "actual_native_feed_count": 1,
+              "standstill_confirmed": true,
+              "outcome_unknown": true,
+              "replay_performed": false,
+              "simulation_only": true,
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c"
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeBridgeTest",
+        "exit_code": 0,
+        "elapsed_seconds": 12.092931747436523,
+        "log_sha256": "6bc423fdcd1714df0408faebe8fbd6914cf80fdc74fc1770e6df10680cad7143",
+        "source_sha256": "251dd173665e46dfb90bf96a76347b37fdbcd7b10afe34037f2877899a13790d",
+        "reported_assertion_count": null,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_NATIVE_TEST_RESULT",
+            "data": {
+              "passed": [
+                "unauthenticated RPC rejected",
+                "default simulator retains upstream native NozzleTips job order",
+                "pinned native upstream",
+                "observe does not enable",
+                "native simulator enabled",
+                "mutation request deduplicated",
+                "request collision rejected",
+                "native homing completed",
+                "native safe-Z motion and standstill",
+                "native simulated camera captured",
+                "camera artifact is PNG",
+                "native model persisted",
+                "saved XML agrees with model",
+                "mixed real/simulator drivers rejected",
+                "native sample loaded",
+                "native sample preflight passed",
+                "native job cooperatively paused",
+                "real ReferencePnpJobProcessor completed every sample placement",
+                "native completion is not independent inspection",
+                "lost response reconciles by request ID",
+                "native configuration backup artifact",
+                "typed native restore declares exact scope",
+                "configuration rollback retains actual native placed history",
+                "native job document saved through authenticated RPC",
+                "native job reload through RPC retains completed placement history",
+                "native job reload invalidates registration and validation",
+                "canonical JSON becomes real native board and placement models",
+                "canonical native job validates",
+                "canonical import drives real native job processor",
+                "canonical native placements recorded",
+                "unmapped footprint rejected by native importer",
+                "durable native operation events",
+                "released ownership rejected"
+              ],
+              "requested": 32,
+              "placed": 32,
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+              "journal": "<candidate>/validation/native-linux-portable-01/canonical/native-tests/tmp/openpnp-native-test-237571485025012167/journal"
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeCapabilityTest",
+        "exit_code": 0,
+        "elapsed_seconds": 9.485970258712769,
+        "log_sha256": "d0cd3f7e849bd944357a380060f108b8ae3393cf9c76be89402225aad3178b9b",
+        "source_sha256": "47c1d873f687065b88083df24e01214286a4825a7d0b11e6fd2ad08040f53784",
+        "reported_assertion_count": null,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_NATIVE_CAPABILITY_RESULT",
+            "data": {
+              "passed": [
+                "native actuator commands with cached-command provenance",
+                "native strip feeder test",
+                "native Issues and Solutions discovery",
+                "native board fiducial registration",
+                "129 native captures keep bounded metadata and retrieve evicted artifact bytes from disk",
+                "motion plan retention bounded at 128",
+                "native calibration status",
+                "native nozzle-tip runout calibration and fitted offsets"
+              ],
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+              "physical_qualification": false
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeRecoveryTest",
+        "exit_code": 0,
+        "elapsed_seconds": 2.661591053009033,
+        "log_sha256": "ec4349a2155e0dc51bdb189ca85f7f60c5d101978878259a02972c691639220a",
+        "source_sha256": "ca76a8f97dfe938c374a7d577df89326b016a991f882f383bd403d7491a80420",
+        "reported_assertion_count": null,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_NATIVE_RECOVERY_RESULT",
+            "data": {
+              "passed": [
+                "lost grant response deduplicates to the same session",
+                "grant receipt is discoverable by request ID",
+                "expired grant replay never creates a new lease",
+                "expired lease rejects motion",
+                "old owner plan rejected before native move",
+                "recovery appends without overwriting journal prefix",
+                "original event payload remains immutable beside new recovery transition",
+                "second reopen parses recovered journal successfully",
+                "machine identity persists across bridge restart",
+                "interrupted running journal recovers as outcome unknown",
+                "unknown prior outcome fences new work",
+                "simulator reset reconciliation abandons without retry",
+                "reconciliation preserves unknown physical outcome",
+                "new work accepted after explicit simulator reconciliation"
+              ],
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c"
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeBoundaryTest",
+        "exit_code": 0,
+        "elapsed_seconds": 2.2924773693084717,
+        "log_sha256": "014dc56c2217381e7435af847bfd1eaaf38f898165f8841247a795c7ba712d8b",
+        "source_sha256": "3488a8b48adb14cf4e5e0dab2cdb0a980fad6c2b5820a517aaa542ad7fc1797c",
+        "reported_assertion_count": null,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_NATIVE_BOUNDARY_RESULT",
+            "data": {
+              "passed": [
+                "successful change advances native revision",
+                "both planners reject the caller's stale expected revision",
+                "disabled board's unfed part does not block native model validation",
+                "X-out scope agrees between validation and native job summary",
+                "control fixture native model validates",
+                "control request is discoverable by its original request ID",
+                "control request is discoverable by its original request ID",
+                "control request is discoverable by its original request ID",
+                "resume replay returns the original native job operation",
+                "replayed first resume cannot undo a later pause",
+                "control request is discoverable by its original request ID",
+                "control request identities reconcile lost responses and reject collisions",
+                "persistence fixture is validated before injected failure",
+                "final save fails against a real invalid filesystem destination",
+                "failure occurs after the real native model changed",
+                "failed persistence invalidates the old revision",
+                "failed persistence revokes the prior validated job state",
+                "configuration fault fences job start and motion planning after partial save"
+              ],
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+              "simulation_only": true,
+              "fault_injection": "temporary configuration destination becomes a directory after part-height mutation"
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeImportBoundaryTest",
+        "exit_code": 0,
+        "elapsed_seconds": 5.385494947433472,
+        "log_sha256": "822582c544edffa1564cf52b43b46b764839bf510121d7509e950427bedd1f96",
+        "source_sha256": "7beebecfcac94bc1d235a93e89482eea53a698775b74ae50c59a0eef5542a3d1",
+        "reported_assertion_count": null,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_NATIVE_IMPORT_BOUNDARY_RESULT",
+            "data": {
+              "passed": [
+                "100 rejected graphs create no native Part listeners or installed identities",
+                "case-folded canonical part identities cannot overwrite native definitions",
+                "successful import constructs one Part and binds actual placement model after graph validation",
+                "10000-placement native Job/Board XML bundle save/reload preserves placed history without running machine"
+              ],
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+              "simulation_only": true,
+              "physical_qualification": false,
+              "placements_executed": 0
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeTransformTest",
+        "exit_code": 0,
+        "elapsed_seconds": 1.0689504146575928,
+        "log_sha256": "31a8e8ef9895027c7aa32d0732d4d843ba9266aa7c118fa11738d86e108037cd",
+        "source_sha256": "4f3758be3ba8efcd3a63b9934691ef7972923790a23c45c4007c169b6155ae47",
+        "reported_assertion_count": null,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_NATIVE_TRANSFORM_RESULT",
+            "data": {
+              "passed": [
+                "top board rotation",
+                "bottom board width reflection with side-specific rotation",
+                "nested double-bottom reflection"
+              ],
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c"
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeGraphLimitsTest",
+        "exit_code": 0,
+        "elapsed_seconds": 1.2437891960144043,
+        "log_sha256": "d7726594e5584baa73f182bddc8616b496763c7d912a00a204d4d5ae963cda54",
+        "source_sha256": "d6bfb0ef9473d3aa9d47e42956bbf190b4d225a4ff5346717810d0f398f2e5ef",
+        "reported_assertion_count": null,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_NATIVE_GRAPH_LIMITS_RESULT",
+            "data": {
+              "passed": [
+                "1000 expanded native instances and 100 roots accepted without enabling the machine",
+                "expanded instance overflow rejects without committing staged parts",
+                "depth eight accepted and depth nine rejected",
+                "10000 native placements accepted and expanded placement overflow rejected"
+              ],
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+              "simulation_only": true,
+              "placement_execution_performed": false
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeStorageBoundaryTest",
+        "exit_code": 0,
+        "elapsed_seconds": 3.035435914993286,
+        "log_sha256": "bcc1f7f3556512f592f5fdf1aba31a69fd473351fc8238444ee63fbec8812bda",
+        "source_sha256": "83d246e45a595bbeee4ce94289ec531a192ae948e67142c803fc5f923d3d6d80",
+        "reported_assertion_count": null,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_NATIVE_STORAGE_RESULT",
+            "data": {
+              "passed": [
+                "aggregate artifact content limit advertised and reconstructed from retained files",
+                "real camera capture rejected before publishing bytes at aggregate capacity",
+                "existing sparse evidence and metrics remain intact without deletion"
+              ],
+              "sparse_fixture_bytes": 1073741824,
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+              "simulation_only": true,
+              "physical_qualification": false
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeSettingsTest",
+        "exit_code": 0,
+        "elapsed_seconds": 1.642627239227295,
+        "log_sha256": "fed2285f1bb7bab6b0ec123414cd7b83369f18277c3c31a545a49ffcca7097e4",
+        "source_sha256": "e64e8947c240f23cd76445368689cd80e44885469adf9fb7464f31cefd6866e2",
+        "reported_assertion_count": null,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_NATIVE_SETTINGS_RESULT",
+            "data": {
+              "passed": [
+                "late-invalid patches and exact/case-folded duplicate creates mutate no native model",
+                "100 abandoned and 100 rejected package/part previews retain zero listeners; applied creates materialize once",
+                "staged package-part-feeder dependencies, immutable plan input and actual native tray indexing",
+                "strip hole baseline, pitch, pickup and bounded count configuration",
+                "native nozzle/tip dwell and installed-tip compatibility guard",
+                "unknown fields, nonfinite/fractional numbers and custom native subclasses are rejected",
+                "camera edits invalidate a successfully calibrated native nozzle-tip model and reject 3D override",
+                "linear axis limits/speed persist and revoke homed state; rotational unit mismatch rejected",
+                "read-only setting snapshot covers geometry, tooling, counts and calibration state with native unit conversion",
+                "native configuration save contains staged part/package definitions"
+              ],
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+              "simulation_only": true,
+              "physical_qualification": false
+            }
+          }
+        ]
+      },
+      {
+        "main": "PlannerSettingsTest",
+        "exit_code": 0,
+        "elapsed_seconds": 1.506155252456665,
+        "log_sha256": "0c0d5231a53b50640dfba86f949bfe9de0cd5c313f8c97e309d23983093ba10c",
+        "source_sha256": "0b154d6fbf44e607580f16233a76dcdfaadd00a06a46a4e2853bbb79517f836e",
+        "reported_assertion_count": null,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_PLANNER_SETTINGS_RESULT",
+            "data": {
+              "passed": [
+                "whole-patch staging rejects late missing targets and invalid retry policies before any model changes",
+                "bounded enums, integer/finite ranges, exact Simple planner, booleans and unknown/no-op fields are enforced",
+                "native setters/readback preserve staged input, park ignored axes, calibration models and material/fault history",
+                "typed snapshot capture/restore includes all six new families and preserves current material/fault state",
+                "unsupported planner and out-of-schema native retry values produce explicit snapshot omissions",
+                "actual native Configuration.save/load round-trips planner, retry and operating locations with identities intact"
+              ],
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+              "simulation_only": true,
+              "physical_qualification": false,
+              "motion_performed": false,
+              "feed_operations_performed": 0
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeConfigurationSnapshotsTest",
+        "exit_code": 0,
+        "elapsed_seconds": 1.2983219623565674,
+        "log_sha256": "4bd7c4153dd380c3c54db4fb23d0f04f90bb90711bfb8fea79b7899e9c59284f",
+        "source_sha256": "520031b996cefb0102a8d7be89352a3ba9ea09719da4ecbce3f27f28a888c536",
+        "reported_assertion_count": null,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_NATIVE_SNAPSHOTS_RESULT",
+            "data": {
+              "passed": [
+                "snapshot captures all thirteen existing typed setting families and identifies nonrepresentable fields",
+                "native restore reinstates supported settings while preserving newer counts, disabled consumed feeder and later identities",
+                "older capacity below consumed material fails staging without partial rollback",
+                "missing native identity rejects rollback without recreating or deleting hardware models"
+              ],
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+              "simulation_only": true,
+              "physical_qualification": false,
+              "portable_machine_restore": false
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeConfigurationSnapshotsDecodeTest",
+        "exit_code": 0,
+        "elapsed_seconds": 1.6929376125335693,
+        "log_sha256": "a5a0651d1470534227123dc73db268955ab6be22f7e2d1ca08912bdced27c9d0",
+        "source_sha256": "e35e6966e4f3b2328a4dce790bc64a468683366a1f72f3f5c66d4ce671837392",
+        "reported_assertion_count": null,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_NATIVE_SNAPSHOT_DECODE_RESULT",
+            "data": {
+              "passed": [
+                "a current real-native capture decodes with pinned version, scope, identities and explicit material count",
+                "unsupported versions/upstreams/scopes/claims, missing envelope fields, unknown/create types and malformed omissions reject",
+                "identity inventories and counters reject unknown/duplicate identities, nonintegral/negative/overflow counts and missing consumption evidence",
+                "every original row stages against exact native schemas before filtering/count adjustment, including late errors beyond one hundred changes",
+                "ten-thousand-change/identity, nesting, nonfinite numeric and eight-MiB document limits reject before native staging",
+                "older version-one snapshots may omit unused heads inventory; private restore state is independent of caller/document mutation",
+                "decoded restore preserves current native fault observations, consumed counts and disable floors, and rejects invalid/over-capacity material history",
+                "persisted JSON decodes after fresh native Configuration.load and retains newer native material counts and disable state"
+              ],
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+              "simulation_only": true,
+              "physical_qualification": false,
+              "motion_performed": false,
+              "feed_operations_performed": 0,
+              "artifact_authority_verified_by_this_helper": false
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeJobPreflightTest",
+        "exit_code": 0,
+        "elapsed_seconds": 1.1408801078796387,
+        "log_sha256": "622c012837ff752b21079725f314038c448a44a562e74ad738d61b0b597c0bec",
+        "source_sha256": "1dab01b4492ff8e47869af423c9b71a5ffc431e1bbd75650191920865bb0266a",
+        "reported_assertion_count": null,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_NATIVE_PREFLIGHT_RESULT",
+            "data": {
+              "passed": [
+                "actual native sample remains valid with explicit unknown-strip-capacity warning and no enabling",
+                "finite feeder capacity aggregation, disabled stock exclusion, unknown supply and placed-history demand",
+                "ancestor X-outs, nested side flips, DNP/fiducial exclusions and placed-history preservation",
+                "native loadable-tip compatibility, manual/automatic changer distinction and unexecuted calibration plan",
+                "pending part/package/finite height and enabled material route checks"
+              ],
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+              "simulation_only": true,
+              "physical_qualification": false
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeJobDocumentsTest",
+        "exit_code": 0,
+        "elapsed_seconds": 1.3243935108184814,
+        "log_sha256": "d254d309ad661e4429cb470cb3f34c933e63d190852adaed3f45e242126630cb",
+        "source_sha256": "960f2a09076096dd4c5dac00b401b156b7d6dd08063587ead7a30d54a5364516",
+        "reported_assertion_count": null,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_NATIVE_DOCUMENTS_RESULT",
+            "data": {
+              "passed": [
+                "native shared board/nested panel ZIP round-trip preserves sides, X-outs, overrides, metadata and placed history while dropping transient registration",
+                "native part/package dependency fingerprints reject changed definitions before reload",
+                "tampered retained bytes, arbitrary paths, unknown hashes and another helper instance are rejected before native XML loading",
+                "unsupported instance drift, custom native classes and outside staging roots are rejected before persistence",
+                "independent review regression: repeated shared panel placement/fiducial records count toward the expanded native graph limit",
+                "independent review regression: linked native panel pseudo-fiducial persists and resolves after reload",
+                "independent review regression: instance-only pseudo-placement geometry and enabled edits are rejected before persistence",
+                "independent review regression: check-fiducials true -> false across native saves does not restore stale true",
+                "independent review regression: instance-only outline edit is rejected before mutation rather than silently replaced",
+                "independent review regression: inline root pseudo-fiducials and explicit outlines are rejected before native serialization can drop or corrupt them",
+                "explicit shared definition outlines are rejected as a pinned-native limitation before persistence"
+              ],
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+              "simulation_only": true,
+              "physical_qualification": false
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeJobDocumentsRestartTest",
+        "exit_code": 0,
+        "elapsed_seconds": 3.33744740486145,
+        "log_sha256": "22201dd80e7282843b4a816fabfefee8370f25d23f3a67836f00543a0683a21a",
+        "source_sha256": "e64c648ba5687c33e22b9422f9bbdf7d29dbcfd05db1d176476ee51be3bc8de9",
+        "reported_assertion_count": null,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_NATIVE_DOCUMENT_RESTART_RESULT",
+            "data": {
+              "passed": [
+                "separate native JVM reload preserves document and placed history",
+                "signed receipts reject corruption and foreign stores before native XML",
+                "orphan publication remains uncommitted",
+                "persistent reload and storage limits survive helper reopen"
+              ],
+              "native_jvm_phases": 4,
+              "executed_placements": 0,
+              "hardware_qualified": false
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeDocumentStoreCrashTest",
+        "exit_code": 0,
+        "elapsed_seconds": 4.2668983936309814,
+        "log_sha256": "b0a9f0edbbf14aa369aee3e57584fee2ac2ed6107d8a3ef2f8739f4ac1b865e0",
+        "source_sha256": "d39c911d4afab46e9cae39f6888e56cbed435ec9456f6902f3c6cfbc72842114",
+        "reported_assertion_count": null,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_NATIVE_DOCUMENT_CRASH_RESULT",
+            "data": {
+              "passed": [
+                "abrupt termination before archive rename retains no committed document",
+                "abrupt termination after archive rename leaves an uncommitted archive",
+                "abrupt termination before receipt rename never adopts pending receipt",
+                "abrupt termination after receipt rename recovers the entire verified native document"
+              ],
+              "interrupted_processes": 4,
+              "recovery_processes": 4,
+              "executed_placements": 0,
+              "host_power_loss_qualified": false
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeSustainedTest",
+        "exit_code": 0,
+        "elapsed_seconds": 8.064367055892944,
+        "log_sha256": "c822c1395fc149ccf72b9af8e86fb26ee65fb037336862fd49d376525294ab66",
+        "source_sha256": "649265f3d8ef44443d6fb2761f84156845dc9c8d30520e3f05f44f6f6c08fd3b",
+        "reported_assertion_count": null,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_NATIVE_SUSTAINED_RESULT",
+            "data": {
+              "requested": 100,
+              "placed": 100,
+              "native_feed_count": 100,
+              "initial_capacity": 10000,
+              "remaining": 9900,
+              "profile": "sustained-workload",
+              "native_job_order": "Unsorted",
+              "native_order_persisted": true,
+              "native_order_drift_rejected": true,
+              "fixture": "native-finite-tray-supply-zero-pitch",
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+              "elapsed_seconds": 6.717600277,
+              "native_steps": 2004,
+              "job_count_recomputations": 101,
+              "machine_snapshot_refreshes": 66,
+              "journal": "<candidate>/validation/native-linux-portable-01/canonical/native-tests/tmp/openpnp-native-sustained-10599586837631866335/journal",
+              "physical_qualification": false,
+              "eight_hour_soak": false
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeVisionSettingsTest",
+        "exit_code": 0,
+        "elapsed_seconds": 2.127847194671631,
+        "log_sha256": "9e3a34aacd6508430c1a7cb3deb0c0ebcc3ba1f584b44020a7670e10d55f275e",
+        "source_sha256": "651d9546d6c396a16e48b63a00770cb73c12810792c177dd307858266949affd",
+        "reported_assertion_count": null,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_VISION_SETTINGS_RESULT",
+            "data": {
+              "passed": [
+                "read-only native machine/package/part inheritance inventory",
+                "whole-patch validation, stock immutability and unknown-field rejection",
+                "native clone/assignment, exact inheritance, shared impact and immutable reviewed input",
+                "stale native edit, referenced removal, kind mismatch, root and identity collisions reject",
+                "fiducial configuration and explicit unused profile deletion",
+                "allowlisted pipeline scalar edits, rejection boundaries and actual OpenCV positive/negative mask fixture",
+                "native Configuration.save/load round-trip with no motion or feeds"
+              ],
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+              "simulation_only": true,
+              "physical_qualification": false,
+              "camera_capture_performed": false,
+              "feed_operations_performed": 0,
+              "image_evidence": "synthetic scalar OpenCV fixtures; no detector accuracy or independent inspection claim"
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeVisionSettingsReviewTest",
+        "exit_code": 0,
+        "elapsed_seconds": 1.8983912467956543,
+        "log_sha256": "89212e425afdfe3a4e68d7a9ada66779c6d0f2dc969f76e0441146a879f83cc8",
+        "source_sha256": "ab92224b840e884b97267173923278c4ed4dafe488a9dc1045a11a33b111ad4a",
+        "reported_assertion_count": 112,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_VISION_REVIEW_RESULT",
+            "data": {
+              "assertions": 112,
+              "groups": [
+                "same-ID detached bottom/fiducial references on part, package and machine roots reject at admission and after preview",
+                "same-ID detached Part.package admission and post-preview swap reject without repair",
+                "describe preserves all native profile XML, pipeline/stage identities and parameter-targeted live scalar",
+                "overridden direct edits reject; explicit native numeric/bool assignments execute and null restores native defaults",
+                "every typed bottom/fiducial setting reads back without inferring physical qualification"
+              ],
+              "expected_rejections": [
+                "bottom/Part/admission:INVALID_VISION_REFERENCE",
+                "bottom/Part/post-stage:INVALID_VISION_REFERENCE",
+                "bottom/Package/admission:INVALID_VISION_REFERENCE",
+                "bottom/Package/post-stage:INVALID_VISION_REFERENCE",
+                "bottom/ReferenceBottomVision/admission:INVALID_VISION_REFERENCE",
+                "bottom/ReferenceBottomVision/post-stage:INVALID_VISION_REFERENCE",
+                "fiducial/Part/admission:INVALID_VISION_REFERENCE",
+                "fiducial/Part/post-stage:INVALID_VISION_REFERENCE",
+                "fiducial/Package/admission:INVALID_VISION_REFERENCE",
+                "fiducial/Package/post-stage:INVALID_VISION_REFERENCE",
+                "fiducial/ReferenceFiducialLocator/admission:INVALID_VISION_REFERENCE",
+                "fiducial/ReferenceFiducialLocator/post-stage:INVALID_VISION_REFERENCE",
+                "detached-package/admission:INVALID_VISION_REFERENCE",
+                "detached-package/post-stage:INVALID_VISION_REFERENCE",
+                "direct active parameter target:VISION_PARAMETER_OVERRIDDEN",
+                "direct runtime Gaussian override:VISION_PARAMETER_OVERRIDDEN"
+              ],
+              "native_numeric_parameter_applications": 2,
+              "native_boolean_parameter_applications": 2,
+              "pipeline_process_calls": 0,
+              "camera_capture_calls": 0,
+              "motion_calls": 0,
+              "feed_calls": 0,
+              "native_upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+              "physical_qualification": false
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeVisionIntegrationTest",
+        "exit_code": 0,
+        "elapsed_seconds": 2.0838730335235596,
+        "log_sha256": "2ed576631176c58cc1c4195e69ad5bed9562c2b7c6b4be136e8a107d1d15f872",
+        "source_sha256": "1f81a5e2942a2cf9cee39315096bd73fe1425b6af50a101c7c0d3d19b8728a42",
+        "reported_assertion_count": 11,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_VISION_INTEGRATION_RESULT",
+            "data": {
+              "assertions": 11,
+              "simulation_only": true,
+              "physical_qualification": false,
+              "motion_performed": false,
+              "feed_operations_performed": 0
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativePlacementEditsTest",
+        "exit_code": 0,
+        "elapsed_seconds": 2.207475185394287,
+        "log_sha256": "6f976d940011e44b8402c23d2b15a244aca1b46ffe7a68c722e09b6ed4a58e62",
+        "source_sha256": "2f494ddf5ce5e01937b6323ab90174314c308636fe9682d1fd2c009f7c2c4250",
+        "reported_assertion_count": null,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_NATIVE_PLACEMENT_EDITS_RESULT",
+            "data": {
+              "passed": [
+                "read-only immutable preview, explicit inch/mm conversion, exact native part identity and single-use plan",
+                "whole-batch rejection of late invalid parts, overlapping instance/shared edits and implicit machine coordinates",
+                "job-local shared edits preserve sharing, bottom transforms, current/orphan history, outside jobs and native save/reload",
+                "placed descendant blocks ambiguous shared history changes even when the anchor itself is pending",
+                "nested instance geometry clones only required ancestor definitions and survives native reload with X-outs, overrides and fresh registration",
+                "instance-only enable override uses native persistence without changing repeated sibling or shared geometry",
+                "shared default update remains a real edit when every current instance already overrides that value",
+                "derived native pseudo-fiducials regenerate after nested leaf edit, preserve siblings and persist; direct pseudo edit rejected",
+                "real panel fiducial edits remain distinct from derived pseudo records and round-trip natively",
+                "multilevel rotated pseudo derivation uses cloned parent relationships with independent golden coordinates and native round-trip",
+                "stale plan detects changed placed status and native load geometry before publication",
+                "no-op edits preserve placed history, existing native object identity and registration",
+                "bounded typed edits reject nonfinite/out-of-range geometry, extra fields, oversized batches and preexisting unpersistable drift",
+                "injected native setter/listener failure rolls back the original child tree, listeners and dirty flags and requires Bridge fencing",
+                "successful replacement retires obsolete native instance listeners while preserving outside-job subscriptions and rollback subscriptions",
+                "native duplicate references, custom root poses/outlines and post-preview shared-content changes reject before publication",
+                "read-only native inspection pages every enabled/disabled/opposite-side/X-out/pseudo record with usable holder coordinates and complete history fingerprint",
+                "inspection rejects invalid page ranges and returns explicit terminal pages without mutation",
+                "native Configuration replacement invalidates an otherwise unchanged retained placement plan"
+              ],
+              "count": 19,
+              "native_machine_enabled": false,
+              "native_machine_homed": false,
+              "motion_or_feed_methods_called_by_test": false,
+              "physical_qualification": false
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeCanonicalIdentityTest",
+        "exit_code": 0,
+        "elapsed_seconds": 1.5905768871307373,
+        "log_sha256": "e48fe5a975edf0660e11ae9a993b7d9d403ae4bf7f838ebf081f1c5d12f3f4e1",
+        "source_sha256": "772a0df7630f6098cbb0e857872215d40ca3002e06ee9c51107fe03ed61ed8e4",
+        "reported_assertion_count": 13,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_NATIVE_CANONICAL_IDENTITY_RESULT",
+            "data": {
+              "assertions": 13,
+              "native_feed_effects": 0,
+              "simulation_only": true
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeBoardLoadsTest",
+        "exit_code": 0,
+        "elapsed_seconds": 2.540766477584839,
+        "log_sha256": "142ce0fa9d07849bb97d21161b17279716ebb1492e451373f2cd891e5260867e",
+        "source_sha256": "3f100915aa13f90d6e2f642ae9f5e4c5d3c8523a63c63dd11ad4383ada5ebbb5",
+        "reported_assertion_count": 28,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_NATIVE_BOARD_LOADS_RESULT",
+            "data": {
+              "passed": [
+                "two actual native root instances are independently bound",
+                "shared definition/repeated designator receives distinct simulator load identities",
+                "repeated R1 designators have different loaded board identities",
+                "actual native processor placed and fed two top-side parts",
+                "native top-side placed states are retained per root",
+                "native load refuses BOARD_LOAD_REVISION_CONFLICT",
+                "stale load plan changes neither journal nor native side",
+                "flip preserves both the flipped board identity and other root identity",
+                "flip preserves completed top history while exposing native bottom side",
+                "flip invalidates the native registration transform",
+                "real bottom-side run adds one feed and placement without repeating completed top-side work",
+                "replacement creates a distinct ledger and leaves another physical-simulated board alone",
+                "replacement clears only selected subtree's native history",
+                "replacement consumes exactly one new native bottom-side part",
+                "retired load retains both top and bottom completion history",
+                "native load refuses BOARD_LOAD_REQUIRED",
+                "restart refuses implicit board presence and does not alter durable bytes",
+                "explicit same-load reattachment preserves IDs/history and performs no feed",
+                "actual native side setter throws after durable load intent",
+                "incomplete native change remains loading_unknown despite the changed model",
+                "native load refuses BOARD_LOAD_UNKNOWN",
+                "restart preserves unresolved loading intent and never replays a native feed",
+                "agent input cannot make simulator loading physically verified",
+                "actual native panel maps two child identities independently of repeated designators",
+                "native panel executes one top and one globally bottom child placement",
+                "panel flip preserves its panel load and every child board identity",
+                "native parent flip composes child-side transforms including double reflection",
+                "flipped native panel completes opposite child sides while preserving four distinct placement-history keys"
+              ],
+              "assertions": 28,
+              "native_feed_effects": 8,
+              "completed_native_placements": 8,
+              "simulation_only": true,
+              "physical_loading_verified": false,
+              "process_crash_test": false,
+              "journal": "<candidate>/validation/native-linux-portable-01/canonical/native-tests/tmp/openpnp-native-board-loads-3940528205596810722/nested-loads.jsonl"
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeBoardLoadBridgeTest",
+        "exit_code": 0,
+        "elapsed_seconds": 2.6168336868286133,
+        "log_sha256": "2e4a56aa39dc48a76e52ca950a616c98bb88d8bbdb8667f10db1acda8f78c9cf",
+        "source_sha256": "a0090a4fe4369e76bf7d88e05b88589fcf1aaa7f8012500c014d86f6f1cbb815",
+        "reported_assertion_count": 14,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_NATIVE_BOARD_LOAD_BRIDGE_RESULT",
+            "data": {
+              "passed": [
+                "prepare returns two authoritative simulator-origin loads without physical verification",
+                "actual native preflight binds current simulator load revision",
+                "board-load revision advances independently of configuration revision",
+                "flip invalidates prior job validation before any native placement",
+                "stale expected load revision is rejected at admission",
+                "stale admission creates no operation and consumes no material",
+                "actual Bridge processor places exactly one bottom and one top part",
+                "durable native completion binds actual loaded board identity",
+                "durable native completion binds actual loaded board identity",
+                "both native completed placements have scoped durable load checkpoints",
+                "document reload and restart cannot infer current board presence",
+                "unvalidated reload retains JOB_NOT_VALIDATED admission priority",
+                "explicit same-load reattachment reconciles native saved history without replaying placements",
+                "restart replays native checkpoint history from complete journal"
+              ],
+              "assertions": 14,
+              "completed_native_placements": 2,
+              "native_feed_effects": 2,
+              "bridge_restarts": 1,
+              "physical_load_verified": false,
+              "simulation_only": true
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativeBoardLoadsReviewTest",
+        "exit_code": 0,
+        "elapsed_seconds": 1.8992283344268799,
+        "log_sha256": "5e77632e833eb392e076874224e207608da2f498442e1d4d91d901255ea1e939",
+        "source_sha256": "6549ce0a09b04c946967f88bb59d13af1eaa1363599bbcc994035960e294e48a",
+        "reported_assertion_count": 54,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_NATIVE_BOARD_LOAD_REVIEW_RESULT",
+            "data": {
+              "passed": [
+                "duplicate expanded IDs are refused before the durable sink",
+                "ambiguous native history keys are refused before reset",
+                "native parent links agree with the registered root",
+                "pseudo metadata changes invalidate binding 0",
+                "pseudo metadata changes invalidate binding 1",
+                "pseudo metadata changes invalidate binding 2",
+                "inline root changes cannot reuse load authority 0",
+                "inline root changes cannot reuse load authority 1",
+                "inline root changes cannot reuse load authority 2",
+                "inline root changes cannot reuse load authority 3",
+                "inline root changes cannot reuse load authority 4",
+                "replacement scopes opaque history and preserves the retired ledger",
+                "removed history cannot poison a durable checkpoint",
+                "true-to-false history cannot erase a completed record",
+                "opaque retained history remains in placement-capacity reservation"
+              ],
+              "failed": {},
+              "assertions": 54,
+              "native_model_only": true,
+              "native_motion_effects": 0,
+              "native_feed_effects": 0,
+              "physical_loading_verified": false,
+              "process_crash_test": false,
+              "fixture_directory": "<candidate>/validation/native-linux-portable-01/canonical/native-tests/tmp/openpnp-board-load-review-10078007863135765671"
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativePortableConfigurationTest",
+        "exit_code": 0,
+        "elapsed_seconds": 23.71909475326538,
+        "log_sha256": "2a515084ed74f00377e4459c7bd1c735eacbbd82f47c536c9de436a4d652920e",
+        "source_sha256": "1bae82bce4f6666b3ca7e96fde5679907a2c6b0a5689414e05e14c5a9fd3472d",
+        "reported_assertion_count": null,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_PORTABLE_SUITE_RESULT",
+            "data": {
+              "phases": 8,
+              "actual_placements": 2,
+              "hardware_qualified": false
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativePortableAllocationTest",
+        "exit_code": 0,
+        "elapsed_seconds": 9.930943250656128,
+        "log_sha256": "2e0f97e08e6176bfa5ed90b8c8462bc44bcbebd2fd9aa107b4baaa41457f3b51",
+        "source_sha256": "85e97b0eaa635082e2614a848457409c71a6e5606b4fa422cafe8810c3865799",
+        "reported_assertion_count": 16,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_PORTABLE_ALLOCATION_RESULT",
+            "data": {
+              "checks": 16,
+              "rejected_shapes": 7,
+              "native_feeds": 0,
+              "native_placements": 0,
+              "hardware_qualified": false
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativePortablePipelineTest",
+        "exit_code": 0,
+        "elapsed_seconds": 1.284733772277832,
+        "log_sha256": "b1a7697402429129f2ee46db721e1e6f3fc2f81d5bae9b4c4d517a65df8df302",
+        "source_sha256": "af98ca8d2987791dab3c71fb29fc6598f70978081e23268e0fc17cbc3e18b470",
+        "reported_assertion_count": 173,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_STOCK_PIPELINE_PROFILES",
+            "data": {
+              "openpnp-machine/machine/cameras/camera[org.openpnp.machine.reference.camera.SimulatedUpCamera]/advanced-calibration/pipeline": [
+                "25f7c7404510b474e9302c036405a2d4ceba29e23735d4b0c7c3e2078f70f35c"
+              ],
+              "openpnp-machine/machine/feeders/feeder[org.openpnp.machine.reference.feeder.ReferenceStripFeeder]/pipeline": [
+                "688e75cc2f22973371cb0daa7143b9c4dcc8d088bdfe2fe789bb727893923d3f"
+              ],
+              "openpnp-machine/machine/heads/head/cameras/camera[org.openpnp.machine.reference.camera.ImageCamera]/advanced-calibration/pipeline": [
+                "25f7c7404510b474e9302c036405a2d4ceba29e23735d4b0c7c3e2078f70f35c"
+              ],
+              "openpnp-machine/machine/nozzle-tips/nozzle-tip/calibration/pipeline": [
+                "f63c7ec906e9ae8dcc121efa39ef51c34a59274670bb03c387a57213b900a8c1"
+              ],
+              "openpnp-vision-settings/vision-settings[org.openpnp.model.BottomVisionSettings]/cv-pipeline": [
+                "4e048f9fbd55f40b38b5e3f3e8dc6a14f662ffef5ad9dcdbd97fbdad9e36f975",
+                "85ca4667cd719dc65e390bf8cb179b61e2e690f6271be9b40c7c0b2187d5a2c7",
+                "b0657cf3566eb64b20b84d8fd826c71cff50cf1325d0b6016db1353f61d1ab9e"
+              ],
+              "openpnp-vision-settings/vision-settings[org.openpnp.model.FiducialVisionSettings]/cv-pipeline": [
+                "019eb7ec010806498e626dc6b313b2082d0984b1e44084b95eeab3df90373a9d",
+                "3e38bbc102a215f11a75f5dfe80bf9675ec7a6f736eabf0d2ab2ae166f588fc6"
+              ]
+            }
+          },
+          {
+            "record_type": "OPENPNP_PORTABLE_PIPELINE_RESULT",
+            "data": {
+              "checks": 173,
+              "contexts": 6,
+              "pipelines": 18,
+              "native_feeds": 0,
+              "native_placements": 0,
+              "hardware_qualified": false
+            }
+          }
+        ]
+      },
+      {
+        "main": "NativePortableJourneyTest",
+        "exit_code": 0,
+        "elapsed_seconds": 27.65395975112915,
+        "log_sha256": "7956140036bb785ce532515f5208702fedc6766d0f11bf5c7b9993e2b4523a30",
+        "source_sha256": "8dd3b113364485a432a72e10596f7e39af382ae09672c1f0e12a79c32e93741b",
+        "reported_assertion_count": null,
+        "result_records": [
+          {
+            "record_type": "OPENPNP_PORTABLE_JOURNEY_RESULT",
+            "data": {
+              "phases": 4,
+              "native_placements": 32,
+              "hardware_qualified": false
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "cleanup": {
+    "owned_container_identified": true,
+    "owned_container_removed": true,
+    "source_and_runtime_retained": true
+  },
+  "evidence_sha256": {
+    "execution-result.json": "e93cf069b556946a969e31898a0284da95f1180d6e3482d8579021fbd27f05f6",
+    "inputs-before.json": "14b882a0375626fc723ddcdaf5e08ed8608afb7f64205883c604ac33d791f3aa",
+    "inputs-after.json": "f403aeeb321f83092bd1166f462f0e1d57af4b3c1ffbe05a1a4c726cd03cd828",
+    "image-inspect.json": "3f8730df2a52739176c1f473d11a447a17dace495082644a5d61b87b6b2f9261",
+    "container-inspect.json": "5caab7e2331b13a34167812b66d447ebaa74fa2d58263002c2c11d46515df382",
+    "container-platform-jdk.txt": "3a3a178c8f335ebe6696b05a3b9e1d5660b8e42a7dd47fef62969d3490700e9f",
+    "container-build-tools.txt": "85df41b18ed56bb8efe430e2155fc6abe41cb11437907618aa99de4f54e8676c",
+    "canonical.log": "713545896427845dbefdf7f05b615c1d8f009823086963fd53013482f34ae803",
+    "canonical/native-tests/receipt.json": "4c40160df624c29c814ff82e0cf0bd6136fa6d6118c8b1287e71d72a9f134c19",
+    "canonical/canonical-build-receipt.json": "61e75d580d06255519a485863fbf0e93f51a7393e1276535edc6bf3cbe373b51"
+  },
+  "sanitization": "Summary strings replace host home/candidate and container workspace prefixes with explicit placeholders. Raw receipts/logs remain unchanged in private validation storage; their SHA-256 digests bind the original records."
+}

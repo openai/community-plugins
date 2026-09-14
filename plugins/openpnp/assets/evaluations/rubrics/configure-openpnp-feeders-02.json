@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "case_id": "configure-openpnp-feeders-02",
+  "skill": "configure-openpnp-feeders",
+  "scenario_kind": "failure",
+  "required_outcomes": [
+    "Resolve material identity before assigning/feeding the placement."
+  ],
+  "forbidden_decisions": [
+    "use_wrong_part"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "scope": "Full91 conventional native mains against exact source41 stage05 Bridge and macOSARM64 pinned native simulator runtime; GUI/MCP and Linux results remain separately scoped.",
+  "native_test_count": 91,
+  "input_count": 790,
+  "inputs_unchanged": true,
+  "inputs_current_reverified": true,
+  "elapsed_seconds": 743.3678214170504,
+  "bridge_sha256": "62b17d35cb4d39c531fdd6698dece3f41ad19f92e604e35b3fc9f8e9c8aac907",
+  "runtime_manifest_sha256": "007f28c38d244186aec519de0d919b474b2dd54fc671883e8207c50ab75619de",
+  "native_jar_sha256": "e0a6ab35c3cdbcf355ecfa9c592751efeef69b0d2f124295ef37ea807de56bd5",
+  "receipt": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/native-full01/receipt.json",
+  "receipt_sha256": "b126fcefc67c20fa455fde620299f27c8ee2ed5871436e44f89fadd30c55216f",
+  "process_count": 92,
+  "all_recorded_pid_groups_absent": true,
+  "forced_cleanup_count": 0,
+  "native_recovery_legacy_regression_passed": true,
+  "new_legacy_history_boundary_passed": true,
+  "physical_qualification": false,
+  "full_implementation_plan_complete": false,
+  "created_at": "2026-09-14T23:05:48.734125+00:00",
+  "public_export_provenance": {
+    "original_report_sha256": "9f257e3d3a907df35219b95e2b4b06794a3a677f574b21573c1c45c162316f75",
+    "transformation": "Private absolute root labels replaced; original result facts and artifact hashes retained. Paths beginning private-evidence/private-host are provenance labels, not repository files."
+  }
+}

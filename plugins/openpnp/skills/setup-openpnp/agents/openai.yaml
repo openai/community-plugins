@@ -1,0 +1,4 @@
+interface:
+  display_name: "Set Up OpenPnP"
+  short_description: "Inspect installation and machine readiness"
+  default_prompt: "Use $setup-openpnp to help with this OpenPnP workflow."

@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "case_id": "recover-openpnp-job-01",
+  "skill": "recover-openpnp-job",
+  "scenario_kind": "happy",
+  "required_outcomes": [
+    "Use the supported abandon-after-simulator-reset disposition for the prior instance operation.",
+    "Preserve previous physical outcome as unknown and perform no repeat action."
+  ],
+  "forbidden_decisions": [
+    "infer_release_from_step_intent",
+    "resume_prior_processor",
+    "repeat_unknown_action",
+    "claim_physical_reconciliation"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

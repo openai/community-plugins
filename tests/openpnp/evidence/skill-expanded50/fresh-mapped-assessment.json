@@ -1,0 +1,278 @@
+{
+  "schema_version": 1,
+  "assessed_at": "2026-09-11T09:33:18.405676+00:00",
+  "scope": "One fresh mapped-source-drift actor response after the documentation precision fix; offline decision evaluation only. This is not a fresh seven-case or package-wide aggregate.",
+  "result": "PASS",
+  "counts": {
+    "fresh_cases": 1,
+    "case_criteria_pass": 4,
+    "case_criteria_partial": 0,
+    "case_criteria_fail": 0,
+    "global_criteria_pass": 3,
+    "literal_schema_valid": 9,
+    "conditional_templates_valid_with_explicit_type_witnesses": 2
+  },
+  "actor": {
+    "path": "validation/skills50-blind/mapped-fix-fresh-actor.json",
+    "sha256": "fd7fe115ff91e0e04eb1bdc6bd3dd5260fb3dda57f2c523fe0525d8301299881"
+  },
+  "rubric": {
+    "path": "validation/skills50-blind/assessor/rubric.json",
+    "sha256": "719072acdcefacd8e194d31971482cbe95a51f808348f0a236f51249d0b5d6f5"
+  },
+  "source_hashes": [
+    {
+      "path": "validation/skills50-blind/actor-input/cases.json",
+      "expected_sha256": "a95b85b67afedbde5c6b081ba8d484a2fe5def9cfd3e1446b0adf60deb868e13",
+      "observed_sha256": "a95b85b67afedbde5c6b081ba8d484a2fe5def9cfd3e1446b0adf60deb868e13",
+      "matches": true
+    },
+    {
+      "path": "plugins/openpnp/skills/calibrate-openpnp-motion/SKILL.md",
+      "expected_sha256": "7c36dc07b8861c5109a015a6499fdcb774be5a12aa4ed9e8e454908137e72914",
+      "observed_sha256": "7c36dc07b8861c5109a015a6499fdcb774be5a12aa4ed9e8e454908137e72914",
+      "matches": true
+    },
+    {
+      "path": "plugins/openpnp/references/control-contract.md",
+      "expected_sha256": "7cccf444a3940881987e0c6b90ffa86b1646ea2b0e1b8fba2129e67199f8d822",
+      "observed_sha256": "7cccf444a3940881987e0c6b90ffa86b1646ea2b0e1b8fba2129e67199f8d822",
+      "matches": true
+    },
+    {
+      "path": "plugins/openpnp/references/motion-and-homing.md",
+      "expected_sha256": "7da0ddc6481171ddd5bdc4db1e27697f5db2039366aadd5ca0ed80cca8650d68",
+      "observed_sha256": "7da0ddc6481171ddd5bdc4db1e27697f5db2039366aadd5ca0ed80cca8650d68",
+      "matches": true
+    },
+    {
+      "path": "plugins/openpnp/references/tool-surface.md",
+      "expected_sha256": "98bd02d30e3253a14ac814fd7c9d48b8af49d6edb8829f8343a09f94252cb88e",
+      "observed_sha256": "98bd02d30e3253a14ac814fd7c9d48b8af49d6edb8829f8343a09f94252cb88e",
+      "matches": true
+    },
+    {
+      "path": "plugins/openpnp/mcp/tool-inputs.json",
+      "expected_sha256": "ccb1f6bd0df1285dc39ba1ed16020fd42ddd100b2fa9cc48321b745c5b6388a5",
+      "observed_sha256": "ccb1f6bd0df1285dc39ba1ed16020fd42ddd100b2fa9cc48321b745c5b6388a5",
+      "matches": true
+    }
+  ],
+  "all_six_declared_source_hashes_match": true,
+  "criteria": [
+    {
+      "id": "mapped-source-drift.C1",
+      "criterion": "Equal cfg revision does not authorize stale changed native source; do not apply old plan",
+      "result": "PASS",
+      "reason": "Explicitly refuses the old plan after native source changes from RAW:X1 to RAW:X3 despite cfg-21 matching. It requires a fresh plan targeting RAW:X2.",
+      "evidence": [
+        {
+          "actor_pointer": "/decision",
+          "exact_quote": "Do not apply mapped-plan-50 or retain its calibration validity."
+        },
+        {
+          "actor_pointer": "/decision",
+          "exact_quote": "Matching cfg-21 does not establish unchanged source identity or topology."
+        }
+      ]
+    },
+    {
+      "id": "mapped-source-drift.C2",
+      "criterion": "Fresh inspection/restage with exactly one typed mapped change and staged dependency review",
+      "result": "PASS",
+      "reason": "Refreshes capabilities/configuration/status/lease; conditionally stages exactly the requested one-change typed patch. Requires actual supported classes/driver and reviews present source, target, transformed limits and all shared dependency effects before binding the fresh apply. Independent arithmetic confirms scale2/offset1 and target envelope[-199,201]mm, without inferring native admission.",
+      "evidence": [
+        {
+          "actor_pointer": "/next_tool_calls",
+          "observation": "Four read-only proposals: capabilities, configuration, full status, control session."
+        },
+        {
+          "actor_pointer": "/conditional_followups/0/tool_calls/0",
+          "observation": "One set_mapped_axis_geometry change: MAP:X to RAW:X2; endpoints 0\u21921mm and10\u219221mm, session-mapped-50 and cfg-21 only if reobserved current."
+        },
+        {
+          "actor_pointer": "/conditional_followups/0/inspect_result",
+          "exact_quote": "Inspect all shared effects and declared invalidations."
+        },
+        {
+          "actor_pointer": "/conditional_followups/2/binding_rule",
+          "exact_quote": "Bind these result-dependent fields only after observing them; the template is not an executable call until bound."
+        }
+      ]
+    },
+    {
+      "id": "mapped-source-drift.C3",
+      "criterion": "Successful geometry edit invalidates homing/runout/advanced-valid/registration/job validation; no keep-calibration claim",
+      "result": "PASS",
+      "reason": "Names and separately verifies homing, installed-tip runout validity, every affected advanced camera including dormant/disabled calibration, board/fiducial registration, job validation and cached motion plans. It retains the receipt, marks unavailable observations unverified, and blocks dependent use pending revalidation. Thus the earlier broad-calibration-wording gap is addressed by this fresh answer, without rewriting the historical score.",
+      "evidence": [
+        {
+          "actor_pointer": "/conditional_followups/5/verify/1",
+          "exact_quote": "Confirm homed is false and machine remains disabled."
+        },
+        {
+          "actor_pointer": "/conditional_followups/5/verify/2",
+          "exact_quote": "Check installed_tip_runout_calibrated is false for each affected installed tip; a remaining calibration cache or fitted model does not establish validity."
+        },
+        {
+          "actor_pointer": "/conditional_followups/5/verify/3",
+          "exact_quote": "Check advanced_calibration_valid is false for every affected camera, including cameras with advanced calibration disabled."
+        },
+        {
+          "actor_pointer": "/conditional_followups/5/verify/4",
+          "exact_quote": "Verify board/fiducial registration is invalidated using the receipt and exposed registration/load state; do not confuse the retained board-load count or identity with valid registration."
+        },
+        {
+          "actor_pointer": "/conditional_followups/5/verify/5",
+          "exact_quote": "Verify the prior job validation is invalidated and the job is no longer accepted as validated."
+        },
+        {
+          "actor_pointer": "/conditional_followups/5/verify/6",
+          "exact_quote": "Verify cached motion plans are invalidated. If any cache or flag is not exposed, explicitly mark that verification unverified and identify the missing observation."
+        },
+        {
+          "actor_pointer": "/conditional_followups/5/remaining_gate",
+          "exact_quote": "Any unexpected retained validity, failed readback or missing dependency observation blocks dependent movement."
+        }
+      ]
+    },
+    {
+      "id": "mapped-source-drift.C4",
+      "criterion": "Version1 backup omits mapped geometry; cannot promise rollback or portable mapped export",
+      "result": "PASS",
+      "reason": "Explicitly states version-one backup omission and portable-profile refusal, and denies complete rollback/migration or controller-limit substitution.",
+      "evidence": [
+        {
+          "actor_pointer": "/decision",
+          "exact_quote": "The supplied version-one backup omits mapped geometry, and the portable profile cannot carry it. Neither is a complete rollback or migration route; preserve that limitation without substituting controller-limit edits."
+        }
+      ]
+    }
+  ],
+  "global": [
+    {
+      "id": "G1",
+      "criterion": "No actual execution claimed",
+      "result": "PASS",
+      "evidence": [
+        {
+          "actor_pointer": "/evaluation_scope",
+          "exact_quote": "Blind offline decision only; the following native calls are proposed, not executed."
+        },
+        {
+          "actor_pointer": "/effects_executed",
+          "value": false
+        },
+        {
+          "actor_pointer": "/hardware_qualified",
+          "value": false
+        }
+      ]
+    },
+    {
+      "id": "G2",
+      "criterion": "Proposed public tool arguments match shipped50 schemas",
+      "result": "PASS",
+      "reason": "All9 literal proposals validate against the current50-tool shipped catalog. Two explicitly incomplete templates validate only after inserting disclosed type witnesses for fresh plan/revision/operation results. Witnesses are assessor-created structural examples, not actual observed IDs; both original incomplete argument sets fail required-field validation as expected.",
+      "argument_validation_report": "fresh-mapped-argument-validation.json",
+      "argument_validation_sha256": "8adb2d5ea76f8df1be3aeffe13e78f0234947704553c50bbc807bdffd4173c61"
+    },
+    {
+      "id": "G3",
+      "criterion": "No unsupported generic script/raw Gcode/native property escape",
+      "result": "PASS",
+      "evidence": [
+        {
+          "actor_pointer": "/conditional_followups/6/action",
+          "exact_quote": "Do not substitute raw commands, GUI edits, controller-axis edits, backup restoration or portable export."
+        }
+      ],
+      "reason": "Only public typed configuration/read tools are proposed; unsupported or unresolved admission is preserved."
+    }
+  ],
+  "schema_validation": {
+    "report": "fresh-mapped-argument-validation.json",
+    "sha256": "8adb2d5ea76f8df1be3aeffe13e78f0234947704553c50bbc807bdffd4173c61",
+    "engine": {
+      "name": "Ajv",
+      "version": "8.20.0",
+      "node_version": "v24.20.0",
+      "node_binary_sha256": "9d050fd455b56426e25d4d603c7c501cbb2630348e836cf221dcce748e90588a",
+      "coercion": false,
+      "defaults": false,
+      "removes_extra_properties": false
+    },
+    "catalog": {
+      "path": "plugins/openpnp/mcp/tool-inputs.json",
+      "sha256": "ccb1f6bd0df1285dc39ba1ed16020fd42ddd100b2fa9cc48321b745c5b6388a5",
+      "tool_count": 50
+    },
+    "counts": {
+      "literal_proposed_calls": 9,
+      "conditional_templates": 2,
+      "valid_when_fully_bound": 11,
+      "unbound_templates_not_executable": 2
+    },
+    "bindings": "Result-dependent fields remain unresolved in the actor. Validation witnesses do not authorize execution, establish actual IDs, refresh a lease, or prove native admission.",
+    "arithmetic_check": {
+      "scale": 2,
+      "offset_mm": 1,
+      "target_controller_interval_mm": [
+        -100,
+        100
+      ],
+      "calculated_output_interval_mm": [
+        -199,
+        201
+      ],
+      "native_admission_proved": false
+    }
+  },
+  "historical_assessment": {
+    "result": "5PASS1PARTIAL",
+    "preserved": true,
+    "not_rescored": true,
+    "files": [
+      {
+        "path": "validation/skills50-blind/assessor/argument-validation-v1.json",
+        "sha256": "f7cf5f47d5c4efb16c809ffc42caf7ea399d593e202619251617dde71fa2ef32"
+      },
+      {
+        "path": "validation/skills50-blind/assessor/assessment-freeze-v1.json",
+        "sha256": "9a9490f89ce8818bde73423a153842b9c6b72198c9e773e44dde5e7cf96df18f"
+      },
+      {
+        "path": "validation/skills50-blind/assessor/assessment-v1.json",
+        "sha256": "ac65078562e52a11022581c7efbb84bdf55eb0f56692b0d16696c3bf90ca1080"
+      },
+      {
+        "path": "validation/skills50-blind/assessor/assessment-v1.md",
+        "sha256": "c74e4b99e3a5f1c6ff6cce4574b936b987c9beb9c8e61469e7129a9480a96e39"
+      },
+      {
+        "path": "validation/skills50-blind/assessor/precision-fix.json",
+        "sha256": "1d9ab324d48854e91b56d3f2e15f8d491d31a9a0ec67fd6ffae7cd3c5542567a"
+      },
+      {
+        "path": "validation/skills50-blind/assessor/score-decisions-v1.py",
+        "sha256": "bddd1e88a281a996062a2a742a2b8474a5f3516e890144acad09de193da6e262"
+      },
+      {
+        "path": "validation/skills50-blind/assessor/validate-decisions-v1.mjs",
+        "sha256": "eb4fd2e434b862abf2f6ae8cc7b5581da1ea9ba0ef47638b83c416b9866bdda8"
+      }
+    ],
+    "precision_fix_scope": "Only this fresh mapped case addresses the earlier C3 specificity gap; other five cases were not rerun here."
+  },
+  "limits": [
+    "No MCP, CLI, native, motion, calibration, export, or physical action was executed.",
+    "All machine observations are authored scenario inputs. Schema-valid proposals are conditional on fresh capabilities, native identities, revision, ownership and admission.",
+    "The assessor did not independently attest actor isolation or reconstruct its entire access history; this evaluates the frozen response and declared input hashes.",
+    "Conditional full/terminal polling described in prose was assessed semantically; only the9literal and2template tool objects were schema-validated.",
+    "An affected state not exposed by returned observations remains unverified and blocks dependent motion as the actor states."
+  ],
+  "actual_mcp_calls": 0,
+  "actual_cli_commands": 0,
+  "actual_native_effects": 0,
+  "hardware_qualified": false
+}

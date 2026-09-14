@@ -1,0 +1,3570 @@
+{
+  "started_at": "2026-09-11T11:39:20.462007+00:00",
+  "passed": true,
+  "runtime": "private-evidence/next-candidate-20260911/validation/gui-build-26/runtime",
+  "suites": [
+    {
+      "suite": "core",
+      "started_at": "2026-09-11T11:39:21.374047+00:00",
+      "passed": true,
+      "simulator_profile": "native-simulator",
+      "scope": "Fresh installed native simulator and actual packaged MCP; functional qualification only.",
+      "launcher": "shipped start-simulator CLI",
+      "physical_qualification": false,
+      "install_exit_code": 0,
+      "launch_command": [
+        "private-host/.cache/cde-grafana-node/v22.19.0/node-v22.19.0-darwin-arm64/bin/node",
+        "private-evidence/next-candidate-20260911/plugins/openpnp/scripts/openpnp.mjs",
+        "start-simulator",
+        "--state-dir",
+        "private-evidence/next-candidate-20260911/validation/native-mcp-completion53/core/state",
+        "--openpnp-home",
+        "private-evidence/next-candidate-20260911/validation/gui-build-26/runtime",
+        "--java",
+        "private-host/.cache/openpnp-codex/jdk17/jdk-17.0.16+8/Contents/Home/bin/java",
+        "--profile",
+        "native-simulator"
+      ],
+      "owned_launcher_pid": 30172,
+      "bridge_capabilities": {
+        "protocol_version": "1.0",
+        "schema_version": 1,
+        "bridge_version": "0.1.0",
+        "openpnp_version": "n/a_2026-09-11_03-35-24.5bd404c",
+        "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+        "bridge_artifact_sha256": "f167e1185bd6937bd91b70cb5a599f405e33281fc9c58d1f043774d2bf74859a",
+        "bridge_artifact_hash_available": true,
+        "limits": {
+          "rpc_request_bytes": 8388608,
+          "journal_record_bytes": 8388608,
+          "canonical_placements": 10000,
+          "board_definitions": 100,
+          "panel_definitions": 100,
+          "root_instances": 100,
+          "expanded_instances": 1000,
+          "panel_depth": 8,
+          "event_page": 500,
+          "json_depth": 64,
+          "retained_requests": 20000,
+          "journal_bytes": 536870912,
+          "plans": 128,
+          "plan_ttl_ms": 300000,
+          "artifact_metadata_cache": 128,
+          "artifact_bytes": 8388608,
+          "artifact_storage_bytes": 1073741824,
+          "running_job_snapshot_interval_ms": 100
+        },
+        "retention": {
+          "request_receipts": "retained until journal capacity; then fail closed",
+          "artifacts": "bytes stored on disk and read on demand; aggregate content cap 1 GiB fails admission without deleting evidence; preserved until explicit state-directory cleanup",
+          "plans": "five-minute TTL and 128 maximum; old plans expire"
+        },
+        "tools": [
+          "openpnp_get_capabilities",
+          "openpnp_get_status",
+          "openpnp_get_configuration",
+          "openpnp_get_operation",
+          "openpnp_get_request_status",
+          "openpnp_get_events",
+          "openpnp_get_artifact",
+          "openpnp_reconcile_operation",
+          "openpnp_request_control_session",
+          "openpnp_get_control_session",
+          "openpnp_renew_control_session",
+          "openpnp_release_control_session",
+          "openpnp_plan_motion",
+          "openpnp_execute_motion",
+          "openpnp_set_machine_enabled",
+          "openpnp_home_machine",
+          "openpnp_capture_camera",
+          "openpnp_plan_configuration",
+          "openpnp_apply_configuration",
+          "openpnp_prepare_job",
+          "openpnp_validate_job",
+          "openpnp_start_job",
+          "openpnp_step_job",
+          "openpnp_pause_job",
+          "openpnp_resume_job",
+          "openpnp_abort_job",
+          "openpnp_export_portable_configuration",
+          "openpnp_save_job",
+          "openpnp_load_job",
+          "openpnp_get_board_loads",
+          "openpnp_register_board_load",
+          "openpnp_inspect_job",
+          "openpnp_plan_placement_edits",
+          "openpnp_apply_placement_edits",
+          "openpnp_plan_placement_structure",
+          "openpnp_apply_placement_structure",
+          "openpnp_test_feeder",
+          "openpnp_control_actuator",
+          "openpnp_change_nozzle_tip",
+          "openpnp_backup_configuration",
+          "openpnp_restore_configuration",
+          "openpnp_export_run_report",
+          "openpnp_run_calibration",
+          "openpnp_validate_calibration",
+          "openpnp_locate_fiducials",
+          "openpnp_list_issues"
+        ],
+        "machine_id": "5ce36efb-c27c-4442-bf51-99bad5c83b22",
+        "bridge_instance_id": "054e9872-94ab-429e-96a3-0bd610dd01ac",
+        "simulation": true,
+        "simulator_profile": "native-simulator",
+        "native_job_order": "NozzleTips",
+        "simulator_attestation": {
+          "mode": "isolated-native-default",
+          "profile": "native-simulator",
+          "native_job_order": "NozzleTips",
+          "job_order_rationale": "upstream default order retained",
+          "fixture_provenance": "upstream-default-strip-feeders",
+          "driver_class": "org.openpnp.machine.reference.driver.NullDriver",
+          "checked_at_dispatch": true,
+          "acceleration_recipe": {
+            "source": "upstream SampleJobTest.makeMachineFastest",
+            "driver_feed_rate_mm_per_minute": 0,
+            "controller_axis_native_feedrate_per_second": 1000000,
+            "controller_axis_native_acceleration_per_second2": 2000000,
+            "controller_axis_native_jerk_per_second3": 0,
+            "fixed_camera_settling_ms": 0,
+            "nozzle_pick_place_dwell_ms": 0,
+            "physical_cycle_rate_comparison": false
+          }
+        },
+        "hardware_qualified": false,
+        "gui_control_qualified": false,
+        "capabilities": {
+          "observe": "supported",
+          "native_simulator_execution": "supported",
+          "hardware_execution": "unqualified",
+          "calibration": "native-nozzle-tip-runout-only",
+          "configuration_restore": "supported-typed-settings-only",
+          "custom_job_import": "supported",
+          "per_placement_crash_recovery": "unsupported"
+        },
+        "job_lineage": {
+          "available": true,
+          "scope": "trusted fresh native simulator imports and durably associated signed documents",
+          "structural_profile": "disabled-machine-empty-native-history-never-processor-admitted",
+          "unknown_documents": "readable-without-structural-authority",
+          "physical_authority": false
+        },
+        "native_action_ledger": {
+          "available": true,
+          "coverage": {
+            "automatic_replay": false,
+            "gaps": [
+              "motion-between-hooks",
+              "part-on-off-sensing-verdicts",
+              "feeder-post-pick",
+              "physical-board-load-and-material-lot",
+              "native-internal-retry-index",
+              "actions-within-user-scripts",
+              "manual-nozzle-tip-change-paths",
+              "alignment-skipped-with-no-aligner",
+              "nozzle-tip-model-and-calibration-changes-after-changer-hook",
+              "native-exception-between-before-and-after-hooks",
+              "process-death-after-effect-before-durable-after-hook"
+            ],
+            "observed_pairs": [
+              "feed",
+              "pick",
+              "release",
+              "align",
+              "discard",
+              "automatic-nozzle-tip-load",
+              "automatic-nozzle-tip-unload"
+            ],
+            "physical_effect_verification": false,
+            "source": "pinned-native-script-call-sites-with-java-observer",
+            "true_action_call_boundaries": false,
+            "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c"
+          }
+        },
+        "native_job_step": {
+          "available": true,
+          "boundary": "one-native-processor-next-call",
+          "can_include_multiple_actions": true,
+          "requires_config_revision": true,
+          "pause_waits_for_native_standstill": true,
+          "continuous_resume": true,
+          "automatic_restart_resume": false
+        },
+        "board_load_authority": {
+          "source": "native-simulator",
+          "complete_history_api": true,
+          "physical_load_verified": false,
+          "restart_requires_explicit_binding": true,
+          "replacement_resets_only_target_history": true,
+          "flip_preserves_history": true,
+          "explicit_changeover_available": true,
+          "stock_runtime_scope": "initial fresh simulator loads only; explicit changeover requires complete-history patch",
+          "unbound_saved_history": "refused; loading a document does not identify a board"
+        },
+        "configuration_changes": [
+          "set_part_height",
+          "assign_feeder",
+          "set_feeder_enabled",
+          "set_machine_speed",
+          "create_package",
+          "set_package_footprint",
+          "create_part",
+          "set_part_properties",
+          "set_package_compatibility",
+          "set_tray_feeder_geometry",
+          "set_strip_feeder_geometry",
+          "set_camera_geometry",
+          "set_camera_settling",
+          "set_camera_dynamic_settling",
+          "set_nozzle_settings",
+          "set_nozzle_tip_settings",
+          "set_axis_motion_limits",
+          "set_mapped_axis_geometry",
+          "set_job_planner_settings",
+          "set_job_retry_settings",
+          "set_part_retry_settings",
+          "set_feeder_retry_settings",
+          "set_head_park_location",
+          "set_machine_discard_location",
+          "clone_vision_settings",
+          "set_bottom_vision_settings",
+          "set_fiducial_vision_settings",
+          "assign_vision_settings",
+          "remove_vision_settings",
+          "set_vision_pipeline_stage",
+          "set_vision_parameter"
+        ],
+        "camera_settling": {
+          "change_type": "set_camera_dynamic_settling",
+          "methods": [
+            "Maximum",
+            "Mean",
+            "Euclidean",
+            "Square"
+          ],
+          "timeout_ms": {
+            "minimum": 20,
+            "maximum": 5000
+          },
+          "debounce": {
+            "minimum": 0,
+            "maximum": 10
+          },
+          "threshold_percent": {
+            "exclusive_minimum": 0,
+            "maximum": 100
+          },
+          "full_color": "boolean",
+          "preprocessing": "default blur/gradients/mask/contrast and disabled diagnostics required",
+          "frame_axis_limit": 2048,
+          "frame_pixel_limit": 4194304,
+          "advanced_camera_correction": "unsupported for bounded raw/settled capture including native preview",
+          "legacy_fixed_dwell": "retained via set_camera_settling",
+          "active_camera_calibration": "raw/settled capture and dynamic settings refused; native preview may transform frames",
+          "native_timeout_is_hard_io_deadline": false,
+          "capture_return_proves_stability": false,
+          "physical_calibration_validity": "not-assessed",
+          "hardware_qualified": false
+        },
+        "limitations": [
+          "Only an isolated OpenPnP default simulator may mutate",
+          "Native step journal does not prove every irreversible substep",
+          "No physical machine profile is qualified",
+          "GUI attachment requires its verified optional native patch and a visible local grant"
+        ],
+        "fresh_fixture_startup": {
+          "native_roundtrip_before_bridge": true,
+          "source_scope": "newly generated default simulator only",
+          "enable_home_performed": false
+        },
+        "portable_configuration": {
+          "export": "lease-bound-async-zip",
+          "adoption": "dedicated-validation-jvm-fresh-instance-only",
+          "first_launch_only": true,
+          "native_model_limits": {
+            "xml_elements_total": 30000,
+            "cameras": 2,
+            "image_cameras": 1,
+            "camera_frame_axis": 2048,
+            "camera_frame_pixels_total": 4194304,
+            "referenced_image_pixels_total": 32000000,
+            "archive_resource_pixels_total": 32000000,
+            "archive_resources": 4,
+            "heads": 2,
+            "nozzles": 4,
+            "axes": 16,
+            "drivers": 2,
+            "feeders": 256,
+            "parts": 512,
+            "packages": 256,
+            "vision_settings": 128,
+            "pipelines": 256,
+            "stages_total": 1024,
+            "stages_per_pipeline": 64,
+            "gaussian_kernel": 63,
+            "vision_super_sampling": 16,
+            "footprint_template_axis": 2048,
+            "advanced_camera_calibration": "disabled-only",
+            "camera_settling": "FixedTime only; dynamic settings require separate portable qualification",
+            "array_length": 1024,
+            "array_elements_total": 32768,
+            "vision_pipeline_profile": {
+              "profile": "pinned-stock-derived-v1",
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+              "consumer_contexts": 6,
+              "editable_stage_fields": {
+                "BlurGaussian": [
+                  "kernel-size"
+                ],
+                "Threshold": [
+                  "threshold",
+                  "auto",
+                  "invert"
+                ],
+                "MaskHsv": [
+                  "hue-min",
+                  "hue-max",
+                  "saturation-min",
+                  "saturation-max",
+                  "value-min",
+                  "value-max",
+                  "invert"
+                ]
+              },
+              "parameter_definitions": "exact-stock-names-targets-bounds-defaults",
+              "parameter_assignments": "bounded-declared-scalars",
+              "parameter_written_target_fields": "bounded-target-values-with-exact-stock-parameter-definition",
+              "other_fields_and_topology": "exact-stock",
+              "unsupported_custom_pipelines": "rejected-without-modification"
+            },
+            "hardware_qualified": false
+          },
+          "in_place_restore": false,
+          "hardware_qualified": false
+        }
+      },
+      "test_command": [
+        "private-host/.cache/cde-grafana-node/v22.19.0/node-v22.19.0-darwin-arm64/bin/node",
+        "--test",
+        "--test-reporter=tap",
+        "private-evidence/next-candidate-20260911/tests/openpnp/live.test.mjs"
+      ],
+      "test_exit_code": 0,
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "launcher_cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      },
+      "interrupted_signals": [],
+      "completed_at": "2026-09-11T11:39:39.146546+00:00",
+      "duration_seconds": 17.77225720800925,
+      "log_sha256": {
+        "test.log": "953b998ecd272f18210ecadf8f269b0a6d0fd5684be62814b69b1b4a50959f7b",
+        "doctor.log": "f9799c45d000c3d7f84cabc8445945c9c0b796933169993c925a09d2843da5f0",
+        "launcher.log": "6c7f3529b2a93651265ece16adba5ba1e9a7982626d07acd96139c69b970d24b",
+        "install.log": "eead1741506ba2906c2bc308c71f40ad1f77aaf1925a08cbbd12204208ca4c9b"
+      },
+      "process_cleanup": {
+        "install.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        },
+        "test.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        },
+        "doctor.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        }
+      },
+      "evidence_sha256": {
+        "mcp-native-e2e.json": "81e7a10e9d3ec7c32885b69349e071ffa16d1293bfd2ad049d75fe8691c488d1"
+      }
+    },
+    {
+      "suite": "vision",
+      "started_at": "2026-09-11T11:39:39.148954+00:00",
+      "passed": true,
+      "simulator_profile": "native-simulator",
+      "scope": "Fresh installed native simulator and actual packaged MCP; functional qualification only.",
+      "launcher": "shipped start-simulator CLI",
+      "physical_qualification": false,
+      "install_exit_code": 0,
+      "launch_command": [
+        "private-host/.cache/cde-grafana-node/v22.19.0/node-v22.19.0-darwin-arm64/bin/node",
+        "private-evidence/next-candidate-20260911/plugins/openpnp/scripts/openpnp.mjs",
+        "start-simulator",
+        "--state-dir",
+        "private-evidence/next-candidate-20260911/validation/native-mcp-completion53/vision/state",
+        "--openpnp-home",
+        "private-evidence/next-candidate-20260911/validation/gui-build-26/runtime",
+        "--java",
+        "private-host/.cache/openpnp-codex/jdk17/jdk-17.0.16+8/Contents/Home/bin/java",
+        "--profile",
+        "native-simulator"
+      ],
+      "owned_launcher_pid": 30334,
+      "bridge_capabilities": {
+        "protocol_version": "1.0",
+        "schema_version": 1,
+        "bridge_version": "0.1.0",
+        "openpnp_version": "n/a_2026-09-11_03-35-24.5bd404c",
+        "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+        "bridge_artifact_sha256": "f167e1185bd6937bd91b70cb5a599f405e33281fc9c58d1f043774d2bf74859a",
+        "bridge_artifact_hash_available": true,
+        "limits": {
+          "rpc_request_bytes": 8388608,
+          "journal_record_bytes": 8388608,
+          "canonical_placements": 10000,
+          "board_definitions": 100,
+          "panel_definitions": 100,
+          "root_instances": 100,
+          "expanded_instances": 1000,
+          "panel_depth": 8,
+          "event_page": 500,
+          "json_depth": 64,
+          "retained_requests": 20000,
+          "journal_bytes": 536870912,
+          "plans": 128,
+          "plan_ttl_ms": 300000,
+          "artifact_metadata_cache": 128,
+          "artifact_bytes": 8388608,
+          "artifact_storage_bytes": 1073741824,
+          "running_job_snapshot_interval_ms": 100
+        },
+        "retention": {
+          "request_receipts": "retained until journal capacity; then fail closed",
+          "artifacts": "bytes stored on disk and read on demand; aggregate content cap 1 GiB fails admission without deleting evidence; preserved until explicit state-directory cleanup",
+          "plans": "five-minute TTL and 128 maximum; old plans expire"
+        },
+        "tools": [
+          "openpnp_get_capabilities",
+          "openpnp_get_status",
+          "openpnp_get_configuration",
+          "openpnp_get_operation",
+          "openpnp_get_request_status",
+          "openpnp_get_events",
+          "openpnp_get_artifact",
+          "openpnp_reconcile_operation",
+          "openpnp_request_control_session",
+          "openpnp_get_control_session",
+          "openpnp_renew_control_session",
+          "openpnp_release_control_session",
+          "openpnp_plan_motion",
+          "openpnp_execute_motion",
+          "openpnp_set_machine_enabled",
+          "openpnp_home_machine",
+          "openpnp_capture_camera",
+          "openpnp_plan_configuration",
+          "openpnp_apply_configuration",
+          "openpnp_prepare_job",
+          "openpnp_validate_job",
+          "openpnp_start_job",
+          "openpnp_step_job",
+          "openpnp_pause_job",
+          "openpnp_resume_job",
+          "openpnp_abort_job",
+          "openpnp_export_portable_configuration",
+          "openpnp_save_job",
+          "openpnp_load_job",
+          "openpnp_get_board_loads",
+          "openpnp_register_board_load",
+          "openpnp_inspect_job",
+          "openpnp_plan_placement_edits",
+          "openpnp_apply_placement_edits",
+          "openpnp_plan_placement_structure",
+          "openpnp_apply_placement_structure",
+          "openpnp_test_feeder",
+          "openpnp_control_actuator",
+          "openpnp_change_nozzle_tip",
+          "openpnp_backup_configuration",
+          "openpnp_restore_configuration",
+          "openpnp_export_run_report",
+          "openpnp_run_calibration",
+          "openpnp_validate_calibration",
+          "openpnp_locate_fiducials",
+          "openpnp_list_issues"
+        ],
+        "machine_id": "98991746-3a76-43c2-b707-86696c2d62f0",
+        "bridge_instance_id": "dcdc53d7-18e2-4386-929d-00d62bf42ffb",
+        "simulation": true,
+        "simulator_profile": "native-simulator",
+        "native_job_order": "NozzleTips",
+        "simulator_attestation": {
+          "mode": "isolated-native-default",
+          "profile": "native-simulator",
+          "native_job_order": "NozzleTips",
+          "job_order_rationale": "upstream default order retained",
+          "fixture_provenance": "upstream-default-strip-feeders",
+          "driver_class": "org.openpnp.machine.reference.driver.NullDriver",
+          "checked_at_dispatch": true,
+          "acceleration_recipe": {
+            "source": "upstream SampleJobTest.makeMachineFastest",
+            "driver_feed_rate_mm_per_minute": 0,
+            "controller_axis_native_feedrate_per_second": 1000000,
+            "controller_axis_native_acceleration_per_second2": 2000000,
+            "controller_axis_native_jerk_per_second3": 0,
+            "fixed_camera_settling_ms": 0,
+            "nozzle_pick_place_dwell_ms": 0,
+            "physical_cycle_rate_comparison": false
+          }
+        },
+        "hardware_qualified": false,
+        "gui_control_qualified": false,
+        "capabilities": {
+          "observe": "supported",
+          "native_simulator_execution": "supported",
+          "hardware_execution": "unqualified",
+          "calibration": "native-nozzle-tip-runout-only",
+          "configuration_restore": "supported-typed-settings-only",
+          "custom_job_import": "supported",
+          "per_placement_crash_recovery": "unsupported"
+        },
+        "job_lineage": {
+          "available": true,
+          "scope": "trusted fresh native simulator imports and durably associated signed documents",
+          "structural_profile": "disabled-machine-empty-native-history-never-processor-admitted",
+          "unknown_documents": "readable-without-structural-authority",
+          "physical_authority": false
+        },
+        "native_action_ledger": {
+          "available": true,
+          "coverage": {
+            "automatic_replay": false,
+            "gaps": [
+              "motion-between-hooks",
+              "part-on-off-sensing-verdicts",
+              "feeder-post-pick",
+              "physical-board-load-and-material-lot",
+              "native-internal-retry-index",
+              "actions-within-user-scripts",
+              "manual-nozzle-tip-change-paths",
+              "alignment-skipped-with-no-aligner",
+              "nozzle-tip-model-and-calibration-changes-after-changer-hook",
+              "native-exception-between-before-and-after-hooks",
+              "process-death-after-effect-before-durable-after-hook"
+            ],
+            "observed_pairs": [
+              "feed",
+              "pick",
+              "release",
+              "align",
+              "discard",
+              "automatic-nozzle-tip-load",
+              "automatic-nozzle-tip-unload"
+            ],
+            "physical_effect_verification": false,
+            "source": "pinned-native-script-call-sites-with-java-observer",
+            "true_action_call_boundaries": false,
+            "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c"
+          }
+        },
+        "native_job_step": {
+          "available": true,
+          "boundary": "one-native-processor-next-call",
+          "can_include_multiple_actions": true,
+          "requires_config_revision": true,
+          "pause_waits_for_native_standstill": true,
+          "continuous_resume": true,
+          "automatic_restart_resume": false
+        },
+        "board_load_authority": {
+          "source": "native-simulator",
+          "complete_history_api": true,
+          "physical_load_verified": false,
+          "restart_requires_explicit_binding": true,
+          "replacement_resets_only_target_history": true,
+          "flip_preserves_history": true,
+          "explicit_changeover_available": true,
+          "stock_runtime_scope": "initial fresh simulator loads only; explicit changeover requires complete-history patch",
+          "unbound_saved_history": "refused; loading a document does not identify a board"
+        },
+        "configuration_changes": [
+          "set_part_height",
+          "assign_feeder",
+          "set_feeder_enabled",
+          "set_machine_speed",
+          "create_package",
+          "set_package_footprint",
+          "create_part",
+          "set_part_properties",
+          "set_package_compatibility",
+          "set_tray_feeder_geometry",
+          "set_strip_feeder_geometry",
+          "set_camera_geometry",
+          "set_camera_settling",
+          "set_camera_dynamic_settling",
+          "set_nozzle_settings",
+          "set_nozzle_tip_settings",
+          "set_axis_motion_limits",
+          "set_mapped_axis_geometry",
+          "set_job_planner_settings",
+          "set_job_retry_settings",
+          "set_part_retry_settings",
+          "set_feeder_retry_settings",
+          "set_head_park_location",
+          "set_machine_discard_location",
+          "clone_vision_settings",
+          "set_bottom_vision_settings",
+          "set_fiducial_vision_settings",
+          "assign_vision_settings",
+          "remove_vision_settings",
+          "set_vision_pipeline_stage",
+          "set_vision_parameter"
+        ],
+        "camera_settling": {
+          "change_type": "set_camera_dynamic_settling",
+          "methods": [
+            "Maximum",
+            "Mean",
+            "Euclidean",
+            "Square"
+          ],
+          "timeout_ms": {
+            "minimum": 20,
+            "maximum": 5000
+          },
+          "debounce": {
+            "minimum": 0,
+            "maximum": 10
+          },
+          "threshold_percent": {
+            "exclusive_minimum": 0,
+            "maximum": 100
+          },
+          "full_color": "boolean",
+          "preprocessing": "default blur/gradients/mask/contrast and disabled diagnostics required",
+          "frame_axis_limit": 2048,
+          "frame_pixel_limit": 4194304,
+          "advanced_camera_correction": "unsupported for bounded raw/settled capture including native preview",
+          "legacy_fixed_dwell": "retained via set_camera_settling",
+          "active_camera_calibration": "raw/settled capture and dynamic settings refused; native preview may transform frames",
+          "native_timeout_is_hard_io_deadline": false,
+          "capture_return_proves_stability": false,
+          "physical_calibration_validity": "not-assessed",
+          "hardware_qualified": false
+        },
+        "limitations": [
+          "Only an isolated OpenPnP default simulator may mutate",
+          "Native step journal does not prove every irreversible substep",
+          "No physical machine profile is qualified",
+          "GUI attachment requires its verified optional native patch and a visible local grant"
+        ],
+        "fresh_fixture_startup": {
+          "native_roundtrip_before_bridge": true,
+          "source_scope": "newly generated default simulator only",
+          "enable_home_performed": false
+        },
+        "portable_configuration": {
+          "export": "lease-bound-async-zip",
+          "adoption": "dedicated-validation-jvm-fresh-instance-only",
+          "first_launch_only": true,
+          "native_model_limits": {
+            "xml_elements_total": 30000,
+            "cameras": 2,
+            "image_cameras": 1,
+            "camera_frame_axis": 2048,
+            "camera_frame_pixels_total": 4194304,
+            "referenced_image_pixels_total": 32000000,
+            "archive_resource_pixels_total": 32000000,
+            "archive_resources": 4,
+            "heads": 2,
+            "nozzles": 4,
+            "axes": 16,
+            "drivers": 2,
+            "feeders": 256,
+            "parts": 512,
+            "packages": 256,
+            "vision_settings": 128,
+            "pipelines": 256,
+            "stages_total": 1024,
+            "stages_per_pipeline": 64,
+            "gaussian_kernel": 63,
+            "vision_super_sampling": 16,
+            "footprint_template_axis": 2048,
+            "advanced_camera_calibration": "disabled-only",
+            "camera_settling": "FixedTime only; dynamic settings require separate portable qualification",
+            "array_length": 1024,
+            "array_elements_total": 32768,
+            "vision_pipeline_profile": {
+              "profile": "pinned-stock-derived-v1",
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+              "consumer_contexts": 6,
+              "editable_stage_fields": {
+                "BlurGaussian": [
+                  "kernel-size"
+                ],
+                "Threshold": [
+                  "threshold",
+                  "auto",
+                  "invert"
+                ],
+                "MaskHsv": [
+                  "hue-min",
+                  "hue-max",
+                  "saturation-min",
+                  "saturation-max",
+                  "value-min",
+                  "value-max",
+                  "invert"
+                ]
+              },
+              "parameter_definitions": "exact-stock-names-targets-bounds-defaults",
+              "parameter_assignments": "bounded-declared-scalars",
+              "parameter_written_target_fields": "bounded-target-values-with-exact-stock-parameter-definition",
+              "other_fields_and_topology": "exact-stock",
+              "unsupported_custom_pipelines": "rejected-without-modification"
+            },
+            "hardware_qualified": false
+          },
+          "in_place_restore": false,
+          "hardware_qualified": false
+        }
+      },
+      "test_command": [
+        "private-host/.cache/cde-grafana-node/v22.19.0/node-v22.19.0-darwin-arm64/bin/node",
+        "--test",
+        "--test-reporter=tap",
+        "private-evidence/next-candidate-20260911/tests/openpnp/vision-live.test.mjs"
+      ],
+      "test_exit_code": 0,
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "launcher_cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      },
+      "interrupted_signals": [],
+      "completed_at": "2026-09-11T11:39:43.930744+00:00",
+      "duration_seconds": 4.781738084042445,
+      "log_sha256": {
+        "test.log": "7f6c64785ce002227bb5e4c02012c4d8a36976c213cebed697e48aea04831a37",
+        "doctor.log": "e9e30a1bbfc0df411a473f7be451db77f737d707a89dc54b525cadf34068fcbd",
+        "launcher.log": "4cf18641ff3da2f2e00517cccbcb4e240dcf936546bdf93f9a706865addf6394",
+        "install.log": "49125a14f8dc60883459fc5b57e92c758e08fc4f7f0c6e80d1d022176bb61a1c"
+      },
+      "process_cleanup": {
+        "install.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        },
+        "test.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        },
+        "doctor.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        }
+      },
+      "evidence_sha256": {
+        "mcp-native-vision.json": "a9082dfda07455f3184ac27b5eda05f46d3f9694e87be8f3ddfb3d24a418c2d9"
+      }
+    },
+    {
+      "suite": "structure",
+      "started_at": "2026-09-11T11:39:43.935302+00:00",
+      "passed": true,
+      "simulator_profile": "native-simulator",
+      "scope": "Fresh installed native simulator and actual packaged MCP; functional qualification only.",
+      "launcher": "shipped start-simulator CLI",
+      "physical_qualification": false,
+      "install_exit_code": 0,
+      "launch_command": [
+        "private-host/.cache/cde-grafana-node/v22.19.0/node-v22.19.0-darwin-arm64/bin/node",
+        "private-evidence/next-candidate-20260911/plugins/openpnp/scripts/openpnp.mjs",
+        "start-simulator",
+        "--state-dir",
+        "private-evidence/next-candidate-20260911/validation/native-mcp-completion53/structure/state",
+        "--openpnp-home",
+        "private-evidence/next-candidate-20260911/validation/gui-build-26/runtime",
+        "--java",
+        "private-host/.cache/openpnp-codex/jdk17/jdk-17.0.16+8/Contents/Home/bin/java",
+        "--profile",
+        "native-simulator"
+      ],
+      "owned_launcher_pid": 30409,
+      "bridge_capabilities": {
+        "protocol_version": "1.0",
+        "schema_version": 1,
+        "bridge_version": "0.1.0",
+        "openpnp_version": "n/a_2026-09-11_03-35-24.5bd404c",
+        "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+        "bridge_artifact_sha256": "f167e1185bd6937bd91b70cb5a599f405e33281fc9c58d1f043774d2bf74859a",
+        "bridge_artifact_hash_available": true,
+        "limits": {
+          "rpc_request_bytes": 8388608,
+          "journal_record_bytes": 8388608,
+          "canonical_placements": 10000,
+          "board_definitions": 100,
+          "panel_definitions": 100,
+          "root_instances": 100,
+          "expanded_instances": 1000,
+          "panel_depth": 8,
+          "event_page": 500,
+          "json_depth": 64,
+          "retained_requests": 20000,
+          "journal_bytes": 536870912,
+          "plans": 128,
+          "plan_ttl_ms": 300000,
+          "artifact_metadata_cache": 128,
+          "artifact_bytes": 8388608,
+          "artifact_storage_bytes": 1073741824,
+          "running_job_snapshot_interval_ms": 100
+        },
+        "retention": {
+          "request_receipts": "retained until journal capacity; then fail closed",
+          "artifacts": "bytes stored on disk and read on demand; aggregate content cap 1 GiB fails admission without deleting evidence; preserved until explicit state-directory cleanup",
+          "plans": "five-minute TTL and 128 maximum; old plans expire"
+        },
+        "tools": [
+          "openpnp_get_capabilities",
+          "openpnp_get_status",
+          "openpnp_get_configuration",
+          "openpnp_get_operation",
+          "openpnp_get_request_status",
+          "openpnp_get_events",
+          "openpnp_get_artifact",
+          "openpnp_reconcile_operation",
+          "openpnp_request_control_session",
+          "openpnp_get_control_session",
+          "openpnp_renew_control_session",
+          "openpnp_release_control_session",
+          "openpnp_plan_motion",
+          "openpnp_execute_motion",
+          "openpnp_set_machine_enabled",
+          "openpnp_home_machine",
+          "openpnp_capture_camera",
+          "openpnp_plan_configuration",
+          "openpnp_apply_configuration",
+          "openpnp_prepare_job",
+          "openpnp_validate_job",
+          "openpnp_start_job",
+          "openpnp_step_job",
+          "openpnp_pause_job",
+          "openpnp_resume_job",
+          "openpnp_abort_job",
+          "openpnp_export_portable_configuration",
+          "openpnp_save_job",
+          "openpnp_load_job",
+          "openpnp_get_board_loads",
+          "openpnp_register_board_load",
+          "openpnp_inspect_job",
+          "openpnp_plan_placement_edits",
+          "openpnp_apply_placement_edits",
+          "openpnp_plan_placement_structure",
+          "openpnp_apply_placement_structure",
+          "openpnp_test_feeder",
+          "openpnp_control_actuator",
+          "openpnp_change_nozzle_tip",
+          "openpnp_backup_configuration",
+          "openpnp_restore_configuration",
+          "openpnp_export_run_report",
+          "openpnp_run_calibration",
+          "openpnp_validate_calibration",
+          "openpnp_locate_fiducials",
+          "openpnp_list_issues"
+        ],
+        "machine_id": "f45e91e6-ce9c-4d57-a35a-77aee69907ff",
+        "bridge_instance_id": "d76b14fd-74fa-4d59-b6df-6e2b3ba8d2ce",
+        "simulation": true,
+        "simulator_profile": "native-simulator",
+        "native_job_order": "NozzleTips",
+        "simulator_attestation": {
+          "mode": "isolated-native-default",
+          "profile": "native-simulator",
+          "native_job_order": "NozzleTips",
+          "job_order_rationale": "upstream default order retained",
+          "fixture_provenance": "upstream-default-strip-feeders",
+          "driver_class": "org.openpnp.machine.reference.driver.NullDriver",
+          "checked_at_dispatch": true,
+          "acceleration_recipe": {
+            "source": "upstream SampleJobTest.makeMachineFastest",
+            "driver_feed_rate_mm_per_minute": 0,
+            "controller_axis_native_feedrate_per_second": 1000000,
+            "controller_axis_native_acceleration_per_second2": 2000000,
+            "controller_axis_native_jerk_per_second3": 0,
+            "fixed_camera_settling_ms": 0,
+            "nozzle_pick_place_dwell_ms": 0,
+            "physical_cycle_rate_comparison": false
+          }
+        },
+        "hardware_qualified": false,
+        "gui_control_qualified": false,
+        "capabilities": {
+          "observe": "supported",
+          "native_simulator_execution": "supported",
+          "hardware_execution": "unqualified",
+          "calibration": "native-nozzle-tip-runout-only",
+          "configuration_restore": "supported-typed-settings-only",
+          "custom_job_import": "supported",
+          "per_placement_crash_recovery": "unsupported"
+        },
+        "job_lineage": {
+          "available": true,
+          "scope": "trusted fresh native simulator imports and durably associated signed documents",
+          "structural_profile": "disabled-machine-empty-native-history-never-processor-admitted",
+          "unknown_documents": "readable-without-structural-authority",
+          "physical_authority": false
+        },
+        "native_action_ledger": {
+          "available": true,
+          "coverage": {
+            "automatic_replay": false,
+            "gaps": [
+              "motion-between-hooks",
+              "part-on-off-sensing-verdicts",
+              "feeder-post-pick",
+              "physical-board-load-and-material-lot",
+              "native-internal-retry-index",
+              "actions-within-user-scripts",
+              "manual-nozzle-tip-change-paths",
+              "alignment-skipped-with-no-aligner",
+              "nozzle-tip-model-and-calibration-changes-after-changer-hook",
+              "native-exception-between-before-and-after-hooks",
+              "process-death-after-effect-before-durable-after-hook"
+            ],
+            "observed_pairs": [
+              "feed",
+              "pick",
+              "release",
+              "align",
+              "discard",
+              "automatic-nozzle-tip-load",
+              "automatic-nozzle-tip-unload"
+            ],
+            "physical_effect_verification": false,
+            "source": "pinned-native-script-call-sites-with-java-observer",
+            "true_action_call_boundaries": false,
+            "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c"
+          }
+        },
+        "native_job_step": {
+          "available": true,
+          "boundary": "one-native-processor-next-call",
+          "can_include_multiple_actions": true,
+          "requires_config_revision": true,
+          "pause_waits_for_native_standstill": true,
+          "continuous_resume": true,
+          "automatic_restart_resume": false
+        },
+        "board_load_authority": {
+          "source": "native-simulator",
+          "complete_history_api": true,
+          "physical_load_verified": false,
+          "restart_requires_explicit_binding": true,
+          "replacement_resets_only_target_history": true,
+          "flip_preserves_history": true,
+          "explicit_changeover_available": true,
+          "stock_runtime_scope": "initial fresh simulator loads only; explicit changeover requires complete-history patch",
+          "unbound_saved_history": "refused; loading a document does not identify a board"
+        },
+        "configuration_changes": [
+          "set_part_height",
+          "assign_feeder",
+          "set_feeder_enabled",
+          "set_machine_speed",
+          "create_package",
+          "set_package_footprint",
+          "create_part",
+          "set_part_properties",
+          "set_package_compatibility",
+          "set_tray_feeder_geometry",
+          "set_strip_feeder_geometry",
+          "set_camera_geometry",
+          "set_camera_settling",
+          "set_camera_dynamic_settling",
+          "set_nozzle_settings",
+          "set_nozzle_tip_settings",
+          "set_axis_motion_limits",
+          "set_mapped_axis_geometry",
+          "set_job_planner_settings",
+          "set_job_retry_settings",
+          "set_part_retry_settings",
+          "set_feeder_retry_settings",
+          "set_head_park_location",
+          "set_machine_discard_location",
+          "clone_vision_settings",
+          "set_bottom_vision_settings",
+          "set_fiducial_vision_settings",
+          "assign_vision_settings",
+          "remove_vision_settings",
+          "set_vision_pipeline_stage",
+          "set_vision_parameter"
+        ],
+        "camera_settling": {
+          "change_type": "set_camera_dynamic_settling",
+          "methods": [
+            "Maximum",
+            "Mean",
+            "Euclidean",
+            "Square"
+          ],
+          "timeout_ms": {
+            "minimum": 20,
+            "maximum": 5000
+          },
+          "debounce": {
+            "minimum": 0,
+            "maximum": 10
+          },
+          "threshold_percent": {
+            "exclusive_minimum": 0,
+            "maximum": 100
+          },
+          "full_color": "boolean",
+          "preprocessing": "default blur/gradients/mask/contrast and disabled diagnostics required",
+          "frame_axis_limit": 2048,
+          "frame_pixel_limit": 4194304,
+          "advanced_camera_correction": "unsupported for bounded raw/settled capture including native preview",
+          "legacy_fixed_dwell": "retained via set_camera_settling",
+          "active_camera_calibration": "raw/settled capture and dynamic settings refused; native preview may transform frames",
+          "native_timeout_is_hard_io_deadline": false,
+          "capture_return_proves_stability": false,
+          "physical_calibration_validity": "not-assessed",
+          "hardware_qualified": false
+        },
+        "limitations": [
+          "Only an isolated OpenPnP default simulator may mutate",
+          "Native step journal does not prove every irreversible substep",
+          "No physical machine profile is qualified",
+          "GUI attachment requires its verified optional native patch and a visible local grant"
+        ],
+        "fresh_fixture_startup": {
+          "native_roundtrip_before_bridge": true,
+          "source_scope": "newly generated default simulator only",
+          "enable_home_performed": false
+        },
+        "portable_configuration": {
+          "export": "lease-bound-async-zip",
+          "adoption": "dedicated-validation-jvm-fresh-instance-only",
+          "first_launch_only": true,
+          "native_model_limits": {
+            "xml_elements_total": 30000,
+            "cameras": 2,
+            "image_cameras": 1,
+            "camera_frame_axis": 2048,
+            "camera_frame_pixels_total": 4194304,
+            "referenced_image_pixels_total": 32000000,
+            "archive_resource_pixels_total": 32000000,
+            "archive_resources": 4,
+            "heads": 2,
+            "nozzles": 4,
+            "axes": 16,
+            "drivers": 2,
+            "feeders": 256,
+            "parts": 512,
+            "packages": 256,
+            "vision_settings": 128,
+            "pipelines": 256,
+            "stages_total": 1024,
+            "stages_per_pipeline": 64,
+            "gaussian_kernel": 63,
+            "vision_super_sampling": 16,
+            "footprint_template_axis": 2048,
+            "advanced_camera_calibration": "disabled-only",
+            "camera_settling": "FixedTime only; dynamic settings require separate portable qualification",
+            "array_length": 1024,
+            "array_elements_total": 32768,
+            "vision_pipeline_profile": {
+              "profile": "pinned-stock-derived-v1",
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+              "consumer_contexts": 6,
+              "editable_stage_fields": {
+                "BlurGaussian": [
+                  "kernel-size"
+                ],
+                "Threshold": [
+                  "threshold",
+                  "auto",
+                  "invert"
+                ],
+                "MaskHsv": [
+                  "hue-min",
+                  "hue-max",
+                  "saturation-min",
+                  "saturation-max",
+                  "value-min",
+                  "value-max",
+                  "invert"
+                ]
+              },
+              "parameter_definitions": "exact-stock-names-targets-bounds-defaults",
+              "parameter_assignments": "bounded-declared-scalars",
+              "parameter_written_target_fields": "bounded-target-values-with-exact-stock-parameter-definition",
+              "other_fields_and_topology": "exact-stock",
+              "unsupported_custom_pipelines": "rejected-without-modification"
+            },
+            "hardware_qualified": false
+          },
+          "in_place_restore": false,
+          "hardware_qualified": false
+        }
+      },
+      "test_command": [
+        "private-host/.cache/cde-grafana-node/v22.19.0/node-v22.19.0-darwin-arm64/bin/node",
+        "--test",
+        "--test-reporter=tap",
+        "private-evidence/next-candidate-20260911/tests/openpnp/placement-structure-live.test.mjs"
+      ],
+      "test_exit_code": 0,
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "launcher_cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      },
+      "interrupted_signals": [],
+      "completed_at": "2026-09-11T11:39:47.960786+00:00",
+      "duration_seconds": 4.025437459000386,
+      "log_sha256": {
+        "test.log": "b9a8679db6ca75c3a95d9019d59808e298766540d671045b3d04ca4248b3e119",
+        "doctor.log": "2d5f8953eddc71353e406568d13eda8becce191a9f9c19cc278f695064948f22",
+        "launcher.log": "afc218e4126b6bdb0c7f386a13c2bba406d4062e0cf08d065132e8497d2dabdb",
+        "install.log": "cd71af32e3a5a1a9d979df0e72f6d1541e676cfd757df51e5bdfe05afaacbe47"
+      },
+      "process_cleanup": {
+        "install.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        },
+        "test.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        },
+        "doctor.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        }
+      },
+      "evidence_sha256": {
+        "mcp-native-placement-structure.json": "c1fe107e470747ed9e26a76abd809ccbf92c42e0e9fd7a5129da360b41f96b8e"
+      }
+    },
+    {
+      "suite": "placement",
+      "started_at": "2026-09-11T11:39:47.962017+00:00",
+      "passed": true,
+      "simulator_profile": "native-simulator",
+      "scope": "Fresh installed native simulator and actual packaged MCP; functional qualification only.",
+      "launcher": "shipped start-simulator CLI",
+      "physical_qualification": false,
+      "install_exit_code": 0,
+      "launch_command": [
+        "private-host/.cache/cde-grafana-node/v22.19.0/node-v22.19.0-darwin-arm64/bin/node",
+        "private-evidence/next-candidate-20260911/plugins/openpnp/scripts/openpnp.mjs",
+        "start-simulator",
+        "--state-dir",
+        "private-evidence/next-candidate-20260911/validation/native-mcp-completion53/placement/state",
+        "--openpnp-home",
+        "private-evidence/next-candidate-20260911/validation/gui-build-26/runtime",
+        "--java",
+        "private-host/.cache/openpnp-codex/jdk17/jdk-17.0.16+8/Contents/Home/bin/java",
+        "--profile",
+        "native-simulator"
+      ],
+      "owned_launcher_pid": 30459,
+      "bridge_capabilities": {
+        "protocol_version": "1.0",
+        "schema_version": 1,
+        "bridge_version": "0.1.0",
+        "openpnp_version": "n/a_2026-09-11_03-35-24.5bd404c",
+        "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+        "bridge_artifact_sha256": "f167e1185bd6937bd91b70cb5a599f405e33281fc9c58d1f043774d2bf74859a",
+        "bridge_artifact_hash_available": true,
+        "limits": {
+          "rpc_request_bytes": 8388608,
+          "journal_record_bytes": 8388608,
+          "canonical_placements": 10000,
+          "board_definitions": 100,
+          "panel_definitions": 100,
+          "root_instances": 100,
+          "expanded_instances": 1000,
+          "panel_depth": 8,
+          "event_page": 500,
+          "json_depth": 64,
+          "retained_requests": 20000,
+          "journal_bytes": 536870912,
+          "plans": 128,
+          "plan_ttl_ms": 300000,
+          "artifact_metadata_cache": 128,
+          "artifact_bytes": 8388608,
+          "artifact_storage_bytes": 1073741824,
+          "running_job_snapshot_interval_ms": 100
+        },
+        "retention": {
+          "request_receipts": "retained until journal capacity; then fail closed",
+          "artifacts": "bytes stored on disk and read on demand; aggregate content cap 1 GiB fails admission without deleting evidence; preserved until explicit state-directory cleanup",
+          "plans": "five-minute TTL and 128 maximum; old plans expire"
+        },
+        "tools": [
+          "openpnp_get_capabilities",
+          "openpnp_get_status",
+          "openpnp_get_configuration",
+          "openpnp_get_operation",
+          "openpnp_get_request_status",
+          "openpnp_get_events",
+          "openpnp_get_artifact",
+          "openpnp_reconcile_operation",
+          "openpnp_request_control_session",
+          "openpnp_get_control_session",
+          "openpnp_renew_control_session",
+          "openpnp_release_control_session",
+          "openpnp_plan_motion",
+          "openpnp_execute_motion",
+          "openpnp_set_machine_enabled",
+          "openpnp_home_machine",
+          "openpnp_capture_camera",
+          "openpnp_plan_configuration",
+          "openpnp_apply_configuration",
+          "openpnp_prepare_job",
+          "openpnp_validate_job",
+          "openpnp_start_job",
+          "openpnp_step_job",
+          "openpnp_pause_job",
+          "openpnp_resume_job",
+          "openpnp_abort_job",
+          "openpnp_export_portable_configuration",
+          "openpnp_save_job",
+          "openpnp_load_job",
+          "openpnp_get_board_loads",
+          "openpnp_register_board_load",
+          "openpnp_inspect_job",
+          "openpnp_plan_placement_edits",
+          "openpnp_apply_placement_edits",
+          "openpnp_plan_placement_structure",
+          "openpnp_apply_placement_structure",
+          "openpnp_test_feeder",
+          "openpnp_control_actuator",
+          "openpnp_change_nozzle_tip",
+          "openpnp_backup_configuration",
+          "openpnp_restore_configuration",
+          "openpnp_export_run_report",
+          "openpnp_run_calibration",
+          "openpnp_validate_calibration",
+          "openpnp_locate_fiducials",
+          "openpnp_list_issues"
+        ],
+        "machine_id": "faf23da1-0e80-4635-8eff-aecb780b46b9",
+        "bridge_instance_id": "a6645e0e-9d9c-45c6-a749-c8cfff93b1fb",
+        "simulation": true,
+        "simulator_profile": "native-simulator",
+        "native_job_order": "NozzleTips",
+        "simulator_attestation": {
+          "mode": "isolated-native-default",
+          "profile": "native-simulator",
+          "native_job_order": "NozzleTips",
+          "job_order_rationale": "upstream default order retained",
+          "fixture_provenance": "upstream-default-strip-feeders",
+          "driver_class": "org.openpnp.machine.reference.driver.NullDriver",
+          "checked_at_dispatch": true,
+          "acceleration_recipe": {
+            "source": "upstream SampleJobTest.makeMachineFastest",
+            "driver_feed_rate_mm_per_minute": 0,
+            "controller_axis_native_feedrate_per_second": 1000000,
+            "controller_axis_native_acceleration_per_second2": 2000000,
+            "controller_axis_native_jerk_per_second3": 0,
+            "fixed_camera_settling_ms": 0,
+            "nozzle_pick_place_dwell_ms": 0,
+            "physical_cycle_rate_comparison": false
+          }
+        },
+        "hardware_qualified": false,
+        "gui_control_qualified": false,
+        "capabilities": {
+          "observe": "supported",
+          "native_simulator_execution": "supported",
+          "hardware_execution": "unqualified",
+          "calibration": "native-nozzle-tip-runout-only",
+          "configuration_restore": "supported-typed-settings-only",
+          "custom_job_import": "supported",
+          "per_placement_crash_recovery": "unsupported"
+        },
+        "job_lineage": {
+          "available": true,
+          "scope": "trusted fresh native simulator imports and durably associated signed documents",
+          "structural_profile": "disabled-machine-empty-native-history-never-processor-admitted",
+          "unknown_documents": "readable-without-structural-authority",
+          "physical_authority": false
+        },
+        "native_action_ledger": {
+          "available": true,
+          "coverage": {
+            "automatic_replay": false,
+            "gaps": [
+              "motion-between-hooks",
+              "part-on-off-sensing-verdicts",
+              "feeder-post-pick",
+              "physical-board-load-and-material-lot",
+              "native-internal-retry-index",
+              "actions-within-user-scripts",
+              "manual-nozzle-tip-change-paths",
+              "alignment-skipped-with-no-aligner",
+              "nozzle-tip-model-and-calibration-changes-after-changer-hook",
+              "native-exception-between-before-and-after-hooks",
+              "process-death-after-effect-before-durable-after-hook"
+            ],
+            "observed_pairs": [
+              "feed",
+              "pick",
+              "release",
+              "align",
+              "discard",
+              "automatic-nozzle-tip-load",
+              "automatic-nozzle-tip-unload"
+            ],
+            "physical_effect_verification": false,
+            "source": "pinned-native-script-call-sites-with-java-observer",
+            "true_action_call_boundaries": false,
+            "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c"
+          }
+        },
+        "native_job_step": {
+          "available": true,
+          "boundary": "one-native-processor-next-call",
+          "can_include_multiple_actions": true,
+          "requires_config_revision": true,
+          "pause_waits_for_native_standstill": true,
+          "continuous_resume": true,
+          "automatic_restart_resume": false
+        },
+        "board_load_authority": {
+          "source": "native-simulator",
+          "complete_history_api": true,
+          "physical_load_verified": false,
+          "restart_requires_explicit_binding": true,
+          "replacement_resets_only_target_history": true,
+          "flip_preserves_history": true,
+          "explicit_changeover_available": true,
+          "stock_runtime_scope": "initial fresh simulator loads only; explicit changeover requires complete-history patch",
+          "unbound_saved_history": "refused; loading a document does not identify a board"
+        },
+        "configuration_changes": [
+          "set_part_height",
+          "assign_feeder",
+          "set_feeder_enabled",
+          "set_machine_speed",
+          "create_package",
+          "set_package_footprint",
+          "create_part",
+          "set_part_properties",
+          "set_package_compatibility",
+          "set_tray_feeder_geometry",
+          "set_strip_feeder_geometry",
+          "set_camera_geometry",
+          "set_camera_settling",
+          "set_camera_dynamic_settling",
+          "set_nozzle_settings",
+          "set_nozzle_tip_settings",
+          "set_axis_motion_limits",
+          "set_mapped_axis_geometry",
+          "set_job_planner_settings",
+          "set_job_retry_settings",
+          "set_part_retry_settings",
+          "set_feeder_retry_settings",
+          "set_head_park_location",
+          "set_machine_discard_location",
+          "clone_vision_settings",
+          "set_bottom_vision_settings",
+          "set_fiducial_vision_settings",
+          "assign_vision_settings",
+          "remove_vision_settings",
+          "set_vision_pipeline_stage",
+          "set_vision_parameter"
+        ],
+        "camera_settling": {
+          "change_type": "set_camera_dynamic_settling",
+          "methods": [
+            "Maximum",
+            "Mean",
+            "Euclidean",
+            "Square"
+          ],
+          "timeout_ms": {
+            "minimum": 20,
+            "maximum": 5000
+          },
+          "debounce": {
+            "minimum": 0,
+            "maximum": 10
+          },
+          "threshold_percent": {
+            "exclusive_minimum": 0,
+            "maximum": 100
+          },
+          "full_color": "boolean",
+          "preprocessing": "default blur/gradients/mask/contrast and disabled diagnostics required",
+          "frame_axis_limit": 2048,
+          "frame_pixel_limit": 4194304,
+          "advanced_camera_correction": "unsupported for bounded raw/settled capture including native preview",
+          "legacy_fixed_dwell": "retained via set_camera_settling",
+          "active_camera_calibration": "raw/settled capture and dynamic settings refused; native preview may transform frames",
+          "native_timeout_is_hard_io_deadline": false,
+          "capture_return_proves_stability": false,
+          "physical_calibration_validity": "not-assessed",
+          "hardware_qualified": false
+        },
+        "limitations": [
+          "Only an isolated OpenPnP default simulator may mutate",
+          "Native step journal does not prove every irreversible substep",
+          "No physical machine profile is qualified",
+          "GUI attachment requires its verified optional native patch and a visible local grant"
+        ],
+        "fresh_fixture_startup": {
+          "native_roundtrip_before_bridge": true,
+          "source_scope": "newly generated default simulator only",
+          "enable_home_performed": false
+        },
+        "portable_configuration": {
+          "export": "lease-bound-async-zip",
+          "adoption": "dedicated-validation-jvm-fresh-instance-only",
+          "first_launch_only": true,
+          "native_model_limits": {
+            "xml_elements_total": 30000,
+            "cameras": 2,
+            "image_cameras": 1,
+            "camera_frame_axis": 2048,
+            "camera_frame_pixels_total": 4194304,
+            "referenced_image_pixels_total": 32000000,
+            "archive_resource_pixels_total": 32000000,
+            "archive_resources": 4,
+            "heads": 2,
+            "nozzles": 4,
+            "axes": 16,
+            "drivers": 2,
+            "feeders": 256,
+            "parts": 512,
+            "packages": 256,
+            "vision_settings": 128,
+            "pipelines": 256,
+            "stages_total": 1024,
+            "stages_per_pipeline": 64,
+            "gaussian_kernel": 63,
+            "vision_super_sampling": 16,
+            "footprint_template_axis": 2048,
+            "advanced_camera_calibration": "disabled-only",
+            "camera_settling": "FixedTime only; dynamic settings require separate portable qualification",
+            "array_length": 1024,
+            "array_elements_total": 32768,
+            "vision_pipeline_profile": {
+              "profile": "pinned-stock-derived-v1",
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+              "consumer_contexts": 6,
+              "editable_stage_fields": {
+                "BlurGaussian": [
+                  "kernel-size"
+                ],
+                "Threshold": [
+                  "threshold",
+                  "auto",
+                  "invert"
+                ],
+                "MaskHsv": [
+                  "hue-min",
+                  "hue-max",
+                  "saturation-min",
+                  "saturation-max",
+                  "value-min",
+                  "value-max",
+                  "invert"
+                ]
+              },
+              "parameter_definitions": "exact-stock-names-targets-bounds-defaults",
+              "parameter_assignments": "bounded-declared-scalars",
+              "parameter_written_target_fields": "bounded-target-values-with-exact-stock-parameter-definition",
+              "other_fields_and_topology": "exact-stock",
+              "unsupported_custom_pipelines": "rejected-without-modification"
+            },
+            "hardware_qualified": false
+          },
+          "in_place_restore": false,
+          "hardware_qualified": false
+        }
+      },
+      "test_command": [
+        "private-host/.cache/cde-grafana-node/v22.19.0/node-v22.19.0-darwin-arm64/bin/node",
+        "--test",
+        "--test-reporter=tap",
+        "private-evidence/next-candidate-20260911/tests/openpnp/placement-live.test.mjs"
+      ],
+      "test_exit_code": 0,
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "launcher_cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      },
+      "interrupted_signals": [],
+      "completed_at": "2026-09-11T11:39:56.367218+00:00",
+      "duration_seconds": 8.40509633300826,
+      "log_sha256": {
+        "test.log": "8f8a066f5b8c348563d541f71c8d06e4b044ce169c8457a409781dbf5d255144",
+        "doctor.log": "1a3927764df83f4eea7c09cfd4db796c61932727b2b1bb18815cb7a254aad025",
+        "launcher.log": "d6fb0c7766c8e795123de33903656a21703ab57652f3b81a8ecdebe1d096a7c5",
+        "install.log": "97dbef1381da9043f3997e60193587bb89911ebabc62e47116107a8f06e9da0d"
+      },
+      "process_cleanup": {
+        "install.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        },
+        "test.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        },
+        "doctor.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        }
+      },
+      "evidence_sha256": {
+        "mcp-placement-loads.json": "39ae9f514eeef2bb3322a0ce76930ac61b2f2b4a6c6473653c9973a3bfeb7d7b"
+      }
+    },
+    {
+      "suite": "recovery",
+      "started_at": "2026-09-11T11:39:56.368761+00:00",
+      "passed": true,
+      "simulator_profile": "sustained-workload",
+      "scope": "Fresh installed native simulator and actual packaged MCP; functional qualification only.",
+      "launcher": "shipped start-simulator CLI",
+      "physical_qualification": false,
+      "install_exit_code": 0,
+      "launch_command": [
+        "private-host/.cache/cde-grafana-node/v22.19.0/node-v22.19.0-darwin-arm64/bin/node",
+        "private-evidence/next-candidate-20260911/plugins/openpnp/scripts/openpnp.mjs",
+        "start-simulator",
+        "--state-dir",
+        "private-evidence/next-candidate-20260911/validation/native-mcp-completion53/recovery/state",
+        "--openpnp-home",
+        "private-evidence/next-candidate-20260911/validation/gui-build-26/runtime",
+        "--java",
+        "private-host/.cache/openpnp-codex/jdk17/jdk-17.0.16+8/Contents/Home/bin/java",
+        "--profile",
+        "sustained-workload"
+      ],
+      "owned_launcher_pid": 30595,
+      "bridge_capabilities": {
+        "protocol_version": "1.0",
+        "schema_version": 1,
+        "bridge_version": "0.1.0",
+        "openpnp_version": "n/a_2026-09-11_03-35-24.5bd404c",
+        "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+        "bridge_artifact_sha256": "f167e1185bd6937bd91b70cb5a599f405e33281fc9c58d1f043774d2bf74859a",
+        "bridge_artifact_hash_available": true,
+        "limits": {
+          "rpc_request_bytes": 8388608,
+          "journal_record_bytes": 8388608,
+          "canonical_placements": 10000,
+          "board_definitions": 100,
+          "panel_definitions": 100,
+          "root_instances": 100,
+          "expanded_instances": 1000,
+          "panel_depth": 8,
+          "event_page": 500,
+          "json_depth": 64,
+          "retained_requests": 20000,
+          "journal_bytes": 536870912,
+          "plans": 128,
+          "plan_ttl_ms": 300000,
+          "artifact_metadata_cache": 128,
+          "artifact_bytes": 8388608,
+          "artifact_storage_bytes": 1073741824,
+          "running_job_snapshot_interval_ms": 100
+        },
+        "retention": {
+          "request_receipts": "retained until journal capacity; then fail closed",
+          "artifacts": "bytes stored on disk and read on demand; aggregate content cap 1 GiB fails admission without deleting evidence; preserved until explicit state-directory cleanup",
+          "plans": "five-minute TTL and 128 maximum; old plans expire"
+        },
+        "tools": [
+          "openpnp_get_capabilities",
+          "openpnp_get_status",
+          "openpnp_get_configuration",
+          "openpnp_get_operation",
+          "openpnp_get_request_status",
+          "openpnp_get_events",
+          "openpnp_get_artifact",
+          "openpnp_reconcile_operation",
+          "openpnp_request_control_session",
+          "openpnp_get_control_session",
+          "openpnp_renew_control_session",
+          "openpnp_release_control_session",
+          "openpnp_plan_motion",
+          "openpnp_execute_motion",
+          "openpnp_set_machine_enabled",
+          "openpnp_home_machine",
+          "openpnp_capture_camera",
+          "openpnp_plan_configuration",
+          "openpnp_apply_configuration",
+          "openpnp_prepare_job",
+          "openpnp_validate_job",
+          "openpnp_start_job",
+          "openpnp_step_job",
+          "openpnp_pause_job",
+          "openpnp_resume_job",
+          "openpnp_abort_job",
+          "openpnp_export_portable_configuration",
+          "openpnp_save_job",
+          "openpnp_load_job",
+          "openpnp_get_board_loads",
+          "openpnp_register_board_load",
+          "openpnp_inspect_job",
+          "openpnp_plan_placement_edits",
+          "openpnp_apply_placement_edits",
+          "openpnp_plan_placement_structure",
+          "openpnp_apply_placement_structure",
+          "openpnp_test_feeder",
+          "openpnp_control_actuator",
+          "openpnp_change_nozzle_tip",
+          "openpnp_backup_configuration",
+          "openpnp_restore_configuration",
+          "openpnp_export_run_report",
+          "openpnp_run_calibration",
+          "openpnp_validate_calibration",
+          "openpnp_locate_fiducials",
+          "openpnp_list_issues"
+        ],
+        "machine_id": "c07bc08e-aaf1-4c50-be3d-9d26795a921e",
+        "bridge_instance_id": "503cb015-1da0-4c8b-ac5d-4057f9c8c8a7",
+        "simulation": true,
+        "simulator_profile": "sustained-workload",
+        "native_job_order": "Unsorted",
+        "simulator_attestation": {
+          "mode": "isolated-native-default",
+          "profile": "sustained-workload",
+          "native_job_order": "Unsorted",
+          "job_order_rationale": "preordered-grid; native Unsorted order avoids repeating whole-job route optimization each cycle",
+          "fixture_provenance": "native-finite-tray-supply-zero-pitch",
+          "driver_class": "org.openpnp.machine.reference.driver.NullDriver",
+          "checked_at_dispatch": true,
+          "acceleration_recipe": {
+            "source": "upstream SampleJobTest.makeMachineFastest",
+            "driver_feed_rate_mm_per_minute": 0,
+            "controller_axis_native_feedrate_per_second": 1000000,
+            "controller_axis_native_acceleration_per_second2": 2000000,
+            "controller_axis_native_jerk_per_second3": 0,
+            "fixed_camera_settling_ms": 0,
+            "nozzle_pick_place_dwell_ms": 0,
+            "physical_cycle_rate_comparison": false
+          }
+        },
+        "hardware_qualified": false,
+        "gui_control_qualified": false,
+        "capabilities": {
+          "observe": "supported",
+          "native_simulator_execution": "supported",
+          "hardware_execution": "unqualified",
+          "calibration": "native-nozzle-tip-runout-only",
+          "configuration_restore": "supported-typed-settings-only",
+          "custom_job_import": "supported",
+          "per_placement_crash_recovery": "unsupported"
+        },
+        "job_lineage": {
+          "available": true,
+          "scope": "trusted fresh native simulator imports and durably associated signed documents",
+          "structural_profile": "disabled-machine-empty-native-history-never-processor-admitted",
+          "unknown_documents": "readable-without-structural-authority",
+          "physical_authority": false
+        },
+        "native_action_ledger": {
+          "available": true,
+          "coverage": {
+            "automatic_replay": false,
+            "gaps": [
+              "motion-between-hooks",
+              "part-on-off-sensing-verdicts",
+              "feeder-post-pick",
+              "physical-board-load-and-material-lot",
+              "native-internal-retry-index",
+              "actions-within-user-scripts",
+              "manual-nozzle-tip-change-paths",
+              "alignment-skipped-with-no-aligner",
+              "nozzle-tip-model-and-calibration-changes-after-changer-hook",
+              "native-exception-between-before-and-after-hooks",
+              "process-death-after-effect-before-durable-after-hook"
+            ],
+            "observed_pairs": [
+              "feed",
+              "pick",
+              "release",
+              "align",
+              "discard",
+              "automatic-nozzle-tip-load",
+              "automatic-nozzle-tip-unload"
+            ],
+            "physical_effect_verification": false,
+            "source": "pinned-native-script-call-sites-with-java-observer",
+            "true_action_call_boundaries": false,
+            "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c"
+          }
+        },
+        "native_job_step": {
+          "available": true,
+          "boundary": "one-native-processor-next-call",
+          "can_include_multiple_actions": true,
+          "requires_config_revision": true,
+          "pause_waits_for_native_standstill": true,
+          "continuous_resume": true,
+          "automatic_restart_resume": false
+        },
+        "board_load_authority": {
+          "source": "native-simulator",
+          "complete_history_api": true,
+          "physical_load_verified": false,
+          "restart_requires_explicit_binding": true,
+          "replacement_resets_only_target_history": true,
+          "flip_preserves_history": true,
+          "explicit_changeover_available": true,
+          "stock_runtime_scope": "initial fresh simulator loads only; explicit changeover requires complete-history patch",
+          "unbound_saved_history": "refused; loading a document does not identify a board"
+        },
+        "configuration_changes": [
+          "set_part_height",
+          "assign_feeder",
+          "set_feeder_enabled",
+          "set_machine_speed",
+          "create_package",
+          "set_package_footprint",
+          "create_part",
+          "set_part_properties",
+          "set_package_compatibility",
+          "set_tray_feeder_geometry",
+          "set_strip_feeder_geometry",
+          "set_camera_geometry",
+          "set_camera_settling",
+          "set_camera_dynamic_settling",
+          "set_nozzle_settings",
+          "set_nozzle_tip_settings",
+          "set_axis_motion_limits",
+          "set_mapped_axis_geometry",
+          "set_job_planner_settings",
+          "set_job_retry_settings",
+          "set_part_retry_settings",
+          "set_feeder_retry_settings",
+          "set_head_park_location",
+          "set_machine_discard_location",
+          "clone_vision_settings",
+          "set_bottom_vision_settings",
+          "set_fiducial_vision_settings",
+          "assign_vision_settings",
+          "remove_vision_settings",
+          "set_vision_pipeline_stage",
+          "set_vision_parameter"
+        ],
+        "camera_settling": {
+          "change_type": "set_camera_dynamic_settling",
+          "methods": [
+            "Maximum",
+            "Mean",
+            "Euclidean",
+            "Square"
+          ],
+          "timeout_ms": {
+            "minimum": 20,
+            "maximum": 5000
+          },
+          "debounce": {
+            "minimum": 0,
+            "maximum": 10
+          },
+          "threshold_percent": {
+            "exclusive_minimum": 0,
+            "maximum": 100
+          },
+          "full_color": "boolean",
+          "preprocessing": "default blur/gradients/mask/contrast and disabled diagnostics required",
+          "frame_axis_limit": 2048,
+          "frame_pixel_limit": 4194304,
+          "advanced_camera_correction": "unsupported for bounded raw/settled capture including native preview",
+          "legacy_fixed_dwell": "retained via set_camera_settling",
+          "active_camera_calibration": "raw/settled capture and dynamic settings refused; native preview may transform frames",
+          "native_timeout_is_hard_io_deadline": false,
+          "capture_return_proves_stability": false,
+          "physical_calibration_validity": "not-assessed",
+          "hardware_qualified": false
+        },
+        "limitations": [
+          "Only an isolated OpenPnP default simulator may mutate",
+          "Native step journal does not prove every irreversible substep",
+          "No physical machine profile is qualified",
+          "GUI attachment requires its verified optional native patch and a visible local grant"
+        ],
+        "fresh_fixture_startup": {
+          "native_roundtrip_before_bridge": true,
+          "source_scope": "newly generated default simulator only",
+          "enable_home_performed": false
+        },
+        "portable_configuration": {
+          "export": "lease-bound-async-zip",
+          "adoption": "dedicated-validation-jvm-fresh-instance-only",
+          "first_launch_only": true,
+          "native_model_limits": {
+            "xml_elements_total": 30000,
+            "cameras": 2,
+            "image_cameras": 1,
+            "camera_frame_axis": 2048,
+            "camera_frame_pixels_total": 4194304,
+            "referenced_image_pixels_total": 32000000,
+            "archive_resource_pixels_total": 32000000,
+            "archive_resources": 4,
+            "heads": 2,
+            "nozzles": 4,
+            "axes": 16,
+            "drivers": 2,
+            "feeders": 256,
+            "parts": 512,
+            "packages": 256,
+            "vision_settings": 128,
+            "pipelines": 256,
+            "stages_total": 1024,
+            "stages_per_pipeline": 64,
+            "gaussian_kernel": 63,
+            "vision_super_sampling": 16,
+            "footprint_template_axis": 2048,
+            "advanced_camera_calibration": "disabled-only",
+            "camera_settling": "FixedTime only; dynamic settings require separate portable qualification",
+            "array_length": 1024,
+            "array_elements_total": 32768,
+            "vision_pipeline_profile": {
+              "profile": "pinned-stock-derived-v1",
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+              "consumer_contexts": 6,
+              "editable_stage_fields": {
+                "BlurGaussian": [
+                  "kernel-size"
+                ],
+                "Threshold": [
+                  "threshold",
+                  "auto",
+                  "invert"
+                ],
+                "MaskHsv": [
+                  "hue-min",
+                  "hue-max",
+                  "saturation-min",
+                  "saturation-max",
+                  "value-min",
+                  "value-max",
+                  "invert"
+                ]
+              },
+              "parameter_definitions": "exact-stock-names-targets-bounds-defaults",
+              "parameter_assignments": "bounded-declared-scalars",
+              "parameter_written_target_fields": "bounded-target-values-with-exact-stock-parameter-definition",
+              "other_fields_and_topology": "exact-stock",
+              "unsupported_custom_pipelines": "rejected-without-modification"
+            },
+            "hardware_qualified": false
+          },
+          "in_place_restore": false,
+          "hardware_qualified": false
+        }
+      },
+      "test_command": [
+        "private-host/.cache/cde-grafana-node/v22.19.0/node-v22.19.0-darwin-arm64/bin/node",
+        "--test",
+        "--test-reporter=tap",
+        "private-evidence/next-candidate-20260911/tests/openpnp/reconnect-live.test.mjs"
+      ],
+      "test_exit_code": 0,
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "launcher_cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      },
+      "interrupted_signals": [],
+      "completed_at": "2026-09-11T11:40:55.209292+00:00",
+      "duration_seconds": 58.839716457994655,
+      "log_sha256": {
+        "test.log": "2e98691daa85350463968cd077e52931ab89a8451b443f34b3754d7ee79dac82",
+        "doctor.log": "d1b75b54c97084083e0e6bde0cf43c16209557808139a5d498cb7c98504b4d3d",
+        "launcher.log": "abd5200b0324149dfb3230f7f21a7912feb435e90115c0101ab5852b9faed8a1",
+        "install.log": "8f716ac35f6fd21a5fb49654e64728f2ac7abb83e381c5537a956e578a966479"
+      },
+      "process_cleanup": {
+        "install.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        },
+        "test.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        },
+        "doctor.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        }
+      },
+      "evidence_sha256": {
+        "mcp-native-reconnect.json": "b4b6f00e9b18d7fcd18dd436f09b1080039690f89e7d49ae993a8be0f3668acb"
+      }
+    },
+    {
+      "suite": "portable",
+      "started_at": "2026-09-11T11:40:55.211661+00:00",
+      "passed": true,
+      "simulator_profile": "native-simulator",
+      "scope": "Fresh installed native simulator and actual packaged MCP; functional qualification only.",
+      "launcher": "shipped start-simulator CLI",
+      "physical_qualification": false,
+      "install_exit_code": 0,
+      "launch_command": [
+        "private-host/.cache/cde-grafana-node/v22.19.0/node-v22.19.0-darwin-arm64/bin/node",
+        "private-evidence/next-candidate-20260911/plugins/openpnp/scripts/openpnp.mjs",
+        "start-simulator",
+        "--state-dir",
+        "private-evidence/next-candidate-20260911/validation/native-mcp-completion53/portable/state",
+        "--openpnp-home",
+        "private-evidence/next-candidate-20260911/validation/gui-build-26/runtime",
+        "--java",
+        "private-host/.cache/openpnp-codex/jdk17/jdk-17.0.16+8/Contents/Home/bin/java",
+        "--profile",
+        "native-simulator"
+      ],
+      "owned_launcher_pid": 31546,
+      "bridge_capabilities": {
+        "protocol_version": "1.0",
+        "schema_version": 1,
+        "bridge_version": "0.1.0",
+        "openpnp_version": "n/a_2026-09-11_03-35-24.5bd404c",
+        "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+        "bridge_artifact_sha256": "f167e1185bd6937bd91b70cb5a599f405e33281fc9c58d1f043774d2bf74859a",
+        "bridge_artifact_hash_available": true,
+        "limits": {
+          "rpc_request_bytes": 8388608,
+          "journal_record_bytes": 8388608,
+          "canonical_placements": 10000,
+          "board_definitions": 100,
+          "panel_definitions": 100,
+          "root_instances": 100,
+          "expanded_instances": 1000,
+          "panel_depth": 8,
+          "event_page": 500,
+          "json_depth": 64,
+          "retained_requests": 20000,
+          "journal_bytes": 536870912,
+          "plans": 128,
+          "plan_ttl_ms": 300000,
+          "artifact_metadata_cache": 128,
+          "artifact_bytes": 8388608,
+          "artifact_storage_bytes": 1073741824,
+          "running_job_snapshot_interval_ms": 100
+        },
+        "retention": {
+          "request_receipts": "retained until journal capacity; then fail closed",
+          "artifacts": "bytes stored on disk and read on demand; aggregate content cap 1 GiB fails admission without deleting evidence; preserved until explicit state-directory cleanup",
+          "plans": "five-minute TTL and 128 maximum; old plans expire"
+        },
+        "tools": [
+          "openpnp_get_capabilities",
+          "openpnp_get_status",
+          "openpnp_get_configuration",
+          "openpnp_get_operation",
+          "openpnp_get_request_status",
+          "openpnp_get_events",
+          "openpnp_get_artifact",
+          "openpnp_reconcile_operation",
+          "openpnp_request_control_session",
+          "openpnp_get_control_session",
+          "openpnp_renew_control_session",
+          "openpnp_release_control_session",
+          "openpnp_plan_motion",
+          "openpnp_execute_motion",
+          "openpnp_set_machine_enabled",
+          "openpnp_home_machine",
+          "openpnp_capture_camera",
+          "openpnp_plan_configuration",
+          "openpnp_apply_configuration",
+          "openpnp_prepare_job",
+          "openpnp_validate_job",
+          "openpnp_start_job",
+          "openpnp_step_job",
+          "openpnp_pause_job",
+          "openpnp_resume_job",
+          "openpnp_abort_job",
+          "openpnp_export_portable_configuration",
+          "openpnp_save_job",
+          "openpnp_load_job",
+          "openpnp_get_board_loads",
+          "openpnp_register_board_load",
+          "openpnp_inspect_job",
+          "openpnp_plan_placement_edits",
+          "openpnp_apply_placement_edits",
+          "openpnp_plan_placement_structure",
+          "openpnp_apply_placement_structure",
+          "openpnp_test_feeder",
+          "openpnp_control_actuator",
+          "openpnp_change_nozzle_tip",
+          "openpnp_backup_configuration",
+          "openpnp_restore_configuration",
+          "openpnp_export_run_report",
+          "openpnp_run_calibration",
+          "openpnp_validate_calibration",
+          "openpnp_locate_fiducials",
+          "openpnp_list_issues"
+        ],
+        "machine_id": "819daf2f-ed8b-4db1-8011-89df2346246b",
+        "bridge_instance_id": "a12d986f-89e3-4338-88ab-3fa59f03e24b",
+        "simulation": true,
+        "simulator_profile": "native-simulator",
+        "native_job_order": "NozzleTips",
+        "simulator_attestation": {
+          "mode": "isolated-native-default",
+          "profile": "native-simulator",
+          "native_job_order": "NozzleTips",
+          "job_order_rationale": "upstream default order retained",
+          "fixture_provenance": "upstream-default-strip-feeders",
+          "driver_class": "org.openpnp.machine.reference.driver.NullDriver",
+          "checked_at_dispatch": true,
+          "acceleration_recipe": {
+            "source": "upstream SampleJobTest.makeMachineFastest",
+            "driver_feed_rate_mm_per_minute": 0,
+            "controller_axis_native_feedrate_per_second": 1000000,
+            "controller_axis_native_acceleration_per_second2": 2000000,
+            "controller_axis_native_jerk_per_second3": 0,
+            "fixed_camera_settling_ms": 0,
+            "nozzle_pick_place_dwell_ms": 0,
+            "physical_cycle_rate_comparison": false
+          }
+        },
+        "hardware_qualified": false,
+        "gui_control_qualified": false,
+        "capabilities": {
+          "observe": "supported",
+          "native_simulator_execution": "supported",
+          "hardware_execution": "unqualified",
+          "calibration": "native-nozzle-tip-runout-only",
+          "configuration_restore": "supported-typed-settings-only",
+          "custom_job_import": "supported",
+          "per_placement_crash_recovery": "unsupported"
+        },
+        "job_lineage": {
+          "available": true,
+          "scope": "trusted fresh native simulator imports and durably associated signed documents",
+          "structural_profile": "disabled-machine-empty-native-history-never-processor-admitted",
+          "unknown_documents": "readable-without-structural-authority",
+          "physical_authority": false
+        },
+        "native_action_ledger": {
+          "available": true,
+          "coverage": {
+            "automatic_replay": false,
+            "gaps": [
+              "motion-between-hooks",
+              "part-on-off-sensing-verdicts",
+              "feeder-post-pick",
+              "physical-board-load-and-material-lot",
+              "native-internal-retry-index",
+              "actions-within-user-scripts",
+              "manual-nozzle-tip-change-paths",
+              "alignment-skipped-with-no-aligner",
+              "nozzle-tip-model-and-calibration-changes-after-changer-hook",
+              "native-exception-between-before-and-after-hooks",
+              "process-death-after-effect-before-durable-after-hook"
+            ],
+            "observed_pairs": [
+              "feed",
+              "pick",
+              "release",
+              "align",
+              "discard",
+              "automatic-nozzle-tip-load",
+              "automatic-nozzle-tip-unload"
+            ],
+            "physical_effect_verification": false,
+            "source": "pinned-native-script-call-sites-with-java-observer",
+            "true_action_call_boundaries": false,
+            "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c"
+          }
+        },
+        "native_job_step": {
+          "available": true,
+          "boundary": "one-native-processor-next-call",
+          "can_include_multiple_actions": true,
+          "requires_config_revision": true,
+          "pause_waits_for_native_standstill": true,
+          "continuous_resume": true,
+          "automatic_restart_resume": false
+        },
+        "board_load_authority": {
+          "source": "native-simulator",
+          "complete_history_api": true,
+          "physical_load_verified": false,
+          "restart_requires_explicit_binding": true,
+          "replacement_resets_only_target_history": true,
+          "flip_preserves_history": true,
+          "explicit_changeover_available": true,
+          "stock_runtime_scope": "initial fresh simulator loads only; explicit changeover requires complete-history patch",
+          "unbound_saved_history": "refused; loading a document does not identify a board"
+        },
+        "configuration_changes": [
+          "set_part_height",
+          "assign_feeder",
+          "set_feeder_enabled",
+          "set_machine_speed",
+          "create_package",
+          "set_package_footprint",
+          "create_part",
+          "set_part_properties",
+          "set_package_compatibility",
+          "set_tray_feeder_geometry",
+          "set_strip_feeder_geometry",
+          "set_camera_geometry",
+          "set_camera_settling",
+          "set_camera_dynamic_settling",
+          "set_nozzle_settings",
+          "set_nozzle_tip_settings",
+          "set_axis_motion_limits",
+          "set_mapped_axis_geometry",
+          "set_job_planner_settings",
+          "set_job_retry_settings",
+          "set_part_retry_settings",
+          "set_feeder_retry_settings",
+          "set_head_park_location",
+          "set_machine_discard_location",
+          "clone_vision_settings",
+          "set_bottom_vision_settings",
+          "set_fiducial_vision_settings",
+          "assign_vision_settings",
+          "remove_vision_settings",
+          "set_vision_pipeline_stage",
+          "set_vision_parameter"
+        ],
+        "camera_settling": {
+          "change_type": "set_camera_dynamic_settling",
+          "methods": [
+            "Maximum",
+            "Mean",
+            "Euclidean",
+            "Square"
+          ],
+          "timeout_ms": {
+            "minimum": 20,
+            "maximum": 5000
+          },
+          "debounce": {
+            "minimum": 0,
+            "maximum": 10
+          },
+          "threshold_percent": {
+            "exclusive_minimum": 0,
+            "maximum": 100
+          },
+          "full_color": "boolean",
+          "preprocessing": "default blur/gradients/mask/contrast and disabled diagnostics required",
+          "frame_axis_limit": 2048,
+          "frame_pixel_limit": 4194304,
+          "advanced_camera_correction": "unsupported for bounded raw/settled capture including native preview",
+          "legacy_fixed_dwell": "retained via set_camera_settling",
+          "active_camera_calibration": "raw/settled capture and dynamic settings refused; native preview may transform frames",
+          "native_timeout_is_hard_io_deadline": false,
+          "capture_return_proves_stability": false,
+          "physical_calibration_validity": "not-assessed",
+          "hardware_qualified": false
+        },
+        "limitations": [
+          "Only an isolated OpenPnP default simulator may mutate",
+          "Native step journal does not prove every irreversible substep",
+          "No physical machine profile is qualified",
+          "GUI attachment requires its verified optional native patch and a visible local grant"
+        ],
+        "fresh_fixture_startup": {
+          "native_roundtrip_before_bridge": true,
+          "source_scope": "newly generated default simulator only",
+          "enable_home_performed": false
+        },
+        "portable_configuration": {
+          "export": "lease-bound-async-zip",
+          "adoption": "dedicated-validation-jvm-fresh-instance-only",
+          "first_launch_only": true,
+          "native_model_limits": {
+            "xml_elements_total": 30000,
+            "cameras": 2,
+            "image_cameras": 1,
+            "camera_frame_axis": 2048,
+            "camera_frame_pixels_total": 4194304,
+            "referenced_image_pixels_total": 32000000,
+            "archive_resource_pixels_total": 32000000,
+            "archive_resources": 4,
+            "heads": 2,
+            "nozzles": 4,
+            "axes": 16,
+            "drivers": 2,
+            "feeders": 256,
+            "parts": 512,
+            "packages": 256,
+            "vision_settings": 128,
+            "pipelines": 256,
+            "stages_total": 1024,
+            "stages_per_pipeline": 64,
+            "gaussian_kernel": 63,
+            "vision_super_sampling": 16,
+            "footprint_template_axis": 2048,
+            "advanced_camera_calibration": "disabled-only",
+            "camera_settling": "FixedTime only; dynamic settings require separate portable qualification",
+            "array_length": 1024,
+            "array_elements_total": 32768,
+            "vision_pipeline_profile": {
+              "profile": "pinned-stock-derived-v1",
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+              "consumer_contexts": 6,
+              "editable_stage_fields": {
+                "BlurGaussian": [
+                  "kernel-size"
+                ],
+                "Threshold": [
+                  "threshold",
+                  "auto",
+                  "invert"
+                ],
+                "MaskHsv": [
+                  "hue-min",
+                  "hue-max",
+                  "saturation-min",
+                  "saturation-max",
+                  "value-min",
+                  "value-max",
+                  "invert"
+                ]
+              },
+              "parameter_definitions": "exact-stock-names-targets-bounds-defaults",
+              "parameter_assignments": "bounded-declared-scalars",
+              "parameter_written_target_fields": "bounded-target-values-with-exact-stock-parameter-definition",
+              "other_fields_and_topology": "exact-stock",
+              "unsupported_custom_pipelines": "rejected-without-modification"
+            },
+            "hardware_qualified": false
+          },
+          "in_place_restore": false,
+          "hardware_qualified": false
+        }
+      },
+      "test_command": [
+        "private-host/.cache/cde-grafana-node/v22.19.0/node-v22.19.0-darwin-arm64/bin/node",
+        "--test",
+        "--test-reporter=tap",
+        "private-evidence/next-candidate-20260911/tests/openpnp/portable-live.test.mjs"
+      ],
+      "test_exit_code": 0,
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "launcher_cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      },
+      "interrupted_signals": [],
+      "completed_at": "2026-09-11T11:41:07.299778+00:00",
+      "duration_seconds": 12.087962125078775,
+      "log_sha256": {
+        "test.log": "0a0c5bbf1d4472511944b8b716b7b2fb7ff02153d3dd760e8fe411882fe993a9",
+        "doctor.log": "cd9ec5614221e0484f26b2b9c68cd45d51eb1e1f977f9626f991113033b5312f",
+        "launcher.log": "8de130269014741dd26af0b20cb302f108939218bb0d061b44b1d0b26874935c",
+        "install.log": "67f19592e31d83522be60f2ea1eb6567f226434cfd95fd42e9c32aa6dd2ee9ea"
+      },
+      "process_cleanup": {
+        "install.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        },
+        "test.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        },
+        "doctor.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        }
+      },
+      "evidence_sha256": {
+        "mcp-native-portable.json": "f2c4717dd588e0a12b0217965f14a70ddb2174a9bb96f582761ff45b73aea92c"
+      }
+    },
+    {
+      "suite": "camera",
+      "started_at": "2026-09-11T11:41:07.302918+00:00",
+      "passed": true,
+      "simulator_profile": "native-simulator",
+      "scope": "Fresh installed native simulator and actual packaged MCP; functional qualification only.",
+      "launcher": "shipped start-simulator CLI",
+      "physical_qualification": false,
+      "install_exit_code": 0,
+      "launch_command": [
+        "private-host/.cache/cde-grafana-node/v22.19.0/node-v22.19.0-darwin-arm64/bin/node",
+        "private-evidence/next-candidate-20260911/plugins/openpnp/scripts/openpnp.mjs",
+        "start-simulator",
+        "--state-dir",
+        "private-evidence/next-candidate-20260911/validation/native-mcp-completion53/camera/state",
+        "--openpnp-home",
+        "private-evidence/next-candidate-20260911/validation/gui-build-26/runtime",
+        "--java",
+        "private-host/.cache/openpnp-codex/jdk17/jdk-17.0.16+8/Contents/Home/bin/java",
+        "--profile",
+        "native-simulator"
+      ],
+      "owned_launcher_pid": 31872,
+      "bridge_capabilities": {
+        "protocol_version": "1.0",
+        "schema_version": 1,
+        "bridge_version": "0.1.0",
+        "openpnp_version": "n/a_2026-09-11_03-35-24.5bd404c",
+        "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+        "bridge_artifact_sha256": "f167e1185bd6937bd91b70cb5a599f405e33281fc9c58d1f043774d2bf74859a",
+        "bridge_artifact_hash_available": true,
+        "limits": {
+          "rpc_request_bytes": 8388608,
+          "journal_record_bytes": 8388608,
+          "canonical_placements": 10000,
+          "board_definitions": 100,
+          "panel_definitions": 100,
+          "root_instances": 100,
+          "expanded_instances": 1000,
+          "panel_depth": 8,
+          "event_page": 500,
+          "json_depth": 64,
+          "retained_requests": 20000,
+          "journal_bytes": 536870912,
+          "plans": 128,
+          "plan_ttl_ms": 300000,
+          "artifact_metadata_cache": 128,
+          "artifact_bytes": 8388608,
+          "artifact_storage_bytes": 1073741824,
+          "running_job_snapshot_interval_ms": 100
+        },
+        "retention": {
+          "request_receipts": "retained until journal capacity; then fail closed",
+          "artifacts": "bytes stored on disk and read on demand; aggregate content cap 1 GiB fails admission without deleting evidence; preserved until explicit state-directory cleanup",
+          "plans": "five-minute TTL and 128 maximum; old plans expire"
+        },
+        "tools": [
+          "openpnp_get_capabilities",
+          "openpnp_get_status",
+          "openpnp_get_configuration",
+          "openpnp_get_operation",
+          "openpnp_get_request_status",
+          "openpnp_get_events",
+          "openpnp_get_artifact",
+          "openpnp_reconcile_operation",
+          "openpnp_request_control_session",
+          "openpnp_get_control_session",
+          "openpnp_renew_control_session",
+          "openpnp_release_control_session",
+          "openpnp_plan_motion",
+          "openpnp_execute_motion",
+          "openpnp_set_machine_enabled",
+          "openpnp_home_machine",
+          "openpnp_capture_camera",
+          "openpnp_plan_configuration",
+          "openpnp_apply_configuration",
+          "openpnp_prepare_job",
+          "openpnp_validate_job",
+          "openpnp_start_job",
+          "openpnp_step_job",
+          "openpnp_pause_job",
+          "openpnp_resume_job",
+          "openpnp_abort_job",
+          "openpnp_export_portable_configuration",
+          "openpnp_save_job",
+          "openpnp_load_job",
+          "openpnp_get_board_loads",
+          "openpnp_register_board_load",
+          "openpnp_inspect_job",
+          "openpnp_plan_placement_edits",
+          "openpnp_apply_placement_edits",
+          "openpnp_plan_placement_structure",
+          "openpnp_apply_placement_structure",
+          "openpnp_test_feeder",
+          "openpnp_control_actuator",
+          "openpnp_change_nozzle_tip",
+          "openpnp_backup_configuration",
+          "openpnp_restore_configuration",
+          "openpnp_export_run_report",
+          "openpnp_run_calibration",
+          "openpnp_validate_calibration",
+          "openpnp_locate_fiducials",
+          "openpnp_list_issues"
+        ],
+        "machine_id": "10c9d3a6-01e3-431b-994d-4085212e2a62",
+        "bridge_instance_id": "3c219ec8-6cd4-4739-b3eb-403ffee1be86",
+        "simulation": true,
+        "simulator_profile": "native-simulator",
+        "native_job_order": "NozzleTips",
+        "simulator_attestation": {
+          "mode": "isolated-native-default",
+          "profile": "native-simulator",
+          "native_job_order": "NozzleTips",
+          "job_order_rationale": "upstream default order retained",
+          "fixture_provenance": "upstream-default-strip-feeders",
+          "driver_class": "org.openpnp.machine.reference.driver.NullDriver",
+          "checked_at_dispatch": true,
+          "acceleration_recipe": {
+            "source": "upstream SampleJobTest.makeMachineFastest",
+            "driver_feed_rate_mm_per_minute": 0,
+            "controller_axis_native_feedrate_per_second": 1000000,
+            "controller_axis_native_acceleration_per_second2": 2000000,
+            "controller_axis_native_jerk_per_second3": 0,
+            "fixed_camera_settling_ms": 0,
+            "nozzle_pick_place_dwell_ms": 0,
+            "physical_cycle_rate_comparison": false
+          }
+        },
+        "hardware_qualified": false,
+        "gui_control_qualified": false,
+        "capabilities": {
+          "observe": "supported",
+          "native_simulator_execution": "supported",
+          "hardware_execution": "unqualified",
+          "calibration": "native-nozzle-tip-runout-only",
+          "configuration_restore": "supported-typed-settings-only",
+          "custom_job_import": "supported",
+          "per_placement_crash_recovery": "unsupported"
+        },
+        "job_lineage": {
+          "available": true,
+          "scope": "trusted fresh native simulator imports and durably associated signed documents",
+          "structural_profile": "disabled-machine-empty-native-history-never-processor-admitted",
+          "unknown_documents": "readable-without-structural-authority",
+          "physical_authority": false
+        },
+        "native_action_ledger": {
+          "available": true,
+          "coverage": {
+            "automatic_replay": false,
+            "gaps": [
+              "motion-between-hooks",
+              "part-on-off-sensing-verdicts",
+              "feeder-post-pick",
+              "physical-board-load-and-material-lot",
+              "native-internal-retry-index",
+              "actions-within-user-scripts",
+              "manual-nozzle-tip-change-paths",
+              "alignment-skipped-with-no-aligner",
+              "nozzle-tip-model-and-calibration-changes-after-changer-hook",
+              "native-exception-between-before-and-after-hooks",
+              "process-death-after-effect-before-durable-after-hook"
+            ],
+            "observed_pairs": [
+              "feed",
+              "pick",
+              "release",
+              "align",
+              "discard",
+              "automatic-nozzle-tip-load",
+              "automatic-nozzle-tip-unload"
+            ],
+            "physical_effect_verification": false,
+            "source": "pinned-native-script-call-sites-with-java-observer",
+            "true_action_call_boundaries": false,
+            "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c"
+          }
+        },
+        "native_job_step": {
+          "available": true,
+          "boundary": "one-native-processor-next-call",
+          "can_include_multiple_actions": true,
+          "requires_config_revision": true,
+          "pause_waits_for_native_standstill": true,
+          "continuous_resume": true,
+          "automatic_restart_resume": false
+        },
+        "board_load_authority": {
+          "source": "native-simulator",
+          "complete_history_api": true,
+          "physical_load_verified": false,
+          "restart_requires_explicit_binding": true,
+          "replacement_resets_only_target_history": true,
+          "flip_preserves_history": true,
+          "explicit_changeover_available": true,
+          "stock_runtime_scope": "initial fresh simulator loads only; explicit changeover requires complete-history patch",
+          "unbound_saved_history": "refused; loading a document does not identify a board"
+        },
+        "configuration_changes": [
+          "set_part_height",
+          "assign_feeder",
+          "set_feeder_enabled",
+          "set_machine_speed",
+          "create_package",
+          "set_package_footprint",
+          "create_part",
+          "set_part_properties",
+          "set_package_compatibility",
+          "set_tray_feeder_geometry",
+          "set_strip_feeder_geometry",
+          "set_camera_geometry",
+          "set_camera_settling",
+          "set_camera_dynamic_settling",
+          "set_nozzle_settings",
+          "set_nozzle_tip_settings",
+          "set_axis_motion_limits",
+          "set_mapped_axis_geometry",
+          "set_job_planner_settings",
+          "set_job_retry_settings",
+          "set_part_retry_settings",
+          "set_feeder_retry_settings",
+          "set_head_park_location",
+          "set_machine_discard_location",
+          "clone_vision_settings",
+          "set_bottom_vision_settings",
+          "set_fiducial_vision_settings",
+          "assign_vision_settings",
+          "remove_vision_settings",
+          "set_vision_pipeline_stage",
+          "set_vision_parameter"
+        ],
+        "camera_settling": {
+          "change_type": "set_camera_dynamic_settling",
+          "methods": [
+            "Maximum",
+            "Mean",
+            "Euclidean",
+            "Square"
+          ],
+          "timeout_ms": {
+            "minimum": 20,
+            "maximum": 5000
+          },
+          "debounce": {
+            "minimum": 0,
+            "maximum": 10
+          },
+          "threshold_percent": {
+            "exclusive_minimum": 0,
+            "maximum": 100
+          },
+          "full_color": "boolean",
+          "preprocessing": "default blur/gradients/mask/contrast and disabled diagnostics required",
+          "frame_axis_limit": 2048,
+          "frame_pixel_limit": 4194304,
+          "advanced_camera_correction": "unsupported for bounded raw/settled capture including native preview",
+          "legacy_fixed_dwell": "retained via set_camera_settling",
+          "active_camera_calibration": "raw/settled capture and dynamic settings refused; native preview may transform frames",
+          "native_timeout_is_hard_io_deadline": false,
+          "capture_return_proves_stability": false,
+          "physical_calibration_validity": "not-assessed",
+          "hardware_qualified": false
+        },
+        "limitations": [
+          "Only an isolated OpenPnP default simulator may mutate",
+          "Native step journal does not prove every irreversible substep",
+          "No physical machine profile is qualified",
+          "GUI attachment requires its verified optional native patch and a visible local grant"
+        ],
+        "fresh_fixture_startup": {
+          "native_roundtrip_before_bridge": true,
+          "source_scope": "newly generated default simulator only",
+          "enable_home_performed": false
+        },
+        "portable_configuration": {
+          "export": "lease-bound-async-zip",
+          "adoption": "dedicated-validation-jvm-fresh-instance-only",
+          "first_launch_only": true,
+          "native_model_limits": {
+            "xml_elements_total": 30000,
+            "cameras": 2,
+            "image_cameras": 1,
+            "camera_frame_axis": 2048,
+            "camera_frame_pixels_total": 4194304,
+            "referenced_image_pixels_total": 32000000,
+            "archive_resource_pixels_total": 32000000,
+            "archive_resources": 4,
+            "heads": 2,
+            "nozzles": 4,
+            "axes": 16,
+            "drivers": 2,
+            "feeders": 256,
+            "parts": 512,
+            "packages": 256,
+            "vision_settings": 128,
+            "pipelines": 256,
+            "stages_total": 1024,
+            "stages_per_pipeline": 64,
+            "gaussian_kernel": 63,
+            "vision_super_sampling": 16,
+            "footprint_template_axis": 2048,
+            "advanced_camera_calibration": "disabled-only",
+            "camera_settling": "FixedTime only; dynamic settings require separate portable qualification",
+            "array_length": 1024,
+            "array_elements_total": 32768,
+            "vision_pipeline_profile": {
+              "profile": "pinned-stock-derived-v1",
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+              "consumer_contexts": 6,
+              "editable_stage_fields": {
+                "BlurGaussian": [
+                  "kernel-size"
+                ],
+                "Threshold": [
+                  "threshold",
+                  "auto",
+                  "invert"
+                ],
+                "MaskHsv": [
+                  "hue-min",
+                  "hue-max",
+                  "saturation-min",
+                  "saturation-max",
+                  "value-min",
+                  "value-max",
+                  "invert"
+                ]
+              },
+              "parameter_definitions": "exact-stock-names-targets-bounds-defaults",
+              "parameter_assignments": "bounded-declared-scalars",
+              "parameter_written_target_fields": "bounded-target-values-with-exact-stock-parameter-definition",
+              "other_fields_and_topology": "exact-stock",
+              "unsupported_custom_pipelines": "rejected-without-modification"
+            },
+            "hardware_qualified": false
+          },
+          "in_place_restore": false,
+          "hardware_qualified": false
+        }
+      },
+      "test_command": [
+        "private-host/.cache/cde-grafana-node/v22.19.0/node-v22.19.0-darwin-arm64/bin/node",
+        "--test",
+        "--test-reporter=tap",
+        "private-evidence/next-candidate-20260911/tests/openpnp/camera-settling-live.test.mjs"
+      ],
+      "test_exit_code": 0,
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "launcher_cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      },
+      "interrupted_signals": [],
+      "completed_at": "2026-09-11T11:41:16.944439+00:00",
+      "duration_seconds": 9.641406083013862,
+      "log_sha256": {
+        "test.log": "e01a527c040a447b0f5b955b391bf6d5076f5d5cc12b96d524edc8e9571ee036",
+        "doctor.log": "63f3b8b2768e1c551af6e3e5ac1e6690cb304205b3f07c1e59b6330a59ee7500",
+        "launcher.log": "36802a0e6bc98efba86f4dac2ad9352227808f685c61fcb90029a7075d225240",
+        "install.log": "94bc5887f353fc5ded2dff28f37fe3e2c37350004d328898a44a3d4a942b0e98"
+      },
+      "process_cleanup": {
+        "install.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        },
+        "test.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        },
+        "doctor.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        }
+      },
+      "evidence_sha256": {
+        "mcp-native-camera-settling.json": "46ac347afeb0a1c40e544234ba5316084a833dc02720bd17aeb186f4d88f24c9"
+      }
+    },
+    {
+      "suite": "stepping",
+      "started_at": "2026-09-11T11:41:16.957269+00:00",
+      "passed": true,
+      "simulator_profile": "native-simulator",
+      "scope": "Fresh installed native simulator and actual packaged MCP; functional qualification only.",
+      "launcher": "shipped start-simulator CLI",
+      "physical_qualification": false,
+      "install_exit_code": 0,
+      "launch_command": [
+        "private-host/.cache/cde-grafana-node/v22.19.0/node-v22.19.0-darwin-arm64/bin/node",
+        "private-evidence/next-candidate-20260911/plugins/openpnp/scripts/openpnp.mjs",
+        "start-simulator",
+        "--state-dir",
+        "private-evidence/next-candidate-20260911/validation/native-mcp-completion53/stepping/state",
+        "--openpnp-home",
+        "private-evidence/next-candidate-20260911/validation/gui-build-26/runtime",
+        "--java",
+        "private-host/.cache/openpnp-codex/jdk17/jdk-17.0.16+8/Contents/Home/bin/java",
+        "--profile",
+        "native-simulator"
+      ],
+      "owned_launcher_pid": 32076,
+      "bridge_capabilities": {
+        "protocol_version": "1.0",
+        "schema_version": 1,
+        "bridge_version": "0.1.0",
+        "openpnp_version": "n/a_2026-09-11_03-35-24.5bd404c",
+        "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+        "bridge_artifact_sha256": "f167e1185bd6937bd91b70cb5a599f405e33281fc9c58d1f043774d2bf74859a",
+        "bridge_artifact_hash_available": true,
+        "limits": {
+          "rpc_request_bytes": 8388608,
+          "journal_record_bytes": 8388608,
+          "canonical_placements": 10000,
+          "board_definitions": 100,
+          "panel_definitions": 100,
+          "root_instances": 100,
+          "expanded_instances": 1000,
+          "panel_depth": 8,
+          "event_page": 500,
+          "json_depth": 64,
+          "retained_requests": 20000,
+          "journal_bytes": 536870912,
+          "plans": 128,
+          "plan_ttl_ms": 300000,
+          "artifact_metadata_cache": 128,
+          "artifact_bytes": 8388608,
+          "artifact_storage_bytes": 1073741824,
+          "running_job_snapshot_interval_ms": 100
+        },
+        "retention": {
+          "request_receipts": "retained until journal capacity; then fail closed",
+          "artifacts": "bytes stored on disk and read on demand; aggregate content cap 1 GiB fails admission without deleting evidence; preserved until explicit state-directory cleanup",
+          "plans": "five-minute TTL and 128 maximum; old plans expire"
+        },
+        "tools": [
+          "openpnp_get_capabilities",
+          "openpnp_get_status",
+          "openpnp_get_configuration",
+          "openpnp_get_operation",
+          "openpnp_get_request_status",
+          "openpnp_get_events",
+          "openpnp_get_artifact",
+          "openpnp_reconcile_operation",
+          "openpnp_request_control_session",
+          "openpnp_get_control_session",
+          "openpnp_renew_control_session",
+          "openpnp_release_control_session",
+          "openpnp_plan_motion",
+          "openpnp_execute_motion",
+          "openpnp_set_machine_enabled",
+          "openpnp_home_machine",
+          "openpnp_capture_camera",
+          "openpnp_plan_configuration",
+          "openpnp_apply_configuration",
+          "openpnp_prepare_job",
+          "openpnp_validate_job",
+          "openpnp_start_job",
+          "openpnp_step_job",
+          "openpnp_pause_job",
+          "openpnp_resume_job",
+          "openpnp_abort_job",
+          "openpnp_export_portable_configuration",
+          "openpnp_save_job",
+          "openpnp_load_job",
+          "openpnp_get_board_loads",
+          "openpnp_register_board_load",
+          "openpnp_inspect_job",
+          "openpnp_plan_placement_edits",
+          "openpnp_apply_placement_edits",
+          "openpnp_plan_placement_structure",
+          "openpnp_apply_placement_structure",
+          "openpnp_test_feeder",
+          "openpnp_control_actuator",
+          "openpnp_change_nozzle_tip",
+          "openpnp_backup_configuration",
+          "openpnp_restore_configuration",
+          "openpnp_export_run_report",
+          "openpnp_run_calibration",
+          "openpnp_validate_calibration",
+          "openpnp_locate_fiducials",
+          "openpnp_list_issues"
+        ],
+        "machine_id": "d086d59a-398a-49bd-8aff-2d006389c07c",
+        "bridge_instance_id": "b8f5e2ad-2323-466f-bf52-3d4e83bda5b7",
+        "simulation": true,
+        "simulator_profile": "native-simulator",
+        "native_job_order": "NozzleTips",
+        "simulator_attestation": {
+          "mode": "isolated-native-default",
+          "profile": "native-simulator",
+          "native_job_order": "NozzleTips",
+          "job_order_rationale": "upstream default order retained",
+          "fixture_provenance": "upstream-default-strip-feeders",
+          "driver_class": "org.openpnp.machine.reference.driver.NullDriver",
+          "checked_at_dispatch": true,
+          "acceleration_recipe": {
+            "source": "upstream SampleJobTest.makeMachineFastest",
+            "driver_feed_rate_mm_per_minute": 0,
+            "controller_axis_native_feedrate_per_second": 1000000,
+            "controller_axis_native_acceleration_per_second2": 2000000,
+            "controller_axis_native_jerk_per_second3": 0,
+            "fixed_camera_settling_ms": 0,
+            "nozzle_pick_place_dwell_ms": 0,
+            "physical_cycle_rate_comparison": false
+          }
+        },
+        "hardware_qualified": false,
+        "gui_control_qualified": false,
+        "capabilities": {
+          "observe": "supported",
+          "native_simulator_execution": "supported",
+          "hardware_execution": "unqualified",
+          "calibration": "native-nozzle-tip-runout-only",
+          "configuration_restore": "supported-typed-settings-only",
+          "custom_job_import": "supported",
+          "per_placement_crash_recovery": "unsupported"
+        },
+        "job_lineage": {
+          "available": true,
+          "scope": "trusted fresh native simulator imports and durably associated signed documents",
+          "structural_profile": "disabled-machine-empty-native-history-never-processor-admitted",
+          "unknown_documents": "readable-without-structural-authority",
+          "physical_authority": false
+        },
+        "native_action_ledger": {
+          "available": true,
+          "coverage": {
+            "automatic_replay": false,
+            "gaps": [
+              "motion-between-hooks",
+              "part-on-off-sensing-verdicts",
+              "feeder-post-pick",
+              "physical-board-load-and-material-lot",
+              "native-internal-retry-index",
+              "actions-within-user-scripts",
+              "manual-nozzle-tip-change-paths",
+              "alignment-skipped-with-no-aligner",
+              "nozzle-tip-model-and-calibration-changes-after-changer-hook",
+              "native-exception-between-before-and-after-hooks",
+              "process-death-after-effect-before-durable-after-hook"
+            ],
+            "observed_pairs": [
+              "feed",
+              "pick",
+              "release",
+              "align",
+              "discard",
+              "automatic-nozzle-tip-load",
+              "automatic-nozzle-tip-unload"
+            ],
+            "physical_effect_verification": false,
+            "source": "pinned-native-script-call-sites-with-java-observer",
+            "true_action_call_boundaries": false,
+            "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c"
+          }
+        },
+        "native_job_step": {
+          "available": true,
+          "boundary": "one-native-processor-next-call",
+          "can_include_multiple_actions": true,
+          "requires_config_revision": true,
+          "pause_waits_for_native_standstill": true,
+          "continuous_resume": true,
+          "automatic_restart_resume": false
+        },
+        "board_load_authority": {
+          "source": "native-simulator",
+          "complete_history_api": true,
+          "physical_load_verified": false,
+          "restart_requires_explicit_binding": true,
+          "replacement_resets_only_target_history": true,
+          "flip_preserves_history": true,
+          "explicit_changeover_available": true,
+          "stock_runtime_scope": "initial fresh simulator loads only; explicit changeover requires complete-history patch",
+          "unbound_saved_history": "refused; loading a document does not identify a board"
+        },
+        "configuration_changes": [
+          "set_part_height",
+          "assign_feeder",
+          "set_feeder_enabled",
+          "set_machine_speed",
+          "create_package",
+          "set_package_footprint",
+          "create_part",
+          "set_part_properties",
+          "set_package_compatibility",
+          "set_tray_feeder_geometry",
+          "set_strip_feeder_geometry",
+          "set_camera_geometry",
+          "set_camera_settling",
+          "set_camera_dynamic_settling",
+          "set_nozzle_settings",
+          "set_nozzle_tip_settings",
+          "set_axis_motion_limits",
+          "set_mapped_axis_geometry",
+          "set_job_planner_settings",
+          "set_job_retry_settings",
+          "set_part_retry_settings",
+          "set_feeder_retry_settings",
+          "set_head_park_location",
+          "set_machine_discard_location",
+          "clone_vision_settings",
+          "set_bottom_vision_settings",
+          "set_fiducial_vision_settings",
+          "assign_vision_settings",
+          "remove_vision_settings",
+          "set_vision_pipeline_stage",
+          "set_vision_parameter"
+        ],
+        "camera_settling": {
+          "change_type": "set_camera_dynamic_settling",
+          "methods": [
+            "Maximum",
+            "Mean",
+            "Euclidean",
+            "Square"
+          ],
+          "timeout_ms": {
+            "minimum": 20,
+            "maximum": 5000
+          },
+          "debounce": {
+            "minimum": 0,
+            "maximum": 10
+          },
+          "threshold_percent": {
+            "exclusive_minimum": 0,
+            "maximum": 100
+          },
+          "full_color": "boolean",
+          "preprocessing": "default blur/gradients/mask/contrast and disabled diagnostics required",
+          "frame_axis_limit": 2048,
+          "frame_pixel_limit": 4194304,
+          "advanced_camera_correction": "unsupported for bounded raw/settled capture including native preview",
+          "legacy_fixed_dwell": "retained via set_camera_settling",
+          "active_camera_calibration": "raw/settled capture and dynamic settings refused; native preview may transform frames",
+          "native_timeout_is_hard_io_deadline": false,
+          "capture_return_proves_stability": false,
+          "physical_calibration_validity": "not-assessed",
+          "hardware_qualified": false
+        },
+        "limitations": [
+          "Only an isolated OpenPnP default simulator may mutate",
+          "Native step journal does not prove every irreversible substep",
+          "No physical machine profile is qualified",
+          "GUI attachment requires its verified optional native patch and a visible local grant"
+        ],
+        "fresh_fixture_startup": {
+          "native_roundtrip_before_bridge": true,
+          "source_scope": "newly generated default simulator only",
+          "enable_home_performed": false
+        },
+        "portable_configuration": {
+          "export": "lease-bound-async-zip",
+          "adoption": "dedicated-validation-jvm-fresh-instance-only",
+          "first_launch_only": true,
+          "native_model_limits": {
+            "xml_elements_total": 30000,
+            "cameras": 2,
+            "image_cameras": 1,
+            "camera_frame_axis": 2048,
+            "camera_frame_pixels_total": 4194304,
+            "referenced_image_pixels_total": 32000000,
+            "archive_resource_pixels_total": 32000000,
+            "archive_resources": 4,
+            "heads": 2,
+            "nozzles": 4,
+            "axes": 16,
+            "drivers": 2,
+            "feeders": 256,
+            "parts": 512,
+            "packages": 256,
+            "vision_settings": 128,
+            "pipelines": 256,
+            "stages_total": 1024,
+            "stages_per_pipeline": 64,
+            "gaussian_kernel": 63,
+            "vision_super_sampling": 16,
+            "footprint_template_axis": 2048,
+            "advanced_camera_calibration": "disabled-only",
+            "camera_settling": "FixedTime only; dynamic settings require separate portable qualification",
+            "array_length": 1024,
+            "array_elements_total": 32768,
+            "vision_pipeline_profile": {
+              "profile": "pinned-stock-derived-v1",
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+              "consumer_contexts": 6,
+              "editable_stage_fields": {
+                "BlurGaussian": [
+                  "kernel-size"
+                ],
+                "Threshold": [
+                  "threshold",
+                  "auto",
+                  "invert"
+                ],
+                "MaskHsv": [
+                  "hue-min",
+                  "hue-max",
+                  "saturation-min",
+                  "saturation-max",
+                  "value-min",
+                  "value-max",
+                  "invert"
+                ]
+              },
+              "parameter_definitions": "exact-stock-names-targets-bounds-defaults",
+              "parameter_assignments": "bounded-declared-scalars",
+              "parameter_written_target_fields": "bounded-target-values-with-exact-stock-parameter-definition",
+              "other_fields_and_topology": "exact-stock",
+              "unsupported_custom_pipelines": "rejected-without-modification"
+            },
+            "hardware_qualified": false
+          },
+          "in_place_restore": false,
+          "hardware_qualified": false
+        }
+      },
+      "test_command": [
+        "private-host/.cache/cde-grafana-node/v22.19.0/node-v22.19.0-darwin-arm64/bin/node",
+        "--test",
+        "--test-reporter=tap",
+        "private-evidence/next-candidate-20260911/tests/openpnp/stepping-live.test.mjs"
+      ],
+      "test_exit_code": 0,
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "launcher_cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      },
+      "interrupted_signals": [],
+      "completed_at": "2026-09-11T11:41:25.253762+00:00",
+      "duration_seconds": 8.296387917012908,
+      "log_sha256": {
+        "test.log": "45c3a42fdc192ba9a46954bde330f8859c797b4fae3f4a6375138bbc0df0cb16",
+        "doctor.log": "0314923edd438739b3ac8ddacf2c51e697c927c34834876ffaadc2cab0e2b49b",
+        "launcher.log": "df714b3f83857f472305d515c72e0df31851c71d5aa76c65859199b3d1cf8bf8",
+        "install.log": "cb5afd8e3226ece3bfebdfa4f4e566b4b2e7c751b50ab824d03e28c742129d5c"
+      },
+      "process_cleanup": {
+        "install.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        },
+        "test.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        },
+        "doctor.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        }
+      },
+      "evidence_sha256": {
+        "mcp-native-stepping.json": "254ee1c30662455f9b248aaac3ff26171ba8428ca15a271a78d6e3e652bfd548"
+      }
+    },
+    {
+      "suite": "mapped",
+      "started_at": "2026-09-11T11:41:25.255361+00:00",
+      "passed": true,
+      "simulator_profile": "native-simulator",
+      "scope": "Fresh installed native simulator and actual packaged MCP; functional qualification only.",
+      "launcher": "test-only existing mapped-axis fixture",
+      "physical_qualification": false,
+      "install_exit_code": 0,
+      "launch_command": [
+        "private-host/.cache/openpnp-codex/jdk17/jdk-17.0.16+8/Contents/Home/bin/java",
+        "-Xmx2g",
+        "-XX:+ExitOnOutOfMemoryError",
+        "-Dfile.encoding=UTF-8",
+        "-Djava.awt.headless=true",
+        "-Djava.util.prefs.PreferencesFactory=org.openpnp.codex.IsolatedPreferencesFactory",
+        "-Duser.home=private-evidence/next-candidate-20260911/validation/native-mcp-completion53/mapped/fixture-home",
+        "-Djava.io.tmpdir=private-evidence/next-candidate-20260911/validation/native-mcp-completion53/mapped/fixture-tmp",
+        "--add-opens=java.base/java.lang=ALL-UNNAMED",
+        "--add-opens=java.desktop/java.awt=ALL-UNNAMED",
+        "--add-opens=java.desktop/java.awt.color=ALL-UNNAMED",
+        "-cp",
+        "private-evidence/next-candidate-20260911/validation/gui-build-26/mapped-fixture-classes:private-evidence/next-candidate-20260911/validation/native-mcp-completion53/mapped/state/bridge/0.1.0/openpnp-codex-bridge.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/openpnp-codex-gui-launcher.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/openpnp-gui-codex-patched.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/activation-1.1.1.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/apiguardian-api-1.1.0.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/asm-7.3.1.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/asm-analysis-7.3.1.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/asm-commons-7.3.1.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/asm-tree-7.3.1.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/asm-util-7.3.1.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/avalon-framework-api-4.3.1.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/avalon-framework-impl-4.3.1.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/batik-anim-1.7.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/batik-awt-util-1.7.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/batik-bridge-1.7.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/batik-css-1.7.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/batik-dom-1.7.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/batik-ext-1.7.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/batik-gvt-1.7.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/batik-js-1.7.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/batik-parser-1.7.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/batik-script-1.7.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/batik-svg-dom-1.7.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/batik-svggen-1.7.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/batik-transcoder-1.7.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/batik-util-1.7.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/batik-xml-1.7.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/beansbinding-1.2.1.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/bridj-0.6.2.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/bsh-2.0b5.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/byte-buddy-1.10.18.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/byte-buddy-agent-1.10.18.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/classgraph-4.8.141.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/commons-beanutils-1.9.3.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/commons-codec-1.6.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/commons-collections-3.2.2.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/commons-io-2.7.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/commons-lang3-3.12.0.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/commons-logging-1.2.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/commons-math3-3.6.1.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/commons-pool2-2.11.1.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/core-3.3.0.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/flatlaf-1.0.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/flatlaf-extras-1.0.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/fop-0.94.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/gson-2.2.3.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/gst1-java-core-1.4.0.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/guava-14.0.1.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/httpasyncclient-4.1.1.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/httpclient-4.5.2.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/httpcore-4.4.4.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/httpcore-nio-4.4.4.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/httpmime-4.5.2.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/jSerialComm-2.10.2.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/javase-2.2.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/javassist-3.27.0-GA.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/javax.xml.soap-api-1.4.0.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/jaxb-api-2.2.11.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/jaxb-core-2.2.11.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/jaxb-impl-2.2.11.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/jaxws-api-2.3.0.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/jcodec-0.1.9.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/jcodec-javase-0.1.9.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/jfreechart-1.5.3.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/jgoodies-common-1.8.0.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/jgoodies-forms-1.8.0.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/jna-5.8.0.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/json-20160212.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/junit-jupiter-api-5.7.1.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/junit-jupiter-engine-5.7.1.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/junit-platform-commons-1.7.1.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/junit-platform-engine-1.7.1.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/jython-standalone-2.7.1.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/l2fprod-common-annotations-1.0.3.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/l2fprod-properties-editor-1.0.3.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/mockito-core-3.6.28.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/nashorn-core-15.4.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/objenesis-3.1.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/onvif-java-lib-2016-03-16.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/opencv-4.5.5-1.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/openpnp-capture-java-0.0.28-0.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/opentest4j-1.2.0.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/pastebin4j-1.2.1.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/serializer-2.7.2.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/simple-xml-2.9.0.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/slf4j-api-1.7.2.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/stax-1.2.0.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/stax-api-1.0.1.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/svgSalamander-1.1.2.4.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/swingx-all-1.6.4.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/tinylog-1.3.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/unirest-java-1.4.9.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/utils-1.07.00.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/webcam-capture-0.3.10.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/xalan-2.7.2.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/xml-apis-1.3.04.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/xml-apis-ext-1.3.04.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/xmlgraphics-commons-1.2.jar:private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/lib/xpp3-1.1.3.3.jar",
+        "org.openpnp.codex.NativeMappedAxisFixtureMain",
+        "--state-dir",
+        "private-evidence/next-candidate-20260911/validation/native-mcp-completion53/mapped/state",
+        "--sample-root",
+        "private-evidence/next-candidate-20260911/validation/gui-build-26/runtime/samples"
+      ],
+      "owned_launcher_pid": 32243,
+      "bridge_capabilities": {
+        "protocol_version": "1.0",
+        "schema_version": 1,
+        "bridge_version": "0.1.0",
+        "openpnp_version": "n/a_2026-09-11_03-35-24.5bd404c",
+        "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+        "bridge_artifact_sha256": "f167e1185bd6937bd91b70cb5a599f405e33281fc9c58d1f043774d2bf74859a",
+        "bridge_artifact_hash_available": true,
+        "limits": {
+          "rpc_request_bytes": 8388608,
+          "journal_record_bytes": 8388608,
+          "canonical_placements": 10000,
+          "board_definitions": 100,
+          "panel_definitions": 100,
+          "root_instances": 100,
+          "expanded_instances": 1000,
+          "panel_depth": 8,
+          "event_page": 500,
+          "json_depth": 64,
+          "retained_requests": 20000,
+          "journal_bytes": 536870912,
+          "plans": 128,
+          "plan_ttl_ms": 300000,
+          "artifact_metadata_cache": 128,
+          "artifact_bytes": 8388608,
+          "artifact_storage_bytes": 1073741824,
+          "running_job_snapshot_interval_ms": 100
+        },
+        "retention": {
+          "request_receipts": "retained until journal capacity; then fail closed",
+          "artifacts": "bytes stored on disk and read on demand; aggregate content cap 1 GiB fails admission without deleting evidence; preserved until explicit state-directory cleanup",
+          "plans": "five-minute TTL and 128 maximum; old plans expire"
+        },
+        "tools": [
+          "openpnp_get_capabilities",
+          "openpnp_get_status",
+          "openpnp_get_configuration",
+          "openpnp_get_operation",
+          "openpnp_get_request_status",
+          "openpnp_get_events",
+          "openpnp_get_artifact",
+          "openpnp_reconcile_operation",
+          "openpnp_request_control_session",
+          "openpnp_get_control_session",
+          "openpnp_renew_control_session",
+          "openpnp_release_control_session",
+          "openpnp_plan_motion",
+          "openpnp_execute_motion",
+          "openpnp_set_machine_enabled",
+          "openpnp_home_machine",
+          "openpnp_capture_camera",
+          "openpnp_plan_configuration",
+          "openpnp_apply_configuration",
+          "openpnp_prepare_job",
+          "openpnp_validate_job",
+          "openpnp_start_job",
+          "openpnp_step_job",
+          "openpnp_pause_job",
+          "openpnp_resume_job",
+          "openpnp_abort_job",
+          "openpnp_export_portable_configuration",
+          "openpnp_save_job",
+          "openpnp_load_job",
+          "openpnp_get_board_loads",
+          "openpnp_register_board_load",
+          "openpnp_inspect_job",
+          "openpnp_plan_placement_edits",
+          "openpnp_apply_placement_edits",
+          "openpnp_plan_placement_structure",
+          "openpnp_apply_placement_structure",
+          "openpnp_test_feeder",
+          "openpnp_control_actuator",
+          "openpnp_change_nozzle_tip",
+          "openpnp_backup_configuration",
+          "openpnp_restore_configuration",
+          "openpnp_export_run_report",
+          "openpnp_run_calibration",
+          "openpnp_validate_calibration",
+          "openpnp_locate_fiducials",
+          "openpnp_list_issues"
+        ],
+        "machine_id": "b215eb42-7773-4702-8b64-de4311671b89",
+        "bridge_instance_id": "7d8bdfd4-7975-479a-a59c-c6e3045fda3a",
+        "simulation": true,
+        "simulator_profile": "native-simulator",
+        "native_job_order": "NozzleTips",
+        "simulator_attestation": {
+          "mode": "isolated-native-default",
+          "profile": "native-simulator",
+          "native_job_order": "NozzleTips",
+          "job_order_rationale": "upstream default order retained",
+          "fixture_provenance": "upstream-default-strip-feeders",
+          "driver_class": "org.openpnp.machine.reference.driver.NullDriver",
+          "checked_at_dispatch": true,
+          "acceleration_recipe": {
+            "source": "upstream SampleJobTest.makeMachineFastest",
+            "driver_feed_rate_mm_per_minute": 0,
+            "controller_axis_native_feedrate_per_second": 1000000,
+            "controller_axis_native_acceleration_per_second2": 2000000,
+            "controller_axis_native_jerk_per_second3": 0,
+            "fixed_camera_settling_ms": 0,
+            "nozzle_pick_place_dwell_ms": 0,
+            "physical_cycle_rate_comparison": false
+          }
+        },
+        "hardware_qualified": false,
+        "gui_control_qualified": false,
+        "capabilities": {
+          "observe": "supported",
+          "native_simulator_execution": "supported",
+          "hardware_execution": "unqualified",
+          "calibration": "native-nozzle-tip-runout-only",
+          "configuration_restore": "supported-typed-settings-only",
+          "custom_job_import": "supported",
+          "per_placement_crash_recovery": "unsupported"
+        },
+        "job_lineage": {
+          "available": true,
+          "scope": "trusted fresh native simulator imports and durably associated signed documents",
+          "structural_profile": "disabled-machine-empty-native-history-never-processor-admitted",
+          "unknown_documents": "readable-without-structural-authority",
+          "physical_authority": false
+        },
+        "native_action_ledger": {
+          "available": true,
+          "coverage": {
+            "automatic_replay": false,
+            "gaps": [
+              "motion-between-hooks",
+              "part-on-off-sensing-verdicts",
+              "feeder-post-pick",
+              "physical-board-load-and-material-lot",
+              "native-internal-retry-index",
+              "actions-within-user-scripts",
+              "manual-nozzle-tip-change-paths",
+              "alignment-skipped-with-no-aligner",
+              "nozzle-tip-model-and-calibration-changes-after-changer-hook",
+              "native-exception-between-before-and-after-hooks",
+              "process-death-after-effect-before-durable-after-hook"
+            ],
+            "observed_pairs": [
+              "feed",
+              "pick",
+              "release",
+              "align",
+              "discard",
+              "automatic-nozzle-tip-load",
+              "automatic-nozzle-tip-unload"
+            ],
+            "physical_effect_verification": false,
+            "source": "pinned-native-script-call-sites-with-java-observer",
+            "true_action_call_boundaries": false,
+            "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c"
+          }
+        },
+        "native_job_step": {
+          "available": true,
+          "boundary": "one-native-processor-next-call",
+          "can_include_multiple_actions": true,
+          "requires_config_revision": true,
+          "pause_waits_for_native_standstill": true,
+          "continuous_resume": true,
+          "automatic_restart_resume": false
+        },
+        "board_load_authority": {
+          "source": "native-simulator",
+          "complete_history_api": true,
+          "physical_load_verified": false,
+          "restart_requires_explicit_binding": true,
+          "replacement_resets_only_target_history": true,
+          "flip_preserves_history": true,
+          "explicit_changeover_available": true,
+          "stock_runtime_scope": "initial fresh simulator loads only; explicit changeover requires complete-history patch",
+          "unbound_saved_history": "refused; loading a document does not identify a board"
+        },
+        "configuration_changes": [
+          "set_part_height",
+          "assign_feeder",
+          "set_feeder_enabled",
+          "set_machine_speed",
+          "create_package",
+          "set_package_footprint",
+          "create_part",
+          "set_part_properties",
+          "set_package_compatibility",
+          "set_tray_feeder_geometry",
+          "set_strip_feeder_geometry",
+          "set_camera_geometry",
+          "set_camera_settling",
+          "set_camera_dynamic_settling",
+          "set_nozzle_settings",
+          "set_nozzle_tip_settings",
+          "set_axis_motion_limits",
+          "set_mapped_axis_geometry",
+          "set_job_planner_settings",
+          "set_job_retry_settings",
+          "set_part_retry_settings",
+          "set_feeder_retry_settings",
+          "set_head_park_location",
+          "set_machine_discard_location",
+          "clone_vision_settings",
+          "set_bottom_vision_settings",
+          "set_fiducial_vision_settings",
+          "assign_vision_settings",
+          "remove_vision_settings",
+          "set_vision_pipeline_stage",
+          "set_vision_parameter"
+        ],
+        "camera_settling": {
+          "change_type": "set_camera_dynamic_settling",
+          "methods": [
+            "Maximum",
+            "Mean",
+            "Euclidean",
+            "Square"
+          ],
+          "timeout_ms": {
+            "minimum": 20,
+            "maximum": 5000
+          },
+          "debounce": {
+            "minimum": 0,
+            "maximum": 10
+          },
+          "threshold_percent": {
+            "exclusive_minimum": 0,
+            "maximum": 100
+          },
+          "full_color": "boolean",
+          "preprocessing": "default blur/gradients/mask/contrast and disabled diagnostics required",
+          "frame_axis_limit": 2048,
+          "frame_pixel_limit": 4194304,
+          "advanced_camera_correction": "unsupported for bounded raw/settled capture including native preview",
+          "legacy_fixed_dwell": "retained via set_camera_settling",
+          "active_camera_calibration": "raw/settled capture and dynamic settings refused; native preview may transform frames",
+          "native_timeout_is_hard_io_deadline": false,
+          "capture_return_proves_stability": false,
+          "physical_calibration_validity": "not-assessed",
+          "hardware_qualified": false
+        },
+        "limitations": [
+          "Only an isolated OpenPnP default simulator may mutate",
+          "Native step journal does not prove every irreversible substep",
+          "No physical machine profile is qualified",
+          "GUI attachment requires its verified optional native patch and a visible local grant"
+        ],
+        "fresh_fixture_startup": {
+          "native_roundtrip_before_bridge": false,
+          "source_scope": "not this startup path",
+          "enable_home_performed": false
+        },
+        "portable_configuration": {
+          "export": "lease-bound-async-zip",
+          "adoption": "dedicated-validation-jvm-fresh-instance-only",
+          "first_launch_only": true,
+          "native_model_limits": {
+            "xml_elements_total": 30000,
+            "cameras": 2,
+            "image_cameras": 1,
+            "camera_frame_axis": 2048,
+            "camera_frame_pixels_total": 4194304,
+            "referenced_image_pixels_total": 32000000,
+            "archive_resource_pixels_total": 32000000,
+            "archive_resources": 4,
+            "heads": 2,
+            "nozzles": 4,
+            "axes": 16,
+            "drivers": 2,
+            "feeders": 256,
+            "parts": 512,
+            "packages": 256,
+            "vision_settings": 128,
+            "pipelines": 256,
+            "stages_total": 1024,
+            "stages_per_pipeline": 64,
+            "gaussian_kernel": 63,
+            "vision_super_sampling": 16,
+            "footprint_template_axis": 2048,
+            "advanced_camera_calibration": "disabled-only",
+            "camera_settling": "FixedTime only; dynamic settings require separate portable qualification",
+            "array_length": 1024,
+            "array_elements_total": 32768,
+            "vision_pipeline_profile": {
+              "profile": "pinned-stock-derived-v1",
+              "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+              "consumer_contexts": 6,
+              "editable_stage_fields": {
+                "BlurGaussian": [
+                  "kernel-size"
+                ],
+                "Threshold": [
+                  "threshold",
+                  "auto",
+                  "invert"
+                ],
+                "MaskHsv": [
+                  "hue-min",
+                  "hue-max",
+                  "saturation-min",
+                  "saturation-max",
+                  "value-min",
+                  "value-max",
+                  "invert"
+                ]
+              },
+              "parameter_definitions": "exact-stock-names-targets-bounds-defaults",
+              "parameter_assignments": "bounded-declared-scalars",
+              "parameter_written_target_fields": "bounded-target-values-with-exact-stock-parameter-definition",
+              "other_fields_and_topology": "exact-stock",
+              "unsupported_custom_pipelines": "rejected-without-modification"
+            },
+            "hardware_qualified": false
+          },
+          "in_place_restore": false,
+          "hardware_qualified": false
+        }
+      },
+      "test_command": [
+        "private-host/.cache/cde-grafana-node/v22.19.0/node-v22.19.0-darwin-arm64/bin/node",
+        "--test",
+        "--test-reporter=tap",
+        "private-evidence/next-candidate-20260911/tests/openpnp/mapped-axis-live.test.mjs"
+      ],
+      "test_exit_code": 0,
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "launcher_cleanup": {
+        "parent_exit_code": 143,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      },
+      "interrupted_signals": [],
+      "completed_at": "2026-09-11T11:41:28.742536+00:00",
+      "duration_seconds": 3.487152124987915,
+      "log_sha256": {
+        "test.log": "84390e8c1a159ea08294cf3a001464f476506b90ed702c3e661f73aff9cfcd99",
+        "runtime-verification.log": "2b1cf6f8d68ab0ff4fc372b6cd075e10de09fa557e0a7988e7602a51cfbb9669",
+        "doctor.log": "7751b5c23cef3631def1ba49c6cf8e071c92f659a1b55cbdd313d6a2b9d67140",
+        "launcher.log": "dde2469519dda727cb0f966e25a5587f8a43b058f18da3a8dc118fb75184bf6c",
+        "install.log": "2c891279a3e168801987cda9060bfb9098e44c680722f480e0eb4b24d159eaf8"
+      },
+      "process_cleanup": {
+        "install.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        },
+        "test.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        },
+        "doctor.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        },
+        "runtime-verification.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        }
+      },
+      "evidence_sha256": {
+        "mcp-native-mapped-axis.json": "8485d15f895c79f966912021b39777252919d3e33a106a8f19b0b01ee9f60f27"
+      }
+    }
+  ],
+  "physical_qualification": false,
+  "performance_benchmark": false,
+  "inputs_unchanged": true,
+  "input_count": 4066,
+  "interrupted_signals": [],
+  "completed_at": "2026-09-11T11:41:29.906235+00:00",
+  "source_receipt_sha256": "373c7f2373a1e0d1f7ea46e09940e977334ccdaec545a8e71fc27f62d408ff73",
+  "post_run_changes": "Only matching-package metadata, documentation and evidence links changed after the recorded invariant run; executable JavaScript/native bytes remain unchanged.",
+  "public_export_provenance": {
+    "original_report_sha256": "1f365c6ed8556ad319693c16ccea06e521dbfb5bb2c697db541cd0dec67775cb",
+    "transformation": "Private absolute root labels replaced; original result facts and artifact hashes retained. Paths beginning private-evidence/private-host are provenance labels, not repository files."
+  }
+}

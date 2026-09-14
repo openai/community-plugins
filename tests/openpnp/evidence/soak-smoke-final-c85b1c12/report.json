@@ -1,0 +1,2012 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-09-11T05:09:50.113Z",
+  "status": "completed",
+  "host_node": "22.19.0",
+  "duration_hours_requested": 0.03,
+  "placements_requested": 100,
+  "simulation_only": true,
+  "mock_execution": false,
+  "execution_route": "official-mcp-sdk-stdio-to-bundled-server-to-native-OpenPnP",
+  "hardware_qualified": false,
+  "mcp_runtime_snapshot": {
+    "schema_version": 1,
+    "files": [
+      {
+        "path": "domain/README.md",
+        "bytes": 9452,
+        "sha256": "6a998338d823160d6a611f32947186f61664b1403d163a1fe9099eb4f0d927a5"
+      },
+      {
+        "path": "domain/common.mjs",
+        "bytes": 3064,
+        "sha256": "bd049f4e336da6689bae74e440ba3965870f08d3bbfc65f3bf91415e5a930688"
+      },
+      {
+        "path": "domain/evidence.mjs",
+        "bytes": 6718,
+        "sha256": "7a046828c663e10201cc9877a7d399e2d99860415ac7515954a6a7d3a7a13d5d"
+      },
+      {
+        "path": "domain/geometry.mjs",
+        "bytes": 11775,
+        "sha256": "899c124d416d7647306f46433fd647e8643f7479ff30025d6f6072b0ff2bfb9b"
+      },
+      {
+        "path": "domain/imports.mjs",
+        "bytes": 16108,
+        "sha256": "6fecb1ab9f4d6ea838bc9260e29e80eb5f583222295462eab8bc64749738be39"
+      },
+      {
+        "path": "domain/index.mjs",
+        "bytes": 1011,
+        "sha256": "b04f1f7798826603a5907e3c03cbaa8be8978ae8c3bcd28f1b4b1c97b5009adf"
+      },
+      {
+        "path": "domain/ledger.mjs",
+        "bytes": 8925,
+        "sha256": "d45cdd245e15e536556f7d0313caa5bb96f376df6e963b7990063ecc4f1959e8"
+      },
+      {
+        "path": "server.mjs",
+        "bytes": 628489,
+        "sha256": "796cc93bc9a24496799ad0a3a7bb3a7627078e94de1a14391953acc1e1528c49"
+      },
+      {
+        "path": "tool-inputs.json",
+        "bytes": 77037,
+        "sha256": "09b3aa29606c0b4df67ecc587fd2981f781890f84ee305b2a1e90fe5a507c604"
+      }
+    ],
+    "tree_sha256": "5c6ac8cc5d8a576cde4d78901fc3fe15d47024f1742a58dbed68a89c7094422c",
+    "server_sha256": "796cc93bc9a24496799ad0a3a7bb3a7627078e94de1a14391953acc1e1528c49",
+    "provenance": "All bundled MCP files copied to this run before launch; actual copied bytes hashed and reread. Workspace rebuilds cannot change this copy.",
+    "relative_directory": "mcp-runtime",
+    "execution_path": "<evidence-dir>/mcp-runtime/server.mjs"
+  },
+  "harness_sha256": "ca6ab1e9454722f790ba3ba52c2e317e95aa93ee1347ab6fe62e958bf4fe1d42",
+  "direct_http_client_sha256": "738aa5956894d8d52f4627c3df8050dc8e23c5d06ff926e77cde5c4a58d8c835",
+  "bundled_mcp_sha256": "796cc93bc9a24496799ad0a3a7bb3a7627078e94de1a14391953acc1e1528c49",
+  "packaged_bridge_manifest": {
+    "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+    "bridge_version": "0.1.0",
+    "bridge_sha256": "c85b1c12e27a4df842f59cd56742d2bc2f2819286282a678ed84fe0ae5e6f24c"
+  },
+  "packaged_bridge_manifest_provenance": "Local package metadata; not cryptographic attestation of the serving process.",
+  "supplied_native_build_manifest": {
+    "sha256": "fe6eec2a0c1c25155a58bcee28043d13081d7d886840a370bf47abbcf1cf8b57",
+    "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+    "provenance": "Caller-supplied local manifest; endpoint binding is not independently attested."
+  },
+  "native_resource_bound_checks": {
+    "artifact_storage_bytes": {
+      "checked": true,
+      "cap": 1073741824
+    },
+    "heap_max_at_most_2gib": {
+      "required": false,
+      "observed": 2147483648,
+      "satisfied": true
+    },
+    "native_idle_observation": {
+      "required": false,
+      "available": true
+    }
+  },
+  "loaded_bridge_binding": {
+    "verified": true,
+    "sha256": "c85b1c12e27a4df842f59cd56742d2bc2f2819286282a678ed84fe0ae5e6f24c",
+    "provenance": "Native Bridge.class code-source JAR digest matched to the locally verified packaged JAR."
+  },
+  "bridge": {
+    "protocol_version": "1.0",
+    "schema_version": 1,
+    "bridge_version": "0.1.0",
+    "openpnp_version": "n/a_2026-09-11_03-35-24.5bd404c",
+    "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+    "bridge_artifact_sha256": "c85b1c12e27a4df842f59cd56742d2bc2f2819286282a678ed84fe0ae5e6f24c",
+    "bridge_artifact_hash_available": true,
+    "limits": {
+      "rpc_request_bytes": 8388608,
+      "canonical_placements": 10000,
+      "board_definitions": 100,
+      "panel_definitions": 100,
+      "root_instances": 100,
+      "expanded_instances": 1000,
+      "panel_depth": 8,
+      "event_page": 500,
+      "json_depth": 64,
+      "retained_requests": 20000,
+      "journal_bytes": 536870912,
+      "plans": 128,
+      "plan_ttl_ms": 300000,
+      "artifact_metadata_cache": 128,
+      "artifact_bytes": 8388608,
+      "artifact_storage_bytes": 1073741824,
+      "running_job_snapshot_interval_ms": 100
+    },
+    "retention": {
+      "request_receipts": "retained until journal capacity; then fail closed",
+      "artifacts": "bytes stored on disk and read on demand; aggregate content cap 1 GiB fails admission without deleting evidence; preserved until explicit state-directory cleanup",
+      "plans": "five-minute TTL and 128 maximum; old plans expire"
+    },
+    "tools": [
+      "openpnp_get_capabilities",
+      "openpnp_get_status",
+      "openpnp_get_configuration",
+      "openpnp_get_operation",
+      "openpnp_get_request_status",
+      "openpnp_get_events",
+      "openpnp_get_artifact",
+      "openpnp_reconcile_operation",
+      "openpnp_request_control_session",
+      "openpnp_get_control_session",
+      "openpnp_renew_control_session",
+      "openpnp_release_control_session",
+      "openpnp_plan_motion",
+      "openpnp_execute_motion",
+      "openpnp_set_machine_enabled",
+      "openpnp_home_machine",
+      "openpnp_capture_camera",
+      "openpnp_plan_configuration",
+      "openpnp_apply_configuration",
+      "openpnp_prepare_job",
+      "openpnp_validate_job",
+      "openpnp_start_job",
+      "openpnp_pause_job",
+      "openpnp_resume_job",
+      "openpnp_abort_job",
+      "openpnp_save_job",
+      "openpnp_load_job",
+      "openpnp_test_feeder",
+      "openpnp_control_actuator",
+      "openpnp_change_nozzle_tip",
+      "openpnp_backup_configuration",
+      "openpnp_restore_configuration",
+      "openpnp_export_run_report",
+      "openpnp_run_calibration",
+      "openpnp_validate_calibration",
+      "openpnp_locate_fiducials",
+      "openpnp_list_issues"
+    ],
+    "machine_id": "8ebcccdd-9fa3-48fb-99bf-05282549cbd9",
+    "bridge_instance_id": "cbde552b-0831-4f34-beac-cd897dc71c6f",
+    "simulation": true,
+    "simulator_profile": "sustained-workload",
+    "simulator_attestation": {
+      "mode": "isolated-native-default",
+      "profile": "sustained-workload",
+      "fixture_provenance": "native-finite-tray-supply-zero-pitch",
+      "driver_class": "org.openpnp.machine.reference.driver.NullDriver",
+      "checked_at_dispatch": true,
+      "acceleration_recipe": {
+        "source": "upstream SampleJobTest.makeMachineFastest",
+        "driver_feed_rate_mm_per_minute": 0,
+        "controller_axis_native_feedrate_per_second": 1000000,
+        "controller_axis_native_acceleration_per_second2": 2000000,
+        "controller_axis_native_jerk_per_second3": 0,
+        "fixed_camera_settling_ms": 0,
+        "nozzle_pick_place_dwell_ms": 0,
+        "physical_cycle_rate_comparison": false
+      }
+    },
+    "hardware_qualified": false,
+    "gui_control_qualified": false,
+    "capabilities": {
+      "observe": "supported",
+      "native_simulator_execution": "supported",
+      "hardware_execution": "unqualified",
+      "calibration": "native-nozzle-tip-runout-only",
+      "configuration_restore": "supported-typed-settings-only",
+      "custom_job_import": "supported",
+      "per_placement_crash_recovery": "unsupported"
+    },
+    "configuration_changes": [
+      "set_part_height",
+      "assign_feeder",
+      "set_feeder_enabled",
+      "set_machine_speed",
+      "create_package",
+      "set_package_footprint",
+      "create_part",
+      "set_part_properties",
+      "set_package_compatibility",
+      "set_tray_feeder_geometry",
+      "set_strip_feeder_geometry",
+      "set_camera_geometry",
+      "set_camera_settling",
+      "set_nozzle_settings",
+      "set_nozzle_tip_settings",
+      "set_axis_motion_limits"
+    ],
+    "limitations": [
+      "Only an isolated OpenPnP default simulator may mutate",
+      "Native step journal does not prove every irreversible substep",
+      "No physical machine profile is qualified",
+      "No GUI ownership patch shipped"
+    ]
+  },
+  "initial_inventory": {
+    "feeders": [
+      {
+        "id": "FDR18d42c036f184ff3",
+        "capacity": 10000,
+        "feed_count": 0
+      }
+    ],
+    "capacity": 10000,
+    "feed_count": 0,
+    "remaining": 10000
+  },
+  "csv_sha256": "8800b6d62cd0a30373d283994dfac8748232e923db04cf3109956a581e67a8ae",
+  "workload": {
+    "board_width_mm": 150,
+    "board_height_mm": 150,
+    "pitch_mm": 1.5,
+    "columns": 100,
+    "part_id": "R0603-1K",
+    "package_id": "R0603",
+    "height_mm": 0.75
+  },
+  "job_artifact_id": "be477cf9e113cc27600c207b8293561fcf743b2d59f116ca6d244dce500da9b0",
+  "native_job_elapsed_ms": 25461.548333,
+  "mcp_stderr_bytes": 0,
+  "mcp_snapshot_unchanged_after_run": true,
+  "completed_at": "2026-09-11T05:11:38.499Z",
+  "elapsed_ms": 108383.50175000001,
+  "failure": null,
+  "stop_reason": null,
+  "simulator_soak_complete": false,
+  "checks": {
+    "eight_hours": false,
+    "largest_advertised_placement_count": false,
+    "native_job_completed": true,
+    "exact_native_feed_count": true,
+    "finite_selected_supply_exhausted": false,
+    "event_overflow_resynchronized": false,
+    "post_job_camera_motion_cycles": true,
+    "no_failure_or_interruption": true
+  },
+  "full_A11_qualified": false,
+  "independent_placement_inspection_count": 0,
+  "scope": "explicit-short-or-reduced-count-smoke-unqualified",
+  "soft_skips": [
+    {
+      "criterion": "placement-cycle-overhead-baseline",
+      "reason": "Paired get_status latency does not measure native-versus-MCP placement-cycle overhead; that controlled experiment is separate."
+    },
+    {
+      "criterion": "native-image-allocation-attribution",
+      "reason": "Java heap and optional total JVM RSS are measured. Native image allocations are not independently attributed."
+    },
+    {
+      "criterion": "retention-steady-state-and-offline-failure-replay",
+      "reason": "This run measures growth and enforces declared caps; retained journal/artifacts are preserved, not purged to manufacture steady state. Offline failure replay is a separate test."
+    },
+    {
+      "criterion": "hardware-quality-safety-and-maximum-panel-depth",
+      "reason": "The fixture is virtual finite supply and one 150 mm board. Physical inspection and maximum panel depth are separate qualification work."
+    }
+  ],
+  "final_inventory": {
+    "feeders": [
+      {
+        "id": "FDR18d42c036f184ff3",
+        "capacity": 10000,
+        "feed_count": 100
+      }
+    ],
+    "capacity": 10000,
+    "feed_count": 100,
+    "remaining": 9900
+  },
+  "native_job": {
+    "operation_id": "701bfafd-afc5-47ee-937e-67743659e926",
+    "state": "succeeded",
+    "requested": 100,
+    "placed": 100,
+    "independently_inspected": 0,
+    "placements_per_second": 3.927490924438118
+  },
+  "workload_elapsed_ms": 108037.64712499999,
+  "native_metrics": {
+    "samples": 13,
+    "fields": {
+      "uptime_ms": {
+        "first": 45325,
+        "last": 153212,
+        "min": 45325,
+        "max": 153212,
+        "sum": 1331926,
+        "mean": 102455.84615384616,
+        "net_change": 107887
+      },
+      "heap_used_bytes": {
+        "first": 41505752,
+        "last": 182248560,
+        "min": 41505752,
+        "max": 358522072,
+        "sum": 2466188104,
+        "mean": 189706777.23076922,
+        "net_change": 140742808
+      },
+      "heap_committed_bytes": {
+        "first": 807403520,
+        "last": 482344960,
+        "min": 482344960,
+        "max": 807403520,
+        "sum": 7570718720,
+        "mean": 582362978.4615384,
+        "net_change": -325058560
+      },
+      "heap_max_bytes": {
+        "first": 2147483648,
+        "last": 2147483648,
+        "min": 2147483648,
+        "max": 2147483648,
+        "sum": 27917287424,
+        "mean": 2147483648,
+        "net_change": 0
+      },
+      "event_buffer_count": {
+        "first": 0,
+        "last": 4039,
+        "min": 0,
+        "max": 4039,
+        "sum": 44043,
+        "mean": 3387.923076923077,
+        "net_change": 4039
+      },
+      "operation_count": {
+        "first": 0,
+        "last": 9,
+        "min": 0,
+        "max": 9,
+        "sum": 90,
+        "mean": 6.923076923076923,
+        "net_change": 9
+      },
+      "request_count": {
+        "first": 0,
+        "last": 10,
+        "min": 0,
+        "max": 10,
+        "sum": 102,
+        "mean": 7.846153846153846,
+        "net_change": 10
+      },
+      "plan_count": {
+        "first": 0,
+        "last": 2,
+        "min": 0,
+        "max": 2,
+        "sum": 15,
+        "mean": 1.1538461538461537,
+        "net_change": 2
+      },
+      "artifact_count": {
+        "first": 0,
+        "last": 2,
+        "min": 0,
+        "max": 2,
+        "sum": 15,
+        "mean": 1.1538461538461537,
+        "net_change": 2
+      },
+      "artifact_metadata_cache_count": {
+        "first": 0,
+        "last": 2,
+        "min": 0,
+        "max": 2,
+        "sum": 15,
+        "mean": 1.1538461538461537,
+        "net_change": 2
+      },
+      "artifact_bytes": {
+        "first": 0,
+        "last": 36390,
+        "min": 0,
+        "max": 36390,
+        "sum": 274323,
+        "mean": 21101.76923076923,
+        "net_change": 36390
+      },
+      "artifact_memory_content_bytes": {
+        "first": 0,
+        "last": 0,
+        "min": 0,
+        "max": 0,
+        "sum": 0,
+        "mean": 0,
+        "net_change": 0
+      },
+      "journal_bytes": {
+        "first": 0,
+        "last": 1236843,
+        "min": 0,
+        "max": 1236843,
+        "sum": 13500841,
+        "mean": 1038526.2307692308,
+        "net_change": 1236843
+      },
+      "job_count_recomputations": {
+        "first": 0,
+        "last": 101,
+        "min": 0,
+        "max": 101,
+        "sum": 1102,
+        "mean": 84.76923076923077,
+        "net_change": 101
+      },
+      "machine_snapshot_refreshes": {
+        "first": 1,
+        "last": 237,
+        "min": 1,
+        "max": 237,
+        "sum": 2630,
+        "mean": 202.30769230769232,
+        "net_change": 236
+      }
+    }
+  },
+  "harness_memory": {
+    "samples": 13,
+    "fields": {
+      "rss": {
+        "first": 106381312,
+        "last": 57950208,
+        "min": 53657600,
+        "max": 106381312,
+        "sum": 880508928,
+        "mean": 67731456,
+        "net_change": -48431104
+      },
+      "heapTotal": {
+        "first": 36093952,
+        "last": 19841024,
+        "min": 19316736,
+        "max": 36093952,
+        "sum": 271302656,
+        "mean": 20869435.076923076,
+        "net_change": -16252928
+      },
+      "heapUsed": {
+        "first": 17398416,
+        "last": 17306248,
+        "min": 16797400,
+        "max": 17793056,
+        "sum": 226223688,
+        "mean": 17401822.153846152,
+        "net_change": -92168
+      },
+      "external": {
+        "first": 3855344,
+        "last": 3836965,
+        "min": 3779830,
+        "max": 4068741,
+        "sum": 51008679,
+        "mean": 3923744.5384615385,
+        "net_change": -18379
+      },
+      "arrayBuffers": {
+        "first": 259696,
+        "last": 241277,
+        "min": 184142,
+        "max": 473053,
+        "sum": 4264775,
+        "mean": 328059.6153846154,
+        "net_change": -18419
+      }
+    }
+  },
+  "mcp_latency": {
+    "get_capabilities": {
+      "count": 1,
+      "failures": 0,
+      "sum_ms": 16.84408400000001,
+      "min_ms": 16.84408400000001,
+      "max_ms": 16.84408400000001,
+      "histogram": [
+        {
+          "upper_ms": 1,
+          "count": 0
+        },
+        {
+          "upper_ms": 5,
+          "count": 0
+        },
+        {
+          "upper_ms": 10,
+          "count": 0
+        },
+        {
+          "upper_ms": 25,
+          "count": 1
+        },
+        {
+          "upper_ms": 50,
+          "count": 0
+        },
+        {
+          "upper_ms": 100,
+          "count": 0
+        },
+        {
+          "upper_ms": 250,
+          "count": 0
+        },
+        {
+          "upper_ms": 500,
+          "count": 0
+        },
+        {
+          "upper_ms": 1000,
+          "count": 0
+        },
+        {
+          "upper_ms": 2000,
+          "count": 0
+        },
+        {
+          "upper_ms": 5000,
+          "count": 0
+        },
+        {
+          "upper_ms": 10000,
+          "count": 0
+        },
+        {
+          "upper_ms": 20000,
+          "count": 0
+        },
+        {
+          "upper_ms": 40000,
+          "count": 0
+        },
+        {
+          "upper_ms": null,
+          "count": 0
+        }
+      ],
+      "mean_ms": 16.84408400000001,
+      "peak_ms": 16.84408400000001,
+      "p95_upper_bound_ms": 25,
+      "p95_method": "bounded histogram upper bound; null means over 40000 ms"
+    },
+    "get_status": {
+      "count": 43,
+      "failures": 0,
+      "sum_ms": 173.9158759999939,
+      "min_ms": 1.8042499999937718,
+      "max_ms": 36.108875000005355,
+      "histogram": [
+        {
+          "upper_ms": 1,
+          "count": 0
+        },
+        {
+          "upper_ms": 5,
+          "count": 38
+        },
+        {
+          "upper_ms": 10,
+          "count": 2
+        },
+        {
+          "upper_ms": 25,
+          "count": 2
+        },
+        {
+          "upper_ms": 50,
+          "count": 1
+        },
+        {
+          "upper_ms": 100,
+          "count": 0
+        },
+        {
+          "upper_ms": 250,
+          "count": 0
+        },
+        {
+          "upper_ms": 500,
+          "count": 0
+        },
+        {
+          "upper_ms": 1000,
+          "count": 0
+        },
+        {
+          "upper_ms": 2000,
+          "count": 0
+        },
+        {
+          "upper_ms": 5000,
+          "count": 0
+        },
+        {
+          "upper_ms": 10000,
+          "count": 0
+        },
+        {
+          "upper_ms": 20000,
+          "count": 0
+        },
+        {
+          "upper_ms": 40000,
+          "count": 0
+        },
+        {
+          "upper_ms": null,
+          "count": 0
+        }
+      ],
+      "mean_ms": 4.044555255813811,
+      "peak_ms": 36.108875000005355,
+      "p95_upper_bound_ms": 25,
+      "p95_method": "bounded histogram upper bound; null means over 40000 ms"
+    },
+    "get_configuration": {
+      "count": 1,
+      "failures": 0,
+      "sum_ms": 4.656458999999984,
+      "min_ms": 4.656458999999984,
+      "max_ms": 4.656458999999984,
+      "histogram": [
+        {
+          "upper_ms": 1,
+          "count": 0
+        },
+        {
+          "upper_ms": 5,
+          "count": 1
+        },
+        {
+          "upper_ms": 10,
+          "count": 0
+        },
+        {
+          "upper_ms": 25,
+          "count": 0
+        },
+        {
+          "upper_ms": 50,
+          "count": 0
+        },
+        {
+          "upper_ms": 100,
+          "count": 0
+        },
+        {
+          "upper_ms": 250,
+          "count": 0
+        },
+        {
+          "upper_ms": 500,
+          "count": 0
+        },
+        {
+          "upper_ms": 1000,
+          "count": 0
+        },
+        {
+          "upper_ms": 2000,
+          "count": 0
+        },
+        {
+          "upper_ms": 5000,
+          "count": 0
+        },
+        {
+          "upper_ms": 10000,
+          "count": 0
+        },
+        {
+          "upper_ms": 20000,
+          "count": 0
+        },
+        {
+          "upper_ms": 40000,
+          "count": 0
+        },
+        {
+          "upper_ms": null,
+          "count": 0
+        }
+      ],
+      "mean_ms": 4.656458999999984,
+      "peak_ms": 4.656458999999984,
+      "p95_upper_bound_ms": 5,
+      "p95_method": "bounded histogram upper bound; null means over 40000 ms"
+    },
+    "request_control_session": {
+      "count": 1,
+      "failures": 0,
+      "sum_ms": 35.418042000000014,
+      "min_ms": 35.418042000000014,
+      "max_ms": 35.418042000000014,
+      "histogram": [
+        {
+          "upper_ms": 1,
+          "count": 0
+        },
+        {
+          "upper_ms": 5,
+          "count": 0
+        },
+        {
+          "upper_ms": 10,
+          "count": 0
+        },
+        {
+          "upper_ms": 25,
+          "count": 0
+        },
+        {
+          "upper_ms": 50,
+          "count": 1
+        },
+        {
+          "upper_ms": 100,
+          "count": 0
+        },
+        {
+          "upper_ms": 250,
+          "count": 0
+        },
+        {
+          "upper_ms": 500,
+          "count": 0
+        },
+        {
+          "upper_ms": 1000,
+          "count": 0
+        },
+        {
+          "upper_ms": 2000,
+          "count": 0
+        },
+        {
+          "upper_ms": 5000,
+          "count": 0
+        },
+        {
+          "upper_ms": 10000,
+          "count": 0
+        },
+        {
+          "upper_ms": 20000,
+          "count": 0
+        },
+        {
+          "upper_ms": 40000,
+          "count": 0
+        },
+        {
+          "upper_ms": null,
+          "count": 0
+        }
+      ],
+      "mean_ms": 35.418042000000014,
+      "peak_ms": 35.418042000000014,
+      "p95_upper_bound_ms": 50,
+      "p95_method": "bounded histogram upper bound; null means over 40000 ms"
+    },
+    "set_machine_enabled": {
+      "count": 1,
+      "failures": 0,
+      "sum_ms": 11.5847500000001,
+      "min_ms": 11.5847500000001,
+      "max_ms": 11.5847500000001,
+      "histogram": [
+        {
+          "upper_ms": 1,
+          "count": 0
+        },
+        {
+          "upper_ms": 5,
+          "count": 0
+        },
+        {
+          "upper_ms": 10,
+          "count": 0
+        },
+        {
+          "upper_ms": 25,
+          "count": 1
+        },
+        {
+          "upper_ms": 50,
+          "count": 0
+        },
+        {
+          "upper_ms": 100,
+          "count": 0
+        },
+        {
+          "upper_ms": 250,
+          "count": 0
+        },
+        {
+          "upper_ms": 500,
+          "count": 0
+        },
+        {
+          "upper_ms": 1000,
+          "count": 0
+        },
+        {
+          "upper_ms": 2000,
+          "count": 0
+        },
+        {
+          "upper_ms": 5000,
+          "count": 0
+        },
+        {
+          "upper_ms": 10000,
+          "count": 0
+        },
+        {
+          "upper_ms": 20000,
+          "count": 0
+        },
+        {
+          "upper_ms": 40000,
+          "count": 0
+        },
+        {
+          "upper_ms": null,
+          "count": 0
+        }
+      ],
+      "mean_ms": 11.5847500000001,
+      "peak_ms": 11.5847500000001,
+      "p95_upper_bound_ms": 25,
+      "p95_method": "bounded histogram upper bound; null means over 40000 ms"
+    },
+    "get_operation": {
+      "count": 36,
+      "failures": 0,
+      "sum_ms": 381.6808319999992,
+      "min_ms": 1.934957999998005,
+      "max_ms": 32.83670799999982,
+      "histogram": [
+        {
+          "upper_ms": 1,
+          "count": 0
+        },
+        {
+          "upper_ms": 5,
+          "count": 15
+        },
+        {
+          "upper_ms": 10,
+          "count": 8
+        },
+        {
+          "upper_ms": 25,
+          "count": 9
+        },
+        {
+          "upper_ms": 50,
+          "count": 4
+        },
+        {
+          "upper_ms": 100,
+          "count": 0
+        },
+        {
+          "upper_ms": 250,
+          "count": 0
+        },
+        {
+          "upper_ms": 500,
+          "count": 0
+        },
+        {
+          "upper_ms": 1000,
+          "count": 0
+        },
+        {
+          "upper_ms": 2000,
+          "count": 0
+        },
+        {
+          "upper_ms": 5000,
+          "count": 0
+        },
+        {
+          "upper_ms": 10000,
+          "count": 0
+        },
+        {
+          "upper_ms": 20000,
+          "count": 0
+        },
+        {
+          "upper_ms": 40000,
+          "count": 0
+        },
+        {
+          "upper_ms": null,
+          "count": 0
+        }
+      ],
+      "mean_ms": 10.602245333333311,
+      "peak_ms": 32.83670799999982,
+      "p95_upper_bound_ms": 50,
+      "p95_method": "bounded histogram upper bound; null means over 40000 ms"
+    },
+    "home_machine": {
+      "count": 1,
+      "failures": 0,
+      "sum_ms": 8.320541000000048,
+      "min_ms": 8.320541000000048,
+      "max_ms": 8.320541000000048,
+      "histogram": [
+        {
+          "upper_ms": 1,
+          "count": 0
+        },
+        {
+          "upper_ms": 5,
+          "count": 0
+        },
+        {
+          "upper_ms": 10,
+          "count": 1
+        },
+        {
+          "upper_ms": 25,
+          "count": 0
+        },
+        {
+          "upper_ms": 50,
+          "count": 0
+        },
+        {
+          "upper_ms": 100,
+          "count": 0
+        },
+        {
+          "upper_ms": 250,
+          "count": 0
+        },
+        {
+          "upper_ms": 500,
+          "count": 0
+        },
+        {
+          "upper_ms": 1000,
+          "count": 0
+        },
+        {
+          "upper_ms": 2000,
+          "count": 0
+        },
+        {
+          "upper_ms": 5000,
+          "count": 0
+        },
+        {
+          "upper_ms": 10000,
+          "count": 0
+        },
+        {
+          "upper_ms": 20000,
+          "count": 0
+        },
+        {
+          "upper_ms": 40000,
+          "count": 0
+        },
+        {
+          "upper_ms": null,
+          "count": 0
+        }
+      ],
+      "mean_ms": 8.320541000000048,
+      "peak_ms": 8.320541000000048,
+      "p95_upper_bound_ms": 10,
+      "p95_method": "bounded histogram upper bound; null means over 40000 ms"
+    },
+    "import_job": {
+      "count": 1,
+      "failures": 0,
+      "sum_ms": 27.726041000000123,
+      "min_ms": 27.726041000000123,
+      "max_ms": 27.726041000000123,
+      "histogram": [
+        {
+          "upper_ms": 1,
+          "count": 0
+        },
+        {
+          "upper_ms": 5,
+          "count": 0
+        },
+        {
+          "upper_ms": 10,
+          "count": 0
+        },
+        {
+          "upper_ms": 25,
+          "count": 0
+        },
+        {
+          "upper_ms": 50,
+          "count": 1
+        },
+        {
+          "upper_ms": 100,
+          "count": 0
+        },
+        {
+          "upper_ms": 250,
+          "count": 0
+        },
+        {
+          "upper_ms": 500,
+          "count": 0
+        },
+        {
+          "upper_ms": 1000,
+          "count": 0
+        },
+        {
+          "upper_ms": 2000,
+          "count": 0
+        },
+        {
+          "upper_ms": 5000,
+          "count": 0
+        },
+        {
+          "upper_ms": 10000,
+          "count": 0
+        },
+        {
+          "upper_ms": 20000,
+          "count": 0
+        },
+        {
+          "upper_ms": 40000,
+          "count": 0
+        },
+        {
+          "upper_ms": null,
+          "count": 0
+        }
+      ],
+      "mean_ms": 27.726041000000123,
+      "peak_ms": 27.726041000000123,
+      "p95_upper_bound_ms": 50,
+      "p95_method": "bounded histogram upper bound; null means over 40000 ms"
+    },
+    "validate_imported_job": {
+      "count": 1,
+      "failures": 0,
+      "sum_ms": 1.1307500000000346,
+      "min_ms": 1.1307500000000346,
+      "max_ms": 1.1307500000000346,
+      "histogram": [
+        {
+          "upper_ms": 1,
+          "count": 0
+        },
+        {
+          "upper_ms": 5,
+          "count": 1
+        },
+        {
+          "upper_ms": 10,
+          "count": 0
+        },
+        {
+          "upper_ms": 25,
+          "count": 0
+        },
+        {
+          "upper_ms": 50,
+          "count": 0
+        },
+        {
+          "upper_ms": 100,
+          "count": 0
+        },
+        {
+          "upper_ms": 250,
+          "count": 0
+        },
+        {
+          "upper_ms": 500,
+          "count": 0
+        },
+        {
+          "upper_ms": 1000,
+          "count": 0
+        },
+        {
+          "upper_ms": 2000,
+          "count": 0
+        },
+        {
+          "upper_ms": 5000,
+          "count": 0
+        },
+        {
+          "upper_ms": 10000,
+          "count": 0
+        },
+        {
+          "upper_ms": 20000,
+          "count": 0
+        },
+        {
+          "upper_ms": 40000,
+          "count": 0
+        },
+        {
+          "upper_ms": null,
+          "count": 0
+        }
+      ],
+      "mean_ms": 1.1307500000000346,
+      "peak_ms": 1.1307500000000346,
+      "p95_upper_bound_ms": 5,
+      "p95_method": "bounded histogram upper bound; null means over 40000 ms"
+    },
+    "get_artifact": {
+      "count": 1,
+      "failures": 0,
+      "sum_ms": 0.9785840000001826,
+      "min_ms": 0.9785840000001826,
+      "max_ms": 0.9785840000001826,
+      "histogram": [
+        {
+          "upper_ms": 1,
+          "count": 1
+        },
+        {
+          "upper_ms": 5,
+          "count": 0
+        },
+        {
+          "upper_ms": 10,
+          "count": 0
+        },
+        {
+          "upper_ms": 25,
+          "count": 0
+        },
+        {
+          "upper_ms": 50,
+          "count": 0
+        },
+        {
+          "upper_ms": 100,
+          "count": 0
+        },
+        {
+          "upper_ms": 250,
+          "count": 0
+        },
+        {
+          "upper_ms": 500,
+          "count": 0
+        },
+        {
+          "upper_ms": 1000,
+          "count": 0
+        },
+        {
+          "upper_ms": 2000,
+          "count": 0
+        },
+        {
+          "upper_ms": 5000,
+          "count": 0
+        },
+        {
+          "upper_ms": 10000,
+          "count": 0
+        },
+        {
+          "upper_ms": 20000,
+          "count": 0
+        },
+        {
+          "upper_ms": 40000,
+          "count": 0
+        },
+        {
+          "upper_ms": null,
+          "count": 0
+        }
+      ],
+      "mean_ms": 0.9785840000001826,
+      "peak_ms": 0.9785840000001826,
+      "p95_upper_bound_ms": 1,
+      "p95_method": "bounded histogram upper bound; null means over 40000 ms"
+    },
+    "prepare_job": {
+      "count": 1,
+      "failures": 0,
+      "sum_ms": 16.99133299999994,
+      "min_ms": 16.99133299999994,
+      "max_ms": 16.99133299999994,
+      "histogram": [
+        {
+          "upper_ms": 1,
+          "count": 0
+        },
+        {
+          "upper_ms": 5,
+          "count": 0
+        },
+        {
+          "upper_ms": 10,
+          "count": 0
+        },
+        {
+          "upper_ms": 25,
+          "count": 1
+        },
+        {
+          "upper_ms": 50,
+          "count": 0
+        },
+        {
+          "upper_ms": 100,
+          "count": 0
+        },
+        {
+          "upper_ms": 250,
+          "count": 0
+        },
+        {
+          "upper_ms": 500,
+          "count": 0
+        },
+        {
+          "upper_ms": 1000,
+          "count": 0
+        },
+        {
+          "upper_ms": 2000,
+          "count": 0
+        },
+        {
+          "upper_ms": 5000,
+          "count": 0
+        },
+        {
+          "upper_ms": 10000,
+          "count": 0
+        },
+        {
+          "upper_ms": 20000,
+          "count": 0
+        },
+        {
+          "upper_ms": 40000,
+          "count": 0
+        },
+        {
+          "upper_ms": null,
+          "count": 0
+        }
+      ],
+      "mean_ms": 16.99133299999994,
+      "peak_ms": 16.99133299999994,
+      "p95_upper_bound_ms": 25,
+      "p95_method": "bounded histogram upper bound; null means over 40000 ms"
+    },
+    "validate_job": {
+      "count": 1,
+      "failures": 0,
+      "sum_ms": 6.486292000000049,
+      "min_ms": 6.486292000000049,
+      "max_ms": 6.486292000000049,
+      "histogram": [
+        {
+          "upper_ms": 1,
+          "count": 0
+        },
+        {
+          "upper_ms": 5,
+          "count": 0
+        },
+        {
+          "upper_ms": 10,
+          "count": 1
+        },
+        {
+          "upper_ms": 25,
+          "count": 0
+        },
+        {
+          "upper_ms": 50,
+          "count": 0
+        },
+        {
+          "upper_ms": 100,
+          "count": 0
+        },
+        {
+          "upper_ms": 250,
+          "count": 0
+        },
+        {
+          "upper_ms": 500,
+          "count": 0
+        },
+        {
+          "upper_ms": 1000,
+          "count": 0
+        },
+        {
+          "upper_ms": 2000,
+          "count": 0
+        },
+        {
+          "upper_ms": 5000,
+          "count": 0
+        },
+        {
+          "upper_ms": 10000,
+          "count": 0
+        },
+        {
+          "upper_ms": 20000,
+          "count": 0
+        },
+        {
+          "upper_ms": 40000,
+          "count": 0
+        },
+        {
+          "upper_ms": null,
+          "count": 0
+        }
+      ],
+      "mean_ms": 6.486292000000049,
+      "peak_ms": 6.486292000000049,
+      "p95_upper_bound_ms": 10,
+      "p95_method": "bounded histogram upper bound; null means over 40000 ms"
+    },
+    "start_job": {
+      "count": 1,
+      "failures": 0,
+      "sum_ms": 8.36870799999997,
+      "min_ms": 8.36870799999997,
+      "max_ms": 8.36870799999997,
+      "histogram": [
+        {
+          "upper_ms": 1,
+          "count": 0
+        },
+        {
+          "upper_ms": 5,
+          "count": 0
+        },
+        {
+          "upper_ms": 10,
+          "count": 1
+        },
+        {
+          "upper_ms": 25,
+          "count": 0
+        },
+        {
+          "upper_ms": 50,
+          "count": 0
+        },
+        {
+          "upper_ms": 100,
+          "count": 0
+        },
+        {
+          "upper_ms": 250,
+          "count": 0
+        },
+        {
+          "upper_ms": 500,
+          "count": 0
+        },
+        {
+          "upper_ms": 1000,
+          "count": 0
+        },
+        {
+          "upper_ms": 2000,
+          "count": 0
+        },
+        {
+          "upper_ms": 5000,
+          "count": 0
+        },
+        {
+          "upper_ms": 10000,
+          "count": 0
+        },
+        {
+          "upper_ms": 20000,
+          "count": 0
+        },
+        {
+          "upper_ms": 40000,
+          "count": 0
+        },
+        {
+          "upper_ms": null,
+          "count": 0
+        }
+      ],
+      "mean_ms": 8.36870799999997,
+      "peak_ms": 8.36870799999997,
+      "p95_upper_bound_ms": 10,
+      "p95_method": "bounded histogram upper bound; null means over 40000 ms"
+    },
+    "get_events": {
+      "count": 2,
+      "failures": 0,
+      "sum_ms": 6.523875000009866,
+      "min_ms": 2.7097089999988384,
+      "max_ms": 3.814166000011028,
+      "histogram": [
+        {
+          "upper_ms": 1,
+          "count": 0
+        },
+        {
+          "upper_ms": 5,
+          "count": 2
+        },
+        {
+          "upper_ms": 10,
+          "count": 0
+        },
+        {
+          "upper_ms": 25,
+          "count": 0
+        },
+        {
+          "upper_ms": 50,
+          "count": 0
+        },
+        {
+          "upper_ms": 100,
+          "count": 0
+        },
+        {
+          "upper_ms": 250,
+          "count": 0
+        },
+        {
+          "upper_ms": 500,
+          "count": 0
+        },
+        {
+          "upper_ms": 1000,
+          "count": 0
+        },
+        {
+          "upper_ms": 2000,
+          "count": 0
+        },
+        {
+          "upper_ms": 5000,
+          "count": 0
+        },
+        {
+          "upper_ms": 10000,
+          "count": 0
+        },
+        {
+          "upper_ms": 20000,
+          "count": 0
+        },
+        {
+          "upper_ms": 40000,
+          "count": 0
+        },
+        {
+          "upper_ms": null,
+          "count": 0
+        }
+      ],
+      "mean_ms": 3.261937500004933,
+      "peak_ms": 3.814166000011028,
+      "p95_upper_bound_ms": 5,
+      "p95_method": "bounded histogram upper bound; null means over 40000 ms"
+    },
+    "plan_motion": {
+      "count": 2,
+      "failures": 0,
+      "sum_ms": 4.043875000003027,
+      "min_ms": 1.9142080000019632,
+      "max_ms": 2.1296670000010636,
+      "histogram": [
+        {
+          "upper_ms": 1,
+          "count": 0
+        },
+        {
+          "upper_ms": 5,
+          "count": 2
+        },
+        {
+          "upper_ms": 10,
+          "count": 0
+        },
+        {
+          "upper_ms": 25,
+          "count": 0
+        },
+        {
+          "upper_ms": 50,
+          "count": 0
+        },
+        {
+          "upper_ms": 100,
+          "count": 0
+        },
+        {
+          "upper_ms": 250,
+          "count": 0
+        },
+        {
+          "upper_ms": 500,
+          "count": 0
+        },
+        {
+          "upper_ms": 1000,
+          "count": 0
+        },
+        {
+          "upper_ms": 2000,
+          "count": 0
+        },
+        {
+          "upper_ms": 5000,
+          "count": 0
+        },
+        {
+          "upper_ms": 10000,
+          "count": 0
+        },
+        {
+          "upper_ms": 20000,
+          "count": 0
+        },
+        {
+          "upper_ms": 40000,
+          "count": 0
+        },
+        {
+          "upper_ms": null,
+          "count": 0
+        }
+      ],
+      "mean_ms": 2.0219375000015134,
+      "peak_ms": 2.1296670000010636,
+      "p95_upper_bound_ms": 5,
+      "p95_method": "bounded histogram upper bound; null means over 40000 ms"
+    },
+    "execute_motion": {
+      "count": 2,
+      "failures": 0,
+      "sum_ms": 11.737457999999606,
+      "min_ms": 5.593332999997074,
+      "max_ms": 6.144125000002532,
+      "histogram": [
+        {
+          "upper_ms": 1,
+          "count": 0
+        },
+        {
+          "upper_ms": 5,
+          "count": 0
+        },
+        {
+          "upper_ms": 10,
+          "count": 2
+        },
+        {
+          "upper_ms": 25,
+          "count": 0
+        },
+        {
+          "upper_ms": 50,
+          "count": 0
+        },
+        {
+          "upper_ms": 100,
+          "count": 0
+        },
+        {
+          "upper_ms": 250,
+          "count": 0
+        },
+        {
+          "upper_ms": 500,
+          "count": 0
+        },
+        {
+          "upper_ms": 1000,
+          "count": 0
+        },
+        {
+          "upper_ms": 2000,
+          "count": 0
+        },
+        {
+          "upper_ms": 5000,
+          "count": 0
+        },
+        {
+          "upper_ms": 10000,
+          "count": 0
+        },
+        {
+          "upper_ms": 20000,
+          "count": 0
+        },
+        {
+          "upper_ms": 40000,
+          "count": 0
+        },
+        {
+          "upper_ms": null,
+          "count": 0
+        }
+      ],
+      "mean_ms": 5.868728999999803,
+      "peak_ms": 6.144125000002532,
+      "p95_upper_bound_ms": 10,
+      "p95_method": "bounded histogram upper bound; null means over 40000 ms"
+    },
+    "capture_camera": {
+      "count": 2,
+      "failures": 0,
+      "sum_ms": 10.313958000002458,
+      "min_ms": 5.080500000000029,
+      "max_ms": 5.233458000002429,
+      "histogram": [
+        {
+          "upper_ms": 1,
+          "count": 0
+        },
+        {
+          "upper_ms": 5,
+          "count": 0
+        },
+        {
+          "upper_ms": 10,
+          "count": 2
+        },
+        {
+          "upper_ms": 25,
+          "count": 0
+        },
+        {
+          "upper_ms": 50,
+          "count": 0
+        },
+        {
+          "upper_ms": 100,
+          "count": 0
+        },
+        {
+          "upper_ms": 250,
+          "count": 0
+        },
+        {
+          "upper_ms": 500,
+          "count": 0
+        },
+        {
+          "upper_ms": 1000,
+          "count": 0
+        },
+        {
+          "upper_ms": 2000,
+          "count": 0
+        },
+        {
+          "upper_ms": 5000,
+          "count": 0
+        },
+        {
+          "upper_ms": 10000,
+          "count": 0
+        },
+        {
+          "upper_ms": 20000,
+          "count": 0
+        },
+        {
+          "upper_ms": 40000,
+          "count": 0
+        },
+        {
+          "upper_ms": null,
+          "count": 0
+        }
+      ],
+      "mean_ms": 5.156979000001229,
+      "peak_ms": 5.233458000002429,
+      "p95_upper_bound_ms": 10,
+      "p95_method": "bounded histogram upper bound; null means over 40000 ms"
+    },
+    "get_native_artifact": {
+      "count": 2,
+      "failures": 0,
+      "sum_ms": 5.026499999999942,
+      "min_ms": 1.8273330000010901,
+      "max_ms": 3.1991669999988517,
+      "histogram": [
+        {
+          "upper_ms": 1,
+          "count": 0
+        },
+        {
+          "upper_ms": 5,
+          "count": 2
+        },
+        {
+          "upper_ms": 10,
+          "count": 0
+        },
+        {
+          "upper_ms": 25,
+          "count": 0
+        },
+        {
+          "upper_ms": 50,
+          "count": 0
+        },
+        {
+          "upper_ms": 100,
+          "count": 0
+        },
+        {
+          "upper_ms": 250,
+          "count": 0
+        },
+        {
+          "upper_ms": 500,
+          "count": 0
+        },
+        {
+          "upper_ms": 1000,
+          "count": 0
+        },
+        {
+          "upper_ms": 2000,
+          "count": 0
+        },
+        {
+          "upper_ms": 5000,
+          "count": 0
+        },
+        {
+          "upper_ms": 10000,
+          "count": 0
+        },
+        {
+          "upper_ms": 20000,
+          "count": 0
+        },
+        {
+          "upper_ms": 40000,
+          "count": 0
+        },
+        {
+          "upper_ms": null,
+          "count": 0
+        }
+      ],
+      "mean_ms": 2.513249999999971,
+      "peak_ms": 3.1991669999988517,
+      "p95_upper_bound_ms": 5,
+      "p95_method": "bounded histogram upper bound; null means over 40000 ms"
+    },
+    "renew_control_session": {
+      "count": 1,
+      "failures": 0,
+      "sum_ms": 2.796582999995735,
+      "min_ms": 2.796582999995735,
+      "max_ms": 2.796582999995735,
+      "histogram": [
+        {
+          "upper_ms": 1,
+          "count": 0
+        },
+        {
+          "upper_ms": 5,
+          "count": 1
+        },
+        {
+          "upper_ms": 10,
+          "count": 0
+        },
+        {
+          "upper_ms": 25,
+          "count": 0
+        },
+        {
+          "upper_ms": 50,
+          "count": 0
+        },
+        {
+          "upper_ms": 100,
+          "count": 0
+        },
+        {
+          "upper_ms": 250,
+          "count": 0
+        },
+        {
+          "upper_ms": 500,
+          "count": 0
+        },
+        {
+          "upper_ms": 1000,
+          "count": 0
+        },
+        {
+          "upper_ms": 2000,
+          "count": 0
+        },
+        {
+          "upper_ms": 5000,
+          "count": 0
+        },
+        {
+          "upper_ms": 10000,
+          "count": 0
+        },
+        {
+          "upper_ms": 20000,
+          "count": 0
+        },
+        {
+          "upper_ms": 40000,
+          "count": 0
+        },
+        {
+          "upper_ms": null,
+          "count": 0
+        }
+      ],
+      "mean_ms": 2.796582999995735,
+      "peak_ms": 2.796582999995735,
+      "p95_upper_bound_ms": 5,
+      "p95_method": "bounded histogram upper bound; null means over 40000 ms"
+    },
+    "release_control_session": {
+      "count": 1,
+      "failures": 0,
+      "sum_ms": 6.505457999999635,
+      "min_ms": 6.505457999999635,
+      "max_ms": 6.505457999999635,
+      "histogram": [
+        {
+          "upper_ms": 1,
+          "count": 0
+        },
+        {
+          "upper_ms": 5,
+          "count": 0
+        },
+        {
+          "upper_ms": 10,
+          "count": 1
+        },
+        {
+          "upper_ms": 25,
+          "count": 0
+        },
+        {
+          "upper_ms": 50,
+          "count": 0
+        },
+        {
+          "upper_ms": 100,
+          "count": 0
+        },
+        {
+          "upper_ms": 250,
+          "count": 0
+        },
+        {
+          "upper_ms": 500,
+          "count": 0
+        },
+        {
+          "upper_ms": 1000,
+          "count": 0
+        },
+        {
+          "upper_ms": 2000,
+          "count": 0
+        },
+        {
+          "upper_ms": 5000,
+          "count": 0
+        },
+        {
+          "upper_ms": 10000,
+          "count": 0
+        },
+        {
+          "upper_ms": 20000,
+          "count": 0
+        },
+        {
+          "upper_ms": 40000,
+          "count": 0
+        },
+        {
+          "upper_ms": null,
+          "count": 0
+        }
+      ],
+      "mean_ms": 6.505457999999635,
+      "peak_ms": 6.505457999999635,
+      "p95_upper_bound_ms": 10,
+      "p95_method": "bounded histogram upper bound; null means over 40000 ms"
+    }
+  },
+  "paired_read_latency_baseline": {
+    "direct_authenticated_http": {
+      "samples": 20,
+      "min_ms": 0.9520420000000058,
+      "peak_ms": 12.402458000000024,
+      "p95_ms": 2.1754999999999995,
+      "median_ms": 1.126041999999984,
+      "mean_ms": 1.8991562500000043
+    },
+    "official_mcp_stdio": {
+      "samples": 20,
+      "min_ms": 1.816332999999986,
+      "peak_ms": 4.002415999999982,
+      "p95_ms": 3.6086670000000254,
+      "median_ms": 2.125165999999922,
+      "mean_ms": 2.4786269999999972
+    },
+    "per_pair_overhead_ms": {
+      "samples": 20,
+      "min_ms": 0,
+      "peak_ms": 2.116957999999954,
+      "p95_ms": 1.7257919999999558,
+      "median_ms": 0.9680000000000746,
+      "mean_ms": 1.019160299999993
+    },
+    "signed_mean_overhead_ms": 0.579470749999993,
+    "sampling": "20 sequential paired get_status reads before the job; direct path includes connection/token file reads. Nonnegative overhead distribution clips negative scheduling noise; signed mean is preserved."
+  },
+  "native_process_rss": {
+    "supplied_pid": 51673,
+    "identity": "Thu Sep 10 22:09:04 2026|java",
+    "provenance": "Read-only ps of caller-supplied local JVM PID; stable executable/start time checked. PID-to-endpoint binding is caller-provided.",
+    "samples": 13,
+    "fields": {
+      "rss_bytes": {
+        "first": 121110528,
+        "last": 168771584,
+        "min": 121110528,
+        "max": 700514304,
+        "sum": 5241159680,
+        "mean": 403166129.2307692,
+        "net_change": 47661056
+      }
+    }
+  },
+  "event_resync_count": 0,
+  "ambient_cycles": 2,
+  "machine_state_after_cleanup": "Observe the final sample; lease release requests a cooperative pause and is not an emergency stop."
+}

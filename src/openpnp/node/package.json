@@ -1,0 +1,13 @@
+{
+  "name": "openpnp-codex-mcp-build",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.19.0" },
+  "scripts": { "build": "node build.mjs && node notices.mjs" },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.30.0",
+    "ajv": "8.20.0"
+  },
+  "devDependencies": { "esbuild": "0.28.2" }
+}

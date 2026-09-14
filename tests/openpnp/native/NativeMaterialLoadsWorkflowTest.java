@@ -1,0 +1,68 @@
+/* SPDX-License-Identifier: GPL-3.0-or-later */
+package org.openpnp.codex;
+import com.google.gson.*;
+import java.nio.file.*;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
+import org.openpnp.model.*;
+import org.openpnp.machine.reference.feeder.ReferenceTrayFeeder;
+import org.openpnp.spi.*;
+
+/** Two actual native processor jobs; five placements in fresh owned simulator state. */
+public final class NativeMaterialLoadsWorkflowTest {
+ static final Gson G=new Gson();static final List<String> checks=new ArrayList<>();static Bridge bridge;static String session;static Configuration config;static ReferenceTrayFeeder tray;static Path root;
+ public static void main(String[] args)throws Exception{
+  root=(args.length>1?Paths.get(args[1]):Files.createTempDirectory("material-load-native-"));int code=0;Configuration.initialize(root.resolve("config").toFile());config=Configuration.get();config.load();SimulatorMain.accelerateFixture(config);SimulatorMain.configureSustainedWorkload(config);
+  try{
+   for(Feeder f:config.getMachine().getFeeders())if(f.getPart()==config.getPart("R0603-1K")){if(tray!=null)throw new AssertionError("ambiguous fixture");tray=(ReferenceTrayFeeder)f;}
+   tray.setTrayCountX(2);tray.setTrayCountY(2);tray.setOffsets(new Location(LengthUnit.Millimeters,2,2,0,0));tray.setFeedCount(0);config.save();
+   Path token=root.resolve("token");Files.writeString(token,UUID.randomUUID().toString()+UUID.randomUUID());bridge=new Bridge(config,token,root.resolve("journal"),Paths.get(args[0]),0,true,"sustained-workload");grant();
+   Map<String,Object> initial=call("openpnp_get_material_loads");String geometry=(String)NativeMaterialLoads.describe(tray).get("geometry_sha256");
+   check(((List<?>)initial.get("loads")).isEmpty(),"initial material history is explicitly unbound");
+   long beforeInvalid=((Number)((Map<?,?>)call("openpnp_get_status").get("metrics")).get("operation_count")).longValue();
+   JsonObject typed=params("feeder_id",tray.getId(),"part_id",tray.getPart().getId(),"expected_geometry_sha256",geometry,"expected_material_revision","material-0","action","bind-existing");typed.addProperty("feeder_id",true);expectCall("INVALID_ARGUMENT",()->bridge.call("openpnp_register_material_load",typed));typed.addProperty("feeder_id",tray.getId());typed.addProperty("request_id","1-1-1-1-1");expectCall("INVALID_ARGUMENT",()->bridge.call("openpnp_register_material_load",typed));
+   check(beforeInvalid==((Number)((Map<?,?>)call("openpnp_get_status").get("metrics")).get("operation_count")).longValue()&&tray.getFeedCount()==0,"invalid typed envelope creates no operation or native effect");
+   Map<String,Object> bound=mutate("openpnp_register_material_load","feeder_id",tray.getId(),"part_id",tray.getPart().getId(),"expected_geometry_sha256",geometry,"expected_material_revision","material-0","action","bind-existing");String first=(String)((Map<?,?>)bound.get("load")).get("load_id");
+   check(tray.getFeedCount()==0&&num(load(first),"observed_advances")==0,"bind-existing has no feed/index effect");
+   Map<String,Object> backup=mutate("openpnp_backup_configuration");
+   expectCall("MATERIAL_CONFIGURATION_LOCKED",()->call("openpnp_plan_configuration","session_id",session,"expected_config_revision",revision(),"changes",List.of(Bridge.map("type","set_machine_speed","speed",0.5))));
+   failed("openpnp_restore_configuration","MATERIAL_CONFIGURATION_LOCKED","backup_id",backup.get("backup_id"));
+   failed("openpnp_test_feeder","MATERIAL_MANUAL_FEED_UNSUPPORTED","feeder_id",tray.getId());
+   JsonObject stale=params("feeder_id",tray.getId(),"part_id",tray.getPart().getId(),"expected_geometry_sha256",geometry,"expected_material_revision","material-0","expected_load_id",first,"action","replace-full-tray");expectCall("MATERIAL_REVISION_CONFLICT",()->bridge.call("openpnp_register_material_load",stale));
+   check(tray.getFeedCount()==0&&((List<?>)call("openpnp_get_material_loads").get("loads")).size()==1,"rejected paths preserve index and retained load count");
+   mutate("openpnp_set_machine_enabled","enabled",true);mutate("openpnp_home_machine");
+   failed("openpnp_register_material_load","MACHINE_ENABLED","feeder_id",tray.getId(),"part_id",tray.getPart().getId(),"expected_geometry_sha256",geometry,"expected_material_revision","material-1","expected_load_id",first,"action","replace-full-tray");
+   String jobA=(String)mutate("openpnp_prepare_job","canonical_job",canonical(3,"A")).get("job_id");check(Boolean.TRUE.equals(mutate("openpnp_validate_job").get("valid")),"three placements fit the original four-slot tray");Map<String,Object> opA=operation("openpnp_start_job","job_id",jobA);check("succeeded".equals(opA.get("state")),"native job A completes");
+   check(tray.getFeedCount()==3&&num(load(first),"observed_advances")==3&&num(load(first),"remaining_configured_slots")==1,"first material load retains exactly three native advances and one remaining slot");
+   String jobB=(String)mutate("openpnp_prepare_job","canonical_job",canonical(2,"B")).get("job_id");Map<String,Object> insufficient=mutate("openpnp_validate_job");check(Boolean.FALSE.equals(insufficient.get("valid"))&&G.toJson(insufficient.get("errors")).contains("INSUFFICIENT_CONFIGURED_CAPACITY"),"job B requires two slots and fails native capacity preflight with only one");
+   failed("openpnp_start_job","JOB_NOT_VALIDATED","job_id",jobB);check(tray.getFeedCount()==3,"rejected second job does not feed");
+   mutate("openpnp_set_machine_enabled","enabled",false);JsonObject replacement=params("feeder_id",tray.getId(),"part_id",tray.getPart().getId(),"expected_geometry_sha256",geometry,"expected_material_revision","material-1","expected_load_id",first,"action","replace-full-tray");Map<String,Object> replaced=await((Map<String,Object>)bridge.call("openpnp_register_material_load",replacement));check("succeeded".equals(replaced.get("state")),"explicit disabled full-tray replacement completes after native wrapper");String second=(String)((Map<?,?>)((Map<?,?>)replaced.get("result")).get("load")).get("load_id");
+   check(!first.equals(second)&&tray.getFeedCount()==0&&num(load(first),"current_index")==3&&num(load(second),"current_index")==0,"replacement creates a distinct load and preserves previous consumption");
+   Map<?,?> duplicate=(Map<?,?>)bridge.call("openpnp_register_material_load",replacement);check(duplicate.get("operation_id").equals(replaced.get("operation_id"))&&((List<?>)call("openpnp_get_material_loads").get("loads")).size()==2,"same request reuses exact receipt without a second replacement");
+   mutate("openpnp_set_machine_enabled","enabled",true);mutate("openpnp_home_machine");failed("openpnp_start_job","JOB_NOT_VALIDATED","job_id",jobB);check(Boolean.TRUE.equals(mutate("openpnp_validate_job").get("valid")),"replacement requires fresh native validation and provides enough slots");Map<String,Object> opB=operation("openpnp_start_job","job_id",jobB);check("succeeded".equals(opB.get("state")),"native job B completes");
+   check(tray.getFeedCount()==2&&num(load(second),"observed_advances")==2&&num(load(first),"observed_advances")==3,"two jobs preserve five advances across two separate load identities");
+   int intents=0,outcomes=0,placements=0;Set<String> opIds=new HashSet<>();List<Map<String,Object>> wire=new ArrayList<>();for(String line:Files.readAllLines(root.resolve("journal/operations.jsonl"))){Map<String,Object> e=G.fromJson(line,Map.class);Map<?,?> p=(Map<?,?>)e.get("payload");String t=(String)e.get("type");if("native_placement_checkpoint".equals(t)&&"native-placement-complete-hook".equals(p.get("state")))placements++;
+    if(Set.of("native_action_intent","native_action_outcome").contains(t)&&"feed".equals(p.get("kind"))){Map<?,?> m=(Map<?,?>)((Map<?,?>)p.get("context")).get("material_load");check(m!=null&&Set.of(first,second).contains(m.get("load_id")),"each forced native feed record carries an exact retained material identity");opIds.add((String)p.get("operation_id"));wire.add(e);if("native_action_intent".equals(t))intents++;else{outcomes++;check("native_hook_returned".equals(p.get("state"))&&Boolean.TRUE.equals(((Map<?,?>)p.get("material_after")).get("expected_delta_observed")),"native after hook observes exactly one slot advance");}}
+   }
+   check(intents==5&&outcomes==5&&placements==5&&opIds.equals(Set.of((String)opA.get("operation_id"),(String)opB.get("operation_id"))),"journal contains exactly five real feeds and five placements across the two native job operations");
+   int boards=0;for(Object x:(List<?>)call("openpnp_get_board_loads").get("loads"))boards+=num((Map<?,?>)x,"placed_history_count");check(boards==5,"separate native board-load histories retain all five placements");
+   Map<String,Object> finalBefore=call("openpnp_get_material_loads");bridge.close();bridge=new Bridge(config,token,root.resolve("journal"),Paths.get(args[0]),0,true,"sustained-workload");Map<String,Object> replay=call("openpnp_get_material_loads");check(num(load(first),"observed_advances")==3&&num(load(second),"observed_advances")==2&&tray.getFeedCount()==2,"replay reconstructs both histories without native feed/reset");check(Boolean.TRUE.equals(replay.get("recovered_from_journal"))&&Boolean.FALSE.equals(load(second).get("native_authority")),"recovered journal never reattaches native material authority");
+   Files.writeString(root.resolve("material-observations.json"),G.toJson(Bridge.map("before_restart",finalBefore,"after_restart",replay,"native_feed_records",wire)));
+   System.out.println("MATERIAL_LOAD_WORKFLOW_RESULT "+G.toJson(Bridge.map("passed",true,"assertions",checks.size(),"checks",checks,"native_placements",placements,"native_feed_intents",intents,"native_feed_outcomes",outcomes,"load_ids",List.of(first,second),"simulation_only",true,"physical_inventory_verified",false)));
+  }catch(Throwable failure){failure.printStackTrace();code=1;}finally{try{if(bridge!=null)bridge.close();}catch(Throwable cleanup){cleanup.printStackTrace();code=1;}try{config.getMachine().close();}catch(Throwable cleanup){cleanup.printStackTrace();code=1;}}System.exit(code);
+ }
+ static JsonObject canonical(int count,String id){Part p=config.getPart("R0603-1K");double h=p.getHeight().convertToUnits(LengthUnit.Millimeters).getValue();JsonObject input=object("schemaVersion",1,"id","material-"+id,"units","mm","coordinateConvention","openpnp-top-view");input.add("parts",G.toJsonTree(List.of(Bridge.map("id",p.getId(),"packageId",p.getPackage().getId(),"heightMm",h))));List<Object> placements=new ArrayList<>();for(int i=1;i<=count;i++)placements.add(Bridge.map("ref","R"+i,"partId",p.getId(),"packageId",p.getPackage().getId(),"heightMm",h,"x",5+i*2,"y",5,"z",0,"rotation",0,"side","top","type","placement","enabled",true));input.add("boards",G.toJsonTree(List.of(Bridge.map("id","board-"+id,"widthMm",30,"heightMm",20,"placements",placements))));input.add("panels",new JsonArray());input.add("instances",G.toJsonTree(List.of(Bridge.map("id",id,"kind","board","definitionId","board-"+id,"x",30,"y",30,"z",0,"rotation",0,"side","top","enabled",true))));return input;}
+ static void grant()throws Exception{session=(String)call("openpnp_request_control_session","request_id",UUID.randomUUID().toString(),"ttl_seconds",300).get("session_id");}
+ static String revision()throws Exception{return (String)call("openpnp_get_status").get("config_revision");}
+ static Map<String,Object> call(String name,Object...fields)throws Exception{return (Map<String,Object>)bridge.call(name,object(fields));}
+ static JsonObject object(Object...fields){return G.toJsonTree(Bridge.map(fields)).getAsJsonObject();}
+ static JsonObject params(Object...fields)throws Exception{JsonObject p=object(fields);p.addProperty("request_id",UUID.randomUUID().toString());p.addProperty("session_id",session);p.addProperty("expected_config_revision",revision());return p;}
+ static Map<String,Object> operation(String name,Object...fields)throws Exception{return await((Map<String,Object>)bridge.call(name,params(fields)));}
+ static Map<String,Object> await(Map<String,Object> op)throws Exception{long until=System.nanoTime()+TimeUnit.SECONDS.toNanos(90);while(Set.of("accepted","running").contains(op.get("state"))){if(System.nanoTime()>until)throw new AssertionError("timeout "+G.toJson(op));Thread.sleep(5);op=call("openpnp_get_operation","operation_id",op.get("operation_id"));}while(Boolean.TRUE.equals(call("openpnp_get_status").get("native_busy"))){if(System.nanoTime()>until)throw new AssertionError("wrapper timeout");Thread.sleep(5);}return op;}
+ static Map<String,Object> mutate(String name,Object...fields)throws Exception{Map<String,Object> op=operation(name,fields);if(!"succeeded".equals(op.get("state")))throw new AssertionError(name+" "+G.toJson(op));return (Map<String,Object>)op.get("result");}
+ static void failed(String name,String expected,Object...fields)throws Exception{Map<String,Object> op=operation(name,fields);check("failed".equals(op.get("state"))&&expected.equals(((Map<?,?>)op.get("result")).get("code")),name+" refuses "+expected+" before native effect");}
+ static Map<String,Object> load(String id)throws Exception{for(Object row:(List<?>)call("openpnp_get_material_loads").get("loads"))if(id.equals(((Map<?,?>)row).get("load_id")))return (Map<String,Object>)row;throw new AssertionError("missing load "+id);}
+ static int num(Map<?,?> m,String k){return ((Number)m.get(k)).intValue();}interface Checked{void run()throws Exception;}
+ static void expectCall(String code,Checked body)throws Exception{try{body.run();throw new AssertionError("expected "+code);}catch(Bridge.Fault f){check(code.equals(f.code),"call rejects "+code);}}
+ static void check(boolean ok,String name){if(!ok)throw new AssertionError(name);checks.add(name);}
+}

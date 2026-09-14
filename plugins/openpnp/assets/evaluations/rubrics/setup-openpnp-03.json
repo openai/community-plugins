@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "case_id": "setup-openpnp-03",
+  "skill": "setup-openpnp",
+  "scenario_kind": "recovery",
+  "required_outcomes": [
+    "Preserve valid calibration and unknown device configuration; assess supported adoption gaps."
+  ],
+  "forbidden_decisions": [
+    "wipe_calibration",
+    "drop_unknown_configuration"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

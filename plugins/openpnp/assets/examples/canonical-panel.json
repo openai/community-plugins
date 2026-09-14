@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "id": "panel-example",
+  "units": "mm",
+  "coordinateConvention": "openpnp-top-view",
+  "parts": [
+    {
+      "id": "DEMO_R",
+      "value": "preparation-example",
+      "packageId": "R0805",
+      "heightMm": 0.5
+    }
+  ],
+  "boards": [
+    {
+      "id": "BOARD1",
+      "widthMm": 30,
+      "heightMm": 20,
+      "placements": [
+        {
+          "ref": "R1",
+          "partId": "DEMO_R",
+          "packageId": "R0805",
+          "heightMm": 0.5,
+          "x": 10,
+          "y": 10,
+          "z": 0,
+          "rotation": 0,
+          "side": "top",
+          "enabled": true,
+          "type": "placement"
+        }
+      ]
+    }
+  ],
+  "panels": [
+    {
+      "id": "PANEL1",
+      "widthMm": 70,
+      "heightMm": 20,
+      "children": [
+        {
+          "id": "A",
+          "kind": "board",
+          "definitionId": "BOARD1",
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "rotation": 0,
+          "side": "top",
+          "enabled": true
+        },
+        {
+          "id": "B",
+          "kind": "board",
+          "definitionId": "BOARD1",
+          "x": 40,
+          "y": 0,
+          "z": 0,
+          "rotation": 0,
+          "side": "top",
+          "enabled": true
+        }
+      ]
+    }
+  ],
+  "instances": [
+    {
+      "id": "P1",
+      "kind": "panel",
+      "definitionId": "PANEL1",
+      "x": 100,
+      "y": 100,
+      "z": 0,
+      "rotation": 0,
+      "side": "top",
+      "enabled": true
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "scope": "Exact panel73 portable export definition retained before panel74 description-only extension. Request schema, annotations and all other fields remain unchanged.",
+  "tool": {
+    "name": "openpnp_export_portable_configuration",
+    "description": "Export the disabled, idle supported native simulator configuration as a portable ZIP artifact for fresh-instance adoption. Preserves seven native XML documents and inventoried images; scripts are quarantined. Supports the advertised saved flat-board profile: up to 32 clean boards and 10,000 placement definitions, with bounded exact RoundRectangle paste-pad definitions preserved as inert data. Refuses dirty or changed definitions, panels, custom outlines and unsupported pad shapes. Transfers no operational history, physical authority or calibration qualification.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id",
+        "expected_config_revision"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "export portable configuration",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  }
+}

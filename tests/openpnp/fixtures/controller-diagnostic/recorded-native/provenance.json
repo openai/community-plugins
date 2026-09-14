@@ -1,0 +1,29 @@
+{
+  "scope": "Read-only copies of actual existing native attempt08 receipts; no new native executions",
+  "entries": [
+    {
+      "case": "normal",
+      "source_path": "validation/controller-next/bridge-diagnostic54/attempt-08/fixtures/normal/observation.json",
+      "sha256": "03ffdc1f37b2ac31888e20a2182a478d3ac35c8b2c74059ef3db2583f92b433b",
+      "copied_bytes": 13705
+    },
+    {
+      "case": "admission-force",
+      "source_path": "validation/controller-next/bridge-diagnostic54/attempt-08/fixtures/admission-force/observation.json",
+      "sha256": "083c331c826f36e9929f48d57c46f4881fad7f0c2e388156b0c4853fca705e5d",
+      "copied_bytes": 3181
+    },
+    {
+      "case": "outcome-force",
+      "source_path": "validation/controller-next/bridge-diagnostic54/attempt-08/fixtures/outcome-force/observation.json",
+      "sha256": "67d040776ffb5b082f03d5319841c066593f8500d090d475e891324aa64659d4",
+      "copied_bytes": 21209
+    },
+    {
+      "case": "wrapper-error",
+      "source_path": "validation/controller-next/bridge-diagnostic54/attempt-08/fixtures/wrapper-error/observation.json",
+      "sha256": "6b3eb59d6fc695771d3db8898407f6cf9deb26ae42626692d99582107db0340c",
+      "copied_bytes": 13964
+    }
+  ]
+}

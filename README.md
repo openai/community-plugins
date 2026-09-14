@@ -54,6 +54,15 @@ To fetch only Autodesk Fusion interoperability, use:
 plugins/autodesk-fusion
 ```
 
+To fetch only the OpenPnP simulator review package, use:
+
+```text
+.agents/plugins
+plugins/openpnp
+```
+
+This package-only fetch requires a separately prepared compatible OpenPnP runtime. Fetch the complete repository (leave sparse paths blank) to use the documented native build scripts and source tests.
+
 Adding a marketplace makes its catalog available to browse. It does **not**
 install, enable, or authenticate every plugin. After adding it, install only
 the plugin you want.
@@ -98,6 +107,7 @@ are picked up.
 | [Grafana Observability](plugins/grafana-observability/README.md)               | Inspect administrator-approved, read-only Grafana evidence for infrastructure, APM, logs, IoT/edge, and business KPIs.     | [Guide](plugins/grafana-observability/README.md) · [23-second demo](docs/media/grafana-production-monitoring-demo-8x.mp4) |
 | [ReviewOps Auditor + Benchmark](plugins/reviewops-auditor-benchmark/README.md) | Normalize sanitized review-run exports, audit evaluation validity, benchmark lanes, and emit shadow-only guidance offline. | [Guide](plugins/reviewops-auditor-benchmark/README.md)                                                                    |
 | [React Native to SwiftUI](plugins/react-native-to-swiftui/README.md)           | Plan a bounded React Native/Expo feature migration, then port one explicitly approved slice with deterministic SwiftUI parity checks. | [Guide](plugins/react-native-to-swiftui/README.md) |
+| [OpenPnP](plugins/openpnp/README.md) | Configure and operate the pinned native pick-and-place simulator with local control and retained recovery history; full-plan and hardware qualification remain open. | [Guide](plugins/openpnp/README.md) |
 | [Autodesk Fusion](plugins/autodesk-fusion/README.md) | Connect typed CAD/CAM operations, scoped Autodesk data, reviewed cloud recipes and engineering evidence; live qualification required. | [Guide](plugins/autodesk-fusion/README.md) |
 
 Grafana Observability requires Codex and Node.js 22.19 or newer. Its manifest
@@ -141,6 +151,12 @@ independent qualification; installation grants none of these.
 
 ```text
 Use $setup-autodesk-fusion to check the synthetic fixture and explain the available connection modes. Do not connect to Autodesk or change a real model.
+```
+
+OpenPnP requires Node.js 22.19 or newer and a separately built pinned native runtime. It includes 61 tools and 14 skills; no qualified physical-machine profile is included. Start with:
+
+```text
+Use $setup-openpnp to inspect the available simulator profile, runtime binding and qualification limits.
 ```
 
 ## Copy-paste Codex prompts

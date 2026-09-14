@@ -1,0 +1,273 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "created_at": "2026-09-11T09:20:32.775149+00:00",
+  "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+  "tool_count": 50,
+  "bridge_sha256": "3a490050f0210973981d689f15edd6827e4f272b2184ac537de0d773b4f1612f",
+  "server_sha256": "bd2dd06ea4ab1fd5e57cd8618c18d0b273a3d989555d6e78c9c8d6e0a6687e09",
+  "tool_inputs_sha256": "ccb1f6bd0df1285dc39ba1ed16020fd42ddd100b2fa9cc48321b745c5b6388a5",
+  "combined_runner": {
+    "path": "validation/native-mcp-combined-50-01/report.json",
+    "sha256": "35c407d2f930f89f5a242fa4694b5781a4a614d87495f006b7fdf399b74c46a3"
+  },
+  "runner_inputs_count": 4053,
+  "runner_inputs_unchanged": true,
+  "inputs_before": {
+    "path": "validation/native-mcp-combined-50-01/inputs-before.json",
+    "sha256": "e25c583ba36cd22b62bbed37f2227ba3f36aee2bdce1e871dd81e04423255530"
+  },
+  "inputs_after": {
+    "path": "validation/native-mcp-combined-50-01/inputs-after.json",
+    "sha256": "e25c583ba36cd22b62bbed37f2227ba3f36aee2bdce1e871dd81e04423255530"
+  },
+  "suites": [
+    {
+      "suite": "core",
+      "passed": true,
+      "duration_seconds": 17.83185529196635,
+      "launcher": "shipped start-simulator CLI",
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "launcher_cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      }
+    },
+    {
+      "suite": "vision",
+      "passed": true,
+      "duration_seconds": 4.029561584000476,
+      "launcher": "shipped start-simulator CLI",
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "launcher_cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      }
+    },
+    {
+      "suite": "placement",
+      "passed": true,
+      "duration_seconds": 8.520370790967718,
+      "launcher": "shipped start-simulator CLI",
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "launcher_cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      }
+    },
+    {
+      "suite": "recovery",
+      "passed": true,
+      "duration_seconds": 58.21773437492084,
+      "launcher": "shipped start-simulator CLI",
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "launcher_cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      }
+    },
+    {
+      "suite": "portable",
+      "passed": true,
+      "duration_seconds": 13.197290332987905,
+      "launcher": "shipped start-simulator CLI",
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "launcher_cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      }
+    },
+    {
+      "suite": "camera",
+      "passed": true,
+      "duration_seconds": 6.603089250042103,
+      "launcher": "shipped start-simulator CLI",
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "launcher_cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      }
+    },
+    {
+      "suite": "stepping",
+      "passed": true,
+      "duration_seconds": 5.818705582991242,
+      "launcher": "shipped start-simulator CLI",
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "launcher_cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      }
+    },
+    {
+      "suite": "mapped",
+      "passed": true,
+      "duration_seconds": 2.6687207909999415,
+      "launcher": "test-only existing mapped-axis fixture",
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "launcher_cleanup": {
+        "parent_exit_code": 143,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      }
+    }
+  ],
+  "native_placements_by_suite": {
+    "core": 33,
+    "vision": 1,
+    "placement": 2,
+    "recovery": 200,
+    "portable": 2,
+    "camera": 0,
+    "stepping": 2,
+    "mapped": 0
+  },
+  "total_native_placements": 240,
+  "independently_inspected": 0,
+  "camera": {
+    "frames": 16,
+    "methods": [
+      "Maximum",
+      "Mean",
+      "Euclidean",
+      "Square"
+    ],
+    "cameras": 2,
+    "modes": [
+      "raw",
+      "settled"
+    ],
+    "native_feed_delta": 0,
+    "independent_image_quality_verified": false,
+    "settling_convergence_reported_by_native_api": false
+  },
+  "stepping": {
+    "requests": 24,
+    "first_job_native_next_calls": 24,
+    "second_job_continuous_resume": true,
+    "native_feed_delta": 2,
+    "same_operation_id_preserved": true,
+    "boundary": "one native processor next() call, not one placement"
+  },
+  "mapped": {
+    "stale_native_source_refused": true,
+    "dependencies_revoked": true,
+    "zero_motion_events": true,
+    "native_feed_delta": 0,
+    "typed_snapshot_omissions": [
+      {
+        "type": "set_axis_motion_limits",
+        "target_id": "AXS18d43983d4f60616",
+        "code": "MAPPED_SOURCE_LIMITS_UNSUPPORTED",
+        "message": "Existing mapped-source soft limits require a separately validated dependent-envelope transaction"
+      },
+      {
+        "target_id": "AXS18d43983d4fea8dc",
+        "type": "set_mapped_axis_geometry",
+        "code": "MAPPED_GEOMETRY_NOT_IN_VERSION_ONE_RESTORE"
+      }
+    ],
+    "synthetic_validation_prerequisites": true,
+    "native_validation_or_calibration_performed": false,
+    "shipped_start_simulator_fixture_qualified": false
+  },
+  "recovery": {
+    "same_native_instance_after_reconnect": true,
+    "placed_at_pause": 39,
+    "final_placed": 200,
+    "mutation_replays": 0,
+    "progress_polls": 378,
+    "full_operation_reads": 7
+  },
+  "portable": {
+    "native_feed_delta": 2,
+    "repeated_launch_refused": true,
+    "exact_settings_preserved": true,
+    "source_material_unchanged": true
+  },
+  "simulation_only": true,
+  "physical_qualification": false,
+  "performance_benchmark": false,
+  "scope": "Seven shipped CLI simulator launches plus one explicit test-only pre-existing mapped-axis launcher; all use the installed packaged Bridge and actual packaged MCP. Simulated state is not physical inspection.",
+  "retained_files": {
+    "camera-runner.json": "dfdc2f972fe4f8226846eac95bdc703bb2eb074a42c27b284a692eed8c1b86dc",
+    "camera.json": "458afdeefa3dad74e86ded6531dcda5de2d2cbeee391436e71dad30d0b7d02e1",
+    "core-runner.json": "6c7e4382a7606ab4af7b0ed66af65ea88e8387829fbc162c8b291305b9e9d03c",
+    "core.json": "8f6bf6332d3161dbf0e15373c6a6df6d799dcb9185d05aee593fbeb951b4926b",
+    "mapped-runner.json": "0684814ef5407b68f19a2b8ce61b570ed0ed45a073c6d7517cba5f75d0e800a9",
+    "mapped.json": "c2ee4499aa9274142518397eaab5e24e166928569dd0b517778a500654b574b4",
+    "placement-runner.json": "1eeb251478e5ae42f85c1e880381bde66d1c9cc9bf10ec788fa0bd8db4233510",
+    "placement.json": "d22a8c3420784c572bbfc66e4fae583b7db466b6894082208b434c0a0c98e92f",
+    "portable-runner.json": "f428c042a1b42555aac3e4234ed027558a7af4dc074697a17bc0ff60d012e811",
+    "portable.json": "b715006a8e5bff1f2724836320f0c07837ce36995f073aee2d2f6bdccf2290b7",
+    "recovery-runner.json": "75291142023a4e906c60b5e4547465921550bebba8257128f72572f3ce8b19f4",
+    "recovery.json": "ecff0b91b3a0a480c1fd4417ef2dd76f88dc1b9bed8a809abf921258dd6c36d2",
+    "stepping-runner.json": "408b15c8d0c0b416741585941266a8761e4fced3b43e1ffb1a640b87aa20576d",
+    "stepping.json": "c940ceb1f1a8f9ee9b0ce2377c809e12ce558ee789725f7c5e4dcd444ff91f6f",
+    "vision-runner.json": "ab79d9ca60320d12ea4abab0d2fb3545ca424acd91a3c245e1034bd7c5cc98a5",
+    "vision.json": "0465878fa581595ff23bf18586ec0a7a7b5c58a69839d080a21a148256b78a6a"
+  }
+}

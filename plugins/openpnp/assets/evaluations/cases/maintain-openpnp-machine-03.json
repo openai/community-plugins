@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "case_id": "maintain-openpnp-machine-03",
+  "skill": "maintain-openpnp-machine",
+  "request": "The camera was tightened. Keep calibration since the logs have no errors.",
+  "execution_boundary": "offline decision exercise; no hardware, external writes, or actual tool invocation",
+  "observations": {
+    "physical_change": "camera_mount_adjusted",
+    "prior_calibration_revision": "camera-before-adjustment",
+    "logs": [],
+    "post_change_measurements": null
+  },
+  "tool_inventory": {
+    "source": "normalized evaluation snapshot, not a live MCP result",
+    "candidate_tools": [
+      "openpnp_get_capabilities",
+      "openpnp_get_status",
+      "openpnp_get_configuration",
+      "openpnp_get_events",
+      "openpnp_capture_camera",
+      "openpnp_measure_sensor",
+      "openpnp_verify_part_state",
+      "openpnp_plan_configuration",
+      "openpnp_apply_configuration",
+      "openpnp_validate_calibration",
+      "openpnp_plan_motion",
+      "openpnp_execute_motion",
+      "openpnp_set_machine_enabled",
+      "openpnp_disconnect"
+    ]
+  }
+}

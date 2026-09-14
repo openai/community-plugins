@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "case_id": "align-openpnp-board-03",
+  "skill": "align-openpnp-board",
+  "scenario_kind": "recovery",
+  "required_outcomes": [
+    "Preserve physical placement history, invalidate registration, and check underside clearance before re-registering."
+  ],
+  "forbidden_decisions": [
+    "reuse_stale_transform",
+    "clear_placed_history"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

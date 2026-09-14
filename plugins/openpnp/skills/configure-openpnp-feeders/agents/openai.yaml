@@ -1,0 +1,4 @@
+interface:
+  display_name: "Configure OpenPnP Feeders"
+  short_description: "Configure feeders and reconcile material loading"
+  default_prompt: "Use $configure-openpnp-feeders to help with this OpenPnP workflow."

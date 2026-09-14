@@ -1,0 +1,774 @@
+{
+  "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+  "bridge_version": "0.1.0",
+  "bootstrap_sha256": "c6c9ab3e882ab3c7b2f6b79f86d956c510a6fa3e4abc20f73f3c7412ab3fd696",
+  "bridge_sha256": "62b17d35cb4d39c531fdd6698dece3f41ad19f92e604e35b3fc9f8e9c8aac907",
+  "patched_native_jar_sha256": "e0a6ab35c3cdbcf355ecfa9c592751efeef69b0d2f124295ef37ea807de56bd5",
+  "runtime_manifest_sha256": "007f28c38d244186aec519de0d919b474b2dd54fc671883e8207c50ab75619de",
+  "production_source_sha256": {
+    "src/openpnp/java/org/openpnp/codex/Bridge.java": "9054d9f61ffea763af1d722d88a8873dcf4650250538aa04b2a8318ac863bfb0",
+    "src/openpnp/java/org/openpnp/codex/BuildManifest.java": "707038c3f604862a2dda606e47d3dfbea35a9374f68ab91a6944690b10e9ea8d",
+    "src/openpnp/java/org/openpnp/codex/CanonicalJobImporter.java": "d02088a1216cbcc645f380b6f6191d897500094cd0cbd73e38ea5fc6107cf8ad",
+    "src/openpnp/java/org/openpnp/codex/GuiBootstrap.java": "5b02bbf0e599a0c8563dafaa6aee59da37d78445cd49e2297983efc1ac094bf1",
+    "src/openpnp/java/org/openpnp/codex/GuiExampleScripts.java": "7ae0532aaa6aeb7397b9b8b7ae862327fd1b304d5db1f641bc4b84823c66542c",
+    "src/openpnp/java/org/openpnp/codex/GuiOwnership.java": "855c866263f3b4e8e53a3177044879fa6a4eba1ce02a0a5ba7dcb86e2d4929cb",
+    "src/openpnp/java/org/openpnp/codex/GuiSensingFixture.java": "99b177411f0288fb0c1d847d32daea4fdb9c306b64ada71a4818d1cd36223771",
+    "src/openpnp/java/org/openpnp/codex/GuiSimulatorController.java": "03e6d60d8b557d3b07d051eb7b025fc4cec72ff20b49a403653c3dd1dec1ba6e",
+    "src/openpnp/java/org/openpnp/codex/IsolatedPreferencesFactory.java": "4e2f804606abb7d5257f480f55642755b952b41d24dd168cac5b2dfeec2372bc",
+    "src/openpnp/java/org/openpnp/codex/NativeActionLedger.java": "bc525ef9fa01905a07a45682d337c2e43f028970896afc8a1557c57776ef1e57",
+    "src/openpnp/java/org/openpnp/codex/NativeAdoptedSimulatorMain.java": "b44a9e8c4d3429c8471986290f81054667f9a34f8585023f6ed24bcc292127fd",
+    "src/openpnp/java/org/openpnp/codex/NativeAxisBacklashSettings.java": "a87b182a034f5f56303c87e0c570c6fa5a231af401d1ac603945cfc39ff141aa",
+    "src/openpnp/java/org/openpnp/codex/NativeBoardLoads.java": "9fc5c20b8914175b57f4a5f6135e2bd2f9aaa2c9cbe92d16fecef4077aacbf26",
+    "src/openpnp/java/org/openpnp/codex/NativeCameraScaleFit.java": "da7d171793171c786a63a226c9c467fd554791b7db5c8a8b34c17c270fc74e5f",
+    "src/openpnp/java/org/openpnp/codex/NativeCameraScaleMeasurement.java": "a7d4e0a623cef294adbc3ba23dd1d0319644183ddbede15725000a70a0a3f606",
+    "src/openpnp/java/org/openpnp/codex/NativeCameraScaleRuntime.java": "168ff7a1b5d679b63c5352c65fe049bc207f01766547c30dab65c249cacb9fec",
+    "src/openpnp/java/org/openpnp/codex/NativeCameraSettling.java": "527701e06728da3b8ef03c8458e3cb1f47e5481ac0b3272aee50bbb1ff324dd6",
+    "src/openpnp/java/org/openpnp/codex/NativeConfigurationSnapshots.java": "855d6143e03659e6eb905dd3b3b060813510066d02c3478f949bcb2ee611473b",
+    "src/openpnp/java/org/openpnp/codex/NativeControllerDiagnostic.java": "bafea649a9422a04dfde67e177d52e9c27d4aaccb78ee572b7dcf99224e65018",
+    "src/openpnp/java/org/openpnp/codex/NativeControllerJournal.java": "55508b5624d43e29bb744a6ecdc457eb1dc8793ca865b17dafa7367138ff5ee2",
+    "src/openpnp/java/org/openpnp/codex/NativeControllerSimulator.java": "1ab249db252a5e421a7ecba1d28a1b5802817a8660183a1b07657c7f838cd48e",
+    "src/openpnp/java/org/openpnp/codex/NativeDocumentStore.java": "309665885dd425bdeef3b59c65adc36da89c8a09a8a8fadbbb1fd684c79fbe55",
+    "src/openpnp/java/org/openpnp/codex/NativeFaultedJobReplacement.java": "b2160242246ce7eef32d151db09fc34e8842249debd1be836e0df071edfcb33e",
+    "src/openpnp/java/org/openpnp/codex/NativeInspectionDialog.java": "7528404d5fd28c14e51893e02e2362de6664d1b608391a854f2eaa7722f55656",
+    "src/openpnp/java/org/openpnp/codex/NativeInspectionJournal.java": "3e27da59623f9fa20914f3f09fd5fa73ba791ba5deb2b62a1d7ac426cd5f830e",
+    "src/openpnp/java/org/openpnp/codex/NativeJobDocuments.java": "4c811f0720e8626d09abe594da17f8c46a65ead3613e2c8131793f9d18f6e92f",
+    "src/openpnp/java/org/openpnp/codex/NativeJobLineage.java": "fc3a324e1cf3b717c4bc1409e1c0961ca198a0fbb150c3179c36e604f55d4a85",
+    "src/openpnp/java/org/openpnp/codex/NativeJobPreflight.java": "8163b65bc83c26df5806c1643a5f9311bec89169c813a982716feef43e69f3c3",
+    "src/openpnp/java/org/openpnp/codex/NativeJournalJson.java": "61053170793eb45f85ff674046d1a946be960c778b3a43fa39999933a21d9174",
+    "src/openpnp/java/org/openpnp/codex/NativeLoadedBoardInspection.java": "81b6a86973929075a9ea5423f477153b84c07e0a9872a4215a653731155901a4",
+    "src/openpnp/java/org/openpnp/codex/NativeMappedAxisSettings.java": "9c87c07daadb180946e1d1b665e8c3eec8fbbbf10ccedcf43f1368bee105bc67",
+    "src/openpnp/java/org/openpnp/codex/NativeMaterialLoads.java": "4a9095996d9591b5bc174051baf5de03f96f8c57294c155d91044be96be61829",
+    "src/openpnp/java/org/openpnp/codex/NativeNozzleAssembly.java": "6bef87eb1fe8fd40f7d4159b246cef95636f2e3a3d413891d353b1717f032e83",
+    "src/openpnp/java/org/openpnp/codex/NativePartBindings.java": "51f913954f7226077a719834bd2d3bfdc3e8e26239a3c5b543666d54403620dc",
+    "src/openpnp/java/org/openpnp/codex/NativePlacementEdits.java": "545820a0a341a6c4c220e98c80f99ab76b1ff296f30b2223d0b9b981d07a7402",
+    "src/openpnp/java/org/openpnp/codex/NativePortableBoardLibrary.java": "0a64ace0f56d08d56dfb22d5e1b5243203cfec31879b2599743ef8ae2dc01eb6",
+    "src/openpnp/java/org/openpnp/codex/NativePortableConfiguration.java": "d32286689ae6e718aeebd47826bfd7e48d9ee980922bc20deea57c71957e32ed",
+    "src/openpnp/java/org/openpnp/codex/NativePortableConfigurationMain.java": "4d185b3b01306570f7f2c7b0df4da9f67a8ddc1ddbb4ff0130662901f3eff7f4",
+    "src/openpnp/java/org/openpnp/codex/NativePortableLaunch.java": "5a9926b0af257deb44119584bdc8c8cec0db9cafaf5262840b931b624e2caf01",
+    "src/openpnp/java/org/openpnp/codex/NativePortableLibraries.java": "8a035ee774f573edcbed24da54eae3587611f3f2ddd6e79fab4bc3f85006c648",
+    "src/openpnp/java/org/openpnp/codex/NativePortableLimits.java": "571efe7eba744e03453846dd3b0c2028e68ee1314bb168de4ddd79b1334c1f17",
+    "src/openpnp/java/org/openpnp/codex/NativePortablePanelLibrary.java": "388c55c9b8d6ae1df595f4c224ee954cbe9a9e1b7c299478b2cb3fb1c0c79e1d",
+    "src/openpnp/java/org/openpnp/codex/NativePortablePipelines.java": "161473067f492a16637ad26abec2b488aacf413d7810eb2b2bc37a193b22a9e8",
+    "src/openpnp/java/org/openpnp/codex/NativePortableVacuum.java": "454b433185465e28b66ed73399289eb4075077ca6851f29104c29888f2322823",
+    "src/openpnp/java/org/openpnp/codex/NativeReplacementDocuments.java": "9203cbb6c5cf6f2d66192095ba5d3325b44bf8526f7f0d223625931e7a6b9653",
+    "src/openpnp/java/org/openpnp/codex/NativeReplacementJob.java": "f7777dee8261eac593f2f4c37dda7625027757176c19aeae32dbe6f52df05a76",
+    "src/openpnp/java/org/openpnp/codex/NativeSensingReconciliation.java": "2f79c739808ef25ce665272153c5af01e56ac7b0d071367b4cdd24ec6d3a2e1d",
+    "src/openpnp/java/org/openpnp/codex/NativeSensingReconciliationDialog.java": "f840c119690c20d257bb67a9c48874a0b598a2bc8c06932517414e39e9c74a1e",
+    "src/openpnp/java/org/openpnp/codex/NativeSettings.java": "74bdf942e623b5b8bcec0f4de72b6ea80c30eb17268f8720d667e4f5a97afd4f",
+    "src/openpnp/java/org/openpnp/codex/NativeTopologyJournal.java": "0a7d97761ad8879449c1cdfa72ae35b58e53f422d4c0bdabf8c5eb45483a9057",
+    "src/openpnp/java/org/openpnp/codex/NativeVacuumJournal.java": "9e2c7e388dcedfa008929a425a944938a93d72fec0a2c0aeacd0d524b3461b1b",
+    "src/openpnp/java/org/openpnp/codex/NativeVacuumSensing.java": "20629c65f38d9e2496388917ccbb29be1c7cbf09617fcda3bcc5593dd7930ca4",
+    "src/openpnp/java/org/openpnp/codex/NativeVacuumSettings.java": "82870f22c6d6c469191e2244863f65efe296b646da03aa291110b095340632d7",
+    "src/openpnp/java/org/openpnp/codex/NativeVacuumSources.java": "3e7a74884089c94199d88b882e63df28ceccec6fb3befe1ca0f0946d4f6d1245",
+    "src/openpnp/java/org/openpnp/codex/NativeVisionSettings.java": "72de29d9f77ba10f451cf01ba4f4db80436a50d2d81d2e1e751502731958576c",
+    "src/openpnp/java/org/openpnp/codex/SimulatorMain.java": "f182ca38dd5f3c56881da23ce8eb446ae290a9a1b837a9767404328a9efb2a4c",
+    "src/openpnp/java/org/openpnp/codex/prototype/OwnedProtocolSession.java": "b93d67097440eae160e6f73c2b7e1f11bfffcc18ee20c8a58d94e5af0befa4c2",
+    "src/openpnp/java/org/openpnp/codex/prototype/TypedGcodeProfile.java": "77a60d89039ad13bc52d21574e7b650e105ba6102a55be377108f588376e5272",
+    "src/openpnp/java/org/openpnp/codex/prototype/binding/NativeExecutorTaggedOwner.java": "d0dacbefd6a587fec8a8375d9d9950db494726f261e20a2275ffc7e9383b2841",
+    "src/openpnp/java/org/openpnp/codex/prototype/binding/TaggedModelBinding.java": "b152cd9fc1cb1910decc9855574a83e27a306950bbe7b7ba12bc993243d1265b",
+    "src/openpnp/java/org/openpnp/codex/prototype/nexttyped/OwnedCommunicationPatch.java": "f7b7665e2580649eceed0baba7e24944e9ab55150a8c2beb7cbab8e4dd6a1cab",
+    "src/openpnp/java/org/openpnp/codex/prototype/tagged/OwnedBoundedTcp.java": "7dda126ad570b5acb12a46ae7b9c7f7f173117ee4ff62bd94a9ee7656d8ee005",
+    "src/openpnp/java/org/openpnp/codex/prototype/tagged/OwnedTaggedGcodeDriver.java": "1a978cacf181b81923e2cec4468349daff43fb121631569e92dc4495dc378660"
+  },
+  "test_source_sha256": {
+    "tests/openpnp/native/NativeActionLedgerTest.java": "ba6f8d0085399990e926313e92036da2bcedc0bf48aa4d844a20bc5d8c53d7a4",
+    "tests/openpnp/native/NativeAxisBacklashBridgeTest.java": "27f76c332e171ffb090a52fff86c52e9520802b5ef3da08eb43c65fe25b9f1a2",
+    "tests/openpnp/native/NativeAxisBacklashTest.java": "11af249274dac5496207a13fc63e8adac97713042df6583193ab0b9dc45463f3",
+    "tests/openpnp/native/NativeBoardHistoryAdmissionTest.java": "f1b72f1287f2c3946d93be9986e84cd4ffecad9305dcc1cc104c37107beb0a09",
+    "tests/openpnp/native/NativeBoardHistoryScaleTest.java": "afa5c6dce281892c0bb0f3f3b5aa1851bb9591a36be34d8483777d8b9e5dfdb4",
+    "tests/openpnp/native/NativeBoardInspectionBridgeTest.java": "7926499bf8694713113d56f8e1475614b7127290427e4140a3959f0af0692ce3",
+    "tests/openpnp/native/NativeBoardLoadBridgeTest.java": "a0090a4fe4369e76bf7d88e05b88589fcf1aaa7f8012500c014d86f6f1cbb815",
+    "tests/openpnp/native/NativeBoardLoadsReviewTest.java": "6549ce0a09b04c946967f88bb59d13af1eaa1363599bbcc994035960e294e48a",
+    "tests/openpnp/native/NativeBoardLoadsTest.java": "3f100915aa13f90d6e2f642ae9f5e4c5d3c8523a63c63dd11ad4383ada5ebbb5",
+    "tests/openpnp/native/NativeBoardPresenceRecoveryTest.java": "3f019d21bc09e1ebad3344e6f1c6a1f7602b2309588598f309231449e0a3bf49",
+    "tests/openpnp/native/NativeBoundaryTest.java": "864737efa57dd722c6e87fc1af9b94c259fa11d9ead6951eb2063b15e2e0a655",
+    "tests/openpnp/native/NativeBridgeDocumentRestartTest.java": "69db6b1b02c2fc152d52f9749b479d085f7e0dc58e38e826d7aeead048f13d2b",
+    "tests/openpnp/native/NativeBridgeTest.java": "251dd173665e46dfb90bf96a76347b37fdbcd7b10afe34037f2877899a13790d",
+    "tests/openpnp/native/NativeCameraRegistrationSuiteTest.java": "6b37e4f42394429f3732fe6f09295a1f9e1d6f82cb66849978ee6b41f1ffee89",
+    "tests/openpnp/native/NativeCameraRegistrationTest.java": "b4897e7631a087759d9ccf0d59cb9173e4896711c834d6042b81632966e51520",
+    "tests/openpnp/native/NativeCameraScaleBridgeTest.java": "94fc9c1462433570b6700e1c45fef7825eebb225ea7d62d69a0b5334988db6b7",
+    "tests/openpnp/native/NativeCameraScaleFitTest.java": "cb74b04e545fb8814556c7c5e0839624ec81c59a786608bed35b694a0ec0e8c2",
+    "tests/openpnp/native/NativeCameraScaleMeasurementSuiteTest.java": "d6f51fc2eed7166eea56c02f7a806978957369e53399adce1be2d231b1879278",
+    "tests/openpnp/native/NativeCameraScaleMeasurementTest.java": "3154bd4ddd467a8a582451459aa433c0b5cf23bb390e1de5fa0083ae05ab141f",
+    "tests/openpnp/native/NativeCameraScaleProposalBoundaryTest.java": "22dd3000bf0a178524ab025ff581b1c23d3d56773ca1f9e0882843fcbfbd9262",
+    "tests/openpnp/native/NativeCameraScaleRuntimeTest.java": "65c6a50f726771383db7c7222a38e0825919a2b59ed2c65b7bcd3c5afcff0c0f",
+    "tests/openpnp/native/NativeCameraSettlingBridgeTest.java": "5b05d5c268d0d02913e1e0b6a4875e20fa34f80e2b377943bceab79b70e0e6c9",
+    "tests/openpnp/native/NativeCameraSettlingTest.java": "b5ecbc1405e918010a442549333cd046aadbd34aaef8eaa17f21ab685e80a773",
+    "tests/openpnp/native/NativeCanonicalIdentityTest.java": "772a0df7630f6098cbb0e857872215d40ca3002e06ee9c51107fe03ed61ed8e4",
+    "tests/openpnp/native/NativeCapabilityTest.java": "47c1d873f687065b88083df24e01214286a4825a7d0b11e6fd2ad08040f53784",
+    "tests/openpnp/native/NativeCompletionCases.java": "ab8d799e45ed6b326c9f3667aa81a0a21817757ccd35a6f1ffce351a71a9ef30",
+    "tests/openpnp/native/NativeConfigurationSnapshotsDecodeTest.java": "e35e6966e4f3b2328a4dce790bc64a468683366a1f72f3f5c66d4ce671837392",
+    "tests/openpnp/native/NativeConfigurationSnapshotsTest.java": "520031b996cefb0102a8d7be89352a3ba9ea09719da4ecbce3f27f28a888c536",
+    "tests/openpnp/native/NativeContinuationDefinitionTest.java": "c848e9f710d2555df288070ae0f5ed5742a19256228cf8e0ae0bb753e37b35fb",
+    "tests/openpnp/native/NativeContinuationDocumentStorageDriftTest.java": "65bfea0d764394a461b12a3e848ff4aee10276a5c45f9859813f3dc18e8b3e80",
+    "tests/openpnp/native/NativeControllerCrashProducerTest.java": "092606590e2a77e8aca391fe5f8e05f8bbc25204459540d1654280f2d5cdf94a",
+    "tests/openpnp/native/NativeControllerCrashRecoveryTest.java": "e53813b34d05191297fe028c810831834429a13909dccfaaf8e9785defe8dbf6",
+    "tests/openpnp/native/NativeControllerDiagnosticTest.java": "b975bf60de909c9dbb3266f254957e448dde95cf55d0eead6c1900476e777dbf",
+    "tests/openpnp/native/NativeControllerJournalReducerTest.java": "74edb9d7c1f21ff75c82810b9381f728cad34bd74c2c85bc61e80ed51f791366",
+    "tests/openpnp/native/NativeControllerRecoveryOrderTest.java": "ad57a81c2f70e36b5593628457b8e91abe7b39113f5100448ee665f4fe5b8f97",
+    "tests/openpnp/native/NativeControllerRecoveryTest.java": "372ec794a64eea3497860da7d4785b92b9447fc99f7a57bf980a4bd15e2b52c3",
+    "tests/openpnp/native/NativeControllerReducerReviewTest.java": "e2eddf79648c549628f75c17b5ec5cfd6d0b58c9921d86f793e314d3492a1d17",
+    "tests/openpnp/native/NativeControllerTestProcesses.java": "b81861cd4070c40f767b1b03a4b30cde6dae1f46d4dbfb33cd0a89b784eb0a78",
+    "tests/openpnp/native/NativeDiagnosticBridgeTest.java": "6c5e4988a40fa318b20d55607705624d607e4c7b7c5c45478d1bce60b0dbdb67",
+    "tests/openpnp/native/NativeDiagnosticFaultTest.java": "12da832c91c8ff853bbbc00c2a7c2a6c076ebc14fee94b8f0be86b8652fc6b37",
+    "tests/openpnp/native/NativeDocumentLineageTest.java": "b57a0870637e09463e333e4cfef95a4ccee0f9d50bafeb73d3024909819a3803",
+    "tests/openpnp/native/NativeDocumentStoreCrashTest.java": "e46db31a3d217f3347dd7d5e419fe0fef9338c7d269d3707556b215523f4bc04",
+    "tests/openpnp/native/NativeDocumentStoreRetryTest.java": "a168bee7f42834a3db890ed5fd57ac78f877535fc1d323a7fb10d1d30f4b27e1",
+    "tests/openpnp/native/NativeEffectBoundaryTest.java": "df1e3dfd495999aa6680517732abead327f8ecb56e1cde23ca65fad88f8fd4fe",
+    "tests/openpnp/native/NativeExecutorOwnershipTest.java": "609e16a7afc10d518059b425749498945f7e5770fcf1cb229547c53a5e01ee32",
+    "tests/openpnp/native/NativeFaultedJobReplacementTest.java": "2dfcc2e3a660107b3ad8c14eb8c7f215752b30c52c74aa8bfaea4a0f31efdaf5",
+    "tests/openpnp/native/NativeFaultedSensingContinuationHistoryTest.java": "ed4e61fdef7e76f77942fcb7f8782658bcd5859a129bd7838d1fb862adcdc806",
+    "tests/openpnp/native/NativeFaultedSensingReplacementBridgeTest.java": "506f32a4882fe4ac3c6bf4c4844cf62ddd457fe41bc6f4dd2de70a34d9f6ad9e",
+    "tests/openpnp/native/NativeFaultedSensingReplacementContinuationBridgeTest.java": "b52b124299425d977ecc5c7bde70edf609323c019a763a70d3c0d77b7eee18cc",
+    "tests/openpnp/native/NativeFaultedSensingReplacementProgressBridgeTest.java": "6bd733bd14bb7aed54c3774b1d2757fd1753bab0b754ef156349c59a14c7bbc4",
+    "tests/openpnp/native/NativeFaultedSensingTrayContinuationBridgeTest.java": "8a8a6f1cce630273a672411cadc51d4067d2905123b33d663dc92443a926bd6c",
+    "tests/openpnp/native/NativeGraphLimitsTest.java": "d6bfb0ef9473d3aa9d47e42956bbf190b4d225a4ff5346717810d0f398f2e5ef",
+    "tests/openpnp/native/NativeGuiBoardInspectionTest.java": "7a8d2f1b52ceacf9f67a8f6605e00b1619f7e377ca5026909f8ae63e81e25ddd",
+    "tests/openpnp/native/NativeGuiOwnershipTest.java": "0b650424ea4be706dfe772c0fd53ade49c18f65a3c40d05f953a74d8270d3cbc",
+    "tests/openpnp/native/NativeGuiPanelMembershipTakeoverTest.java": "ca69daf5ce3070ad4f75cf84e15d5103dd2b04f27ff08abeb06ec905e650cab3",
+    "tests/openpnp/native/NativeGuiPanelMembershipTest.java": "e1595bc014f1dc0deb57b46f0123a9e1f1126d806be2dc65355765c3b3a3caf4",
+    "tests/openpnp/native/NativeGuiRestartExecutionTest.java": "63b8a7b7872e2f6d6148d79dcce9f27f0507ef44f3d2cee7fd908b7136797a10",
+    "tests/openpnp/native/NativeGuiRestartPackagedLauncher.java": "2eb80fdd1357c62d61b3a4902148c77c9c786e94610f8fca425dd5fb88841be9",
+    "tests/openpnp/native/NativeGuiRestartPackagedMcpTest.java": "32ad2d7b70f45054c368b695acda6bc3bab58f7e4d09a449560240102c4b1314",
+    "tests/openpnp/native/NativeGuiRestartStartupTest.java": "f1eaeb5ae3995e6c613ca34e528f0d7bfae3f587dd5264f0ee9de0b853b5a470",
+    "tests/openpnp/native/NativeGuiRetainedJobPublicationTest.java": "bc0c3ba299f88be36930d1eaf851c30d023ba9e6b45d166c6e024ca69fba17af",
+    "tests/openpnp/native/NativeGuiSensingFixtureTest.java": "a7ee19cb19c1db41090b31dd96543644a343a03f9b009d1e1f6bf87d89d02555",
+    "tests/openpnp/native/NativeGuiTitleTest.java": "90d8af1fa226c0cebfee429e3504ac0026cc033abe31217b082e989590dd7ea0",
+    "tests/openpnp/native/NativeGuiTopologyTest.java": "efa497d8f97aeb10f389f0d1ead2c0d1c7202865bcde13850f78392c4f52a63b",
+    "tests/openpnp/native/NativeImportBoundaryTest.java": "7beebecfcac94bc1d235a93e89482eea53a698775b74ae50c59a0eef5542a3d1",
+    "tests/openpnp/native/NativeInspectionDialogTest.java": "11acdd5a011c92ef8e519867ce9aa15d5b3f78246fee99cb75077c576177abd7",
+    "tests/openpnp/native/NativeInspectionJournalTest.java": "26b02d6c7f0255e4b99984303d3e301358ac691d037ffcf24361a540783ddd40",
+    "tests/openpnp/native/NativeJobDocumentsRestartTest.java": "4f3f554b725bebf5cc9ebd80ba68454803f385257c79b4359e7ebe5ea3154dcd",
+    "tests/openpnp/native/NativeJobDocumentsTest.java": "960f2a09076096dd4c5dac00b401b156b7d6dd08063587ead7a30d54a5364516",
+    "tests/openpnp/native/NativeJobLineageTest.java": "b41b1336ca3ab1220534d926486c9d464b2d9426bea19c0e3039da35a2522454",
+    "tests/openpnp/native/NativeJobPreflightTest.java": "1dab01b4492ff8e47869af423c9b71a5ffc431e1bbd75650191920865bb0266a",
+    "tests/openpnp/native/NativeJobSteppingRaceTest.java": "cd812953547a1913d968e95f6329383668525dd09fb99a559802e560b34e3292",
+    "tests/openpnp/native/NativeJobSteppingTest.java": "5723528caf87acdc5b867a3763694681ede60dec04a68796697458b1dfa22688",
+    "tests/openpnp/native/NativeJournalExactNumbersTest.java": "017870247d5f601f05877e7b79b08d7b780ae1893e849befd03f1fad73b460b8",
+    "tests/openpnp/native/NativeJournalInputBoundaryTest.java": "ec2657799a72f7e533c298c1a05b79348bb4072de0f9198d00a185c0bd136bd1",
+    "tests/openpnp/native/NativeJvmHaltLedgerTest.java": "7599f8987a3e15d27f5a2999381a26ad934702e3e8433e2d8e0b67eb690812b0",
+    "tests/openpnp/native/NativeLedgerRecoveryTest.java": "5dba3939e8fa649ced1be646df596ffbe30dbe87c458849a5aa3fc15f7adefcf",
+    "tests/openpnp/native/NativeLegacyOperationHistoryTest.java": "1552c127f2fd8c7ccbb0b5e1b8c8b254e34a52d8f55ffcc980f8201f6a019314",
+    "tests/openpnp/native/NativeLineageBridgeTest.java": "00600048c55bdecfda836020a2ea6b28d77907b9b7354debb1774b8b8495d042",
+    "tests/openpnp/native/NativeLineageCompletedJobTest.java": "3687a09bc48d2218cfb2b6e9d828bd42e90174b7e4629e0e77e138e1e4630432",
+    "tests/openpnp/native/NativeLineageIdentityBoundaryTest.java": "db0f674a7b292a05bc71eed2253e16a2f12ae6f0bb8b4b3fcfcbe87972c0f245",
+    "tests/openpnp/native/NativeLoadedBoardInspectionTest.java": "699c57861fef3a68d3c4e7c8e6281d16db4527ceacbd05d1fa12b5cec226457a",
+    "tests/openpnp/native/NativeMappedAxisBridgeTest.java": "423cc2293c1340864e1750b708ff76b88c29c50ba51399a005989084768e5d78",
+    "tests/openpnp/native/NativeMappedAxisFixtureMain.java": "8a95c1f3b03e6dd957d6f8a4d7e3226331f8c807e8f05e736e362694b92a03a5",
+    "tests/openpnp/native/NativeMaterialContinuationAdoptionTest.java": "95f23c5f8e945f1fe5b7bc285df2bcb32c323a716fc360f7d15608ec3395d47d",
+    "tests/openpnp/native/NativeMaterialContinuationMutationGuardsTest.java": "9d982c20a38ef20804ee0b3aa9661dd17a4d440c8d362ca361e9fb121ea21cc0",
+    "tests/openpnp/native/NativeMaterialLoadsBoundaryTest.java": "f188f8c8f2a9011e3420c23323a9bb076284ef58c1b6364cf575b3a514cad3ee",
+    "tests/openpnp/native/NativeMaterialLoadsRetryTest.java": "69bac35f8818652fe8b21221d409d46f4e089349246042fb10421fdd34857b0e",
+    "tests/openpnp/native/NativeMaterialLoadsWorkflowTest.java": "cd10988a6d52d1b6e4f63b6a67850ececf8f6e3eac8558895685377957383bec",
+    "tests/openpnp/native/NativeMaterialReplacementProgressTest.java": "2434d9144058879fc505c337b48f0ec51e02b6ad0883e778683ebe165e230c78",
+    "tests/openpnp/native/NativeMissingReplacementDocumentBridgeTest.java": "7ea995ac257919958f67c8bf0d1bed2a5bc60ac6548bbbb745af61b777261297",
+    "tests/openpnp/native/NativeMissingReplacementDocumentHistoryTest.java": "a6e1977dba59812a9862f5f3b2c39b7f0e6e235f5df5e988a71705defb7e5ea1",
+    "tests/openpnp/native/NativeNozzleAssemblyBridgeTest.java": "17dd1950c44a45b9ef4031223182b11e095640472c9752f2ed4c64e061df5697",
+    "tests/openpnp/native/NativeNozzleAssemblyCrashTest.java": "2613d37f89cff5cffdcb1dac970fd03efa56933b13bc68ab25aba608444fb89f",
+    "tests/openpnp/native/NativeNozzleAssemblyTest.java": "55d951fc78bd99fa1ea3163251a46e91e45a797904e4b05472fa72e77d7ff117",
+    "tests/openpnp/native/NativePanelBoardMembershipBridgeTest.java": "1f46159fe2c4caa8b7c917bd61d06681a7e20290d9a4f2e1e73aca48479e73f6",
+    "tests/openpnp/native/NativePanelStructureTest.java": "7d94dac12e61e6bd0fcf6be0c07a95afddb7b1e08cf9668792841aff40a70a52",
+    "tests/openpnp/native/NativePartBindingsBridgeTest.java": "4c2b2452cfa45716e3945100a4b55d6ab1e9582d289c6cd572c37c3a7fbd2721",
+    "tests/openpnp/native/NativePartBindingsTest.java": "861023a1261fdf250f91771f76062489e716a20f5b2fd017db684e6bcc18e536",
+    "tests/openpnp/native/NativePlacementBenchmark.java": "0dc4ea6bcf6069cdb684077433c8ca54a2aa4abe35ae5f83ac173df7f820ed6c",
+    "tests/openpnp/native/NativePlacementBenchmark76.java": "99aaaf0e7bc7fdf8032a5e142cad23e76de5fc2808b387646a378abf2117e566",
+    "tests/openpnp/native/NativePlacementEditsTest.java": "2f494ddf5ce5e01937b6323ab90174314c308636fe9682d1fd2c009f7c2c4250",
+    "tests/openpnp/native/NativePlacementStructureTest.java": "98bb84f022d29f6177dbfa6d923c116c8bfd431368127e70f47ca7e75698c7af",
+    "tests/openpnp/native/NativePortableAllocationTest.java": "85e97b0eaa635082e2614a848457409c71a6e5606b4fa422cafe8810c3865799",
+    "tests/openpnp/native/NativePortableBacklashJourneyTest.java": "7b6d641a63c7530cff851c9432b43fd876e6365d71d1120de3d7c2ac6b01698a",
+    "tests/openpnp/native/NativePortableBoardLibraryTest.java": "d0942478a38db88a150b615c022843ba897ddaf4ab9ee5cf83b33d36369d6e7a",
+    "tests/openpnp/native/NativePortableConfigurationTest.java": "1bae82bce4f6666b3ca7e96fde5679907a2c6b0a5689414e05e14c5a9fd3472d",
+    "tests/openpnp/native/NativePortableJourneyTest.java": "45cdc2523b581d334eadd7f9a821ca8f516bf91ec85148b0810a9001239375f6",
+    "tests/openpnp/native/NativePortablePanelLibraryBoundaryTest.java": "d4de5f3758f92ccd4ec8c2ad52ae293e54e18910be76dddd704c9c8a511859af",
+    "tests/openpnp/native/NativePortablePanelLibraryTest.java": "0610ed3666dff83fb1c3b7784d181509d121605224673d4ea69b14e63a6a5b8d",
+    "tests/openpnp/native/NativePortablePipelineTest.java": "af98ca8d2987791dab3c71fb29fc6598f70978081e23268e0fc17cbc3e18b470",
+    "tests/openpnp/native/NativeReconstructionDependencySetTest.java": "dbcf27fba3c942c15099e28afcf19ef468e9e44d6de6a5f3beb2d78b88baef27",
+    "tests/openpnp/native/NativeRecoveryLockOrderBridgeTest.java": "886490e505fbe167930e641e3df9dd9a0e255a75e9d48272bba6773eeb13ba9f",
+    "tests/openpnp/native/NativeRecoveryProbeContinuationBridgeTest.java": "64a8741eb1b22138ef7d87a987551ca2067828ad2e19ab2467db18ac15fc3565",
+    "tests/openpnp/native/NativeRecoveryProbeContinuationHistoryTest.java": "2c7767a47d9c13bd489cbebcc1d94af4b3f8668c8b815a30501f768065d5abf5",
+    "tests/openpnp/native/NativeRecoveryTest.java": "ca76a8f97dfe938c374a7d577df89326b016a991f882f383bd403d7491a80420",
+    "tests/openpnp/native/NativeReplacementAtomicAdmissionTest.java": "022b4f56ebf06bd1620ad50c8d07932189677a469b40262c5f278340599caf90",
+    "tests/openpnp/native/NativeReplacementContinuationCompletionTest.java": "fc160bae7b68cf1e54c2eddd568e1d1ea4916b6ba6d64590b9b313888c3b9f76",
+    "tests/openpnp/native/NativeReplacementContinuationDocumentTest.java": "56e6ac6492132c2ff6256613aad5c9149ddbb7b19fab2f61a286201df91998e7",
+    "tests/openpnp/native/NativeReplacementContinuationMutationTest.java": "462a0859351355c69ca2bcc1a9ede8670351cc3d78e7d151c61a7591e36ea11c",
+    "tests/openpnp/native/NativeReplacementContinuationPublicationTest.java": "01210c19d316c7a704e02a34f6906c1c2e23b67928a867ab76e5e4d76cdbfe96",
+    "tests/openpnp/native/NativeReplacementContinuationReadOnlyTest.java": "f3e115c0d22abe2f276e9b5d1450b136a8e92cb174ef63032f87fc42f0d9a8f5",
+    "tests/openpnp/native/NativeReplacementContinuationTerminalDriftTest.java": "eade3c430812a9eec46c3a97d1cc551358c21dca7f49044a982d6d699c2dea48",
+    "tests/openpnp/native/NativeReplacementContinuationTest.java": "65f5aa10157f8977f3d4925f44bf3787f90b44c6fde0853b60a6cba395650105",
+    "tests/openpnp/native/NativeReplacementDocumentsTest.java": "010e031b720a2a3d132f63df329749ff48f7427862e8c000c6ba58e57eedbe7a",
+    "tests/openpnp/native/NativeReplacementIntentCrashBridgeTest.java": "0fef794444ae25810df40bc2be3234e37cc77842024d91af9460e0d6ff1eba67",
+    "tests/openpnp/native/NativeReplacementIntentReplayRejectionTest.java": "dbb4df4d0661f0ff3abf73554daf35a00d63ff26e4cb746e22e22032fcbf4d4f",
+    "tests/openpnp/native/NativeReplacementJobTest.java": "d95a16a0747b86bbc3e266fb03b890b02ad4cafe2884b8c327d24a4a31ca5245",
+    "tests/openpnp/native/NativeReplacementProgressTest.java": "014a56118fbc1f80770c2b75c224993e9a6d4bd945b92b5a5f3f087aa06a2c31",
+    "tests/openpnp/native/NativeReplacementReconstructionBundleTest.java": "b7aba46d662ea0c4ae89457d8edab48dbe1d687813ceed8c9dd083abfd19a781",
+    "tests/openpnp/native/NativeReplacementReconstructionV2BundleTest.java": "70180c2b7a07df813dc2b72ce6953aea388c65159f9fed28a023f2e2a1ad1e52",
+    "tests/openpnp/native/NativeRestartAdmissionCleanupBridgeTest.java": "7e06f66893dfebd1e6d3e53838c1ad46f9ae16f4164764e9ee84e74093281c2c",
+    "tests/openpnp/native/NativeRestartContinuationScopeTest.java": "ea04abf86baf597a19b7c7f0542b97a0f34431e04e1080cfa9ec839c7759f316",
+    "tests/openpnp/native/NativeRestartExecutionBridgeTest.java": "94783224bb0e9cfa3ced1051e741ca69897f0cce481393beade7c2a4a1fd69e1",
+    "tests/openpnp/native/NativeRestartLoadObservationFailureTest.java": "cea01fedc5c0c00c961df21deef7ffc0cd418bbc50f48315e13eb1cc3f729afb",
+    "tests/openpnp/native/NativeRestartLoadObservationTest.java": "756aec0c6617556cd760504fec8cbe8fe0846f506078d8b5e86dfb62c5a4487a",
+    "tests/openpnp/native/NativeRestartObservationLifecycleTest.java": "200573950b4b9f783714ed3a7d7b1d610a85f6321118dae8109768b23e26e9b0",
+    "tests/openpnp/native/NativeRestartPriorProcessDispositionTest.java": "1b14eb25b8f514a72c2469241fefe4db93f6ed9341ae7265bb4fd352ff5cc82f",
+    "tests/openpnp/native/NativeRestartSensingTaskTest.java": "63bfcc1e981562ce2c25bcf1eb5cf4251f7ec568a49ffc2906735b55cfee68b0",
+    "tests/openpnp/native/NativeRestartVacuumSourceTest.java": "b454af546a9ca24625302b69dcc62e04c0c02bf54d4fb2e1c1a8f6dec6679c58",
+    "tests/openpnp/native/NativeSensingContinuationDialogTest.java": "af897f59c48639a8eaf72352ba1a2861a25aa98671755dc53aaca631b67727a6",
+    "tests/openpnp/native/NativeSensingContinuationDispositionTest.java": "ed215a063f72ec7f9fda17a5b059eff2add084d6daf808b49985dc1782c44d31",
+    "tests/openpnp/native/NativeSensingReconciliationBridgeTest.java": "863bcbf0c7a1e79f9ea4f6965e0a9d720a22d9a2207a6ce02b2dfc1c31ae3606",
+    "tests/openpnp/native/NativeSensingReconciliationDialogTest.java": "9eaefa0211f787e5d853d7a2b91ad936f8f60472c4b03b26be9c4d3d13fa5465",
+    "tests/openpnp/native/NativeSensingReconciliationFailureTest.java": "40a90d22ca01e7a2bb5af1b922bb083fd83d744e8aec7344b125bdc009ae3bb9",
+    "tests/openpnp/native/NativeSensingReconciliationHistoryTest.java": "e5e59038852661d28dc404a1c31b8b45aef671b21abad7334982d69ef5440ee7",
+    "tests/openpnp/native/NativeSensingReconciliationTest.java": "6decefcf91c0c30905bdd287cb9d6a4e3b901075c9a031799d6f4f9b8458d6d8",
+    "tests/openpnp/native/NativeSensingRecoveryRetryTest.java": "36fbdb17029a8fbd4cd42f25d9178c4efbf8ddafdf0014a5c0ada0d96ed12236",
+    "tests/openpnp/native/NativeSettingsTest.java": "e64e8947c240f23cd76445368689cd80e44885469adf9fb7464f31cefd6866e2",
+    "tests/openpnp/native/NativeSharedSourceProbeContinuationBridgeTest.java": "1540af109bf441f63b1c33307b3296b1292c16473bdb585a49cc7f01af2490be",
+    "tests/openpnp/native/NativeSourceLockOrderBridgeTest.java": "e64f591fd3acfcaca322f088132fed4da34e6d827104abcfd0a9b43fe69a9cac",
+    "tests/openpnp/native/NativeSourceRepairInterruptionBridgeTest.java": "30f20496c21815bdf829d4de05d4b7c3d08162344ab3b3662461af6a850be2e2",
+    "tests/openpnp/native/NativeStepScalarResumeTest.java": "f75ef0f39f46e83a6da7b13c97366f27e3fa9f3feae9e8be6feb1545df73ddbd",
+    "tests/openpnp/native/NativeStorageBoundaryTest.java": "83d246e45a595bbeee4ce94289ec531a192ae948e67142c803fc5f923d3d6d80",
+    "tests/openpnp/native/NativeSustainedTest.java": "649265f3d8ef44443d6fb2761f84156845dc9c8d30520e3f05f44f6f6c08fd3b",
+    "tests/openpnp/native/NativeTopologyJournalTest.java": "890ffe1f5fd3ab393830133f1b506168af4f51f6eb848ea8679c28a704ae21fe",
+    "tests/openpnp/native/NativeTransformTest.java": "4f3758be3ba8efcd3a63b9934691ef7972923790a23c45c4007c169b6155ae47",
+    "tests/openpnp/native/NativeVacuumBridgeRecoveryTest.java": "9920a49ce618471f862e1aa3f4b488459f1d8c201bce903cc2558d085b50036a",
+    "tests/openpnp/native/NativeVacuumBridgeSuiteTest.java": "f3c268a4aab0f30e4cf96f3c31c933dafa887655e299cedd4088d8e8d876a688",
+    "tests/openpnp/native/NativeVacuumBridgeTest.java": "9bf3b9730ca8e42559aa9f350399b4396cd774f8eb90b569032574a181c26195",
+    "tests/openpnp/native/NativeVacuumConfigurationIntegrationTest.java": "960423102f4e51db6f21af6a51ccb3cc7952657c3296ee9ef1bd5519b564ee46",
+    "tests/openpnp/native/NativeVacuumJournalIntegrationTest.java": "ffdccccc4e484d46a629f5a20de0049a71f1a8aec4685f406075616a735c3db8",
+    "tests/openpnp/native/NativeVacuumJournalTest.java": "901d6bd4beb411cead4eb200fd84b1ceb1b3a2d2801a4b82424f580f2ae35df8",
+    "tests/openpnp/native/NativeVacuumOperationsTest.java": "d59979d818feaf98316004c02f68d258916eedf7effc52d34159d214025dce52",
+    "tests/openpnp/native/NativeVacuumPortableTest.java": "d4f826c3b0a12aecaf4dfbc4e62ed90ebae8740911b2e378e8d4fc3319a94444",
+    "tests/openpnp/native/NativeVacuumSensingTest.java": "eddd18ce6ece4b084a36ea1b588b42fefa225c3622153b9d8b8d6998ba137bd2",
+    "tests/openpnp/native/NativeVacuumSettingsTest.java": "248573515aecce1435ac20279a6f6702128949353a7c3d63a4119a3c24f539b0",
+    "tests/openpnp/native/NativeVacuumSourceReconciliationTest.java": "bd71613fbf35acfa8510bc2d1318c98510034dbaf3588eb5bf15201406dab1d0",
+    "tests/openpnp/native/NativeVacuumSourcesTest.java": "f8cf95de457d2be014578825fbc7d66420aed9af016ea266e010d62a51d9e272",
+    "tests/openpnp/native/NativeVisionIntegrationTest.java": "1f81a5e2942a2cf9cee39315096bd73fe1425b6af50a101c7c0d3d19b8728a42",
+    "tests/openpnp/native/NativeVisionSettingsReviewTest.java": "ab92224b840e884b97267173923278c4ed4dafe488a9dc1045a11a33b111ad4a",
+    "tests/openpnp/native/NativeVisionSettingsTest.java": "651d9546d6c396a16e48b63a00770cb73c12810792c177dd307858266949affd",
+    "tests/openpnp/native/NativeWrapperCompletionTest.java": "6997cb21b2d4f4e4d13c93a00bcbf049ecef6713cee1c917e7cb6131f291f12e",
+    "tests/openpnp/native/NativeWrapperExceptionalTest.java": "f3e9d894762b4985221ccfff649a97a82bc8455572b049db55064b4c189099c5",
+    "tests/openpnp/native/PlannerSettingsTest.java": "0b154d6fbf44e607580f16233a76dcdfaadd00a06a46a4e2853bbb79517f836e",
+    "tests/openpnp/native/TaggedProtocolTest.java": "dcac7eb252b476a2e29b9cd324d1ee866158038b82a453ee8e3490c38ec6af87"
+  },
+  "patches": [
+    {
+      "id": "codex-gui-ownership-v1",
+      "path": "gui-ownership.patch",
+      "sha256": "a1de28f8907ef703280615621c87434c1853fd622696f73f38b2fd8477815079"
+    },
+    {
+      "id": "native-action-observer-v1",
+      "path": "native-action-observer.patch",
+      "sha256": "62a19ff58d2b8dcfc0ed213ef9136b2b507d70e32f30db47cfcac566e09b2496"
+    },
+    {
+      "id": "native-board-load-history-v1",
+      "path": "native-board-load-history.patch",
+      "sha256": "35f99a216e30f4790df1c7d7a55988858f52a26ba6f461e324d5a86b8e1436fe"
+    },
+    {
+      "id": "gui-topology-events-v1",
+      "path": "gui-topology-events.patch",
+      "sha256": "e6c14f27e134d0f19fd33ed66000fe9032b46f7b583e100c653a1cb20ee6a0f1"
+    },
+    {
+      "id": "native-circular-symmetry-v1",
+      "path": "native-circular-symmetry.patch",
+      "sha256": "e08ebaa16e357f0055fcfed322830cd5afeb0131c58ac8875983baef80413a20"
+    },
+    {
+      "id": "native-vacuum-sensing-v1",
+      "path": "native-vacuum-sensing.patch",
+      "sha256": "aef8be6ae6c49051621ada7948b361c5a011165414db815bad9e0d288326d33b"
+    }
+  ],
+  "native_classpath_in_resolution_order": [
+    {
+      "path": "runtime/openpnp-gui-codex-patched.jar",
+      "sha256": "e0a6ab35c3cdbcf355ecfa9c592751efeef69b0d2f124295ef37ea807de56bd5"
+    },
+    {
+      "path": "runtime/lib/activation-1.1.1.jar",
+      "sha256": "ae475120e9fcd99b4b00b38329bd61cdc5eb754eee03fe66c01f50e137724f99"
+    },
+    {
+      "path": "runtime/lib/apiguardian-api-1.1.0.jar",
+      "sha256": "a9aae9ff8ae3e17a2a18f79175e82b16267c246fbbd3ca9dfbbb290b08dcfdd4"
+    },
+    {
+      "path": "runtime/lib/asm-7.3.1.jar",
+      "sha256": "2f67e11ceec819ebd88ddee5300aba699b1cbab2e20c22e97cf027d3be93959b"
+    },
+    {
+      "path": "runtime/lib/asm-analysis-7.3.1.jar",
+      "sha256": "46b8a8efd4b94facb5ab4b35afe30ee0546ae7a43d2c64e6def56c2f168fefa5"
+    },
+    {
+      "path": "runtime/lib/asm-commons-7.3.1.jar",
+      "sha256": "87cd8bb3c6bf6bcbb33fca48060c5065f66ebf6a3d7de9bf18bff51bcf156ebc"
+    },
+    {
+      "path": "runtime/lib/asm-tree-7.3.1.jar",
+      "sha256": "f91a4a8aa868c5c4665bb4fd134019a91f9f8b9216527fba295e3c8b5422b78b"
+    },
+    {
+      "path": "runtime/lib/asm-util-7.3.1.jar",
+      "sha256": "182128592742ed4883ac82bf205f137b6bfbe1234c68e6feb13759e75a85b729"
+    },
+    {
+      "path": "runtime/lib/avalon-framework-api-4.3.1.jar",
+      "sha256": "bca4c94b5e53acee3c97fe11cce0749d682d5591bf4a217cd45273adeb08c60f"
+    },
+    {
+      "path": "runtime/lib/avalon-framework-impl-4.3.1.jar",
+      "sha256": "1a429bd5ba87c55b9c84648d0404eb6499b7c05a2c9f21b1bb9621fbf117589f"
+    },
+    {
+      "path": "runtime/lib/batik-anim-1.7.jar",
+      "sha256": "60f020a29b01ecf1c8b72630f97352a353ada91a922541892741006161f32c4b"
+    },
+    {
+      "path": "runtime/lib/batik-awt-util-1.7.jar",
+      "sha256": "61611a77c5f8d7d748d11c1e226bab904effcd893ad0256d5be72eca857cfef3"
+    },
+    {
+      "path": "runtime/lib/batik-bridge-1.7.jar",
+      "sha256": "e7c5a7d772c4f2eef5d34842019440a7ec3f4b00375a9a8350af4804823c832d"
+    },
+    {
+      "path": "runtime/lib/batik-css-1.7.jar",
+      "sha256": "91694732cee7c2b2b8bf6792842867407eaa816be065087f1f444fc06b46b578"
+    },
+    {
+      "path": "runtime/lib/batik-dom-1.7.jar",
+      "sha256": "7a02277b4d97c8fe68696f214c152628ee80835b9d3c85c97236d38c210ce931"
+    },
+    {
+      "path": "runtime/lib/batik-ext-1.7.jar",
+      "sha256": "de85a6de7cdd36ee9ff28dfe7e03d515be92a702d61028f8928c0cd56f1ee375"
+    },
+    {
+      "path": "runtime/lib/batik-gvt-1.7.jar",
+      "sha256": "64acbb6dc4ce2a6eceee205ab96aa299d4e3e4648c45b62584a1c751e1072812"
+    },
+    {
+      "path": "runtime/lib/batik-js-1.7.jar",
+      "sha256": "f7d917d038b136702461e3dbd5f83dd9946b664398d88f090284447b8e00fbba"
+    },
+    {
+      "path": "runtime/lib/batik-parser-1.7.jar",
+      "sha256": "1ab8db369007bc4ec12b01465a657dd47e05ad08c37dce85bf9ceb78232660a0"
+    },
+    {
+      "path": "runtime/lib/batik-script-1.7.jar",
+      "sha256": "a631659faacabe358e7d8548a71bee4ec9b2ee2c07fa52f88f99c2cf04c72aa5"
+    },
+    {
+      "path": "runtime/lib/batik-svg-dom-1.7.jar",
+      "sha256": "3ec7e519f3f89f04bc0596efe0a09d8423f53aaff2654ff2d3bca595aebb7cda"
+    },
+    {
+      "path": "runtime/lib/batik-svggen-1.7.jar",
+      "sha256": "38c90060eebbfc457eb0b3a5ac7776c1b4d9708b9d0b34332f04b63ed76d1a40"
+    },
+    {
+      "path": "runtime/lib/batik-transcoder-1.7.jar",
+      "sha256": "08a25d1fa6329751c1bcea5274624c7ee9c23ae955b9872bc14ac6804dd7300a"
+    },
+    {
+      "path": "runtime/lib/batik-util-1.7.jar",
+      "sha256": "9e3f1f53bfccdc942dbe2ceaa94ffe23c63ba3703e40941572205420dfcad81e"
+    },
+    {
+      "path": "runtime/lib/batik-xml-1.7.jar",
+      "sha256": "b09ffcdf6b7ff3a97c4db23ce2767e90015081e766a81e220c4b1c47dfcba1b2"
+    },
+    {
+      "path": "runtime/lib/beansbinding-1.2.1.jar",
+      "sha256": "2c7b4e8d3af02d7410e350e20da92e65aa48c69250b855387721705f7dccfd99"
+    },
+    {
+      "path": "runtime/lib/bridj-0.6.2.jar",
+      "sha256": "a344c1d7430700c6d6aa3a322ec65f3e4a4fab3777c99f5dff4f64a9ec47c09c"
+    },
+    {
+      "path": "runtime/lib/bsh-2.0b5.jar",
+      "sha256": "6232199563807354b3bcb5aceb3dc136502f022c6b0ef743987a83f66fee5a5c"
+    },
+    {
+      "path": "runtime/lib/byte-buddy-1.10.18.jar",
+      "sha256": "7a1fc6eabf10dd3085e62e7cb3281084f00ab92a736e0980fc99a1460fa1f5ce"
+    },
+    {
+      "path": "runtime/lib/byte-buddy-agent-1.10.18.jar",
+      "sha256": "c5b5f85433a9e281fd1ee82d5b8e142e5c494670b29970e627f13e189ff1dc2e"
+    },
+    {
+      "path": "runtime/lib/classgraph-4.8.141.jar",
+      "sha256": "4a99956890765d019697a1c5d2f045c79a6c914bbe76a26739d72ae43b2f541a"
+    },
+    {
+      "path": "runtime/lib/commons-beanutils-1.9.3.jar",
+      "sha256": "c058e39c7c64203d3a448f3adb588cb03d6378ed808485618f26e137f29dae73"
+    },
+    {
+      "path": "runtime/lib/commons-codec-1.6.jar",
+      "sha256": "54b34e941b8e1414bd3e40d736efd3481772dc26db3296f6aa45cec9f6203d86"
+    },
+    {
+      "path": "runtime/lib/commons-collections-3.2.2.jar",
+      "sha256": "eeeae917917144a68a741d4c0dff66aa5c5c5fd85593ff217bced3fc8ca783b8"
+    },
+    {
+      "path": "runtime/lib/commons-io-2.7.jar",
+      "sha256": "4547858fff38bbf15262d520685b184a3dce96897bc1844871f055b96e8f6e95"
+    },
+    {
+      "path": "runtime/lib/commons-lang3-3.12.0.jar",
+      "sha256": "d919d904486c037f8d193412da0c92e22a9fa24230b9d67a57855c5c31c7e94e"
+    },
+    {
+      "path": "runtime/lib/commons-logging-1.2.jar",
+      "sha256": "daddea1ea0be0f56978ab3006b8ac92834afeefbd9b7e4e6316fca57df0fa636"
+    },
+    {
+      "path": "runtime/lib/commons-math3-3.6.1.jar",
+      "sha256": "1e56d7b058d28b65abd256b8458e3885b674c1d588fa43cd7d1cbb9c7ef2b308"
+    },
+    {
+      "path": "runtime/lib/commons-pool2-2.11.1.jar",
+      "sha256": "ea0505ee7515e58b1ac0e686e4d1a5d9f7d808e251a61bc371aa0595b9963f83"
+    },
+    {
+      "path": "runtime/lib/core-3.3.0.jar",
+      "sha256": "bba7724e02a997cec38213af77133ee8e24b0d5cf5fa7ecbc16a4fa93f11ee0d"
+    },
+    {
+      "path": "runtime/lib/flatlaf-1.0.jar",
+      "sha256": "135d8d5ac39fec29d9b3ff52cb30726d3f976b0698615be32534fd7924f29ec7"
+    },
+    {
+      "path": "runtime/lib/flatlaf-extras-1.0.jar",
+      "sha256": "df2ec4d31b4ae1c249aec00c112654d9eed4979a95e95bc73bc6063e6a106eb4"
+    },
+    {
+      "path": "runtime/lib/fop-0.94.jar",
+      "sha256": "98afa42bcf60aa228f36239815dc0c91f129ef3f7d1a08896707925f2341df80"
+    },
+    {
+      "path": "runtime/lib/gson-2.2.3.jar",
+      "sha256": "853a55c219993a781d0884d42793d27e120efefab06c1ff86fb59c22c2a3cef1"
+    },
+    {
+      "path": "runtime/lib/gst1-java-core-1.4.0.jar",
+      "sha256": "f0726b2f74753c184abf0281aefe664fdec853ec051b79a5eb64e4e79089ca47"
+    },
+    {
+      "path": "runtime/lib/guava-14.0.1.jar",
+      "sha256": "d69df3331840605ef0e5fe4add60f2d28e870e3820937ea29f713d2035d9ab97"
+    },
+    {
+      "path": "runtime/lib/httpasyncclient-4.1.1.jar",
+      "sha256": "27cb2c5eba8e85799f38b7cb0341406ef967e061f91018c68733ec6856ff7633"
+    },
+    {
+      "path": "runtime/lib/httpclient-4.5.2.jar",
+      "sha256": "0dffc621400d6c632f55787d996b8aeca36b30746a716e079a985f24d8074057"
+    },
+    {
+      "path": "runtime/lib/httpcore-4.4.4.jar",
+      "sha256": "f7bc09dc8a7003822d109634ffd3845d579d12e725ae54673e323a7ce7f5e325"
+    },
+    {
+      "path": "runtime/lib/httpcore-nio-4.4.4.jar",
+      "sha256": "f21be11ed00a7c655204c03d3ff38c2e8ac88db0913da3598ce5f9ffd686ae1f"
+    },
+    {
+      "path": "runtime/lib/httpmime-4.5.2.jar",
+      "sha256": "231a3f7e4962053db2be8461d5422e68fc458a3a7dd7d8ada803a348e21f8f07"
+    },
+    {
+      "path": "runtime/lib/jSerialComm-2.10.2.jar",
+      "sha256": "e5c915fdaeeef4971ef8c00118c6a86d7653da0534d76bc013824a2438306fae"
+    },
+    {
+      "path": "runtime/lib/javase-2.2.jar",
+      "sha256": "cc32f41b3fcff840bcdd08f14d24e7c170e382bd5c5a81a072ac075e66cc8426"
+    },
+    {
+      "path": "runtime/lib/javassist-3.27.0-GA.jar",
+      "sha256": "0730bdb1547a5a3f458d60400d804078d80f329c5b5dbc2498a4e220de8f7013"
+    },
+    {
+      "path": "runtime/lib/javax.xml.soap-api-1.4.0.jar",
+      "sha256": "141374e33be99768611a2d42b9d33571a0c5b9763beca9c2dc90900d8cc8f767"
+    },
+    {
+      "path": "runtime/lib/jaxb-api-2.2.11.jar",
+      "sha256": "273d82f8653b53ad9d00ce2b2febaef357e79a273560e796ff3fcfec765f8910"
+    },
+    {
+      "path": "runtime/lib/jaxb-core-2.2.11.jar",
+      "sha256": "b13da0c655a3d590a2a945553648c407e6347648c9f7a3f811b7b3a8a1974baa"
+    },
+    {
+      "path": "runtime/lib/jaxb-impl-2.2.11.jar",
+      "sha256": "f91793a96f185a2fc004c86a37086f060985854ce6b19935e03c4de51e3201d2"
+    },
+    {
+      "path": "runtime/lib/jaxws-api-2.3.0.jar",
+      "sha256": "c261f75c1a25ecb17d1936efe34a34236b5d0e79415b34ffb9324359a30a8c08"
+    },
+    {
+      "path": "runtime/lib/jcodec-0.1.9.jar",
+      "sha256": "180a1440d94365c332d3db632902bf0642b60a4b224fb1037a23f40229052b71"
+    },
+    {
+      "path": "runtime/lib/jcodec-javase-0.1.9.jar",
+      "sha256": "06aece877ce564394a0a99767691285058980eab2499116eedae7444fe42db15"
+    },
+    {
+      "path": "runtime/lib/jfreechart-1.5.3.jar",
+      "sha256": "23bd63ece2284d6578ed51f336cd33681c53f817e4595a705690922a3c0f0f44"
+    },
+    {
+      "path": "runtime/lib/jgoodies-common-1.8.0.jar",
+      "sha256": "bc2336a74aaf7233aae156a1750953941248544247ff0d97fa58d84e3ebf0735"
+    },
+    {
+      "path": "runtime/lib/jgoodies-forms-1.8.0.jar",
+      "sha256": "a2ae46793814fa6c42dabb561c59336029907a3c03d1b82f977f1ed6a4e5011e"
+    },
+    {
+      "path": "runtime/lib/jna-5.8.0.jar",
+      "sha256": "930273cc1c492f25661ea62413a6da3fd7f6e01bf1c4dcc0817fc8696a7b07ac"
+    },
+    {
+      "path": "runtime/lib/json-20160212.jar",
+      "sha256": "0aaf0e7e286ece88fb60b9ba14dd45c05a48e55618876efb7d1b6f19c25e7a29"
+    },
+    {
+      "path": "runtime/lib/junit-jupiter-api-5.7.1.jar",
+      "sha256": "ce7b985bc469e2625759a4ebc45533c70581a05a348278c1d6408e9b2e35e314"
+    },
+    {
+      "path": "runtime/lib/junit-jupiter-engine-5.7.1.jar",
+      "sha256": "56616c9350b3624f76cffef6b24ce7bb222915bfd5688f96d3cf4cef34f077cb"
+    },
+    {
+      "path": "runtime/lib/junit-platform-commons-1.7.1.jar",
+      "sha256": "7c546be86864718fbaceb79fa84ff1d3a516500fc428f1b21d061c2e0fbc5a4b"
+    },
+    {
+      "path": "runtime/lib/junit-platform-engine-1.7.1.jar",
+      "sha256": "37df5a9cd6dbc1f754ba2b46f96b8874a83660e1796bf38c738f022dcf86c23f"
+    },
+    {
+      "path": "runtime/lib/jython-standalone-2.7.1.jar",
+      "sha256": "c4410d1a731948131a71f24c4e1ed0c5326711265b474b173acab2723c258c4b"
+    },
+    {
+      "path": "runtime/lib/l2fprod-common-annotations-1.0.3.jar",
+      "sha256": "f2300e025a798dc64281525fc99a71ccd58c23a95f93f8309a86701d9a887688"
+    },
+    {
+      "path": "runtime/lib/l2fprod-properties-editor-1.0.3.jar",
+      "sha256": "b4abdee067de9a0a1baf6f65878c13a6890a3d72cb4aaddc4b5dbbf88fad1159"
+    },
+    {
+      "path": "runtime/lib/mockito-core-3.6.28.jar",
+      "sha256": "8f6bb5d54f0de3453215745f2844b1f0dc00b24abcb41c97059562743a83a9b2"
+    },
+    {
+      "path": "runtime/lib/nashorn-core-15.4.jar",
+      "sha256": "6f816e84dfd63a81d4eaa7829c08337bbaff3ec683ff3bf6bbd90d017a00dc6f"
+    },
+    {
+      "path": "runtime/lib/objenesis-3.1.jar",
+      "sha256": "cdb3d038c188de6f46ffd5cd930be2d5e5dba59c53b26437995d534e3db2fb80"
+    },
+    {
+      "path": "runtime/lib/onvif-java-lib-2016-03-16.jar",
+      "sha256": "4e3669278ce51a0b61f984333811541a7e2d2cf1cd6c8bc2841bf40a14e64f99"
+    },
+    {
+      "path": "runtime/lib/opencv-4.5.5-1.jar",
+      "sha256": "847c3255a3a47af0860ded022a8d51b3b5946d29c6002c91da72f3d36c0e5832"
+    },
+    {
+      "path": "runtime/lib/openpnp-capture-java-0.0.28-0.jar",
+      "sha256": "f72037f28b15e32b6ea2246ed6eec7cb02baef871d66a14ba08690df4ada6226"
+    },
+    {
+      "path": "runtime/lib/opentest4j-1.2.0.jar",
+      "sha256": "58812de60898d976fb81ef3b62da05c6604c18fd4a249f5044282479fc286af2"
+    },
+    {
+      "path": "runtime/lib/pastebin4j-1.2.1.jar",
+      "sha256": "2144e5675e929cf53a9b84f44f726480ae515c5aa3adc595dfee2515a6290949"
+    },
+    {
+      "path": "runtime/lib/serializer-2.7.2.jar",
+      "sha256": "e8f5b4340d3b12a0cfa44ac2db4be4e0639e479ae847df04c4ed8b521734bb4a"
+    },
+    {
+      "path": "runtime/lib/simple-xml-2.9.0.jar",
+      "sha256": "18c2793164c942253b9c44520fd861de7fd87509d63a7bd30cbfb38eb5acc78e"
+    },
+    {
+      "path": "runtime/lib/slf4j-api-1.7.2.jar",
+      "sha256": "3bae789b401333b2a1d1603b7fa573e19908628191707203f6eb708cdee2c052"
+    },
+    {
+      "path": "runtime/lib/stax-1.2.0.jar",
+      "sha256": "df6905a047b05e23bc91f03ba57ac2f87c1ddf83e048aa0e5bd13169d5ebf0d9"
+    },
+    {
+      "path": "runtime/lib/stax-api-1.0.1.jar",
+      "sha256": "d1968436fc216c901fb9b82c7e878b50fd1d30091676da95b2edd3a9c0ccf92e"
+    },
+    {
+      "path": "runtime/lib/svgSalamander-1.1.2.4.jar",
+      "sha256": "f30a5c5fc4d73d7f2aa4cf086ddc03cf2b387316c04fc4bf1ff94411afd51fd8"
+    },
+    {
+      "path": "runtime/lib/swingx-all-1.6.4.jar",
+      "sha256": "5bc8bb080fdf3ef968485ae90f7877fbcfc05b2cfe4753824acb5a36a1ee2036"
+    },
+    {
+      "path": "runtime/lib/tinylog-1.3.jar",
+      "sha256": "0cd9a85b5b1393bac2dbd4422ad573194920af71caf99f10b3812fc7194c07fe"
+    },
+    {
+      "path": "runtime/lib/unirest-java-1.4.9.jar",
+      "sha256": "88d9d28faa03d05deab9b4813597aee231c4ea5279edbb13d2ef35db118127f9"
+    },
+    {
+      "path": "runtime/lib/utils-1.07.00.jar",
+      "sha256": "9e135fee1b2143d4e609872bc0d736ea36b751a7ddddb11d84e08b042829475a"
+    },
+    {
+      "path": "runtime/lib/webcam-capture-0.3.10.jar",
+      "sha256": "a6cf33a1f4722619dd3c1b99709116f3f31f56a289c6f75af0bbbd19e5a9b10b"
+    },
+    {
+      "path": "runtime/lib/xalan-2.7.2.jar",
+      "sha256": "a44bd80e82cb0f4cfac0dac8575746223802514e3cec9dc75235bc0de646af14"
+    },
+    {
+      "path": "runtime/lib/xml-apis-1.3.04.jar",
+      "sha256": "d404aa881eb9c5f7a4fb546e84ea11506cd417a72b5972e88eff17f43f9f8a64"
+    },
+    {
+      "path": "runtime/lib/xml-apis-ext-1.3.04.jar",
+      "sha256": "d0b4887dc34d57de49074a58affad439a013d0baffa1a8034f8ef2a5ea191646"
+    },
+    {
+      "path": "runtime/lib/xmlgraphics-commons-1.2.jar",
+      "sha256": "2fff00adf9a2fec136113882610564336f8d92f2ad09fc4f893c8990e54628a7"
+    },
+    {
+      "path": "runtime/lib/xpp3-1.1.3.3.jar",
+      "sha256": "b14a6716def83417542d5515677d947fecd2597c125f2c82aa9be8792f66b5ee"
+    }
+  ],
+  "gui_tests_executed": false,
+  "physical_qualification": false,
+  "native_circular_symmetry": {
+    "api_version": 1,
+    "patch_id": "native-circular-symmetry-v1",
+    "patch_sha256": "e08ebaa16e357f0055fcfed322830cd5afeb0131c58ac8875983baef80413a20",
+    "source_path": "org/openpnp/vision/pipeline/stages/DetectCircularSymmetry.java",
+    "source_sha256": "98297ed9816b1fd499c93cfa52b6c643f53f5a11528c39d2c3dd6e8a3ecb1d51",
+    "class_family_sha256": {
+      "org/openpnp/vision/pipeline/stages/DetectCircularSymmetry$1.class": "5813425adb8e6316cc9bf776bb0d3262c10afe1f837d926bb33c0573e0c6c213",
+      "org/openpnp/vision/pipeline/stages/DetectCircularSymmetry$2.class": "b606772f48550fb28ddb5e0674f30d40f324c7dee4d3a76c473edb9d2dd2e3d1",
+      "org/openpnp/vision/pipeline/stages/DetectCircularSymmetry$ScoreRange.class": "9435e518ba23ee9c6fbab4ea6e48adac9216d5b233fc10f7e54caeafccf88eef",
+      "org/openpnp/vision/pipeline/stages/DetectCircularSymmetry$SymmetryCircle.class": "117a179aa78b69313125ed62dc4aeb4736ab73bbedc340be6cef1982d3c1a11d",
+      "org/openpnp/vision/pipeline/stages/DetectCircularSymmetry$SymmetryScore.class": "33da31f4c3ae782ea412c8eb5052728cfe41cfd12f2a3d94e122e924922e8cbb",
+      "org/openpnp/vision/pipeline/stages/DetectCircularSymmetry.class": "cfe9cbdc44661b74b79da111a0e6002c7487e851e26b1c077543b1d0ff6457fc"
+    },
+    "physical_calibration": false
+  },
+  "native_vacuum_sensing": {
+    "api_version": 1,
+    "patch_id": "native-vacuum-sensing-v1",
+    "patch_sha256": "aef8be6ae6c49051621ada7948b361c5a011165414db815bad9e0d288326d33b",
+    "java_release": 11,
+    "source_sha256": {
+      "org/openpnp/machine/reference/ReferenceNozzle.java": "98884be9e177f9aace190829e08e5dff18f13a5768d1552600471dd419d60981",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor.java": "d730b793deb28cb1b38bf7956e77f9d7941b89dacb9c2d341a88b73c9a307e85",
+      "org/openpnp/machine/reference/VacuumSensing.java": "218f1bc1d8229cba8a57d6455e164e2c93dfbaeb38120d0c4a5ff06f32fec042",
+      "org/openpnp/machine/reference/driver/NullDriver.java": "79062b9c538d5a652f047da30a06dff49ec7f84904fe87ed81eb6fb57ebaaa6d"
+    },
+    "class_family_sha256": {
+      "org/openpnp/machine/reference/ReferenceNozzle$1.class": "881678351963d8ba18e997776ff2d06d3393c56c389ed7cfebc7a843fb0e3c31",
+      "org/openpnp/machine/reference/ReferenceNozzle$ManualLoadException.class": "5e46f4cc2c0ee124762d532a1eb54135d971a3cbe95a5cbc08a54512c3f83488",
+      "org/openpnp/machine/reference/ReferenceNozzle$ManualUnloadException.class": "52d3242a4d3b03ba1197e24f080a5b7464d5d34de46ca8056e2db9fbb18db074",
+      "org/openpnp/machine/reference/ReferenceNozzle.class": "1564d7140f7d6c129b6a8dfa705a16c1c7b736568c0c003eb6d8a452233f54a6",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$1.class": "150c4994c45371bdac40bc97193c7082032d73a24d1f2db064250b1107669c8e",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$Abort.class": "4a839964131abed9d90f61431cee8da61d0da6ca9e8495d15a4aee614e4aa508",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$AbstractOptimizationNozzlesStep.class": "ac5cea1ebd4cdf13e10dc71231f6d3f476ec75dd054b2968ceb8c4a485b4d677",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$Align.class": "5040a9664a160a16539a10cf4154ca425021820e23eb7428fbfe13b7d2c5c8eb",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$AlignLocator.class": "eb00b4395fbaeb27365d82e4d7688d99ba7835cce0d22b61d95288a1a348a2c4",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$CalibrateNozzleTips.class": "c2da5df7d31792b91bcd0c441fe4380cf4a9a4b7c446d52ab10e2b39a0f744f4",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$ChangeNozzleTips.class": "cd9dae2201cd9329982127c379ed801b4afd696815a99c1e1d2c94546bdabadc",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$Cleanup.class": "f1309fef1fa92d36a0ba226de0fa925269a73f1c5b0b2331e57a4d96332d4651",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$EndCameraBatchOperation.class": "043450f732d7012e470472782ca773240b193aec7fc92940c4c9f46d562a51ef",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$FiducialCheck$ExtendedPlacementsHolderLocation.class": "d395c4604be1383b6fe9d3639f112ee08bc9a4ae9ceeb650b57fd1de1ab0314a",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$FiducialCheck.class": "9dd51ef2acff92938e89b8ff8907834b2ffc9e932f3fced2406b0dc2fb58a5a4",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$Finish.class": "e9abdf4c1095743531cb579368f4f88189cd041910f3fc3a940a8e7aaf926fe2",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$FinishCycle.class": "53e7e6a3adb25c54f7fb936e377b166c79dfc9b1867573d07261519c2d3f6fed",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$JobOrderHint.class": "c0b4d0d1a8f49355cc01575089d6de8381be25f4b0b59a82c1387e455ceca356",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$Locator.class": "05820f7d8052eb8b9fbb2b030af91a22209889edcbf73b875ba432e619c0536a",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$OptimizeNozzlesForAlign.class": "a15174604a6a9753c50dbe088cfec3f69742f43ecd16932c2b487096a0aa87f5",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$OptimizeNozzlesForPick.class": "a69b0eb8d0b79347ad84884c209371818f06c27e32379eab210e3ae24caf1d65",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$OptimizeNozzlesForPlace.class": "6df1ba72b27bc169bc54de47ad97aa23694fe112c1cdfc55eb7e028ded10899c",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$Pick.class": "a6903886fe9b05287cdf17186cb6bceba907e5b79ad668573e5ad62c7aec40b1",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$PickLocator.class": "1cdeaa481982017998d580e5b181fdde035f68f6dad91e8504935c7901d69dad",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$Place.class": "21b1830f134738e44181bde20385bc1f6a940a52f3306d7ee50220d16ab75ab2",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$PlaceLocator.class": "df37bab933ea9096908556601c07832ff0b8f74948683e55b980fde90d585ea0",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$Plan$1.class": "8766f5f98f002784e89c321164d886ba68d4e648e10169746fdc9ad1766218f7",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$Plan$1JobPlacementNozzleTip.class": "bfe21c5777b2742287c0d4735d70fef4ddee876903af0431a69c4ef385bdd850",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$Plan$2.class": "97e2e083f437500e538acdbd39382b892a0c767b0ef7672d1910572019628a69",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$Plan$ReturnJobPlacementsAndNozzleTips.class": "f9b8d329dcba164ba38d45845d409b900e1420fbea3c156e9dd1fa4bde72ceca",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$Plan$ReturnListAndLocation.class": "2bddc549174ecb5236b1e1e28ffc8b614034fdc783619fa7e60f9c37ab03d921",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$Plan.class": "8f9f74e76c2910df33a32c415ce97c72e9d64a759a3e3cdccb7aacaf6a67baa4",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$PlannedPlacementStep.class": "57c2d47b475733b9ebe14759c1add3dd5db4921264d14402d986e148a731c47f",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$PreFlight$1.class": "a2d013f8d4a3d614e96c8acd280fcc5b32e32d4e3c4c2c7ec3864a512792c4b1",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$PreFlight.class": "9203e877ee31806b6942e14ff572d59599c98e60593f0f5fc8432e83da551f1b",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$PrerotateAllNozzlesForAlign.class": "387629c98a9c7414d6bb27fbb34e09358346110d7b4500e604ade560b05413f4",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$PrerotateAllNozzlesForPick.class": "7bfd25837f544c51cf5f56052a663b8224aa2769376649c76609fc228b4b7607",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$PrerotateAllNozzlesForPlace.class": "698fe9af877fc8db37cd369220758bde769445247e069208b9c55ab0d093fc69",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$PrerotateAllNozzlesStep.class": "35d738b35092cbd87a840d88eaeaf6edd41b01a1769d82d741da75533dff2743",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$SimplePnpJobPlanner$PlannerState.class": "8dd6b79f8b470049a25983613045499c38f4c0ef138310c8926908bb538e8592",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$SimplePnpJobPlanner.class": "d9702d65c626d4a175a59c234129617c1a1698ee0387ea284aa460dc0ef109f9",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$StartCameraBatchOperation.class": "0ba9591ff086ed48634408593c60076923fef2d42db8651f8e1c5d3935fe836b",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$Step.class": "27c6130b07e64e84563b11d0bbd99df5f205f45db0279741cd8e1e5636558b9f",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor$TrivialPnpJobPlanner.class": "67baba0995f8a878beec3069d8f49e3bd7a7d8dd98dc0aca949b53a130b9eb63",
+      "org/openpnp/machine/reference/ReferencePnpJobProcessor.class": "244022828836315214587eb7dd048e0e75af4116d4bbc09ad3fb3921ce20ec00",
+      "org/openpnp/machine/reference/VacuumSensing$CheckedBoolean.class": "1d6e8aa933e94491148adf3c3abf7748e23354850b880a8a43755f5db110d495",
+      "org/openpnp/machine/reference/VacuumSensing$CheckedString.class": "3c6a3856da61cfa452cc99fa61b6efeddbee53e8dc682047ac29ccf3e4ec154d",
+      "org/openpnp/machine/reference/VacuumSensing$CheckedVoid.class": "45928cdda74a5ce24e3035183fc46c62e3225e6d8fdaf49ec3e9ad7bc6e3bea5",
+      "org/openpnp/machine/reference/VacuumSensing$ControlledSource.class": "37c61a58367da74f206ec47c0cdc2e59c94460a1c7b26858115b0a71ff94f117",
+      "org/openpnp/machine/reference/VacuumSensing$Frame.class": "57b30e442586cf849c5d0839b01d4ee3173d31a464ee423090560b2ac3289120",
+      "org/openpnp/machine/reference/VacuumSensing$Observer.class": "5663c5ea8fee47fd51c5127775a86f8c3134e421361ab8b49197edab658f88d0",
+      "org/openpnp/machine/reference/VacuumSensing$ObserverFailure.class": "6658985bde5394473002abb0a83e0fae97fd660ec54490068e39f882a12ee313",
+      "org/openpnp/machine/reference/VacuumSensing$SampleSource.class": "d226d7b82f965993f03ced0587e4b207eb22d7a949cf02dbce3d8f26841686f3",
+      "org/openpnp/machine/reference/VacuumSensing$Scope.class": "05729692007ff05f874af0bacc7e82772e435edb9bd011700bcae337c1267a47",
+      "org/openpnp/machine/reference/VacuumSensing$SensorValueException.class": "4e6a1f7ce2b76f296230ff36d7b7707c9424aec5af1d3dec6805ae8a9ecfec99",
+      "org/openpnp/machine/reference/VacuumSensing.class": "7c0d06eadbd9c0377ecf93f9cfe4b7cfd2a6bf686f7034adfbc47ae8652e1144",
+      "org/openpnp/machine/reference/driver/NullDriver$1.class": "c5f11247fd6c7aa21f96ac19b31fc71a8397ac185a52e085ea038dd919800a8d",
+      "org/openpnp/machine/reference/driver/NullDriver.class": "a2ce7c5de6a7979cdfb70c8ab97efc451e2bb0a8fdbfaf38906372b9bdfed3a4"
+    },
+    "controlled_sources_serialized": false,
+    "physical_qualification": false
+  },
+  "production_java_release": 11,
+  "test_java_release": 17,
+  "gui_sensing_restart": {
+    "schema_version": 1,
+    "profile": "native-gui-source-absent-restart-v1",
+    "startup_mode": "restart",
+    "prepared_manifest_profile": "prepared-native-gui-vacuum-fixture-v1",
+    "source_installed_at_startup": false
+  }
+}

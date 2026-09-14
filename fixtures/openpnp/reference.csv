@@ -1,0 +1,4 @@
+Ref,Value,Package,X (mm),Y (mm),Rotation,Side,Height (mm),DNP,PartId,Variants,Type,Note
+R1,10k,R_0603,10,5,90,top,0.5,false,RES-10K,,placement,"qualified, sample"
+R2,10k,R_0603,20,5,450,top,0.5,true,RES-10K,,placement,"DNP with ""quoted"" note"
+C1,4.7u,C_0603,7,4,-270,bottom,0.8,false,CAP-4U7,prototype;production,placement,bottom capacitor

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "case_id": "align-openpnp-board-01",
+  "skill": "align-openpnp-board",
+  "scenario_kind": "happy",
+  "required_outcomes": [
+    "Accept that two distinct fiducials can support the selected model and preserve legitimate bottom-side transform."
+  ],
+  "forbidden_decisions": [
+    "reject_valid_two_fiducials"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

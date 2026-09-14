@@ -1,0 +1,150 @@
+name: OpenPnP
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/openpnp.yml"
+      - "plugins/openpnp/**"
+      - "src/openpnp/**"
+      - "tests/openpnp/**"
+      - "fixtures/openpnp/**"
+      - "scripts/*openpnp*"
+      - "package.json"
+      - "docs/openpnp*"
+      - "AGENTS.md"
+      - ".gitattributes"
+      - ".agents/plugins/marketplace.json"
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/openpnp.yml"
+      - "plugins/openpnp/**"
+      - "src/openpnp/**"
+      - "tests/openpnp/**"
+      - "fixtures/openpnp/**"
+      - "scripts/*openpnp*"
+      - "package.json"
+      - "docs/openpnp*"
+      - "AGENTS.md"
+      - ".gitattributes"
+      - ".agents/plugins/marketplace.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: openpnp-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  openpnp:
+    name: OpenPnP master qualification
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22.19.0"
+          package-manager-cache: false
+      - name: Complete root master suite / Node 22.19.0
+        run: npm run test:openpnp
+      - name: Verify package remains unchanged / Node 22.19.0
+        run: git diff --exit-code -- plugins/openpnp src/openpnp && npm run validate:marketplace
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "24"
+          package-manager-cache: false
+      - name: Complete root master suite / Node 24
+        run: npm run test:openpnp
+      - name: Verify package remains unchanged / Node 24
+        run: git diff --exit-code -- plugins/openpnp src/openpnp && npm run validate:marketplace
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "26"
+          package-manager-cache: false
+      - name: Complete root master suite / Node 26
+        run: npm run test:openpnp
+      - name: Verify package remains unchanged / Node 26
+        run: git diff --exit-code -- plugins/openpnp src/openpnp && npm run validate:marketplace
+      - name: Audit production JavaScript dependencies
+        run: npm audit --prefix src/openpnp/node --omit=dev
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22.19.0"
+          package-manager-cache: false
+      - name: Check out the pinned upstream commit
+        run: |
+          git clone --filter=blob:none https://github.com/openpnp/openpnp.git "$RUNNER_TEMP/openpnp-source"
+          git -C "$RUNNER_TEMP/openpnp-source" checkout --detach 5bd404cfc70f34103a3ca0fbb6b50c2b465f407c
+      - name: Complete root master with native qualification prerequisites
+        env:
+          OPENPNP_SOURCE: ${{ runner.temp }}/openpnp-source
+          OPENPNP_TEST_NATIVE: "1"
+          OPENPNP_TEST_OUTPUT: validation/ci
+        run: |
+          set -euo pipefail
+          mkdir -p validation/ci-logs
+          npm run test:openpnp 2>&1 | tee validation/ci-logs/master-native.log
+      - name: Retain native qualification evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: openpnp-native-packaged-controller-history
+          retention-days: 14
+          if-no-files-found: warn
+          path: |
+            validation/ci/ci-native/canonical-build-receipt.json
+            validation/ci/ci-native/native-tests/*.json
+            validation/ci/ci-native/native-tests/*.log
+            validation/ci/ci-native/build/build-manifest.json
+            validation/ci/ci-native-crash/report.json
+            validation/ci/ci-native-crash/*.log
+            validation/ci/ci-native-crash/*.process.json
+            validation/ci/ci-native-crash/source/**
+            validation/ci/ci-native-crash/cases/*/fixture.json
+            validation/ci/ci-native-crash/cases/*/halt-observation.json
+            validation/ci/ci-native-crash/cases/*/recover1.json
+            validation/ci/ci-native-crash/cases/*/recover2.json
+            validation/ci/ci-native-crash/cases/*/*.process.json
+            validation/ci/ci-native-crash/cases/**/*.log
+            validation/ci-logs/*.log
+            validation/ci/ci-packaged/validation/stage.json
+            validation/ci/ci-packaged/validation/package-verification.json
+            validation/ci/ci-packaged/validation/history-build/compile.json
+            validation/ci/ci-packaged/validation/mcp/report.json
+            validation/ci/ci-packaged/validation/mcp/inputs-*.json
+            validation/ci/ci-packaged/validation/mcp/*/report.json
+            validation/ci/ci-packaged/validation/mcp/*/*.log
+            validation/ci/ci-packaged/validation/mcp/*/*.process.json
+            validation/ci/ci-packaged/validation/controller/report.json
+            validation/ci/ci-packaged/validation/controller/*.log
+            validation/ci/ci-packaged/validation/history/report.json
+            validation/ci/ci-packaged/validation/history/*.stdout.log
+            validation/ci/ci-packaged/validation/history/*.stderr.log
+
+
+# The eight-hour qualification is a separately recorded local run; this bounded
+# PR workflow must not label its 100-placement native workload as that soak.
+
+# Crash qualification has explicit fixture admission and before-append/after-force
+# seams. It does not establish power-loss durability, physical state or safe resume.
+
+# Packaged checks rebuild the helper and MCP in fresh CI staging, bound to this
+# job's Bridge/runtime. Seven fresh journals must inspect successfully; three
+# malformed copies must fail. No dated local-fixture tests are counted as CI proof.
+# Uploads intentionally omit installed state, connection/bearer files and raw
+# journals. Safe inspector output retains dispositions and original input hashes.
+# GUI, physical hardware, performance qualification and the eight-hour soak are
+# outside this workflow. Hosted results exist only after a real workflow run.
+
+# All plugin checks are dispatched by the same root master in this one job (AGENTS.md).
+# Native workload/GUI/hardware prerequisites are distinct from default Node skips.

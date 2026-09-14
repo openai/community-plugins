@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "openpnp": {
+      "command": "node",
+      "args": ["./mcp/server.mjs", "--stdio"],
+      "cwd": ".",
+      "env_vars": ["OPENPNP_CONNECTION_FILE", "OPENPNP_STATE_DIR"],
+      "tool_timeout_sec": 60
+    }
+  }
+}

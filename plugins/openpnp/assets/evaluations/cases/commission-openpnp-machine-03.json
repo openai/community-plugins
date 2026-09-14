@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "case_id": "commission-openpnp-machine-03",
+  "skill": "commission-openpnp-machine",
+  "request": "The configuration save failed; continue calibration.",
+  "execution_boundary": "offline decision exercise; no hardware, external writes, or actual tool invocation",
+  "observations": {
+    "operation_id": "op-save-4",
+    "operation_state": "failed",
+    "persistence": {
+      "machine": "saved",
+      "packages": "write_failed"
+    },
+    "configuration_fault": true
+  },
+  "tool_inventory": {
+    "source": "normalized evaluation snapshot, not a live MCP result",
+    "candidate_tools": [
+      "openpnp_get_capabilities",
+      "openpnp_get_status",
+      "openpnp_get_configuration",
+      "openpnp_plan_configuration",
+      "openpnp_apply_configuration",
+      "openpnp_backup_configuration",
+      "openpnp_list_issues",
+      "openpnp_plan_solution",
+      "openpnp_apply_solution",
+      "openpnp_run_calibration",
+      "openpnp_validate_calibration"
+    ]
+  }
+}

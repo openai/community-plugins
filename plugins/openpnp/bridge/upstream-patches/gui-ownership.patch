@@ -1,0 +1,263 @@
+--- a/src/main/java/org/openpnp/spi/base/AbstractMachine.java
++++ b/src/main/java/org/openpnp/spi/base/AbstractMachine.java
+@@ -540,6 +540,13 @@
+         return submit(callable, callback, false);
+     }
+ 
++    // Additive simulator ownership API; no owner preserves stock submission behavior.
++    private transient final ExternalExecutionControl externalExecutionControl = new ExternalExecutionControl(this);
++
++    public final ExternalExecutionControl getExternalExecutionControl() {
++        return externalExecutionControl;
++    }
++
+     private synchronized boolean isQueueEmpty() {
+         return executor == null || executor.isShutdown() || executor.getQueue().isEmpty();
+     }
+@@ -550,7 +557,17 @@
+         synchronized (this) {
+             if (executor == null || executor.isShutdown()) {
+                 executor = new ThreadPoolExecutor(1, 1, 1, TimeUnit.SECONDS,
+-                        new LinkedBlockingQueue<>());
++                        new LinkedBlockingQueue<>()) {
++                    @Override protected void afterExecute(Runnable task, Throwable failure) {
++                        super.afterExecute(task, failure);
++                        // Cancelled queued FutureTasks do not invoke the native wrapper's finally.
++                        // Publish idle on the executor thread after every queue item drains.
++                        if (!isShutdown() && AbstractMachine.this.isTask(Thread.currentThread()) && getQueue().isEmpty()) {
++                            try { if (AbstractMachine.this.isBusy()) fireMachineBusy(false); }
++                            finally { setTaskThread(null); }
++                        }
++                    }
++                };
+             }
+         }
+ 
+@@ -612,7 +629,9 @@
+                                 // handlers, i.e. it must not be subject to any Thread.interrupt() calls causing InterruptedException. 
+                                 // After finishing up, there will still be a call to executor.shutdownNow() (see further below).
+                                 for (Runnable runnable : new ArrayList<>(executor.getQueue())) {
+-                                    executor.remove(runnable);
++                                    if (executor.remove(runnable) && runnable instanceof java.util.concurrent.Future<?>) {
++                                        ((java.util.concurrent.Future<?>) runnable).cancel(false);
++                                    }
+                                 }
+                             }
+                         }
+@@ -647,7 +666,9 @@
+                     if (exception != null) {
+                         synchronized (this) {
+                             if (executor != null) {
+-                                executor.shutdownNow();
++                                for (Runnable queued : executor.shutdownNow()) {
++                                    if (queued instanceof java.util.concurrent.Future<?>) ((java.util.concurrent.Future<?>) queued).cancel(false);
++                                }
+                             }
+                         }
+                     }
+@@ -655,7 +676,15 @@
+             }
+         };
+ 
+-        return executor.submit(wrapper);
++        java.util.concurrent.FutureTask<T> admitted = externalExecutionControl.task(wrapper);
++        try {
++            executor.execute(admitted);
++            return admitted;
++        }
++        catch (RuntimeException rejected) {
++            admitted.cancel(false);
++            throw rejected;
++        }
+     }
+ 
+     @Override
+--- /dev/null
++++ b/src/main/java/org/openpnp/spi/base/ExternalExecutionControl.java
+@@ -0,0 +1,66 @@
++package org.openpnp.spi.base;
++
++import java.util.concurrent.Callable;
++import java.util.concurrent.FutureTask;
++import java.util.concurrent.RejectedExecutionException;
++
++/** Opaque ownership for cooperating in-process controllers. Not a Java security sandbox. */
++public final class ExternalExecutionControl {
++    public static final int API_VERSION = 1;
++    public static final String PATCH_ID = "codex-gui-ownership-v1";
++    private final AbstractMachine machine;
++    private final ThreadLocal<Object> context = new ThreadLocal<>();
++    private Object owner;
++    private String label;
++    private int pending;
++    ExternalExecutionControl(AbstractMachine machine) { this.machine=machine; }
++
++    public int getApiVersion() { return API_VERSION; }
++    public synchronized Object claim(String label) {
++        if (label==null || label.isEmpty() || label.length()>120) throw new IllegalArgumentException("Bounded owner label required");
++        if (owner!=null || pending!=0 || machine.isBusy()) throw new IllegalStateException("Machine has an owner, running task or queued task");
++        owner=new Object();this.label=label;return owner;
++    }
++    public synchronized boolean owns(Object token) { return token!=null && token==owner; }
++    public synchronized String getOwnerLabel() { return label; }
++    public synchronized int getPendingTaskCount() { return pending; }
++    public synchronized void release(Object token) {
++        require(token);
++        if(pending!=0 || machine.isBusy()) throw new IllegalStateException("Ownership cannot release before all native tasks drain");
++        owner=null;label=null;
++    }
++    private void require(Object token) {
++        if(token==null || owner!=token) throw new RejectedExecutionException("Native execution ownership was revoked");
++    }
++    public <T> T withOwner(Object token, Callable<T> action) throws Exception {
++        synchronized(this) { require(token); }
++        Object prior=context.get();context.set(token);
++        try { return action.call(); }
++        finally { if(prior==null)context.remove();else context.set(prior); }
++    }
++    synchronized <T> FutureTask<T> task(Callable<T> action) {
++        final Object admitted=context.get();
++        if(owner!=null && admitted!=owner || owner==null && admitted!=null)
++            throw new RejectedExecutionException("Another controller owns native machine execution");
++        pending++;
++        final boolean[] ticket={false,false}; // begun, released; guarded by this control
++        return new FutureTask<T>(() -> {
++            synchronized(ExternalExecutionControl.this) {
++                if(ticket[1])throw new RejectedExecutionException("Native task was cancelled before entry");
++                ticket[0]=true;
++                if(owner!=admitted){ticket[1]=true;pending--;throw new RejectedExecutionException("Native execution owner changed before dispatch");}
++            }
++            Object prior=context.get();
++            if(admitted==null)context.remove();else context.set(admitted);
++            try { return action.call(); }
++            finally {
++                if(prior==null)context.remove();else context.set(prior);
++                synchronized(ExternalExecutionControl.this){if(!ticket[1]){ticket[1]=true;pending--;}}
++            }
++        }) {
++            @Override protected void done() {
++                synchronized(ExternalExecutionControl.this){if(!ticket[0] && !ticket[1]){ticket[1]=true;pending--;}}
++            }
++        };
++    }
++}
+--- a/src/main/java/org/openpnp/gui/JobPanel.java
++++ b/src/main/java/org/openpnp/gui/JobPanel.java
+@@ -168,6 +168,31 @@
+     private JobProcessor jobProcessor;
+     
+     private State state = State.Stopped;
++    private Object externalJobOwner;
++    private boolean externalJobPublication;
++
++    public String getExecutionState() { return state.name(); }
++    public boolean hasExternalJobControl() { return externalJobOwner!=null; }
++    public void claimExternalJobControl(Object token) {
++        if(!SwingUtilities.isEventDispatchThread())throw new IllegalStateException("Job ownership requires EDT");
++        if(token==null || externalJobOwner!=null || state!=State.Stopped)throw new IllegalStateException("GUI job is not stopped and unowned");
++        externalJobOwner=token;updateJobActions();
++    }
++    public void releaseExternalJobControl(Object token) {
++        if(!SwingUtilities.isEventDispatchThread())throw new IllegalStateException("Job ownership requires EDT");
++        if(token==null || externalJobOwner!=token || state!=State.Stopped)throw new IllegalStateException("GUI job ownership cannot release");
++        externalJobOwner=null;updateJobActions();
++    }
++    public void setExternalJob(Object token, Job next) {
++        if(!SwingUtilities.isEventDispatchThread() || token==null || externalJobOwner!=token)
++            throw new IllegalStateException("Only the external owner may publish the job on EDT");
++        if(next==job){refresh();return;}
++        externalJobPublication=true;
++        try{setJob(next);}finally{externalJobPublication=false;}
++    }
++    private void requireLocalJobControl() {
++        if(externalJobOwner!=null)throw new IllegalStateException("External controller owns the job; use its local takeover control first");
++    }
+     
+     public JobPanel(Configuration configuration, MainFrame frame) {
+         this.configuration = configuration;
+@@ -511,6 +536,7 @@
+     }
+     
+     void setState(State newState) {
++        if(externalJobOwner!=null && newState!=State.Stopped)requireLocalJobControl();
+         this.state = newState;
+         updateJobActions();
+     }
+@@ -565,10 +591,11 @@
+     }
+ 
+     public void setJob(Job job) {
++        if(!externalJobPublication)requireLocalJobControl();
+         if (this.job != null) {
+             this.job.removePropertyChangeListener("dirty", titlePropertyChangeListener); //$NON-NLS-1$
+             this.job.removePropertyChangeListener("file", titlePropertyChangeListener); //$NON-NLS-1$
+-            this.job.getRootPanelLocation().getPanel().removeAllChildren();
++            if (!externalJobPublication) this.job.getRootPanelLocation().getPanel().removeAllChildren();
+         }
+         this.job = job;
+         jobTableModel.setJob(job);
+@@ -759,6 +786,7 @@
+      * Updates the Job controls based on the Job state and the Machine's readiness.
+      */
+     private void updateJobActions() {
++        if(externalJobOwner!=null){startPauseResumeJobAction.setEnabled(false);stopJobAction.setEnabled(false);stepJobAction.setEnabled(false);return;}
+         if (state == State.Stopped) {
+             startPauseResumeJobAction.setEnabled(true);
+             startPauseResumeJobAction.putValue(AbstractAction.NAME,
+@@ -820,6 +848,12 @@
+     }
+ 
+     private void updateTitle() {
++        // Dirty/file notifications can originate on the native executor.
++        // Read the latest current job only after returning to the event thread.
++        if (!SwingUtilities.isEventDispatchThread()) {
++            SwingUtilities.invokeLater(this::updateTitle);
++            return;
++        }
+         String title = String.format("OpenPnP - %s%s", job.isDirty() ? "*" : "", //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                 (job.getFile() == null ? UNTITLED_JOB_FILENAME : job.getFile().getName()));
+         mainFrame.setTitle(title);
+@@ -926,6 +960,7 @@
+      * @throws Exception
+      */
+     public void jobStart() throws Exception {
++        requireLocalJobControl();
+         jobProcessor = Configuration.get().getMachine().getPnpJobProcessor();
+         if (isAllPlaced()) {
+             int ret = JOptionPane.showConfirmDialog(getTopLevelAncestor(),
+@@ -942,6 +977,7 @@
+     }
+     
+     public void jobRun() {
++        requireLocalJobControl();
+         UiUtils.submitUiMachineTask(() -> {
+             // For optional motion stepping, remember the past move.
+             MotionPlanner motionPlanner = Configuration.get().getMachine().getMotionPlanner();
+@@ -1059,6 +1095,7 @@
+     }
+ 
+     private void jobAbort() {
++        requireLocalJobControl();
+         UiUtils.submitUiMachineTask(() -> {
+             try {
+                 jobProcessor.abort();
+@@ -1072,6 +1109,7 @@
+     
+     // resume a job that's currently in state Paused - used to continue after a manual nozzle tip change from within the JobProcessor
+     public void jobResume() {
++        requireLocalJobControl();
+         if (state == State.Paused) {
+             setState(State.Running);
+             jobRun();
+--- a/src/main/java/org/openpnp/gui/MainFrame.java
++++ b/src/main/java/org/openpnp/gui/MainFrame.java
+@@ -1100,6 +1100,9 @@
+     }
+ 
+     public boolean quit() {
++        // The visible external-controller panel performs cooperative drain and ownership release.
++        // Native processor ownership must not be bypassed by an application-menu Quit callback.
++        if(jobPanel!=null && jobPanel.hasExternalJobControl())return false;
+         Logger.info("Shutting down..."); //$NON-NLS-1$
+         try {
+             Preferences.userRoot().flush();

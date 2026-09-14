@@ -1,0 +1,113 @@
+{
+  "passed": true,
+  "scope": "Sensing78 selected build78-03 bounded real OpenPnP simulator qualification",
+  "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+  "candidate": {
+    "tool_count": 59,
+    "typed_configuration_changes": 34,
+    "skill_count": 14,
+    "native_bridge_sha256": "1bdca478e7539abf642d919b404d7f8445db6b026bcf25c8f617c8de9c3766d3",
+    "mcp_server_sha256": "bba65fb1eeb98f31f864e5e4bec733eaf14e462cb7f426b9cb7a139718c3aae6",
+    "tool_inputs_sha256": "4e1e3ef3b37d50cc3e51fe71571c0e3ea9e8ab75c4f10b6ebf2faebdd31a89a7",
+    "native_runtime_jar_sha256": "d0cbaf1a7cc4b82cae6292c8f477b8650234eb7d6a6e304b9ea3dce92d828798",
+    "runtime_manifest_sha256": "2055d34440f8ce67e29599e42219cfdc14d2ba6fc540f1ae8f87fd45b8eeb9f0",
+    "linux_runtime_manifest_sha256": "dbeb73635aea74e2b47610a4aadc493d7b0b66aff89b1668e7e9f5dc95b76ca2",
+    "native_runtime_patch_count": 6,
+    "native_runtime_class_families": 15,
+    "production_java_source_pairs": 57,
+    "compiled_bridge_classes": 208,
+    "native_test_sources": 114,
+    "compiled_test_classes": 238,
+    "canonical_native_mains": 90,
+    "mcp_runner_suites": 17,
+    "gui_case_count": 7,
+    "unique_non_live_tests_per_node_major": 400,
+    "combined_qualification_passed": true,
+    "single_full_17_mcp_run_passed": true,
+    "uniform_fresh_skill_qualification": false,
+    "physical_qualification": false,
+    "hardware_qualified": false,
+    "endurance_qualification": false,
+    "performance_qualification": false,
+    "full_implementation_plan_completed": false,
+    "stage": "Sensing78 bounded simulator qualification; full implementation in progress."
+  },
+  "native_programs_per_platform": 90,
+  "platforms": [
+    "macOS ARM64",
+    "Linux ARM64"
+  ],
+  "mcp_suite_count": 17,
+  "gui_case_count": 7,
+  "unique_non_live_tests_per_node_major": 400,
+  "node_majors": [
+    22,
+    24,
+    26
+  ],
+  "controller_checks": 15,
+  "skill_trial": {
+    "passed": true,
+    "checks": 202,
+    "samples": [
+      70,
+      70,
+      70,
+      70
+    ],
+    "scope": "Informed tooling configuration, passive sensing, true/false part-off checks, retained fault, disable/release. No job, part-on, active clearance or reconciliation in this trial.",
+    "blind": false,
+    "uniform_14_skills_qualified": false,
+    "evidence": "proofs/validation/skill78-trial04/summary.json",
+    "audit": "proofs/validation/skill78-close-audit01/summary.json"
+  },
+  "evidence": {
+    "native_macos": {
+      "path": "proofs/validation/native78-03/qualification-audit.json",
+      "sha256": "b3e0c95ba626278507836b7a9ed61174ed0f05154bc0716040ea0a978c7517e9"
+    },
+    "native_linux": {
+      "path": "proofs/validation/linux78/revision02/attempt-01/qualification-audit.json",
+      "sha256": "a3e5c76911327c3779fe63d9d893078eff2c669b4863cd40935817909d55008a"
+    },
+    "gui": {
+      "path": "proofs/validation/gui78-03-campaign/qualification-audit.json",
+      "sha256": "17e889e82b5fce32b9ebe97c36e79bafa282dfb05f60d713989f1baffbc619f4"
+    },
+    "mcp": {
+      "path": "proofs/validation/mcp78-audit04/summary.json",
+      "sha256": "9b98e015fdff6222fbc6600ec0424775b0aed88c1b8c081fd932828a50b4ebba"
+    },
+    "node_main": {
+      "path": "proofs/validation/node78-matrix04/summary.json",
+      "sha256": "4ecd1de8703dbcb719f00ff9f0a42b989670481867d3a142ce5da527a1ed1f44"
+    },
+    "node_deferred": {
+      "path": "proofs/validation/node78-deferred01/summary.json",
+      "sha256": "670577b9811871dc0ab6e090ecd64dc0760b41507001d1fac49ccb178fc29eaf"
+    },
+    "skill_trial": {
+      "path": "proofs/validation/skill78-trial04/summary.json",
+      "sha256": "5348b6e7ceda048305d515c2f5e847f04c836ea1abb54104a624d1e96953b84a"
+    },
+    "skill_audit": {
+      "path": "proofs/validation/skill78-close-audit01/summary.json",
+      "sha256": "1f8a640a5e4f2090602b8de0095ea674af5ae631b0fa9aca2927cc7f0633d1f1"
+    }
+  },
+  "proof_manifest": {
+    "path": "proof-manifest.json",
+    "sha256": "5d589b2a1ebbb1f75f7a615b6430a163c7bee9a0666c12c7dfc04db0f20b8fec",
+    "file_count": 1840
+  },
+  "retained_attempts": "Includes superseded builds, native wrapper/request compatibility failures and fixes, Node harness/metadata corrections, Linux license preflight, MCP audit correction, incomplete skill attempts, and restored harness-collision disposition.",
+  "physical_qualification": false,
+  "full_implementation_plan_completed": false,
+  "limits": [
+    "Synthetic signals in native actuator units; no pneumatic physics or physical occupancy qualification.",
+    "GUI regressions cover default fixtures/inspection, not GUI vacuum sensing or desktop gestures.",
+    "Native top-level cleanup records no TERM/KILL; mapped MCP fixture intentionally uses TERM; GUI does not prove absence of TERM.",
+    "Skill trial retains fault and exits safely; it does not clear or reconcile it. Historical skill fixtures are not fresh live evaluation.",
+    "All R01-R18 remain partial. No current performance, continuous endurance, physical hardware, installation, hosted CI or remote publication claim."
+  ]
+}

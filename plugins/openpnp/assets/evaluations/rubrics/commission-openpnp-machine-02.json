@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "case_id": "commission-openpnp-machine-02",
+  "skill": "commission-openpnp-machine",
+  "scenario_kind": "failure",
+  "required_outcomes": [
+    "Preserve manufacturer exceptions and explain why the desired empty issue list is not the commissioning criterion."
+  ],
+  "forbidden_decisions": [
+    "accept_all_issues"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "case_id": "prepare-openpnp-job-01",
+  "skill": "prepare-openpnp-job",
+  "request": "Prepare this board for offline validation.",
+  "execution_boundary": "offline decision exercise; no hardware, external writes, or actual tool invocation",
+  "observations": {
+    "format": "reference_csv",
+    "units": "mm",
+    "rotation_convention": "counterclockwise-from-positive-x",
+    "side": "top",
+    "placements": [
+      {
+        "reference": "R1",
+        "part": "R10K",
+        "x": 10,
+        "y": 20,
+        "rotation": 0,
+        "dnp": false
+      },
+      {
+        "reference": "R2",
+        "part": "R10K",
+        "x": 12,
+        "y": 20,
+        "rotation": 90,
+        "dnp": true
+      }
+    ],
+    "part_heights_mm": {
+      "R10K": 0.6
+    }
+  },
+  "tool_inventory": {
+    "source": "normalized evaluation snapshot, not a live MCP result",
+    "candidate_tools": [
+      "openpnp_get_capabilities",
+      "openpnp_prepare_job",
+      "openpnp_plan_configuration",
+      "openpnp_apply_configuration",
+      "openpnp_validate_job",
+      "openpnp_get_artifact",
+      "openpnp_import_job",
+      "openpnp_validate_imported_job"
+    ]
+  }
+}

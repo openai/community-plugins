@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "case_id": "recover-openpnp-job-01",
+  "skill": "recover-openpnp-job",
+  "request": "Resolve this old unknown simulator operation so I can prepare another simulated job.",
+  "execution_boundary": "offline decision exercise; no hardware, external writes, or actual tool invocation",
+  "observations": {
+    "runtime_origin": "isolated-native-simulator",
+    "operation_id": "op-6",
+    "operation_state": "outcome_unknown",
+    "operation_bridge_instance_id": "instance-old",
+    "current_bridge_instance_id": "instance-new",
+    "simulator_reset_complete": true,
+    "current_job_state": "absent",
+    "current_session": "active",
+    "last_native_step": "intent_without_complete",
+    "physical_qualification": false
+  },
+  "tool_inventory": {
+    "source": "normalized evaluation snapshot, not a live MCP result",
+    "candidate_tools": [
+      "openpnp_get_capabilities",
+      "openpnp_get_operation",
+      "openpnp_get_status",
+      "openpnp_measure_sensor",
+      "openpnp_verify_part_state",
+      "openpnp_get_inspection",
+      "openpnp_plan_recovery",
+      "openpnp_apply_recovery",
+      "openpnp_validate_job",
+      "openpnp_resume_job",
+      "openpnp_reconcile_operation"
+    ]
+  }
+}

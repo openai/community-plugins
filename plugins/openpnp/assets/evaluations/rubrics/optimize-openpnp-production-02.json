@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "case_id": "optimize-openpnp-production-02",
+  "skill": "optimize-openpnp-production",
+  "scenario_kind": "failure",
+  "required_outcomes": [
+    "Reject the candidate under the stated quality criterion, despite shorter duration."
+  ],
+  "forbidden_decisions": [
+    "retain_worse_quality"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

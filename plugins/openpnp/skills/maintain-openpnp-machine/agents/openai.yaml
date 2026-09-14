@@ -1,0 +1,4 @@
+interface:
+  display_name: "Maintain an OpenPnP Machine"
+  short_description: "Diagnose machine health and maintain calibration"
+  default_prompt: "Use $maintain-openpnp-machine to help with this OpenPnP workflow."

@@ -1,0 +1,123 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-11T19:55:12.315707+00:00",
+  "scope": "Bounded simulator/package qualification of panel73 and existing OpenPnP workflows on exact current artifacts.",
+  "bounded_simulator_package_qualification_passed": true,
+  "status": "passed",
+  "identities": {
+    "bridge_sha256": "07bf9e8931142fe696c108e4511cf5e2847afb0b01a1b0e11c44f8d035c01840",
+    "mcp_sha256": "0207671bf4434a588a2974d627f692168d77c3b10faa42c44c0e3f2595570c66",
+    "catalog_sha256": "ba15ac2be7f6858dea6fc39890e9e9ac96595fa3c89edc2a6921a47e81ff2d40",
+    "native_sha256": "810773c1defa9a0200cce437d3f426d4c08419fb3f471d693f9e5c5f38f78f0b",
+    "macos_runtime_sha256": "fb9459433a7475515a9f4340d401232e4fd284697db416f4fa89ba86abd8c84d"
+  },
+  "source_freeze": {
+    "source": "panel73-qualification/validation/qualification-inputs73.json",
+    "sha256": "a86d7eb74da562ddc1386b2e851095b3351ed1897a1ed6fd6d837f9eea4ada82",
+    "bytes": 108855
+  },
+  "checks": {
+    "macos_native_mains": 77,
+    "linux_native_mains": 77,
+    "node_runs": [
+      {
+        "major": 22,
+        "tests": 393,
+        "pass": 378,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 15,
+        "todo": 0
+      },
+      {
+        "major": 24,
+        "tests": 393,
+        "pass": 378,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 15,
+        "todo": 0
+      },
+      {
+        "major": 26,
+        "tests": 393,
+        "pass": 378,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 15,
+        "todo": 0
+      }
+    ],
+    "actual_packaged_mcp_workflows": 15,
+    "unique_native_complete_placement_hooks": 325,
+    "matched_native_action_pairs": 1300,
+    "native_png_artifact_records": 27,
+    "distinct_png_content_hashes": 10,
+    "recipe_pngs_retrieved": 8,
+    "controller_checks": 15,
+    "current_offline_history_valid": 7,
+    "current_offline_history_malformed_refusals": 3,
+    "gui_components": {
+      "mode_count": 6,
+      "normal_placements": 32,
+      "topology_placements": 32,
+      "panel_placements": 8,
+      "unknown_case_native_feeds": 1,
+      "unknown_case_placements": 0,
+      "title_checks": 33,
+      "panel_checks": 306,
+      "takeover_checks": 41,
+      "takeover_observed_terminal_state": "succeeded",
+      "takeover_machine_actions": 0,
+      "all_owned_groups_reaped_without_forced_kill": true
+    },
+    "official_plugin_structures": 1,
+    "official_skill_structures": 14
+  },
+  "production_source_pairs": 47,
+  "production_classes": 160,
+  "native_test_sources": 95,
+  "native_test_classes": 188,
+  "frozen_inputs_unchanged": 786,
+  "focused_evidence": "../panel73-focused/summary.json",
+  "focused_summary_sha256": "3f455fb0baffb47325fffc8d4c5caa476a192055113f8bb14e4c8443b8467f26",
+  "image_count_semantics": "27 native artifact records = 19 succeeded camera-capture operations (including two new setup captures) + 8 measurement observations. The eight retrieved recipe PNGs are copies of those native artifacts, not eight additional captures. Distinct content hashes are not distinct physical scenes.",
+  "native_vs_physical": "Complete and action-return hooks are native simulator observations, not independent physical placement inspection. GUI placement counts are separate workflows and are not added to MCP counts.",
+  "known_scope_limits": [
+    "Panel clone/removal affects one declared job-instance direct board child; no arbitrary panel authoring or electrical/supplier equivalence proof.",
+    "Public canonical repeated panel occurrences use distinct native Panel definitions. Genuine shared native definitions are separately covered by model fixtures.",
+    "Current GUI takeover completed known native publication before returning local ownership. Its pass does not mean an unknown was forced or resolved.",
+    "The dedicated GUI unknown case preserves one uncertain feed and performs no native cleanup; process reaping is separate.",
+    "Imported/resolved documents preserve native IDs/history; broader mutable-library equivalence and arbitrary external configurations remain outside this qualification.",
+    "Camera image recipes are bounded simulator measurements, not broad camera calibration or absolute physical scale accuracy.",
+    "Fourteen skills pass structural checks; current offline documentation/schema review is not uniform blind/live skill behavior.",
+    "Historical CI71, endurance failures and clock discontinuity remain historical; no hostedCI or continuous endurance execution is asserted."
+  ],
+  "physical_qualification": false,
+  "independently_inspected_placements": 0,
+  "continuous_endurance_qualification": false,
+  "hosted_ci_qualification": false,
+  "uniform_skill_behavior_qualification": false,
+  "full_implementation_plan_completed": false,
+  "promotion_performed": false,
+  "requirement_status": {
+    "R01": "partial",
+    "R02": "partial",
+    "R03": "partial",
+    "R04": "partial",
+    "R05": "partial",
+    "R06": "partial",
+    "R07": "partial",
+    "R08": "partial",
+    "R09": "partial",
+    "R10": "partial",
+    "R11": "partial",
+    "R12": "partial",
+    "R13": "partial",
+    "R14": "partial",
+    "R15": "partial",
+    "R16": "partial",
+    "R17": "partial",
+    "R18": "partial"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "focused_evidence_complete": true,
+  "focused_simulator_qualification_passed": true,
+  "full_qualification_passed": false,
+  "promotion_performed": false,
+  "full_implementation_plan_completed": false,
+  "all_R01_R18_statuses": "partial",
+  "identities": {
+    "bridge_sha256": "97ac5292becbec033c9580bf9e061bf067e9a91224bf4fb7b44b5867240f5542",
+    "mcp_sha256": "3ee308132569e1f36fbdc4c563ca7235834a9a464a8cc49c957c5c5a6d7634e1",
+    "native_jar_sha256": "810773c1defa9a0200cce437d3f426d4c08419fb3f471d693f9e5c5f38f78f0b",
+    "runtime_manifest_sha256": "fb9459433a7475515a9f4340d401232e4fd284697db416f4fa89ba86abd8c84d"
+  },
+  "profile": "saved-board-child-panel-library-v1",
+  "archive_version": 3,
+  "tools": 55,
+  "skills": 14,
+  "positive_native": {
+    "fresh_JVM_phases": 4,
+    "assertions": 2207,
+    "native_job_processor_invoked": false,
+    "native_effect_collector_installed": false,
+    "listener_objects": 55,
+    "listener_bindings": 133,
+    "late_refusals": 2
+  },
+  "native_boundaries": {
+    "parent_assertions": 249,
+    "parent_typed_refusals": 65,
+    "fresh_child_JVMs": 4,
+    "child_assertions": 13,
+    "child_typed_refusals": 4
+  },
+  "legacy_native_mains": 3,
+  "packaged_MCP": {
+    "workflows": 1,
+    "source_complete_hooks": 0,
+    "target_complete_hooks": 2,
+    "matched_native_action_pairs": 8,
+    "successful_native_operations": 14,
+    "unknown_operations": 0,
+    "clean_owned_cleanup": true
+  },
+  "limits": [
+    "Native-only transfer fixture proves shared-board and same-byte-distinct identities plus own/pseudo geometry; MCP proves lifecycle and separate2-placement target job.",
+    "Public listener membership does not attest protected fields after deliberate forged listener registration.",
+    "No physical state, scripts, source operation/load history, calibration or source job authority transfers. Source feeder counters remain simulator data.",
+    "Full79 native/platform/16MCP/Node/GUI matrices are outside this focused bundle.",
+    "No physical accuracy, independent inspection, endurance, hostedCI, broad firmware, uniform blind skills, promotion or full-plan completion claim."
+  ],
+  "raw_credentials_configurations_journals_or_native_archives_copied": false
+}

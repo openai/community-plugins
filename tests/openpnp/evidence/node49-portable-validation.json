@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-11T08:22:51.895010+00:00",
+  "passed": true,
+  "scope": "Complete offline Node22/24/26 suites and package reproducibility checks for current49tool source; nativeMCP qualification reported separately.",
+  "node_runs": [
+    {
+      "report": "validation/consolidation/node-matrix49-portable-attempt-02/node-22.19.0-suite.json",
+      "sha256": "a5a2c207d3a3cebbd9432dfe7842c0506a0db1303ee1ba4ae3f1af1ff4985c3d",
+      "label": "node-22.19.0-suite",
+      "counts": {
+        "cancelled": 0,
+        "fail": 0,
+        "pass": 168,
+        "skipped": 5,
+        "suites": 0,
+        "tests": 173,
+        "todo": 0
+      },
+      "elapsed_seconds": 30.103791250032373
+    },
+    {
+      "report": "validation/consolidation/node-matrix49-portable-attempt-02/node-24.20.0-suite.json",
+      "sha256": "bcebf8a7be64e44ff955a00e56295feb83128c6c31b6f35974d38d934ba87b92",
+      "label": "node-24.20.0-suite",
+      "counts": {
+        "cancelled": 0,
+        "fail": 0,
+        "pass": 168,
+        "skipped": 5,
+        "suites": 0,
+        "tests": 173,
+        "todo": 0
+      },
+      "elapsed_seconds": 29.48020645894576
+    },
+    {
+      "report": "validation/consolidation/node-matrix49-portable-attempt-02/node-26.0.0-suite.json",
+      "sha256": "83fa772dfb7e21af9b2c52e4f8530aec292d3c8b8e233951b143080339454523",
+      "label": "node-26.0.0-suite",
+      "counts": {
+        "cancelled": 0,
+        "fail": 0,
+        "pass": 168,
+        "skipped": 5,
+        "suites": 0,
+        "tests": 173,
+        "todo": 0
+      },
+      "elapsed_seconds": 31.298876084038056
+    },
+    {
+      "report": "validation/consolidation/node-matrix49-portable-attempt-02/node-22.19.0-verify.json",
+      "sha256": "c067dde76bf94a52725a05ee725b74aff9d46a23c6a06531b302a9dd73552bec",
+      "label": "node-22.19.0-verify",
+      "counts": {},
+      "elapsed_seconds": 9.129727666964754
+    },
+    {
+      "report": "validation/consolidation/node-matrix49-portable-attempt-02/node-24.20.0-verify.json",
+      "sha256": "9bc47e19e257bf540d7d03dbd5669f57d669a792fefc55ecd7d67d9fa60bca4d",
+      "label": "node-24.20.0-verify",
+      "counts": {},
+      "elapsed_seconds": 8.937321166973561
+    },
+    {
+      "report": "validation/consolidation/node-matrix49-portable-attempt-02/node-26.0.0-verify.json",
+      "sha256": "4818f0fbecf26ee49d5eeb48f6822134b1efe55f9fcf90b25be536affb12da3e",
+      "label": "node-26.0.0-verify",
+      "counts": {},
+      "elapsed_seconds": 9.075515458011068
+    }
+  ],
+  "tests_per_node": 173,
+  "passed_per_node": 168,
+  "intentional_live_skips_per_node": 5,
+  "failures_per_node": 0,
+  "input_files": 353,
+  "dependency_entries": 3640,
+  "all_matrix_inputs_identical_and_unchanged": true,
+  "input_inventory_sha256": "d712219eebc48b41cbc042e6f20e5824ff498fd4951ab0a20d344cf16fed2ec5",
+  "dependency_inventory_sha256": "6dd080d4c1e7b4612e9ec3e20dda1281d9839bebbcf412967e0a69c79cf3fae3",
+  "native_runtime_inventory_sha256": "453917e19d3f798e733480990d7b8f9f1d0f6d449224832be0a91de1d1f110e8",
+  "tools": 49,
+  "bundled_dependencies": 8,
+  "hardware_qualified": false,
+  "structural_validators": {
+    "plugin": {
+      "path": "validation/portable49-plugin-validator.log",
+      "sha256": "d6292bc420d65c43fa8fadc3aaf9bdcec4b77882dacceaa15ac9e4fdb41cc231",
+      "passed": true
+    },
+    "skills": {
+      "path": "validation/portable49-skill-validators.json",
+      "sha256": "715022457545cbf6503bb306acf6b9ad73acb290511eb65f4b7efbb96432e459",
+      "passed": true,
+      "count": 14
+    }
+  }
+}

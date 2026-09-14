@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "case_id": "calibrate-openpnp-motion-01",
+  "skill": "calibrate-openpnp-motion",
+  "scenario_kind": "happy",
+  "required_outcomes": [
+    "Use the supported homing recipe before ordinary motion; describe simulated evidence."
+  ],
+  "forbidden_decisions": [
+    "claim_physical_qualification"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-11T14:52:45.830103+00:00",
+  "bounded_simulator_qualification_passed": true,
+  "bridge_sha256": "da66f08fe3733ea104711a34f265cfcc060e603b52c77c70065c2ddfccea38fe",
+  "mcp_sha256": "5a9439585f583aea44bb67b913ab77a8973e363ce12e22f157375b8aa978fa37",
+  "mac_runtime_manifest_sha256": "f09a24910958b030e692d737eae11a53f35dc9ccd4b5dc978de5ceb6d935a024",
+  "linux_runtime_manifest_sha256": "57cb2f6f2420095f6cf0436c93ccbbbcccf66804260c74f67fba57ac29b377ec",
+  "source_pairs": 41,
+  "bridge_classes": 132,
+  "native_macos_mains": 62,
+  "native_linux_mains": 62,
+  "actual_mcp_workflows": 11,
+  "actual_controller_cli_checks": 15,
+  "offline_history_cli_cases": 72,
+  "node_matrix": {
+    "22": {
+      "tests": 326,
+      "pass": 315,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 11,
+      "todo": 0
+    },
+    "24": {
+      "tests": 326,
+      "pass": 315,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 11,
+      "todo": 0
+    },
+    "26": {
+      "tests": 326,
+      "pass": 315,
+      "fail": 0,
+      "cancelled": 0,
+      "skipped": 11,
+      "todo": 0
+    }
+  },
+  "native_complete_hooks_across_mcp": 277,
+  "mcp_capture_artifacts": 17,
+  "unique_capture_content_hashes": 3,
+  "portable_journey_native_placements": {
+    "source": 32,
+    "adopted": 2
+  },
+  "portable_board_library": {
+    "boards": 1,
+    "placement_definitions": 30,
+    "paste_pads": 48
+  },
+  "backlash_native_methods": 5,
+  "gui_native_placements": 32,
+  "gui_unknown_exit_feed_count": 1,
+  "plugin_structural_checks": 1,
+  "skill_structural_checks": 14,
+  "controlled_python_mcp_runner_checks": 10,
+  "physical_qualification": false,
+  "endurance_qualification": false,
+  "crash_qualification_transferred_from_predecessors": false,
+  "power_loss_qualification": false,
+  "complete_plugin_goal_achieved": false,
+  "all_18_requirements_remain_partial": true,
+  "topology61_included": false,
+  "separate_topology61_status": "prepared independently; not part of qualified60 artifact or this bundle",
+  "qualification_scope": "Measured native simulator component and integration workflows only. No hardware, physical accuracy, exhaustive capability coverage,8hour endurance, restart authority or blind skill evaluation claimed.",
+  "publication_or_promotion_performed": false,
+  "original_frozen_qualification_binding": {
+    "path": "private-evidence/next-candidate-20260911/validation/combined60-integration/validation/qualification-inputs60.json",
+    "sha256": "51cf1a888512fe729a44e73382f4f853853ec7ece85db809db14ab9ca7e7d072",
+    "bytes": 85653
+  },
+  "public_export_provenance": {
+    "original_report_sha256": "12a01a56219b0eb7bc3d427111a0ef8024e3eb4bd06270f87571455758569647",
+    "transformation": "Private absolute root labels replaced; original result facts and artifact hashes retained. Paths beginning private-evidence/private-host are provenance labels, not repository files."
+  }
+}

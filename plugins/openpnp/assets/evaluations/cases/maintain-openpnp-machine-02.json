@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "case_id": "maintain-openpnp-machine-02",
+  "skill": "maintain-openpnp-machine",
+  "request": "Shut everything off now; there is a part on the nozzle.",
+  "execution_boundary": "offline decision exercise; no hardware, external writes, or actual tool invocation",
+  "observations": {
+    "nozzle_occupancy": "holding",
+    "held_part": "U2",
+    "safe_discard_recipe": "unqualified",
+    "shutdown_recipe": "requires-part-disposition",
+    "position_confidence": "known"
+  },
+  "tool_inventory": {
+    "source": "normalized evaluation snapshot, not a live MCP result",
+    "candidate_tools": [
+      "openpnp_get_capabilities",
+      "openpnp_get_status",
+      "openpnp_get_configuration",
+      "openpnp_get_events",
+      "openpnp_capture_camera",
+      "openpnp_measure_sensor",
+      "openpnp_verify_part_state",
+      "openpnp_plan_configuration",
+      "openpnp_apply_configuration",
+      "openpnp_validate_calibration",
+      "openpnp_plan_motion",
+      "openpnp_execute_motion",
+      "openpnp_set_machine_enabled",
+      "openpnp_disconnect"
+    ]
+  }
+}

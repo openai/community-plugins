@@ -1,0 +1,2963 @@
+{
+  "started_at": "2026-09-11T05:28:33.457Z",
+  "host_node": "22.19.0",
+  "checks": [
+    {
+      "tool": "openpnp_set_machine_enabled",
+      "operation_id": "44374e4b-fece-4fd7-af95-457fdfe4e79e",
+      "request_id": "2a012978-f4a0-498d-9921-0e019601e3ac",
+      "state": "succeeded",
+      "result": {
+        "enabled": true
+      }
+    },
+    {
+      "tool": "openpnp_home_machine",
+      "operation_id": "b0260a66-92a4-44c4-a604-ed54d2623b63",
+      "request_id": "e2fa0823-1c09-4690-89a9-823198564e6a",
+      "state": "succeeded",
+      "result": {
+        "homed": true
+      }
+    },
+    {
+      "tool": "openpnp_execute_motion",
+      "operation_id": "d8f7f9fe-b0e5-47a2-8754-8359e0fefb0b",
+      "request_id": "4ee94ca9-b477-4774-a223-dce453f34940",
+      "state": "succeeded",
+      "result": {
+        "pose": {
+          "x": 10,
+          "y": 10,
+          "z": 0,
+          "rotation": 0,
+          "units": "mm"
+        },
+        "completion": {
+          "controller_barrier": "simulator-standstill",
+          "position_source": "native-simulation",
+          "physical_inspection": "not-performed"
+        }
+      }
+    },
+    {
+      "tool": "openpnp_capture_camera",
+      "operation_id": "e71ab51d-5baa-40de-a6f6-791c8e416b23",
+      "request_id": "c8f20824-e5b9-4b80-ab83-d5e591d29506",
+      "state": "succeeded",
+      "result": {
+        "artifact_id": "3662d1f3-70b8-4c99-be7c-c5eee00da661",
+        "mime_type": "image/png",
+        "sha256": "b10b1c311a5c474cb50b0a89b9a3f18e67453c24bfa8268f14fcc814d6d536cc",
+        "size": 18661,
+        "metadata": {
+          "camera_id": "C1",
+          "width": 640,
+          "height": 480,
+          "captured_at": "2026-09-11T05:28:34.459559Z"
+        }
+      }
+    },
+    {
+      "tool": "openpnp_backup_configuration",
+      "operation_id": "fa3a3893-7381-4222-9960-59f725e3615b",
+      "request_id": "c1fd4a37-3684-43eb-b75a-828e66fb51e7",
+      "state": "succeeded",
+      "result": {
+        "artifact_id": "f06b5638-8f6b-4b3f-a9b2-7af7ade49eb4",
+        "mime_type": "application/json",
+        "sha256": "875e9b0428f74ebebbdd493d30f186f571e8736a3b9866e394c8383f64491dff",
+        "size": 131870,
+        "metadata": {
+          "kind": "configuration-backup",
+          "typed_change_count": 34,
+          "omission_count": 27
+        }
+      }
+    },
+    {
+      "tool": "openpnp_apply_configuration",
+      "operation_id": "7f9db8f7-1062-4a32-8e13-3fb0214c974b",
+      "request_id": "ddc4feb3-92e9-4fed-9624-d62fee557275",
+      "state": "succeeded",
+      "result": {
+        "config_revision": "cfg-2",
+        "persisted": true,
+        "configuration_root": "<isolated-native-simulator-configuration>"
+      }
+    },
+    {
+      "tool": "openpnp_execute_motion",
+      "operation_id": "4a0c234c-a3a4-4b1d-a5da-8d4f5cabac3b",
+      "request_id": "e1b2b3b0-0845-4358-a83d-e5e91b829c35",
+      "state": "failed",
+      "result": {
+        "code": "NOT_FOUND",
+        "message": "Unknown plan",
+        "completion": {
+          "standstill_confirmed": true
+        }
+      }
+    },
+    {
+      "tool": "openpnp_restore_configuration",
+      "operation_id": "3936f81b-8223-41fd-a584-09e347effb5b",
+      "request_id": "f2276656-cf42-4185-bed7-5f88d3fa321b",
+      "state": "succeeded",
+      "result": {
+        "restored": true,
+        "scope": "representable-typed-settings",
+        "restored_change_count": 34,
+        "snapshot_omissions": [
+          {
+            "type": "set_package_footprint",
+            "target_id": "FIDUCIAL-1X2",
+            "code": "INVALID_ARGUMENT",
+            "message": "Expected string: description"
+          },
+          {
+            "type": "set_package_footprint",
+            "target_id": "R0603",
+            "code": "INVALID_ARGUMENT",
+            "message": "Expected string: description"
+          },
+          {
+            "type": "set_package_footprint",
+            "target_id": "R0402",
+            "code": "INVALID_ARGUMENT",
+            "message": "Expected string: description"
+          },
+          {
+            "type": "set_package_footprint",
+            "target_id": "R0201",
+            "code": "INVALID_ARGUMENT",
+            "message": "Expected string: description"
+          },
+          {
+            "type": "set_package_footprint",
+            "target_id": "TQFP32",
+            "code": "INVALID_ARGUMENT",
+            "message": "Expected string: description"
+          },
+          {
+            "type": "set_part_properties",
+            "target_id": "FIDUCIAL-1X2-FIDUCIAL1X2",
+            "code": "INVALID_ARGUMENT",
+            "message": "Expected string: name"
+          },
+          {
+            "type": "set_part_height",
+            "target_id": "FIDUCIAL-1X2-FIDUCIAL1X2",
+            "code": "OUT_OF_RANGE",
+            "message": "Out of range: height_mm"
+          },
+          {
+            "type": "set_part_properties",
+            "target_id": "R0805-1K",
+            "code": "INVALID_ARGUMENT",
+            "message": "Expected string: name"
+          },
+          {
+            "type": "set_part_properties",
+            "target_id": "R0201-1K",
+            "code": "INVALID_ARGUMENT",
+            "message": "Expected string: name"
+          },
+          {
+            "type": "set_part_properties",
+            "target_id": "R0402-1K",
+            "code": "INVALID_ARGUMENT",
+            "message": "Expected string: name"
+          },
+          {
+            "type": "set_part_properties",
+            "target_id": "R0603-1K",
+            "code": "INVALID_ARGUMENT",
+            "message": "Expected string: name"
+          },
+          {
+            "type": "set_part_properties",
+            "target_id": "FIDUCIAL-HOME",
+            "code": "INVALID_ARGUMENT",
+            "message": "Expected string: name"
+          },
+          {
+            "type": "set_part_height",
+            "target_id": "FIDUCIAL-HOME",
+            "code": "OUT_OF_RANGE",
+            "message": "Out of range: height_mm"
+          },
+          {
+            "type": "set_strip_feeder_geometry",
+            "target_id": "F5",
+            "code": "OUT_OF_RANGE",
+            "message": "Out of range: max_feed_count"
+          },
+          {
+            "type": "set_strip_feeder_geometry",
+            "target_id": "F6",
+            "code": "OUT_OF_RANGE",
+            "message": "Out of range: max_feed_count"
+          },
+          {
+            "type": "set_strip_feeder_geometry",
+            "target_id": "F7",
+            "code": "OUT_OF_RANGE",
+            "message": "Out of range: max_feed_count"
+          },
+          {
+            "type": "set_strip_feeder_geometry",
+            "target_id": "F8",
+            "code": "OUT_OF_RANGE",
+            "message": "Out of range: max_feed_count"
+          },
+          {
+            "type": "set_strip_feeder_geometry",
+            "target_id": "F1",
+            "code": "OUT_OF_RANGE",
+            "message": "Out of range: max_feed_count"
+          },
+          {
+            "type": "set_strip_feeder_geometry",
+            "target_id": "F2",
+            "code": "OUT_OF_RANGE",
+            "message": "Out of range: max_feed_count"
+          },
+          {
+            "type": "set_strip_feeder_geometry",
+            "target_id": "F3",
+            "code": "OUT_OF_RANGE",
+            "message": "Out of range: max_feed_count"
+          },
+          {
+            "type": "set_strip_feeder_geometry",
+            "target_id": "F4",
+            "code": "OUT_OF_RANGE",
+            "message": "Out of range: max_feed_count"
+          },
+          {
+            "target_id": "AXS18d42d070fa907e7",
+            "type": "set_axis_motion_limits",
+            "code": "DISABLED_OR_NONLINEAR_AXIS_LIMITS_NOT_REPRESENTABLE"
+          },
+          {
+            "target_id": "AXS18d42d070fabeaac",
+            "type": "set_axis_motion_limits",
+            "code": "DISABLED_OR_NONLINEAR_AXIS_LIMITS_NOT_REPRESENTABLE"
+          },
+          {
+            "target_id": "AXS18d42d070faca298",
+            "type": "set_axis_motion_limits",
+            "code": "DISABLED_OR_NONLINEAR_AXIS_LIMITS_NOT_REPRESENTABLE"
+          },
+          {
+            "target_id": "AXS18d42d070fad7ff2",
+            "type": "set_axis_motion_limits",
+            "code": "DISABLED_OR_NONLINEAR_AXIS_LIMITS_NOT_REPRESENTABLE"
+          },
+          {
+            "target_id": "AXS18d42d070fae107a",
+            "type": "set_axis_motion_limits",
+            "code": "DISABLED_OR_NONLINEAR_AXIS_LIMITS_NOT_REPRESENTABLE"
+          },
+          {
+            "target_id": "AXS18d42d070fae5389",
+            "type": "set_axis_motion_limits",
+            "code": "DISABLED_OR_NONLINEAR_AXIS_LIMITS_NOT_REPRESENTABLE"
+          }
+        ],
+        "added_identities_preserved": {},
+        "material_state_preserved": [],
+        "newer_material_counts_preserved": true,
+        "job_placed_history_replaced": false,
+        "calibration_evidence_restored": false,
+        "requires_validation": true,
+        "physical_state_restored": false,
+        "full_configuration_restore": false,
+        "config_revision": "cfg-3",
+        "job": {
+          "state": "absent"
+        }
+      }
+    },
+    {
+      "tool": "openpnp_prepare_job",
+      "operation_id": "657e334d-bc9c-44b2-b349-c30d6ea6f4ba",
+      "request_id": "f8a7e2b8-2769-470b-9a2e-35b86df4479c",
+      "state": "succeeded",
+      "result": {
+        "job_id": "d89f8b6d-7a76-4945-a314-bd45083ee0f4",
+        "state": "prepared",
+        "requested": 32,
+        "placed": 0,
+        "independently_inspected": 0,
+        "placements": [
+          {
+            "board_id": "Brd1",
+            "reference": "R1",
+            "part_id": "R0805-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 34.993767784109934,
+              "y": 10.417456335122264,
+              "z": 0,
+              "rotation": 0.007894774268749629,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd1",
+            "reference": "R8",
+            "part_id": "R0201-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 9.991563384567229,
+              "y": 26.414011438127638,
+              "z": 0,
+              "rotation": 0.007894774268749629,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd1",
+            "reference": "R6",
+            "part_id": "R0402-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 28.99156320419994,
+              "y": 26.41662944440849,
+              "z": 0,
+              "rotation": 45.00789477426875,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd1",
+            "reference": "R10",
+            "part_id": "R0603-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 9.993079072414037,
+              "y": 15.414011542550803,
+              "z": 0,
+              "rotation": 270.0078947742688,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd2",
+            "reference": "R1",
+            "part_id": "R0805-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 36.325785220708745,
+              "y": 57.80783601026465,
+              "z": 0,
+              "rotation": -19.94736168620408,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd2",
+            "reference": "R8",
+            "part_id": "R0201-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 18.28413124423156,
+              "y": 81.37685639281482,
+              "z": 0,
+              "rotation": -19.94736168620408,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd2",
+            "reference": "R6",
+            "part_id": "R0402-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 36.14425364505098,
+              "y": 74.89487923860112,
+              "z": 0,
+              "rotation": 25.05263831379592,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd2",
+            "reference": "R10",
+            "part_id": "R0603-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 14.53140762863416,
+              "y": 71.03678552918251,
+              "z": 0,
+              "rotation": 250.0526383137959,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd3",
+            "reference": "R13",
+            "part_id": "R0805-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 95.42474730371994,
+              "y": 13.575163112065683,
+              "z": 0,
+              "rotation": 0.6048032510190049,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd3",
+            "reference": "R14",
+            "part_id": "R0201-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 70.2572503118884,
+              "y": 29.310381418976785,
+              "z": 0,
+              "rotation": 0.6048032510190049,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd3",
+            "reference": "R18",
+            "part_id": "R0402-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 95.2558575112745,
+              "y": 29.574271719672787,
+              "z": 0,
+              "rotation": 0.6048032510190049,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd3",
+            "reference": "R20",
+            "part_id": "R0603-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 70.37336204419464,
+              "y": 18.310994251246903,
+              "z": 0,
+              "rotation": 270.604803251019,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd4",
+            "reference": "R13",
+            "part_id": "R0805-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 105.64280305325074,
+              "y": 69.9534023867106,
+              "z": 0,
+              "rotation": 36.608756253218274,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd4",
+            "reference": "R14",
+            "part_id": "R0201-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 76.03308342309947,
+              "y": 67.88833497283895,
+              "z": 0,
+              "rotation": 36.608756253218274,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd4",
+            "reference": "R18",
+            "part_id": "R0402-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 96.10124211015496,
+              "y": 82.79702394642611,
+              "z": 0,
+              "rotation": 36.608756253218274,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd4",
+            "reference": "R20",
+            "part_id": "R0603-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 82.59290657147783,
+              "y": 59.05834515053453,
+              "z": 0,
+              "rotation": 306.6087562532183,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd5",
+            "reference": "R13",
+            "part_id": "R0805-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 89.33649014888574,
+              "y": 111.48829022618719,
+              "z": 0,
+              "rotation": -28.17927507558783,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd5",
+            "reference": "R14",
+            "part_id": "R0201-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 74.85534324166221,
+              "y": 137.3976781821272,
+              "z": 0,
+              "rotation": -28.17927507558783,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd5",
+            "reference": "R18",
+            "part_id": "R0402-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 96.89220135674816,
+              "y": 125.5918794198422,
+              "z": 0,
+              "rotation": -28.17927507558783,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd5",
+            "reference": "R20",
+            "part_id": "R0603-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 69.6607917862568,
+              "y": 127.7014606114894,
+              "z": 0,
+              "rotation": 241.82072492441216,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd6",
+            "reference": "R1",
+            "part_id": "R0805-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 124.12690564848111,
+              "y": 157.8710712234833,
+              "z": 0,
+              "rotation": 157.09296869993602,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd6",
+            "reference": "R8",
+            "part_id": "R0201-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 140.92755487683627,
+              "y": 133.40194403214753,
+              "z": 0,
+              "rotation": 157.09296869993602,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd6",
+            "reference": "R6",
+            "part_id": "R0402-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 123.42593961050848,
+              "y": 140.79744692711293,
+              "z": 0,
+              "rotation": 202.09296869993602,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd6",
+            "reference": "R10",
+            "part_id": "R0603-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 145.20916181602678,
+              "y": 143.5344581337057,
+              "z": 0,
+              "rotation": 427.092968699936,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd7",
+            "reference": "R13",
+            "part_id": "R0805-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 163.8053679670504,
+              "y": 122.2863848715149,
+              "z": 0,
+              "rotation": -140.606916294328,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd7",
+            "reference": "R14",
+            "part_id": "R0201-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 193.27981833965976,
+              "y": 125.78735262809124,
+              "z": 0,
+              "rotation": -140.606916294328,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd7",
+            "reference": "R18",
+            "part_id": "R0402-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 173.95956365152094,
+              "y": 109.92142187110603,
+              "z": 0,
+              "rotation": -140.606916294328,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd7",
+            "reference": "R20",
+            "part_id": "R0603-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 186.2988088065863,
+              "y": 134.28826469087232,
+              "z": 0,
+              "rotation": 129.393083705672,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd8",
+            "reference": "R1",
+            "part_id": "R0805-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 39.34262763343958,
+              "y": 132.45967540360817,
+              "z": 0,
+              "rotation": 76.64603235413277,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd8",
+            "reference": "R8",
+            "part_id": "R0201-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 18.001082442017807,
+              "y": 111.83109210657824,
+              "z": 0,
+              "rotation": 76.64603235413277,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd8",
+            "reference": "R6",
+            "part_id": "R0402-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 22.389441855897765,
+              "y": 130.31736543720416,
+              "z": 0,
+              "rotation": 121.64603235413277,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd8",
+            "reference": "R10",
+            "part_id": "R0603-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 28.70366173869597,
+              "y": 109.29046297222669,
+              "z": 0,
+              "rotation": 346.6460323541328,
+              "units": "mm"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tool": "openpnp_validate_job",
+      "operation_id": "41776790-3626-425b-bf93-4ae65c3efe12",
+      "request_id": "6aec1d42-71cd-4bf3-b796-cda925a86ff4",
+      "state": "succeeded",
+      "result": {
+        "valid": true,
+        "mode": "native-simulator-read-only-preflight",
+        "errors": [],
+        "warnings": [
+          {
+            "code": "CAPACITY_UNKNOWN",
+            "message": "Native feeder configuration does not establish remaining material; no inventory count is inferred",
+            "target_id": "R0805-1K",
+            "details": {
+              "feeder_id": "F5",
+              "reason": "native-strip-maximum-unconfigured"
+            }
+          },
+          {
+            "code": "CAPACITY_UNKNOWN",
+            "message": "Native feeder configuration does not establish remaining material; no inventory count is inferred",
+            "target_id": "R0805-1K",
+            "details": {
+              "feeder_id": "F6",
+              "reason": "native-strip-maximum-unconfigured"
+            }
+          },
+          {
+            "code": "CAPACITY_UNKNOWN",
+            "message": "Native feeder configuration does not establish remaining material; no inventory count is inferred",
+            "target_id": "R0805-1K",
+            "details": {
+              "feeder_id": "F7",
+              "reason": "native-strip-maximum-unconfigured"
+            }
+          },
+          {
+            "code": "CAPACITY_UNKNOWN",
+            "message": "Native feeder configuration does not establish remaining material; no inventory count is inferred",
+            "target_id": "R0805-1K",
+            "details": {
+              "feeder_id": "F8",
+              "reason": "native-strip-maximum-unconfigured"
+            }
+          },
+          {
+            "code": "CAPACITY_UNKNOWN",
+            "message": "Native feeder configuration does not establish remaining material; no inventory count is inferred",
+            "target_id": "R0805-1K",
+            "details": {
+              "feeder_id": "F1",
+              "reason": "native-strip-maximum-unconfigured"
+            }
+          },
+          {
+            "code": "CAPACITY_NOT_PROVEN",
+            "message": "Known remaining feeds do not cover pending placements and other enabled feeder capacity is unknown",
+            "target_id": "R0805-1K",
+            "details": {
+              "required": 8,
+              "known_remaining": 0,
+              "unknown_capacity_feeders": 5
+            }
+          },
+          {
+            "code": "MULTIPLE_FEEDER_ALLOCATION",
+            "message": "Capacity sums enabled feeders for this native part; native feeder selection, failover and physical inventory have not been exercised",
+            "target_id": "R0805-1K",
+            "details": {
+              "enabled_feeders": 5
+            }
+          },
+          {
+            "code": "CAPACITY_UNKNOWN",
+            "message": "Native feeder configuration does not establish remaining material; no inventory count is inferred",
+            "target_id": "R0201-1K",
+            "details": {
+              "feeder_id": "F4",
+              "reason": "native-strip-maximum-unconfigured"
+            }
+          },
+          {
+            "code": "CAPACITY_NOT_PROVEN",
+            "message": "Known remaining feeds do not cover pending placements and other enabled feeder capacity is unknown",
+            "target_id": "R0201-1K",
+            "details": {
+              "required": 8,
+              "known_remaining": 0,
+              "unknown_capacity_feeders": 1
+            }
+          },
+          {
+            "code": "CAPACITY_UNKNOWN",
+            "message": "Native feeder configuration does not establish remaining material; no inventory count is inferred",
+            "target_id": "R0402-1K",
+            "details": {
+              "feeder_id": "F3",
+              "reason": "native-strip-maximum-unconfigured"
+            }
+          },
+          {
+            "code": "CAPACITY_NOT_PROVEN",
+            "message": "Known remaining feeds do not cover pending placements and other enabled feeder capacity is unknown",
+            "target_id": "R0402-1K",
+            "details": {
+              "required": 8,
+              "known_remaining": 0,
+              "unknown_capacity_feeders": 1
+            }
+          },
+          {
+            "code": "CAPACITY_UNKNOWN",
+            "message": "Native feeder configuration does not establish remaining material; no inventory count is inferred",
+            "target_id": "R0603-1K",
+            "details": {
+              "feeder_id": "F2",
+              "reason": "native-strip-maximum-unconfigured"
+            }
+          },
+          {
+            "code": "CAPACITY_NOT_PROVEN",
+            "message": "Known remaining feeds do not cover pending placements and other enabled feeder capacity is unknown",
+            "target_id": "R0603-1K",
+            "details": {
+              "required": 8,
+              "known_remaining": 0,
+              "unknown_capacity_feeders": 1
+            }
+          }
+        ],
+        "error_count": 0,
+        "warning_count": 13,
+        "diagnostics_truncated": false,
+        "counts": {
+          "placement_records_total": 240,
+          "pending": 32,
+          "placed": 0,
+          "excluded": 208,
+          "excluded_reasons": {
+            "placement-disabled": 128,
+            "not-placement": 48,
+            "other-side": 32
+          }
+        },
+        "material_requirements": [
+          {
+            "part_id": "R0805-1K",
+            "required_pending_placements": 8,
+            "known_remaining_configured_feeds": 0,
+            "unknown_capacity_feeders": 5,
+            "sources": [
+              {
+                "feeder_id": "F5",
+                "native_class": "org.openpnp.machine.reference.feeder.ReferenceStripFeeder",
+                "feed_count": 0,
+                "basis": "native-strip-maximum-unconfigured"
+              },
+              {
+                "feeder_id": "F6",
+                "native_class": "org.openpnp.machine.reference.feeder.ReferenceStripFeeder",
+                "feed_count": 0,
+                "basis": "native-strip-maximum-unconfigured"
+              },
+              {
+                "feeder_id": "F7",
+                "native_class": "org.openpnp.machine.reference.feeder.ReferenceStripFeeder",
+                "feed_count": 0,
+                "basis": "native-strip-maximum-unconfigured"
+              },
+              {
+                "feeder_id": "F8",
+                "native_class": "org.openpnp.machine.reference.feeder.ReferenceStripFeeder",
+                "feed_count": 0,
+                "basis": "native-strip-maximum-unconfigured"
+              },
+              {
+                "feeder_id": "F1",
+                "native_class": "org.openpnp.machine.reference.feeder.ReferenceStripFeeder",
+                "feed_count": 0,
+                "basis": "native-strip-maximum-unconfigured"
+              }
+            ],
+            "physical_inventory_verified": false,
+            "retry_allowance_included": false
+          },
+          {
+            "part_id": "R0201-1K",
+            "required_pending_placements": 8,
+            "known_remaining_configured_feeds": 0,
+            "unknown_capacity_feeders": 1,
+            "sources": [
+              {
+                "feeder_id": "F4",
+                "native_class": "org.openpnp.machine.reference.feeder.ReferenceStripFeeder",
+                "feed_count": 0,
+                "basis": "native-strip-maximum-unconfigured"
+              }
+            ],
+            "physical_inventory_verified": false,
+            "retry_allowance_included": false
+          },
+          {
+            "part_id": "R0402-1K",
+            "required_pending_placements": 8,
+            "known_remaining_configured_feeds": 0,
+            "unknown_capacity_feeders": 1,
+            "sources": [
+              {
+                "feeder_id": "F3",
+                "native_class": "org.openpnp.machine.reference.feeder.ReferenceStripFeeder",
+                "feed_count": 0,
+                "basis": "native-strip-maximum-unconfigured"
+              }
+            ],
+            "physical_inventory_verified": false,
+            "retry_allowance_included": false
+          },
+          {
+            "part_id": "R0603-1K",
+            "required_pending_placements": 8,
+            "known_remaining_configured_feeds": 0,
+            "unknown_capacity_feeders": 1,
+            "sources": [
+              {
+                "feeder_id": "F2",
+                "native_class": "org.openpnp.machine.reference.feeder.ReferenceStripFeeder",
+                "feed_count": 0,
+                "basis": "native-strip-maximum-unconfigured"
+              }
+            ],
+            "physical_inventory_verified": false,
+            "retry_allowance_included": false
+          }
+        ],
+        "tooling": [
+          {
+            "part_id": "R0805-1K",
+            "compatible_options": [
+              {
+                "nozzle_id": "N1",
+                "nozzle_tip_id": "NT1",
+                "currently_loaded": true,
+                "automatic_change_available": false,
+                "manual_change_required": false,
+                "runout_calibration_enabled": false,
+                "runout_calibrated": false,
+                "native_calibration_may_be_required": false
+              }
+            ],
+            "ready_without_manual_change": true
+          },
+          {
+            "part_id": "R0201-1K",
+            "compatible_options": [
+              {
+                "nozzle_id": "N1",
+                "nozzle_tip_id": "NT1",
+                "currently_loaded": true,
+                "automatic_change_available": false,
+                "manual_change_required": false,
+                "runout_calibration_enabled": false,
+                "runout_calibrated": false,
+                "native_calibration_may_be_required": false
+              }
+            ],
+            "ready_without_manual_change": true
+          },
+          {
+            "part_id": "R0402-1K",
+            "compatible_options": [
+              {
+                "nozzle_id": "N1",
+                "nozzle_tip_id": "NT1",
+                "currently_loaded": true,
+                "automatic_change_available": false,
+                "manual_change_required": false,
+                "runout_calibration_enabled": false,
+                "runout_calibrated": false,
+                "native_calibration_may_be_required": false
+              }
+            ],
+            "ready_without_manual_change": true
+          },
+          {
+            "part_id": "R0603-1K",
+            "compatible_options": [
+              {
+                "nozzle_id": "N1",
+                "nozzle_tip_id": "NT1",
+                "currently_loaded": true,
+                "automatic_change_available": false,
+                "manual_change_required": false,
+                "runout_calibration_enabled": false,
+                "runout_calibrated": false,
+                "native_calibration_may_be_required": false
+              }
+            ],
+            "ready_without_manual_change": true
+          }
+        ],
+        "physical_qualification": false,
+        "hardware_qualified": false,
+        "side_effects_performed": false,
+        "native_processor_preflight_executed": false,
+        "job": {
+          "job_id": "d89f8b6d-7a76-4945-a314-bd45083ee0f4",
+          "state": "validated",
+          "requested": 32,
+          "placed": 0,
+          "independently_inspected": 0,
+          "placements": [
+            {
+              "board_id": "Brd1",
+              "reference": "R1",
+              "part_id": "R0805-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 34.993767784109934,
+                "y": 10.417456335122264,
+                "z": 0,
+                "rotation": 0.007894774268749629,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd1",
+              "reference": "R8",
+              "part_id": "R0201-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 9.991563384567229,
+                "y": 26.414011438127638,
+                "z": 0,
+                "rotation": 0.007894774268749629,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd1",
+              "reference": "R6",
+              "part_id": "R0402-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 28.99156320419994,
+                "y": 26.41662944440849,
+                "z": 0,
+                "rotation": 45.00789477426875,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd1",
+              "reference": "R10",
+              "part_id": "R0603-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 9.993079072414037,
+                "y": 15.414011542550803,
+                "z": 0,
+                "rotation": 270.0078947742688,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd2",
+              "reference": "R1",
+              "part_id": "R0805-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 36.325785220708745,
+                "y": 57.80783601026465,
+                "z": 0,
+                "rotation": -19.94736168620408,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd2",
+              "reference": "R8",
+              "part_id": "R0201-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 18.28413124423156,
+                "y": 81.37685639281482,
+                "z": 0,
+                "rotation": -19.94736168620408,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd2",
+              "reference": "R6",
+              "part_id": "R0402-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 36.14425364505098,
+                "y": 74.89487923860112,
+                "z": 0,
+                "rotation": 25.05263831379592,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd2",
+              "reference": "R10",
+              "part_id": "R0603-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 14.53140762863416,
+                "y": 71.03678552918251,
+                "z": 0,
+                "rotation": 250.0526383137959,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd3",
+              "reference": "R13",
+              "part_id": "R0805-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 95.42474730371994,
+                "y": 13.575163112065683,
+                "z": 0,
+                "rotation": 0.6048032510190049,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd3",
+              "reference": "R14",
+              "part_id": "R0201-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 70.2572503118884,
+                "y": 29.310381418976785,
+                "z": 0,
+                "rotation": 0.6048032510190049,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd3",
+              "reference": "R18",
+              "part_id": "R0402-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 95.2558575112745,
+                "y": 29.574271719672787,
+                "z": 0,
+                "rotation": 0.6048032510190049,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd3",
+              "reference": "R20",
+              "part_id": "R0603-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 70.37336204419464,
+                "y": 18.310994251246903,
+                "z": 0,
+                "rotation": 270.604803251019,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd4",
+              "reference": "R13",
+              "part_id": "R0805-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 105.64280305325074,
+                "y": 69.9534023867106,
+                "z": 0,
+                "rotation": 36.608756253218274,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd4",
+              "reference": "R14",
+              "part_id": "R0201-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 76.03308342309947,
+                "y": 67.88833497283895,
+                "z": 0,
+                "rotation": 36.608756253218274,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd4",
+              "reference": "R18",
+              "part_id": "R0402-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 96.10124211015496,
+                "y": 82.79702394642611,
+                "z": 0,
+                "rotation": 36.608756253218274,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd4",
+              "reference": "R20",
+              "part_id": "R0603-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 82.59290657147783,
+                "y": 59.05834515053453,
+                "z": 0,
+                "rotation": 306.6087562532183,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd5",
+              "reference": "R13",
+              "part_id": "R0805-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 89.33649014888574,
+                "y": 111.48829022618719,
+                "z": 0,
+                "rotation": -28.17927507558783,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd5",
+              "reference": "R14",
+              "part_id": "R0201-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 74.85534324166221,
+                "y": 137.3976781821272,
+                "z": 0,
+                "rotation": -28.17927507558783,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd5",
+              "reference": "R18",
+              "part_id": "R0402-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 96.89220135674816,
+                "y": 125.5918794198422,
+                "z": 0,
+                "rotation": -28.17927507558783,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd5",
+              "reference": "R20",
+              "part_id": "R0603-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 69.6607917862568,
+                "y": 127.7014606114894,
+                "z": 0,
+                "rotation": 241.82072492441216,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd6",
+              "reference": "R1",
+              "part_id": "R0805-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 124.12690564848111,
+                "y": 157.8710712234833,
+                "z": 0,
+                "rotation": 157.09296869993602,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd6",
+              "reference": "R8",
+              "part_id": "R0201-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 140.92755487683627,
+                "y": 133.40194403214753,
+                "z": 0,
+                "rotation": 157.09296869993602,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd6",
+              "reference": "R6",
+              "part_id": "R0402-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 123.42593961050848,
+                "y": 140.79744692711293,
+                "z": 0,
+                "rotation": 202.09296869993602,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd6",
+              "reference": "R10",
+              "part_id": "R0603-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 145.20916181602678,
+                "y": 143.5344581337057,
+                "z": 0,
+                "rotation": 427.092968699936,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd7",
+              "reference": "R13",
+              "part_id": "R0805-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 163.8053679670504,
+                "y": 122.2863848715149,
+                "z": 0,
+                "rotation": -140.606916294328,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd7",
+              "reference": "R14",
+              "part_id": "R0201-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 193.27981833965976,
+                "y": 125.78735262809124,
+                "z": 0,
+                "rotation": -140.606916294328,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd7",
+              "reference": "R18",
+              "part_id": "R0402-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 173.95956365152094,
+                "y": 109.92142187110603,
+                "z": 0,
+                "rotation": -140.606916294328,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd7",
+              "reference": "R20",
+              "part_id": "R0603-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 186.2988088065863,
+                "y": 134.28826469087232,
+                "z": 0,
+                "rotation": 129.393083705672,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd8",
+              "reference": "R1",
+              "part_id": "R0805-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 39.34262763343958,
+                "y": 132.45967540360817,
+                "z": 0,
+                "rotation": 76.64603235413277,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd8",
+              "reference": "R8",
+              "part_id": "R0201-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 18.001082442017807,
+                "y": 111.83109210657824,
+                "z": 0,
+                "rotation": 76.64603235413277,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd8",
+              "reference": "R6",
+              "part_id": "R0402-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 22.389441855897765,
+                "y": 130.31736543720416,
+                "z": 0,
+                "rotation": 121.64603235413277,
+                "units": "mm"
+              }
+            },
+            {
+              "board_id": "Brd8",
+              "reference": "R10",
+              "part_id": "R0603-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 28.70366173869597,
+                "y": 109.29046297222669,
+                "z": 0,
+                "rotation": 346.6460323541328,
+                "units": "mm"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tool": "openpnp_start_job",
+      "operation_id": "51d3a046-e5f6-4a93-86f7-aa1190615db7",
+      "request_id": "f49e1f69-86a8-4a22-8bfa-78819032fd8d",
+      "state": "succeeded",
+      "result": {
+        "job_id": "d89f8b6d-7a76-4945-a314-bd45083ee0f4",
+        "state": "completed",
+        "requested": 32,
+        "placed": 32,
+        "independently_inspected": 0,
+        "placements": [
+          {
+            "board_id": "Brd1",
+            "reference": "R1",
+            "part_id": "R0805-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 34.777396361033006,
+              "y": 10.124140003097146,
+              "z": 0,
+              "rotation": 0.017225772018059714,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd1",
+            "reference": "R8",
+            "part_id": "R0201-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 9.779262153798012,
+              "y": 26.109713893386655,
+              "z": 0,
+              "rotation": 0.017225772018059714,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd1",
+            "reference": "R6",
+            "part_id": "R0402-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 28.776168627276867,
+              "y": 26.115425245821356,
+              "z": 0,
+              "rotation": 45.01722577201806,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd1",
+            "reference": "R10",
+            "part_id": "R0603-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 9.780777841644817,
+              "y": 15.114465324340442,
+              "z": 0,
+              "rotation": 270.01722577201804,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd2",
+            "reference": "R1",
+            "part_id": "R0805-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 36.15404137965693,
+              "y": 58.35042919354566,
+              "z": 0,
+              "rotation": -19.944957005876212,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd2",
+            "reference": "R8",
+            "part_id": "R0201-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 18.127438808203316,
+              "y": 81.92920142460444,
+              "z": 0,
+              "rotation": -19.944957005876212,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd2",
+            "reference": "R6",
+            "part_id": "R0402-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 35.981374516715036,
+              "y": 75.4503176165446,
+              "z": 0,
+              "rotation": 25.055042994123788,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd2",
+            "reference": "R10",
+            "part_id": "R0603-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 14.369963866075297,
+              "y": 71.57962790791092,
+              "z": 0,
+              "rotation": 250.0550429941238,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd3",
+            "reference": "R13",
+            "part_id": "R0805-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 95.12351984689106,
+              "y": 12.862012258062542,
+              "z": 0,
+              "rotation": -0.020181649493789977,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd3",
+            "reference": "R14",
+            "part_id": "R0201-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 70.09834668159014,
+              "y": 28.890560187422622,
+              "z": 0,
+              "rotation": -0.020181649493789977,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd3",
+            "reference": "R18",
+            "part_id": "R0402-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 95.1173048425147,
+              "y": 28.881747603503236,
+              "z": 0,
+              "rotation": -0.020181649493789977,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd3",
+            "reference": "R20",
+            "part_id": "R0603-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 70.1026194970989,
+              "y": 17.876992137432143,
+              "z": 0,
+              "rotation": 269.9798183505062,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd4",
+            "reference": "R13",
+            "part_id": "R0805-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 105.35411012742658,
+              "y": 69.99711625209521,
+              "z": 0,
+              "rotation": 36.621605398241044,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd4",
+            "reference": "R14",
+            "part_id": "R0201-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 75.76102014013244,
+              "y": 67.91934983822355,
+              "z": 0,
+              "rotation": 36.621605398241044,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd4",
+            "reference": "R18",
+            "part_id": "R0402-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 95.80882786564948,
+              "y": 82.81989842719534,
+              "z": 0,
+              "rotation": 36.621605398241044,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd4",
+            "reference": "R20",
+            "part_id": "R0603-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 82.32340169510421,
+              "y": 59.103687092842215,
+              "z": 0,
+              "rotation": 306.62160539824106,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd5",
+            "reference": "R13",
+            "part_id": "R0805-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 89.3930060150553,
+              "y": 111.16140062218405,
+              "z": 0,
+              "rotation": -28.17810077232499,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd5",
+            "reference": "R14",
+            "part_id": "R0201-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 74.89924649558688,
+              "y": 137.09955570057303,
+              "z": 0,
+              "rotation": -28.17810077232499,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd5",
+            "reference": "R18",
+            "part_id": "R0402-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 96.95238537990359,
+              "y": 125.28561655367264,
+              "z": 0,
+              "rotation": -28.17810077232499,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd5",
+            "reference": "R20",
+            "part_id": "R0603-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 69.70217318225369,
+              "y": 127.38915724767463,
+              "z": 0,
+              "rotation": 241.821899227675,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd6",
+            "reference": "R1",
+            "part_id": "R0805-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 125.13629506645599,
+              "y": 158.3937586744252,
+              "z": 0,
+              "rotation": 156.47925391450903,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd6",
+            "reference": "R8",
+            "part_id": "R0201-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 141.65081808209527,
+              "y": 133.770263209934,
+              "z": 0,
+              "rotation": 156.47925391450903,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd6",
+            "reference": "R6",
+            "part_id": "R0402-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 124.23272316192134,
+              "y": 141.35136687413018,
+              "z": 0,
+              "rotation": 201.47925391450903,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd6",
+            "reference": "R10",
+            "part_id": "R0603-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 146.0535838478164,
+              "y": 143.8410100665942,
+              "z": 0,
+              "rotation": 426.47925391450906,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd7",
+            "reference": "R13",
+            "part_id": "R0805-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 163.47522054789812,
+              "y": 123.21866325024331,
+              "z": 0,
+              "rotation": -143.47342448073053,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd7",
+            "reference": "R14",
+            "part_id": "R0201-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 193.089791859283,
+              "y": 125.24589909865638,
+              "z": 0,
+              "rotation": -143.47342448073053,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd7",
+            "reference": "R18",
+            "part_id": "R0402-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 173.004341017298,
+              "y": 110.3690250724404,
+              "z": 0,
+              "rotation": -143.47342448073053,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd7",
+            "reference": "R20",
+            "part_id": "R0603-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 186.53852153657056,
+              "y": 134.08002534589588,
+              "z": 0,
+              "rotation": 126.52657551926947,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd8",
+            "reference": "R1",
+            "part_id": "R0805-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 40.20518112598275,
+              "y": 132.49094444834913,
+              "z": 0,
+              "rotation": 74.59965757655817,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd8",
+            "reference": "R8",
+            "part_id": "R0201-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 18.099735597041366,
+              "y": 112.60431567643694,
+              "z": 0,
+              "rotation": 74.59965757655817,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd8",
+            "reference": "R6",
+            "part_id": "R0402-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 23.1500710878444,
+              "y": 130.9390150455244,
+              "z": 0,
+              "rotation": 119.59965757655817,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd8",
+            "reference": "R10",
+            "part_id": "R0603-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 28.72866933249503,
+              "y": 109.69070740943232,
+              "z": 0,
+              "rotation": 344.5996575765582,
+              "units": "mm"
+            }
+          }
+        ]
+      },
+      "pause_resume_verified": true,
+      "dedup_verified": true,
+      "native_feed_delta": 32
+    },
+    {
+      "tool": "openpnp_prepare_job",
+      "operation_id": "6dd675fa-cf68-48e4-bb46-9e9f27f7da95",
+      "request_id": "b1432e6f-a28e-42e6-9905-96050e40c43d",
+      "state": "succeeded",
+      "result": {
+        "job_id": "f132eea8-8290-427b-a2be-6752531c19a2",
+        "state": "prepared",
+        "requested": 1,
+        "placed": 0,
+        "independently_inspected": 0,
+        "placements": [
+          {
+            "board_id": "load-1",
+            "reference": "R1",
+            "part_id": "R0805-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 15,
+              "y": 15,
+              "z": 0,
+              "rotation": 0,
+              "units": "mm"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tool": "openpnp_validate_job",
+      "operation_id": "e56c3867-13f3-4e38-ae5e-661cece31952",
+      "request_id": "1e936388-a220-4c93-98f1-0ef2f5bd9d10",
+      "state": "succeeded",
+      "result": {
+        "valid": true,
+        "mode": "native-simulator-read-only-preflight",
+        "errors": [],
+        "warnings": [
+          {
+            "code": "CAPACITY_UNKNOWN",
+            "message": "Native feeder configuration does not establish remaining material; no inventory count is inferred",
+            "target_id": "R0805-1K",
+            "details": {
+              "feeder_id": "F5",
+              "reason": "native-strip-maximum-unconfigured"
+            }
+          },
+          {
+            "code": "CAPACITY_UNKNOWN",
+            "message": "Native feeder configuration does not establish remaining material; no inventory count is inferred",
+            "target_id": "R0805-1K",
+            "details": {
+              "feeder_id": "F6",
+              "reason": "native-strip-maximum-unconfigured"
+            }
+          },
+          {
+            "code": "CAPACITY_UNKNOWN",
+            "message": "Native feeder configuration does not establish remaining material; no inventory count is inferred",
+            "target_id": "R0805-1K",
+            "details": {
+              "feeder_id": "F7",
+              "reason": "native-strip-maximum-unconfigured"
+            }
+          },
+          {
+            "code": "CAPACITY_UNKNOWN",
+            "message": "Native feeder configuration does not establish remaining material; no inventory count is inferred",
+            "target_id": "R0805-1K",
+            "details": {
+              "feeder_id": "F8",
+              "reason": "native-strip-maximum-unconfigured"
+            }
+          },
+          {
+            "code": "CAPACITY_UNKNOWN",
+            "message": "Native feeder configuration does not establish remaining material; no inventory count is inferred",
+            "target_id": "R0805-1K",
+            "details": {
+              "feeder_id": "F1",
+              "reason": "native-strip-maximum-unconfigured"
+            }
+          },
+          {
+            "code": "CAPACITY_NOT_PROVEN",
+            "message": "Known remaining feeds do not cover pending placements and other enabled feeder capacity is unknown",
+            "target_id": "R0805-1K",
+            "details": {
+              "required": 1,
+              "known_remaining": 0,
+              "unknown_capacity_feeders": 5
+            }
+          },
+          {
+            "code": "MULTIPLE_FEEDER_ALLOCATION",
+            "message": "Capacity sums enabled feeders for this native part; native feeder selection, failover and physical inventory have not been exercised",
+            "target_id": "R0805-1K",
+            "details": {
+              "enabled_feeders": 5
+            }
+          }
+        ],
+        "error_count": 0,
+        "warning_count": 7,
+        "diagnostics_truncated": false,
+        "counts": {
+          "placement_records_total": 1,
+          "pending": 1,
+          "placed": 0,
+          "excluded": 0,
+          "excluded_reasons": {}
+        },
+        "material_requirements": [
+          {
+            "part_id": "R0805-1K",
+            "required_pending_placements": 1,
+            "known_remaining_configured_feeds": 0,
+            "unknown_capacity_feeders": 5,
+            "sources": [
+              {
+                "feeder_id": "F5",
+                "native_class": "org.openpnp.machine.reference.feeder.ReferenceStripFeeder",
+                "feed_count": 4,
+                "basis": "native-strip-maximum-unconfigured"
+              },
+              {
+                "feeder_id": "F6",
+                "native_class": "org.openpnp.machine.reference.feeder.ReferenceStripFeeder",
+                "feed_count": 2,
+                "basis": "native-strip-maximum-unconfigured"
+              },
+              {
+                "feeder_id": "F7",
+                "native_class": "org.openpnp.machine.reference.feeder.ReferenceStripFeeder",
+                "feed_count": 0,
+                "basis": "native-strip-maximum-unconfigured"
+              },
+              {
+                "feeder_id": "F8",
+                "native_class": "org.openpnp.machine.reference.feeder.ReferenceStripFeeder",
+                "feed_count": 0,
+                "basis": "native-strip-maximum-unconfigured"
+              },
+              {
+                "feeder_id": "F1",
+                "native_class": "org.openpnp.machine.reference.feeder.ReferenceStripFeeder",
+                "feed_count": 2,
+                "basis": "native-strip-maximum-unconfigured"
+              }
+            ],
+            "physical_inventory_verified": false,
+            "retry_allowance_included": false
+          }
+        ],
+        "tooling": [
+          {
+            "part_id": "R0805-1K",
+            "compatible_options": [
+              {
+                "nozzle_id": "N1",
+                "nozzle_tip_id": "NT1",
+                "currently_loaded": true,
+                "automatic_change_available": false,
+                "manual_change_required": false,
+                "runout_calibration_enabled": false,
+                "runout_calibrated": false,
+                "native_calibration_may_be_required": false
+              }
+            ],
+            "ready_without_manual_change": true
+          }
+        ],
+        "physical_qualification": false,
+        "hardware_qualified": false,
+        "side_effects_performed": false,
+        "native_processor_preflight_executed": false,
+        "job": {
+          "job_id": "f132eea8-8290-427b-a2be-6752531c19a2",
+          "state": "validated",
+          "requested": 1,
+          "placed": 0,
+          "independently_inspected": 0,
+          "placements": [
+            {
+              "board_id": "load-1",
+              "reference": "R1",
+              "part_id": "R0805-1K",
+              "placed": false,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 15,
+                "y": 15,
+                "z": 0,
+                "rotation": 0,
+                "units": "mm"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "tool": "openpnp_start_job",
+      "operation_id": "035e12ba-b418-4a45-ab30-5b86b0f2eac3",
+      "request_id": "289705b4-ae0a-4134-b825-cf35806c61bd",
+      "state": "succeeded",
+      "result": {
+        "job_id": "f132eea8-8290-427b-a2be-6752531c19a2",
+        "state": "completed",
+        "requested": 1,
+        "placed": 1,
+        "independently_inspected": 0,
+        "placements": [
+          {
+            "board_id": "load-1",
+            "reference": "R1",
+            "part_id": "R0805-1K",
+            "placed": true,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 15,
+              "y": 15,
+              "z": 0,
+              "rotation": 0,
+              "units": "mm"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tool": "openpnp_save_job",
+      "operation_id": "f90a394a-c064-4d74-a685-88e52deda8df",
+      "request_id": "6366aa66-90d8-4972-a436-a2e9d9cebe2d",
+      "state": "succeeded",
+      "result": {
+        "artifact": {
+          "artifact_id": "72580f02-8dc9-4934-9785-3819252e49f1",
+          "mime_type": "application/zip",
+          "sha256": "df8e0fac1879b293fcd456a71bd7682d5fe5ac04d600f6ec3f9b6c053a15912f",
+          "size": 1579,
+          "metadata": {
+            "kind": "native-job-document",
+            "native_bundle_id": "df8e0fac1879b293fcd456a71bd7682d5fe5ac04d600f6ec3f9b6c053a15912f",
+            "manifest_in_archive": true,
+            "entry_count": 2
+          }
+        },
+        "job": {
+          "job_id": "f132eea8-8290-427b-a2be-6752531c19a2",
+          "state": "prepared",
+          "requested": 1,
+          "placed": 1,
+          "independently_inspected": 0,
+          "placements": [
+            {
+              "board_id": "load-1",
+              "reference": "R1",
+              "part_id": "R0805-1K",
+              "placed": true,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 15,
+                "y": 15,
+                "z": 0,
+                "rotation": 0,
+                "units": "mm"
+              }
+            }
+          ]
+        },
+        "native_format": "openpnp-job-with-linked-definitions",
+        "transient_registration_preserved": false,
+        "reload_scope": "same-bridge-instance-and-unchanged-part-package-definitions"
+      }
+    },
+    {
+      "tool": "openpnp_prepare_job",
+      "operation_id": "eaec73fe-5605-4ac0-a7eb-0e8091389db2",
+      "request_id": "224af962-d1d7-42c5-883c-96324605d2bd",
+      "state": "succeeded",
+      "result": {
+        "job_id": "6b1e2d9a-f91a-49f3-a208-9d0d559c1273",
+        "state": "prepared",
+        "requested": 32,
+        "placed": 0,
+        "independently_inspected": 0,
+        "placements": [
+          {
+            "board_id": "Brd1",
+            "reference": "R1",
+            "part_id": "R0805-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 34.993767784109934,
+              "y": 10.417456335122264,
+              "z": 0,
+              "rotation": 0.007894774268749629,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd1",
+            "reference": "R8",
+            "part_id": "R0201-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 9.991563384567229,
+              "y": 26.414011438127638,
+              "z": 0,
+              "rotation": 0.007894774268749629,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd1",
+            "reference": "R6",
+            "part_id": "R0402-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 28.99156320419994,
+              "y": 26.41662944440849,
+              "z": 0,
+              "rotation": 45.00789477426875,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd1",
+            "reference": "R10",
+            "part_id": "R0603-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 9.993079072414037,
+              "y": 15.414011542550803,
+              "z": 0,
+              "rotation": 270.0078947742688,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd2",
+            "reference": "R1",
+            "part_id": "R0805-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 36.325785220708745,
+              "y": 57.80783601026465,
+              "z": 0,
+              "rotation": -19.94736168620408,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd2",
+            "reference": "R8",
+            "part_id": "R0201-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 18.28413124423156,
+              "y": 81.37685639281482,
+              "z": 0,
+              "rotation": -19.94736168620408,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd2",
+            "reference": "R6",
+            "part_id": "R0402-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 36.14425364505098,
+              "y": 74.89487923860112,
+              "z": 0,
+              "rotation": 25.05263831379592,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd2",
+            "reference": "R10",
+            "part_id": "R0603-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 14.53140762863416,
+              "y": 71.03678552918251,
+              "z": 0,
+              "rotation": 250.0526383137959,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd3",
+            "reference": "R13",
+            "part_id": "R0805-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 95.42474730371994,
+              "y": 13.575163112065683,
+              "z": 0,
+              "rotation": 0.6048032510190049,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd3",
+            "reference": "R14",
+            "part_id": "R0201-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 70.2572503118884,
+              "y": 29.310381418976785,
+              "z": 0,
+              "rotation": 0.6048032510190049,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd3",
+            "reference": "R18",
+            "part_id": "R0402-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 95.2558575112745,
+              "y": 29.574271719672787,
+              "z": 0,
+              "rotation": 0.6048032510190049,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd3",
+            "reference": "R20",
+            "part_id": "R0603-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 70.37336204419464,
+              "y": 18.310994251246903,
+              "z": 0,
+              "rotation": 270.604803251019,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd4",
+            "reference": "R13",
+            "part_id": "R0805-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 105.64280305325074,
+              "y": 69.9534023867106,
+              "z": 0,
+              "rotation": 36.608756253218274,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd4",
+            "reference": "R14",
+            "part_id": "R0201-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 76.03308342309947,
+              "y": 67.88833497283895,
+              "z": 0,
+              "rotation": 36.608756253218274,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd4",
+            "reference": "R18",
+            "part_id": "R0402-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 96.10124211015496,
+              "y": 82.79702394642611,
+              "z": 0,
+              "rotation": 36.608756253218274,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd4",
+            "reference": "R20",
+            "part_id": "R0603-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 82.59290657147783,
+              "y": 59.05834515053453,
+              "z": 0,
+              "rotation": 306.6087562532183,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd5",
+            "reference": "R13",
+            "part_id": "R0805-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 89.33649014888574,
+              "y": 111.48829022618719,
+              "z": 0,
+              "rotation": -28.17927507558783,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd5",
+            "reference": "R14",
+            "part_id": "R0201-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 74.85534324166221,
+              "y": 137.3976781821272,
+              "z": 0,
+              "rotation": -28.17927507558783,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd5",
+            "reference": "R18",
+            "part_id": "R0402-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 96.89220135674816,
+              "y": 125.5918794198422,
+              "z": 0,
+              "rotation": -28.17927507558783,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd5",
+            "reference": "R20",
+            "part_id": "R0603-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 69.6607917862568,
+              "y": 127.7014606114894,
+              "z": 0,
+              "rotation": 241.82072492441216,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd6",
+            "reference": "R1",
+            "part_id": "R0805-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 124.12690564848111,
+              "y": 157.8710712234833,
+              "z": 0,
+              "rotation": 157.09296869993602,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd6",
+            "reference": "R8",
+            "part_id": "R0201-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 140.92755487683627,
+              "y": 133.40194403214753,
+              "z": 0,
+              "rotation": 157.09296869993602,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd6",
+            "reference": "R6",
+            "part_id": "R0402-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 123.42593961050848,
+              "y": 140.79744692711293,
+              "z": 0,
+              "rotation": 202.09296869993602,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd6",
+            "reference": "R10",
+            "part_id": "R0603-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 145.20916181602678,
+              "y": 143.5344581337057,
+              "z": 0,
+              "rotation": 427.092968699936,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd7",
+            "reference": "R13",
+            "part_id": "R0805-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 163.8053679670504,
+              "y": 122.2863848715149,
+              "z": 0,
+              "rotation": -140.606916294328,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd7",
+            "reference": "R14",
+            "part_id": "R0201-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 193.27981833965976,
+              "y": 125.78735262809124,
+              "z": 0,
+              "rotation": -140.606916294328,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd7",
+            "reference": "R18",
+            "part_id": "R0402-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 173.95956365152094,
+              "y": 109.92142187110603,
+              "z": 0,
+              "rotation": -140.606916294328,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd7",
+            "reference": "R20",
+            "part_id": "R0603-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 186.2988088065863,
+              "y": 134.28826469087232,
+              "z": 0,
+              "rotation": 129.393083705672,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd8",
+            "reference": "R1",
+            "part_id": "R0805-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 39.34262763343958,
+              "y": 132.45967540360817,
+              "z": 0,
+              "rotation": 76.64603235413277,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd8",
+            "reference": "R8",
+            "part_id": "R0201-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 18.001082442017807,
+              "y": 111.83109210657824,
+              "z": 0,
+              "rotation": 76.64603235413277,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd8",
+            "reference": "R6",
+            "part_id": "R0402-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 22.389441855897765,
+              "y": 130.31736543720416,
+              "z": 0,
+              "rotation": 121.64603235413277,
+              "units": "mm"
+            }
+          },
+          {
+            "board_id": "Brd8",
+            "reference": "R10",
+            "part_id": "R0603-1K",
+            "placed": false,
+            "independently_inspected": false,
+            "machine_pose": {
+              "x": 28.70366173869597,
+              "y": 109.29046297222669,
+              "z": 0,
+              "rotation": 346.6460323541328,
+              "units": "mm"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "tool": "openpnp_load_job",
+      "operation_id": "33328d61-84c2-4f8f-bec5-386289ede82b",
+      "request_id": "96bc113d-c0cd-43bd-8b6c-ca52db3ec6bf",
+      "state": "succeeded",
+      "result": {
+        "job": {
+          "job_id": "3640ffaf-d4e4-4e34-9c3f-4f0972797c7d",
+          "state": "prepared",
+          "requested": 1,
+          "placed": 1,
+          "independently_inspected": 0,
+          "placements": [
+            {
+              "board_id": "load-1",
+              "reference": "R1",
+              "part_id": "R0805-1K",
+              "placed": true,
+              "independently_inspected": false,
+              "machine_pose": {
+                "x": 15,
+                "y": 15,
+                "z": 0,
+                "rotation": 0,
+                "units": "mm"
+              }
+            }
+          ]
+        },
+        "artifact_id": "72580f02-8dc9-4934-9785-3819252e49f1",
+        "native_bundle_id": "df8e0fac1879b293fcd456a71bd7682d5fe5ac04d600f6ec3f9b6c053a15912f",
+        "placed_history_restored": true,
+        "registration": "invalidated",
+        "requires_validation": true,
+        "physical_qualification": false
+      }
+    },
+    {
+      "tool": "openpnp_start_job",
+      "operation_id": "b1a6501f-6ee8-4696-879c-83162757f09d",
+      "request_id": "55fcfaca-35ba-4f45-abba-33400254890f",
+      "state": "failed",
+      "result": {
+        "code": "JOB_NOT_VALIDATED",
+        "message": "Prepare and validate the selected job first"
+      }
+    },
+    {
+      "tool": "openpnp_list_issues",
+      "operation_id": "b4b40b6e-8a83-4012-97ac-31ee5064a667",
+      "request_id": "c9f0bc67-8402-4d1c-91bb-2ca530596655",
+      "state": "succeeded",
+      "result": {
+        "issues": [
+          {
+            "fingerprint": "4cfccdb6189be00811d0ba64fcb2e25386f1eaac",
+            "severity": "Fundamental",
+            "state": "Open",
+            "issue": "Create nozzles for this head.",
+            "solution": "Choose the number and type of your nozzles.",
+            "documentation_url": "https://github.com/openpnp/openpnp/wiki/Setup-and-Calibration%3A-Nozzle-Setup",
+            "apply_supported": false
+          },
+          {
+            "fingerprint": "8499f6fe983a3b2ffde9e306306d670d2f3f356c",
+            "severity": "Information",
+            "state": "Open",
+            "issue": "Complete milestone Welcome",
+            "solution": "Get to know OpenPnP by using the demo simulation machine. Choose your nozzle configuration.",
+            "documentation_url": "https://github.com/openpnp/openpnp/wiki/Issues-and-Solutions#welcome-milestone",
+            "apply_supported": false
+          }
+        ],
+        "config_revision": "cfg-4",
+        "automatic_issue_application": false
+      }
+    },
+    {
+      "tool": "openpnp_export_run_report",
+      "operation_id": "83addc8a-5d8a-4a9a-a31b-8236d10d0105",
+      "request_id": "3ecb9f0c-218e-4e0c-bea8-6cb31c6ca162",
+      "state": "succeeded",
+      "result": {
+        "artifact_id": "37ba820e-c809-4441-9cbb-303cbe70e297",
+        "mime_type": "application/json",
+        "sha256": "1b62e9ddf38087562f6de0d6853f462746dc3fd067d3bc87a3eda1a263561db7",
+        "size": 60470,
+        "metadata": {
+          "kind": "run-report"
+        }
+      }
+    },
+    {
+      "tool": "openpnp_set_machine_enabled",
+      "operation_id": "2ba37b0c-883f-455a-92db-88411c4f7c29",
+      "request_id": "86f531db-d6cf-45be-9177-ae809cecbba7",
+      "state": "succeeded",
+      "result": {
+        "enabled": false
+      }
+    }
+  ],
+  "hardware_qualified": false,
+  "packaged_server_sha256": "796cc93bc9a24496799ad0a3a7bb3a7627078e94de1a14391953acc1e1528c49",
+  "sanitization": "Native configuration_root values replaced with an explicit portable placeholder; operation outcomes and hashes are unchanged.",
+  "bridge": {
+    "protocol_version": "1.0",
+    "schema_version": 1,
+    "bridge_version": "0.1.0",
+    "openpnp_version": "n/a_2026-09-11_03-35-24.5bd404c",
+    "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+    "bridge_artifact_sha256": "6f9efe43114463e0e0c8dea1de6000987b05794d4a556ae57d8ee9b56abf8045",
+    "bridge_artifact_hash_available": true,
+    "limits": {
+      "rpc_request_bytes": 8388608,
+      "canonical_placements": 10000,
+      "board_definitions": 100,
+      "panel_definitions": 100,
+      "root_instances": 100,
+      "expanded_instances": 1000,
+      "panel_depth": 8,
+      "event_page": 500,
+      "json_depth": 64,
+      "retained_requests": 20000,
+      "journal_bytes": 536870912,
+      "plans": 128,
+      "plan_ttl_ms": 300000,
+      "artifact_metadata_cache": 128,
+      "artifact_bytes": 8388608,
+      "artifact_storage_bytes": 1073741824,
+      "running_job_snapshot_interval_ms": 100
+    },
+    "retention": {
+      "request_receipts": "retained until journal capacity; then fail closed",
+      "artifacts": "bytes stored on disk and read on demand; aggregate content cap 1 GiB fails admission without deleting evidence; preserved until explicit state-directory cleanup",
+      "plans": "five-minute TTL and 128 maximum; old plans expire"
+    },
+    "tools": [
+      "openpnp_get_capabilities",
+      "openpnp_get_status",
+      "openpnp_get_configuration",
+      "openpnp_get_operation",
+      "openpnp_get_request_status",
+      "openpnp_get_events",
+      "openpnp_get_artifact",
+      "openpnp_reconcile_operation",
+      "openpnp_request_control_session",
+      "openpnp_get_control_session",
+      "openpnp_renew_control_session",
+      "openpnp_release_control_session",
+      "openpnp_plan_motion",
+      "openpnp_execute_motion",
+      "openpnp_set_machine_enabled",
+      "openpnp_home_machine",
+      "openpnp_capture_camera",
+      "openpnp_plan_configuration",
+      "openpnp_apply_configuration",
+      "openpnp_prepare_job",
+      "openpnp_validate_job",
+      "openpnp_start_job",
+      "openpnp_pause_job",
+      "openpnp_resume_job",
+      "openpnp_abort_job",
+      "openpnp_save_job",
+      "openpnp_load_job",
+      "openpnp_test_feeder",
+      "openpnp_control_actuator",
+      "openpnp_change_nozzle_tip",
+      "openpnp_backup_configuration",
+      "openpnp_restore_configuration",
+      "openpnp_export_run_report",
+      "openpnp_run_calibration",
+      "openpnp_validate_calibration",
+      "openpnp_locate_fiducials",
+      "openpnp_list_issues"
+    ],
+    "machine_id": "cb4e9bbf-0280-410f-925b-98bc1c4b76e1",
+    "bridge_instance_id": "bd22af23-d343-4039-9816-f7f8ae458d21",
+    "simulation": true,
+    "simulator_profile": "native-simulator",
+    "native_job_order": "NozzleTips",
+    "simulator_attestation": {
+      "mode": "isolated-native-default",
+      "profile": "native-simulator",
+      "native_job_order": "NozzleTips",
+      "job_order_rationale": "upstream default order retained",
+      "fixture_provenance": "upstream-default-strip-feeders",
+      "driver_class": "org.openpnp.machine.reference.driver.NullDriver",
+      "checked_at_dispatch": true,
+      "acceleration_recipe": {
+        "source": "upstream SampleJobTest.makeMachineFastest",
+        "driver_feed_rate_mm_per_minute": 0,
+        "controller_axis_native_feedrate_per_second": 1000000,
+        "controller_axis_native_acceleration_per_second2": 2000000,
+        "controller_axis_native_jerk_per_second3": 0,
+        "fixed_camera_settling_ms": 0,
+        "nozzle_pick_place_dwell_ms": 0,
+        "physical_cycle_rate_comparison": false
+      }
+    },
+    "hardware_qualified": false,
+    "gui_control_qualified": false,
+    "capabilities": {
+      "observe": "supported",
+      "native_simulator_execution": "supported",
+      "hardware_execution": "unqualified",
+      "calibration": "native-nozzle-tip-runout-only",
+      "configuration_restore": "supported-typed-settings-only",
+      "custom_job_import": "supported",
+      "per_placement_crash_recovery": "unsupported"
+    },
+    "configuration_changes": [
+      "set_part_height",
+      "assign_feeder",
+      "set_feeder_enabled",
+      "set_machine_speed",
+      "create_package",
+      "set_package_footprint",
+      "create_part",
+      "set_part_properties",
+      "set_package_compatibility",
+      "set_tray_feeder_geometry",
+      "set_strip_feeder_geometry",
+      "set_camera_geometry",
+      "set_camera_settling",
+      "set_nozzle_settings",
+      "set_nozzle_tip_settings",
+      "set_axis_motion_limits"
+    ],
+    "limitations": [
+      "Only an isolated OpenPnP default simulator may mutate",
+      "Native step journal does not prove every irreversible substep",
+      "No physical machine profile is qualified",
+      "No GUI ownership patch shipped"
+    ]
+  },
+  "completed_at": "2026-09-11T05:28:47.061Z",
+  "passed": true,
+  "test_log": {
+    "path": "mcp-native-e2e.log",
+    "sha256": "c61eca7f74af4b94d224a20b8094cbf7ca90b728a3bb184d481db4f4a7f781d0",
+    "exit_code": 0
+  },
+  "test_source": {
+    "path": "tests/openpnp/live.test.mjs",
+    "sha256": "c8c6eaab6aafb65fb8aec6040ec2c8fd254417d3f4579ba3782dbc82140be59b"
+  }
+}

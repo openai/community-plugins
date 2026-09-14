@@ -1,0 +1,59 @@
+{
+  "kind": "independent-bounded-structural-crash52-review",
+  "recorded_at": "2026-09-11T10:19:46.757456+00:00",
+  "status": "supported-with-supplemental-oracle-correction",
+  "native_evidence_rerun": false,
+  "original_evidence_unchanged": true,
+  "original_files_verified": 170,
+  "original_summary_sha256": "8a5320836cf58e001cb78aeb6e64b318b01173d1d245ad39d7a1f14a78785812",
+  "original_oracle_sha256": "8f0697fe3a1a8268540b3e8f6e59880fd23e48768f5616e61244573ad93cca6a",
+  "original_native_report_sha256": "fa3463053d658111fbdce308f6c67dae9157a43c0d48f81a6d7c15513a99dbf3",
+  "native_bridge_sha256": "903890af3a53241a96f67b49242a38ff4881201fe84b348d2e189dfd428bebbd",
+  "reviewed_production_sources_match_build25": {
+    "src/openpnp/java/org/openpnp/codex/Bridge.java": "cc13849b3ca2f39cfff5ce1de25a58d1403c8dfa38e8670efdc514ae782585fb",
+    "src/openpnp/java/org/openpnp/codex/NativeJobLineage.java": "7925e40056f36d68de986cf2ae7e6293bb1cb536b878db25c7c5838016866b6c",
+    "src/openpnp/java/org/openpnp/codex/NativePlacementEdits.java": "1576c15af0483e045d6bb6b0b0ec3737dc77471e15660521e6e9864a93a05dec"
+  },
+  "stock_identical_native_panel_class_sha256": "fce5995303a9d7ec97b9204c3288f0def12289b6b740a6e8559390e6838eb105",
+  "independent_recorded_check_count": 219,
+  "independent_recorded_checks_sha256": "1131127362fb42903b3d9197821f1390b7f210763a8d2c7d5e6a21c819e1d6e2",
+  "corrected_oracle_checks": 127,
+  "corrected_oracle_sha256": "d41421971403044e8af0fbe7383dfc75da7aa266eff9e272c99c1ddedc34fce7",
+  "corrected_oracle_summary_sha256": "9d5c9e4e4c9cca53a95c95eb62058ebe31bcb61dd72a097078949158272dd79f",
+  "findings": [
+    {
+      "id": "F1",
+      "severity": "bounded-oracle-coverage-gap",
+      "file": "validation/bridge-structure-crash52/verify.py",
+      "detail": "changed_types lists job_lineage_content_changed, but native producer emits job_lineage_content_change. Other lineage families, including document association, are also outside that explicit filter. The original check therefore does not universally establish its stated no-lineage-mutation claim.",
+      "current_evidence_impact": "No invalidated native result: all three retained suffixes independently contain only operation/session_granted/session_receipt; complete job_lineage_/board_load_/native_placement_ prefix comparison passes.",
+      "remediation": "Separate verify_corrected.py uses complete prefixes and wrote a new127-check supplemental summary; original source and summary preserved."
+    }
+  ],
+  "seam_assessment": {
+    "reservation_forced": "ObservingChannel delegates actual.force(metadata), then halts inside the call before NativeJobLineage.append commits; persisted reservation exists while live reducer remains revision1 and rootR1 only.",
+    "native_root_published": "Actual native Panel.setChildren assigns its children before firing the named property event; listener seesR1/R2 while source definition remainsR1. Reservation is already durable and reducerrevision2/pending; publication outcome is absent.",
+    "publication_forced": "After actual root publication/required invalidations, publication record is forced; halt precedes reducer clearing pending. Fresh replay sees completed publication but original apply remains outcome_unknown."
+  },
+  "recovery_assessment": {
+    "halts": 3,
+    "fresh_recovery_jvms": 6,
+    "halt_assertions": 61,
+    "recovery_assertions": 178,
+    "unknown_operation_preserved": true,
+    "permanent_id_reservation_preserved": true,
+    "native_job_or_authority_recreated": false,
+    "automatic_replay_observed": false,
+    "no_lineage_or_load_mutation_in_any_recorded_recovery_suffix": true,
+    "public_mutation_rejections": "RECOVERY_REQUIRED global unresolved-operation fence; this does not prove post-reconciliation historical-document rejection or resume behavior."
+  },
+  "scope_limits": [
+    "Direct Bridge.call/native executor paths; no HTTP authentication or MCP exercised",
+    "Three process-death seams, not arbitrary listener schedules, generic rollback or host power loss",
+    "No later reconciliation/load/resume authority or physical qualification",
+    "Runtime.halt bypasses ordinary cleanup; recorded force completion is process-crash evidence, not physical storage power-failure proof",
+    "Run report combined metadata mentions an executor gate; implementation uses an armed force observer/native children listener and real native dispatch, not a separate synthetic executor gate"
+  ],
+  "new_workload_runs": 0,
+  "production_edits": false
+}

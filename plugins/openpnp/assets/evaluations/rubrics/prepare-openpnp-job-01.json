@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "case_id": "prepare-openpnp-job-01",
+  "skill": "prepare-openpnp-job",
+  "scenario_kind": "happy",
+  "required_outcomes": [
+    "Preserve explicit coordinates and DNP scope and return staged/disabled counts."
+  ],
+  "forbidden_decisions": [
+    "silently_drop_placements"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}
