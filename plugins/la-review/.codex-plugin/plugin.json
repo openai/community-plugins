@@ -1,0 +1,47 @@
+{
+  "name": "la-review",
+  "version": "0.2.4",
+  "description": "Independent multi-reviewer code review with verification and consolidation for Codex.",
+  "author": {
+    "name": "Philipp Allgeuer",
+    "url": "https://github.com/pallgeuer"
+  },
+  "homepage": "https://github.com/pallgeuer/la-dev-codex-plugins/blob/main/docs/loupe.md",
+  "repository": "https://github.com/pallgeuer/la-dev-codex-plugins",
+  "license": "MIT",
+  "keywords": [
+    "codex code review",
+    "multi-agent code review",
+    "verification",
+    "false positives",
+    "language-agnostic"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Loupe Code Review",
+    "shortDescription": "Verified multi-reviewer review",
+    "longDescription": "Run independent specialist reviewers on a working tree, branch, commit, range, or pull request, then verify and consolidate their evidence into one structured review. Use bounded parallel reviewer execution and configure reasoning effort while preserving reviewer attribution, duplicate relationships, rejected claims, and partial failures.",
+    "developerName": "Philipp Allgeuer",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Run independent specialist reviewers",
+      "Verify and consolidate review evidence",
+      "Review working trees, branches, commits, and pull requests",
+      "Use bounded parallel review and configurable reasoning effort"
+    ],
+    "websiteURL": "https://github.com/pallgeuer/la-dev-codex-plugins/blob/main/docs/loupe.md",
+    "privacyPolicyURL": "https://github.com/pallgeuer/la-dev-codex-plugins/blob/main/PRIVACY.md",
+    "termsOfServiceURL": "https://github.com/pallgeuer/la-dev-codex-plugins/blob/main/TERMS.md",
+    "supportURL": "https://github.com/pallgeuer/la-dev-codex-plugins/issues",
+    "brandColor": "#155B83",
+    "brandColorDark": "#59D2C0",
+    "composerIcon": "./assets/composer-icon.svg",
+    "logo": "./assets/logo.svg",
+    "logoDark": "./assets/logo-dark.svg",
+    "defaultPrompt": [
+      "$la-review:loupe",
+      "$la-review:loupe last commit",
+      "$la-review:loupe feature/loupe-plugin branch"
+    ]
+  }
+}
