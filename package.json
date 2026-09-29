@@ -33,6 +33,7 @@
     "validate:autodesk-fusion": "node scripts/validate-autodesk-fusion.mjs",
     "test:autodesk-fusion": "npm run validate:autodesk-fusion && npm run test:autodesk-fusion:package && npm --prefix plugins/autodesk-fusion run verify && npm run validate:autodesk-fusion",
     "test:autodesk-fusion:package": "node --test --test-concurrency=1 tests/autodesk-fusion/unit/*.test.mjs tests/autodesk-fusion/integration/*.test.mjs tests/autodesk-fusion/security/*.test.mjs",
+    "test:toolkit": "node --test --test-concurrency=1 tests/toolkit/unit/catalog.test.mjs tests/toolkit/integration/packaged.test.mjs tests/toolkit/security/security.test.mjs",
     "build:autodesk-fusion": "npm --prefix plugins/autodesk-fusion run build"
   },
   "engines": {
