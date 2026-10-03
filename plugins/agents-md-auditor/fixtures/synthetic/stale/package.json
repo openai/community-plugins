@@ -1,0 +1,8 @@
+{
+  "name": "synthetic-stale",
+  "private": true,
+  "scripts": {
+    "build": "node src/app.js --build",
+    "test": "node --test"
+  }
+}

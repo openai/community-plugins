@@ -1,0 +1,40 @@
+{
+  "name": "agents-md-auditor",
+  "version": "0.1.0",
+  "description": "Audit AGENTS.md instruction files against the repository they describe, then revise them only after explicit approval.",
+  "author": {
+    "name": "farmer-data",
+    "url": "https://github.com/farmer-data"
+  },
+  "homepage": "https://github.com/openai/community-plugins/tree/main/plugins/agents-md-auditor",
+  "repository": "https://github.com/openai/community-plugins",
+  "license": "Apache-2.0",
+  "keywords": [
+    "agents-md",
+    "instructions",
+    "documentation",
+    "lint",
+    "audit",
+    "codex"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "AGENTS.md Auditor",
+    "shortDescription": "Find stale paths, scripts, and targets in AGENTS.md.",
+    "longDescription": "A deterministic, offline audit of every AGENTS.md and AGENTS.override.md in a repository. It checks documented paths, links, npm/pnpm/yarn/bun scripts, and make targets against the files that actually exist, flags package-manager mismatches, oversize instruction chains, overrides that shadow AGENTS.md, repeated or vague instructions, and credential-shaped values. Auditing never writes; revisions are proposed as a diff and applied only to approved AGENTS files.",
+    "developerName": "farmer-data",
+    "category": "Developer Tools",
+    "websiteURL": "https://github.com/openai/community-plugins/tree/main/plugins/agents-md-auditor",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "brandColor": "#1F8A70",
+    "logo": "./assets/icon.svg",
+    "composerIcon": "./assets/icon.svg",
+    "defaultPrompt": [
+      "Use $audit-agents-md to audit the AGENTS.md files in this repository and explain each finding. Do not edit files yet.",
+      "Use $revise-agents-md to propose fixes for the approved audit findings as a diff, and apply them only after I approve."
+    ]
+  }
+}
