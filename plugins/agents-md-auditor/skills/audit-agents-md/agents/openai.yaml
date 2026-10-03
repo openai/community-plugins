@@ -1,0 +1,6 @@
+interface:
+  display_name: "Audit AGENTS.md"
+  short_description: "Read-only audit of AGENTS.md instruction files"
+  default_prompt: "Use $audit-agents-md to audit the AGENTS.md files in this repository and explain each finding. Do not edit files yet."
+policy:
+  allow_implicit_invocation: false
