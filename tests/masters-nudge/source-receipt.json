@@ -1,6 +1,6 @@
 {
   "repository": "https://github.com/shihchengwei-lab/masters-nudge",
-  "commit": "dda618ec5facd3c633df039febc08e4d5ac7410e",
+  "commit": "6ccceb895ff393bffb84b3bbe4bc3f194cd030db",
   "method": "Exact committed plugin/test blobs; no private data or model calls.",
   "files": {
     "plugins/masters-nudge/LICENSE": {
@@ -89,7 +89,7 @@
     },
     "plugins/masters-nudge/README.md": {
       "source": "plugins/masters-nudge/README.md",
-      "sha256": "52cbb2e97882a86d3c9529955027d1819edf6309992b7cc9ec8d15c2fc544fee"
+      "sha256": "f141d88287f6716322f070d5b4b1309620a66ece00c474c134b29a7a1f6cccc7"
     },
     "plugins/masters-nudge/.codex-plugin/plugin.json": {
       "source": "plugins/masters-nudge/.codex-plugin/plugin.json",
