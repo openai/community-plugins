@@ -21,3 +21,7 @@ plugins/autodesk-fusion/docs/native-dependencies.json linguist-generated=true
 plugins/autodesk-fusion/docs/support-matrix.md linguist-generated=true
 plugins/autodesk-fusion/docs/autodesk-fusion-*.md linguist-generated=true
 docs/autodesk-fusion-*.md text eol=lf
+
+# Frozen Masters’ Nudge source receipts cover exact upstream Git blobs.
+plugins/masters-nudge/** -text -eol
+tests/masters-nudge/support/upstream-tests/** -text -eol

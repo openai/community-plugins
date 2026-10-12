@@ -1,0 +1,147 @@
+{
+  "repository": "https://github.com/shihchengwei-lab/masters-nudge",
+  "commit": "352946d033fed9f79e749f35c91575a0d8f13710",
+  "method": "Exact committed plugin/test blobs; no private data or model calls.",
+  "files": {
+    "plugins/masters-nudge/LICENSE": {
+      "source": "plugins/masters-nudge/LICENSE",
+      "sha256": "e47f465cb04d113ef607aa7653f27d435eedd541b5f0bdfe9d8e7bd9ec967c61"
+    },
+    "plugins/masters-nudge/buddy-prompt.txt": {
+      "source": "plugins/masters-nudge/buddy-prompt.txt",
+      "sha256": "6c058c7110caac5cf86f96a457821d60feb481ef8fbf25ca52b39e7b6e6109a3"
+    },
+    "plugins/masters-nudge/launch.py": {
+      "source": "plugins/masters-nudge/launch.py",
+      "sha256": "a3a0ca6b90f5691002f4be984bc2b13dbe5adce3f3c61c9ef49d2203ec3158b0"
+    },
+    "plugins/masters-nudge/hook_entry.py": {
+      "source": "plugins/masters-nudge/hook_entry.py",
+      "sha256": "8ba6735af4d3004fbdd5cf009646d040b47fd94adcadf1d56716d5c1cebb1ee3"
+    },
+    "plugins/masters-nudge/mcp_entry.py": {
+      "source": "plugins/masters-nudge/mcp_entry.py",
+      "sha256": "13ad60127dc1646ebc66328784980ddb96ed027c4d34777cf97a3cf02b540535"
+    },
+    "plugins/masters-nudge/masters_nudge_cli.py": {
+      "source": "plugins/masters-nudge/masters_nudge_cli.py",
+      "sha256": "64bd8ed0d7e16be5e70f8b1ace583751c2044bb95c756c0f801457c6c4261e69"
+    },
+    "plugins/masters-nudge/nudge-schema.json": {
+      "source": "plugins/masters-nudge/nudge-schema.json",
+      "sha256": "ce3c0e0a74fd63dd5b01bf0d88c798c223f27bb9110dc7b34137f7cb1ddac0e0"
+    },
+    "plugins/masters-nudge/masters_nudge/__init__.py": {
+      "source": "plugins/masters-nudge/masters_nudge/__init__.py",
+      "sha256": "0baf124d1551a8c96c40950d10f06beeeb07d56b77097d65377d14570eccf413"
+    },
+    "plugins/masters-nudge/masters_nudge/codex_adapter.py": {
+      "source": "plugins/masters-nudge/masters_nudge/codex_adapter.py",
+      "sha256": "3afbba0417c4366233d9c64f728691f86a28f0a9c9feb0b5c0e50d20bcdecd08"
+    },
+    "plugins/masters-nudge/masters_nudge/contracts.py": {
+      "source": "plugins/masters-nudge/masters_nudge/contracts.py",
+      "sha256": "ab7cc10e0067875632d9090d81ffc835228b1ffeaf218ee38fa9312415d74732"
+    },
+    "plugins/masters-nudge/masters_nudge/core.py": {
+      "source": "plugins/masters-nudge/masters_nudge/core.py",
+      "sha256": "6d7e33e9085f821f8d99d4249c67be340b072cf247ad6e67758f0fac5dc47614"
+    },
+    "plugins/masters-nudge/masters_nudge/evidence.py": {
+      "source": "plugins/masters-nudge/masters_nudge/evidence.py",
+      "sha256": "5da430f6ca3d0d99ca6a4622bf52e458531be48703f9fc477300f0931cb9b471"
+    },
+    "plugins/masters-nudge/masters_nudge/management.py": {
+      "source": "plugins/masters-nudge/masters_nudge/management.py",
+      "sha256": "5c7b95181a8d270731d4d6492fdb050292ff53f2898d46fa414dff27e2b13e0a"
+    },
+    "plugins/masters-nudge/masters_nudge/plugin_inventory.py": {
+      "source": "plugins/masters-nudge/masters_nudge/plugin_inventory.py",
+      "sha256": "4df226309c5f19b9d1aa41120c81bbdefaee371ff3c5492c74221f13c57238b8"
+    },
+    "plugins/masters-nudge/masters_nudge/provider_contract.py": {
+      "source": "plugins/masters-nudge/masters_nudge/provider_contract.py",
+      "sha256": "ee797b2cce604adaae1855b4890ac36cc10a45a1adafc20e8033031a19a9e12e"
+    },
+    "plugins/masters-nudge/masters_nudge/prompting.py": {
+      "source": "plugins/masters-nudge/masters_nudge/prompting.py",
+      "sha256": "0075b234602db26ec467231678a4ce7c1a216920f487b2ed1c53d0b13be9e1ae"
+    },
+    "plugins/masters-nudge/masters_nudge/providers.py": {
+      "source": "plugins/masters-nudge/masters_nudge/providers.py",
+      "sha256": "7e27fc429a49d5d4c380a26bac53bd0f9f886ea0c04f47eb2597130a3c8dc27f"
+    },
+    "plugins/masters-nudge/masters_nudge/read_only_repo_mcp.py": {
+      "source": "plugins/masters-nudge/masters_nudge/read_only_repo_mcp.py",
+      "sha256": "88871cb3c35493cbac20628ba16683033646c38300ab009178c4db76b7113be6"
+    },
+    "plugins/masters-nudge/masters_nudge/runtime.py": {
+      "source": "plugins/masters-nudge/masters_nudge/runtime.py",
+      "sha256": "b5a082ab75c734a8cda302cbbaf7c3dab5ea3934d12dee32df77ac8f185ef4cd"
+    },
+    "plugins/masters-nudge/masters_nudge/settings.py": {
+      "source": "plugins/masters-nudge/masters_nudge/settings.py",
+      "sha256": "b4904c5eab5d4a5e7d9e3bfa4a3992af675635fbdf4932e49861d07774481729"
+    },
+    "plugins/masters-nudge/masters_nudge/storage.py": {
+      "source": "plugins/masters-nudge/masters_nudge/storage.py",
+      "sha256": "6e603a990b78531cd7ff3b3c0b89854020fbb497de7e8d0af37342ae94f10c49"
+    },
+    "plugins/masters-nudge/README.md": {
+      "source": "plugins/masters-nudge/README.md",
+      "sha256": "0ea924086267bcaa3484c7fb4170f738c04b7f97b893f1fc39cd37e5a047eabe"
+    },
+    "plugins/masters-nudge/.codex-plugin/plugin.json": {
+      "source": "plugins/masters-nudge/.codex-plugin/plugin.json",
+      "sha256": "cf05ccb4dd7991dd4cf8c2cb3df8f0f60dd670e7c5a11c36bd42f5f4948f5d7b"
+    },
+    "plugins/masters-nudge/.mcp.json": {
+      "source": "plugins/masters-nudge/.mcp.json",
+      "sha256": "32098128a64e66e6a5e6f65ff7e89a663b2528eb5c0431769ced71a61ef8ec20"
+    },
+    "plugins/masters-nudge/hooks/hooks.json": {
+      "source": "plugins/masters-nudge/hooks/hooks.json",
+      "sha256": "90cfa9d6eb78517a95efe4b558176af3c11729d5246550ed9011e7606c57d48c"
+    },
+    "plugins/masters-nudge/skills/doctor/SKILL.md": {
+      "source": "plugins/masters-nudge/skills/doctor/SKILL.md",
+      "sha256": "78b719fac97bdca8b4167193f7de648ea507292bdd26ae4d212f934cfa3a3062"
+    },
+    "plugins/masters-nudge/skills/select-provider/SKILL.md": {
+      "source": "plugins/masters-nudge/skills/select-provider/SKILL.md",
+      "sha256": "1843464ef6aadc934d747be8b7f3503567bc7b1d2852506d1eb3b45cfdfdac9c"
+    },
+    "plugins/masters-nudge/skills/recent-nudges/SKILL.md": {
+      "source": "plugins/masters-nudge/skills/recent-nudges/SKILL.md",
+      "sha256": "3f968bb5cca49257c5fc6477c4ec4a345bd9ff4cef26be0c7fccc5ed82221a5d"
+    },
+    "tests/masters-nudge/support/upstream-tests/spec/__init__.py": {
+      "source": "tests/spec/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "tests/masters-nudge/support/upstream-tests/spec/test_host_mcp.py": {
+      "source": "tests/spec/test_host_mcp.py",
+      "sha256": "f6ce7b0cc190efd59d097d39af8be838c508558ba13d7c1eb9d116ded1b34b74"
+    },
+    "tests/masters-nudge/support/upstream-tests/spec/test_journal.py": {
+      "source": "tests/spec/test_journal.py",
+      "sha256": "9eb431f1131d1f839a511414339ce90eb46079a6d6f01c8f0f1eb7fb832169f7"
+    },
+    "tests/masters-nudge/support/upstream-tests/spec/test_materials.py": {
+      "source": "tests/spec/test_materials.py",
+      "sha256": "16d6b18f9b482cfaf9070688a8a8509e38afe4f3b3ea29e13bffff4eadbf00eb"
+    },
+    "tests/masters-nudge/support/upstream-tests/spec/test_pipeline.py": {
+      "source": "tests/spec/test_pipeline.py",
+      "sha256": "67b96dc6e4121b6f7fafcb98ff36f1de574e75521b76f768c98a47b8608ac51a"
+    },
+    "tests/masters-nudge/support/upstream-tests/spec/test_settings_package.py": {
+      "source": "tests/spec/test_settings_package.py",
+      "sha256": "019cbf20fe1a804d84070d865c2e4ddd9a7fdda2db39a0d99d46018b31e67585"
+    },
+    "tests/masters-nudge/support/upstream-tests/spec/test_transport.py": {
+      "source": "tests/spec/test_transport.py",
+      "sha256": "76d6f93417f2c86b90cc5a051901054f3e0b167d5930e69d99888a1addddfe22"
+    }
+  }
+}
