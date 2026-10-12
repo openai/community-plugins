@@ -1,128 +1,32 @@
 {
-  "status": "incomplete_installed_qualification",
-  "date": "2026-10-12",
-  "platform": "Windows",
-  "codex_cli": "0.159.1",
+  "status": "passed_on_tested_host",
   "plugin_version": "0.6.2+codex.20261012",
-  "source_commit": "352946d033fed9f79e749f35c91575a0d8f13710",
-  "installation": "fresh isolated local-marketplace install",
-  "hook_trust": "Only listed installed plugin hook hashes; no trust bypass",
-  "mcp_startup": "ready",
-  "user_prompt_submit": "completed",
-  "post_tool_use": "not_exercised",
-  "provider_attempts": 0,
-  "product_edits": 0,
-  "host_permission_profile": ":workspace",
-  "host_sandbox_response": "workspaceWrite",
-  "failure": "Ordinary file-read commands rejected: blocked by policy. Underlying cause unestablished.",
-  "initial_failure": "Legacy workspace-write request returned readOnly; preserved before harness change.",
-  "permissions_bypass": false,
+  "source_commit": "dda618ec5facd3c633df039febc08e4d5ac7410e",
+  "host": {
+    "os": "Windows",
+    "actor_cli": "0.162.0-alpha.17.2",
+    "windows_sandbox": "mxc"
+  },
   "models": {
     "actor": "gpt-6.1-sol",
-    "actor_effort": "medium",
-    "provider_configured": "gpt-6.1-sol",
-    "provider_effort": "medium"
+    "provider": "gpt-6.1-sol",
+    "effort": "medium"
   },
-  "normalized_runtime_matches_committed_package": [
-    "buddy-prompt.txt",
-    "launch.py",
-    "hook_entry.py",
-    "mcp_entry.py",
-    "masters_nudge_cli.py",
-    "nudge-schema.json",
-    "masters_nudge/__init__.py",
-    "masters_nudge/codex_adapter.py",
-    "masters_nudge/contracts.py",
-    "masters_nudge/core.py",
-    "masters_nudge/evidence.py",
-    "masters_nudge/management.py",
-    "masters_nudge/plugin_inventory.py",
-    "masters_nudge/provider_contract.py",
-    "masters_nudge/prompting.py",
-    "masters_nudge/providers.py",
-    "masters_nudge/read_only_repo_mcp.py",
-    "masters_nudge/runtime.py",
-    "masters_nudge/settings.py",
-    "masters_nudge/storage.py",
-    ".mcp.json",
-    "hooks/hooks.json"
-  ],
-  "tested_package_sha256": {
-    ".mcp.json": "32098128a64e66e6a5e6f65ff7e89a663b2528eb5c0431769ced71a61ef8ec20",
-    "buddy-prompt.txt": "6c058c7110caac5cf86f96a457821d60feb481ef8fbf25ca52b39e7b6e6109a3",
-    "hook_entry.py": "8ba6735af4d3004fbdd5cf009646d040b47fd94adcadf1d56716d5c1cebb1ee3",
-    "launch.py": "a3a0ca6b90f5691002f4be984bc2b13dbe5adce3f3c61c9ef49d2203ec3158b0",
-    "LICENSE": "e47f465cb04d113ef607aa7653f27d435eedd541b5f0bdfe9d8e7bd9ec967c61",
-    "masters_nudge_cli.py": "64bd8ed0d7e16be5e70f8b1ace583751c2044bb95c756c0f801457c6c4261e69",
-    "mcp_entry.py": "13ad60127dc1646ebc66328784980ddb96ed027c4d34777cf97a3cf02b540535",
-    "nudge-schema.json": "bbbfdb6c89b72b4f8fc0f0a17154d947a2475464dcab58ecceb64c0322654345",
-    "README.md": "7f22dde0658768a3c9342a77c7a9b9b96d00037c3a711cc2d722108b4dcca1d8",
-    ".codex-plugin/plugin.json": "fd39a06a3d98d9770fd4497fce2d6b03d4fa4c798083e32dc407d9c0a9438a06",
-    "hooks/hooks.json": "90cfa9d6eb78517a95efe4b558176af3c11729d5246550ed9011e7606c57d48c",
-    "masters_nudge/codex_adapter.py": "3afbba0417c4366233d9c64f728691f86a28f0a9c9feb0b5c0e50d20bcdecd08",
-    "masters_nudge/contracts.py": "87b5c14c4e000c241e9cfef1de18f461ba26014a6beb6e2541ac6fca46ae5cdf",
-    "masters_nudge/core.py": "6d7e33e9085f821f8d99d4249c67be340b072cf247ad6e67758f0fac5dc47614",
-    "masters_nudge/evidence.py": "5da430f6ca3d0d99ca6a4622bf52e458531be48703f9fc477300f0931cb9b471",
-    "masters_nudge/management.py": "5c7b95181a8d270731d4d6492fdb050292ff53f2898d46fa414dff27e2b13e0a",
-    "masters_nudge/plugin_inventory.py": "4df226309c5f19b9d1aa41120c81bbdefaee371ff3c5492c74221f13c57238b8",
-    "masters_nudge/prompting.py": "0075b234602db26ec467231678a4ce7c1a216920f487b2ed1c53d0b13be9e1ae",
-    "masters_nudge/providers.py": "4757c46ecf1b26478543556c30fb79df492aae8afa5a303ca86fb96b1b0d0f5c",
-    "masters_nudge/provider_contract.py": "ee797b2cce604adaae1855b4890ac36cc10a45a1adafc20e8033031a19a9e12e",
-    "masters_nudge/read_only_repo_mcp.py": "88871cb3c35493cbac20628ba16683033646c38300ab009178c4db76b7113be6",
-    "masters_nudge/runtime.py": "b5a082ab75c734a8cda302cbbaf7c3dab5ea3934d12dee32df77ac8f185ef4cd",
-    "masters_nudge/settings.py": "b4904c5eab5d4a5e7d9e3bfa4a3992af675635fbdf4932e49861d07774481729",
-    "masters_nudge/storage.py": "6e603a990b78531cd7ff3b3c0b89854020fbb497de7e8d0af37342ae94f10c49",
-    "masters_nudge/__init__.py": "0baf124d1551a8c96c40950d10f06beeeb07d56b77097d65377d14570eccf413",
-    "skills/doctor/SKILL.md": "3757ae640ec076dcf4419c08872b5242fe5e205713214635bc2bc7fd62c61781",
-    "skills/recent-nudges/SKILL.md": "3f968bb5cca49257c5fc6477c4ec4a345bd9ff4cef26be0c7fccc5ed82221a5d",
-    "skills/select-provider/SKILL.md": "1843464ef6aadc934d747be8b7f3503567bc7b1d2852506d1eb3b45cfdfdac9c"
+  "installation": "Fresh local-marketplace install with reviewed installed hook hashes; isolated user data; synthetic Git project.",
+  "verification": "pending -> finish(job) -> done",
+  "outcomes": {
+    "feedback": 1,
+    "feedback_delivered": 1,
+    "silence": 1,
+    "faults": 0,
+    "post_tool_use_completed": 2
   },
-  "private_original_receipts": [
-    {
-      "attempt": 1,
-      "file": "result.json",
-      "sha256": "dcbed3a051b03592241f499677baf04b324e319b8d1e31d9df110cf4eb57f631"
-    },
-    {
-      "attempt": 1,
-      "file": "events.jsonl",
-      "sha256": "e3befae9846288c6031228204cb97b5fcd43c0a4f03a60c8dad34b154c831296"
-    },
-    {
-      "attempt": 1,
-      "file": "stderr.txt",
-      "sha256": "aea45dfd141376b7f33488149ba96dc1e657841e147425bd06ac20dda72db619"
-    },
-    {
-      "attempt": 1,
-      "file": "requests.json",
-      "sha256": "93bfeae1f66b5a85596683dce28d0f505b72f1a0f06b418bbb1135fc59821d23"
-    },
-    {
-      "attempt": 2,
-      "file": "result.json",
-      "sha256": "44c3dde56fe58ff449d7deca81567f63fea9ab52f910d439cb224cdd95e39873"
-    },
-    {
-      "attempt": 2,
-      "file": "events.jsonl",
-      "sha256": "e6f780e1675ad8d0273191d554865ac6fc9ecd03a05789e4600c8aef1e7f5ce5"
-    },
-    {
-      "attempt": 2,
-      "file": "stderr.txt",
-      "sha256": "80ae77fcdab9dfc2104e1fa314ef6c0f5fc97ee7b5ad98ba9971dbeea32263a8"
-    },
-    {
-      "attempt": 2,
-      "file": "requests.json",
-      "sha256": "cac21d6b580a7c0a283713f20ea2212b2f6495b2d483d097501dc2d89a52377d"
-    }
-  ],
-  "limitations": [
-    "No complete installed edit-to-feedback workflow",
-    "No Linux/macOS installed qualification",
-    "Not an effectiveness comparison",
-    "Hashes establish retained original identity; originals are private and not independently reviewable from this receipt"
+  "delivered_context": "Masters’ Nudge\nOBSERVED: job.py@5: status + is_done 雙寫\nWHY: 雙份完成狀態可能分歧，使標籤不一致\nSTRUCTURE: status 為唯一完成來源；finish 更新 status，label 由 status 推導\nREQUIRED: label: pending ->finish-> done\nFirst check REQUIRED against the latest task contract and use it to determine the delivered behavior. When adopting STRUCTURE, implement the stated data and responsibility relation and address its affected uses; verify that the actual results satisfy the task requirements.",
+  "adoption_summary": "Removed duplicated is_done; finish(job) writes status and label(job) reads status.",
+  "final_code": "def new_job():\n    return {\"status\": \"pending\"}\n\ndef finish(job):\n    job[\"status\"] = \"done\"\n\n\ndef label(job):\n    return \"done\" if job[\"status\"] == \"done\" else \"pending\"\n",
+  "limits": [
+    "Single Windows installed-client check, not an effectiveness comparison",
+    "Runtime unchanged from tested snapshot; subsequent documentation updates are included in the source receipt",
+    "Linux/macOS installed-client workflows not qualified"
   ]
 }

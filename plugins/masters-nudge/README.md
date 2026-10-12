@@ -15,6 +15,7 @@ See the [recorded adoption case](https://github.com/shihchengwei-lab/masters-nud
 - Codex desktop or CLI with `UserPromptSubmit`, synchronous MCP `PostToolUse`, and `turn_id` support. Review and trust both installed hook definitions before use. A plain MCP client without these Codex hooks does not provide this workflow.
 - The `python` command in Codex's launch environment must resolve to Python 3.10 or newer. The runtime uses only the Python standard library; installation does not download Python packages or modify PATH.
 - Git, a Git workspace for the coding task, a coding chat permitted to edit that workspace, and an executable, signed-in Codex CLI. Having desktop Codex alone does not establish that the CLI is installed or signed in.
+- On Windows, an enabled, supported [Windows sandbox implementation](https://learn.chatgpt.com/docs/windows/windows-sandbox) for the coding chat.
 - An OpenAI model available to the signed-in CLI account. Provider calls consume that account's applicable usage or billing. Each call can wait up to 1,200 seconds; the outer hook timeout is 1,320 seconds. The coding model waits during a synchronous review.
 
 ## Install and first safe prompt
