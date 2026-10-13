@@ -1,0 +1,47 @@
+name: AGENTS.md Auditor
+
+on:
+  # Required checks must also run for documentation and governance changes.
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: agents-md-auditor-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  agents-md-auditor-e2e:
+    name: AGENTS.md Auditor E2E
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22.19.0"
+          package-manager-cache: false
+      - name: Cold copied package / Node 22.19.0
+        run: node --test --test-concurrency=1 tests/agents-md-auditor/integration/packaged.test.mjs
+      - name: Full AGENTS.md Auditor qualification / Node 22.19.0
+        run: npm run test:agents-md-auditor
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "24"
+          package-manager-cache: false
+      - name: Full suite / Node 24
+        run: npm run test:agents-md-auditor
+
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "26"
+          package-manager-cache: false
+      - name: Full suite / Node 26
+        run: npm run test:agents-md-auditor

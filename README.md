@@ -59,6 +59,13 @@ To fetch only Autodesk Fusion interoperability, use:
 plugins/autodesk-fusion
 ```
 
+To fetch only AGENTS.md Auditor, use:
+
+```text
+.agents/plugins
+plugins/agents-md-auditor
+```
+
 Adding a marketplace makes its catalog available to browse. It does **not**
 install, enable, or authenticate every plugin. After adding it, install only
 the plugin you want.
@@ -83,6 +90,9 @@ codex plugin add react-native-to-swiftui@community-plugins
 
 # Or install the Fusion interoperability preview (starts in synthetic fixture mode).
 codex plugin add autodesk-fusion@community-plugins
+
+# Or install the read-only-first AGENTS.md audit.
+codex plugin add agents-md-auditor@community-plugins
 ```
 
 If you want a full checkout instead of a sparse one:
@@ -104,6 +114,7 @@ are picked up.
 | [ReviewOps Auditor + Benchmark](plugins/reviewops-auditor-benchmark/README.md) | Normalize sanitized review-run exports, audit evaluation validity, benchmark lanes, and emit shadow-only guidance offline. | [Guide](plugins/reviewops-auditor-benchmark/README.md)                                                                    |
 | [React Native to SwiftUI](plugins/react-native-to-swiftui/README.md)           | Plan a bounded React Native/Expo feature migration, then port one explicitly approved slice with deterministic SwiftUI parity checks. | [Guide](plugins/react-native-to-swiftui/README.md) |
 | [Autodesk Fusion](plugins/autodesk-fusion/README.md) | Connect typed CAD/CAM operations, scoped Autodesk data, reviewed cloud recipes and engineering evidence; live qualification required. | [Guide](plugins/autodesk-fusion/README.md) |
+| [AGENTS.md Auditor](plugins/agents-md-auditor/README.md) | Check AGENTS.md files against the repository: stale paths, missing scripts and make targets, oversize chains, shadowing overrides; revise only after approval. | [Guide](plugins/agents-md-auditor/README.md) |
 
 Grafana Observability requires Codex and Node.js 22.19 or newer. Its manifest
 declares both `Read` and `Write`. `Write` is limited to
@@ -146,6 +157,16 @@ independent qualification; installation grants none of these.
 
 ```text
 Use $setup-autodesk-fusion to check the synthetic fixture and explain the available connection modes. Do not connect to Autodesk or change a real model.
+```
+
+AGENTS.md Auditor requires Codex and Node.js 22.19 or newer and has no
+dependencies. Its manifest declares `Read` and `Write`: the bundled checker
+only reads, never runs the commands it inspects, and makes no network calls;
+`$revise-agents-md` writes only approved hunks to `AGENTS.md` or
+`AGENTS.override.md` files. Its first run is read-only:
+
+```text
+Use $audit-agents-md to audit the AGENTS.md files in this repository and explain each finding. Do not edit files yet.
 ```
 
 ## Copy-paste Codex prompts
@@ -191,6 +212,7 @@ codex plugin add grafana-observability@community-plugins
 codex plugin add reviewops-auditor-benchmark@community-plugins
 codex plugin add react-native-to-swiftui@community-plugins
 codex plugin add autodesk-fusion@community-plugins
+codex plugin add agents-md-auditor@community-plugins
 
 # Remove the configured marketplace source.
 codex plugin marketplace remove community-plugins

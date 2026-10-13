@@ -1,0 +1,8 @@
+{
+  "name": "synthetic-monorepo",
+  "private": true,
+  "scripts": {
+    "migrate": "node packages/api/src/server.js --migrate",
+    "test": "node --test"
+  }
+}
