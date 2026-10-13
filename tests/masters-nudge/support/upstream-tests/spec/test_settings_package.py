@@ -169,7 +169,7 @@ class SettingsPackageTests(unittest.TestCase):
         manifest = json.loads((ROOT / "plugins/masters-nudge/.codex-plugin/plugin.json").read_text(encoding="utf-8"))
         self.assertEqual(manifest["mcpServers"], "./.mcp.json")
         hooks = json.loads((ROOT / "plugins/masters-nudge/hooks/hooks.json").read_text(encoding="utf-8"))["hooks"]
-        self.assertEqual(set(hooks), {"UserPromptSubmit", "PostToolUse"})
+        self.assertEqual(set(hooks), {"UserPromptSubmit", "PostToolUse", "Interrupt"})
         hook = hooks["PostToolUse"][0]["hooks"][0]
         self.assertEqual(hook["type"], "mcp_tool")
         self.assertEqual((hook["server"], hook["tool"]), ("masters_nudge", "review_patch"))
@@ -182,6 +182,7 @@ class SettingsPackageTests(unittest.TestCase):
         })
         user_hook = hooks["UserPromptSubmit"][0]["hooks"][0]
         self.assertEqual(user_hook["type"], "command")
+        self.assertEqual(hooks["Interrupt"][0]["hooks"][0], user_hook)
 
     def test_clean_package_starts_hook_and_reports_fault_without_actor_context(self):
         with tempfile.TemporaryDirectory() as raw:

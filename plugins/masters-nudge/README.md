@@ -12,7 +12,9 @@ See the [recorded adoption case](https://github.com/shihchengwei-lab/masters-nud
 
 ## Requirements
 
-- Codex desktop or CLI with `UserPromptSubmit`, synchronous MCP `PostToolUse`, and `turn_id` support. Review and trust both installed hook definitions before use.
+Supported installed platform: **Windows 11 x64**. Linux and macOS installed workflows are not qualified.
+
+- Codex desktop or CLI with `UserPromptSubmit`, synchronous MCP `PostToolUse`, `Interrupt`, and `turn_id` support. Review and trust all installed hook definitions before use.
 - The `python` command in Codex's launch environment must resolve to Python 3.10 or newer. The runtime uses only the Python standard library; installation does not download Python packages or modify PATH.
 - Git, a Git workspace for the coding task, a coding chat permitted to edit that workspace, and an executable, signed-in Codex CLI.
 - On Windows, an enabled, supported [Windows sandbox implementation](https://learn.chatgpt.com/docs/windows/windows-sandbox) for the coding chat.
@@ -54,7 +56,9 @@ Only explicit `apply_patch` edits are observed; shell commands that write files 
 
 Missing identity/context, non-Git workspaces, unsupported settings, malformed output, subprocess failures, and timeouts are faults, not successful silence. Normal runtime failure returns a diagnostic and keeps review records when storage is available; the coding model retains its answer. A failed journal may prevent record persistence.
 
-A recorded Windows interruption during synchronous `PostToolUse` has previously lacked a corresponding `hook/completed` event. Inspect hook state and active processes after an interruption; see the [host issue](https://github.com/openai/codex/issues/46765). Disable Masters’ Nudge in the plugin browser to stop future reviews; disabling does not imply that an already-running review has been cancelled.
+MCP cancellation and disconnection stop the active Provider and record an interrupted fault. Windows Provider processes belong to a Job Object at creation, so terminating their caller also reclaims descendants. A killed journal writer leaves durable start evidence; a later same-turn patch finalizes an expired review as a fault without replaying it. A new user turn can review again.
+
+Codex hook lifecycle reporting is tracked separately in the [host issue](https://github.com/openai/codex/issues/46765). Disable Masters’ Nudge in the plugin browser to stop future reviews.
 
 ## Verification and support
 

@@ -19,14 +19,17 @@ class CodexAdapter:
     def __init__(self, core: NudgeCore):
         self.core = core
 
-    def process(self, payload: dict) -> dict | None:
+    def process(self, payload: dict, *, cancel_event=None) -> dict | None:
         if active_guard():
             return None
         try:
             name = payload.get("hook_event_name")
-            if name not in ("UserPromptSubmit", "PostToolUse"):
+            if name not in ("UserPromptSubmit", "PostToolUse", "Interrupt"):
                 return None
             session = session_from_payload(payload)
+            if name == "Interrupt":
+                self.core.journal.interrupt(session)
+                return None
             if name == "UserPromptSubmit":
                 prompt = payload.get("prompt")
                 if not isinstance(prompt, str):
@@ -43,7 +46,7 @@ class CodexAdapter:
             if not isinstance(tool_use_id, str) or not tool_use_id:
                 raise ToolFault("input", "工具編號不合法")
             event = ToolCompleted(tool_use_id, tool_name, payload["tool_input"], payload["tool_response"])
-            result = self.core.process_event(session, event)
+            result = self.core.process_event(session, event, **({"cancel_event": cancel_event} if cancel_event is not None else {}))
             if result is None:
                 return None
             attempt, feedback = result

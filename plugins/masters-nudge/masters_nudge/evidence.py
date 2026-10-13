@@ -19,7 +19,7 @@ def capture_file_baseline(session: SessionRef) -> dict:
         baseline["workspace"] = str(root)
         result = subprocess.run(
             ["git", "-C", str(root), "ls-files", "-z", "--cached", "--others", "--exclude-standard"],
-            capture_output=True, timeout=15,
+            stdin=subprocess.DEVNULL, capture_output=True, timeout=15,
         )
         if result.returncode == 0:
             baseline["files"] = sorted({
@@ -72,11 +72,11 @@ def changed_file_material(patch: str, cwd: str, workspace: str):
                 continue
             listed = subprocess.run(
                 ["git", "-C", str(root), "ls-files", "-z", "--cached", "--others", "--exclude-standard", "--", relative],
-                capture_output=True, timeout=15,
+                stdin=subprocess.DEVNULL, capture_output=True, timeout=15,
             )
             ignored = subprocess.run(
                 ["git", "-C", str(root), "check-ignore", "--no-index", "--", relative],
-                capture_output=True, timeout=15,
+                stdin=subprocess.DEVNULL, capture_output=True, timeout=15,
             )
             if (listed.returncode or relative.encode("utf-8") not in listed.stdout.split(b"\0")
                     or ignored.returncode != 1):

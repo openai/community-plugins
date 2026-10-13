@@ -1,6 +1,18 @@
 {
   "description": "Masters’ Nudge lifecycle hooks for Codex.",
   "hooks": {
+    "Interrupt": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"${PLUGIN_ROOT}/launch.py\" hook --host codex_cli",
+            "commandWindows": "python \"$env:PLUGIN_ROOT\\launch.py\" hook --host codex_cli",
+            "timeout": 120
+          }
+        ]
+      }
+    ],
     "PostToolUse": [
       {
         "matcher": "^apply_patch$",

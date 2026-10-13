@@ -339,6 +339,25 @@ class Journal:
         with self.connect() as db:
             db.execute("UPDATE attempts SET delivered=1 WHERE id=? AND outcome='feedback'", (attempt,))
 
+    def interrupt(self, session: SessionRef):
+        """Make the current turn's unfinished reviews terminal before stopping them."""
+        with self.connect() as db:
+            db.execute("BEGIN IMMEDIATE")
+            row = db.execute("SELECT turn,round_id FROM rounds WHERE session=?", (session.session_id,)).fetchone()
+            if row is None or row["turn"] != session.turn_id:
+                return
+            for item in self._round_events(db, row["round_id"]):
+                if item["finished"] is None:
+                    self._finish_event(db, item, "fault", {
+                        "fault": {"kind": "interrupted", "detail": "User interrupted turn"},
+                    })
+
+    def interrupted(self, attempt: str) -> bool:
+        with self.connect() as db:
+            row = db.execute("SELECT outcome,detail FROM attempts WHERE id=?", (attempt,)).fetchone()
+            return bool(row and row["outcome"] == "fault"
+                        and json.loads(row["detail"]).get("fault", {}).get("kind") == "interrupted")
+
     def unresolved(self) -> list[dict]:
         with self.connect() as db:
             return [dict(row) for row in db.execute(

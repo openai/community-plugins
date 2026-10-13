@@ -7,7 +7,9 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 from pathlib import Path
+from contextlib import closing, nullcontext
 from typing import Callable
 from .contracts import MaterialLine, ProviderRun, ToolFault, json_text
 from .read_only_repo_mcp import read_audit
@@ -30,7 +32,7 @@ def _terminate_process_tree(
     process: subprocess.Popen,
     *,
     log_error: Logger = _noop,
-) -> tuple[str, str]:
+) -> None:
     """Terminate a timed-out Provider and every descendant it started."""
     try:
         if os.name == "nt":
@@ -53,17 +55,14 @@ def _terminate_process_tree(
         except OSError:
             pass
     try:
-        stdout, stderr = process.communicate(timeout=1)
+        process.wait(timeout=1)
     except (OSError, subprocess.TimeoutExpired):
         try:
             process.kill()
-        except OSError:
-            pass
-        try:
-            stdout, stderr = process.communicate(timeout=0.5)
+            process.wait(timeout=0.5)
         except (OSError, subprocess.TimeoutExpired):
-            return "", ""
-    return str(stdout or ""), str(stderr or "")
+            pass
+
 
 
 def _run_cli_process(
@@ -74,40 +73,58 @@ def _run_cli_process(
     environment: dict[str, str],
     timeout_sec: int,
     shell: bool = False,
+    cancel_event=None,
     log_error: Logger = _noop,
 ) -> subprocess.CompletedProcess:
     kwargs = _provider_process_kwargs()
+    job = None
+    if os.name == "nt":
+        from .windows_process import WindowsProcessJob
+        job = WindowsProcessJob()
     if os.name != "nt":
         kwargs["start_new_session"] = True
     # Windows' communicate(input=...) writes to the pipe synchronously before
     # waiting with a deadline. A child that stops reading can therefore bypass
     # the timeout. A file-backed stdin makes the deadline own the whole wait.
-    with tempfile.TemporaryFile(mode="w+", encoding="utf-8") if input_text is not None else _null_stdin() as input_stream, \
+    with closing(job) if job is not None else nullcontext(), \
+         tempfile.TemporaryFile(mode="w+", encoding="utf-8") if input_text is not None else _null_stdin() as input_stream, \
          tempfile.TemporaryFile(mode="w+", encoding="utf-8") as stdout_stream, \
          tempfile.TemporaryFile(mode="w+", encoding="utf-8") as stderr_stream:
         if input_text is not None:
             input_stream.write(input_text)
             input_stream.seek(0)
-        process = subprocess.Popen(
-            command,
-            stdin=input_stream if input_text is not None else None,
-            stdout=stdout_stream,
-            stderr=stderr_stream,
-            text=True,
-            encoding="utf-8",
-            env=environment,
-            cwd=cwd,
-            shell=shell,
-            **kwargs,
-        )
+        if job is not None:
+            process = job.start(command, stdin=input_stream, stdout=stdout_stream,
+                                stderr=stderr_stream, environment=environment, cwd=cwd, shell=shell)
+        else:
+            process = subprocess.Popen(
+                command, stdin=input_stream if input_text is not None else None,
+                stdout=stdout_stream, stderr=stderr_stream, text=True, encoding="utf-8",
+                env=environment, cwd=cwd, shell=shell, **kwargs,
+            )
         try:
-            process.wait(timeout=timeout_sec)
+            deadline = time.monotonic() + timeout_sec
+            while True:
+                if cancel_event is not None and cancel_event.is_set():
+                    raise ToolFault("interrupted", "Provider review cancelled")
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    raise subprocess.TimeoutExpired(command, timeout_sec)
+                try:
+                    process.wait(timeout=min(0.1, remaining))
+                    break
+                except subprocess.TimeoutExpired:
+                    if time.monotonic() >= deadline:
+                        raise subprocess.TimeoutExpired(command, timeout_sec)
         except subprocess.TimeoutExpired as exc:
             _terminate_process_tree(process, log_error=log_error)
             stdout_stream.seek(0)
             stderr_stream.seek(0)
             exc.output = stdout_stream.read()
             exc.stderr = stderr_stream.read()
+            raise
+        except BaseException:
+            _terminate_process_tree(process, log_error=log_error)
             raise
         stdout_stream.seek(0)
         stderr_stream.seek(0)
@@ -164,7 +181,7 @@ def _call_codex_in_directory(
     system_prompt: str, nudge_input: str, model: str, *, schema_path: Path,
     timeout_sec: int, workspace_root: str, remaining_chars: int,
     run_directory: Path,
-    log_error: Logger = _noop, codex_bin_resolver=resolve_codex_bin,
+    log_error: Logger = _noop, codex_bin_resolver=resolve_codex_bin, cancel_event=None,
 ) -> ProviderRun:
     binary = codex_bin_resolver()
     if not binary:
@@ -200,7 +217,7 @@ def _call_codex_in_directory(
         result = _run_cli_process(
             subprocess.list2cmdline(command) if shell else command,
             input_text=f"{system_prompt}\n\n{nudge_input}", cwd=str(root),
-            environment=provider_environment(), timeout_sec=timeout_sec, shell=shell, log_error=log_error,
+            environment=provider_environment(), timeout_sec=timeout_sec, shell=shell, log_error=log_error, cancel_event=cancel_event,
         )
     except subprocess.TimeoutExpired as exc:
         raise ToolFault("timeout", "Provider 未在時限內完成", evidence={
@@ -243,7 +260,7 @@ def _call_codex_in_directory(
 def call_codex_result(
     system_prompt: str, nudge_input: str, model: str, *, schema_path: Path,
     timeout_sec: int, workspace_root: str, remaining_chars: int,
-    log_error: Logger = _noop, codex_bin_resolver=resolve_codex_bin,
+    log_error: Logger = _noop, codex_bin_resolver=resolve_codex_bin, cancel_event=None,
 ) -> ProviderRun:
     """Run one Provider call and keep its temporary evidence within that call."""
     with tempfile.TemporaryDirectory(prefix="masters-nudge-provider-") as directory:
@@ -251,5 +268,5 @@ def call_codex_result(
             system_prompt, nudge_input, model, schema_path=schema_path,
             timeout_sec=timeout_sec, workspace_root=workspace_root,
             remaining_chars=remaining_chars, run_directory=Path(directory),
-            log_error=log_error, codex_bin_resolver=codex_bin_resolver,
+            log_error=log_error, codex_bin_resolver=codex_bin_resolver, cancel_event=cancel_event,
         )

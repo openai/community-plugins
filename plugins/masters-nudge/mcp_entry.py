@@ -3,6 +3,8 @@
 from __future__ import annotations
 
 import json
+import queue
+import threading
 import sys
 from pathlib import Path
 
@@ -46,13 +48,45 @@ def _reply(output: dict | None) -> tuple[dict, str | None]:
 
 
 def serve(core: NudgeCore, adapter: CodexAdapter, *, input_stream=sys.stdin, output_stream=sys.stdout):
-    for line in input_stream:
+    requests = queue.Queue()
+    pending = {}
+    lock = threading.Lock()
+
+    def read_requests():
         try:
-            request = json.loads(line)
-        except ValueError:
-            continue
-        if "id" not in request:
-            continue
+            for line in input_stream:
+                try:
+                    request = json.loads(line)
+                except ValueError:
+                    continue
+                if not isinstance(request, dict):
+                    continue
+                if request.get("method") == "notifications/cancelled":
+                    params = request.get("params") or {}
+                    with lock:
+                        event = pending.get(params.get("requestId"))
+                        if event is not None:
+                            event.set()
+                    continue
+                if "id" not in request:
+                    continue
+                event = threading.Event()
+                with lock:
+                    pending[request["id"]] = event
+                requests.put((request, event))
+        finally:
+            with lock:
+                for event in pending.values():
+                    event.set()
+            requests.put(None)
+
+    reader = threading.Thread(target=read_requests, daemon=True)
+    reader.start()
+    while True:
+        item = requests.get()
+        if item is None:
+            break
+        request, cancel_event = item
         method = request.get("method")
         params = request.get("params") or {}
         attempt = None
@@ -69,7 +103,7 @@ def serve(core: NudgeCore, adapter: CodexAdapter, *, input_stream=sys.stdin, out
                 arguments = params.get("arguments")
                 if not isinstance(arguments, dict):
                     raise ToolFault("input", "MCP 事件必須是 JSON 物件")
-                result, attempt = _reply(adapter.process(dict(arguments)))
+                result, attempt = _reply(adapter.process(dict(arguments), cancel_event=cancel_event))
             except Exception as exc:
                 core.log_error(str(exc))
                 fault = {"systemMessage": "本輪反饋未執行"}
@@ -81,10 +115,19 @@ def serve(core: NudgeCore, adapter: CodexAdapter, *, input_stream=sys.stdin, out
         else:
             response = {"jsonrpc": "2.0", "id": request["id"],
                         "error": {"code": -32601, "message": "Unknown method"}}
+            with lock:
+                pending.pop(request["id"], None)
             output_stream.write(json_text(response) + "\n")
             output_stream.flush()
             continue
-        response = {"jsonrpc": "2.0", "id": request["id"], "result": result}
+        with lock:
+            pending.pop(request["id"], None)
+        if method == "tools/call" and cancel_event.is_set():
+            attempt = None
+            response = {"jsonrpc": "2.0", "id": request["id"],
+                        "error": {"code": -32800, "message": "Request cancelled"}}
+        else:
+            response = {"jsonrpc": "2.0", "id": request["id"], "result": result}
         output_stream.write(json_text(response) + "\n")
         output_stream.flush()
         if attempt:

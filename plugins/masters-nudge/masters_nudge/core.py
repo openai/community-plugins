@@ -12,6 +12,14 @@ from .runtime import RuntimeSettings, PROVIDER_TIMEOUT_SEC
 from .storage import Journal
 
 
+class ReviewCancellation:
+    def __init__(self, journal, attempt, event):
+        self.journal, self.attempt, self.event = journal, attempt, event
+
+    def is_set(self):
+        return bool(self.event is not None and self.event.is_set()) or self.journal.interrupted(self.attempt)
+
+
 class NudgeCore:
     def __init__(self, settings: RuntimeSettings, *, dispatch=None, log_error=None):
         self.settings = settings
@@ -22,7 +30,7 @@ class NudgeCore:
     def start_round(self, session: SessionRef, request: str, goal: str = ""):
         self.journal.start_round(session, request, goal)
 
-    def process_event(self, session: SessionRef, event: ToolCompleted):
+    def process_event(self, session: SessionRef, event: ToolCompleted, *, cancel_event=None):
         events = (event,)
         payload = [asdict(event)]
         response = event.tool_response
@@ -41,8 +49,11 @@ class NudgeCore:
         if reserved is None:
             return None
         attempt, task = reserved
+        cancel_event = ReviewCancellation(self.journal, attempt, cancel_event)
         detail = {}
         try:
+            if cancel_event is not None and cancel_event.is_set():
+                raise ToolFault("interrupted", "Provider review cancelled")
             if self.settings.configuration_error or self.settings.provider not in ("openai", "codex"):
                 raise ToolFault("configuration", self.settings.configuration_error or "僅支援 OpenAI／Codex")
             packet = build_packet(session, task, events)
@@ -56,10 +67,13 @@ class NudgeCore:
                 workspace_root=packet.workspace,
                 remaining_chars=max(0, MATERIAL_MAX_CHARS - packet.material_chars),
                 log_error=self.log_error,
+                cancel_event=cancel_event,
             )
             detail.update(raw_output=run.raw_output, usage=run.usage, trace=run.trace,
                           materials=[asdict(line) for line in run.materials],
                           elapsed_seconds=time.monotonic() - started)
+            if cancel_event is not None and cancel_event.is_set():
+                raise ToolFault("interrupted", "Provider review cancelled")
             feedback = parse_feedback(run.raw_output)
             current = self.journal.finish(
                 session, attempt, task, "feedback" if feedback else "silence", detail,
@@ -67,6 +81,10 @@ class NudgeCore:
             if current and feedback:
                 return attempt, feedback
             return None
+        except (KeyboardInterrupt, SystemExit) as exc:
+            detail["fault"] = {"kind": "interrupted", "detail": type(exc).__name__}
+            self.journal.finish(session, attempt, task, "fault", detail)
+            raise
         except Exception as exc:
             fault = exc if isinstance(exc, ToolFault) else ToolFault("internal", str(exc))
             detail["fault"] = {"kind": fault.kind, "detail": fault.detail}

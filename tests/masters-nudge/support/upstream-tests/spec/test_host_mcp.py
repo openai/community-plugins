@@ -1,7 +1,8 @@
 import io
 import json
 import unittest
-from unittest.mock import Mock
+import threading
+from unittest.mock import Mock, ANY
 
 import mcp_entry
 
@@ -10,10 +11,26 @@ class FlushingOutput(io.StringIO):
     def __init__(self):
         super().__init__()
         self.flushed = False
+        self.finished = threading.Event()
 
     def flush(self):
         self.flushed = True
         super().flush()
+        self.finished.set()
+
+
+class RequestStream(io.StringIO):
+    def __init__(self, text, output):
+        super().__init__(text)
+        self.output = output
+
+    def __next__(self):
+        try:
+            return super().__next__()
+        except StopIteration:
+            if not self.output.finished.wait(5):
+                raise RuntimeError("Server did not reply")
+            raise
 
 
 class HostMcpTests(unittest.TestCase):
@@ -54,7 +71,7 @@ class HostMcpTests(unittest.TestCase):
         mcp_entry.serve(
             core,
             adapter,
-            input_stream=io.StringIO(json.dumps(request) + "\n"),
+            input_stream=RequestStream(json.dumps(request) + "\n", output),
             output_stream=output,
         )
 
@@ -63,7 +80,7 @@ class HostMcpTests(unittest.TestCase):
         self.assertEqual(hook_output["hookSpecificOutput"]["hookEventName"], "PostToolUse")
         self.assertIn("STRUCTURE: z", hook_output["hookSpecificOutput"]["additionalContext"])
         journal.delivered.assert_called_once_with("attempt-1")
-        adapter.process.assert_called_once_with(request["params"]["arguments"])
+        adapter.process.assert_called_once_with(request["params"]["arguments"], cancel_event=ANY)
 
     def test_server_advertises_only_the_post_patch_judgment(self):
         messages = [

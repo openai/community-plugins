@@ -6,6 +6,7 @@ GENERATED_FILES = (
     "masters_nudge/plugin_inventory.py", "masters_nudge/provider_contract.py",
     "masters_nudge/prompting.py", "masters_nudge/providers.py", "masters_nudge/read_only_repo_mcp.py",
     "masters_nudge/runtime.py", "masters_nudge/settings.py", "masters_nudge/storage.py",
+    "masters_nudge/windows_process.py",
 )
 STATIC_FILES = (
     "README.md", ".codex-plugin/plugin.json", ".mcp.json", "hooks/hooks.json",

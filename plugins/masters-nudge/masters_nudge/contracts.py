@@ -170,7 +170,7 @@ class ProviderRun:
 def find_git_root(cwd: str) -> str:
     try:
         result = subprocess.run(["git", "-C", cwd, "rev-parse", "--show-toplevel"],
-                                capture_output=True, text=True, encoding="utf-8", timeout=5)
+                                stdin=subprocess.DEVNULL, capture_output=True, text=True, encoding="utf-8", timeout=5)
     except (OSError, subprocess.SubprocessError) as exc:
         raise ToolFault("workspace", str(exc)) from exc
     if result.returncode:

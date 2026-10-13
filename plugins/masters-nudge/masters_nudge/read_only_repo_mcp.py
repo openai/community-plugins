@@ -56,7 +56,7 @@ class RepositoryTools:
         self.audit.parent.mkdir(parents=True, exist_ok=True)
 
     def _git(self, *args) -> subprocess.CompletedProcess:
-        return subprocess.run(["git", "-C", str(self.root), *args], capture_output=True, timeout=15)
+        return subprocess.run(["git", "-C", str(self.root), *args], stdin=subprocess.DEVNULL, capture_output=True, timeout=15)
 
     def _path(self, value: str) -> Path:
         if not isinstance(value, str):
