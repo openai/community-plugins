@@ -2,7 +2,8 @@ import io
 import json
 import unittest
 import threading
-from unittest.mock import Mock, ANY
+import os
+from unittest.mock import Mock, ANY, patch
 
 import mcp_entry
 
@@ -24,16 +25,76 @@ class RequestStream(io.StringIO):
         super().__init__(text)
         self.output = output
 
-    def __next__(self):
-        try:
-            return super().__next__()
-        except StopIteration:
+    def readline(self, size=-1):
+        line = super().readline(size)
+        if not line:
             if not self.output.finished.wait(5):
                 raise RuntimeError("Server did not reply")
-            raise
+        return line
 
 
 class HostMcpTests(unittest.TestCase):
+    def test_full_queue_and_duplicate_ids_cannot_hide_cancellation(self):
+        read_fd, write_fd = os.pipe()
+        input_stream = os.fdopen(read_fd, 'r', encoding='utf-8')
+        writer = os.fdopen(write_fd, 'w', encoding='utf-8')
+        self.addCleanup(input_stream.close)
+        self.addCleanup(writer.close)
+        started = threading.Event()
+        output = FlushingOutput()
+        adapter = Mock()
+        def review(arguments, cancel_event):
+            started.set()
+            if not cancel_event.wait(5):
+                raise RuntimeError('Cancellation was blocked')
+            return None
+        adapter.process.side_effect = review
+        core = Mock()
+        errors = []
+        def serve():
+            try:
+                mcp_entry.serve(core, adapter, input_stream=input_stream, output_stream=output)
+            except Exception as exc:
+                errors.append(exc)
+        def send(value):
+            writer.write(json.dumps(value) + '\n')
+            writer.flush()
+        def call(request_id):
+            return {'jsonrpc': '2.0', 'id': request_id, 'method': 'tools/call',
+                    'params': {'name': 'review_patch', 'arguments': {}}}
+        with patch.object(mcp_entry, 'MAX_PENDING_REQUESTS', 2):
+            worker = threading.Thread(target=serve, daemon=True)
+            worker.start()
+            try:
+                send(call(1))
+                self.assertTrue(started.wait(5))
+                send(call(2))
+                send(call(3))
+                send(call(1))
+                send({'method': 'notifications/cancelled', 'params': {'requestId': 2}})
+                send({'method': 'notifications/cancelled', 'params': {'requestId': 1}})
+                writer.close()
+                worker.join(5)
+                self.assertFalse(worker.is_alive())
+                self.assertEqual(errors, [])
+                replies = [json.loads(line) for line in output.getvalue().splitlines()]
+                self.assertEqual(sum(r['error']['code'] == -32600 for r in replies), 2)
+                self.assertEqual(sum(r['error']['code'] == -32800 for r in replies), 2)
+                self.assertEqual(adapter.process.call_count, 1)
+                core.journal.delivered.assert_not_called()
+            finally:
+                writer.close()
+                worker.join(5)
+
+    def test_oversize_message_is_drained_before_next_request(self):
+        output = io.StringIO()
+        core = Mock()
+        with patch.object(mcp_entry, 'MAX_REQUEST_CHARS', 64):
+            mcp_entry.serve(core, Mock(), input_stream=io.StringIO(
+                'x' * 200 + '\n' + json.dumps({'id': 1, 'method': 'ping'}) + '\n'), output_stream=output)
+        core.log_error.assert_called_once()
+        self.assertEqual(json.loads(output.getvalue())['result'], {})
+
     def test_tool_call_returns_hook_output_then_records_delivery(self):
         output = FlushingOutput()
         journal = Mock()

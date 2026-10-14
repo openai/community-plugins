@@ -13,6 +13,8 @@ from .evidence import capture_file_baseline
 from .runtime import HOOK_TIMEOUT_SEC, PROVIDER_TIMEOUT_SEC
 
 FINALIZATION_RESERVE_SEC = 20
+JOURNAL_MAX_BYTES = 128 * 1024 * 1024
+JOURNAL_ADMISSION_BYTES = 96 * 1024 * 1024
 
 
 class Journal:
@@ -53,6 +55,8 @@ class Journal:
                 if "round_id" not in columns:
                     db.execute(f"ALTER TABLE {table} ADD COLUMN round_id TEXT NOT NULL DEFAULT ''")
                 if table == "rounds":
+                    if "closed" not in columns:
+                        db.execute("ALTER TABLE rounds ADD COLUMN closed INTEGER NOT NULL DEFAULT 0")
                     if "file_baseline" not in columns:
                         db.execute("ALTER TABLE rounds ADD COLUMN file_baseline TEXT NOT NULL DEFAULT '{}'")
                     if "skipped_test_patches" not in columns:
@@ -80,12 +84,17 @@ class Journal:
             for row in db.execute("SELECT rowid FROM batches WHERE id IS NULL OR id=''").fetchall():
                 db.execute("UPDATE batches SET id=? WHERE rowid=?", (uuid.uuid4().hex, row["rowid"]))
             self._migrate_judgment_events(db)
+            self._recover_expired(db)
 
     @contextmanager
     def connect(self):
         db = sqlite3.connect(self.path, timeout=5)
         db.row_factory = sqlite3.Row
         try:
+            page_size = db.execute("PRAGMA page_size").fetchone()[0]
+            if db.execute("PRAGMA page_count").fetchone()[0] > JOURNAL_MAX_BYTES // page_size:
+                raise ToolFault("storage", "Journal 已超過 128 MiB；請先備份並離線封存歷史資料")
+            db.execute(f"PRAGMA max_page_count={JOURNAL_MAX_BYTES // page_size}")
             yield db
             db.commit()
         except BaseException:
@@ -98,6 +107,8 @@ class Journal:
         with self.connect() as db:
             db.execute("BEGIN IMMEDIATE")
             old = db.execute("SELECT * FROM rounds WHERE session=?", (session.session_id,)).fetchone()
+            if old:
+                self._terminate_round(db, old["round_id"], "superseded", "A new user round replaced this review")
             original = goal or (old["goal"] if old else request)
             baseline = (old["file_baseline"] if old and old["goal"] == original
                         else json_text(capture_file_baseline(session)))
@@ -175,16 +186,31 @@ class Journal:
              finished, outcome, 0, json_text(detail), item["round_id"], item["batch_id"]),
         )
 
-    def _skip_queued(self, db, items: list[dict], cause: str):
-        """Make every follower terminal when its round can no longer produce judgments."""
-        for item in items:
-            if (item["id"] != cause and item["queued"] is not None
-                    and item["started"] is None and item["finished"] is None):
-                self._append_event(
-                    db, session=item["session"], turn=item["turn"], round_id=item["round_id"],
-                    kind="skipped", attempt=item["id"], batch_id=item["batch_id"],
-                    payload={"cause": cause},
-                )
+    def _terminate_round(self, db, round_id: str, kind: str, message: str):
+        for item in self._round_events(db, round_id):
+            if item["finished"] is None:
+                self._finish_event(db, item, "fault", {"fault": {"kind": kind, "detail": message}})
+        db.execute("UPDATE rounds SET closed=1 WHERE round_id=?", (round_id,))
+
+    def _recover_expired(self, db, round_id: str | None = None):
+        """Recover durable leases, including abandoned queues and historical rounds."""
+        now = time.time()
+        rows = db.execute(
+            "SELECT q.* FROM judgment_events q WHERE q.kind IN ('queued','started') "
+            + ("AND q.round_id=? " if round_id is not None else "") +
+            "AND NOT EXISTS(SELECT 1 FROM judgment_events f WHERE f.attempt=q.attempt "
+            "AND f.kind IN ('finished','skipped')) ORDER BY q.seq",
+            (round_id,) if round_id is not None else (),
+        ).fetchall()
+        leases = {}
+        for row in rows:
+            payload = json.loads(row["payload"])
+            duration = self.provider_timeout_sec if row["kind"] == "started" else self.hook_timeout_sec
+            leases[row["attempt"]] = (row["round_id"], payload.get(
+                "deadline", row["happened"] + duration + FINALIZATION_RESERVE_SEC))
+        expired = {round_id for round_id, deadline in leases.values() if deadline <= now}
+        for round_id in expired:
+            self._terminate_round(db, round_id, "timeout", "前一個 Provider 判斷未在期限內留下結果")
 
     @staticmethod
     def _fault(items: list[dict]) -> dict | None:
@@ -208,9 +234,12 @@ class Journal:
         return counts.get("feedback", 0) >= FEEDBACK_LIMIT or counts.get("silence", 0) >= SILENCE_LIMIT
 
     def begin(self, session: SessionRef, payload: object, *,
-              skip_provider: bool = False) -> tuple[str, dict] | None:
+              skip_provider: bool = False, cancel_event=None) -> tuple[str, dict] | None:
         """Queue one patch and claim it only after every earlier judgment is terminal."""
         wait_started = time.monotonic()
+        with self.connect() as db:
+            db.execute("BEGIN IMMEDIATE")
+            self._recover_expired(db)
         with self.connect() as db:
             db.execute("BEGIN IMMEDIATE")
             row = db.execute("SELECT * FROM rounds WHERE session=?", (session.session_id,)).fetchone()
@@ -221,8 +250,13 @@ class Journal:
             fault = self._fault(self._round_events(db, row["round_id"]))
             if fault is not None:
                 raise self._tool_fault(fault)
+            if row["closed"]:
+                raise ToolFault("interrupted", "This user round has ended")
             if not skip_provider and self._budget_exhausted(db, row["round_id"]):
                 return None
+            used = db.execute("PRAGMA page_count").fetchone()[0] * db.execute("PRAGMA page_size").fetchone()[0]
+            if used >= JOURNAL_ADMISSION_BYTES:
+                raise ToolFault("storage", "Journal 已達 96 MiB；保留收尾空間，請備份並離線封存歷史資料")
             batch_id = uuid.uuid4().hex
             attempt = uuid.uuid4().hex
             started = time.time()
@@ -242,6 +276,7 @@ class Journal:
             self._append_event(
                 db, session=session.session_id, turn=session.turn_id, round_id=row["round_id"],
                 kind="queued", attempt=attempt, batch_id=batch_id, happened=started,
+                payload={"deadline": started + max(1, self.hook_timeout_sec)},
             )
 
         while True:
@@ -249,27 +284,21 @@ class Journal:
             fault_to_raise = None
             with self.connect() as db:
                 db.execute("BEGIN IMMEDIATE")
+                self._recover_expired(db, row["round_id"])
                 current = db.execute("SELECT * FROM rounds WHERE session=?", (session.session_id,)).fetchone()
-                if current is None or current["turn"] != session.turn_id:
+                if current is None or current["round_id"] != row["round_id"]:
                     return None
+                if cancel_event is not None and cancel_event.is_set():
+                    self._terminate_round(db, current["round_id"], "interrupted", "Provider review cancelled")
                 items = self._round_events(db, current["round_id"])
                 fault = self._fault(items)
                 if fault is not None:
-                    self._skip_queued(db, items, fault["id"])
                     fault_to_raise = self._tool_fault(fault)
                 else:
                     active = next((item for item in items if item["started"] is not None
                                    and item["finished"] is None), None)
                     if active is not None:
-                        deadline = active["started"] + self.provider_timeout_sec + FINALIZATION_RESERVE_SEC
-                        if time.time() >= deadline:
-                            detail = {"fault": {"kind": "timeout",
-                                               "detail": "前一個 Provider 判斷未在期限內留下結果"}}
-                            self._finish_event(db, active, "fault", detail)
-                            self._skip_queued(db, items, active["id"])
-                            fault_to_raise = ToolFault("timeout", detail["fault"]["detail"])
-                        else:
-                            should_wait = True
+                        should_wait = True
                     else:
                         queued = [item for item in items if item["queued"] is not None
                                   and item["started"] is None and item["finished"] is None]
@@ -287,8 +316,7 @@ class Journal:
                             if remaining <= 0:
                                 detail = {"fault": {"kind": "timeout",
                                                    "detail": "等待前一個 Provider 判斷後已無執行時間"}}
-                                self._finish_event(db, own, "fault", detail)
-                                self._skip_queued(db, items, own["id"])
+                                self._terminate_round(db, current["round_id"], "timeout", detail["fault"]["detail"])
                                 fault_to_raise = ToolFault("timeout", detail["fault"]["detail"])
                             else:
                                 claim_time = time.time()
@@ -296,6 +324,7 @@ class Journal:
                                     db, session=own["session"], turn=own["turn"],
                                     round_id=own["round_id"], kind="started", attempt=attempt,
                                     batch_id=batch_id, happened=claim_time,
+                                    payload={"deadline": claim_time + min(self.provider_timeout_sec, remaining) + FINALIZATION_RESERVE_SEC},
                                 )
                                 previous_nudges = [json.loads(row["raw_output"])["feedback"]
                                     for row in db.execute(
@@ -329,6 +358,10 @@ class Journal:
             if item is None or item["started"] is None or item["finished"] is not None:
                 return False
             self._finish_event(db, item, outcome, detail)
+            if outcome == "fault":
+                fault = detail.get("fault", {})
+                self._terminate_round(db, round_id, fault.get("kind", "internal"),
+                                      fault.get("detail", "Provider review failed"))
             current = db.execute(
                 "SELECT round_id FROM rounds WHERE session=?",
                 (session.session_id,),
@@ -346,17 +379,17 @@ class Journal:
             row = db.execute("SELECT turn,round_id FROM rounds WHERE session=?", (session.session_id,)).fetchone()
             if row is None or row["turn"] != session.turn_id:
                 return
-            for item in self._round_events(db, row["round_id"]):
-                if item["finished"] is None:
-                    self._finish_event(db, item, "fault", {
-                        "fault": {"kind": "interrupted", "detail": "User interrupted turn"},
-                    })
+            self._terminate_round(db, row["round_id"], "interrupted", "User interrupted turn")
 
-    def interrupted(self, attempt: str) -> bool:
+    def is_current_round(self, session: SessionRef, round_id: str) -> bool:
+        with self.connect() as db:
+            row = db.execute("SELECT round_id FROM rounds WHERE session=?", (session.session_id,)).fetchone()
+            return bool(row and row["round_id"] == round_id)
+
+    def cancelled(self, attempt: str) -> bool:
         with self.connect() as db:
             row = db.execute("SELECT outcome,detail FROM attempts WHERE id=?", (attempt,)).fetchone()
-            return bool(row and row["outcome"] == "fault"
-                        and json.loads(row["detail"]).get("fault", {}).get("kind") == "interrupted")
+            return bool(row and row["outcome"] == "fault")
 
     def unresolved(self) -> list[dict]:
         with self.connect() as db:

@@ -17,7 +17,7 @@ class ReviewCancellation:
         self.journal, self.attempt, self.event = journal, attempt, event
 
     def is_set(self):
-        return bool(self.event is not None and self.event.is_set()) or self.journal.interrupted(self.attempt)
+        return bool(self.event is not None and self.event.is_set()) or self.journal.cancelled(self.attempt)
 
 
 class NudgeCore:
@@ -45,7 +45,7 @@ class NudgeCore:
                       and response["output"].startswith("Success")))
         operations = patch_operations(event.modification, session.cwd) if succeeded else None
         test_only = bool(operations) and all(is_test for _, _, is_test in operations)
-        reserved = self.journal.begin(session, payload, skip_provider=test_only)
+        reserved = self.journal.begin(session, payload, skip_provider=test_only, cancel_event=cancel_event)
         if reserved is None:
             return None
         attempt, task = reserved
@@ -90,4 +90,6 @@ class NudgeCore:
             detail["fault"] = {"kind": fault.kind, "detail": fault.detail}
             detail.update(fault.evidence)
             self.journal.finish(session, attempt, task, "fault", detail)
+            if not self.journal.is_current_round(session, task["round_id"]):
+                return None
             raise fault

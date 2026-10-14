@@ -1,6 +1,6 @@
 # Installed-client verification
 
-## Current release: 0.6.3+codex.20261013
+## Installed qualification: 0.6.3+codex.20261013
 
 Qualified installed platform: **Windows 11 x64**, Python 3.12.10, Codex 0.162.0-alpha.17.2, MXC workspace sandbox. Actor and Provider: `gpt-6.1-sol`, medium effort. A fresh isolated profile installed the package and trusted all three hooks.
 

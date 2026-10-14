@@ -79,7 +79,7 @@ class JournalLifecycleTests(unittest.TestCase):
             self.assertEqual(len(journal.unresolved()), 1)
             # Advance the recorded deadline, without waiting 20 minutes in a test.
             with journal.connect() as db:
-                db.execute("UPDATE judgment_events SET happened=0 WHERE kind='started'")
+                db.execute("UPDATE judgment_events SET happened=0,payload='{}' WHERE kind='started'")
             with self.assertRaises(ToolFault):
                 journal.begin(self.session, [{'tool_use_id': 'next'}])
             self.assertEqual(journal.unresolved(), [])
@@ -101,17 +101,17 @@ class JournalLifecycleTests(unittest.TestCase):
         journal.start_round(self.session, 'task')
         attempt, task = journal.begin(self.session, [])
         journal.interrupt(SessionRef('s', 'wrong-turn', str(self.root)))
-        self.assertFalse(journal.interrupted(attempt))
+        self.assertFalse(journal.cancelled(attempt))
         journal.interrupt(self.session)
         journal.interrupt(self.session)
-        self.assertTrue(journal.interrupted(attempt))
+        self.assertTrue(journal.cancelled(attempt))
         self.assertFalse(journal.finish(self.session, attempt, task, 'feedback', {'raw_output':'late'}))
         self.assertEqual(len(journal.recent()), 1)
         self.assertEqual(journal.recent()[0]['delivered'], 0)
         self.assertEqual(journal.unresolved(), [])
         journal.start_round(self.session, 'new request')
         next_attempt, next_task = journal.begin(self.session, [])
-        self.assertFalse(journal.interrupted(next_attempt))
+        self.assertFalse(journal.cancelled(next_attempt))
         self.assertTrue(journal.finish(self.session, next_attempt, next_task, 'silence', {}))
 
     def test_competing_finalizers_write_one_terminal_fact(self):
@@ -158,6 +158,88 @@ class JournalLifecycleTests(unittest.TestCase):
             NudgeCore(RuntimeSettings('openai', 'model', paths), dispatch=dispatch)
         dispatch.assert_not_called()
 
+    def test_restart_recovers_abandoned_queue_without_hook_completion(self):
+        journal = Journal(self.root)
+        journal.start_round(self.session, 'task')
+        with journal.connect() as db:
+            round_id = db.execute('SELECT round_id FROM rounds').fetchone()[0]
+            journal._append_event(db, session='s', turn='t', round_id=round_id,
+                kind='queued', attempt='abandoned', batch_id='batch', payload={'deadline': 0})
+        recovered = Journal(self.root)
+        self.assertEqual(recovered.recent()[0]['detail']['fault']['kind'], 'timeout')
+        with recovered.connect() as db:
+            self.assertEqual(db.execute("SELECT COUNT(*) FROM judgment_events WHERE kind='finished'").fetchone()[0], 1)
+        self.assertFalse(recovered.finish(self.session, 'abandoned',
+            {'round_id': round_id, 'batch_id': 'batch'}, 'feedback', {}))
+
+    def test_cancel_while_waiting_releases_followers_and_rejects_active_result(self):
+        journal = Journal(self.root)
+        journal.start_round(self.session, 'task')
+        attempt, task = journal.begin(self.session, [])
+        cancel = threading.Event()
+        outcomes = []
+        def wait_for_review():
+            try:
+                journal.begin(self.session, [], cancel_event=cancel)
+            except ToolFault as exc:
+                outcomes.append(exc.kind)
+        worker = threading.Thread(target=wait_for_review, daemon=True)
+        worker.start()
+        deadline = time.monotonic() + 3
+        while len(journal.unresolved()) < 2 and time.monotonic() < deadline:
+            time.sleep(.01)
+        self.assertEqual(len(journal.unresolved()), 2)
+        cancel.set()
+        worker.join(3)
+        self.assertFalse(worker.is_alive())
+        self.assertEqual(outcomes, ['interrupted'])
+        self.assertEqual(journal.unresolved(), [])
+        self.assertTrue(journal.cancelled(attempt))
+        self.assertFalse(journal.finish(self.session, attempt, task, 'feedback', {}))
+
+    def test_persisted_deadline_survives_restart_with_different_defaults(self):
+        journal = Journal(self.root)
+        journal.start_round(self.session, 'task')
+        attempt, task = journal.begin(self.session, [])
+        restarted = Journal(self.root, provider_timeout_sec=-9999)
+        self.assertFalse(restarted.cancelled(attempt))
+        with restarted.connect() as db:
+            db.execute("UPDATE judgment_events SET payload=? WHERE kind='started'",
+                       (json.dumps({'deadline': 0}),))
+        recovered = Journal(self.root)
+        self.assertTrue(recovered.cancelled(attempt))
+        self.assertFalse(recovered.finish(self.session, attempt, task, 'silence', {}))
+
+    def test_interrupt_before_first_patch_closes_round_and_new_round_reopens(self):
+        journal = Journal(self.root)
+        journal.start_round(self.session, 'task')
+        journal.interrupt(self.session)
+        with self.assertRaises(ToolFault):
+            journal.begin(self.session, [])
+        self.assertEqual(journal.unresolved(), [])
+        journal.start_round(self.session, 'new request')
+        attempt, task = journal.begin(self.session, [])
+        self.assertTrue(journal.finish(self.session, attempt, task, 'silence', {}))
+
+    def test_capacity_stops_admission_but_keeps_finalization_and_history(self):
+        journal = Journal(self.root)
+        journal.start_round(self.session, 'task')
+        attempt, task = journal.begin(self.session, [])
+        with journal.connect() as db:
+            used = db.execute('PRAGMA page_count').fetchone()[0] * db.execute('PRAGMA page_size').fetchone()[0]
+        with mock.patch('masters_nudge.storage.JOURNAL_ADMISSION_BYTES', used), \
+             mock.patch('masters_nudge.storage.JOURNAL_MAX_BYTES', used + 32768):
+            with self.assertRaises(ToolFault) as caught:
+                journal.begin(self.session, [])
+            self.assertEqual(caught.exception.kind, 'storage')
+            self.assertTrue(journal.finish(self.session, attempt, task, 'silence', {'proof': 'retained'}))
+            with self.assertRaises(sqlite3.DatabaseError):
+                with journal.connect() as db:
+                    db.execute("UPDATE attempts SET detail=? WHERE id=?", ('x' * 131072, attempt))
+            self.assertEqual(journal.recent()[0]['detail']['proof'], 'retained')
+            with journal.connect() as db:
+                self.assertEqual(db.execute('PRAGMA integrity_check').fetchone()[0], 'ok')
+
 
 @unittest.skipUnless(os.name == 'nt', 'Windows installed-platform lifecycle')
 class WindowsLifecycleTests(unittest.TestCase):
@@ -187,7 +269,8 @@ class WindowsLifecycleTests(unittest.TestCase):
         branch = (
             'import os,subprocess,sys,json,time,pathlib; '
             f'leaf=subprocess.Popen([sys.executable,"-c",{leaf!r}]); '
-            f'pathlib.Path({str(self.record)!r}).write_text(json.dumps([os.getpid(),leaf.pid])); '
+            f'record=pathlib.Path({str(self.record)!r}); '
+            "staged=record.with_suffix('.tmp'); staged.write_text(json.dumps([os.getpid(),leaf.pid])); staged.replace(record); "
             f'time.sleep({delay})'
         )
         return branch

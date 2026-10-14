@@ -364,7 +364,8 @@ class PipelineTests(unittest.TestCase):
                 self.adapter.core.dispatch = dispatch
                 self.assertIsNone(self.batch())
                 recent = self.adapter.core.journal.recent()[0]
-                self.assertEqual(recent["outcome"], "feedback")
+                self.assertEqual(recent["outcome"], "fault")
+                self.assertEqual(recent["detail"]["fault"]["kind"], "superseded")
                 self.assertEqual(recent["delivered"], 0)
 
     def test_observed_location_is_not_a_literal_runtime_gate(self):

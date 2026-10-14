@@ -56,7 +56,9 @@ Only explicit `apply_patch` edits are observed; shell commands that write files 
 
 Missing identity/context, non-Git workspaces, unsupported settings, malformed output, subprocess failures, and timeouts are faults, not successful silence. Normal runtime failure returns a diagnostic and keeps review records when storage is available; the coding model retains its answer. A failed journal may prevent record persistence.
 
-MCP cancellation and disconnection stop the active Provider and record an interrupted fault. Windows Provider processes belong to a Job Object at creation, so terminating their caller also reclaims descendants. A killed journal writer leaves durable start evidence; a later same-turn patch finalizes an expired review as a fault without replaying it. A new user turn can review again.
+Cancellation, a new user round, expiry and review faults close unfinished reviews through the same journal lifecycle. Windows Provider processes belong to a Job Object at creation, so terminating their caller also reclaims descendants. Queue and execution deadlines survive restart; startup and subsequent work finalize expired reviews without replaying the Provider. Late results cannot overwrite terminal records or enter a new round.
+
+The MCP accepts at most 64 unfinished requests and 1 Mi characters per message; cancellation remains available when the queue is full. The journal stops accepting reviews at 96 MiB and has a 128 MiB database-page limit, reserving space for finalization. Rollback files and the separate error log are outside that limit. History is retained: when capacity is reached, stop all processes using the data directory, back up and archive the database offline, then restart with a new journal.
 
 Codex hook lifecycle reporting is tracked separately in the [host issue](https://github.com/openai/codex/issues/46765). Disable Masters’ Nudge in the plugin browser to stop future reviews.
 

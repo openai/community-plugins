@@ -39,7 +39,8 @@ class JournalTests(unittest.TestCase):
         self.assertFalse(journal.finish(self.session, first, first_task, "feedback", {"raw_output": "old"}))
         self.assertTrue(journal.finish(self.session, second, task, "silence", {"raw_output": "new"}))
         old = next(row for row in journal.recent() if row["id"] == first)
-        self.assertEqual(old["outcome"], "feedback")
+        self.assertEqual(old["outcome"], "fault")
+        self.assertEqual(old["detail"]["fault"]["kind"], "superseded")
         self.assertEqual(old["delivered"], 0)
         self.assertFalse(journal.finish(self.session, second, task, "feedback", {"raw_output": "duplicate"}))
 

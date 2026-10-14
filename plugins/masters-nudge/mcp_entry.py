@@ -38,6 +38,8 @@ TOOLS = [{
         "additionalProperties": False,
     },
 }]
+MAX_PENDING_REQUESTS = 64
+MAX_REQUEST_CHARS = 1024 * 1024
 
 
 def _reply(output: dict | None) -> tuple[dict, str | None]:
@@ -48,13 +50,27 @@ def _reply(output: dict | None) -> tuple[dict, str | None]:
 
 
 def serve(core: NudgeCore, adapter: CodexAdapter, *, input_stream=sys.stdin, output_stream=sys.stdout):
-    requests = queue.Queue()
+    requests = queue.Queue(maxsize=MAX_PENDING_REQUESTS)
     pending = {}
     lock = threading.Lock()
+    output_lock = threading.Lock()
+
+    def send(response):
+        with output_lock:
+            output_stream.write(json_text(response) + "\n")
+            output_stream.flush()
 
     def read_requests():
         try:
-            for line in input_stream:
+            while True:
+                line = input_stream.readline(MAX_REQUEST_CHARS + 1)
+                if not line:
+                    break
+                if len(line) > MAX_REQUEST_CHARS:
+                    while line and not line.endswith("\n"):
+                        line = input_stream.readline(MAX_REQUEST_CHARS + 1)
+                    core.log_error("MCP request exceeds 1 Mi characters")
+                    continue
                 try:
                     request = json.loads(line)
                 except ValueError:
@@ -70,9 +86,19 @@ def serve(core: NudgeCore, adapter: CodexAdapter, *, input_stream=sys.stdin, out
                     continue
                 if "id" not in request:
                     continue
+                if not isinstance(request["id"], (str, int)) or isinstance(request["id"], bool):
+                    send({"jsonrpc": "2.0", "id": None, "error": {
+                        "code": -32600, "message": "Request ID must be a string or integer"}})
+                    continue
                 event = threading.Event()
                 with lock:
-                    pending[request["id"]] = event
+                    rejected = (request["id"] in pending or len(pending) >= MAX_PENDING_REQUESTS)
+                    if not rejected:
+                        pending[request["id"]] = event
+                if rejected:
+                    send({"jsonrpc": "2.0", "id": request["id"], "error": {
+                        "code": -32600, "message": "Duplicate request ID or pending request limit reached"}})
+                    continue
                 requests.put((request, event))
         finally:
             with lock:
@@ -90,6 +116,12 @@ def serve(core: NudgeCore, adapter: CodexAdapter, *, input_stream=sys.stdin, out
         method = request.get("method")
         params = request.get("params") or {}
         attempt = None
+        if method == "tools/call" and cancel_event.is_set():
+            with lock:
+                pending.pop(request["id"], None)
+            send({"jsonrpc": "2.0", "id": request["id"], "error": {
+                "code": -32800, "message": "Request cancelled"}})
+            continue
         if method == "initialize":
             result = {
                 "protocolVersion": params.get("protocolVersion", "2025-06-18"),
@@ -117,8 +149,7 @@ def serve(core: NudgeCore, adapter: CodexAdapter, *, input_stream=sys.stdin, out
                         "error": {"code": -32601, "message": "Unknown method"}}
             with lock:
                 pending.pop(request["id"], None)
-            output_stream.write(json_text(response) + "\n")
-            output_stream.flush()
+            send(response)
             continue
         with lock:
             pending.pop(request["id"], None)
@@ -128,8 +159,7 @@ def serve(core: NudgeCore, adapter: CodexAdapter, *, input_stream=sys.stdin, out
                         "error": {"code": -32800, "message": "Request cancelled"}}
         else:
             response = {"jsonrpc": "2.0", "id": request["id"], "result": result}
-        output_stream.write(json_text(response) + "\n")
-        output_stream.flush()
+        send(response)
         if attempt:
             try:
                 core.journal.delivered(attempt)
