@@ -1,6 +1,6 @@
 {
   "repository": "https://github.com/shihchengwei-lab/masters-nudge",
-  "commit": "5af5522fbfc5dbd4b4db5a958cc426a32a8fbb77",
+  "commit": "028952e688b984d527287b233708f506c3c894d8",
   "method": "Exact committed plugin/test blobs; no private data or model calls.",
   "files": {
     "plugins/masters-nudge/LICENSE": {

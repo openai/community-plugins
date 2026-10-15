@@ -1,5 +1,19 @@
 # Installed-client verification
 
+## Current package: 0.6.4+codex.20261015
+
+Tested on Windows 11 x64 (10.0.26300), Python 3.12.10, Codex 0.162.0-alpha.17.2, MXC workspace sandbox. Actor and Provider: `gpt-6.1-sol`, medium effort. A new isolated profile installed exact committed package bytes from a local marketplace and trusted all three hooks. Every installed file fingerprint matched the source package.
+
+| Installed trial | Result |
+| --- | --- |
+| Normal code task | Completed; one delivered suggestion followed by one silence; the coding model removed `is_done` and used `status` as the sole completion source; behavior checks passed. |
+| Interrupt while the actual Provider CLI is running | Turn ended as `interrupted`; zero Provider processes remained; journal recorded an interrupted fault with no delivered feedback. |
+| Continue in the same chat | New turn completed with one delivered suggestion and one silence; pending/finish/reset/finish checks passed; the original interrupted record remained unchanged. |
+| Final state | Both workflows had zero unresolved reviews and zero Provider processes; database integrity checks returned `ok`. |
+| Hook reporting | `Interrupt` completed. In this trial, the original `PostToolUse` also completed, after the interrupted turn ended. |
+
+Normal workflow: 40.281 seconds. Interruption and continuation together: 58.156 seconds. [Sanitized results and installed package fingerprints](windows-qualification-20261015.json).
+
 ## Installed qualification: 0.6.3+codex.20261013
 
 Qualified installed platform: **Windows 11 x64**, Python 3.12.10, Codex 0.162.0-alpha.17.2, MXC workspace sandbox. Actor and Provider: `gpt-6.1-sol`, medium effort. A fresh isolated profile installed the package and trusted all three hooks.

@@ -7,8 +7,9 @@ Supported installed platform: **Windows 11 x64**. Local host: Windows 11 x64, No
 | `npm run validate:marketplace` | Passed. |
 | `npm run test:masters-nudge` | 93 passed on Windows, no skips; package version `0.6.4+codex.20261015`. |
 | `npm run validate` | Passed. |
-| Installed normal workflow (`0.6.3+codex.20261013`) | Completed; suggestion delivered; behavior verification passed. |
-| Installed turn interruption during Provider execution (`0.6.3+codex.20261013`) | Interrupted turn; zero remaining Provider CLIs; interrupted journal fault; no feedback delivery. |
+| Installed normal workflow (`0.6.4+codex.20261015`) | Completed; one suggestion delivered, then one silence; behavior verification passed. |
+| Installed turn interruption during Provider execution (`0.6.4+codex.20261015`) | Interrupted turn; zero remaining Provider CLIs; interrupted journal fault; no feedback delivery. |
+| New turn in the same chat after interruption (`0.6.4+codex.20261015`) | Completed; suggestion delivered; pending/finish/reset/finish checks passed; old interrupted record unchanged; no unresolved reviews or Provider processes. |
 
 The single plugin master job runs the same complete suite on Windows Server 2025, sequentially with Python 3.10 and 3.14. The shared marketplace command also runs it on its own host; Windows-only process checks are explicitly skipped on other platforms.
 
