@@ -1,0 +1,50 @@
+name: Reviewer
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: codex-reviewer-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  reviewer:
+    name: Reviewer master suite
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22.19.0"
+          package-manager-cache: false
+      - name: Cold package before dependency installation
+        run: npm run validate:marketplace && npm run test:codex-reviewer:package
+      - name: Install locked development dependencies without lifecycle scripts
+        run: npm --prefix plugins/codex-reviewer ci --ignore-scripts
+      - name: Complete root master / Node 22.19
+        run: npm run test:codex-reviewer
+      - name: Audit runtime dependencies
+        run: npm audit --prefix plugins/codex-reviewer --omit=dev
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "24"
+          package-manager-cache: false
+      - name: Complete root master / Node 24
+        run: npm run test:codex-reviewer
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "26"
+          package-manager-cache: false
+      - name: Complete root master / Node 26
+        run: npm run test:codex-reviewer
+      - name: Verify no generated drift
+        run: git diff --exit-code -- plugins/codex-reviewer

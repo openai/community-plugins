@@ -1,0 +1,3 @@
+* text eol=lf
+dist/** -diff -text
+*.woff binary

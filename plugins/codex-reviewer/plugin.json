@@ -1,0 +1,29 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "codex-reviewer",
+  "version": "0.3.9",
+  "author": {
+    "name": "killf",
+    "url": "https://github.com/killf"
+  },
+  "license": "MIT",
+  "repository": "https://github.com/killf/codex-reviewer",
+  "description": "Review local Git changes with a side-by-side diff in Codex.",
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Reviewer",
+        "shortDescription": "Review local Git changes",
+        "longDescription": "Browse repository files and inspect worktree or branch diffs.",
+        "developerName": "killf",
+        "category": "Developer Tools",
+        "capabilities": [
+          "Read"
+        ],
+        "defaultPrompt": [
+          "Open Reviewer for this project's Git changes. Do not modify files."
+        ]
+      }
+    }
+  }
+}

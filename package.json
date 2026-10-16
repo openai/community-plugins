@@ -33,7 +33,9 @@
     "validate:autodesk-fusion": "node scripts/validate-autodesk-fusion.mjs",
     "test:autodesk-fusion": "npm run validate:autodesk-fusion && npm run test:autodesk-fusion:package && npm --prefix plugins/autodesk-fusion run verify && npm run validate:autodesk-fusion",
     "test:autodesk-fusion:package": "node --test --test-concurrency=1 tests/autodesk-fusion/unit/*.test.mjs tests/autodesk-fusion/integration/*.test.mjs tests/autodesk-fusion/security/*.test.mjs",
-    "build:autodesk-fusion": "npm --prefix plugins/autodesk-fusion run build"
+    "build:autodesk-fusion": "npm --prefix plugins/autodesk-fusion run build",
+    "test:codex-reviewer:package": "node --test --test-concurrency=1 tests/codex-reviewer/unit/*.test.mjs tests/codex-reviewer/integration/*.test.mjs tests/codex-reviewer/security/*.test.mjs",
+    "test:codex-reviewer": "node scripts/verify-codex-reviewer-source.mjs && npm --prefix plugins/codex-reviewer test && npm run test:codex-reviewer:package && npm --prefix plugins/codex-reviewer run test:e2e"
   },
   "engines": {
     "node": ">=22.19.0"
