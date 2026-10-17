@@ -8,7 +8,7 @@ Supported installed platform: **Windows 11 x64**. Local host: Windows 11 x64, No
 | `npm run test:masters-nudge` | 101 passed on Windows, no skips; package version `0.6.5`. |
 | `npm run validate` | Passed. |
 | Installed read boundaries and read-fault handling (`0.6.5`) | Ten tests passed against modules loaded from the actual installed package; no skips or model calls. |
-| Installed interruption and continuation (`0.6.5`) | Command hook 0.359 seconds; interruption plus process cleanup 0.812 seconds; zero remaining processes or unresolved reviews; next turn passed and old record remained unchanged. |
+| Installed interruption and continuation (`0.6.5`) | Command hook 0.360 seconds; interruption plus process cleanup 0.735 seconds; zero remaining processes or unresolved reviews; next turn passed and old record remained unchanged. |
 | Installed package identity (`0.6.5`) | All 29 installed fingerprints match the exported source; MCP readiness passed and all three hooks are enabled and trusted. |
 | Installed normal workflow (`0.6.4+codex.20261015`) | Completed; one suggestion delivered, then one silence; behavior verification passed. |
 | Installed turn interruption during Provider execution (`0.6.4+codex.20261015`) | Interrupted turn; zero remaining Provider CLIs; interrupted journal fault; no feedback delivery. |
