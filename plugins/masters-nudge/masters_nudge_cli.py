@@ -17,7 +17,8 @@ def main():
     provider.add_parser("get").add_argument("--host", choices=["codex"], default="codex")
     chosen = provider.add_parser("set")
     chosen.add_argument("provider", choices=["openai"])
-    chosen.add_argument("--model", default="")
+    chosen.add_argument("--model", help="Model ID, or auto to follow Codex's recommended default")
+    chosen.add_argument("--reasoning-effort", help="Reasoning effort supported by the chosen model; default medium")
     provider.add_parser("reset")
     commands.add_parser("recent-nudges").add_argument("--limit", type=int, default=20)
     args = parser.parse_args()
@@ -30,7 +31,7 @@ def main():
     elif args.action == "get":
         result = get_provider(host=args.host)
     elif args.action == "set":
-        result = configure_provider(args.provider, model=args.model)
+        result = configure_provider(args.provider, model=args.model, reasoning_effort=args.reasoning_effort)
     else:
         result = reset_provider_config()
     print(json.dumps(result, ensure_ascii=True, indent=2))

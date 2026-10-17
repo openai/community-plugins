@@ -4,10 +4,10 @@ import os
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Mapping
-from .settings import load_user_settings
+from .settings import DEFAULT_REASONING_EFFORT, load_user_settings
 
-DEFAULT_MODEL = "gpt-5.6-sol"
-PROVIDER_REASONING_EFFORT = "medium"
+DEFAULT_MODEL = ""  # Omit --model so Codex selects its current recommended model.
+PROVIDER_REASONING_EFFORT = DEFAULT_REASONING_EFFORT
 PROVIDER_TIMEOUT_SEC = 1200
 HOOK_TIMEOUT_SEC = 1320
 
@@ -37,6 +37,7 @@ class RuntimeSettings:
     configuration_source: str = "default"
     configuration_error: str = ""
     strict: bool = False
+    reasoning_effort: str = DEFAULT_REASONING_EFFORT
 
     @classmethod
     def from_env(cls, runtime_dir=None, *, environ=None, host=None):
@@ -48,7 +49,7 @@ class RuntimeSettings:
             error = f"不支援執行環境：{host}"
         return cls(config.provider or "openai", config.model or DEFAULT_MODEL, paths,
                    "config" if config.provider else "default", error,
-                   env.get("MASTERS_NUDGE_TEST_MODE") == "1")
+                   env.get("MASTERS_NUDGE_TEST_MODE") == "1", config.reasoning_effort)
 
 
 def active_guard(environment: Mapping[str, str] | None = None) -> bool:

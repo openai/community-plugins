@@ -5,6 +5,7 @@ import tempfile
 import threading
 import unittest
 from pathlib import Path
+from unittest import mock
 
 from masters_nudge.codex_adapter import CodexAdapter
 from masters_nudge.core import NudgeCore
@@ -85,6 +86,15 @@ class PipelineTests(unittest.TestCase):
         self.assertIn("Success. Updated job.py", str(packet["tool_result"]))
         for field in ("task_contract", "before_structure", "batch_change", "current_structure", "tool_result"):
             self.assertIn(field, packet)
+
+    def test_configured_effort_reaches_the_provider(self):
+        from dataclasses import replace
+        settings = replace(self.settings, reasoning_effort="xhigh")
+        self.adapter = CodexAdapter(NudgeCore(settings, dispatch=self.dispatch))
+        self.prompt()
+        self.batch()
+        self.assertEqual(self.calls[0]["model"], settings.model)
+        self.assertEqual(self.calls[0]["reasoning_effort"], "xhigh")
 
     def test_required_material_over_target_still_calls_provider_without_repo_budget(self):
         self.prompt("t" * 12000)
@@ -390,6 +400,47 @@ class PipelineTests(unittest.TestCase):
             self.assertIn("本輪反饋未執行", result["systemMessage"])
         self.assertEqual(len(self.calls), 1)
         self.assertEqual(self.adapter.core.journal.unresolved(), [])
+
+    def test_repo_read_fault_rejects_provider_output_and_next_round_recovers(self):
+        from masters_nudge import providers
+        self.adapter.core.dispatch = lambda **kwargs: providers.call_codex_result(
+            **kwargs, codex_bin_resolver=lambda: "codex")
+        self.feedback()
+        feedback = self.reply
+        for output in ({"feedback": None}, feedback):
+            with self.subTest(provider_output=output):
+                broken = True
+                self.reply = output
+                self.prompt()
+                def process(command, **kwargs):
+                    Path(command[command.index("-o") + 1]).write_text(json.dumps(self.reply), encoding="utf-8")
+                    args = json.loads(next(part.split("=", 1)[1] for part in command
+                                           if part.startswith("mcp_servers.readrepo.args=")))
+                    trace = [{"name": "initialize", "text": "", "fault": ""}]
+                    if broken:
+                        trace.append({"name": "read_file", "text": "", "fault": "read denied"})
+                    Path(args[args.index("--audit") + 1]).write_text(
+                        "".join(json.dumps(entry) + "\n" for entry in trace), encoding="utf-8")
+                    return subprocess.CompletedProcess(command, 0, "", "")
+                with mock.patch.object(providers, "_run_cli_process", side_effect=process) as run:
+                    result = self.batch()
+                    self.assertIn("mcp_read", result["systemMessage"])
+                    self.assertNotIn("hookSpecificOutput", result)
+                    fault = self.adapter.core.journal.recent()[0]
+                    self.assertEqual(fault["outcome"], "fault")
+                    self.assertEqual(fault["delivered"], 0)
+                    self.assertEqual(fault["detail"]["trace"][-1]["fault"], "read denied")
+                    self.assertIn("mcp_read", self.batch(call="blocked")["systemMessage"])
+                    self.assertEqual(run.call_count, 1)
+                    self.assertEqual(self.adapter.core.journal.unresolved(), [])
+                    broken = False
+                    self.reply = {"feedback": None}
+                    self.prompt("continue", turn="next")
+                    self.assertIsNone(self.batch(turn="next"))
+                    self.assertEqual(run.call_count, 2)
+                    rows = self.adapter.core.journal.recent()
+                    self.assertEqual(next(row for row in rows if row["id"] == fault["id"]), fault)
+                    self.assertEqual(rows[0]["outcome"], "silence")
 
 
 if __name__ == "__main__":

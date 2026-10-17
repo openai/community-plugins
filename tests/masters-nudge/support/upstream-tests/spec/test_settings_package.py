@@ -140,7 +140,8 @@ class SettingsPackageTests(unittest.TestCase):
             self.assertNotEqual(paths.settings_dir, paths.data_dir)
             save_provider(paths.settings_dir, "openai", model="chosen")
             self.assertEqual(load_user_settings(paths.settings_dir).model, "chosen")
-            self.assertEqual(set(json.loads((paths.settings_dir / "config.json").read_text())), {"provider", "model"})
+            self.assertEqual(set(json.loads((paths.settings_dir / "config.json").read_text())),
+                             {"provider", "model", "reasoning_effort"})
             for provider in ("anthropic", "ollama"):
                 with self.assertRaises(ValueError):
                     save_provider(paths.settings_dir, provider)
@@ -152,9 +153,56 @@ class SettingsPackageTests(unittest.TestCase):
             settings = RuntimeSettings.from_env(environ={"MASTERS_NUDGE_DATA_DIR": raw,
                                  "MASTERS_NUDGE_MODEL": "ignored", "MASTERS_NUDGE_PROVIDER": "ignored"})
             self.assertEqual(settings.model, "chosen")
+            self.assertEqual(settings.reasoning_effort, "medium")
             self.assertFalse(settings.configuration_error)
             path.write_text('{"provider":"ollama","model":"chosen"}')
             self.assertTrue(RuntimeSettings.from_env(environ={"MASTERS_NUDGE_DATA_DIR": raw}).configuration_error)
+
+    def test_model_and_effort_can_change_independently_and_reset_to_defaults(self):
+        from masters_nudge.management import configure_provider, get_provider, reset_provider_config
+        with tempfile.TemporaryDirectory() as raw:
+            env = {"MASTERS_NUDGE_DATA_DIR": raw}
+            initial = get_provider(environ=env)
+            self.assertEqual((initial["model"], initial["model_mode"], initial["reasoning_effort"]),
+                             ("auto", "codex_default", "medium"))
+            self.assertTrue(configure_provider("openai", model="chosen", reasoning_effort="xhigh", environ=env)["saved"])
+            self.assertTrue(configure_provider("openai", model="new-model", environ=env)["saved"])
+            selected = get_provider(environ=env)
+            self.assertEqual((selected["model"], selected["reasoning_effort"]), ("new-model", "xhigh"))
+            self.assertTrue(configure_provider("openai", reasoning_effort="low", environ=env)["saved"])
+            selected = get_provider(environ=env)
+            self.assertEqual((selected["model"], selected["reasoning_effort"]), ("new-model", "low"))
+            self.assertTrue(configure_provider("openai", model="auto", environ=env)["saved"])
+            selected = get_provider(environ=env)
+            self.assertEqual((selected["model"], selected["reasoning_effort"]), ("auto", "low"))
+            self.assertTrue(reset_provider_config(environ=env)["reset"])
+            selected = get_provider(environ=env)
+            self.assertEqual((selected["model"], selected["reasoning_effort"]), ("auto", "medium"))
+
+    def test_invalid_effort_does_not_overwrite_a_valid_selection(self):
+        from masters_nudge.management import configure_provider, get_provider
+        with tempfile.TemporaryDirectory() as raw:
+            env = {"MASTERS_NUDGE_DATA_DIR": raw}
+            configure_provider("openai", model="chosen", reasoning_effort="high", environ=env)
+            for effort in ("", "   ", 42):
+                with self.subTest(effort=effort):
+                    self.assertFalse(configure_provider("openai", reasoning_effort=effort, environ=env)["saved"])
+                    selected = get_provider(environ=env)
+                    self.assertEqual((selected["model"], selected["reasoning_effort"]), ("chosen", "high"))
+            path = Path(raw) / "config.json"
+            path.write_text('{"provider":"openai","model":"chosen","reasoning_effort":42}')
+            self.assertTrue(RuntimeSettings.from_env(environ=env).configuration_error)
+
+    def test_cli_changes_effort_without_replacing_the_model(self):
+        with tempfile.TemporaryDirectory() as raw, patch.dict(os.environ, {"MASTERS_NUDGE_DATA_DIR": raw}):
+            for options in (["--model", "chosen"], ["--reasoning-effort", "xhigh"]):
+                with patch.object(sys, "argv", ["nudge", "provider", "set", "openai", *options]), redirect_stdout(io.StringIO()):
+                    self.assertEqual(masters_nudge_cli.main(), 0)
+            output = io.StringIO()
+            with patch.object(sys, "argv", ["nudge", "provider", "get"]), redirect_stdout(output):
+                self.assertEqual(masters_nudge_cli.main(), 0)
+            selected = json.loads(output.getvalue())
+            self.assertEqual((selected["model"], selected["reasoning_effort"]), ("chosen", "xhigh"))
 
     def test_cli_lists_only_openai_and_rejects_removed_commands(self):
         output = io.StringIO()
@@ -182,7 +230,7 @@ class SettingsPackageTests(unittest.TestCase):
         })
         user_hook = hooks["UserPromptSubmit"][0]["hooks"][0]
         self.assertEqual(user_hook["type"], "command")
-        self.assertEqual(hooks["Interrupt"][0]["hooks"][0], user_hook)
+        self.assertEqual(hooks["Interrupt"][0]["hooks"][0], {**user_hook, "timeout": 3})
 
     def test_clean_package_starts_hook_and_reports_fault_without_actor_context(self):
         with tempfile.TemporaryDirectory() as raw:

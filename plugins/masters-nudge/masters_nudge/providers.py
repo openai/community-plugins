@@ -181,6 +181,7 @@ def _call_codex_in_directory(
     system_prompt: str, nudge_input: str, model: str, *, schema_path: Path,
     timeout_sec: int, workspace_root: str, remaining_chars: int,
     run_directory: Path,
+    reasoning_effort: str = PROVIDER_REASONING_EFFORT,
     log_error: Logger = _noop, codex_bin_resolver=resolve_codex_bin, cancel_event=None,
 ) -> ProviderRun:
     binary = codex_bin_resolver()
@@ -199,7 +200,7 @@ def _call_codex_in_directory(
         "-c", "features.view_image=false",
         "-c", "features.plugins=false",
         "-c", "features.multi_agent=false",
-        "-c", f'model_reasoning_effort="{PROVIDER_REASONING_EFFORT}"',
+        "-c", f"model_reasoning_effort={json_text(reasoning_effort)}",
         "-c", 'web_search="disabled"',
         "-c", "project_doc_max_bytes=0",
         "-c", f"mcp_servers.readrepo.command={json_text(Path(sys.executable).as_posix())}",
@@ -209,7 +210,7 @@ def _call_codex_in_directory(
         "-c", 'mcp_servers.readrepo.enabled_tools=["search_repo","read_file"]',
         "-c", 'mcp_servers.readrepo.default_tools_approval_mode="approve"',
         "exec", "--skip-git-repo-check", "--ephemeral", "--ignore-user-config",
-        "--json", "-s", "read-only", "-m", model, "--output-schema", str(schema_path),
+        "--json", "-s", "read-only", *(["-m", model] if model else []), "--output-schema", str(schema_path),
         "-o", str(output), "-",
     ]
     shell = binary.lower().endswith((".cmd", ".bat"))
@@ -232,6 +233,9 @@ def _call_codex_in_directory(
     if not any(entry["name"] == "initialize" for entry in trace):
         raise ToolFault("mcp_startup", "Provider 的唯讀工具未成功初始化",
                         evidence={"stdout": result.stdout, "stderr": result.stderr})
+    if any(entry.get("fault") for entry in trace):
+        raise ToolFault("mcp_read", "Provider 的唯讀材料取得失敗",
+                        evidence={"trace": trace, "stdout": result.stdout, "stderr": result.stderr})
     if sum(len(entry["text"]) for entry in trace) > remaining_chars:
         raise ToolFault("mcp_budget", "讀取材料超過共同上限")
     materials = []
@@ -260,6 +264,7 @@ def _call_codex_in_directory(
 def call_codex_result(
     system_prompt: str, nudge_input: str, model: str, *, schema_path: Path,
     timeout_sec: int, workspace_root: str, remaining_chars: int,
+    reasoning_effort: str = PROVIDER_REASONING_EFFORT,
     log_error: Logger = _noop, codex_bin_resolver=resolve_codex_bin, cancel_event=None,
 ) -> ProviderRun:
     """Run one Provider call and keep its temporary evidence within that call."""
@@ -268,5 +273,6 @@ def call_codex_result(
             system_prompt, nudge_input, model, schema_path=schema_path,
             timeout_sec=timeout_sec, workspace_root=workspace_root,
             remaining_chars=remaining_chars, run_directory=Path(directory),
+            reasoning_effort=reasoning_effort,
             log_error=log_error, codex_bin_resolver=codex_bin_resolver, cancel_event=cancel_event,
         )

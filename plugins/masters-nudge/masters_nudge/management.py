@@ -19,15 +19,18 @@ def list_providers() -> dict:
 
 def get_provider(*, host="codex", environ=None) -> dict:
     settings = RuntimeSettings.from_env(environ=environ, host=host or "codex")
-    return {"provider": settings.provider, "model": settings.model,
+    return {"provider": settings.provider, "model": settings.model or "auto",
+            "model_mode": "pinned" if settings.model else "codex_default",
+            "reasoning_effort": settings.reasoning_effort,
             "source": settings.configuration_source, "error": settings.configuration_error,
             "path": str(config_path(settings.paths.settings_dir))}
 
 
-def configure_provider(provider: str, *, model: str = "", environ=None) -> dict:
+def configure_provider(provider: str, *, model: str | None = None,
+                       reasoning_effort: str | None = None, environ=None) -> dict:
     paths = RuntimePaths.resolve(environ=environ)
     try:
-        path = save_provider(paths.settings_dir, provider, model=model)
+        path = save_provider(paths.settings_dir, provider, model=model, reasoning_effort=reasoning_effort)
         return {"saved": True, "path": str(path), "error": ""}
     except (OSError, ValueError) as exc:
         return {"saved": False, "error": str(exc)}
@@ -143,7 +146,9 @@ def doctor(root: Path, host="codex", *, environ=None, **_unused) -> dict:
         except (OSError, subprocess.SubprocessError, ValueError, KeyError, TypeError) as exc:
             error = error or str(exc)
     return {"core_ready": bool(not error and not missing and binary and authenticated and installed and mcp_ready),
-            "provider": settings.provider, "model": settings.model,
+            "provider": settings.provider, "model": settings.model or "auto",
+            "model_mode": "pinned" if settings.model else "codex_default",
+            "reasoning_effort": settings.reasoning_effort,
             "codex_cli": binary or "", "provider_authenticated": authenticated,
             "plugin_enabled": installed, "mcp_enabled": mcp_enabled,
             "mcp_ready": mcp_ready, "mcp_transport": transport,

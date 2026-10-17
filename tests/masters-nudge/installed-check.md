@@ -1,6 +1,16 @@
 # Installed-client verification
 
-## Current package: 0.6.4+codex.20261015
+## Current package: 0.6.5
+
+Installed on Windows 11 x64 with the Codex plugin installer. All 29 installed package fingerprints match the exported source package. The readiness diagnostic passed; Codex resolves the MCP from the 0.6.5 cache and lists all three hooks as enabled and trusted, without the Interrupt timeout warning.
+
+Ten tests loaded the actual installed modules in a fresh process and passed without skips. They cover real Git repositories, a Windows junction pointing outside the workspace, tracked ignored files, fixed Provider responses after read failures, no delivery from failed reviews, same-turn closure and next-turn recovery.
+
+The installed Windows command hook completed interruption in 0.359 seconds; interruption plus real process-tree cleanup took 0.812 seconds, within the three-second hook limit. No Provider processes or unresolved reviews remained; the interrupted result was undelivered, the same session continued successfully and its old record stayed unchanged. Database integrity was `ok`.
+
+These 0.6.5 regressions use real local processes and fixed Provider output; no model-service call was made. The earlier model-backed workflows below remain dated evidence for their tested versions. [0.6.5 results and installed package fingerprints](windows-qualification-20261018.json).
+
+## Model-backed qualification: 0.6.4+codex.20261015
 
 Tested on Windows 11 x64 (10.0.26300), Python 3.12.10, Codex 0.162.0-alpha.17.2, MXC workspace sandbox. Actor and Provider: `gpt-6.1-sol`, medium effort. A new isolated profile installed exact committed package bytes from a local marketplace and trusted all three hooks. Every installed file fingerprint matched the source package.
 

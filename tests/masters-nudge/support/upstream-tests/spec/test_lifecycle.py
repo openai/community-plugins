@@ -349,10 +349,10 @@ class WindowsLifecycleTests(unittest.TestCase):
                                            environment=dict(os.environ), timeout_sec=2)
         self.assertFalse(self.record.exists())
 
-    def test_mcp_cancel_and_disconnect_stop_live_provider_and_journal_fault(self):
-        for cancel in (True, False):
-            with self.subTest(cancel_notification=cancel):
-                data = Path(self.temp.name) / str(cancel)
+    def test_mcp_cancel_disconnect_and_interrupt_hook_stop_live_provider_and_journal_fault(self):
+        for mode in ('cancel', 'disconnect', 'interrupt_hook'):
+            with self.subTest(mode=mode):
+                data = Path(self.temp.name) / mode
                 data.mkdir()
                 self.record = data / 'pids.json'
                 journal = Journal(data)
@@ -374,8 +374,10 @@ class WindowsLifecycleTests(unittest.TestCase):
                 )
                 server = subprocess.Popen([sys.executable, '-c', script], cwd=ROOT,
                     stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
-                    text=True, encoding='utf-8', env={**os.environ, "MASTERS_NUDGE_ACTIVE":"0"})
+                    text=True, encoding='utf-8', env={**os.environ, "MASTERS_NUDGE_ACTIVE":"0",
+                        "PYTHONIOENCODING":"utf-8"})
                 try:
+                    early_reply = []
                     payload = {'hook_event_name':'PostToolUse', 'session_id':'s','turn_id':'t',
                         'cwd':str(data),'transcript_path':None,'tool_name':'apply_patch','tool_use_id':'p',
                         'tool_input':'*** Begin Patch\n*** Add File: job.py\n+value = 1\n*** End Patch',
@@ -390,16 +392,41 @@ class WindowsLifecycleTests(unittest.TestCase):
                         server.stdin = None
                         output, error = server.communicate(timeout=3)
                         raise AssertionError(f"Provider did not start: {output} {error} journal={Journal(data).recent()}")
-                    if cancel:
+                    if mode == 'cancel':
                         server.stdin.write(json.dumps({'method':'notifications/cancelled',
                             'params':{'requestId':7,'reason':'user interrupted'}})+'\n')
                         server.stdin.flush()
+                    elif mode == 'interrupt_hook':
+                        package = ROOT / 'plugins/masters-nudge'
+                        hooks = json.loads((package / 'hooks/hooks.json').read_text(encoding='utf-8'))['hooks']
+                        interrupt = dict(payload, hook_event_name='Interrupt')
+                        result = subprocess.run(
+                            [sys.executable, str(package / 'launch.py'), 'hook', '--host', 'codex_cli'],
+                            input=json.dumps(interrupt), capture_output=True, text=True,
+                            timeout=hooks['Interrupt'][0]['hooks'][0]['timeout'],
+                            cwd=data, env={**os.environ, 'MASTERS_NUDGE_ACTIVE': '0',
+                                'MASTERS_NUDGE_DATA_DIR': str(data), 'MASTERS_NUDGE_RUNTIME_DIR': str(package)})
+                        self.assertEqual(result.returncode, 0, result.stderr)
+                        self.assertEqual(result.stdout, '')
+                        self.assert_tree_ended()
+                        reader = threading.Thread(target=lambda: early_reply.append(server.stdout.readline()), daemon=True)
+                        reader.start()
+                        reader.join(3)
+                        self.assertFalse(reader.is_alive(), 'Interrupt hook left the MCP request unfinished')
+                        self.assertIsNone(server.poll())
+                        rows = Journal(data).recent()
+                        self.assertEqual(rows[0]['detail']['fault']['kind'], 'interrupted')
+                        self.assertEqual(Journal(data).unresolved(), [])
                     server.stdin.close()
                     server.stdin = None
                     output, error = server.communicate(timeout=8)
                     self.assertEqual(server.returncode, 0, error)
-                    reply = json.loads(output)
-                    self.assertEqual(reply['error']['code'], -32800)
+                    reply = json.loads(''.join(early_reply) + output)
+                    if mode == 'interrupt_hook':
+                        self.assertEqual(reply['id'], 7)
+                        self.assertNotIn('hookSpecificOutput', json.loads(reply['result']['content'][0]['text']))
+                    else:
+                        self.assertEqual(reply['error']['code'], -32800)
                     self.assert_tree_ended()
                     rows = Journal(data).recent()
                     self.assertEqual(len(rows), 1)

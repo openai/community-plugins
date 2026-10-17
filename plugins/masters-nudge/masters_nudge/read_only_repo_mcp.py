@@ -55,8 +55,9 @@ class RepositoryTools:
         self.audit = audit
         self.audit.parent.mkdir(parents=True, exist_ok=True)
 
-    def _git(self, *args) -> subprocess.CompletedProcess:
-        return subprocess.run(["git", "-C", str(self.root), *args], stdin=subprocess.DEVNULL, capture_output=True, timeout=15)
+    def _git(self, *args, input=None) -> subprocess.CompletedProcess:
+        return subprocess.run(["git", "-C", str(self.root), *args], input=input,
+                              stdin=subprocess.DEVNULL if input is None else None, capture_output=True, timeout=15)
 
     def _path(self, value: str) -> Path:
         if not isinstance(value, str):
@@ -70,18 +71,27 @@ class RepositoryTools:
             raise ToolFault("mcp_path", "不能讀取 Git 內部資料")
         return path
 
-    def _allowed(self, path: Path):
-        relative = path.relative_to(self.root).as_posix()
-        ignored = self._git("check-ignore", "--no-index", "--", relative)
+    def _files(self, prefix: Path) -> tuple[str, ...]:
+        listed = self._git("ls-files", "-z", "--cached", "--others", "--exclude-standard",
+                           "--", prefix.relative_to(self.root).as_posix() or ".")
+        if listed.returncode:
+            raise ToolFault("mcp_git", "無法列出工作區檔案")
+        if not listed.stdout:
+            return ()
+        ignored = self._git("check-ignore", "--no-index", "-z", "--stdin", input=listed.stdout)
         if ignored.returncode not in (0, 1):
             raise ToolFault("mcp_git", "無法確認忽略規則")
-        if ignored.returncode == 0:
-            raise ToolFault("mcp_path", "檔案被忽略")
-        listed = self._git("ls-files", "-z", "--cached", "--others", "--exclude-standard", "--", relative)
-        if listed.returncode or relative.encode("utf-8") not in listed.stdout.split(b"\0"):
+        excluded = set(ignored.stdout.split(b"\0"))
+        return tuple(raw.decode("utf-8", errors="surrogateescape")
+                     for raw in listed.stdout.split(b"\0") if raw and raw not in excluded)
+
+    def _file(self, value: str, files) -> Path:
+        path = self._path(value)
+        if path.relative_to(self.root).as_posix() not in files:
             raise ToolFault("mcp_path", "檔案不在 Git 工作區範圍")
         if not path.is_file():
             raise ToolFault("mcp_path", "檔案不存在")
+        return path
 
     def _read(self, args: dict):
         if set(args) - {"path", "start_line", "end_line"} or "path" not in args:
@@ -92,8 +102,8 @@ class RepositoryTools:
         end = args.get("end_line", start + 199)
         if type(end) is not int or end < start:
             raise ToolFault("mcp_input", "行號範圍不合法")
-        path = self._path(args["path"])
-        self._allowed(path)
+        prefix = self._path(args["path"])
+        path = self._file(args["path"], self._files(prefix))
         relative = path.relative_to(self.root).as_posix()
         with path.open(encoding="utf-8") as stream:
             for number, text in enumerate(stream, 1):
@@ -111,26 +121,17 @@ class RepositoryTools:
         prefix = self._path(args.get("path", ""))
         if not prefix.exists():
             return
-        relative_prefix = prefix.relative_to(self.root).as_posix() or "."
-        listed = self._git(
-            "ls-files", "-z", "--cached", "--others", "--exclude-standard",
-            "--", relative_prefix,
-        )
-        if listed.returncode:
-            raise ToolFault("mcp_search", listed.stderr.decode("utf-8", errors="replace").strip()
-                            or "無法列出工作區檔案")
+        files = self._files(prefix)
+        allowed = set(files)
         found = 0
-        for raw_path in listed.stdout.split(b"\0"):
-            if not raw_path:
-                continue
-            relative = raw_path.decode("utf-8", errors="surrogateescape")
-            path = self.root / relative
+        for relative in files:
+            path = self._file(relative, allowed)
             with path.open(encoding="utf-8", errors="replace") as stream:
                 for line_number, text in enumerate(stream, 1):
                     if query not in text:
                         continue
                     yield MaterialLine(
-                        "current_structure", Path(relative).as_posix(), line_number,
+                        "current_structure", path.relative_to(self.root).as_posix(), line_number,
                         text.rstrip("\r\n"),
                     )
                     found += 1

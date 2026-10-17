@@ -49,6 +49,18 @@ class TransportTests(unittest.TestCase):
         self.assertEqual(process.call_args.kwargs["input_text"].count("PACKET-unique"), 1)
         self.assertEqual(result.usage["input_tokens"], 123)
 
+    def test_automatic_model_uses_codex_default_and_passes_selected_effort(self):
+        with mock.patch.object(providers, "_run_cli_process", side_effect=self.fake_process) as process:
+            providers.call_codex_result("system", "packet", "", reasoning_effort="xhigh",
+                schema_path=ROOT / "nudge-schema.json", timeout_sec=5, workspace_root=str(ROOT),
+                remaining_chars=1500, codex_bin_resolver=lambda: "codex")
+        args = process.call_args.args[0]
+        self.assertNotIn("-m", args)
+        self.assertNotIn("--model", args)
+        self.assertIn('model_reasoning_effort="xhigh"', args)
+        self.assertIn("--ignore-user-config", args)
+        self.assertIn("read-only", args)
+
     def test_successful_null_without_mcp_startup_is_a_fault(self):
         def process(command, **kwargs):
             Path(command[command.index("-o") + 1]).write_text('{"feedback":null}')
@@ -65,7 +77,8 @@ class TransportTests(unittest.TestCase):
             (json_text({"segments": [{"path": "src/狀態.py", "start": 2,
                                        "lines": ['狀態 = "完成"']}], "truncated": False}),
              "", None, (MaterialLine(**line),)),
-            (json_text({"error": "read denied"}), "read denied", None, ()),
+            (json_text({"error": "read denied"}), "read denied", "mcp_read", ()),
+            ("", "read denied", "mcp_read", ()),
             ("x" * 1501, "", "mcp_budget", ()),
         )
         for text, fault, expected_fault, expected_materials in cases:
@@ -84,6 +97,8 @@ class TransportTests(unittest.TestCase):
                         with self.assertRaises(ToolFault) as caught:
                             self.call()
                         self.assertEqual(caught.exception.kind, expected_fault)
+                        if expected_fault == "mcp_read":
+                            self.assertEqual(caught.exception.evidence["trace"][-1]["fault"], fault)
                     else:
                         result = self.call()
                         self.assertEqual(result.materials, expected_materials)

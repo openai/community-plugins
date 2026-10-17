@@ -1,4 +1,5 @@
 import json
+import os
 import subprocess
 import tempfile
 import unittest
@@ -279,7 +280,43 @@ class RepositoryTests(unittest.TestCase):
         with mock.patch.object(self.tools, "_git", wraps=self.tools._git) as git:
             result = self.tools.call("search_repo", {"query": "missing_identifier"})
         self.assertFalse(result["isError"])
-        self.assertLessEqual(git.call_count, 1)
+        self.assertLessEqual(git.call_count, 2)
+
+    def test_search_and_read_exclude_tracked_ignored_files(self):
+        subprocess.run(["git", "-C", str(self.repo), "add", "-f", "--", "secret.txt"], check=True)
+        denied = self.tools.call("read_file", {"path": "secret.txt"})
+        self.assertTrue(denied["isError"])
+        result = self.tools.call("search_repo", {"query": "hidden"})
+        self.assertFalse(result["isError"])
+        self.assertEqual(json.loads(result["content"][0]["text"])["segments"], [])
+        result = self.tools.call("search_repo", {"query": "retry_state"})
+        self.assertFalse(result["isError"])
+        self.assertEqual(json.loads(result["content"][0]["text"])["segments"][0]["path"], "job.py")
+
+    def test_search_and_read_reject_directory_links_outside_workspace(self):
+        outside = self.root / "outside"
+        outside.mkdir()
+        (outside / "secret.py").write_text("restricted = PRIVATE_VALUE\n", encoding="utf-8")
+        link = self.repo / "linked"
+        link.mkdir()
+        (link / "secret.py").write_text("placeholder\n", encoding="utf-8")
+        subprocess.run(["git", "-C", str(self.repo), "add", "--", "linked/secret.py"], check=True)
+        (link / "secret.py").unlink()
+        link.rmdir()
+        if os.name == "nt":
+            subprocess.run(["cmd.exe", "/c", "mklink", "/J", str(link), str(outside)],
+                           check=True, capture_output=True)
+            self.addCleanup(link.rmdir)
+        else:
+            link.symlink_to(outside, target_is_directory=True)
+            self.addCleanup(link.unlink)
+        for name, args in (("search_repo", {"query": "restricted"}),
+                           ("read_file", {"path": "linked/secret.py"})):
+            with self.subTest(tool=name):
+                result = self.tools.call(name, args)
+                self.assertTrue(result["isError"])
+                self.assertNotIn("PRIVATE_VALUE", result["content"][0]["text"])
+        self.assertNotIn("PRIVATE_VALUE", self.tools.audit.read_text(encoding="utf-8"))
 
     def test_outside_ignored_and_write_requests_are_faults(self):
         for name, args in (("read_file", {"path": "../secret"}), ("read_file", {"path": "secret.txt"}),
