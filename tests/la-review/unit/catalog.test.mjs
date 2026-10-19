@@ -55,4 +55,5 @@ test("Loupe has explicit invocation metadata and a bounded review contract", () 
   assert.match(metadata, /^\s+default_prompt: "\$la-review:loupe"$/m);
   assert.match(metadata, /^policy:$/m);
   assert.match(metadata, /^\s+allow_implicit_invocation: false$/m);
+  assert.ok(manifest.interface.defaultPrompt.every((prompt) => /^\$la-review:loupe(?:\s|$)/u.test(prompt)));
 });
