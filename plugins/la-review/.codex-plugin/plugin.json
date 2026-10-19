@@ -41,7 +41,7 @@
     "defaultPrompt": [
       "$la-review:loupe",
       "$la-review:loupe last commit",
-      "$la-review:loupe feature/loupe-plugin branch"
+      "$la-review:loupe feature/example branch"
     ]
   }
 }
