@@ -51,6 +51,18 @@
         "authentication": "ON_USE"
       },
       "category": "Developer Tools"
+    },
+    {
+      "name": "robot-skill-hub",
+      "source": {
+        "source": "local",
+        "path": "./plugins/robot-skill-hub"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
+      },
+      "category": "Developer Tools"
     }
   ]
 }

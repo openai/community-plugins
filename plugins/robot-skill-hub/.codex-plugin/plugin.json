@@ -1,0 +1,25 @@
+{
+  "name": "robot-skill-hub",
+  "version": "0.1.0",
+  "description": "Find pinned robot code and inspect source, license, environment and task evidence through three read-only MCP tools. Local source acquisition and preparation use the separate Robot Skill Hub Python CLI.",
+  "author": {
+    "name": "Superfast Robotics",
+    "url": "https://github.com/Superfast-Robotics"
+  },
+  "homepage": "https://hub.superfastrobotics.com/",
+  "repository": "https://github.com/Superfast-Robotics/robot-skill-hub",
+  "license": "MIT",
+  "mcpServers": "./mcp.json",
+  "interface": {
+    "displayName": "Robot Skill Hub",
+    "shortDescription": "Find pinned robot source and inspect exact preparation and task evidence.",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Read"
+    ],
+    "defaultPrompt": [
+      "Find public robot code for my stated task and explicit robot/runtime constraints, then inspect a selected record at its returned record_version. Report source pins, license, compatibility and task evidence. Do not execute code, install dependencies or publish project data."
+    ],
+    "websiteURL": "https://hub.superfastrobotics.com/"
+  }
+}
