@@ -143,7 +143,7 @@ class ActionSummary:
 
 
 class ActionDefinitionSource(values_module.FrozenValue):
-    """Portable-catalogue metadata for one defining JSON file."""
+    """Metadata for the latest defining JSON file of one variant."""
 
     __slots__ = ("_is_frozen", "directory", "filename", "kind", "source_order")
     directory: str
@@ -158,6 +158,13 @@ class ActionDefinitionSource(values_module.FrozenValue):
         self.filename = filename
         self.source_order = source_order
         self._freeze()
+
+    def to_dict(self, repository_root=None):
+        """Expose portable file provenance and its applied source order."""
+        from . import action_catalogue as action_catalogue_module  # noqa: PLC0415 - Avoid the catalog/action_catalogue import cycle.
+
+        path = action_catalogue_module._portable_source_path(self, repository_root)
+        return {"kind": self.kind, "path": action_catalogue_module._escape_path_controls(path), "source_order": self.source_order}
 
 
 class ActionCatalogueEntry(ActionSummary, values_module.FrozenValue):
@@ -214,12 +221,14 @@ class _ActionEntry:
 class ActionInspection:
     """Exact base prompt and metadata shown before semantic binding."""
 
-    __slots__ = ("action", "base_prompt")
+    __slots__ = ("action", "base_prompt", "definition_source", "repository_root")
 
-    def __init__(self, action, base_prompt):
-        """Store an inspected action and its automatically prefixed base prompt."""
+    def __init__(self, action, base_prompt, definition_source=None, repository_root=None):
+        """Store the base prompt and latest defining source for display."""
         self.action = action
         self.base_prompt = base_prompt
+        self.definition_source = definition_source
+        self.repository_root = repository_root
 
     def to_dict(self):
         """Return only the details consumed while preparing execution."""
@@ -230,7 +239,7 @@ class ActionInspection:
             mode = "goal"
         else:
             mode = "default"
-        result = {"prompt": self.base_prompt, "mode": mode}
+        result = {"prompt": self.base_prompt, "mode": mode, "definition_source": None if self.definition_source is None else self.definition_source.to_dict(self.repository_root)}
         if fields["prompt_vars"]:
             result["prompt_vars"] = copy.deepcopy(fields["prompt_vars"])
         if fields["notes"]:
@@ -241,17 +250,19 @@ class ActionInspection:
 class RenderedAction:
     """Final prompt plus user-facing metadata kept outside it."""
 
-    __slots__ = ("action", "prompt", "qualification")
+    __slots__ = ("action", "definition_source", "prompt", "qualification", "repository_root")
 
-    def __init__(self, action, prompt, qualification):
-        """Store final literal prompt and normalized optional qualification."""
+    def __init__(self, action, prompt, qualification, definition_source=None, repository_root=None):
+        """Store the final prompt, qualification, and latest defining source."""
         self.action = action
         self.prompt = prompt
         self.qualification = qualification
+        self.definition_source = definition_source
+        self.repository_root = repository_root
 
     def to_dict(self):
         """Return the authoritative rendered prompt."""
-        return {"prompt": self.prompt}
+        return {"prompt": self.prompt, "definition_source": None if self.definition_source is None else self.definition_source.to_dict(self.repository_root)}
 
 
 def _file_diagnostic(source, filename, code, message, severity="error", json_path=None, selector=None, fatality="file_fatal"):
@@ -756,7 +767,7 @@ def _materialize(patches, diagnostics):
 class ActionCatalog:
     """Effective Perform actions, diagnostics, discovery, and rendering API."""
 
-    __slots__ = ("_entries", "diagnostics", "discovery", "precedence_incomplete")
+    __slots__ = ("_blocked_names", "_blocked_selectors", "_entries", "diagnostics", "discovery", "precedence_incomplete")
 
     def __init__(self, entries, diagnostics, discovery, precedence_incomplete=False):
         """Store validated action entries and deterministic diagnostics."""
@@ -774,18 +785,45 @@ class ActionCatalog:
         self.diagnostics = diagnostics_module.sorted_unique_diagnostics(list(discovery.diagnostics) + list(diagnostics))
         self.discovery = discovery
         self.precedence_incomplete = precedence_incomplete or discovery.precedence_incomplete or any(diagnostic.fatal for diagnostic in self.diagnostics)
+        self._blocked_names = set()
+        self._blocked_selectors = set()
+        for diagnostic in self.diagnostics:
+            if diagnostic.fatality != "variant_fatal" or diagnostic.selector is None:
+                continue
+            selector = diagnostic.selector
+            if validation.full_match(STRICT_SELECTOR_PATTERN, selector):
+                self._blocked_selectors.add(selector)
+            else:
+                name = selector.split("[", 1)[0]
+                if is_action_name(name):
+                    self._blocked_names.add(name)
+
+    def blocked_action_names(self):
+        """Return names unsafe for bare or natural-language selection."""
+        names = self._blocked_names | {selector.split("[", 1)[0] for selector in self._blocked_selectors}
+        return sorted(names, key=lambda value: value.encode("ascii"))
+
+    def is_blocked_name(self, name):
+        """Return whether an invalid variant makes a bare name unsafe."""
+        return name in self.blocked_action_names()
+
+    def is_blocked_selector(self, selector):
+        """Return whether a strict selector has an invalid definition."""
+        return selector in self._blocked_selectors or selector.split("[", 1)[0] in self._blocked_names
 
     def list_actions(self, name=None):
         """Return all summaries or variants of one exact bare action name."""
         if name is not None and not is_action_name(name):
             raise PerformRequestError("invalid_name", "Action-name filters must match {}.".format(ACTION_NAME_REGEX))
-        summaries = [entry.action.summary() for entry in self._entries.values() if name is None or entry.action.name == name]
+        summaries = [entry.action.summary() for entry in self._entries.values() if (name is None or entry.action.name == name) and not self.is_blocked_selector(entry.action.selector)]
         return sorted(summaries, key=lambda summary: (summary.name.encode("ascii"), summary.language.encode("ascii")))
 
     def catalogue_entries(self):
         """Return stable read-only action entries with catalogue-only provenance."""
         if self.precedence_incomplete:
             raise PerformRequestError("fatal_catalog", "Catalog precedence is incomplete; fix the fatal discovery or file diagnostic before generating an action catalogue.")
+        if self.blocked_action_names():
+            raise PerformRequestError("invalid_override", "Invalid action variants must be fixed before generating an action catalogue.")
         entries = []
         for entry in self._entries.values():
             action = entry.action
@@ -802,17 +840,15 @@ class ActionCatalog:
         available = sorted((entry for entry in self._entries.values() if entry.action.name == name), key=lambda entry: entry.action.language.encode("ascii"))
         independent = bool(available) and all(entry.precedence_independent for entry in available)
         alternatives = [entry.action.selector for entry in available]
+        if not independent:
+            self._require_complete_precedence()
+        if name in self._blocked_names or (requested_selector is None and self.is_blocked_name(name)) or requested_selector in self._blocked_selectors:
+            raise PerformRequestError("invalid_override", "Invalid action definition for {!r}; fix its catalog diagnostic before selecting this action.".format(name))
         if requested_selector is not None:
             for entry in available:
                 if entry.action.selector == requested_selector:
-                    if not entry.precedence_independent:
-                        self._require_complete_precedence()
                     return entry
-            if not independent:
-                self._require_complete_precedence()
             raise PerformRequestError("not_found", "No effective action matches strict selector {}.".format(requested_selector), alternatives=alternatives)
-        if not independent:
-            self._require_complete_precedence()
         if len(available) == 1:
             return available[0]
         agnostic = "{}[agnostic]".format(name)
@@ -830,8 +866,9 @@ class ActionCatalog:
 
     def inspect(self, selector):
         """Return the exact effective base prompt for one strict selector."""
-        action = self._resolve_entry(selector).action
-        return ActionInspection(action, rendering.build_base_prompt(action.fields["prompt"], action.fields["no_edits"]))
+        entry = self._resolve_entry(selector)
+        action = entry.action
+        return ActionInspection(action, rendering.build_base_prompt(action.fields["prompt"], action.fields["no_edits"]), entry.definition_source, self.discovery.repository_root)
 
     def launch_config(self, selector):
         """Return every effective field needed by a standalone launcher."""
@@ -841,7 +878,7 @@ class ActionCatalog:
         """Render one exact action after binding and qualification validation."""
         entry = self._resolve_entry(selector)
         prompt, normalized_qualification = entry.renderer(entry.action.fields, variables, PLACEHOLDER_PATTERN, qualification)
-        return RenderedAction(entry.action, prompt, normalized_qualification)
+        return RenderedAction(entry.action, prompt, normalized_qualification, entry.definition_source, self.discovery.repository_root)
 
     def prepare_launch(self, selector, variables, qualification=None):
         """Render one action and retain its complete launcher configuration."""

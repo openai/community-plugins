@@ -26,10 +26,14 @@ def main(argv=None):
 
     def command(context):
         catalog = context.load_catalog(args.cwd)
+        blocked_actions = catalog.blocked_action_names()
+        if args.name in blocked_actions:
+            error = PerformRequestError("invalid_override", "Action {!r} has an invalid definition; fix its catalog diagnostic before selecting it.".format(args.name))
+            return runtime_cli.CliOutcome(result={"variants": [], "blocked_actions": blocked_actions}, error=error)
         summaries = catalog.list_actions(name=args.name)
         if args.name is not None and not summaries and args.fallback:
             summaries = catalog.list_actions()
-        result = {"variants": [summary.to_dict() for summary in summaries]}
+        result = {"variants": [summary.to_dict() for summary in summaries], "blocked_actions": blocked_actions}
         if catalog.precedence_incomplete:
             error = PerformRequestError("fatal_catalog", "Catalog precedence is incomplete; fix the fatal discovery or file diagnostic before executing an action.")
             return runtime_cli.CliOutcome(result=result, error=error)

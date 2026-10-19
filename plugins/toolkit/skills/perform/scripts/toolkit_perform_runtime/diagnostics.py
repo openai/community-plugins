@@ -59,7 +59,7 @@ class Diagnostic:
     @property
     def fatal(self):
         """Return whether this issue makes catalog precedence incomplete."""
-        return self.fatality == "catalog_fatal"
+        return self.fatality in ("catalog_fatal", "file_fatal")
 
     def sort_key(self):
         """Return the stable diagnostic ordering key."""

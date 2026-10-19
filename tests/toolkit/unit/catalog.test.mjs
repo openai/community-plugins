@@ -24,7 +24,7 @@ test("manifest and marketplace agree on the public package", () => {
   assert.equal(entry.category, "Developer Tools");
 
   assert.equal(manifest.name, pluginName);
-  assert.equal(manifest.version, "0.4.4");
+  assert.equal(manifest.version, "0.4.6");
   assert.equal(manifest.skills, "./skills/");
   assert.equal(manifest.interface.category, "Developer Tools");
   assert.equal(manifest.mcpServers, undefined);
@@ -55,4 +55,5 @@ test("Perform has explicit invocation metadata and fail-closed selection rules",
   assert.match(metadata, /^\s+default_prompt: "\$toolkit:perform"$/m);
   assert.match(metadata, /^policy:$/m);
   assert.match(metadata, /^\s+allow_implicit_invocation: false$/m);
+  assert.ok(manifest.interface.defaultPrompt.every((prompt) => /^\$toolkit:perform(?:\s|$)/u.test(prompt)));
 });

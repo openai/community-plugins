@@ -64,6 +64,8 @@ class StandaloneLauncher:
         """Return one filtered JSON-ready action-summary payload."""
         if action is not None:
             name, requested_language, requested_selector, _strict = self._parse_request(action, language=language)
+            if (requested_selector is None and self._catalog.is_blocked_name(name)) or (requested_selector is not None and self._catalog.is_blocked_selector(requested_selector)):
+                raise PerformRequestError("invalid_override", "Action {!r} has an invalid definition; fix its catalog diagnostic before selecting it.".format(name))
             available = self._catalog.list_actions(name=name)
             if requested_selector is not None:
                 variants = [summary for summary in available if summary.selector == requested_selector]
@@ -77,7 +79,7 @@ class StandaloneLauncher:
             variants = self._catalog.list_actions()
             if language is not None:
                 variants = [summary for summary in variants if summary.language == language]
-        payload = {"variants": [summary.to_dict() for summary in variants]}
+        payload = {"variants": [summary.to_dict() for summary in variants], "blocked_actions": self._catalog.blocked_action_names()}
         return api.response_payload(self._catalog, result=payload)
 
     @_attach_catalog_diagnostics

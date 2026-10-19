@@ -265,7 +265,7 @@ The API builds data only; it never starts Codex. A caller can inspect `invocatio
 ### Preferred standalone facade
 
 - `load_standalone_launcher(cwd, env=None)` performs conventional discovery and returns one `StandaloneLauncher` that owns the loaded catalog. The optional environment mapping supplies the exact environment used for home resolution and bounded Git discovery without mutating process globals; missing `HOME` never falls back to the host process.
-- `StandaloneLauncher.list_actions(action=None, language=None)` applies standalone filtering and returns the complete JSON-ready variants and diagnostics payload.
+- `StandaloneLauncher.list_actions(action=None, language=None)` applies standalone filtering and returns JSON-ready variants, blocked action names, and diagnostics. A bare blocked action or blocked strict selector raises `invalid_override`; an explicitly selected valid sibling remains available.
 - `StandaloneLauncher.show_action(action, language=None)` deterministically selects an action and returns its complete JSON-ready configuration, including the generated immutable configuration for built-in help.
 - `StandaloneLauncher.write_action_catalogue(output=None)` safely writes the stable Markdown catalogue and returns its absolute path, changed status, action count, variant count, and diagnostics.
 - `StandaloneLauncher.prepare_launch(action, language=None, variable_bindings=None, qualification=None)` validates selection and `Name=VALUE` bindings, renders the action, and returns an `ActionLaunchSpec`.
