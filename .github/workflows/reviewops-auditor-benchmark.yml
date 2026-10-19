@@ -1,29 +1,10 @@
 name: ReviewOps Auditor + Benchmark
 
 on:
+  # Required checks must also run for documentation and governance changes.
   pull_request:
-    paths:
-      - ".github/workflows/reviewops-auditor-benchmark.yml"
-      - ".agents/plugins/marketplace.json"
-      - "package.json"
-      - "README.md"
-      - "docs/reviewops-auditor-benchmark-implementation-plan.md"
-      - "plugins/reviewops-auditor-benchmark/**"
-      - "scripts/*reviewops*"
-      - "scripts/validate-marketplace.mjs"
-      - "tests/reviewops-auditor-benchmark/**"
   push:
     branches: [main]
-    paths:
-      - ".github/workflows/reviewops-auditor-benchmark.yml"
-      - ".agents/plugins/marketplace.json"
-      - "package.json"
-      - "README.md"
-      - "docs/reviewops-auditor-benchmark-implementation-plan.md"
-      - "plugins/reviewops-auditor-benchmark/**"
-      - "scripts/*reviewops*"
-      - "scripts/validate-marketplace.mjs"
-      - "tests/reviewops-auditor-benchmark/**"
   workflow_dispatch:
 
 permissions:

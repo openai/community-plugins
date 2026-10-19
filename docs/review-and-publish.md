@@ -13,6 +13,12 @@ and evidence all agree.
 - Check that plugin docs tell a cold-started Codex task what to do first, what
   inputs are safe, what it must never do, and how to stop when prerequisites are
   missing.
+- Inspect code, skills, hooks, and setup commands for execution behavior and
+  permissions, including dependency installation and update behavior.
+- Identify files read or written, off-machine destinations, and the data sent
+  to each destination. Check these against the declared capabilities and docs.
+- Review dependency provenance, credential access, secret storage and redaction,
+  and safe failure behavior. Review changes to these boundaries explicitly.
 - Scan manifests, docs, fixtures, source archives, and media for secrets,
   personal paths, customer identifiers, private transcripts, and unpublished
   customer data.
@@ -89,8 +95,14 @@ Automation recipe just to make a setup or test result appear complete.
 ## Publish checklist
 
 1. Review the complete diff, source receipts, media, and test results.
-2. Confirm the GitHub Actions workflow covers the changed package paths.
-3. Merge through the repository's normal review process.
+2. Confirm the GitHub Actions workflows cover the changed package paths and
+   that all required test and security checks pass on the changes being merged.
+3. Verify the applicable CLA and obtain approval of the latest changes from a
+   CDE maintainer listed in `CODEOWNERS`. Merge through a pull request under the
+   [maintainer policy](maintainer-guide.md). Missing CLA integration or required
+   checks block merge until configured and verified. For the one-time CLA setup,
+   follow the [reviewed bootstrap sequence](maintainer-guide.md#ci-and-cla-configuration)
+   and keep external contribution merges blocked until enforcement is verified.
 4. From a clean checkout of `main`, install the GitHub-backed marketplace:
 
    ```sh
@@ -101,5 +113,5 @@ Automation recipe just to make a setup or test result appear complete.
 5. Start a new Codex task and run the plugin's setup skill before sharing the
    release.
 
-Use branch protection and reviewer ownership as the catalog grows. This guide
-describes verification; it does not bypass normal review or release approval.
+Publishing here and inclusion in OpenAI's official Plugins Directory are
+separate reviews. This checklist does not replace required release approvals.

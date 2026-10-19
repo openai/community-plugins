@@ -1,0 +1,10 @@
+# Current CDE maintainers; keep account eligibility verified through the
+# organization's access-review process. All files, including this file and
+# workflow changes, require maintainer review through branch protection.
+* @tonyloehr @harshpatel-oai @sagar-vemuri-oai
+
+# Keep these sensitive paths explicit when introducing narrower ownership.
+/.github/ @tonyloehr @harshpatel-oai @sagar-vemuri-oai
+/CLA.md @tonyloehr @harshpatel-oai @sagar-vemuri-oai
+/SECURITY.md @tonyloehr @harshpatel-oai @sagar-vemuri-oai
+/docs/maintainer-guide.md @tonyloehr @harshpatel-oai @sagar-vemuri-oai

@@ -4,8 +4,13 @@ A public, Git-backed marketplace of Codex plugins that developers, prospects,
 and enterprise teams can inspect before they install. Each plugin is packaged
 with its manifest, setup guide, tests, and license or third-party notices.
 
-This repository is a community distribution source for local Codex, not an
-automatic listing in OpenAI's universal Plugins Directory. See
+The CDE team stewards this collection of public plugins for enterprise use
+cases. CDE maintainers review contributions and provide support through
+repository issues on a best-effort basis; this
+repository does not provide an enterprise support commitment or service-level
+agreement.
+
+Inclusion in OpenAI's official Plugins Directory requires a separate review. See
 [OpenAI's plugin packaging docs](https://developers.openai.com/plugins/build/plugins)
 for the distinction between public directory publishing and repo marketplaces.
 
@@ -250,3 +255,8 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) to add or update a plugin,
 [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for participation expectations. The
 repository is Apache-2.0 licensed; individual plugins may carry their own
 license and third-party notices.
+
+External contributions use pull requests from forks. CDE code owners review
+the latest changes, and contributions must satisfy the CLA, test, and security
+requirements before merging. Maintainers follow the
+[repository access and merge policy](docs/maintainer-guide.md).

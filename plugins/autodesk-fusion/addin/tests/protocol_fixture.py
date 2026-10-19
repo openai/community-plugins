@@ -48,7 +48,11 @@ try:
             key = events.get(timeout=0.05)
         except queue.Empty:
             continue
+        prior_calls = len(calls)
         bridge.dispatch_on_main_thread(key)
+        if len(calls) > prior_calls:
+            # The bridge has published its retained result before this signal.
+            print(json.dumps({"completedRequestId": calls[-1], "calls": len(calls)}), flush=True)
 finally:
     bridge.stop()
     print(json.dumps({"stopped": True, "calls": len(calls)}), flush=True)

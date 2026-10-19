@@ -72,10 +72,16 @@ separately from that hosted job.
 
 ## Pull requests
 
+External contributors should fork the repository and open a pull request from
+their fork. Direct write access is reserved for verified OpenAI full-time
+employees who maintain the project.
+
 Keep pull requests focused. Describe:
 
 - what the plugin does and who it is for;
-- what capabilities, network access, files, or authentication it needs;
+- what commands or code it executes, which files it reads or writes, and what
+  data it sends off the machine and to which destinations;
+- dependency changes, authentication, and how secrets are stored and redacted;
 - how a reviewer can reproduce the happy path and a safe failure path;
 - the tests you ran and any intentionally skipped gates;
 - license or third-party-notice changes.
@@ -83,3 +89,20 @@ Keep pull requests focused. Describe:
 Use the [review and publish checklist](docs/review-and-publish.md) before asking
 for review. New plugins should include their own validation coverage and update
 the marketplace-wide checks when they introduce a new package shape.
+
+Before merging, a CDE maintainer listed in `CODEOWNERS` must approve the latest
+changes, the applicable OpenAI Contributor License Agreement (CLA) must be
+verified, and all required test and security checks must pass. New changes
+require renewed code-owner review. Maintainers must confirm the CLA integration
+is configured; a missing check is not evidence of a signed CLA. See the
+[maintainer guide](docs/maintainer-guide.md) for the required repository controls.
+
+Read [the Community Plugins CLA](CLA.md). When the CLA Assistant asks, sign by
+posting exactly `I have read the CLA Document and I hereby sign the CLA` in your
+pull request. Each contributor must sign for themselves; maintainers must also
+verify coauthor attribution and any third-party contributions. Ask a maintainer
+to coordinate with Legal if your employer requires a corporate CLA.
+
+Report suspected vulnerabilities using the private route in
+[SECURITY.md](SECURITY.md), rather than including exploit details in a public
+issue or pull request.

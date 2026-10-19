@@ -1,0 +1,85 @@
+name: CLA Assistant
+
+on:
+  pull_request_target:
+    types: [opened, reopened, synchronize, closed]
+  issue_comment:
+    types: [created]
+
+permissions: {}
+
+jobs:
+  cla:
+    # Forks must not collect signatures on behalf of the canonical project.
+    if: >-
+      (github.repository == 'tonyloehr/community-plugins' ||
+       github.repository == 'openai/community-plugins') &&
+      ((github.event_name == 'pull_request_target' &&
+        (github.event.action != 'closed' || github.event.pull_request.merged == true)) ||
+       (github.event_name == 'issue_comment' && github.event.issue.pull_request &&
+        (github.event.comment.body == 'recheck' ||
+         github.event.comment.body == 'I have read the CLA Document and I hereby sign the CLA')))
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      actions: write
+      contents: write
+      pull-requests: write
+    steps:
+      # This privileged workflow reads GitHub metadata only. Never check out or
+      # execute contributor-controlled files here.
+      - name: Verify CLA prerequisites
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          PR_NUMBER: ${{ github.event.pull_request.number || github.event.issue.number }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # Bootstrap the signatures branch with {"signedContributors":[]}.
+          # A missing agreement or signature registry must block the CLA check.
+          gh api "repos/$GH_REPO/contents/CLA.md?ref=main" \
+            | jq -e '.type == "file" and .size > 0' > /dev/null
+          gh api "repos/$GH_REPO/contents/signatures/cla.json?ref=cla-signatures" \
+            -H 'Accept: application/vnd.github.raw+json' \
+            | jq -e 'type == "object" and (.signedContributors | type == "array")' > /dev/null
+
+          # The pinned assistant inspects only the first 100 primary authors.
+          # Keep larger PRs from silently bypassing contributor verification.
+          pr_metadata=$(gh api "repos/$GH_REPO/pulls/$PR_NUMBER")
+          commit_count=$(jq -r '.commits' <<< "$pr_metadata")
+          if ! [[ "$commit_count" =~ ^[0-9]+$ ]] || (( commit_count < 1 || commit_count > 100 )); then
+            echo '::error::CLA verification supports PRs with 1–100 commits. Split this PR before requesting review.'
+            exit 1
+          fi
+
+          # Do not let an unmapped author inherit a committer's CLA signature.
+          pr_commits=$(gh api "repos/$GH_REPO/pulls/$PR_NUMBER/commits?per_page=100")
+          if ! jq -e --argjson expected_count "$commit_count" \
+            'type == "array" and length == $expected_count and all(.[]; .author != null)' \
+            <<< "$pr_commits" > /dev/null; then
+            echo '::error::Every commit author must be linked to a GitHub account before CLA verification.'
+            exit 1
+          fi
+
+          # Git author emails can be forged. Ensure the authenticated PR opener
+          # is also checked by the assistant, which only examines commit authors.
+          pr_author_id=$(jq -er '.user.id | select(type == "number" and . > 0)' <<< "$pr_metadata")
+          if ! jq -e --argjson opener_id "$pr_author_id" \
+            'any(.[]; .author.id == $opener_id)' <<< "$pr_commits" > /dev/null; then
+            echo '::error::The PR opener must have an authored commit linked to their GitHub account so their CLA signature is verified.'
+            exit 1
+          fi
+
+      - name: Check contributor signatures
+        uses: contributor-assistant/github-action@ca4a40a7d1004f18d9960b404b97e5f30a505a08 # v2.6.1; used by openai/codex
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          path-to-document: https://github.com/${{ github.repository }}/blob/main/CLA.md
+          path-to-signatures: signatures/cla.json
+          branch: cla-signatures
+          allowlist: dependabot[bot],github-actions[bot]
+          custom-pr-sign-comment: I have read the CLA Document and I hereby sign the CLA
+          lock-pullrequest-aftermerge: true

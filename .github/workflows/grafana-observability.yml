@@ -1,31 +1,10 @@
 name: Grafana Observability
 
 on:
+  # Required checks must also run for documentation and governance changes.
   pull_request:
-    paths:
-      - ".github/workflows/grafana-observability.yml"
-      - ".agents/plugins/marketplace.json"
-      - "package.json"
-      - "README.md"
-      - "docs/**"
-      - "plugins/grafana-observability/**"
-      - "scripts/*grafana*"
-      - "scripts/validate-marketplace.mjs"
-      - "tests/grafana-observability/**"
-      - "vendor/grafana-observability-source/**"
   push:
     branches: [main]
-    paths:
-      - ".github/workflows/grafana-observability.yml"
-      - ".agents/plugins/marketplace.json"
-      - "package.json"
-      - "README.md"
-      - "docs/**"
-      - "plugins/grafana-observability/**"
-      - "scripts/*grafana*"
-      - "scripts/validate-marketplace.mjs"
-      - "tests/grafana-observability/**"
-      - "vendor/grafana-observability-source/**"
   workflow_dispatch:
     inputs:
       grafana_major:

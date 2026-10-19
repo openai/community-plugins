@@ -40,7 +40,7 @@
     "addin/CodexFusionInterop/CodexFusionInterop.py": "4acdb768cd2d56dee12a71437a71fe4eee44785a32b7973e462ab03d9efaecb1",
     "addin/CodexFusionInterop/private_storage.py": "4484fdda7987a92f9472a591299d2ed96b48e3752614b731634239817612310c",
     "addin/README.md": "88ce25e84c383ebae77efa048557a3e02cbb38773739f5f993f9bc259efc2f6d",
-    "addin/tests/protocol_fixture.py": "5ba0e3bc5fe74be7fdbab769210eb6ea1ce969683b257593faffdd8b75731244",
+    "addin/tests/protocol_fixture.py": "c0e7511f67c820c6777640e49e33020b89ce1cbc13f0ef335c16cd05a542fb8a",
     "addin/tests/test_bridge.py": "544dfc8e64319d6240756beb0beb2f5325b9bf25537e79f3977590fc45358d62",
     "recipes/parameterized-plate/main.ts": "7dc3198fb638d01289f8b5ec29e3f7392dbeaaf203111d56a8379c19717d44f6",
     "recipes/parameterized-plate/manifest.template.json": "c10576e6e643f135a4f691b3739c9a3c6d302a6c07acc421029ee57db7714f2a",

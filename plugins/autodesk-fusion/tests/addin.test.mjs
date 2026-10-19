@@ -39,7 +39,7 @@ async function fixture(t, environment = {}) {
     while ((end = stdout.indexOf("\n")) !== -1) {
       const line = stdout.slice(0, end);
       stdout = stdout.slice(end + 1);
-      try { const parsed = JSON.parse(line); messages.push(parsed); if (parsed.url) readyResolve(parsed); }
+      try { const parsed = JSON.parse(line); messages.push(parsed); child.emit("fixture-message", parsed); if (parsed.url) readyResolve(parsed); }
       catch { readyReject(new Error("Add-in fixture emitted invalid startup data")); }
     }
   });
@@ -58,6 +58,35 @@ async function fixture(t, environment = {}) {
   const info = await ready;
   clearTimeout(startupTimer);
   return { ...info, tokenFile, directory, child, messages };
+}
+
+function waitForFixtureCompletion(running, requestId) {
+  const completed = running.messages.find(message => message.completedRequestId === requestId);
+  if (completed) return Promise.resolve(completed);
+  assert.equal(running.child.exitCode, null, "Add-in fixture exited before completing the request");
+  assert.equal(running.child.signalCode, null, "Add-in fixture stopped before completing the request");
+  return new Promise((resolve, reject) => {
+    const cleanup = () => {
+      clearTimeout(timer);
+      running.child.off("fixture-message", onMessage);
+      running.child.off("exit", onExit);
+    };
+    const onMessage = message => {
+      if (message.completedRequestId !== requestId) return;
+      cleanup();
+      resolve(message);
+    };
+    const onExit = () => {
+      cleanup();
+      reject(new Error(`Add-in fixture exited before completing ${requestId}`));
+    };
+    const timer = setTimeout(() => {
+      cleanup();
+      reject(new Error(`Add-in fixture did not complete ${requestId} within 5 seconds`));
+    }, 5000);
+    running.child.on("fixture-message", onMessage);
+    running.child.once("exit", onExit);
+  });
 }
 
 function provider(t, running, overrides = {}) {
@@ -266,14 +295,21 @@ test("queued add-in deadline expires with no late desktop execution", async t =>
 
 test("running add-in timeout stays unknown and the retained request reconciles without re-execution", async t => {
   const running = await fixture(t, { FUSION_ADDIN_FIXTURE_TIMEOUT: "0.1" });
-  const client = provider(t, running);
+  let posts = 0;
+  const client = provider(t, running, { fetchImpl: async (input, init) => { if (init.method === "POST") posts++; return addinLocalFetch(input, init); } });
   const request = desktopRequest("slow-request", { delay: 0.3 });
   const result = await client.dispatch(request);
   assert.equal(result.error.code, "OUTCOME_UNKNOWN");
-  await new Promise(resolve => setTimeout(resolve, 250));
+  assert.equal(result.error.outcome, "unknown");
+  assert.equal(posts, 1);
+  // Observe cached completion through the fixture, without retrying the mutation
+  // or assuming Python and Node will be scheduled within a fixed sleep window.
+  const completed = await waitForFixtureCompletion(running, request.request_id);
+  assert.equal(completed.calls, 1);
   const reconciled = await client.dispatch(request);
   assert.equal(reconciled.ok, true);
   assert.equal(reconciled.data.calls, 1);
+  assert.equal(posts, 2, "Only the original request and explicit reconciliation may be sent");
 });
 
 test("client deadline and close never automatically retry an add-in mutation", async t => {

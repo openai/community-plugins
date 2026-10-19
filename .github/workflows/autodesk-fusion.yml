@@ -1,35 +1,10 @@
 name: Autodesk Fusion
 
 on:
+  # Required checks must also run for documentation and governance changes.
   pull_request:
-    paths:
-      - ".github/workflows/autodesk-fusion.yml"
-      - ".gitattributes"
-      - "AGENTS.md"
-      - ".agents/plugins/marketplace.json"
-      - "package.json"
-      - "README.md"
-      - "plugins/autodesk-fusion/**"
-      - "tests/autodesk-fusion/**"
-      - "scripts/validate-autodesk-fusion.mjs"
-      - "scripts/validate-marketplace.mjs"
-      - "scripts/run-marketplace-tests.mjs"
-      - "docs/autodesk-fusion*"
   push:
     branches: [main]
-    paths:
-      - ".github/workflows/autodesk-fusion.yml"
-      - ".gitattributes"
-      - "AGENTS.md"
-      - ".agents/plugins/marketplace.json"
-      - "package.json"
-      - "README.md"
-      - "plugins/autodesk-fusion/**"
-      - "tests/autodesk-fusion/**"
-      - "scripts/validate-autodesk-fusion.mjs"
-      - "scripts/validate-marketplace.mjs"
-      - "scripts/run-marketplace-tests.mjs"
-      - "docs/autodesk-fusion*"
   workflow_dispatch:
 
 permissions:
