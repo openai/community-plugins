@@ -14,7 +14,7 @@ export const original = Object.freeze({
   LICENSE: 'a36626d945a25e7f2bcf1054b7798b22a2528b48bc5251d3fab34f36e56eeba2',
   'README.md': 'c45b4b7a664f5f31c0997d0cd2b4d53f655cb055c8e029baf93a7a62175bc05f',
 });
-export const communityReadme = { bytes: 2404, sha256: 'f435b3607d563460fb427e14b6b0c217457a2bab94fb3b6614a6f918b453692e' };
+export const communityReadme = { bytes: 4826, sha256: 'c1fe089fb0c4a248198ae132eb3dbd651f863b8496681dbfde945261c3de2836' };
 export const json = filename => JSON.parse(readFileSync(filename, 'utf8'));
 export const hash = raw => createHash('sha256').update(raw).digest('hex');
 export function testEnvironment(extra = {}) {
