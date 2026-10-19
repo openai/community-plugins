@@ -30,7 +30,7 @@ jobs:
         with:
           python-version: "3.12"
       - name: Cold copied package / Node 22.19.0
-        run: node --test --test-concurrency=1 tests/la-review/integration/packaged.test.mjs
+        run: node --test --test-concurrency=1 tests/la-review/integration/*.test.mjs
       - name: Full Loupe qualification / Node 22.19.0
         run: npm run test:la-review
 

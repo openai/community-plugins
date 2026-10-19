@@ -31,7 +31,7 @@ test("distribution has only regular files and no generated or secret-bearing art
   }
 });
 
-test("package declares local skill behavior without MCP, apps, or hosted authentication", () => {
+test("package contains its local skill and public policy routes without hosted components", () => {
   const manifest = JSON.parse(
     fs.readFileSync(path.join(pluginDir, ".codex-plugin", "plugin.json"), "utf8"),
   );
@@ -39,7 +39,9 @@ test("package declares local skill behavior without MCP, apps, or hosted authent
 
   assert.equal(manifest.mcpServers, undefined);
   assert.equal(manifest.apps, undefined);
-  assert.match(readme, /Invoke `\$la-review:loupe`/);
-  assert.match(readme, /no hosted service, authentication flow, telemetry collector, or external data store/i);
-  assert.match(readme, /user's local tools, provider accounts, Codex session, and granted permissions/i);
+  assert.equal(manifest.skills, "./skills/");
+  assert.ok(fs.statSync(path.join(pluginDir, "skills", "loupe", "SKILL.md")).isFile());
+  for (const policy of ["PRIVACY.md", "TERMS.md", "SECURITY.md"]) {
+    assert.ok(readme.includes(policy), `missing ${policy} link`);
+  }
 });

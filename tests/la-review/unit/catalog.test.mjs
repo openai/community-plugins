@@ -24,7 +24,7 @@ test("manifest and marketplace agree on the public package", () => {
   assert.equal(entry.category, "Developer Tools");
 
   assert.equal(manifest.name, pluginName);
-  assert.equal(manifest.version, "0.2.4");
+  assert.equal(manifest.version, "0.2.6");
   assert.equal(manifest.skills, "./skills/");
   assert.equal(manifest.interface.category, "Developer Tools");
   assert.equal(manifest.mcpServers, undefined);
