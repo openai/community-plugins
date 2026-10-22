@@ -18928,7 +18928,7 @@ function declaredDialect(schema, remedy) {
   throw new Error(`JSON Schema declares an unsupported dialect ("$schema": "${schema.$schema.slice(0, 200)}"). The default validator supports JSON Schema 2020-12, 2019-09, draft-07, and draft-06; ${remedy}`);
 }
 
-// node_modules/@modelcontextprotocol/core/dist/auth-CUe6YdwF.mjs
+// node_modules/@modelcontextprotocol/core/dist/auth-BNDyLTqp.mjs
 var LATEST_PROTOCOL_VERSION = "2025-11-25";
 var SUPPORTED_PROTOCOL_VERSIONS = [
   LATEST_PROTOCOL_VERSION,
@@ -19765,7 +19765,8 @@ var OAuthMetadataSchema = looseObject({
   introspection_endpoint_auth_signing_alg_values_supported: array(string2()).optional(),
   code_challenge_methods_supported: array(string2()).optional(),
   client_id_metadata_document_supported: boolean2().optional(),
-  authorization_response_iss_parameter_supported: boolean2().optional().catch(void 0)
+  authorization_response_iss_parameter_supported: boolean2().optional().catch(void 0),
+  dpop_signing_alg_values_supported: array(string2()).optional()
 });
 var OpenIdProviderMetadataSchema = looseObject({
   issuer: string2(),
@@ -19816,7 +19817,8 @@ var OAuthTokensSchema = object({
   token_type: string2(),
   expires_in: coerce_exports.number().optional(),
   scope: string2().optional(),
-  refresh_token: string2().optional()
+  refresh_token: string2().optional(),
+  issuer: string2().optional().catch(void 0)
 }).strip();
 var IdJagTokenExchangeResponseSchema = object({
   issued_token_type: literal("urn:ietf:params:oauth:token-type:id-jag"),
@@ -19854,7 +19856,8 @@ var OAuthClientInformationSchema = object({
   client_id: string2(),
   client_secret: string2().optional(),
   client_id_issued_at: number2().optional(),
-  client_secret_expires_at: number2().optional()
+  client_secret_expires_at: number2().optional(),
+  issuer: string2().optional().catch(void 0)
 }).strip();
 var OAuthClientInformationFullSchema = OAuthClientMetadataSchema.merge(OAuthClientInformationSchema);
 var OAuthClientRegistrationErrorSchema = object({
@@ -19866,7 +19869,7 @@ var OAuthTokenRevocationRequestSchema = object({
   token_type_hint: string2().optional()
 }).strip();
 
-// node_modules/@modelcontextprotocol/client/dist/src-D_zzAWoS.mjs
+// node_modules/@modelcontextprotocol/client/dist/src-WCy6ifGf.mjs
 var BRANDS = /* @__PURE__ */ Symbol.for("mcp.sdk.errorBrands");
 function stampErrorBrands(instance, ctor) {
   const brands = /* @__PURE__ */ new Set();
@@ -19912,6 +19915,8 @@ var OAuthErrorCode = /* @__PURE__ */ (function(OAuthErrorCode$1) {
   OAuthErrorCode$1["InvalidRedirectUri"] = "invalid_redirect_uri";
   OAuthErrorCode$1["InsufficientScope"] = "insufficient_scope";
   OAuthErrorCode$1["InvalidTarget"] = "invalid_target";
+  OAuthErrorCode$1["InvalidDpopProof"] = "invalid_dpop_proof";
+  OAuthErrorCode$1["UseDpopNonce"] = "use_dpop_nonce";
   return OAuthErrorCode$1;
 })({});
 var OAuthError = class OAuthError2 extends Error {
@@ -20001,8 +20006,18 @@ var SdkError = class extends Error {
     if (typeof this !== "function") throw new TypeError("isInstance must be called on the class (e.g. `SdkError.isInstance(value)`); for callbacks use `v => SdkError.isInstance(v)`");
     return brandedHasInstance(this, value);
   }
-  constructor(code, message, data) {
-    super(message);
+  /**
+  * @param code - Stable string code identifying the failure ({@linkcode SdkErrorCode}).
+  * @param message - Human-readable description.
+  * @param data - Optional structured payload (for example the HTTP status carried by
+  * {@linkcode SdkHttpError}). Opaque to the SDK: a `cause` key inside `data` is not
+  * promoted to `Error.cause`.
+  * @param options - Standard `ErrorOptions`, forwarded to `Error`. Pass the underlying
+  * failure as `{ cause }` so it is reachable through the `Error.cause` chain that
+  * loggers and error trackers walk.
+  */
+  constructor(code, message, data, options) {
+    super(message, options);
     this.code = code;
     this.data = data;
     this.name = "SdkError";
@@ -20013,8 +20028,11 @@ var SdkHttpError = class extends SdkError {
   static {
     Object.defineProperty(this, "mcpBrand", { value: "mcp.SdkHttpError" });
   }
-  constructor(code, message, data) {
-    super(code, message, data);
+  /**
+  * @param options - Standard `ErrorOptions`, forwarded to `Error` (see {@linkcode SdkError}).
+  */
+  constructor(code, message, data, options) {
+    super(code, message, data, options);
     this.name = "SdkHttpError";
   }
   get status() {
@@ -20028,6 +20046,12 @@ function resourceUrlFromServerUrl(url2) {
   const resourceURL = typeof url2 === "string" ? new URL(url2) : new URL(url2.href);
   resourceURL.hash = "";
   return resourceURL;
+}
+function withoutIssuer(body) {
+  if (typeof body !== "object" || body === null || Array.isArray(body)) return body;
+  const copy = { ...body };
+  delete copy.issuer;
+  return copy;
 }
 function checkResourceAllowed({ requestedResource, configuredResource }) {
   const requested = typeof requestedResource === "string" ? new URL(requestedResource) : new URL(requestedResource.href);
@@ -21138,7 +21162,7 @@ function getNotificationSchema(method) {
 }
 var rev2025RequestMethods = Object.keys(requestMethodKeys$1);
 var rev2025NotificationMethods = Object.keys(notificationMethodKeys$1);
-function isPlainObject$4(value) {
+function isPlainObject$5(value) {
   return value !== null && typeof value === "object" && !Array.isArray(value);
 }
 function triState$1(schema, raw) {
@@ -21161,7 +21185,7 @@ var NOT_IN_ERA$1 = {
   reason: "not-in-era"
 };
 function toolNeedsLegacyWrap(t) {
-  return isPlainObject$4(t) && isPlainObject$4(t["outputSchema"]) && isNonObjectJsonSchemaRoot(t["outputSchema"]);
+  return isPlainObject$5(t) && isPlainObject$5(t["outputSchema"]) && isNonObjectJsonSchemaRoot(t["outputSchema"]);
 }
 function toNeutralResult(value) {
   return value;
@@ -21195,7 +21219,7 @@ var rev2025Codec = {
     };
   },
   decodeResult(_method, raw) {
-    if (isPlainObject$4(raw) && "resultType" in raw) {
+    if (isPlainObject$5(raw) && "resultType" in raw) {
       const stripped = { ...raw };
       delete stripped["resultType"];
       return {
@@ -22092,7 +22116,8 @@ function build() {
     ListResourceTemplatesResultResponseSchema: wireResultResponse(ListResourceTemplatesResultSchema$1),
     ReadResourceResultResponseSchema: wireResultResponse(union([ReadResourceResultSchema$1, InputRequiredResultSchema])),
     CompleteResultResponseSchema: wireResultResponse(CompleteResultSchema$1),
-    DiscoverResultResponseSchema: wireResultResponse(DiscoverResultSchema$1)
+    DiscoverResultResponseSchema: wireResultResponse(DiscoverResultSchema$1),
+    SubscriptionsListenResultResponseSchema: wireResultResponse(SubscriptionsListenResultSchema$1)
   };
 }
 var memo;
@@ -22274,7 +22299,7 @@ function fillCacheFields(method, result) {
   delete filled[RESULT_CACHE_HINT_FALLBACK];
   return filled;
 }
-function isPlainObject$3(value) {
+function isPlainObject$4(value) {
   return value !== null && typeof value === "object" && !Array.isArray(value);
 }
 function stampServerInfoMeta(result, serverInfo) {
@@ -22284,7 +22309,7 @@ function stampServerInfoMeta(result, serverInfo) {
     ...result,
     _meta: { [SERVER_INFO_META_KEY]: serverInfo }
   };
-  if (!isPlainObject$3(meta3)) return result;
+  if (!isPlainObject$4(meta3)) return result;
   if (meta3[SERVER_INFO_META_KEY] !== void 0) return result;
   return {
     ...result,
@@ -22388,7 +22413,7 @@ function getNotificationSchema2026(method) {
 }
 var rev2026RequestMethods = Object.keys(requestMethodKeys);
 var rev2026NotificationMethods = Object.keys(notificationMethodKeys);
-function isPlainObject$2(value) {
+function isPlainObject$3(value) {
   return value !== null && typeof value === "object" && !Array.isArray(value);
 }
 function triState(schema, raw) {
@@ -22422,14 +22447,14 @@ function enforceDeletedFields(method, result) {
     return next;
   };
   const tools = result.tools;
-  if (method === "tools/list" && Array.isArray(tools) && tools.some((tool) => isPlainObject$2(tool) && "execution" in tool)) copy().tools = tools.map((tool) => {
-    if (!isPlainObject$2(tool) || !("execution" in tool)) return tool;
+  if (method === "tools/list" && Array.isArray(tools) && tools.some((tool) => isPlainObject$3(tool) && "execution" in tool)) copy().tools = tools.map((tool) => {
+    if (!isPlainObject$3(tool) || !("execution" in tool)) return tool;
     const rest = { ...tool };
     delete rest["execution"];
     return rest;
   });
   const capabilities = result.capabilities;
-  if (isPlainObject$2(capabilities) && "tasks" in capabilities) {
+  if (isPlainObject$3(capabilities) && "tasks" in capabilities) {
     const rest = { ...capabilities };
     delete rest["tasks"];
     copy().capabilities = rest;
@@ -22476,7 +22501,7 @@ var rev2026Codec = {
   projectCallToolResult: (result) => appendTextFallbackForNonObject(result),
   inputRequestSchema: getInputRequestSchema2026,
   decodeResult(method, raw) {
-    if (!isPlainObject$2(raw)) return {
+    if (!isPlainObject$3(raw)) return {
       kind: "invalid",
       error: new SdkError(SdkErrorCode.InvalidResult, `Invalid result for ${method}: not an object`, { method })
     };
@@ -22497,8 +22522,10 @@ var rev2026Codec = {
     };
     if (rawResultType === "input_required") {
       const rawInputRequests = raw["inputRequests"];
-      const inputRequests = isPlainObject$2(rawInputRequests) ? rawInputRequests : {};
+      const inputRequests = isPlainObject$3(rawInputRequests) ? rawInputRequests : {};
       const requestState = raw["requestState"];
+      const metaParse = raw["_meta"] === void 0 ? void 0 : buildSchemas2026().ResultMetaSchema.safeParse(raw["_meta"]);
+      const meta3 = metaParse?.success ? metaParse.data : void 0;
       if (Object.keys(inputRequests).length === 0 && typeof requestState !== "string") return {
         kind: "invalid",
         error: new SdkError(SdkErrorCode.InvalidResult, `Invalid result for ${method}: input_required carries neither inputRequests nor requestState (every input_required result must include at least one of the two)`, {
@@ -22509,7 +22536,8 @@ var rev2026Codec = {
       return {
         kind: "input_required",
         inputRequests,
-        ...typeof requestState === "string" && { requestState }
+        ...typeof requestState === "string" && { requestState },
+        ...meta3 !== void 0 && { _meta: meta3 }
       };
     }
     if (rawResultType !== "complete") return {
@@ -22575,6 +22603,9 @@ function isSpecRequestMethod(method) {
 }
 function isSpecNotificationMethod(method) {
   return ALL_CODECS.some((codec2) => codec2.hasNotificationMethod(method));
+}
+function isExtensionReusedRequestMethod(method) {
+  return method === "tasks/get" || method === "tasks/cancel";
 }
 var ALL_CODECS = [rev2025Codec, rev2026Codec];
 var schemas_exports3 = /* @__PURE__ */ __exportAll({
@@ -22947,7 +22978,7 @@ var INBOUND_VALIDATION_LADDER = [
     evaluatedAt: "pre-dispatch",
     codes: [HEADER_MISMATCH_ERROR_CODE],
     conformance: ["http-header-validation"],
-    rationale: "SEP-2243 standard `Mcp-Method` / `Mcp-Name` headers \u2014 presence, sentinel decoding, and `Mcp-Name` \u2194 body cross-check \u2014 are validated by the HTTP entry on a modern-classified request after the supported-revision gate and before dispatch. The classifier\u2019s own header-mismatch cells (protocol-version, `Mcp-Method` mismatch) stay on the edge `era-classification` rung; this rung carries the entry-layer presence/`Mcp-Name` half. Evaluated before the capability gate, the factory call, and the `Mcp-Param-*` rung so a request that fails several rungs is answered by the standard-header rung first. The documented order (after method-registry 5 and request-params 6) is NOT the observed precedence: serveModern evaluates this rung immediately after the supported-revision gate, so a request that also fails a dispatch rung is answered here before the dispatch rungs (5\u20136) are consulted."
+    rationale: "SEP-2243 standard `MCP-Protocol-Version` / `Mcp-Method` / `Mcp-Name` headers \u2014 presence, sentinel decoding, and `Mcp-Name` \u2194 body cross-check \u2014 are validated by the HTTP entry on a modern-classified request after the supported-revision gate and before dispatch. The spec requires `MCP-Protocol-Version` and `Mcp-Method` on every modern *request* POST (`Mcp-Name` only for the methods that mirror `params.name` / `params.uri` / `params.taskId`, see `MCP_NAME_HEADER_SOURCE`) and names them in that order, so a request missing several is answered by the earliest. Notification POSTs are exempt: the presence half runs on requests only, so a modern-enveloped notification is dispatched even with no standard headers at all. The classifier\u2019s own header-mismatch cells (protocol-version, `Mcp-Method` mismatch) stay on the edge `era-classification` rung; this rung carries the entry-layer presence/`Mcp-Name` half \u2014 including the missing `MCP-Protocol-Version` cell, which cannot live on the edge rung without breaking body-primary classification. Evaluated before the capability gate, the factory call, and the `Mcp-Param-*` rung so a request that fails several rungs is answered by the standard-header rung first. The documented order (after method-registry 5 and request-params 6) is NOT the observed precedence: serveModern evaluates this rung immediately after the supported-revision gate, so a request that also fails a dispatch rung is answered here before the dispatch rungs (5\u20136) are consulted."
   },
   {
     rung: "client-capabilities",
@@ -22974,6 +23005,26 @@ var LADDER_ERROR_HTTP_STATUS = {
   [ProtocolErrorCode.MissingRequiredClientCapability]: 400,
   [HEADER_MISMATCH_ERROR_CODE]: 400
 };
+var MCP_NAME_HEADER_SOURCE = {
+  "tools/call": "name",
+  "prompts/get": "name",
+  "resources/read": "uri",
+  "tasks/get": "taskId",
+  "tasks/update": "taskId",
+  "tasks/cancel": "taskId"
+};
+function mcpNameSource(method, params) {
+  const field = Object.hasOwn(MCP_NAME_HEADER_SOURCE, method) ? MCP_NAME_HEADER_SOURCE[method] : void 0;
+  if (field === void 0) return;
+  const raw = isPlainObject$2(params) ? params[field] : void 0;
+  return {
+    field,
+    value: typeof raw === "string" ? raw : void 0
+  };
+}
+function isPlainObject$2(value) {
+  return value !== null && typeof value === "object" && !Array.isArray(value);
+}
 function parseSchema(schema, data) {
   return safeParse2(schema, data);
 }
@@ -23594,6 +23645,8 @@ var Protocol = class {
   _transport;
   _requestMessageId = 0;
   _requestHandlers = /* @__PURE__ */ new Map();
+  /** Methods registered with an explicit schema; the era gate in `_onrequest` reads it for the Tasks extension names. */
+  _customSchemaRequestMethods = /* @__PURE__ */ new Set();
   _requestHandlerAbortControllers = /* @__PURE__ */ new Map();
   _notificationHandlers = /* @__PURE__ */ new Map();
   _responseHandlers = /* @__PURE__ */ new Map();
@@ -23730,7 +23783,7 @@ var Protocol = class {
     return this._requestHandlers.get(method);
   }
   async _oncancel(notification) {
-    if (!notification.params.requestId) return;
+    if (notification.params.requestId === void 0) return;
     this._requestHandlerAbortControllers.get(notification.params.requestId)?.abort(notification.params.reason);
   }
   _setupTimeout(messageId, timeout, maxTotalTimeout, onTimeout, resetTimeoutOnProgress = false) {
@@ -23877,7 +23930,7 @@ var Protocol = class {
         return;
       }
     }
-    if (isSpecRequestMethod(request.method) && !codec2.hasRequestMethod(request.method)) {
+    if (isSpecRequestMethod(request.method) && !codec2.hasRequestMethod(request.method) && !(isExtensionReusedRequestMethod(request.method) && this._customSchemaRequestMethods.has(request.method))) {
       sendErrorResponse(ProtocolErrorCode.MethodNotFound, "Method not found");
       return;
     }
@@ -24010,8 +24063,11 @@ var Protocol = class {
   }
   request(request, schemaOrOptions, maybeOptions) {
     const codec2 = this._resolveOutboundCodec(request.method);
+    if (isStandardSchema(schemaOrOptions)) {
+      if (!isExtensionReusedRequestMethod(request.method)) this._assertOutboundRequestInEra(codec2, request.method);
+      return this._requestWithSchemaViaCodec(codec2, request, schemaOrOptions, maybeOptions);
+    }
     this._assertOutboundRequestInEra(codec2, request.method);
-    if (isStandardSchema(schemaOrOptions)) return this._requestWithSchemaViaCodec(codec2, request, schemaOrOptions, maybeOptions);
     const validate = codecResultValidator(codec2, request.method);
     if (validate === void 0) throw new TypeError(`'${request.method}' is not a spec method; pass a result schema as the second argument to request().`);
     return this._requestWithSchemaViaCodec(codec2, request, validate, schemaOrOptions);
@@ -24129,19 +24185,20 @@ var Protocol = class {
       const cancel = (reason) => {
         if (responseReceived) return;
         this._progressHandlers.delete(messageId);
-        if (requestAbort === void 0) this._transport?.send(this._envelopeOutbound({
-          jsonrpc: "2.0",
-          method: "notifications/cancelled",
-          params: {
-            requestId: messageId,
-            reason: String(reason)
-          }
-        }), {
-          relatedRequestId,
-          resumptionToken,
-          onresumptiontoken
-        }).catch((error51) => this._onerror(/* @__PURE__ */ new Error(`Failed to send cancellation: ${error51}`)));
-        else requestAbort.abort();
+        if (requestAbort === void 0) {
+          if (request.method !== "initialize") this._transport?.send(this._envelopeOutbound({
+            jsonrpc: "2.0",
+            method: "notifications/cancelled",
+            params: {
+              requestId: messageId,
+              reason: String(reason)
+            }
+          }), {
+            relatedRequestId,
+            resumptionToken,
+            onresumptiontoken
+          }).catch((error51) => this._onerror(/* @__PURE__ */ new Error(`Failed to send cancellation: ${error51}`)));
+        } else requestAbort.abort();
         reject(reason instanceof SdkError ? reason : new SdkError(SdkErrorCode.RequestTimeout, String(reason)));
       };
       this._responseHandlers.set(messageId, (response) => {
@@ -24203,7 +24260,7 @@ var Protocol = class {
   * Emits a notification, which is a one-way message that does not expect a response.
   */
   async notification(notification, options) {
-    return this._notificationViaCodec(this._resolveOutboundCodec(notification.method), notification, options);
+    return await this._notificationViaCodec(this._resolveOutboundCodec(notification.method), notification, options);
   }
   /**
   * The notification funnel proper, keyed by the resolved era codec —
@@ -24221,7 +24278,7 @@ var Protocol = class {
       jsonrpc: "2.0",
       ...notification
     });
-    if ((this._options?.debouncedNotificationMethods ?? []).includes(notification.method) && !notification.params && !options?.relatedRequestId) {
+    if ((this._options?.debouncedNotificationMethods ?? []).includes(notification.method) && !notification.params && options?.relatedRequestId === void 0) {
       if (this._pendingDebouncedNotifications.has(notification.method)) return;
       this._pendingDebouncedNotifications.add(notification.method);
       Promise.resolve().then(() => {
@@ -24254,6 +24311,8 @@ var Protocol = class {
       return maybeHandler(parsed.data, ctx);
     };
     else throw new TypeError("setRequestHandler: handler is required");
+    if (typeof schemasOrHandler === "function") this._customSchemaRequestMethods.delete(method);
+    else this._customSchemaRequestMethods.add(method);
     this._requestHandlers.set(method, this._wrapHandler(method, stored));
   }
   /**
@@ -24283,6 +24342,7 @@ var Protocol = class {
   */
   removeRequestHandler(method) {
     this._requestHandlers.delete(method);
+    this._customSchemaRequestMethods.delete(method);
   }
   /**
   * Asserts that a request handler has not already been set for the given method, in preparation for a new one being automatically installed.
@@ -24433,7 +24493,8 @@ function manualInputRequiredValue(decoded) {
   return {
     resultType: "input_required",
     inputRequests: decoded.inputRequests,
-    ...decoded.requestState !== void 0 && { requestState: decoded.requestState }
+    ...decoded.requestState !== void 0 && { requestState: decoded.requestState },
+    ...decoded._meta !== void 0 && { _meta: decoded._meta }
   };
 }
 var require_content_type = /* @__PURE__ */ __commonJSMin(((exports) => {
@@ -24511,6 +24572,67 @@ function createFetchWithInit(baseFetch = fetch, baseInit) {
       } : baseInit.headers
     });
   };
+}
+var REDIRECT_STATUSES = /* @__PURE__ */ new Set([
+  301,
+  302,
+  303,
+  307,
+  308
+]);
+var MAX_REDIRECTS = 5;
+function isWithinOrigin(from, to) {
+  if (from.protocol === to.protocol && from.host === to.host) return true;
+  return from.protocol === "http:" && to.protocol === "https:" && from.hostname === to.hostname && !from.port && !to.port;
+}
+function redirectTarget(url2, response) {
+  const location = REDIRECT_STATUSES.has(response.status) ? response.headers?.get("location") : void 0;
+  if (!location) return void 0;
+  try {
+    return new URL(location, url2);
+  } catch {
+    return;
+  }
+}
+var leftToFetch = /* @__PURE__ */ new WeakSet();
+function fetchLeavingRedirects(baseFetch) {
+  const copy = (url2, init) => baseFetch(url2, init);
+  leftToFetch.add(copy);
+  return copy;
+}
+function fetchWithinOrigin(baseFetch) {
+  if (leftToFetch.has(baseFetch)) return baseFetch;
+  return async (url2, init) => {
+    if (init?.redirect === "error" || init?.redirect === "manual") return baseFetch(url2, init);
+    const method = (init?.method ?? "GET").toUpperCase();
+    let current = url2;
+    for (let followed = 0; ; followed++) {
+      const response = await baseFetch(current, {
+        ...init,
+        redirect: "manual"
+      });
+      const target = redirectTarget(current, response);
+      if (!target || followed === MAX_REDIRECTS) return response;
+      const from = new URL(current);
+      const keepsMethod = method === "GET" || response.status === 307 || response.status === 308;
+      const keepsUserinfo = !(target.username || target.password) || target.username === from.username && target.password === from.password;
+      if (!keepsMethod || !keepsUserinfo || !isWithinOrigin(from, target)) return response;
+      await response.text?.().catch(() => {
+      });
+      current = target;
+    }
+  };
+}
+function unfollowedRedirect(url2, response) {
+  if (response.type === "opaqueredirect") return "Redirect not followed: this runtime does not expose where it points";
+  const target = redirectTarget(response.url || url2, response);
+  if (!target) return void 0;
+  target.username = target.password = target.search = target.hash = "";
+  if (target.protocol === "http:" && new URL(response.url || url2).protocol === "https:") {
+    target.protocol = "https:";
+    return `Redirect from https to plain http not followed; try ${target.href} as the endpoint`;
+  }
+  return `Redirect to ${target.href} not followed; use that URL as the endpoint if it is the intended server`;
 }
 function fromJsonSchema(schema, validator) {
   const check2 = validator.getValidator(schema);
@@ -31853,7 +31975,7 @@ var InsecureTokenEndpointError = class extends OAuthClientFlowError {
   /** The token endpoint URL that was rejected. */
   tokenEndpoint;
   constructor(tokenEndpoint) {
-    super(`Refusing to send credentials to non-https token endpoint '${tokenEndpoint}'. OAuth token requests MUST use TLS (localhost / 127.0.0.1 / ::1 are exempt).`);
+    super(`Refusing to send credentials to non-https token endpoint '${tokenEndpoint}'. OAuth token requests MUST use TLS (localhost / *.localhost / 127.0.0.1 / ::1 are exempt).`);
     this.tokenEndpoint = tokenEndpoint;
   }
 };
@@ -31862,7 +31984,7 @@ var AuthorizationServerMismatchError = class extends OAuthClientFlowError {
     Object.defineProperty(this, "mcpBrand", { value: "mcp.AuthorizationServerMismatchError" });
   }
   constructor(recordedIssuer, currentIssuer) {
-    super(`Authorization server changed between redirect and callback (redirected to ${JSON.stringify(recordedIssuer)}, callback resolved ${JSON.stringify(currentIssuer)}); refusing to send authorization_code/code_verifier to a different token endpoint`);
+    super(`Authorization server mismatch: credentials are bound to ${JSON.stringify(recordedIssuer)} but this call resolved ${JSON.stringify(currentIssuer)}; refusing to present them to a different authorization server`);
     this.recordedIssuer = recordedIssuer;
     this.currentIssuer = currentIssuer;
   }
@@ -31885,10 +32007,13 @@ var InsufficientScopeError = class extends OAuthClientFlowError {
   }
 };
 function discardIfIssuerMismatch(stored, issuer, opts) {
-  if (stored === void 0) return void 0;
-  if (stored.issuer === void 0) {
+  if (!stored) return void 0;
+  if (typeof stored.issuer !== "string") {
     if (opts?.canPersistStamp !== false) console.warn("[mcp-sdk] SEP-2352: stored OAuth credential has no 'issuer' stamp (pre-upgrade storage or provider not round-tripping the value). SEP-2352 isolation is inactive for this read; ensure your provider round-trips the issuer field.");
-    return stored;
+    return stored.issuer === void 0 ? stored : {
+      ...stored,
+      issuer: void 0
+    };
   }
   return issuersMatch(stored.issuer, issuer) ? stored : void 0;
 }
@@ -32043,7 +32168,7 @@ function applyPublicAuth(clientId, params) {
   params.set("client_id", clientId);
 }
 function isLoopbackHost(hostname3) {
-  return hostname3 === "localhost" || hostname3 === "127.0.0.1" || hostname3 === "[::1]" || hostname3 === "::1";
+  return hostname3 === "localhost" || hostname3.endsWith(".localhost") || hostname3 === "127.0.0.1" || hostname3 === "[::1]" || hostname3 === "::1";
 }
 function assertSecureTokenEndpoint(tokenEndpoint) {
   const url2 = new URL(String(tokenEndpoint));
@@ -32082,16 +32207,22 @@ async function parseErrorResponse(input2) {
     return new OAuthError(OAuthErrorCode.ServerError, errorMessage);
   }
 }
+function warnCredentialInvalidation(provider, error51, invalidated) {
+  const action = provider.invalidateCredentials === void 0 ? `retrying authorization without discarding the stored ${invalidated} (provider implements no invalidateCredentials())` : `invalidating the stored ${invalidated} and retrying authorization`;
+  console.warn(`[mcp-sdk] OAuth ${JSON.stringify(error51.code)} \u2014 ${action}. Cause: ${JSON.stringify(error51.message)}`);
+}
 async function auth(provider, options) {
   try {
     return await authInternal(provider, options);
   } catch (error51) {
     if (error51 instanceof OAuthError) {
       if (error51.code === OAuthErrorCode.InvalidClient || error51.code === OAuthErrorCode.UnauthorizedClient) {
+        warnCredentialInvalidation(provider, error51, "client credentials and tokens");
         await provider.invalidateCredentials?.("client");
         await provider.invalidateCredentials?.("tokens");
         return await authInternal(provider, options);
-      } else if (error51.code === OAuthErrorCode.InvalidGrant) {
+      } else if (error51.code === OAuthErrorCode.InvalidGrant || error51.code === OAuthErrorCode.InvalidDpopProof) {
+        warnCredentialInvalidation(provider, error51, "tokens");
         await provider.invalidateCredentials?.("tokens");
         return await authInternal(provider, options);
       }
@@ -32159,8 +32290,9 @@ async function authInternal(provider, { serverUrl, authorizationCode, iss, scope
     } else if (!issuersMatch(recordedIssuer, issuer)) throw new AuthorizationServerMismatchError(recordedIssuer, issuer);
   }
   if (freshDiscoveryState) await provider.saveDiscoveryState?.(freshDiscoveryState);
-  const resource = await selectResourceURL(serverUrl, provider, resourceMetadata);
-  if (resource) await provider.saveResourceUrl?.(String(resource));
+  const selectedResource = await selectResourceURL(serverUrl, provider, resourceMetadata);
+  const resource = selectedResource && resourceMetadata && !provider.validateResourceURL ? resourceMetadata.resource : selectedResource;
+  if (resource) await provider.saveResourceUrl?.(resourceIndicatorToString(resource));
   const resolvedScope = determineScope({
     requestedScope: scope,
     resourceMetadata,
@@ -32231,24 +32363,30 @@ async function authInternal(provider, { serverUrl, authorizationCode, iss, scope
     };
     await provider.saveTokens(tokens, infoCtx);
   }
-  if (tokens?.refresh_token && !forceReauthorization) try {
-    const newTokens = await refreshAuthorization(authorizationServerUrl, {
-      metadata,
-      clientInformation,
-      refreshToken: tokens.refresh_token,
-      resource,
-      addClientAuthentication: provider.addClientAuthentication,
-      fetchFn
-    });
-    await provider.saveTokens({
-      ...newTokens,
-      issuer
-    }, infoCtx);
-    return "AUTHORIZED";
-  } catch (error51) {
-    if (error51 instanceof InsecureTokenEndpointError) throw error51;
-    if (!(error51 instanceof OAuthError) || error51.code === OAuthErrorCode.ServerError) {
-    } else throw error51;
+  if (tokens?.refresh_token && !forceReauthorization) {
+    let newTokens;
+    try {
+      newTokens = await refreshAuthorization(authorizationServerUrl, {
+        metadata,
+        clientInformation,
+        refreshToken: tokens.refresh_token,
+        resource,
+        addClientAuthentication: provider.addClientAuthentication,
+        dpop: await provider.dpop?.(),
+        fetchFn
+      });
+    } catch (error51) {
+      if (error51 instanceof InsecureTokenEndpointError) throw error51;
+      if (!(error51 instanceof OAuthError) || error51.code === OAuthErrorCode.ServerError) console.warn(`[mcp-sdk] Could not refresh OAuth tokens; falling back to a new authorization request. Cause: ${JSON.stringify(error51 instanceof Error ? error51.message : String(error51))}`);
+      else throw error51;
+    }
+    if (newTokens) {
+      await provider.saveTokens({
+        ...newTokens,
+        issuer
+      }, infoCtx);
+      return "AUTHORIZED";
+    }
   }
   const state = provider.state ? await provider.state() : void 0;
   const { authorizationUrl, codeVerifier } = await startAuthorization(authorizationServerUrl, {
@@ -32282,11 +32420,12 @@ async function selectResourceURL(serverUrl, provider, resourceMetadata) {
   })) throw new Error(`Protected resource ${resourceMetadata.resource} does not match expected ${defaultResource} (or origin)`);
   return new URL(resourceMetadata.resource);
 }
+var RECOGNIZED_CHALLENGE_SCHEMES = /* @__PURE__ */ new Set(["bearer", "dpop"]);
 function extractWWWAuthenticateParams(res) {
   const authenticateHeader = res.headers.get("WWW-Authenticate");
   if (!authenticateHeader) return {};
   const [type, scheme] = authenticateHeader.split(" ");
-  if (type?.toLowerCase() !== "bearer" || !scheme) return {};
+  if (!type || !RECOGNIZED_CHALLENGE_SCHEMES.has(type.toLowerCase()) || !scheme) return {};
   const resourceMetadataMatch = extractFieldFromWwwAuth(res, "resource_metadata") || void 0;
   let resourceMetadataUrl;
   if (resourceMetadataMatch) try {
@@ -32332,12 +32471,13 @@ async function discoverOAuthProtectedResourceMetadata(serverUrl, opts, fetchFn =
   return OAuthProtectedResourceMetadataSchema.parse(await response.json());
 }
 async function fetchWithCorsRetry(url2, headers, fetchFn = fetch) {
+  const withinOrigin = fetchWithinOrigin(fetchFn);
   try {
-    return await fetchFn(url2, { headers });
+    return await withinOrigin(url2, { headers });
   } catch (error51) {
     if (!(error51 instanceof TypeError) || !CORS_IS_POSSIBLE) throw error51;
     if (headers) try {
-      return await fetchFn(url2, {});
+      return await withinOrigin(url2, {});
     } catch (retryError) {
       if (!(retryError instanceof TypeError)) throw retryError;
       return;
@@ -32355,7 +32495,7 @@ async function tryMetadataDiscovery(url2, protocolVersion, fetchFn = fetch) {
 function shouldAttemptFallback(response, pathname) {
   if (!response) return true;
   if (pathname === "/") return false;
-  return response.status >= 400 && response.status < 500 || response.status === 502;
+  return !response.ok && response.status < 500 || response.status === 502;
 }
 async function discoverMetadataWithFallback(serverUrl, wellKnownType, fetchFn, opts) {
   const issuer = new URL(serverUrl);
@@ -32412,7 +32552,7 @@ async function discoverAuthorizationServerMetadata(authorizationServerUrl, { fet
     if (!response.ok) {
       await response.text?.().catch(() => {
       });
-      if (response.status >= 400 && response.status < 500 || response.status === 502) continue;
+      if (response.status < 500 || response.status === 502) continue;
       throw new Error(`HTTP ${response.status} trying to load ${type === "oauth" ? "OAuth" : "OpenID provider"} metadata from ${endpointUrl}`);
     }
     const parsed = type === "oauth" ? OAuthMetadataSchema.parse(await response.json()) : OpenIdProviderDiscoveryMetadataSchema.parse(await response.json());
@@ -32443,6 +32583,9 @@ async function discoverOAuthServerInfo(serverUrl, opts) {
     resourceMetadata
   };
 }
+function resourceIndicatorToString(resource) {
+  return typeof resource === "string" ? resource : resource.href;
+}
 async function startAuthorization(authorizationServerUrl, { metadata, clientInformation, redirectUrl, scope, state, resource }) {
   let authorizationUrl;
   if (metadata) {
@@ -32461,7 +32604,7 @@ async function startAuthorization(authorizationServerUrl, { metadata, clientInfo
   if (state) authorizationUrl.searchParams.set("state", state);
   if (scope) authorizationUrl.searchParams.set("scope", scope);
   if (scope?.split(" ").includes("offline_access")) authorizationUrl.searchParams.append("prompt", "consent");
-  if (resource) authorizationUrl.searchParams.set("resource", resource.href);
+  if (resource) authorizationUrl.searchParams.set("resource", resourceIndicatorToString(resource));
   return {
     authorizationUrl,
     codeVerifier
@@ -32475,30 +32618,46 @@ function prepareAuthorizationCodeRequest(authorizationCode, codeVerifier, redire
     redirect_uri: String(redirectUri)
   });
 }
-async function executeTokenRequest(authorizationServerUrl, { metadata, tokenRequestParams, clientInformation, addClientAuthentication, resource, fetchFn }) {
+async function executeTokenRequest(authorizationServerUrl, { metadata, tokenRequestParams, clientInformation, addClientAuthentication, resource, dpop, fetchFn }) {
   const tokenUrl = assertSecureTokenEndpoint(metadata?.token_endpoint ?? new URL("/token", authorizationServerUrl));
   const headers = new Headers({
     "Content-Type": "application/x-www-form-urlencoded",
     Accept: "application/json"
   });
-  if (resource) tokenRequestParams.set("resource", resource.href);
-  if (addClientAuthentication) await addClientAuthentication(headers, tokenRequestParams, tokenUrl, metadata);
-  else if (clientInformation) applyClientAuthentication(selectClientAuthMethod(clientInformation, metadata?.token_endpoint_auth_methods_supported ?? []), clientInformation, headers, tokenRequestParams);
-  const response = await (fetchFn ?? fetch)(tokenUrl, {
-    method: "POST",
-    headers,
-    body: tokenRequestParams
-  });
+  if (resource) tokenRequestParams.set("resource", resourceIndicatorToString(resource));
+  if (!addClientAuthentication && clientInformation) applyClientAuthentication(selectClientAuthMethod(clientInformation, metadata?.token_endpoint_auth_methods_supported ?? []), clientInformation, headers, tokenRequestParams);
+  const requestOnce = async () => {
+    const requestHeaders = new Headers(headers);
+    if (addClientAuthentication) await addClientAuthentication(requestHeaders, tokenRequestParams, tokenUrl, metadata);
+    if (dpop) requestHeaders.set("DPoP", await dpop.buildProof({
+      htm: "POST",
+      htu: tokenUrl
+    }));
+    return fetchWithinOrigin(fetchFn ?? fetch)(tokenUrl, {
+      method: "POST",
+      headers: requestHeaders,
+      body: tokenRequestParams
+    });
+  };
+  let response = await requestOnce();
+  if (dpop && response.status === 400) {
+    if ((await response.clone().json().catch(() => {
+    }))?.error === OAuthErrorCode.UseDpopNonce) {
+      dpop.observeNonce(response, tokenUrl);
+      response = await requestOnce();
+    }
+  }
+  dpop?.observeNonce(response, tokenUrl);
   if (!response.ok) throw await parseErrorResponse(response);
   const json2 = await response.json();
   try {
-    return OAuthTokensSchema.parse(json2);
+    return OAuthTokensSchema.parse(withoutIssuer(json2));
   } catch (parseError) {
     if (typeof json2 === "object" && json2 !== null && "error" in json2) throw await parseErrorResponse(JSON.stringify(json2));
     throw parseError;
   }
 }
-async function refreshAuthorization(authorizationServerUrl, { metadata, clientInformation, refreshToken, resource, addClientAuthentication, fetchFn }) {
+async function refreshAuthorization(authorizationServerUrl, { metadata, clientInformation, refreshToken, resource, addClientAuthentication, dpop, fetchFn }) {
   return {
     refresh_token: refreshToken,
     ...await executeTokenRequest(authorizationServerUrl, {
@@ -32510,6 +32669,7 @@ async function refreshAuthorization(authorizationServerUrl, { metadata, clientIn
       clientInformation,
       addClientAuthentication,
       resource,
+      dpop,
       fetchFn
     })
   };
@@ -32520,6 +32680,14 @@ async function fetchToken(provider, authorizationServerUrl, { metadata, resource
     expectedIssuer: metadata?.issuer,
     issParameterSupported: isIssParameterSupported(metadata)
   });
+  const issuer = metadata?.issuer ?? String(authorizationServerUrl);
+  const readClientInformation = async () => {
+    const rawClientInfo = await provider.clientInformation({ issuer });
+    const checked = discardIfIssuerMismatch(rawClientInfo, issuer, { canPersistStamp: false });
+    if (rawClientInfo && checked === void 0) throw new AuthorizationServerMismatchError(String(rawClientInfo.issuer), issuer);
+    return checked;
+  };
+  let clientInformation = await readClientInformation();
   const effectiveScope = scope ?? provider.clientMetadata.scope;
   let tokenRequestParams;
   if (provider.prepareTokenRequest) tokenRequestParams = await provider.prepareTokenRequest(effectiveScope);
@@ -32528,13 +32696,14 @@ async function fetchToken(provider, authorizationServerUrl, { metadata, resource
     if (!provider.redirectUrl) throw new Error("redirectUrl is required for authorization_code flow");
     tokenRequestParams = prepareAuthorizationCodeRequest(authorizationCode, await provider.codeVerifier(), provider.redirectUrl);
   }
-  const clientInformation = await provider.clientInformation({ issuer: metadata?.issuer ?? String(authorizationServerUrl) });
+  clientInformation ??= await readClientInformation();
   return executeTokenRequest(authorizationServerUrl, {
     metadata,
     tokenRequestParams,
-    clientInformation: clientInformation ?? void 0,
+    clientInformation,
     addClientAuthentication: provider.addClientAuthentication,
     resource,
+    dpop: await provider.dpop?.(),
     fetchFn
   });
 }
@@ -32548,7 +32717,7 @@ async function registerClient(authorizationServerUrl, { metadata, clientMetadata
     ...clientMetadata,
     ...scope === void 0 ? {} : { scope }
   };
-  const response = await (fetchFn ?? fetch)(registrationUrl, {
+  const response = await fetchWithinOrigin(fetchFn ?? fetch)(registrationUrl, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(submittedMetadata)
@@ -32558,7 +32727,7 @@ async function registerClient(authorizationServerUrl, { metadata, clientMetadata
     body: await response.text(),
     submittedMetadata
   });
-  return OAuthClientInformationFullSchema.parse(await response.json());
+  return OAuthClientInformationFullSchema.parse(withoutIssuer(await response.json()));
 }
 var CAP_EXEMPT_METHODS = /* @__PURE__ */ new Set([
   "tools/list",
@@ -33053,6 +33222,11 @@ function classifyProbeOutcome(outcome, context) {
       return classifyHttpError(outcome, context);
     case "network-error":
       return classifyNetworkError(outcome.error, context);
+    case "unusable-reply":
+      return {
+        kind: "error",
+        error: new SdkError(SdkErrorCode.EraNegotiationFailed, `Version negotiation probe failed: the server answered with an unusable reply (${describeError(outcome.error)})`, { cause: outcome.error }, { cause: outcome.error })
+      };
     case "auth-required":
       return {
         kind: "error",
@@ -33144,7 +33318,7 @@ function classifyNetworkError(error51, context) {
   if (context.environment === "browser" && isOpaqueFetchTypeError(error51)) return { kind: "legacy" };
   return {
     kind: "error",
-    error: new SdkError(SdkErrorCode.EraNegotiationFailed, `Version negotiation probe failed: ${describeError(error51)}`, { cause: error51 })
+    error: new SdkError(SdkErrorCode.EraNegotiationFailed, `Version negotiation probe failed: ${describeError(error51)}`, { cause: error51 }, { cause: error51 })
   };
 }
 function isOpaqueFetchTypeError(error51) {
@@ -33343,6 +33517,10 @@ function buildProbeRequest(id2, protocolVersion, clientInfo, capabilities) {
     }) }
   };
 }
+function isUnusableReplyError(error51) {
+  if (error51 instanceof SdkError && error51.code === SdkErrorCode.ClientHttpUnexpectedContent) return true;
+  return error51 instanceof Error && error51.name === "SyntaxError";
+}
 function normalizeReply(reply, timeoutMs) {
   switch (reply.kind) {
     case "response":
@@ -33368,6 +33546,10 @@ function normalizeReply(reply, timeoutMs) {
           statusText: error51.data.statusText
         };
       }
+      if (isUnusableReplyError(error51)) return {
+        kind: "unusable-reply",
+        error: error51
+      };
       return {
         kind: "network-error",
         error: error51
@@ -34178,7 +34360,7 @@ var Client = class extends Protocol {
     }, options);
     const hit = await this._serveFromCache("prompts/list", void 0, options);
     if (hit !== void 0) return hit;
-    return this._listAllPages("prompts/list", params, options, (acc, page) => acc.prompts.push(...page.prompts));
+    return this._listAllPages("prompts/list", params, options, (r) => r.prompts);
   }
   /**
   * Lists available resources.
@@ -34217,7 +34399,7 @@ var Client = class extends Protocol {
     }, options);
     const hit = await this._serveFromCache("resources/list", void 0, options);
     if (hit !== void 0) return hit;
-    return this._listAllPages("resources/list", params, options, (acc, page) => acc.resources.push(...page.resources));
+    return this._listAllPages("resources/list", params, options, (r) => r.resources);
   }
   /**
   * Lists available resource URI templates for dynamic resources.
@@ -34242,7 +34424,7 @@ var Client = class extends Protocol {
     }, options);
     const hit = await this._serveFromCache("resources/templates/list", void 0, options);
     if (hit !== void 0) return hit;
-    return this._listAllPages("resources/templates/list", params, options, (acc, page) => acc.resourceTemplates.push(...page.resourceTemplates));
+    return this._listAllPages("resources/templates/list", params, options, (r) => r.resourceTemplates);
   }
   /**
   * Walk every page of a paginated list verb, aggregate, and write ONE
@@ -34250,8 +34432,7 @@ var Client = class extends Protocol {
   * methods' no-`cursor` auto-aggregate path. Page 1's result object is
   * mutated in place (its items array is extended; `nextCursor` is
   * cleared); page-1 metadata (`ttlMs`, `cacheScope`, `_meta`) is preserved.
-  * A `nextCursor` that repeats stops the walk (defence against a
-  * non-converging server, mcp.d's `drainList` guard);
+  * A page with the same items and `nextCursor` as the previous page ends the walk;
   * {@linkcode ClientOptions.listMaxPages} is a hard cap — hitting it
   * throws, so a partial aggregate is never cached. The
   * captured-generation guard skips the write when a `list_changed` landed
@@ -34266,7 +34447,7 @@ var Client = class extends Protocol {
   * trace context) supplied to the public `list*()` reaches every wire
   * request the walk issues.
   */
-  async _listAllPages(method, baseParams, options, append, finalize2) {
+  async _listAllPages(method, baseParams, options, items, finalize2) {
     const bypass = options?.cacheMode === "bypass";
     const generation = this._cache.captureGeneration(method);
     const acc = await this.request({
@@ -34274,14 +34455,13 @@ var Client = class extends Protocol {
       ...baseParams && { params: { ...baseParams } }
     }, options);
     let cursor = acc.nextCursor;
-    const seen = /* @__PURE__ */ new Set();
+    let previous = acc;
     let pages = 1;
-    while (cursor !== void 0 && !seen.has(cursor)) {
+    while (cursor !== void 0) {
       if (this._listMaxPages !== 0 && pages >= this._listMaxPages) throw new SdkError(SdkErrorCode.ListPaginationExceeded, `${method}: exceeded listMaxPages (${this._listMaxPages}); server pagination did not terminate`, {
         method,
         listMaxPages: this._listMaxPages
       });
-      seen.add(cursor);
       const page = await this.request({
         method,
         params: {
@@ -34289,7 +34469,9 @@ var Client = class extends Protocol {
           cursor
         }
       }, options);
-      append(acc, page);
+      if (page.nextCursor === cursor && JSON.stringify(items(page)) === JSON.stringify(items(previous))) break;
+      items(acc).push(...items(page));
+      previous = page;
       cursor = page.nextCursor;
       pages++;
     }
@@ -34553,19 +34735,22 @@ var Client = class extends Protocol {
         notifications: filter
       }
     };
+    const routeSendFailure = (error51) => {
+      settle({
+        cause: "remote",
+        error: error51 instanceof Error ? error51 : new Error(String(error51))
+      });
+    };
     try {
-      await this.transport.send(jsonrpcRequest, {
+      this.transport.send(jsonrpcRequest, {
         requestSignal: requestAbort.signal,
         onRequestStreamEnd: () => settle({
           cause: "remote",
           error: /* @__PURE__ */ new Error("subscriptions/listen: stream ended")
         })
-      });
+      }).catch(routeSendFailure);
     } catch (error51) {
-      settle({
-        cause: "remote",
-        error: error51 instanceof Error ? error51 : new Error(String(error51))
-      });
+      routeSendFailure(error51);
     }
     return {
       honoredFilter: await opening,
@@ -34817,7 +35002,7 @@ var Client = class extends Protocol {
     }
     const hit = await this._serveFromCache("tools/list", void 0, options);
     if (hit !== void 0) return hit;
-    return this._listAllPages("tools/list", params, options, (acc, page) => acc.tools.push(...page.tools), (acc) => this._excludeInvalidXMcpHeaderTools(acc));
+    return this._listAllPages("tools/list", params, options, (r) => r.tools, (acc) => this._excludeInvalidXMcpHeaderTools(acc));
   }
   /**
   * SEP-2243 (protocol revision 2026-07-28): a Streamable HTTP client MUST
@@ -34888,6 +35073,63 @@ var Client = class extends Protocol {
     return this.notification({ method: "notifications/roots/list_changed" });
   }
 };
+function hasDpopChallenge(wwwAuthenticate) {
+  return /(?:^|,)\s*dpop(?:\s|$|,)/i.test(wwwAuthenticate);
+}
+function isDpopNonceChallenge(response) {
+  if (response.status !== 401) return false;
+  const wwwAuthenticate = response.headers.get("www-authenticate") ?? "";
+  return hasDpopChallenge(wwwAuthenticate) && /use_dpop_nonce/i.test(wwwAuthenticate);
+}
+var withDpop = (session, getToken) => (next) => {
+  const resolveSession = typeof session === "function" ? session : () => session;
+  return async (input2, init) => {
+    const method = (init?.method ?? "GET").toUpperCase();
+    const url2 = new URL(input2.toString());
+    const activeSession = await resolveSession();
+    if (!activeSession) return next(input2, init);
+    const makeRequest = async () => {
+      const accessToken = await getToken();
+      if (!accessToken) return next(input2, init);
+      const headers = new Headers(init?.headers);
+      const proof = await activeSession.buildProof({
+        htm: method,
+        htu: url2,
+        accessToken
+      });
+      headers.set("Authorization", `DPoP ${accessToken}`);
+      headers.set("DPoP", proof);
+      return next(input2, {
+        ...init,
+        headers
+      });
+    };
+    let response = await makeRequest();
+    if (isDpopNonceChallenge(response) && response.headers.has("dpop-nonce")) {
+      activeSession.observeNonce(response, url2);
+      await response.text?.().catch(() => {
+      });
+      response = await makeRequest();
+    }
+    activeSession.observeNonce(response, url2);
+    return response;
+  };
+};
+var withDpopFromProvider = (provider) => withDpop(async () => {
+  try {
+    return await provider.dpop?.();
+  } catch (error51) {
+    throw markAuthSeamEscape(error51);
+  }
+}, async () => {
+  let tokens;
+  try {
+    tokens = await provider.tokens();
+  } catch (error51) {
+    throw markAuthSeamEscape(error51);
+  }
+  return tokens?.token_type?.toLowerCase() === "dpop" ? tokens.access_token : void 0;
+});
 var SseError = class extends Error {
   static {
     Object.defineProperty(this, "mcpBrand", { value: "mcp.SseError" });
@@ -34924,6 +35166,7 @@ var DEFAULT_STREAMABLE_HTTP_RECONNECTION_OPTIONS = {
 };
 var RESERVED_REQUEST_HEADER_NAMES = /* @__PURE__ */ new Set([
   "authorization",
+  "dpop",
   "content-type",
   "mcp-protocol-version",
   "mcp-method",
@@ -34962,6 +35205,7 @@ var StreamableHTTPClientTransport = class {
   _skipIssuerMetadataValidation;
   _fetch;
   _fetchWithInit;
+  _redirectPolicy;
   _sessionId;
   _reconnectionOptions;
   _protocolVersion;
@@ -34986,12 +35230,15 @@ var StreamableHTTPClientTransport = class {
     this._scope = void 0;
     this._requestInit = opts?.requestInit;
     this._skipIssuerMetadataValidation = opts?.skipIssuerMetadataValidation;
+    this._fetch = opts?.fetch;
     if (isOAuthClientProvider(opts?.authProvider)) {
       this._oauthProvider = opts.authProvider;
       this._authProvider = adaptOAuthProvider(opts.authProvider, { skipIssuerMetadataValidation: opts.skipIssuerMetadataValidation });
+      if (opts.authProvider.dpop) this._fetch = withDpopFromProvider(opts.authProvider)(opts.fetch ?? fetch);
     } else this._authProvider = opts?.authProvider;
-    this._fetch = opts?.fetch;
+    this._redirectPolicy = opts?.redirectPolicy;
     this._fetchWithInit = createFetchWithInit(opts?.fetch, opts?.requestInit);
+    if (this._redirectPolicy === "follow") this._fetchWithInit = fetchLeavingRedirects(this._fetchWithInit);
     this._sessionId = opts?.sessionId;
     this._protocolVersion = opts?.protocolVersion;
     this._reconnectionOptions = opts?.reconnectionOptions ?? DEFAULT_STREAMABLE_HTTP_RECONNECTION_OPTIONS;
@@ -35043,22 +35290,27 @@ var StreamableHTTPClientTransport = class {
       skipIssuerMetadataValidation: this._skipIssuerMetadataValidation
     });
   }
+  /** `baseFetch` with redirects handled as `redirectPolicy` says. */
+  _redirects(baseFetch) {
+    return this._redirectPolicy === "follow" ? baseFetch : fetchWithinOrigin(baseFetch);
+  }
+  /** Error text for a redirect `response` that was not followed, or `undefined` for any other response. */
+  _unfollowedRedirect(url2, response) {
+    const text4 = this._redirectPolicy === "follow" ? void 0 : unfollowedRedirect(url2, response);
+    return text4 && `${text4} (redirectPolicy: 'same-origin')`;
+  }
   async _commonHeaders() {
-    const headers = {};
+    const headers = new Headers(this._requestInit?.headers || void 0);
     let token;
     try {
       token = await this._authProvider?.token();
     } catch (error51) {
       throw markAuthSeamEscape(error51);
     }
-    if (token) headers["Authorization"] = `Bearer ${token}`;
-    if (this._sessionId) headers["mcp-session-id"] = this._sessionId;
-    if (this._protocolVersion) headers["mcp-protocol-version"] = this._protocolVersion;
-    const extraHeaders = normalizeHeaders(this._requestInit?.headers);
-    return new Headers({
-      ...headers,
-      ...extraHeaders
-    });
+    if (token) headers.set("Authorization", `Bearer ${token}`);
+    if (this._sessionId) headers.set("mcp-session-id", this._sessionId);
+    if (this._protocolVersion) headers.set("mcp-protocol-version", this._protocolVersion);
+    return headers;
   }
   /**
   * Body-derived per-request headers: when an outgoing request carries a
@@ -35074,9 +35326,8 @@ var StreamableHTTPClientTransport = class {
     if (typeof envelopeVersion !== "string") return;
     headers.set("mcp-protocol-version", envelopeVersion);
     headers.set("mcp-method", message.method);
-    const params = message.params;
-    const nameHeader = message.method === "resources/read" ? typeof params?.uri === "string" ? params.uri : void 0 : typeof params?.name === "string" ? params.name : void 0;
-    if (nameHeader !== void 0) headers.set("mcp-name", encodeMcpParamValue(nameHeader));
+    const source = mcpNameSource(message.method, message.params);
+    if (source?.value !== void 0) headers.set("mcp-name", encodeMcpParamValue(source.value));
   }
   /**
   * `true` when the outbound message is a single request carrying a
@@ -35099,7 +35350,7 @@ var StreamableHTTPClientTransport = class {
       if (resumptionToken) headers.set("last-event-id", resumptionToken);
       const transportSignal = this._abortController?.signal;
       const signal = requestSignal !== void 0 && transportSignal !== void 0 ? anySignal(transportSignal, requestSignal) : requestSignal ?? transportSignal;
-      const response = await (this._fetch ?? fetch)(this._url, {
+      const response = await this._redirects(this._fetch ?? fetch)(this._url, {
         ...this._requestInit,
         method: "GET",
         headers,
@@ -35154,7 +35405,8 @@ var StreamableHTTPClientTransport = class {
           options.onRequestStreamEnd?.();
           return;
         }
-        throw new SdkHttpError(SdkErrorCode.ClientHttpFailedToOpenStream, `Failed to open SSE stream: ${response.statusText}`, {
+        const reason = this._unfollowedRedirect(this._url, response) ?? response.statusText;
+        throw new SdkHttpError(SdkErrorCode.ClientHttpFailedToOpenStream, `Failed to open SSE stream: ${reason}`, {
           status: response.status,
           statusText: response.statusText
         });
@@ -35343,7 +35595,7 @@ var StreamableHTTPClientTransport = class {
         body: JSON.stringify(message),
         signal
       };
-      const response = await (this._fetch ?? fetch)(this._url, init);
+      const response = await this._redirects(this._fetch ?? fetch)(this._url, init);
       if (isHandshake && response.ok) this._sessionId = response.headers.get("mcp-session-id") || void 0;
       if (!response.ok) {
         if (response.status === 401 && this._authProvider) {
@@ -35397,7 +35649,8 @@ var StreamableHTTPClientTransport = class {
           }
         } catch {
         }
-        throw new SdkHttpError(SdkErrorCode.ClientHttpNotImplemented, `Error POSTing to endpoint: ${text4}`, {
+        const reason = this._unfollowedRedirect(this._url, response) ?? text4;
+        throw new SdkHttpError(SdkErrorCode.ClientHttpNotImplemented, `Error POSTing to endpoint: ${reason}`, {
           status: response.status,
           statusText: response.statusText,
           text: text4
@@ -35457,10 +35710,10 @@ var StreamableHTTPClientTransport = class {
         headers,
         signal: this._abortController?.signal
       };
-      const response = await (this._fetch ?? fetch)(this._url, init);
+      const response = await this._redirects(this._fetch ?? fetch)(this._url, init);
       await response.text?.().catch(() => {
       });
-      if (!response.ok && response.status !== 405) throw new SdkHttpError(SdkErrorCode.ClientHttpFailedToTerminateSession, `Failed to terminate session: ${response.statusText}`, {
+      if (!response.ok && response.status !== 405) throw new SdkHttpError(SdkErrorCode.ClientHttpFailedToTerminateSession, `Failed to terminate session: ${this._unfollowedRedirect(this._url, response) ?? response.statusText}`, {
         status: response.status,
         statusText: response.statusText
       });
@@ -39271,7 +39524,7 @@ export {
 };
 /*! Bundled license information:
 
-@modelcontextprotocol/client/dist/src-D_zzAWoS.mjs:
+@modelcontextprotocol/client/dist/src-WCy6ifGf.mjs:
   (*!
   * content-type
   * Copyright(c) 2015 Douglas Christopher Wilson

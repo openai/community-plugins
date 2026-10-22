@@ -241,30 +241,30 @@
     },
     {
       "name": "@modelcontextprotocol/client",
-      "version": "2.0.0",
-      "license": "MIT",
+      "version": "2.3.1",
+      "license": "Apache-2.0",
       "development_dependency": false,
       "distributed": true,
-      "registry_integrity": "sha512-8f1OghQ2rjzIOfqgUCP+8GiUWqRs89njoWLNqAe8kWmDePv3s1fZXseej+QXemssEuuOvLLmLO/kqM3IQHtISw==",
-      "resolved": "https://registry.npmjs.org/@modelcontextprotocol/client/-/client-2.0.0.tgz"
+      "registry_integrity": "sha512-mIGZXpHsjnZ6lD+gD/WCMpR5k8yVQQ8nNFH1N0Srf7AvnwTUMYD6pvTY8ng2+He5FfV7YMZLmrjL7cLa/cc3dQ==",
+      "resolved": "https://registry.npmjs.org/@modelcontextprotocol/client/-/client-2.3.1.tgz"
     },
     {
       "name": "@modelcontextprotocol/core",
-      "version": "2.0.0",
-      "license": "MIT",
+      "version": "2.3.1",
+      "license": "Apache-2.0",
       "development_dependency": false,
       "distributed": true,
-      "registry_integrity": "sha512-pJCEwGG7Lfr/+PQp9ZTwKXNeO5wzbfKL7H3MYpCorM4oFBoQrdjnBgEoqG+RjhsvS1FKrDbKux+M1HhlnGWqcA==",
-      "resolved": "https://registry.npmjs.org/@modelcontextprotocol/core/-/core-2.0.0.tgz"
+      "registry_integrity": "sha512-laVmIhPGpWi7rG9q+0UigblRN0Hws/Yjlb6qLFtVqryXVLkc4h+yN8z731POD2LnAGQlFe7/tXhUm7Bi0YB91g==",
+      "resolved": "https://registry.npmjs.org/@modelcontextprotocol/core/-/core-2.3.1.tgz"
     },
     {
       "name": "@modelcontextprotocol/server",
-      "version": "2.0.0",
-      "license": "MIT",
+      "version": "2.3.1",
+      "license": "Apache-2.0",
       "development_dependency": false,
       "distributed": true,
-      "registry_integrity": "sha512-YhHWdHfpFMQfd0prsEnxKeS3Qz3ytIGmsS0sth4KDjnacIT7hxk6hXHkJ9KysxlkvTM+WZAtQbbcUhdoP4Hvtw==",
-      "resolved": "https://registry.npmjs.org/@modelcontextprotocol/server/-/server-2.0.0.tgz"
+      "registry_integrity": "sha512-e59MfWuSssj6DoQ96JCTqdW1AXT5/XtnTl0WWd6MU1Ka434fFUGGosCLJbGNySDhHGvxQWoRWK137FXYFkYNWw==",
+      "resolved": "https://registry.npmjs.org/@modelcontextprotocol/server/-/server-2.3.1.tgz"
     },
     {
       "name": "@types/node",
