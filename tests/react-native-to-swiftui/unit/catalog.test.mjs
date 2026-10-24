@@ -50,7 +50,7 @@ test("every required skill has explicit-only metadata", () => {
     const skillMarkdown = fs.readFileSync(path.join(skillDir, "SKILL.md"), "utf8");
     const metadata = fs.readFileSync(path.join(skillDir, "agents", "openai.yaml"), "utf8");
 
-    assert.match(skillMarkdown, new RegExp("^---\\nname: " + skill + "\\n", "m"));
+    assert.match(skillMarkdown, new RegExp("^---\\r?\\nname: " + skill + "\\r?\\n", "m"));
     assert.match(skillMarkdown, /^description: .+$/m);
     assert.match(skillMarkdown, /^## Safety contract$/m);
     assert.match(metadata, /^interface:$/m);
