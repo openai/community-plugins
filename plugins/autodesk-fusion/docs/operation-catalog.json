@@ -654,7 +654,10 @@
                           "minLength": 1,
                           "maxLength": 512
                         }
-                      ]
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
                     },
                     "end": {
                       "type": "array",
@@ -669,7 +672,10 @@
                           "minLength": 1,
                           "maxLength": 512
                         }
-                      ]
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
                     }
                   },
                   "required": [
@@ -699,7 +705,10 @@
                           "minLength": 1,
                           "maxLength": 512
                         }
-                      ]
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
                     },
                     "radius": {
                       "type": "string",
@@ -734,7 +743,10 @@
                           "minLength": 1,
                           "maxLength": 512
                         }
-                      ]
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
                     },
                     "corner2": {
                       "type": "array",
@@ -749,7 +761,10 @@
                           "minLength": 1,
                           "maxLength": 512
                         }
-                      ]
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
                     }
                   },
                   "required": [
@@ -815,7 +830,10 @@
                     "minLength": 1,
                     "maxLength": 512
                   }
-                ]
+                ],
+                "items": false,
+                "minItems": 2,
+                "maxItems": 2
               },
               "expression": {
                 "type": "string",
@@ -839,7 +857,10 @@
                     "minLength": 1,
                     "maxLength": 128
                   }
-                ]
+                ],
+                "items": false,
+                "minItems": 2,
+                "maxItems": 2
               }
             },
             "required": [
@@ -880,7 +901,10 @@
                     "minLength": 1,
                     "maxLength": 512
                   }
-                ]
+                ],
+                "items": false,
+                "minItems": 2,
+                "maxItems": 2
               },
               "expression": {
                 "type": "string",
@@ -902,7 +926,10 @@
                     "minLength": 1,
                     "maxLength": 128
                   }
-                ]
+                ],
+                "items": false,
+                "minItems": 1,
+                "maxItems": 1
               }
             },
             "required": [
@@ -961,7 +988,10 @@
                           "minLength": 1,
                           "maxLength": 128
                         }
-                      ]
+                      ],
+                      "items": false,
+                      "minItems": 1,
+                      "maxItems": 1
                     }
                   },
                   "required": [
@@ -1001,7 +1031,10 @@
                           "minLength": 1,
                           "maxLength": 128
                         }
-                      ]
+                      ],
+                      "items": false,
+                      "minItems": 2,
+                      "maxItems": 2
                     }
                   },
                   "required": [
@@ -1511,7 +1544,10 @@
                   "minLength": 1,
                   "maxLength": 512
                 }
-              ]
+              ],
+              "items": false,
+              "minItems": 3,
+              "maxItems": 3
             }
           },
           "diameter": {
@@ -1992,7 +2028,10 @@
                 "minLength": 1,
                 "maxLength": 128
               }
-            ]
+            ],
+            "items": false,
+            "minItems": 2,
+            "maxItems": 2
           },
           "kind": {
             "type": "string",
