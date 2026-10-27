@@ -94,6 +94,14 @@ jobs:
           set -euo pipefail
           mkdir -p validation/ci-logs
           npm run test:openpnp 2>&1 | tee validation/ci-logs/master-native.log
+      - name: Return qualification evidence ownership to the runner
+        if: always()
+        run: |
+          # Container phases create owner-only directories as root. Keep their
+          # modes and the upload allowlist intact; never follow symlink targets.
+          if [ -d validation/ci ]; then
+            sudo chown -R -P --no-dereference "$(id -u):$(id -g)" validation/ci
+          fi
       - name: Retain native qualification evidence
         if: always()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
