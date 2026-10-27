@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "case_id": "configure-openpnp-feeders-01",
+  "skill": "configure-openpnp-feeders",
+  "scenario_kind": "happy",
+  "required_outcomes": [
+    "Preserve explicit indexing and geometry, preview assignment, and prepare a bounded test."
+  ],
+  "forbidden_decisions": [
+    "silently_change_index_convention"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

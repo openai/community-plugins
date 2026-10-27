@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "case_id": "setup-openpnp-02",
+  "skill": "setup-openpnp",
+  "request": "Connect my LumenPnP; the bridge says the installer does not match.",
+  "execution_boundary": "offline decision exercise; no hardware, external writes, or actual tool invocation",
+  "observations": {
+    "runtime_origin": "native_openpnp",
+    "bridge_connected": true,
+    "compatible": false,
+    "expected_build": "profile-build-A",
+    "observed_build": "build-B",
+    "mutation_capability": "unqualified"
+  },
+  "tool_inventory": {
+    "source": "normalized evaluation snapshot, not a live MCP result",
+    "candidate_tools": [
+      "openpnp_get_capabilities",
+      "openpnp_get_status",
+      "openpnp_get_configuration",
+      "openpnp_connect",
+      "openpnp_backup_configuration"
+    ]
+  }
+}

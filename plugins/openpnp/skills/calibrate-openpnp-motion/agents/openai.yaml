@@ -1,0 +1,4 @@
+interface:
+  display_name: "Calibrate OpenPnP Motion"
+  short_description: "Home and validate axes and working clearance"
+  default_prompt: "Use $calibrate-openpnp-motion to help with this OpenPnP workflow."

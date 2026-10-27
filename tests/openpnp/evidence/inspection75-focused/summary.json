@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "milestone": "inspection75-focused",
+  "passed": true,
+  "bridge_sha256": "970e4635953f3bdc33499088ad560d6f6190d01e2285c152f6a56a109a7caf45",
+  "scope": "Focused model/reducer/component and packaged native simulator evidence; scopes below remain distinct.",
+  "model": {
+    "assertions": 108,
+    "original_placement_edits_regression_passed": true,
+    "scope": "Production source overlay over panel-library74; synthetic placed state; no job processor"
+  },
+  "reducer": {
+    "assertions": 119,
+    "expected_refusals": 96,
+    "native_machine_loaded": false,
+    "scope": "Strict data-only journal replay; no recovered authority"
+  },
+  "dialog_component": {
+    "assertions": 45,
+    "scope": "Swing/EDT source overlay; exact entered decimal retained; not packaged job or desktop gestures"
+  },
+  "packaged_native_journey": {
+    "jvm_phases": 4,
+    "assertions": 108,
+    "native_complete": 64,
+    "matched_native_actions": 256,
+    "verified_receipt_artifacts": 2,
+    "deliberate_unknown_submission": 1,
+    "scope": "Stock sample job; non-Swing local adapter; synthetic operator observations; separate from full-matrix totals"
+  },
+  "corrections": [
+    "Dedicated read-only BoardPad snapshot accepts supported stock paste pads while retaining the original editing refusal.",
+    "Entered decimals remain exact through the form, model, native inspection journal and raw receipt; parsed JavaScript numbers are not arbitrary precision.",
+    "Revalidate local authority after model checks, preserve uncertain admission facts, dismiss consumed forms, and settle queued callback futures on shutdown."
+  ],
+  "source_reviews": {
+    "inspection_corrections": [
+      "I75-R1: requireLocalInspection now immediately follows final pre-intent revalidate",
+      "I75-R2: missing operation cache has explicit admission_durability unconfirmed overlay; read retains pending task",
+      "I75-R3: required placement/Part ID and pose bounds now rejected by typed model INSPECTION_LIMIT admission",
+      "I75-R4: inspection event buffering uses NativeJournalJson exact decimal decoding"
+    ],
+    "gui_closure": [
+      "Consumed terminal view is dismissed before new admission.",
+      "Pending callback futures registered without taking Bridge monitor; per-task queued CAS excludes duplicate outstanding entry.",
+      "Concurrent tracked future set plus pre/post volatile closed checks settles queue drops at shutdown.",
+      "Missing operation map entry preserves task read with explicitly unconfirmed admission durability."
+    ],
+    "scope": "Source review only; historical GUI test hashes in the review identify the version observed then"
+  },
+  "retained_attempts": "retained-attempts.json",
+  "raw_proof_inventory": "raw-proofs.json",
+  "limits": [
+    "No physical machine or authenticated metrology",
+    "No production qualification, batch progression, unknown-feed resolution or placed-history mutation",
+    "No continuous eight-hour or five-percent overhead qualification",
+    "Selected retained attempt records, not a claim to inventory every scratch file"
+  ],
+  "physical_qualification": false,
+  "full_plan_complete": false
+}

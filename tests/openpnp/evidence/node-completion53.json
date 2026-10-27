@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "runs": [
+    {
+      "node": "v22.19.0",
+      "exit_code": 0,
+      "log_sha256": "314cc50ff4a9762f57700f4189781b77e36ada3f0aff01d0d7a2d3457421aae3"
+    },
+    {
+      "node": "v24.20.0",
+      "exit_code": 0,
+      "log_sha256": "4ad57971b7da4b77d7ee633e425e1b559bc436f50981ef812b92bb482be69578"
+    },
+    {
+      "node": "v26.0.0",
+      "exit_code": 0,
+      "log_sha256": "ac0f882695441a48e16dcf411614f9ca7ac8347b0c90ff264c3f0a73103fca48"
+    }
+  ],
+  "tests_per_runtime": 215,
+  "passed_per_runtime": 206,
+  "explicit_live_skips_per_runtime": 9,
+  "live_evidence": "tests/openpnp/evidence/mcp-completion53.json",
+  "prior_failed_matrix": "validation/native-completion-node53/report.json",
+  "failure_reason": "Matching-package metadata still identified prior server/bridge hashes; corrected while preserving frozen52 baseline.",
+  "hardware_qualified": false
+}

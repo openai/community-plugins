@@ -1,0 +1,259 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "created_at": "2026-09-14T23:00:59.993747+00:00",
+  "scope": "Private stage05 package assembly plus full non-live Node22/24/26 regression. Actual native GUI/MCP workflows,91 native programs, performance, endurance,installation,promotion and physical qualification are separate.",
+  "package_stage": "private-evidence/reconciliation79-integration/validation/package79-staging05",
+  "canonical_build_manifest_sha256": "86542eae4f9423b388dabcd47ef224de96035499c22fdc836dd204891d13cb49",
+  "bridge_sha256": "62b17d35cb4d39c531fdd6698dece3f41ad19f92e604e35b3fc9f8e9c8aac907",
+  "runtime_manifest_sha256": "007f28c38d244186aec519de0d919b474b2dd54fc671883e8207c50ab75619de",
+  "artifacts": {
+    "tool_count": 61,
+    "dependency_count": 8,
+    "server_sha256": "75d5f3df16f1177fc07ff57c966c4209b50431b7a1b35965cc6ee9d90989d460",
+    "tool_inputs_sha256": "ff4b09d08c6f57fbb474d22cd3ce35ca09d0fa2b09cfd0ef6cb49a03a2e3581a",
+    "third_party_notices_sha256": "93c4d8f7b237889ae80be75f745ac69bb9ade35e5de39d343dba005c6e000a0d",
+    "native_bridge_sha256": "62b17d35cb4d39c531fdd6698dece3f41ad19f92e604e35b3fc9f8e9c8aac907",
+    "native_runtime_manifest_sha256": "007f28c38d244186aec519de0d919b474b2dd54fc671883e8207c50ab75619de",
+    "controller_history_helper_sha256": "8ad8c257013db2180ca89f6e2c72ba77689e666bbda01169e23e3e3bc4f98d51",
+    "native_publication": "private-staging-only",
+    "qualification_status": "assembled-unqualified",
+    "historical_receipts_apply_to_this_build": false,
+    "behavioral_qualification": false,
+    "native_workflow_qualification": false,
+    "hardware_qualification": false,
+    "full_implementation_plan_completed": false,
+    "uniform_fresh_skill_qualification": false,
+    "sensing_recovery_workflow_qualification": false,
+    "scope": "Exact selected canonical Java11 production and Java17 tests plus current MCP source/skills staged privately. Assembly and offline contract checks do not qualify native GUI/MCP workflows; earlier claims remain historical."
+  },
+  "assembly": {
+    "passed": true,
+    "inputs_unchanged": true,
+    "input_count": 4150,
+    "offline_public_tool_count": 61,
+    "bundled_dependencies": 8,
+    "package_binding_test_checks": 8,
+    "history_helper_rebuilt_java_release": 11,
+    "receipt": "../package-assembly01/assembly-receipt.json",
+    "summary": "../package-assembly01/summary.json"
+  },
+  "final_node_runs": [
+    {
+      "directory": "full-node22-02",
+      "node": {
+        "version": "v22.19.0",
+        "execPath": "private-host/.cache/cde-grafana-node/v22.19.0/node-v22.19.0-darwin-arm64/bin/node"
+      },
+      "passed": true,
+      "totals": {
+        "tests": 493,
+        "suites": 0,
+        "pass": 475,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 18,
+        "todo": 0
+      },
+      "test_files": 73,
+      "inputs_unchanged": true,
+      "input_count": 4515,
+      "process": {
+        "pid": 38386,
+        "exit_code": 0,
+        "reaped": true,
+        "elapsed_s": 92.16376000002492
+      },
+      "receipt_sha256": "6c780c42191150bacf9d4a616fcfbc75ba1042362c8cafc534eb60ab288958c1"
+    },
+    {
+      "directory": "full-node24-02",
+      "node": {
+        "version": "v24.20.0",
+        "execPath": "private-host/.cache/fusion-interop-validation-01a04abd/community-final-node22-24-vrxn9f3f/v24.20.0/runtime/node-v24.20.0-darwin-arm64/bin/node"
+      },
+      "passed": true,
+      "totals": {
+        "tests": 493,
+        "suites": 0,
+        "pass": 475,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 18,
+        "todo": 0
+      },
+      "test_files": 73,
+      "inputs_unchanged": true,
+      "input_count": 4515,
+      "process": {
+        "pid": 38375,
+        "exit_code": 0,
+        "reaped": true,
+        "elapsed_s": 91.52001308405306
+      },
+      "receipt_sha256": "8471b8e1c5474c88b52a6a5195c702f9ee1193387ebf1d2972f3c36cc37cb110"
+    },
+    {
+      "directory": "full-node26-01",
+      "node": {
+        "version": "v26.0.0",
+        "execPath": "/opt/homebrew/Cellar/node/26.0.0/bin/node"
+      },
+      "passed": true,
+      "totals": {
+        "tests": 493,
+        "suites": 0,
+        "pass": 475,
+        "fail": 0,
+        "cancelled": 0,
+        "skipped": 18,
+        "todo": 0
+      },
+      "test_files": 73,
+      "inputs_unchanged": true,
+      "input_count": 4515,
+      "process": {
+        "pid": 40653,
+        "exit_code": 0,
+        "reaped": true,
+        "elapsed_s": 85.35979612497613
+      },
+      "receipt_sha256": "4aa55cb1a46fc987b6b2d37dde5a897f5a436cbcf587f314e4fd6bc1171b122b"
+    }
+  ],
+  "coverage_count_policy": "Each Node runtime independently passes475 of493 reported TAP tests;18 opt-in live tests are skipped in each run. Nested subtests/parent accounting use Node reported totals. Do not add repeated runtime checks into a unique behavioral-case total.",
+  "live_tests_skipped": [
+    {
+      "name": "packaged MCP applies native linear-axis backlash, executes simulated motion, and restores typed settings",
+      "reason": ""
+    },
+    {
+      "name": "packaged MCP measures stock ImageCamera scale, retrieves eight exact frames, and separately applies the typed proposal",
+      "reason": ""
+    },
+    {
+      "name": "packaged MCP applies native dynamic camera settling, retains truthful frames, and restores its settings",
+      "reason": ""
+    },
+    {
+      "name": "official MCP client operates the pinned live native OpenPnP simulator end to end",
+      "reason": ""
+    },
+    {
+      "name": "actual MCP edits an existing native mapped axis, revokes dependencies and refuses stale/portable requests",
+      "reason": ""
+    },
+    {
+      "name": "official SDK runs two native jobs through explicit four-slot virtual tray changeover",
+      "reason": ""
+    },
+    {
+      "name": "actual packaged MCP exports a saved panel library and CLI adopts it with fresh job authority",
+      "reason": ""
+    },
+    {
+      "name": "packaged MCP isolates repeated canonical panel definitions and executes its exact eight native placement identities",
+      "reason": ""
+    },
+    {
+      "name": "official SDK resolves import aliases to existing native parts and preserves source, library and job history",
+      "reason": ""
+    },
+    {
+      "name": "official MCP client edits, inspects and reloads a shared native panel with explicit board-load identities",
+      "reason": ""
+    },
+    {
+      "name": "actual packaged MCP adds/removes shared native placements and preserves unused lineage across documents",
+      "reason": ""
+    },
+    {
+      "name": "actual MCP preserves typed backlash and a used Board library through fresh adoption and native jobs",
+      "reason": ""
+    },
+    {
+      "name": "MCP disconnect and expired supervision pause native work; a new lease resumes the original operation without duplicate feeds",
+      "reason": ""
+    },
+    {
+      "name": "official MCP SDK reads actual restarted Bridge history without a source or lease",
+      "reason": ""
+    },
+    {
+      "name": "packaged MCP single-steps the native processor and resumes the same paused job without duplicate feeds",
+      "reason": ""
+    },
+    {
+      "name": "actual MCP creates a complete nozzle assembly, runs a mixed native job, adopts and recovers generations",
+      "reason": ""
+    },
+    {
+      "name": "official SDK configures sensing, observes native checks and a placed job, and retains a known failed part-off fault",
+      "reason": ""
+    },
+    {
+      "name": "packaged MCP configures native inherited vision and executes its actual simulated alignment",
+      "reason": ""
+    }
+  ],
+  "retained_attempts": [
+    {
+      "directory": "full-node22-01",
+      "totals": {
+        "tests": 493,
+        "suites": 0,
+        "pass": 449,
+        "fail": 26,
+        "cancelled": 0,
+        "skipped": 18,
+        "todo": 0
+      },
+      "inputs_unchanged": true,
+      "failure_class": "Default sandbox denied execFile(ps) with spawn EPERM in new restart-launcher process-scope checks. Parent failures retain original accounting.",
+      "disposition": "Identical source/package/tests rerun in fresh evidence/temp dirs with scoped read-only process-inspection permission. Guard was not bypassed or changed."
+    },
+    {
+      "directory": "full-node24-01",
+      "totals": {
+        "tests": 493,
+        "suites": 0,
+        "pass": 449,
+        "fail": 26,
+        "cancelled": 0,
+        "skipped": 18,
+        "todo": 0
+      },
+      "inputs_unchanged": true,
+      "failure_class": "Default sandbox denied execFile(ps) with spawn EPERM in new restart-launcher process-scope checks. Parent failures retain original accounting.",
+      "disposition": "Identical source/package/tests rerun in fresh evidence/temp dirs with scoped read-only process-inspection permission. Guard was not bypassed or changed."
+    }
+  ],
+  "support": {
+    "added_only": 72,
+    "bytes": 1968012,
+    "missing": [],
+    "provenance": "../nonlive-support01/support-provenance.json",
+    "existing_files_overwritten": false
+  },
+  "historical_sensing78_preserved_exact": true,
+  "current_package_status": "assembled-unqualified",
+  "final_package_unchanged": true,
+  "package_files": 261,
+  "package_changes": [],
+  "package_manifest_sha256": "958e49658e5583100942a4279b9677ca1989037a8f619f480b772a778aec5143",
+  "process_cleanup": {
+    "receipt": "process-cleanup-combined.json",
+    "checked_pid_count": 16,
+    "checked_group_count": 11,
+    "all_recorded_reaped": true,
+    "all_recorded_absent": true
+  },
+  "no_installation_or_promotion": true,
+  "full_plan_complete": false,
+  "native_workflow_qualification_inferred": false,
+  "physical_qualification": false,
+  "public_export_provenance": {
+    "original_report_sha256": "7c37a90f1961282533166b2b2597ab472c797ae3a85163963b5050c939d09134",
+    "transformation": "Private absolute root labels replaced; original result facts and artifact hashes retained. Paths beginning private-evidence/private-host are provenance labels, not repository files."
+  }
+}

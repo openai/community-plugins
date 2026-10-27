@@ -1,0 +1,37 @@
+{
+  "name": "openpnp",
+  "version": "0.1.0",
+  "repository": "https://github.com/tonyloehr/community-plugins",
+  "homepage": "https://github.com/tonyloehr/community-plugins/tree/main/plugins/openpnp",
+  "license": "Apache-2.0 AND GPL-3.0-or-later",
+  "keywords": [
+    "openpnp",
+    "pick-and-place",
+    "electronics",
+    "robotics",
+    "simulator"
+  ],
+  "description": "Configure and operate the OpenPnP simulator through typed native tools and guided workflows.",
+  "author": {
+    "name": "Community Plugins contributors"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "OpenPnP",
+    "shortDescription": "Configure and run OpenPnP simulators.",
+    "longDescription": "Use native OpenPnP tools for simulator operation, configuration, job preparation, validation, and recovery. Skills guide each workflow and report capabilities that need hardware qualification.",
+    "developerName": "Community Plugins contributors",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "brandColor": "#2C8D7E",
+    "composerIcon": "./assets/icon.svg",
+    "logo": "./assets/icon.svg",
+    "defaultPrompt": [
+      "Inspect my OpenPnP simulator and run a validated sample job."
+    ]
+  },
+  "mcpServers": "./.mcp.json"
+}

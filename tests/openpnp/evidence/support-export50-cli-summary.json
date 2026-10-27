@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "kind": "support-export-cli-qualification",
+  "status": "passed",
+  "tests": {
+    "passed": 24,
+    "failed": 0,
+    "skipped": 0,
+    "cli_child_and_parser_tests": 7,
+    "exporter_api_tests": 12,
+    "diagnostics_tests": 5
+  },
+  "report": "attempt-02/report.json",
+  "report_sha256": "591418a3f1b846b604cb9c0ef5475dedf1346e4e71711423d6343d3feb2c8f3a",
+  "source_hashes": {
+    "plugins/openpnp/scripts/openpnp.mjs": "2013e2caae7b0bc9bde9be3e81d8661ae77da618539e8790c0179359ed54337d",
+    "plugins/openpnp/scripts/support-export.mjs": "9d47e2c31cd99b6c2b63ceea0364c4d87b56bec67669db65edb0ec630f7dd90b",
+    "plugins/openpnp/scripts/diagnostics.mjs": "d56ea453dca9317f1911c1f53bc50df530f1066917d3f7d3ba5f416427b3e6dc",
+    "plugins/openpnp/scripts/SUPPORT_EXPORT.md": "cfd294b734ea46d9078eec6a0fa717dbc84486cf7e23fed4419a369e40566387",
+    "plugins/openpnp/scripts/gui-launcher.mjs": "89250fb9e562e82132393a74af920adac06d6e625ff9b7f5b04e44a70612ac19",
+    "plugins/openpnp/scripts/java-environment.mjs": "4fbaa358166e31bcf2d47726fa3bdd821aa5ff4efc840b9216127741c7a28322",
+    "tests/openpnp/support-export-cli.test.mjs": "21007782f76e83e0180aa8bc59044e0668149fb55d7d086e79867737d3d3a64c",
+    "tests/openpnp/support-export.test.mjs": "f94389c6a289a40b090dc172b6ea695ddee8fab22da2a8386e4f648ac4b9f50c",
+    "tests/openpnp/diagnostics.test.mjs": "2942578f6988e321e68fee4d09b0378347a83b7f56ec8a74949162d8587df1ec",
+    "plugins/openpnp/.codex-plugin/plugin.json": "61ca959e609196c2ad5f2a8dd46ceec8f5b4459971f1bb84a9668254a9870e72",
+    "plugins/openpnp/mcp/tool-inputs.json": "ccb1f6bd0df1285dc39ba1ed16020fd42ddd100b2fa9cc48321b745c5b6388a5",
+    "plugins/openpnp/mcp/server.mjs": "bd2dd06ea4ab1fd5e57cd8618c18d0b273a3d989555d6e78c9c8d6e0a6687e09",
+    "plugins/openpnp/bridge/build-manifest.json": "24faf30daffcfde659033dcc5f8a5e2bfaf89b0b34e90744e1b18e584c23d2a1"
+  },
+  "inputs_unchanged": true,
+  "runtime": {
+    "version": "v24.20.0",
+    "executable_sha256": "9d050fd455b56426e25d4d603c7c501cbb2630348e836cf221dcce748e90588a"
+  },
+  "findings": [],
+  "source_edits": "new dedicated CLI tests and implemented-command documentation only; root launcher unchanged",
+  "scope": {
+    "actual_node_cli_children": true,
+    "selected_bytes_hash_verified": true,
+    "installed_state_unchanged": true,
+    "directory_sync_failure": "test-only preload after actual exclusive archive publication",
+    "uncertain_output_preserved": true,
+    "repeat_output_refused": true,
+    "native_calls": 0,
+    "network_used": false,
+    "native_or_mcp_package_rebuilt": false
+  },
+  "prior_evidence": "validation/support-export/summary.json retained unchanged; it predates CLI integration"
+}

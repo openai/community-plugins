@@ -1,0 +1,98 @@
+{
+  "authority": "native-simulator",
+  "available_trays": [
+    {
+      "code": "MATERIAL_PROFILE_UNSUPPORTED",
+      "feeder_id": "FDR18d4451eece87be0",
+      "supported": false
+    },
+    {
+      "code": "MATERIAL_PROFILE_UNSUPPORTED",
+      "feeder_id": "FDR18d4451eed242bfc",
+      "supported": false
+    },
+    {
+      "code": "MATERIAL_PROFILE_UNSUPPORTED",
+      "feeder_id": "FDR18d4451eed250351",
+      "supported": false
+    },
+    {
+      "code": "MATERIAL_PROFILE_UNSUPPORTED",
+      "feeder_id": "FDR18d4451eed256f11",
+      "supported": false
+    },
+    {
+      "code": "MATERIAL_PROFILE_UNSUPPORTED",
+      "feeder_id": "FDR18d4451eed25cdcb",
+      "supported": false
+    },
+    {
+      "capacity": 4,
+      "feeder_id": "FDR18d4451eed2622c1",
+      "geometry_sha256": "b6bf76f39b6987c6693d44a7923d5654bb38f773feb6f07bd86db2c71c12b155",
+      "native_feed_count": 1,
+      "part_id": "R0603-1K",
+      "physical_inventory_verified": false,
+      "supported": true
+    },
+    {
+      "code": "MATERIAL_PROFILE_UNSUPPORTED",
+      "feeder_id": "FDR18d4451eed267693",
+      "supported": false
+    },
+    {
+      "code": "MATERIAL_PROFILE_UNSUPPORTED",
+      "feeder_id": "FDR18d4451eed27028c",
+      "supported": false
+    }
+  ],
+  "available_trays_observed_at": "2026-09-11T12:49:11.897266Z",
+  "limits": {
+    "retained_loads": 512,
+    "slots_per_tray": 10000
+  },
+  "loads": [
+    {
+      "active": true,
+      "authority_observation": "retained-binding-only; model revalidated at effect admission",
+      "capacity": 4.0,
+      "created_at": "2026-09-11T12:49:11.315359Z",
+      "current_index": 0.0,
+      "feeder_id": "FDR18d4451eed2622c1",
+      "geometry_sha256": "b6bf76f39b6987c6693d44a7923d5654bb38f773feb6f07bd86db2c71c12b155",
+      "initial_index": 0.0,
+      "load_id": "9f9cf562-e70a-4046-9f53-110311978214",
+      "native_authority": false,
+      "observed_advances": 0.0,
+      "part_id": "R0603-1K",
+      "physical_inventory_verified": false,
+      "remaining_configured_slots": 4,
+      "schema_version": 1.0,
+      "state": "loaded"
+    }
+  ],
+  "material_setup_revision": "material-1",
+  "native_authority_restored": false,
+  "observed_at": "2026-09-11T12:49:11.902343Z",
+  "pending_changes": [],
+  "pending_feeds": [
+    {
+      "action_id": "c76220c4-fdd3-43f7-9a3e-4c22d5ca291d/native-action-1",
+      "material_load": {
+        "before_index": 0.0,
+        "capacity": 4.0,
+        "feeder_id": "FDR18d4451eed2622c1",
+        "geometry_sha256": "b6bf76f39b6987c6693d44a7923d5654bb38f773feb6f07bd86db2c71c12b155",
+        "load_id": "9f9cf562-e70a-4046-9f53-110311978214",
+        "material_setup_revision": "material-1",
+        "part_id": "R0603-1K",
+        "physical_inventory_verified": false
+      },
+      "operation_id": "c76220c4-fdd3-43f7-9a3e-4c22d5ca291d",
+      "state": "outcome_unknown"
+    }
+  ],
+  "physical_inventory_verified": false,
+  "recovered_from_journal": true,
+  "scope": "same-part-normal-full-tray-only"
+}

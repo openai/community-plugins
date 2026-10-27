@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-09-11T08:39:41.442562+00:00",
+  "passed": true,
+  "qualification_complete": true,
+  "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+  "bridge_sha256": "1a1fa425eb220bfed84a6e4c43bdd8fb98c5962f6c8d296ffa67062d134263ee",
+  "native_jar_sha256": "40ef07e5562cc9e64a1f22e18a9f090dd1e522349858223759b5b13f616f386a",
+  "runtime_manifest_sha256": "f09a24910958b030e692d737eae11a53f35dc9ccd4b5dc978de5ceb6d935a024",
+  "harness_sha256": "7599f8987a3e15d27f5a2999381a26ad934702e3e8433e2d8e0b67eb690812b0",
+  "runner_sha256": "7dbb94d389c892cf3fa2cd3998764831a0a116987d55f243373639555b221bb2",
+  "inputs_unchanged": true,
+  "jvm": "openjdk version \"17.0.16\" 2025-07-15\nOpenJDK Runtime Environment Temurin-17.0.16+8 (build 17.0.16+8)\nOpenJDK 64-Bit Server VM Temurin-17.0.16+8 (build 17.0.16+8, mixed mode, sharing)\n",
+  "actual_halts": 14,
+  "recovery_jvms": 28,
+  "assertions": 546,
+  "elapsed_seconds": 62.93107054196298,
+  "limits": {
+    "child_seconds": 90,
+    "total_seconds": 900,
+    "heap_bytes": 2147483648
+  },
+  "boundary": {
+    "before": "before target append begins",
+    "after": "after complete target write and force(true) return"
+  },
+  "fixture_limits": [
+    "Fixture operation admission and logical board-load scope",
+    "Production native processor, action ledger and recovering Bridge",
+    "Saved pre-run counters are not authoritative crash-time material recovery",
+    "No physical inspection, power-loss, torn-record or written-but-unforced qualification",
+    "No resume, abandonment, cleanup or replay after crash"
+  ],
+  "host_power_loss_test": false,
+  "full_bridge_admission_test": false,
+  "mcp_execution": false,
+  "physical_qualification": false,
+  "created_at": "2026-09-11T08:42:46.653246+00:00",
+  "original_prototype_harness_byte_identical": true,
+  "reports": {
+    "native": {
+      "path": "validation/canonical-native-crash-01/report.json",
+      "sha256": "0581475275393b964191c68c7c963bc51745a2b92245d4d171a472bd2a0c9444"
+    },
+    "runner_boundary_tests": {
+      "path": "validation/canonical-crash-harness-01/npm-tests.log",
+      "sha256": "204ba8f5ada44aad59206805e24d1f2e5c83c2286e7a3a8d7608b6778938d1a6",
+      "tests": 9,
+      "passed": 9,
+      "native_qualification": false
+    },
+    "workflow_syntax": {
+      "path": "validation/canonical-crash-harness-01/workflow-check.json",
+      "sha256": "86e99d7a81bac3851e6a28ddbd79a908619403cc75cf08c06cec20d90aa4179c",
+      "ci_executed": false
+    }
+  },
+  "source_sha256": {
+    "tests/openpnp/native/NativeJvmHaltLedgerTest.java": "7599f8987a3e15d27f5a2999381a26ad934702e3e8433e2d8e0b67eb690812b0",
+    "scripts/openpnp-test-native-crash.py": "7dbb94d389c892cf3fa2cd3998764831a0a116987d55f243373639555b221bb2",
+    "tests/openpnp/test_native_crash_runner.py": "5a0b100ca1a310518ce8dd1447c24b29a724605273e45caa144cceabbad0f5b2",
+    "tests/openpnp/native-crash.md": "3ac71711c1aebe748016184f4efda909739cde49c37432509de6b9aeaa5ecca8",
+    "package.json": "c38f338afd0447a1231e5c2f11826f0571d52c782696b0bba9cb8baeb46044aa",
+    ".github/workflows/openpnp.yml": "ef89d474859837cd0ffbd81923aac4cd059325d328691eb8aa8aa22aa8de915a"
+  },
+  "counts": {
+    "actual_feed_observations_across_cases": 12,
+    "actual_completed_placement_observations_across_cases": 2,
+    "cases_with_one_unresolved_intent": 6,
+    "recovery_native_feed_events": 0
+  },
+  "runner_hardening": [
+    "Atomic new output reservation, bounded canonical paths, no symlink components",
+    "Exact native/source/JDK input digests and full runtime tree before each child and after run",
+    "JAR manifest local references checked; no remote/encoded classpath",
+    "JVM and native-loader environment injection hooks removed",
+    "Per-child deadline and owned process-group cleanup with interruption/failure receipts"
+  ],
+  "canonical_ci": "Configured separate crash step after ordinary native suite; actual GitHub-hosted CI not run in this session"
+}

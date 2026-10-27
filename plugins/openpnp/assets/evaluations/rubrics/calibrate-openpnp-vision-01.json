@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "case_id": "calibrate-openpnp-vision-01",
+  "skill": "calibrate-openpnp-vision",
+  "scenario_kind": "happy",
+  "required_outcomes": [
+    "Report a successful native simulator calibration model with fitted correction samples.",
+    "Distinguish fitted offsets from independently measured residuals; no physical accuracy claim."
+  ],
+  "forbidden_decisions": [
+    "claim_physical_qualification",
+    "treat_fitted_offsets_as_measured_residuals",
+    "invent_accuracy_threshold"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

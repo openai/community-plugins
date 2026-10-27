@@ -1,0 +1,310 @@
+{
+  "recorded_at": "2026-09-11T07:16:22.577313+00:00",
+  "platform": "Linux ARM64 in native ARM64 Docker VM on macOS ARM64",
+  "passed": true,
+  "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+  "docker_image": "maven:3.9.9-eclipse-temurin-17@sha256:f58d59b6273e785ac0a4477f6e9b5ba1d7731c75b906c0f7b34076f1851318cc",
+  "bridge_sha256": "b2b7f996302abecd556344b0ec742748c0cad25b44060479371b2e446f78e8d3",
+  "macos_bridge_sha256": "2ebc3b8f8d0fcc7d26a98622f3da1e4965458a7173f7f69acc36b5274f31f545",
+  "production_class_count": 57,
+  "production_classes_identical": true,
+  "class_sha256": {
+    "org/openpnp/codex/Bridge$Fault.class": "257ac0acd9a63fb10cee17cb0ca26400135f67ce16bcf9a3e4565f440b43914b",
+    "org/openpnp/codex/Bridge.class": "3dcef95754b7948cb570482ae69c5ee54be2d96864f6dbb678d82a7a15867759",
+    "org/openpnp/codex/BuildManifest.class": "b1a6fb0d7551057c2a9f62f96001a0f6bce0f91f935a4a69610eb525d330ed80",
+    "org/openpnp/codex/CanonicalJobImporter$PartSpec.class": "de662fc36130085571d3770a833556315ac70a065038a1226199003563615f0d",
+    "org/openpnp/codex/CanonicalJobImporter.class": "865b1f6cf0dae3d5173efe7f2adf435e4cf39db0367bb84b2a7e83752e98cc4c",
+    "org/openpnp/codex/GuiBootstrap.class": "e5720776a4b1b8c95f70b9612513842e628740a6ac5ed4a62fd60fc7dc0995c5",
+    "org/openpnp/codex/GuiExampleScripts.class": "43df6968bc69b8cddfeded5d85b810c95b4f49f4decbefc8a188fde863f3a704",
+    "org/openpnp/codex/GuiOwnership$ScriptRejected.class": "a1d6168f97a22cb99872cc6648560a21872fdc0a70eb24ddb56a164df8fb2c5b",
+    "org/openpnp/codex/GuiOwnership.class": "4ee3cdcb8634448bf7511b418331ecab59eb1427cbca523d749d63bd2b1459e0",
+    "org/openpnp/codex/GuiSimulatorController$1.class": "3fdf925b1a0f47bc986b7cfd547e6fb98674fea55d997eaccdcf04bb3eadbeb6",
+    "org/openpnp/codex/GuiSimulatorController$2.class": "bfdfd01e13013b2c9209d1d07e51d4978988e72b3e4d5f6e56fcb4fa61290468",
+    "org/openpnp/codex/GuiSimulatorController$Checked.class": "e81d6a0f2fdb03f2eb63657134f39a82b5a820ae69cc00405e8a0c799ac51eec",
+    "org/openpnp/codex/GuiSimulatorController.class": "e54db45862bb74d12ba6c201cfc4195e177e31400ac8a2da24814d2447285104",
+    "org/openpnp/codex/IsolatedPreferencesFactory$MemoryNode.class": "30a322b5d00d1fda25ed0ede5b4d73489bfa2f732ef77a860fbd10e18bc1198d",
+    "org/openpnp/codex/IsolatedPreferencesFactory.class": "b1167ab67784f02402c33aed9b0a9a29c1861fcb713a66e874fce5f2ed54f09f",
+    "org/openpnp/codex/NativeActionLedger$DurabilityFence.class": "3411032b8539db6132ba7a78a1e3fca44de1fa3b7227c6cc3720e6778d09c422",
+    "org/openpnp/codex/NativeActionLedger$Replay.class": "29728e28e36ad18a387522db1e31032f542501d81e6aa6b1e8c0fdd26dc55702",
+    "org/openpnp/codex/NativeActionLedger$Sink.class": "4e5e062953433ab6175e80174d1171cbf1b7b149ed7f7bf5936f6834e5d5bef9",
+    "org/openpnp/codex/NativeActionLedger$StepScope$1.class": "089465621104170cc8b1994fcdb6b64c7948e43a2c862a4ff4f1ea2082c9f95b",
+    "org/openpnp/codex/NativeActionLedger$StepScope.class": "83389879a623c689f67684b3fc8cbea973728962c67141c58d7001ebbe6b2bf4",
+    "org/openpnp/codex/NativeActionLedger$UnresolvedActionFence.class": "4c4da59dcff6bfbd5a005a17c022143a2cbb5d37f9badae8338b95e58d12e884",
+    "org/openpnp/codex/NativeActionLedger.class": "1c249533811752e427145681c5f0527dda80962387b24157f8a9e73d2d664b1c",
+    "org/openpnp/codex/NativeBoardLoads$Root.class": "992aafd5f47c7d41e4e3141a507bca660fbec69a956c9bd2ca14da4d71c9cf2b",
+    "org/openpnp/codex/NativeBoardLoads$Sink.class": "327b25699961614224ab0dfa72e802ebcfd76079afe8e5e7ac8fee6f3090bcfa",
+    "org/openpnp/codex/NativeBoardLoads.class": "b47f3d357d04ac62924a6e6e8e19f4d3a2af6c98e8da1d46d53a1344190a2d23",
+    "org/openpnp/codex/NativeConfigurationSnapshots$Restore.class": "b98e9709af4404548ed02d178f00c283cc35959684da713f5d7a3a5937af2128",
+    "org/openpnp/codex/NativeConfigurationSnapshots$Snapshot.class": "a2abcca42a9ba4a7dc7c55fb7c9e6b5af82baad6f145a2be73efa88e3045f09e",
+    "org/openpnp/codex/NativeConfigurationSnapshots.class": "036567793d46ecc1920a52ca955fa32131e9f03d9ad9e28aae6010bca669fea7",
+    "org/openpnp/codex/NativeDocumentStore$PublicationProbe.class": "d959332c0917c8955907eb840355b4aaded5af85a713c709424c73a23bbbf239",
+    "org/openpnp/codex/NativeDocumentStore$Record.class": "55ba1572964dc60fde77ffccc30d21c14aecf832f4b23b109bdecc76541ad4e1",
+    "org/openpnp/codex/NativeDocumentStore.class": "0a1ee8cfe76dafced3bb33ec8a7eaf219b6aae679bc427e0b29aee331a823835",
+    "org/openpnp/codex/NativeJobDocuments$Graph.class": "79af70c6b31c0f3a759dd338efa1d682c15c2da7c1ac5ce1a255dbfbc23b7ca5",
+    "org/openpnp/codex/NativeJobDocuments$Receipt.class": "4b4292f1a9003f03710c43ed1896dac995dbcd8f2955a45aff9408179729bfff",
+    "org/openpnp/codex/NativeJobDocuments$Saved.class": "bb6a60b83f5bbdf3a21f2bf70bdeb48cedd4b06e32a3d04aa229ad58c30a4b70",
+    "org/openpnp/codex/NativeJobDocuments.class": "1f7c79e093557eaaaa6903fdbb5c7e68fe6bb3ec00e3cbb14819ab8e48d5d680",
+    "org/openpnp/codex/NativeJobPreflight$Review.class": "27f3e52164e5265000b6d77dfd6f3e0ab3851cb8d6d253da82909bf2969e912a",
+    "org/openpnp/codex/NativeJobPreflight.class": "b9bc1788da686b87ca271688198fc2eac635277357f7edbc94fe1c502c62ffdd",
+    "org/openpnp/codex/NativePlacementEdits$Builder.class": "6d4b074194a6c4b31d413485a763004d8f0c84a982b1d73e47148a00f0500a0a",
+    "org/openpnp/codex/NativePlacementEdits$Edit.class": "1c255fc1a18466891174bfd8cdeb7b5c7b9b6a2cf987752be5f8bf4d7ef1e113",
+    "org/openpnp/codex/NativePlacementEdits$Fault.class": "159e752547ea192cd5768813b3bacac1de5b3079c6e659e5795d6dda4c8a5264",
+    "org/openpnp/codex/NativePlacementEdits$Graph.class": "421a674e14096f8ab5325abcbaa57048747fb69644bca9b69eab474b51faa6f1",
+    "org/openpnp/codex/NativePlacementEdits$Node.class": "ef0462da9b1e9a591817dacb160439a9d65be0efc76dd0cdb9f0e7c052704838",
+    "org/openpnp/codex/NativePlacementEdits$Patch.class": "e853f859692039b2cdf0af11c2d851823deb0c52ef9045549321737934a96fff",
+    "org/openpnp/codex/NativePlacementEdits$Spec.class": "6d6794481ca7b3bd254cf2676f70805111e0cfdf909e070892a424bd4142fd89",
+    "org/openpnp/codex/NativePlacementEdits$Value.class": "1661c1c4884d943dadd4dec51db811ecc90ea50e6e207e4556cea169c74539f2",
+    "org/openpnp/codex/NativePlacementEdits.class": "8f0ed671f0a933648352e9bb6c2596ca29939d835cb74058e8a3c95b3b31294e",
+    "org/openpnp/codex/NativeSettings$Edit.class": "202635ee6da7c25c30f065a06bdc888c8efdaa2da7a3a3e626f72f156ea6e3cc",
+    "org/openpnp/codex/NativeSettings$Patch.class": "2f5bb7ac040dfb908ab7e3a9cd27edb7b92eafa1532fb233984887ce04bd2c75",
+    "org/openpnp/codex/NativeSettings$Stager$PackageRef.class": "40134fe7abfac7470100049e061010d2dd30336a5588d33b62c4d856eaba94ff",
+    "org/openpnp/codex/NativeSettings$Stager$PartRef.class": "549863858fc2fe1a4207027ad3cfdbd74d975119849d85faa40300f8fd58cfe5",
+    "org/openpnp/codex/NativeSettings$Stager.class": "41b71be6ffa069c4c5b5be3491fdf4d15d954b276831ca9a2d4456f3be957586",
+    "org/openpnp/codex/NativeSettings.class": "0acb1efab0f4c9e406faa674f23f0f669d4b26a32b0592cf9ea7f895f9819920",
+    "org/openpnp/codex/NativeVisionSettings$Holder.class": "4ac8b505101f9359a998bdb4482694ba1184422d53a6e01859558e2002a67c90",
+    "org/openpnp/codex/NativeVisionSettings$Patch.class": "635f1cc58df6820e01931987ed1746354984292d67c5e09354740ec62eb82326",
+    "org/openpnp/codex/NativeVisionSettings$State.class": "7d1908261d3f6d0cbd702febb3db12e7bc9dcbff0fe76fc6ee8fed0e3a7b81ad",
+    "org/openpnp/codex/NativeVisionSettings.class": "24593ea2e6c3eeacf95745fc97e69b9d5de2fa7ad433a5eaa143e9d68b0f0932",
+    "org/openpnp/codex/SimulatorMain.class": "fe0d4d68ecfb3b8e2478ff5e738b151e6fe6ca0b0d138c7d33e526badfa41d12"
+  },
+  "jvm": "openjdk version \"17.0.15\" 2025-04-15\nOpenJDK Runtime Environment Temurin-17.0.15+6 (build 17.0.15+6)\nOpenJDK 64-Bit Server VM Temurin-17.0.15+6 (build 17.0.15+6, mixed mode, sharing)\n",
+  "native_test_count": 31,
+  "native_tests": [
+    {
+      "main": "NativeActionLedgerTest",
+      "exit_code": 0,
+      "elapsed_seconds": 2.6543471813201904,
+      "log_sha256": "090e73e83a5bc64c1f98835e1a48134479f446266738b4c7f624aebe02677f68",
+      "source_sha256": "ba6f8d0085399990e926313e92036da2bcedc0bf48aa4d844a20bc5d8c53d7a4"
+    },
+    {
+      "main": "NativeBridgeDocumentRestartTest",
+      "exit_code": 0,
+      "elapsed_seconds": 6.741138935089111,
+      "log_sha256": "c6830590f354501688d60b55407b7dd1ac6a4714fa2af92ab6bc2389285f4cb0",
+      "source_sha256": "eebac6e93694496c61ea24756f13db84e4d9acb6e7cb7efae81107f693407fe9"
+    },
+    {
+      "main": "NativeExecutorOwnershipTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.0836100578308105,
+      "log_sha256": "29f491aed4b2c10238cd377617eb83db8a64b66a8a83936d60c5cbca13690e7e",
+      "source_sha256": "609e16a7afc10d518059b425749498945f7e5770fcf1cb229547c53a5e01ee32"
+    },
+    {
+      "main": "NativeLedgerRecoveryTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.479311466217041,
+      "log_sha256": "c9910bd3561943cd8ed80bf44558a64513019d36c7aa89f5959d54b78dd338f1",
+      "source_sha256": "c11015c0b94bb1f1bedd089829d4d07b27d94fe3f904108ad64005a8b8f28272"
+    },
+    {
+      "main": "NativeJournalInputBoundaryTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.434147596359253,
+      "log_sha256": "a7b3e3cac5496cf610006afb0b67759cac745f9978b72df44573d014b836766a",
+      "source_sha256": "ec2657799a72f7e533c298c1a05b79348bb4072de0f9198d00a185c0bd136bd1"
+    },
+    {
+      "main": "NativeEffectBoundaryTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.2691872119903564,
+      "log_sha256": "2e4049c447c7b4c15eb4390b7f7264adec0d6559b15a0f90035fcc660809b8f9",
+      "source_sha256": "df1e3dfd495999aa6680517732abead327f8ecb56e1cde23ca65fad88f8fd4fe"
+    },
+    {
+      "main": "NativeBridgeTest",
+      "exit_code": 0,
+      "elapsed_seconds": 11.026509761810303,
+      "log_sha256": "407446306034d8427229f7528f466845e7d26bbf02d71bc304dba0ef328d3736",
+      "source_sha256": "251dd173665e46dfb90bf96a76347b37fdbcd7b10afe34037f2877899a13790d"
+    },
+    {
+      "main": "NativeCapabilityTest",
+      "exit_code": 0,
+      "elapsed_seconds": 9.201683759689331,
+      "log_sha256": "85d67e816f0fae0004177d390ac868725cbd10737dc1aca894f5d062a0a38861",
+      "source_sha256": "47c1d873f687065b88083df24e01214286a4825a7d0b11e6fd2ad08040f53784"
+    },
+    {
+      "main": "NativeRecoveryTest",
+      "exit_code": 0,
+      "elapsed_seconds": 2.5546767711639404,
+      "log_sha256": "5539399b57a43e71c7993cec7bd26cbaa8999f1d0c823379edaa03675889830f",
+      "source_sha256": "ca76a8f97dfe938c374a7d577df89326b016a991f882f383bd403d7491a80420"
+    },
+    {
+      "main": "NativeBoundaryTest",
+      "exit_code": 0,
+      "elapsed_seconds": 2.5567519664764404,
+      "log_sha256": "4bfe95d5146aefb9005878740698b57f75605bae4a1c5e48a4d7d393fdab5784",
+      "source_sha256": "3488a8b48adb14cf4e5e0dab2cdb0a980fad6c2b5820a517aaa542ad7fc1797c"
+    },
+    {
+      "main": "NativeImportBoundaryTest",
+      "exit_code": 0,
+      "elapsed_seconds": 4.580293655395508,
+      "log_sha256": "90814764e878a637d1717c7a2f1c5037d512a3299f6d991072e4cbf553316e47",
+      "source_sha256": "7beebecfcac94bc1d235a93e89482eea53a698775b74ae50c59a0eef5542a3d1"
+    },
+    {
+      "main": "NativeTransformTest",
+      "exit_code": 0,
+      "elapsed_seconds": 0.9745173454284668,
+      "log_sha256": "c018d14785ab5b63c6b8872dd075cf2dc7a2f78dc3e5858fa7a40284b8ff832c",
+      "source_sha256": "4f3758be3ba8efcd3a63b9934691ef7972923790a23c45c4007c169b6155ae47"
+    },
+    {
+      "main": "NativeGraphLimitsTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.1838977336883545,
+      "log_sha256": "a529dbe1173fc53ac88d598eece6c835319bcac6ab24f41b522f83c946a1ef09",
+      "source_sha256": "d6bfb0ef9473d3aa9d47e42956bbf190b4d225a4ff5346717810d0f398f2e5ef"
+    },
+    {
+      "main": "NativeStorageBoundaryTest",
+      "exit_code": 0,
+      "elapsed_seconds": 2.162696123123169,
+      "log_sha256": "cb8ac000b36303f62385e7fe16112f52775c552e052ca4ae5b195453aa08616b",
+      "source_sha256": "83d246e45a595bbeee4ce94289ec531a192ae948e67142c803fc5f923d3d6d80"
+    },
+    {
+      "main": "NativeSettingsTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.2903597354888916,
+      "log_sha256": "6a75fc029f88fa1058c3bb39daf2122dc3ec92a27d84e09eb8f69315e71d4a43",
+      "source_sha256": "e64e8947c240f23cd76445368689cd80e44885469adf9fb7464f31cefd6866e2"
+    },
+    {
+      "main": "PlannerSettingsTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.3472576141357422,
+      "log_sha256": "e92ef71256facb9520ac8092007e8cd9f8b82e81d8efc21b64b871fae253279a",
+      "source_sha256": "0b154d6fbf44e607580f16233a76dcdfaadd00a06a46a4e2853bbb79517f836e"
+    },
+    {
+      "main": "NativeConfigurationSnapshotsTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.7397611141204834,
+      "log_sha256": "bf6226954171d32875fb5f2edd74dfe8df21996228b81dfc0b2c884c85329fff",
+      "source_sha256": "520031b996cefb0102a8d7be89352a3ba9ea09719da4ecbce3f27f28a888c536"
+    },
+    {
+      "main": "NativeConfigurationSnapshotsDecodeTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.97456693649292,
+      "log_sha256": "e394dfba55702323c47d3e02df99d8fb60516441fff08548a9d48b5632277779",
+      "source_sha256": "e35e6966e4f3b2328a4dce790bc64a468683366a1f72f3f5c66d4ce671837392"
+    },
+    {
+      "main": "NativeJobPreflightTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.9219610691070557,
+      "log_sha256": "55dfc199a969404f7280de5abae0f8b150c77a4f9a7c1fa9052727c27c44755d",
+      "source_sha256": "1dab01b4492ff8e47869af423c9b71a5ffc431e1bbd75650191920865bb0266a"
+    },
+    {
+      "main": "NativeJobDocumentsTest",
+      "exit_code": 0,
+      "elapsed_seconds": 2.4063236713409424,
+      "log_sha256": "66b9a0fd24452fe671a442173f88feee68b6c496f00e2c191018b3ae09ca5598",
+      "source_sha256": "960f2a09076096dd4c5dac00b401b156b7d6dd08063587ead7a30d54a5364516"
+    },
+    {
+      "main": "NativeJobDocumentsRestartTest",
+      "exit_code": 0,
+      "elapsed_seconds": 3.6542131900787354,
+      "log_sha256": "22201dd80e7282843b4a816fabfefee8370f25d23f3a67836f00543a0683a21a",
+      "source_sha256": "e64c648ba5687c33e22b9422f9bbdf7d29dbcfd05db1d176476ee51be3bc8de9"
+    },
+    {
+      "main": "NativeDocumentStoreCrashTest",
+      "exit_code": 0,
+      "elapsed_seconds": 4.370059013366699,
+      "log_sha256": "b0a9f0edbbf14aa369aee3e57584fee2ac2ed6107d8a3ef2f8739f4ac1b865e0",
+      "source_sha256": "d39c911d4afab46e9cae39f6888e56cbed435ec9456f6902f3c6cfbc72842114"
+    },
+    {
+      "main": "NativeSustainedTest",
+      "exit_code": 0,
+      "elapsed_seconds": 7.7327141761779785,
+      "log_sha256": "da9a8a485b7b851866ea3a9a757e5aeda1ba933acf73126a26736d2dd91729fb",
+      "source_sha256": "649265f3d8ef44443d6fb2761f84156845dc9c8d30520e3f05f44f6f6c08fd3b"
+    },
+    {
+      "main": "NativeVisionSettingsTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.5403668880462646,
+      "log_sha256": "0c72c7cc2e96dd8a5dfb2bc34886d425892f5faeff5d7484b0fe9dfa8808ad40",
+      "source_sha256": "651d9546d6c396a16e48b63a00770cb73c12810792c177dd307858266949affd"
+    },
+    {
+      "main": "NativeVisionSettingsReviewTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.2919015884399414,
+      "log_sha256": "3be9ea39a4a0f91b2354f824dbc97545ada10c429f4396d2809c615cdf238a14",
+      "source_sha256": "ab92224b840e884b97267173923278c4ed4dafe488a9dc1045a11a33b111ad4a"
+    },
+    {
+      "main": "NativeVisionIntegrationTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.1322250366210938,
+      "log_sha256": "7f7ae521515639daba0fd664df78a4b4411e9aaa7efb5020004c92c88cf382fa",
+      "source_sha256": "1f81a5e2942a2cf9cee39315096bd73fe1425b6af50a101c7c0d3d19b8728a42"
+    },
+    {
+      "main": "NativePlacementEditsTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.503371000289917,
+      "log_sha256": "4065e96c581eedf803228363852bce001793d4cb5675f8a8ca69559f3db56217",
+      "source_sha256": "2f494ddf5ce5e01937b6323ab90174314c308636fe9682d1fd2c009f7c2c4250"
+    },
+    {
+      "main": "NativeCanonicalIdentityTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.1729962825775146,
+      "log_sha256": "d2353fe17b1ae29fe246f02fed4c71675c0bf23121cc7f5f6ef1083f03292286",
+      "source_sha256": "772a0df7630f6098cbb0e857872215d40ca3002e06ee9c51107fe03ed61ed8e4"
+    },
+    {
+      "main": "NativeBoardLoadsTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.7207906246185303,
+      "log_sha256": "f7dba320e6eeb083dd6e89235078a96af0f0c3de6a57126d252d69f047ee9610",
+      "source_sha256": "3f100915aa13f90d6e2f642ae9f5e4c5d3c8523a63c63dd11ad4383ada5ebbb5"
+    },
+    {
+      "main": "NativeBoardLoadBridgeTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.7224862575531006,
+      "log_sha256": "313e5c1212effc9c71186a6d38582b4c3600f8724c07c8c960a82f74c8c838c1",
+      "source_sha256": "a0090a4fe4369e76bf7d88e05b88589fcf1aaa7f8012500c014d86f6f1cbb815"
+    },
+    {
+      "main": "NativeBoardLoadsReviewTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.3958642482757568,
+      "log_sha256": "18d140eed461cd61bfc981b4602d7c3ab4fee8ee34d2d95adc9dce4ce102d418",
+      "source_sha256": "6549ce0a09b04c946967f88bb59d13af1eaa1363599bbcc994035960e294e48a"
+    }
+  ],
+  "native_receipt": "validation/native-linux-combined-02/native-tests/receipt.json",
+  "native_receipt_sha256": "0cd41139cd8220333d30dd0f3272434caf785cd986cbb6f7fc3f36d90add08c0",
+  "wrapper_log": "validation/native-linux-combined-02-wrapper.log",
+  "wrapper_log_sha256": "b980333ac0eabf7dac5bcaabf8fa95bb3336c44242706b9aeabf8b8123fa9ab7",
+  "canonical_build_receipt": {
+    "build": "/workspace/validation/native-linux-combined-02/build",
+    "runtime": "/workspace/validation/native-linux-combined-02/build/runtime",
+    "bridge_sha256": "b2b7f996302abecd556344b0ec742748c0cad25b44060479371b2e446f78e8d3",
+    "stock_built_in_owned_output": false,
+    "native_test_count": 31,
+    "gui_tests_executed": false,
+    "package_published": false,
+    "input_source_modified": false
+  },
+  "gui_tests_executed": false,
+  "actual_mcp_suite_executed": false,
+  "physical_qualification": false,
+  "performance_benchmark": false,
+  "scope": "All31 native programs linked the actual pinned application plus additive patches. Same host also runs original frozen endurance workload. GUI and MCP have separate evidence. First wrapper attempt failed before Java compilation because patch was absent; retained under native-linux-combined-01."
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Back Up or Restore OpenPnP"
+  short_description: "Back up and restore machine configuration"
+  default_prompt: "Use $backup-restore-openpnp to help with this OpenPnP workflow."

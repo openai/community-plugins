@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "completed_at": "2026-09-11T05:29:25.829Z",
+  "passed": true,
+  "simulation_only": true,
+  "hardware_qualified": false,
+  "node": "22.19.0",
+  "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+  "bridge_artifact_sha256": "6f9efe43114463e0e0c8dea1de6000987b05794d4a556ae57d8ee9b56abf8045",
+  "packaged_server_sha256": "796cc93bc9a24496799ad0a3a7bb3a7627078e94de1a14391953acc1e1528c49",
+  "mcp_connection_bundle_hashes": [
+    "796cc93bc9a24496799ad0a3a7bb3a7627078e94de1a14391953acc1e1528c49",
+    "796cc93bc9a24496799ad0a3a7bb3a7627078e94de1a14391953acc1e1528c49"
+  ],
+  "machine_id": "1239d0b2-3f54-4ec0-b80b-7ec4e8abae94",
+  "bridge_instance_id": "2d5457b4-c43d-4a85-9da9-0ef601bb6a6e",
+  "same_native_instance_after_reconnect": true,
+  "original_operation_id": "48e154e0-a3c4-4990-82ca-58da0ffefc6a",
+  "original_request_id": "125eebd8-2264-485f-bd5f-75b67b3aee2d",
+  "disconnect_wait_ms": 12000,
+  "lease_ttl_seconds": 10,
+  "native_steps_started_before_disconnect": 10,
+  "placed_at_pause": 41,
+  "inventory_before": {
+    "feeders": [
+      {
+        "id": "FDR18d42d08011b3b86",
+        "capacity": 10000,
+        "feed_count": 0
+      }
+    ],
+    "capacity": 10000,
+    "feed_count": 0,
+    "remaining": 10000
+  },
+  "inventory_paused": {
+    "feeders": [
+      {
+        "id": "FDR18d42d08011b3b86",
+        "capacity": 10000,
+        "feed_count": 42
+      }
+    ],
+    "capacity": 10000,
+    "feed_count": 42,
+    "remaining": 9958
+  },
+  "inventory_after": {
+    "feeders": [
+      {
+        "id": "FDR18d42d08011b3b86",
+        "capacity": 10000,
+        "feed_count": 200
+      }
+    ],
+    "capacity": 10000,
+    "feed_count": 200,
+    "remaining": 9800
+  },
+  "final_placed": 200,
+  "independently_inspected": 0,
+  "mutation_replays": 0,
+  "expired_session_renewal_rejected": true,
+  "qualification_scope": "Actual MCP transport disconnect, native lease expiry, cooperative pause and original-operation resume; no JVM/controller crash was injected.",
+  "test_log": {
+    "path": "mcp-native-reconnect.log",
+    "sha256": "baa5cab69dcd41c6219a215a0172ea23738f44070f1736e9f82d50f863b0b595",
+    "exit_code": 0
+  },
+  "test_source": {
+    "path": "tests/openpnp/reconnect-live.test.mjs",
+    "sha256": "8e6aaf0e0c929fadc5e1391b3dd4a9ecb4bce23602fc62e6a2d6a75a70419080"
+  }
+}

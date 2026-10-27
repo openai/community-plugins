@@ -1,0 +1,37 @@
+{
+  "scope": "Read-only saved XML parser inputs from the existing native simulator; no native qualification is inferred by launcher tests.",
+  "files": {
+    "machine.xml": {
+      "source": "private-evidence/reconciliation79-integration/validation/recovery-lock-order79-native04/lineage/config/machine.xml",
+      "sha256": "2c6bceb13ae45e090e8d0bd037d1618d6a785932a73829cc22df9c2d3ccd8f18"
+    },
+    "packages.xml": {
+      "source": "private-evidence/reconciliation79-integration/validation/recovery-lock-order79-native04/lineage/config/packages.xml",
+      "sha256": "25468270adc129e6c13dec0738f7b0d97f8ad144c1705262c60e8241fc535ba2"
+    },
+    "parts.xml": {
+      "source": "private-evidence/reconciliation79-integration/validation/recovery-lock-order79-native04/lineage/config/parts.xml",
+      "sha256": "3671f3d6a131cf2ca80d216283e6633a6f17cd8723be2301d77fbc4e238f03a2"
+    },
+    "vision-settings.xml": {
+      "source": "private-evidence/reconciliation79-integration/validation/recovery-lock-order79-native04/lineage/config/vision-settings.xml",
+      "sha256": "dd755601aa109f24c168a3eae3d80fd74ab053f2f29e58a2d4d311083e60c614"
+    },
+    "boards.xml": {
+      "source": "private-evidence/reconciliation79-integration/validation/recovery-lock-order79-native04/lineage/config/boards.xml",
+      "sha256": "4e56e99c05be339b9984e3c5519b5c8c038222170571d1a40cc19c24414dad8c"
+    },
+    "panels.xml": {
+      "source": "private-evidence/reconciliation79-integration/validation/recovery-lock-order79-native04/lineage/config/panels.xml",
+      "sha256": "078663343575d04ab7d784dccf5c6099db8bf77a02e44334901fc4973732125d"
+    },
+    "script-state.xml": {
+      "source": "private-evidence/reconciliation79-integration/validation/recovery-lock-order79-native04/lineage/config/script-state.xml",
+      "sha256": "3621a4f425d48f3a59ccdda8633c298af7a8372ce305246109d91ff867035524"
+    }
+  },
+  "public_export_provenance": {
+    "original_report_sha256": "12691448f88f8c2ef69e922a01ff5c591b817fa4c524115da01167f763c4b020",
+    "transformation": "Private absolute root labels replaced; original result facts and artifact hashes retained. Paths beginning private-evidence/private-host are provenance labels, not repository files."
+  }
+}

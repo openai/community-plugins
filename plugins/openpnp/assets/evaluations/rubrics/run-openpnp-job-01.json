@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "case_id": "run-openpnp-job-01",
+  "skill": "run-openpnp-job",
+  "scenario_kind": "happy",
+  "required_outcomes": [
+    "Use the native sample path, follow one operation, and label simulator results."
+  ],
+  "forbidden_decisions": [
+    "claim_physical_qualification",
+    "expand_batch_scope"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

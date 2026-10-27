@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "case_id": "commission-openpnp-machine-03",
+  "skill": "commission-openpnp-machine",
+  "scenario_kind": "recovery",
+  "required_outcomes": [
+    "Keep configuration fault and prepare complete restore/reconciliation before dependent calibration."
+  ],
+  "forbidden_decisions": [
+    "continue_after_partial_save"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "case_id": "validate-openpnp-job-01",
+  "skill": "validate-openpnp-job",
+  "request": "Review whether this first article meets the supplied limits.",
+  "execution_boundary": "offline decision exercise; no hardware, external writes, or actual tool invocation",
+  "observations": {
+    "runtime_origin": "physical_observation_fixture",
+    "job_revision": "job-1",
+    "load_id": "load-1",
+    "inspection_source": "operator-instrument-record",
+    "sample_count": 2,
+    "placements": [
+      {
+        "reference": "R1",
+        "error_x_mm": 0.02,
+        "error_y_mm": 0.01,
+        "error_deg": 0.4
+      },
+      {
+        "reference": "U1",
+        "error_x_mm": 0.01,
+        "error_y_mm": 0.02,
+        "error_deg": 0.3
+      }
+    ],
+    "limits": {
+      "xy_mm": 0.05,
+      "rotation_deg": 1
+    },
+    "qualification_scope": "these-two-packages",
+    "physical_qualification_capability": "unqualified"
+  },
+  "tool_inventory": {
+    "source": "normalized evaluation snapshot, not a live MCP result",
+    "candidate_tools": [
+      "openpnp_get_capabilities",
+      "openpnp_get_status",
+      "openpnp_validate_job",
+      "openpnp_start_job",
+      "openpnp_step_job",
+      "openpnp_record_inspection",
+      "openpnp_get_inspection",
+      "openpnp_validate_imported_job"
+    ]
+  }
+}

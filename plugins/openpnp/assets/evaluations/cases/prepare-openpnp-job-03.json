@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "case_id": "prepare-openpnp-job-03",
+  "skill": "prepare-openpnp-job",
+  "request": "The parser says R1 occurs twice; load the rest.",
+  "execution_boundary": "offline decision exercise; no hardware, external writes, or actual tool invocation",
+  "observations": {
+    "format": "csv",
+    "rows": [
+      {
+        "reference": "R1",
+        "x": 1,
+        "y": 1
+      },
+      {
+        "reference": "R1",
+        "x": 2,
+        "y": 2
+      },
+      {
+        "reference": "C1",
+        "x": 3,
+        "y": 3
+      }
+    ],
+    "board_instances": [
+      "board-A"
+    ],
+    "parse_error": "duplicate_reference",
+    "committed": false
+  },
+  "tool_inventory": {
+    "source": "normalized evaluation snapshot, not a live MCP result",
+    "candidate_tools": [
+      "openpnp_get_capabilities",
+      "openpnp_prepare_job",
+      "openpnp_plan_configuration",
+      "openpnp_apply_configuration",
+      "openpnp_validate_job",
+      "openpnp_get_artifact",
+      "openpnp_import_job",
+      "openpnp_validate_imported_job"
+    ]
+  }
+}

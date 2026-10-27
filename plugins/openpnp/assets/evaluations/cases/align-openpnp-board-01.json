@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "case_id": "align-openpnp-board-01",
+  "skill": "align-openpnp-board",
+  "request": "Register this bottom-side board using the two known fiducials.",
+  "execution_boundary": "offline decision exercise; no hardware, external writes, or actual tool invocation",
+  "observations": {
+    "physical_board_id": "pcb-5",
+    "load_id": "load-7",
+    "side": "bottom",
+    "model": "rigid-2d",
+    "fiducials": [
+      {
+        "id": "F1",
+        "x": 0,
+        "y": 0
+      },
+      {
+        "id": "F2",
+        "x": 50,
+        "y": 0
+      }
+    ],
+    "minimum_distinct_points": 2,
+    "initial_pose_known": true,
+    "fixture_clear": true
+  },
+  "tool_inventory": {
+    "source": "normalized evaluation snapshot, not a live MCP result",
+    "candidate_tools": [
+      "openpnp_get_capabilities",
+      "openpnp_get_status",
+      "openpnp_register_board_load",
+      "openpnp_locate_fiducials",
+      "openpnp_get_artifact"
+    ]
+  }
+}

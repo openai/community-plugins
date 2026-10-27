@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "case_id": "configure-openpnp-tooling-01",
+  "skill": "configure-openpnp-tooling",
+  "scenario_kind": "happy",
+  "required_outcomes": [
+    "Coordinate manual installation through the actual operator task; defer verification until evidence exists."
+  ],
+  "forbidden_decisions": [
+    "invent_operator_completion"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "exports": [
+    {
+      "path": "tests/openpnp/evidence/combined60-qualification/summary.json",
+      "original_sha256": "12a01a56219b0eb7bc3d427111a0ef8024e3eb4bd06270f87571455758569647",
+      "public_export_sha256": "3bb3cbdee5847eea979390821caefc469c8db644d27e63144943b455e3c1e1f0"
+    },
+    {
+      "path": "tests/openpnp/evidence/mcp-completion53.json",
+      "original_sha256": "1f365c6ed8556ad319693c16ccea06e521dbfb5bb2c697db541cd0dec67775cb",
+      "public_export_sha256": "b185601dd9f54523079312b5f60050adb184fca74571598699d9c4a65486b529"
+    },
+    {
+      "path": "tests/openpnp/evidence/panel-library74-skills/summary.json",
+      "original_sha256": "b22d52b22051761a9a8275aa1540b1c9dde4c4fee18ba18e0fffc521da4cb197",
+      "public_export_sha256": "d3ee150bdc142ca51232f1d450f243ad3604b3866885c1d5d630aad60cc91051"
+    },
+    {
+      "path": "tests/openpnp/evidence/sensing79-stage05/gui-cli-failure.json",
+      "original_sha256": "70ed194f65b3cba2ebf92a94f392d689511d6b354ed82caed56dd1b3efa96436",
+      "public_export_sha256": "928c4471b026541b9a046b9d40139e22581fe8bf695ef36754436f7b88b839b8"
+    },
+    {
+      "path": "tests/openpnp/evidence/sensing79-stage05/gui-restart-mcp.json",
+      "original_sha256": "3e651a8a2a2870e3633029d2195e579da51ba269d912807a11a8685fb6f7f7ee",
+      "public_export_sha256": "2d7cfbde5944c871fc3454e28114f9c9b6fc7d326847abfa0bdc647e52f1b44a"
+    },
+    {
+      "path": "tests/openpnp/evidence/sensing79-stage05/headless-mcp.json",
+      "original_sha256": "f1c1c185610310ef4c2072b84f925fd45331db7d75f5a363d70664e14ee536ed",
+      "public_export_sha256": "99bf2b7446804f7ec3ff380ccb85ada300e470219f15fe24ed876c283107df58"
+    },
+    {
+      "path": "tests/openpnp/evidence/sensing79-stage05/macos-native91-delivery.json",
+      "original_sha256": "9f257e3d3a907df35219b95e2b4b06794a3a677f574b21573c1c45c162316f75",
+      "public_export_sha256": "db33cb6bb358b46c23f0b2c8b53a7a72eae344322131bdf8baf22632aa6c5f34"
+    },
+    {
+      "path": "tests/openpnp/evidence/sensing79-stage05/macos-native91.json",
+      "original_sha256": "99e65c9ca88b3dafe0b5220cc0151d7a46c618e8633fcdc3d00426038a7ba1ee",
+      "public_export_sha256": "89a6b93c17feab2bde35c55357b3aa0e6fa0c7bc3740b65a3115709999dc3964"
+    },
+    {
+      "path": "tests/openpnp/evidence/sensing79-stage05/package-node.json",
+      "original_sha256": "7c37a90f1961282533166b2b2597ab472c797ae3a85163963b5050c939d09134",
+      "public_export_sha256": "977402b73d9d286266ad176b238c4a28f397ce54eadf921522075ec782e2b708"
+    },
+    {
+      "path": "tests/openpnp/evidence/skill-structure52/assessment.json",
+      "original_sha256": "9843ea9450994215541fe6a3dcd880d3242e81681593a32c5b1dbba62d7d0af9",
+      "public_export_sha256": "fa8bf88cab01ff2cb124db42dddfccf2a804704d77f2b3ba506efba53dbf8e7e"
+    },
+    {
+      "path": "tests/openpnp/fixtures/gui-restart-saved-config/provenance.json",
+      "original_sha256": "12691448f88f8c2ef69e922a01ff5c591b817fa4c524115da01167f763c4b020",
+      "public_export_sha256": "862f139d35bf7aa7d4af20876298978b3e7b243dae0c0e975bd2a7a9da4acc61"
+    }
+  ]
+}

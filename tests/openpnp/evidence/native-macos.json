@@ -1,0 +1,361 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-11T05:22:24.018451+00:00",
+  "status": "passed",
+  "exit_code": 0,
+  "platform": {
+    "system": "Darwin",
+    "machine": "arm64",
+    "release": "25.6.0"
+  },
+  "jvm": "openjdk version \"17.0.16\" 2025-07-15\nOpenJDK Runtime Environment Temurin-17.0.16+8 (build 17.0.16+8)\nOpenJDK 64-Bit Server VM Temurin-17.0.16+8 (build 17.0.16+8, mixed mode, sharing)",
+  "jvm_flags": [
+    "-Xmx2g",
+    "-XX:+ExitOnOutOfMemoryError",
+    "--add-opens=java.base/java.lang=ALL-UNNAMED",
+    "--add-opens=java.desktop/java.awt=ALL-UNNAMED",
+    "--add-opens=java.desktop/java.awt.color=ALL-UNNAMED",
+    "-Djava.awt.headless=true"
+  ],
+  "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+  "bridge_version": "0.1.0",
+  "bridge_sha256": "6f9efe43114463e0e0c8dea1de6000987b05794d4a556ae57d8ee9b56abf8045",
+  "upstream_runtime_hashes": {
+    "openpnp-gui-0.0.1-alpha-SNAPSHOT.jar": "518491253ff3b6767362d4a163c932989fa6d71b76fc1bb0e5f35da5cb7a4e43",
+    "lib/opencv-4.5.5-1.jar": "847c3255a3a47af0860ded022a8d51b3b5946d29c6002c91da72f3d36c0e5832"
+  },
+  "commands": [
+    "PATH=\"$JAVA_HOME/bin:$PATH\" OPENPNP_SOURCE=\"$PINNED_OPENPNP_SOURCE\" bash scripts/openpnp-build-native.sh --test",
+    "PATH=\"$JAVA_HOME/bin:$PATH\" OPENPNP_SOURCE=\"$PINNED_OPENPNP_SOURCE\" bash scripts/openpnp-build-native.sh",
+    "cmp plugins/openpnp/bridge/build-manifest.json \"$PREVIOUS_BUILD_MANIFEST\""
+  ],
+  "command_path_substitution": "Portable placeholders replace cache-local JDK and source paths. No system-wide Java installation was used.",
+  "native_test_mains": [
+    "NativeBridgeTest",
+    "NativeRecoveryTest",
+    "NativeBoundaryTest",
+    "NativeCapabilityTest",
+    "NativeSettingsTest",
+    "NativeSustainedTest",
+    "NativeTransformTest",
+    "NativeJobPreflightTest",
+    "NativeJobDocumentsTest",
+    "NativeConfigurationSnapshotsTest",
+    "NativeImportBoundaryTest",
+    "NativeStorageBoundaryTest",
+    "NativeGraphLimitsTest"
+  ],
+  "reported_named_checks_or_groups": 114,
+  "actual_native_placements": {
+    "upstream_sample": 32,
+    "canonical_import": 4,
+    "finite_sustained_fixture": 100,
+    "total": 136,
+    "scope": "Explicit completed sample, canonical-import and sustained jobs; other control/calibration scenarios are not included in this counted total."
+  },
+  "ten_thousand_record_native_document_roundtrip_passed": true,
+  "ten_thousand_placement_test_passed": false,
+  "camera_retention_test_captures": 129,
+  "plan_retention_test_plans": 130,
+  "simulation_only": true,
+  "hardware_qualified": false,
+  "gui_control_qualified": false,
+  "eight_hour_soak_passed": false,
+  "raw_log": {
+    "path": "native-macos.log",
+    "sha256": "9af87bc6c4f481d2c1cc113dd33aa37fa2f1ef7925f82a47332a7bd708501cbf",
+    "private_original_sha256": "a9a2e84011990c98dbe6ee7d827685c9cde14ce4b4f5e47ac4d011ee120bf2fb",
+    "sanitization": "Repository/cache/container and OS temporary paths replaced with explicit placeholders. Bearer tokens were never logged."
+  },
+  "results": [
+    {
+      "marker": "OPENPNP_NATIVE_TEST_RESULT",
+      "result": {
+        "passed": [
+          "unauthenticated RPC rejected",
+          "default simulator retains upstream native NozzleTips job order",
+          "pinned native upstream",
+          "observe does not enable",
+          "native simulator enabled",
+          "mutation request deduplicated",
+          "request collision rejected",
+          "native homing completed",
+          "native safe-Z motion and standstill",
+          "native simulated camera captured",
+          "camera artifact is PNG",
+          "native model persisted",
+          "saved XML agrees with model",
+          "mixed real/simulator drivers rejected",
+          "native sample loaded",
+          "native sample preflight passed",
+          "native job cooperatively paused",
+          "real ReferencePnpJobProcessor completed every sample placement",
+          "native completion is not independent inspection",
+          "lost response reconciles by request ID",
+          "native configuration backup artifact",
+          "typed native restore declares exact scope",
+          "configuration rollback retains actual native placed history",
+          "native job document saved through authenticated RPC",
+          "native job reload through RPC retains completed placement history",
+          "native job reload invalidates registration and validation",
+          "canonical JSON becomes real native board and placement models",
+          "canonical native job validates",
+          "canonical import drives real native job processor",
+          "canonical native placements recorded",
+          "unmapped footprint rejected by native importer",
+          "durable native operation events",
+          "released ownership rejected"
+        ],
+        "requested": 32,
+        "placed": 32,
+        "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+        "journal": "<temporary-native-test-path>"
+      }
+    },
+    {
+      "marker": "OPENPNP_NATIVE_RECOVERY_RESULT",
+      "result": {
+        "passed": [
+          "lost grant response deduplicates to the same session",
+          "grant receipt is discoverable by request ID",
+          "expired grant replay never creates a new lease",
+          "expired lease rejects motion",
+          "old owner plan rejected before native move",
+          "recovery appends without overwriting journal prefix",
+          "original event payload remains immutable beside new recovery transition",
+          "second reopen parses recovered journal successfully",
+          "machine identity persists across bridge restart",
+          "interrupted running journal recovers as outcome unknown",
+          "unknown prior outcome fences new work",
+          "simulator reset reconciliation abandons without retry",
+          "reconciliation preserves unknown physical outcome",
+          "new work accepted after explicit simulator reconciliation"
+        ],
+        "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c"
+      }
+    },
+    {
+      "marker": "OPENPNP_NATIVE_BOUNDARY_RESULT",
+      "result": {
+        "passed": [
+          "successful change advances native revision",
+          "both planners reject the caller's stale expected revision",
+          "disabled board's unfed part does not block native model validation",
+          "X-out scope agrees between validation and native job summary",
+          "control fixture native model validates",
+          "control request is discoverable by its original request ID",
+          "control request is discoverable by its original request ID",
+          "control request is discoverable by its original request ID",
+          "resume replay returns the original native job operation",
+          "replayed first resume cannot undo a later pause",
+          "control request is discoverable by its original request ID",
+          "control request identities reconcile lost responses and reject collisions",
+          "persistence fixture is validated before injected failure",
+          "final save fails against a real invalid filesystem destination",
+          "failure occurs after the real native model changed",
+          "failed persistence invalidates the old revision",
+          "failed persistence revokes the prior validated job state",
+          "configuration fault fences job start and motion planning after partial save"
+        ],
+        "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+        "simulation_only": true,
+        "fault_injection": "temporary configuration destination becomes a directory after part-height mutation"
+      }
+    },
+    {
+      "marker": "OPENPNP_NATIVE_CAPABILITY_RESULT",
+      "result": {
+        "passed": [
+          "native actuator commands with cached-command provenance",
+          "native strip feeder test",
+          "native Issues and Solutions discovery",
+          "native board fiducial registration",
+          "129 native captures keep bounded metadata and retrieve evicted artifact bytes from disk",
+          "motion plan retention bounded at 128",
+          "native calibration status",
+          "native nozzle-tip runout calibration and fitted offsets"
+        ],
+        "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+        "physical_qualification": false
+      }
+    },
+    {
+      "marker": "OPENPNP_NATIVE_SETTINGS_RESULT",
+      "result": {
+        "passed": [
+          "late-invalid patches and exact/case-folded duplicate creates mutate no native model",
+          "100 abandoned and 100 rejected package/part previews retain zero listeners; applied creates materialize once",
+          "staged package-part-feeder dependencies, immutable plan input and actual native tray indexing",
+          "strip hole baseline, pitch, pickup and bounded count configuration",
+          "native nozzle/tip dwell and installed-tip compatibility guard",
+          "unknown fields, nonfinite/fractional numbers and custom native subclasses are rejected",
+          "camera edits invalidate a successfully calibrated native nozzle-tip model and reject 3D override",
+          "linear axis limits/speed persist and revoke homed state; rotational unit mismatch rejected",
+          "read-only setting snapshot covers geometry, tooling, counts and calibration state with native unit conversion",
+          "native configuration save contains staged part/package definitions"
+        ],
+        "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+        "simulation_only": true,
+        "physical_qualification": false
+      }
+    },
+    {
+      "marker": "OPENPNP_NATIVE_SUSTAINED_RESULT",
+      "result": {
+        "requested": 100,
+        "placed": 100,
+        "native_feed_count": 100,
+        "initial_capacity": 10000,
+        "remaining": 9900,
+        "profile": "sustained-workload",
+        "native_job_order": "Unsorted",
+        "native_order_persisted": true,
+        "native_order_drift_rejected": true,
+        "fixture": "native-finite-tray-supply-zero-pitch",
+        "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+        "elapsed_seconds": 17.997760708,
+        "native_steps": 2004,
+        "job_count_recomputations": 101,
+        "machine_snapshot_refreshes": 173,
+        "journal": "<temporary-native-test-path>",
+        "physical_qualification": false,
+        "eight_hour_soak": false
+      }
+    },
+    {
+      "marker": "OPENPNP_NATIVE_TRANSFORM_RESULT",
+      "result": {
+        "passed": [
+          "top board rotation",
+          "bottom board width reflection with side-specific rotation",
+          "nested double-bottom reflection"
+        ],
+        "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c"
+      }
+    },
+    {
+      "marker": "OPENPNP_NATIVE_PREFLIGHT_RESULT",
+      "result": {
+        "passed": [
+          "actual native sample remains valid with explicit unknown-strip-capacity warning and no enabling",
+          "finite feeder capacity aggregation, disabled stock exclusion, unknown supply and placed-history demand",
+          "ancestor X-outs, nested side flips, DNP/fiducial exclusions and placed-history preservation",
+          "native loadable-tip compatibility, manual/automatic changer distinction and unexecuted calibration plan",
+          "pending part/package/finite height and enabled material route checks"
+        ],
+        "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+        "simulation_only": true,
+        "physical_qualification": false
+      }
+    },
+    {
+      "marker": "OPENPNP_NATIVE_DOCUMENTS_RESULT",
+      "result": {
+        "passed": [
+          "native shared board/nested panel ZIP round-trip preserves sides, X-outs, overrides, metadata and placed history while dropping transient registration",
+          "native part/package dependency fingerprints reject changed definitions before reload",
+          "tampered retained bytes, arbitrary paths, unknown hashes and another helper instance are rejected before native XML loading",
+          "unsupported instance drift, custom native classes and outside staging roots are rejected before persistence",
+          "independent review regression: linked native panel pseudo-fiducial persists and resolves after reload",
+          "independent review regression: check-fiducials true -> false across native saves does not restore stale true",
+          "independent review regression: instance-only outline edit is rejected before mutation rather than silently replaced",
+          "explicit shared definition outlines are rejected as a pinned-native limitation before persistence"
+        ],
+        "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+        "simulation_only": true,
+        "physical_qualification": false
+      }
+    },
+    {
+      "marker": "OPENPNP_NATIVE_SNAPSHOTS_RESULT",
+      "result": {
+        "passed": [
+          "snapshot captures all thirteen existing typed setting families and identifies nonrepresentable fields",
+          "native restore reinstates supported settings while preserving newer counts, disabled consumed feeder and later identities",
+          "older capacity below consumed material fails staging without partial rollback",
+          "missing native identity rejects rollback without recreating or deleting hardware models"
+        ],
+        "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+        "simulation_only": true,
+        "physical_qualification": false,
+        "portable_machine_restore": false
+      }
+    },
+    {
+      "marker": "OPENPNP_NATIVE_IMPORT_BOUNDARY_RESULT",
+      "result": {
+        "passed": [
+          "100 rejected graphs create no native Part listeners or installed identities",
+          "case-folded canonical part identities cannot overwrite native definitions",
+          "successful import constructs one Part and binds actual placement model after graph validation",
+          "10000-placement native Job/Board XML bundle save/reload preserves placed history without running machine"
+        ],
+        "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+        "simulation_only": true,
+        "physical_qualification": false,
+        "placements_executed": 0
+      }
+    },
+    {
+      "marker": "OPENPNP_NATIVE_STORAGE_RESULT",
+      "result": {
+        "passed": [
+          "aggregate artifact content limit advertised and reconstructed from retained files",
+          "real camera capture rejected before publishing bytes at aggregate capacity",
+          "existing sparse evidence and metrics remain intact without deletion"
+        ],
+        "sparse_fixture_bytes": 1073741824,
+        "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+        "simulation_only": true,
+        "physical_qualification": false
+      }
+    },
+    {
+      "marker": "OPENPNP_NATIVE_GRAPH_LIMITS_RESULT",
+      "result": {
+        "passed": [
+          "1000 expanded native instances and 100 roots accepted without enabling the machine",
+          "expanded instance overflow rejects without committing staged parts",
+          "depth eight accepted and depth nine rejected",
+          "10000 native placements accepted and expanded placement overflow rejected"
+        ],
+        "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+        "simulation_only": true,
+        "placement_execution_performed": false
+      }
+    }
+  ],
+  "limitations": [
+    "This evidence applies to the recorded bridge hash; changed source requires appropriate reruns.",
+    "Native processor completion is not independent physical inspection.",
+    "Native step recovery does not qualify per-placement physical crash recovery.",
+    "Native job save/load is same-instance generated-bundle reload with unchanged dependencies; custom outlines are rejected by the pinned adapter.",
+    "Typed restore excludes unsupported fields, physical state and calibration evidence; it preserves newer consumption and added identities.",
+    "The finite zero-pitch virtual native tray fixture is distinct from default strip feeder qualification.",
+    "The 10000-record document round trip executes no placements and is not a 10000-placement or eight-hour qualification."
+  ],
+  "bridge_reproducibility": {
+    "clean_builds": 2,
+    "identical_manifest_and_jar_sha256": true,
+    "fixed_jar_timestamp": "2026-09-10T00:00:00Z"
+  },
+  "bridge_loading": "Native mains load unpackaged classes produced by the same build that packages the recorded JAR. The separate MCP workflow attests the actual serving JAR hash.",
+  "compiled_class_packaging_verification": {
+    "class_count": 21,
+    "every_class_matches_packaged_jar": true,
+    "path_and_content_sha256": "7546369d054d41af7ee7747e6927cc7a503e6c732298ab6e2eef4965e1a7a812"
+  },
+  "sustained_workload_recipe": {
+    "native_job_order": "Unsorted",
+    "rationale": "Preordered grid avoids repeating native whole-job route optimization each cycle; actual native planner and all feed/vision/place/journal steps retained.",
+    "default_native_simulator_job_order": "NozzleTips",
+    "native_order_persisted_and_drift_rejected": true
+  },
+  "cross_platform_class_comparison": {
+    "evidence": "native-class-equivalence.json",
+    "all_21_production_class_bytes_identical": true,
+    "only_jar_entry_difference": "META-INF/MANIFEST.MF Created-By Java patch version",
+    "linux_jar_sha256": "3390769aa74fcae04a2ae6c3ea029473a3af6dccf8032e92013b0159004ea062",
+    "macos_packaged_jar_sha256": "6f9efe43114463e0e0c8dea1de6000987b05794d4a556ae57d8ee9b56abf8045"
+  }
+}

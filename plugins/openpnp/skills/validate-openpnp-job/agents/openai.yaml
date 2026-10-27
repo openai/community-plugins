@@ -1,0 +1,4 @@
+interface:
+  display_name: "Validate an OpenPnP Job"
+  short_description: "Validate job readiness and first-article evidence"
+  default_prompt: "Use $validate-openpnp-job to help with this OpenPnP workflow."

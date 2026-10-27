@@ -1,0 +1,109 @@
+--- a/src/main/java/org/openpnp/vision/pipeline/stages/DetectCircularSymmetry.java
++++ b/src/main/java/org/openpnp/vision/pipeline/stages/DetectCircularSymmetry.java
+@@ -696,39 +696,75 @@
+             List<SymmetryCircle> maxima = new ArrayList<SymmetryCircle>();
+             double minSymmetryEff = subSamplingEff == 1 ? minSymmetry : absoluteMinSymmetry;
+             if (scoreBest > minSymmetryEff) {
+-                // Find the local maxima.
+-                for (int yis = 1, yim0 = 0, yim1 = wSearchRangeMap, yim2 = wSearchRangeMap*2;  
+-                        yis < hSearchRangeMap-1; yis++, yim0 += wSearchRangeMap, yim1 += wSearchRangeMap, yim2 += wSearchRangeMap) {
+-                    for (int xis = 1; xis < wSearchRangeMap-1; xis++) {
+-                        //      x0 x1 x2
+-                        //    -----------
+-                        // y0 ¦  0  1  2
+-                        // y1 ¦  3  4  5
+-                        // y2 ¦  6  7  8
+-                        double score = scoreMap[yim1 + xis];
+-                        // This will only find true peaks, no plateaus, but plateaus will never happen in real life. 
+-                        if (score > minSymmetryEff
+-                                && scoreMap[yim1 + xis - 1] < score 
+-                                && scoreMap[yim1 + xis + 1] < score 
+-                                && scoreMap[yim0 + xis - 1] < score 
+-                                && scoreMap[yim0 + xis] < score 
+-                                && scoreMap[yim0 + xis + 1] < score
+-                                && scoreMap[yim2 + xis - 1] < score 
+-                                && scoreMap[yim2 + xis] < score 
+-                                && scoreMap[yim2 + xis + 1] < score) {
+-                            SymmetryCircle circle = new SymmetryCircle(
+-                                    xis*subSamplingEff + x0SearchRange + r + 0.5 + xOffsetMap[yim1 + xis], 
+-                                    yis*subSamplingEff + y0SearchRange + r + 0.5 + yOffsetMap[yim1 + xis], 
+-                                    radiusMap[yim1 + xis]*2,
+-                                    score);
+-                            maxima.add(circle);
++                // Find regional maxima, including connected equal-score plateaus. A strict
++                // eight-neighbour comparison discards every cell of a plateau and can miss
++                // multiple equally good circles. Process each plateau exactly once, and keep
++                // it only if no neighbouring cell is higher. Do not bridge unequal scores.
++                boolean[] visited = new boolean[scoreMap.length];
++                int[] plateau = new int[scoreMap.length];
++                for (int seed = 0; seed < scoreMap.length; seed++) {
++                    double score = scoreMap[seed];
++                    if (visited[seed] || !(score > minSymmetryEff)) {
++                        continue;
++                    }
++                    int count = 1;
++                    plateau[0] = seed;
++                    visited[seed] = true;
++                    boolean maximum = true;
++                    long sumX = 0, sumY = 0;
++                    for (int next = 0; next < count; next++) {
++                        int index = plateau[next];
++                        int px = index % wSearchRangeMap;
++                        int py = index / wSearchRangeMap;
++                        sumX += px;
++                        sumY += py;
++                        // As for a strict local maximum, require a complete neighbourhood.
++                        // A plateau touching the search border has an unobserved neighbour.
++                        if (px == 0 || py == 0 || px == wSearchRangeMap-1 || py == hSearchRangeMap-1) {
++                            maximum = false;
++                        }
++                        for (int oy = -1; oy <= 1; oy++) {
++                            for (int ox = -1; ox <= 1; ox++) {
++                                int nx = px + ox, ny = py + oy;
++                                if ((ox == 0 && oy == 0) || nx < 0 || ny < 0
++                                        || nx >= wSearchRangeMap || ny >= hSearchRangeMap) {
++                                    continue;
++                                }
++                                int neighbour = ny*wSearchRangeMap + nx;
++                                double neighbourScore = scoreMap[neighbour];
++                                if (neighbourScore > score) {
++                                    maximum = false;
++                                }
++                                else if (neighbourScore == score && !visited[neighbour]) {
++                                    visited[neighbour] = true;
++                                    plateau[count++] = neighbour;
++                                }
++                            }
+                         }
+                     }
+-                }
+-                if (maxima.isEmpty()) {
+-                    // This can never happen with real cameras, but with the simulated cameras you get perfect symmetry.
+-                    // Add the single best one.
+-                    maxima.add(new SymmetryCircle(xBest, yBest, rContrastBest * 2, scoreBest));
++                    if (maximum) {
++                        // Select a real sampled cell nearest the plateau centroid, preserving
++                        // its radius/subpixel offsets. Row-major ties are deterministic.
++                        double centerX = (double) sumX/count, centerY = (double) sumY/count;
++                        int representative = seed;
++                        double nearest = Double.POSITIVE_INFINITY;
++                        for (int n = 0; n < count; n++) {
++                            int index = plateau[n];
++                            double dx = index % wSearchRangeMap - centerX;
++                            double dy = index / wSearchRangeMap - centerY;
++                            double distance = dx*dx + dy*dy;
++                            if (distance < nearest || (distance == nearest && index < representative)) {
++                                nearest = distance;
++                                representative = index;
++                            }
++                        }
++                        int px = representative % wSearchRangeMap;
++                        int py = representative / wSearchRangeMap;
++                        maxima.add(new SymmetryCircle(
++                                px*subSamplingEff + x0SearchRange + r + 0.5 + xOffsetMap[representative],
++                                py*subSamplingEff + y0SearchRange + r + 0.5 + yOffsetMap[representative],
++                                radiusMap[representative]*2, score));
++                    }
+                 }
+                 // Take only those with no better-scoring overlaps.
+                 List<SymmetryCircle> maximaFiltered = new ArrayList<SymmetryCircle>();

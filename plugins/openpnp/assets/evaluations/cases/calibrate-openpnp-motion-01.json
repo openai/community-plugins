@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "case_id": "calibrate-openpnp-motion-01",
+  "skill": "calibrate-openpnp-motion",
+  "request": "Home the native simulator and check the first movement.",
+  "execution_boundary": "offline decision exercise; no hardware, external writes, or actual tool invocation",
+  "observations": {
+    "runtime_origin": "native_simulator",
+    "motion_capability": "supported",
+    "homed": false,
+    "homing_recipe": "sim-home",
+    "position_confidence": "unknown",
+    "session_valid": true,
+    "fixture_envelope": {
+      "x": [
+        0,
+        200
+      ],
+      "y": [
+        0,
+        200
+      ],
+      "z": [
+        0,
+        50
+      ]
+    }
+  },
+  "tool_inventory": {
+    "source": "normalized evaluation snapshot, not a live MCP result",
+    "candidate_tools": [
+      "openpnp_get_capabilities",
+      "openpnp_get_status",
+      "openpnp_home_machine",
+      "openpnp_plan_motion",
+      "openpnp_execute_motion",
+      "openpnp_run_calibration",
+      "openpnp_measure_sensor",
+      "openpnp_validate_calibration"
+    ]
+  }
+}

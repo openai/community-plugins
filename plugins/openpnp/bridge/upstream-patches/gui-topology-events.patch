@@ -1,0 +1,206 @@
+--- a/src/main/java/org/openpnp/gui/MachineControlsPanel.java
++++ b/src/main/java/org/openpnp/gui/MachineControlsPanel.java
+@@ -568,6 +568,12 @@
+         }
+     };
+ 
++    // Native machine tasks emit model changes synchronously. Never block that executor on the EDT.
++    private static void onTopologyEventThread(Runnable update) {
++        if (SwingUtilities.isEventDispatchThread()) update.run();
++        else SwingUtilities.invokeLater(update);
++    }
++
+     private ConfigurationListener configurationListener = new ConfigurationListener.Adapter() {
+         @Override
+         public void configurationComplete(Configuration configuration) {
+@@ -628,7 +634,7 @@
+ 
+             for (Head head : machine.getHeads()) {
+ 
+-                BeanUtils.addPropertyChangeListener(head, "nozzles", (e) -> { //$NON-NLS-1$
++                BeanUtils.addPropertyChangeListener(head, "nozzles", (e) -> onTopologyEventThread(() -> { //$NON-NLS-1$
+                     if (e.getOldValue() == getLastSelectedNonCamera()) {
+                         setLastSelectedNonCamera(null);
+                     }
+@@ -644,9 +650,9 @@
+                             }
+                         }
+                     }
+-                });
+-
+-                BeanUtils.addPropertyChangeListener(head, "cameras", (e) -> { //$NON-NLS-1$
++                }));
++
++                BeanUtils.addPropertyChangeListener(head, "cameras", (e) -> onTopologyEventThread(() -> { //$NON-NLS-1$
+                     if (e.getOldValue() == null && e.getNewValue() != null) {
+                         Camera camera = (Camera) e.getNewValue();
+                         comboBoxHeadMountable.addItem(new CameraItem(camera));
+@@ -660,9 +666,9 @@
+                             }
+                         }
+                     }
+-                });
+-
+-                BeanUtils.addPropertyChangeListener(head, "actuators", (e) -> { //$NON-NLS-1$
++                }));
++
++                BeanUtils.addPropertyChangeListener(head, "actuators", (e) -> onTopologyEventThread(() -> { //$NON-NLS-1$
+                     if (e.getOldValue() == getLastSelectedNonCamera()) {
+                         setLastSelectedNonCamera(null);
+                     }
+@@ -679,7 +685,7 @@
+                             }
+                         }
+                     }
+-                });
++                }));
+             }
+ 
+         }
+--- a/src/main/java/org/openpnp/gui/JogControlsPanel.java
++++ b/src/main/java/org/openpnp/gui/JogControlsPanel.java
+@@ -42,6 +42,7 @@
+ import javax.swing.JSlider;
+ import javax.swing.JTabbedPane;
+ import javax.swing.SwingConstants;
++import javax.swing.SwingUtilities;
+ import javax.swing.event.ChangeEvent;
+ import javax.swing.event.ChangeListener;
+ 
+@@ -745,18 +746,24 @@
+                     dlg.setLocationRelativeTo(JogControlsPanel.this);
+                     dlg.setVisible(true);
+                 });
+-                BeanUtils.addPropertyChangeListener(actuator, "name", e -> { //$NON-NLS-1$
++                BeanUtils.addPropertyChangeListener(actuator, "name", e -> onTopologyEventThread(() -> { //$NON-NLS-1$
+                     actuatorButton.setText(
+                             actuator.getHead() == null ? actuator.getName() : actuator.getHead()
+                                     .getName()
+                                     + ":" + actuator.getName()); //$NON-NLS-1$
+-                });
++                }));
+                 panelActuators.add(actuatorButton);
+                 actuatorButtons.put(actuator, actuatorButton);
+     }
+ 
+     private void removeActuator(Actuator actuator) {
+         panelActuators.remove(actuatorButtons.remove(actuator));
++    }
++
++    // Native machine tasks emit model changes synchronously. Never block that executor on the EDT.
++    private static void onTopologyEventThread(Runnable update) {
++        if (SwingUtilities.isEventDispatchThread()) update.run();
++        else SwingUtilities.invokeLater(update);
+     }
+ 
+     private ConfigurationListener configurationListener = new ConfigurationListener.Adapter() {
+@@ -782,7 +789,7 @@
+             }
+ 
+ 
+-            PropertyChangeListener listener = (e) -> {
++            PropertyChangeListener listener = (e) -> onTopologyEventThread(() -> {
+                 if (e.getOldValue() == null && e.getNewValue() != null) {
+                     Actuator actuator = (Actuator) e.getNewValue();
+                     addActuator(actuator);
+@@ -790,7 +797,9 @@
+                 else if (e.getOldValue() != null && e.getNewValue() == null) {
+                     removeActuator((Actuator) e.getOldValue());
+                 }
+-            };
++                panelActuators.revalidate();
++                panelActuators.repaint();
++            });
+ 
+             BeanUtils.addPropertyChangeListener(machine, "actuators", listener); //$NON-NLS-1$
+             for (Head head : machine.getHeads()) {
+--- a/src/main/java/org/openpnp/gui/support/AxesComboBoxModel.java
++++ b/src/main/java/org/openpnp/gui/support/AxesComboBoxModel.java
+@@ -28,6 +28,7 @@
+ import java.util.Comparator;
+ 
+ import javax.swing.DefaultComboBoxModel;
++import javax.swing.SwingUtilities;
+ 
+ import org.openpnp.model.Configuration;
+ import org.openpnp.spi.Axis;
+@@ -87,7 +88,34 @@
+ 
+     @Override
+     public void propertyChange(PropertyChangeEvent evt) {
+-        removeAllElements();
+-        addAllElements();
++        // Snapshot on the notifying thread, before the native task can insert the next axis.
++        // Filtering uses the current EDT-owned axisType when this snapshot is displayed.
++        ArrayList<Axis> axes = new ArrayList<>(machine.getAxes());
++        Runnable update = () -> {
++            Collections.sort(axes, comparator);
++            ArrayList<String> names = new ArrayList<>();
++            for (Axis axis : axes) {
++                if (types.isInstance(axis) && (axisType == null || axisType == axis.getType()))
++                    names.add(axis.getName());
++            }
++            if (addEmpty) names.add("");
++            refreshElements(names);
++        };
++        if (SwingUtilities.isEventDispatchThread()) update.run();
++        else SwingUtilities.invokeLater(update);
++    }
++
++    // Keep retained selections in place: clearing the model would publish a transient null
++    // assignment to an open wizard's binding when another native device is merely added.
++    private void refreshElements(java.util.List<String> names) {
++        for (int i = getSize() - 1; i >= 0; i--) {
++            if (!names.contains(getElementAt(i))) removeElementAt(i);
++        }
++        for (int i = 0; i < names.size(); i++) {
++            if (i >= getSize() || !names.get(i).equals(getElementAt(i)))
++                insertElementAt(names.get(i), i);
++        }
++        while (getSize() > names.size()) removeElementAt(getSize() - 1);
++        if (getSelectedItem() == null && !names.isEmpty()) setSelectedItem(names.get(0));
+     }
+ }
+--- a/src/main/java/org/openpnp/gui/support/ActuatorsComboBoxModel.java
++++ b/src/main/java/org/openpnp/gui/support/ActuatorsComboBoxModel.java
+@@ -26,6 +26,7 @@
+ import java.util.Comparator;
+ 
+ import javax.swing.DefaultComboBoxModel;
++import javax.swing.SwingUtilities;
+ 
+ import org.openpnp.model.AbstractModelObject;
+ import org.openpnp.spi.Actuator;
+@@ -92,7 +93,30 @@
+ 
+     @Override
+     public void propertyChange(PropertyChangeEvent evt) {
+-        removeAllElements();
+-        addAllElements();
++        // Snapshot the native collections synchronously; only Swing updates run on the EDT.
++        ArrayList<Actuator> actuators = new ArrayList<>();
++        if (actuatorsMachine != null) actuators.addAll(actuatorsMachine.getActuators());
++        if (actuatorsHead != null) actuators.addAll(actuatorsHead.getActuators());
++        Collections.sort(actuators, comparator);
++        ArrayList<String> names = new ArrayList<>();
++        names.add("");
++        for (Actuator actuator : actuators) names.add(actuator.getName());
++        Runnable update = () -> refreshElements(names);
++        if (SwingUtilities.isEventDispatchThread()) update.run();
++        else SwingUtilities.invokeLater(update);
++    }
++
++    // Keep retained selections in place: clearing the model would publish a transient null
++    // assignment to an open wizard's binding when another native device is merely added.
++    private void refreshElements(java.util.List<String> names) {
++        for (int i = getSize() - 1; i >= 0; i--) {
++            if (!names.contains(getElementAt(i))) removeElementAt(i);
++        }
++        for (int i = 0; i < names.size(); i++) {
++            if (i >= getSize() || !names.get(i).equals(getElementAt(i)))
++                insertElementAt(names.get(i), i);
++        }
++        while (getSize() > names.size()) removeElementAt(getSize() - 1);
++        if (getSelectedItem() == null && !names.isEmpty()) setSelectedItem(names.get(0));
+     }
+ }

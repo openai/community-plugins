@@ -1,0 +1,354 @@
+{
+  "authored_contract_metadata_relabelled": false,
+  "controlled_cancellation_regressions": {
+    "actual_tool_calls": false,
+    "assessment": {
+      "baseline_sigterm_expected_failure": {
+        "needed_emergency_cleanup": true,
+        "report_created": false
+      },
+      "before_runner_sha256": "e537678d6d56c5eefa772168d6a9e9f64adf6f9b8a3ad429a7d398ecac85fc48",
+      "final_cases": [
+        {
+          "case": "test_sigint_during_reinstall",
+          "cleanup_sha256": "cf0b1a8201802e79937856e45067b1617435bb0b0b8226aded80ddaa7a957883",
+          "fixture_test_passed": true,
+          "interrupted_signals": [
+            2
+          ],
+          "lifecycle_report_passed": false,
+          "report_sha256": "82dd5fb051151d5cae1fc9df977dcd2e8a0e4f2c01bac4ee8818ac5b656cb6ae",
+          "test_result_sha256": "ef30668a3eeeec4b567f5ad837aef73d3bdca8f9cd2e87e238e5451f7fc3b21d"
+        },
+        {
+          "case": "test_sigint_during_report_write",
+          "cleanup_sha256": "cf0b1a8201802e79937856e45067b1617435bb0b0b8226aded80ddaa7a957883",
+          "fixture_test_passed": true,
+          "interrupted_signals": [
+            2
+          ],
+          "lifecycle_report_passed": false,
+          "report_sha256": "0ffa7f093a2b48abbcd23ec9d0fad1df35b9b92a80ef5e051ffe8e2d8415b5e5",
+          "test_result_sha256": "5d97bedc206fe545cf3266a055322c51af3bd8c3062bd08406f24e4d7234b750"
+        },
+        {
+          "case": "test_sigint_during_uninstall",
+          "cleanup_sha256": "cf0b1a8201802e79937856e45067b1617435bb0b0b8226aded80ddaa7a957883",
+          "fixture_test_passed": true,
+          "interrupted_signals": [
+            2
+          ],
+          "lifecycle_report_passed": false,
+          "report_sha256": "85b8f496751f88fe0525eb68fc3302a7679478eafeaeb4193e341c23ebee490c",
+          "test_result_sha256": "48313aab9392d4f18f1f71ba4634b80727a8ac2335cd5cb34c1ccda83e7ef046"
+        },
+        {
+          "case": "test_sigterm_during_reinstall",
+          "cleanup_sha256": "cf0b1a8201802e79937856e45067b1617435bb0b0b8226aded80ddaa7a957883",
+          "fixture_test_passed": true,
+          "interrupted_signals": [
+            15
+          ],
+          "lifecycle_report_passed": false,
+          "report_sha256": "23dbf1c68783e4796e44404def917346320d90a81561a1157132b51e5ac5c452",
+          "test_result_sha256": "b79488dc64c712bdfd91008ef62b37edb10f204916cbc97fb2d07126a5e8d9e4"
+        },
+        {
+          "case": "test_sigterm_during_report_write",
+          "cleanup_sha256": "cf0b1a8201802e79937856e45067b1617435bb0b0b8226aded80ddaa7a957883",
+          "fixture_test_passed": true,
+          "interrupted_signals": [
+            15
+          ],
+          "lifecycle_report_passed": false,
+          "report_sha256": "5fdaa37bcaa7fb6ea2ff4781e77ec58a0fe84b82536de8f109eb4fe04f514b87",
+          "test_result_sha256": "8f955696956f0d9729965a8aa4897d143e93270906414bfd14f54bfe074b8d05"
+        },
+        {
+          "case": "test_sigterm_during_uninstall",
+          "cleanup_sha256": "cf0b1a8201802e79937856e45067b1617435bb0b0b8226aded80ddaa7a957883",
+          "fixture_test_passed": true,
+          "interrupted_signals": [
+            15
+          ],
+          "lifecycle_report_passed": false,
+          "report_sha256": "97a530332b2e54eb26ca15fce91a1777d1e1a3669a98876eb7f9392497c1635d",
+          "test_result_sha256": "7d45f110fc377e905c6450d2141f02e0120cef3bcd14a9715524e777029ab9ae"
+        },
+        {
+          "case": "test_uninterrupted_control",
+          "cleanup_sha256": "cf0b1a8201802e79937856e45067b1617435bb0b0b8226aded80ddaa7a957883",
+          "fixture_test_passed": true,
+          "interrupted_signals": [],
+          "lifecycle_report_passed": true,
+          "report_sha256": "4fd2d98490f23569ee24b375cbc4d8ee92b3c75dcbe8a9f5fdd464e24f846451",
+          "test_result_sha256": "c1d30b331f6a32d87791f09026aaa4ce3ab0b788a4080536895e0c7f9e89be24"
+        }
+      ],
+      "final_runner_sha256": "dd7b2cc101b3c93f5d5196a12865dfdfbfd93d1aac8661b91ec785e82a75184c",
+      "native_execution": false,
+      "owned_runner_sha256": "159c673d00e03d5330878e5055d2d7497e4e0895d6862fa5c614293798ff3e84",
+      "physical_qualification": false,
+      "prior_five_case_summary_sha256": "42adfca67de76dc92af3796665aeda36fbe123e4a58fee963e967c3d2ffac9c3",
+      "process_absence_scope": "Each successful regression directly checked owned process-group disappearance before its result; no separate post-run PID audit claim.",
+      "scope": "Controlled subprocess cancellation regressions only, not simulator qualification",
+      "test_sha256": "8c2bf89ecada7d1abc5d3765189240cac3e40731fbb16299081b47730f476418"
+    },
+    "native_execution": false,
+    "simulator_workflow_pass": false,
+    "summary_sha256": "12aff54bb845ced7323c09f56a22789e5e60a8c9e5e5f7f575d5fdd14b404148"
+  },
+  "current_source_sha256": {
+    "scripts/openpnp-test-installed-lifecycle.py": "dd7b2cc101b3c93f5d5196a12865dfdfbfd93d1aac8661b91ec785e82a75184c",
+    "scripts/openpnp-test-native-mcp.py": "159c673d00e03d5330878e5055d2d7497e4e0895d6862fa5c614293798ff3e84",
+    "tests/openpnp/test_installed_lifecycle_runner.py": "8c2bf89ecada7d1abc5d3765189240cac3e40731fbb16299081b47730f476418"
+  },
+  "endurance_qualification": false,
+  "exported_at": "2026-10-27T06:12:24.630139+00:00",
+  "final_corrected_lifecycle": {
+    "invocation_outcome": {
+      "basis": "Coordinator tool-command outcome; no separate invocation receipt was retained.",
+      "exit_code": 0,
+      "interrupted": false
+    },
+    "owned_cli_cleanup": {
+      "reinstall": {
+        "errors": [],
+        "forced_kill": false,
+        "group_gone": true,
+        "parent_exit_code": 0,
+        "receipt_sha256": "435dde35e60fd8a686d2d060f12e9fcea9ae9155764e3d442dc6e46768381a69"
+      },
+      "uninstall": {
+        "errors": [],
+        "forced_kill": false,
+        "group_gone": true,
+        "parent_exit_code": 0,
+        "receipt_sha256": "435dde35e60fd8a686d2d060f12e9fcea9ae9155764e3d442dc6e46768381a69"
+      }
+    },
+    "receipt": {
+      "bridge_sha256": "070c833972fc4dfb6ad322adfc8f677f723aff583d0cdda88ccf5baaac228420",
+      "core_report_sha256": "7cdd0c0488e82dccc1c3bb501d6dd5a75aaeabf62548a9d0c03e48e017c4f709",
+      "final_journal_sha256": "82715d33243c83a58255deba1eeac3bbc6108189c57ff11a3d9a6efacd8930c4",
+      "interrupted_signals": [],
+      "kind": "actual-installed-simulator-uninstall-reinstall",
+      "original_journal_sha256": "82715d33243c83a58255deba1eeac3bbc6108189c57ff11a3d9a6efacd8930c4",
+      "passed": true,
+      "physical_qualification": false,
+      "preserved_file_count": 78,
+      "reinstall_preserves_all_other_files": true,
+      "uninstall_preserves_all_other_files": true
+    },
+    "receipt_path": "validation/pr5-qualification07/installed-lifecycle-corrected02/report.json",
+    "receipt_sha256": "cdcac380c83c828e37228169dfede61811260127d8e2fe5cc08c27462de35b40",
+    "runner_sha256": "dd7b2cc101b3c93f5d5196a12865dfdfbfd93d1aac8661b91ec785e82a75184c",
+    "source_binding_basis": "Coordinator recorded this frozen, independently reviewed source hash at launch; current bytes independently checked. The lifecycle receipt does not embed a source hash."
+  },
+  "first_correction_predecessor": {
+    "invocation_outcome": {
+      "basis": "Coordinator tool-command outcome; no separate invocation receipt was retained.",
+      "exit_code": 0,
+      "interrupted": false
+    },
+    "owned_cli_cleanup": {
+      "reinstall": {
+        "errors": [],
+        "forced_kill": false,
+        "group_gone": true,
+        "parent_exit_code": 0,
+        "receipt_sha256": "435dde35e60fd8a686d2d060f12e9fcea9ae9155764e3d442dc6e46768381a69"
+      },
+      "uninstall": {
+        "errors": [],
+        "forced_kill": false,
+        "group_gone": true,
+        "parent_exit_code": 0,
+        "receipt_sha256": "435dde35e60fd8a686d2d060f12e9fcea9ae9155764e3d442dc6e46768381a69"
+      }
+    },
+    "receipt": {
+      "bridge_sha256": "070c833972fc4dfb6ad322adfc8f677f723aff583d0cdda88ccf5baaac228420",
+      "core_report_sha256": "7cdd0c0488e82dccc1c3bb501d6dd5a75aaeabf62548a9d0c03e48e017c4f709",
+      "final_journal_sha256": "82715d33243c83a58255deba1eeac3bbc6108189c57ff11a3d9a6efacd8930c4",
+      "interrupted_signals": [],
+      "kind": "actual-installed-simulator-uninstall-reinstall",
+      "original_journal_sha256": "82715d33243c83a58255deba1eeac3bbc6108189c57ff11a3d9a6efacd8930c4",
+      "passed": true,
+      "physical_qualification": false,
+      "preserved_file_count": 78,
+      "reinstall_preserves_all_other_files": true,
+      "uninstall_preserves_all_other_files": true
+    },
+    "receipt_path": "validation/pr5-qualification07/installed-lifecycle-corrected/report.json",
+    "receipt_sha256": "cdcac380c83c828e37228169dfede61811260127d8e2fe5cc08c27462de35b40",
+    "runner_sha256": "47222ddb8d06ea0a6e2e6979938fa6351a86f34c80766b54e80c1755765ebac9",
+    "source_binding_basis": "Coordinator recorded this source hash at launch; exact source bytes retained in the prior controlled-test snapshot. The lifecycle receipt does not embed a source hash."
+  },
+  "full_implementation_plan_completed": false,
+  "kind": "openpnp-pr5-lifecycle-interruption-correction-supplement",
+  "main_summary": {
+    "path": "tests/openpnp/evidence/pr5-qualification/final-candidate/summary.json",
+    "sha256": "2f8985855c24f1cbeff54639131ff94cbc85eea4a70f1f3ec996cdc02ed062f5",
+    "unchanged": true
+  },
+  "manual_desktop_rehearsal": false,
+  "native_jvm_workflows_rerun_for_this_supplement": false,
+  "original_file_sha256": {
+    "plugins/openpnp/bridge/build-manifest.json": "c9d71270560f13588678bdf7b5f341fb6adc8510c3c9bc544dd323309ec4a6db",
+    "plugins/openpnp/bridge/openpnp-codex-bridge.jar": "070c833972fc4dfb6ad322adfc8f677f723aff583d0cdda88ccf5baaac228420",
+    "plugins/openpnp/scripts/controller-history.mjs": "39c70cd6a31d9c04d2759f1b3bc4e46aa3db95c6dda7a5792511e908f5d99913",
+    "plugins/openpnp/scripts/controller-launcher.mjs": "9d7b60214560ed09caee6599aff1f70582923ea482c59ce54fe68fcf937cf56b",
+    "plugins/openpnp/scripts/controller-profile.mjs": "469efc03ac1201c00f2e02e8ad69b230e89db00fd0f7ab0a2f42301afab958b9",
+    "plugins/openpnp/scripts/diagnostics.mjs": "d56ea453dca9317f1911c1f53bc50df530f1066917d3f7d3ba5f416427b3e6dc",
+    "plugins/openpnp/scripts/gui-launcher.mjs": "ab09a144a14a3c6133d681c247dd0c1f985a37aebc6d82c4d4364e645a192fc9",
+    "plugins/openpnp/scripts/gui-restart-launcher.mjs": "2e3600261c35aea7a52009ca4c88aed0c88412fa0f90b39028347b487adb179d",
+    "plugins/openpnp/scripts/java-environment.mjs": "4fbaa358166e31bcf2d47726fa3bdd821aa5ff4efc840b9216127741c7a28322",
+    "plugins/openpnp/scripts/openpnp.mjs": "4e409ceeb3d8aa91c91b06426953537f5ed8b18230e6bfe54dbc1b479710027f",
+    "plugins/openpnp/scripts/support-export.mjs": "9d47e2c31cd99b6c2b63ceea0364c4d87b56bec67669db65edb0ec630f7dd90b",
+    "scripts/openpnp-test-installed-lifecycle.py": "dd7b2cc101b3c93f5d5196a12865dfdfbfd93d1aac8661b91ec785e82a75184c",
+    "scripts/openpnp-test-native-mcp.py": "159c673d00e03d5330878e5055d2d7497e4e0895d6862fa5c614293798ff3e84",
+    "tests/openpnp/evidence/pr5-qualification/final-candidate/summary.json": "2f8985855c24f1cbeff54639131ff94cbc85eea4a70f1f3ec996cdc02ed062f5",
+    "tests/openpnp/test_installed_lifecycle_runner.py": "8c2bf89ecada7d1abc5d3765189240cac3e40731fbb16299081b47730f476418",
+    "validation/pr5-qualification07/ci-packaged/plugins/openpnp/bridge/build-manifest.json": "c9d71270560f13588678bdf7b5f341fb6adc8510c3c9bc544dd323309ec4a6db",
+    "validation/pr5-qualification07/ci-packaged/plugins/openpnp/scripts/controller-history.mjs": "39c70cd6a31d9c04d2759f1b3bc4e46aa3db95c6dda7a5792511e908f5d99913",
+    "validation/pr5-qualification07/ci-packaged/plugins/openpnp/scripts/controller-launcher.mjs": "9d7b60214560ed09caee6599aff1f70582923ea482c59ce54fe68fcf937cf56b",
+    "validation/pr5-qualification07/ci-packaged/plugins/openpnp/scripts/controller-profile.mjs": "469efc03ac1201c00f2e02e8ad69b230e89db00fd0f7ab0a2f42301afab958b9",
+    "validation/pr5-qualification07/ci-packaged/plugins/openpnp/scripts/diagnostics.mjs": "d56ea453dca9317f1911c1f53bc50df530f1066917d3f7d3ba5f416427b3e6dc",
+    "validation/pr5-qualification07/ci-packaged/plugins/openpnp/scripts/gui-launcher.mjs": "ab09a144a14a3c6133d681c247dd0c1f985a37aebc6d82c4d4364e645a192fc9",
+    "validation/pr5-qualification07/ci-packaged/plugins/openpnp/scripts/gui-restart-launcher.mjs": "2e3600261c35aea7a52009ca4c88aed0c88412fa0f90b39028347b487adb179d",
+    "validation/pr5-qualification07/ci-packaged/plugins/openpnp/scripts/java-environment.mjs": "4fbaa358166e31bcf2d47726fa3bdd821aa5ff4efc840b9216127741c7a28322",
+    "validation/pr5-qualification07/ci-packaged/plugins/openpnp/scripts/openpnp.mjs": "4e409ceeb3d8aa91c91b06426953537f5ed8b18230e6bfe54dbc1b479710027f",
+    "validation/pr5-qualification07/ci-packaged/plugins/openpnp/scripts/support-export.mjs": "9d47e2c31cd99b6c2b63ceea0364c4d87b56bec67669db65edb0ec630f7dd90b",
+    "validation/pr5-qualification07/ci-packaged/scripts/openpnp-test-installed-lifecycle.py": "e537678d6d56c5eefa772168d6a9e9f64adf6f9b8a3ad429a7d398ecac85fc48",
+    "validation/pr5-qualification07/ci-packaged/scripts/openpnp-test-native-mcp.py": "159c673d00e03d5330878e5055d2d7497e4e0895d6862fa5c614293798ff3e84",
+    "validation/pr5-qualification07/ci-packaged/validation/installed-lifecycle/reinstall.log": "c24dc26d1c2c15635998d78285cb38b3342fee20388d40134eb21284fa615c8e",
+    "validation/pr5-qualification07/ci-packaged/validation/installed-lifecycle/reinstall.process.json": "435dde35e60fd8a686d2d060f12e9fcea9ae9155764e3d442dc6e46768381a69",
+    "validation/pr5-qualification07/ci-packaged/validation/installed-lifecycle/report.json": "8dab7fa16341ac6fe22a09de9cb0db6b29f09b3e16023f4ce7f169623a665b91",
+    "validation/pr5-qualification07/ci-packaged/validation/installed-lifecycle/uninstall.log": "b2fc94263d5406c7eb7f39e807e6cacae4987c724309b5eb302477a037eb165a",
+    "validation/pr5-qualification07/ci-packaged/validation/installed-lifecycle/uninstall.process.json": "435dde35e60fd8a686d2d060f12e9fcea9ae9155764e3d442dc6e46768381a69",
+    "validation/pr5-qualification07/ci-packaged/validation/mcp/core/report.json": "7cdd0c0488e82dccc1c3bb501d6dd5a75aaeabf62548a9d0c03e48e017c4f709",
+    "validation/pr5-qualification07/installed-lifecycle-corrected/reinstall.log": "c24dc26d1c2c15635998d78285cb38b3342fee20388d40134eb21284fa615c8e",
+    "validation/pr5-qualification07/installed-lifecycle-corrected/reinstall.process.json": "435dde35e60fd8a686d2d060f12e9fcea9ae9155764e3d442dc6e46768381a69",
+    "validation/pr5-qualification07/installed-lifecycle-corrected/report.json": "cdcac380c83c828e37228169dfede61811260127d8e2fe5cc08c27462de35b40",
+    "validation/pr5-qualification07/installed-lifecycle-corrected/uninstall.log": "b2fc94263d5406c7eb7f39e807e6cacae4987c724309b5eb302477a037eb165a",
+    "validation/pr5-qualification07/installed-lifecycle-corrected/uninstall.process.json": "435dde35e60fd8a686d2d060f12e9fcea9ae9155764e3d442dc6e46768381a69",
+    "validation/pr5-qualification07/installed-lifecycle-corrected02/reinstall.log": "c24dc26d1c2c15635998d78285cb38b3342fee20388d40134eb21284fa615c8e",
+    "validation/pr5-qualification07/installed-lifecycle-corrected02/reinstall.process.json": "435dde35e60fd8a686d2d060f12e9fcea9ae9155764e3d442dc6e46768381a69",
+    "validation/pr5-qualification07/installed-lifecycle-corrected02/report.json": "cdcac380c83c828e37228169dfede61811260127d8e2fe5cc08c27462de35b40",
+    "validation/pr5-qualification07/installed-lifecycle-corrected02/uninstall.log": "b2fc94263d5406c7eb7f39e807e6cacae4987c724309b5eb302477a037eb165a",
+    "validation/pr5-qualification07/installed-lifecycle-corrected02/uninstall.process.json": "435dde35e60fd8a686d2d060f12e9fcea9ae9155764e3d442dc6e46768381a69"
+  },
+  "original_q7_lifecycle": {
+    "owned_cli_cleanup": {
+      "reinstall": {
+        "errors": [],
+        "forced_kill": false,
+        "group_gone": true,
+        "parent_exit_code": 0,
+        "receipt_sha256": "435dde35e60fd8a686d2d060f12e9fcea9ae9155764e3d442dc6e46768381a69"
+      },
+      "uninstall": {
+        "errors": [],
+        "forced_kill": false,
+        "group_gone": true,
+        "parent_exit_code": 0,
+        "receipt_sha256": "435dde35e60fd8a686d2d060f12e9fcea9ae9155764e3d442dc6e46768381a69"
+      }
+    },
+    "receipt": {
+      "bridge_sha256": "070c833972fc4dfb6ad322adfc8f677f723aff583d0cdda88ccf5baaac228420",
+      "core_report_sha256": "7cdd0c0488e82dccc1c3bb501d6dd5a75aaeabf62548a9d0c03e48e017c4f709",
+      "final_journal_sha256": "82715d33243c83a58255deba1eeac3bbc6108189c57ff11a3d9a6efacd8930c4",
+      "kind": "actual-installed-simulator-uninstall-reinstall",
+      "original_journal_sha256": "82715d33243c83a58255deba1eeac3bbc6108189c57ff11a3d9a6efacd8930c4",
+      "passed": true,
+      "physical_qualification": false,
+      "preserved_file_count": 78,
+      "reinstall_preserves_all_other_files": true,
+      "uninstall_preserves_all_other_files": true
+    },
+    "receipt_path": "validation/pr5-qualification07/ci-packaged/validation/installed-lifecycle/report.json",
+    "receipt_sha256": "8dab7fa16341ac6fe22a09de9cb0db6b29f09b3e16023f4ce7f169623a665b91",
+    "runner_sha256": "e537678d6d56c5eefa772168d6a9e9f64adf6f9b8a3ad429a7d398ecac85fc48",
+    "source_binding_basis": "Original staged runner bytes, stage receipt source hash and unchanged qualification summary."
+  },
+  "performance_qualification": false,
+  "physical_qualification": false,
+  "private_evidence_sha256": {
+    "baseline/cleanup.json": "210f8344b9d82c396f1a8d0e8e21e984f358cd95850e4a5fc81f60481e5286d8",
+    "baseline/runner-source": "e537678d6d56c5eefa772168d6a9e9f64adf6f9b8a3ad429a7d398ecac85fc48",
+    "controlled/final-summary.json": "12aff54bb845ced7323c09f56a22789e5e60a8c9e5e5f7f575d5fdd14b404148",
+    "controlled/first-five-case-summary.json": "42adfca67de76dc92af3796665aeda36fbe123e4a58fee963e967c3d2ffac9c3",
+    "controlled/test_sigint_during_reinstall/owned-source": "159c673d00e03d5330878e5055d2d7497e4e0895d6862fa5c614293798ff3e84",
+    "controlled/test_sigint_during_reinstall/reinstall.process.json": "435dde35e60fd8a686d2d060f12e9fcea9ae9155764e3d442dc6e46768381a69",
+    "controlled/test_sigint_during_reinstall/result.json": "ef30668a3eeeec4b567f5ad837aef73d3bdca8f9cd2e87e238e5451f7fc3b21d",
+    "controlled/test_sigint_during_reinstall/runner-source": "dd7b2cc101b3c93f5d5196a12865dfdfbfd93d1aac8661b91ec785e82a75184c",
+    "controlled/test_sigint_during_reinstall/test-cleanup.json": "cf0b1a8201802e79937856e45067b1617435bb0b0b8226aded80ddaa7a957883",
+    "controlled/test_sigint_during_reinstall/uninstall.process.json": "435dde35e60fd8a686d2d060f12e9fcea9ae9155764e3d442dc6e46768381a69",
+    "controlled/test_sigint_during_reinstall/validation/result/report.json": "82dd5fb051151d5cae1fc9df977dcd2e8a0e4f2c01bac4ee8818ac5b656cb6ae",
+    "controlled/test_sigint_during_report_write/owned-source": "159c673d00e03d5330878e5055d2d7497e4e0895d6862fa5c614293798ff3e84",
+    "controlled/test_sigint_during_report_write/reinstall.process.json": "435dde35e60fd8a686d2d060f12e9fcea9ae9155764e3d442dc6e46768381a69",
+    "controlled/test_sigint_during_report_write/result.json": "5d97bedc206fe545cf3266a055322c51af3bd8c3062bd08406f24e4d7234b750",
+    "controlled/test_sigint_during_report_write/runner-source": "dd7b2cc101b3c93f5d5196a12865dfdfbfd93d1aac8661b91ec785e82a75184c",
+    "controlled/test_sigint_during_report_write/test-cleanup.json": "cf0b1a8201802e79937856e45067b1617435bb0b0b8226aded80ddaa7a957883",
+    "controlled/test_sigint_during_report_write/uninstall.process.json": "435dde35e60fd8a686d2d060f12e9fcea9ae9155764e3d442dc6e46768381a69",
+    "controlled/test_sigint_during_report_write/validation/result/report.json": "0ffa7f093a2b48abbcd23ec9d0fad1df35b9b92a80ef5e051ffe8e2d8415b5e5",
+    "controlled/test_sigint_during_uninstall/owned-source": "159c673d00e03d5330878e5055d2d7497e4e0895d6862fa5c614293798ff3e84",
+    "controlled/test_sigint_during_uninstall/result.json": "48313aab9392d4f18f1f71ba4634b80727a8ac2335cd5cb34c1ccda83e7ef046",
+    "controlled/test_sigint_during_uninstall/runner-source": "dd7b2cc101b3c93f5d5196a12865dfdfbfd93d1aac8661b91ec785e82a75184c",
+    "controlled/test_sigint_during_uninstall/test-cleanup.json": "cf0b1a8201802e79937856e45067b1617435bb0b0b8226aded80ddaa7a957883",
+    "controlled/test_sigint_during_uninstall/uninstall.process.json": "435dde35e60fd8a686d2d060f12e9fcea9ae9155764e3d442dc6e46768381a69",
+    "controlled/test_sigint_during_uninstall/validation/result/report.json": "85b8f496751f88fe0525eb68fc3302a7679478eafeaeb4193e341c23ebee490c",
+    "controlled/test_sigterm_during_reinstall/owned-source": "159c673d00e03d5330878e5055d2d7497e4e0895d6862fa5c614293798ff3e84",
+    "controlled/test_sigterm_during_reinstall/reinstall.process.json": "435dde35e60fd8a686d2d060f12e9fcea9ae9155764e3d442dc6e46768381a69",
+    "controlled/test_sigterm_during_reinstall/result.json": "b79488dc64c712bdfd91008ef62b37edb10f204916cbc97fb2d07126a5e8d9e4",
+    "controlled/test_sigterm_during_reinstall/runner-source": "dd7b2cc101b3c93f5d5196a12865dfdfbfd93d1aac8661b91ec785e82a75184c",
+    "controlled/test_sigterm_during_reinstall/test-cleanup.json": "cf0b1a8201802e79937856e45067b1617435bb0b0b8226aded80ddaa7a957883",
+    "controlled/test_sigterm_during_reinstall/uninstall.process.json": "435dde35e60fd8a686d2d060f12e9fcea9ae9155764e3d442dc6e46768381a69",
+    "controlled/test_sigterm_during_reinstall/validation/result/report.json": "23dbf1c68783e4796e44404def917346320d90a81561a1157132b51e5ac5c452",
+    "controlled/test_sigterm_during_report_write/owned-source": "159c673d00e03d5330878e5055d2d7497e4e0895d6862fa5c614293798ff3e84",
+    "controlled/test_sigterm_during_report_write/reinstall.process.json": "435dde35e60fd8a686d2d060f12e9fcea9ae9155764e3d442dc6e46768381a69",
+    "controlled/test_sigterm_during_report_write/result.json": "8f955696956f0d9729965a8aa4897d143e93270906414bfd14f54bfe074b8d05",
+    "controlled/test_sigterm_during_report_write/runner-source": "dd7b2cc101b3c93f5d5196a12865dfdfbfd93d1aac8661b91ec785e82a75184c",
+    "controlled/test_sigterm_during_report_write/test-cleanup.json": "cf0b1a8201802e79937856e45067b1617435bb0b0b8226aded80ddaa7a957883",
+    "controlled/test_sigterm_during_report_write/uninstall.process.json": "435dde35e60fd8a686d2d060f12e9fcea9ae9155764e3d442dc6e46768381a69",
+    "controlled/test_sigterm_during_report_write/validation/result/report.json": "5fdaa37bcaa7fb6ea2ff4781e77ec58a0fe84b82536de8f109eb4fe04f514b87",
+    "controlled/test_sigterm_during_uninstall/owned-source": "159c673d00e03d5330878e5055d2d7497e4e0895d6862fa5c614293798ff3e84",
+    "controlled/test_sigterm_during_uninstall/result.json": "7d45f110fc377e905c6450d2141f02e0120cef3bcd14a9715524e777029ab9ae",
+    "controlled/test_sigterm_during_uninstall/runner-source": "dd7b2cc101b3c93f5d5196a12865dfdfbfd93d1aac8661b91ec785e82a75184c",
+    "controlled/test_sigterm_during_uninstall/test-cleanup.json": "cf0b1a8201802e79937856e45067b1617435bb0b0b8226aded80ddaa7a957883",
+    "controlled/test_sigterm_during_uninstall/uninstall.process.json": "435dde35e60fd8a686d2d060f12e9fcea9ae9155764e3d442dc6e46768381a69",
+    "controlled/test_sigterm_during_uninstall/validation/result/report.json": "97a530332b2e54eb26ca15fce91a1777d1e1a3669a98876eb7f9392497c1635d",
+    "controlled/test_uninterrupted_control/owned-source": "159c673d00e03d5330878e5055d2d7497e4e0895d6862fa5c614293798ff3e84",
+    "controlled/test_uninterrupted_control/reinstall.process.json": "435dde35e60fd8a686d2d060f12e9fcea9ae9155764e3d442dc6e46768381a69",
+    "controlled/test_uninterrupted_control/result.json": "c1d30b331f6a32d87791f09026aaa4ce3ab0b788a4080536895e0c7f9e89be24",
+    "controlled/test_uninterrupted_control/runner-source": "dd7b2cc101b3c93f5d5196a12865dfdfbfd93d1aac8661b91ec785e82a75184c",
+    "controlled/test_uninterrupted_control/test-cleanup.json": "cf0b1a8201802e79937856e45067b1617435bb0b0b8226aded80ddaa7a957883",
+    "controlled/test_uninterrupted_control/uninstall.process.json": "435dde35e60fd8a686d2d060f12e9fcea9ae9155764e3d442dc6e46768381a69",
+    "controlled/test_uninterrupted_control/validation/result/report.json": "4fd2d98490f23569ee24b375cbc4d8ee92b3c75dcbe8a9f5fdd464e24f846451",
+    "first-correction/retained-runner-source": "47222ddb8d06ea0a6e2e6979938fa6351a86f34c80766b54e80c1755765ebac9"
+  },
+  "process_cleanup_scope": "Owned child process receipts directly record clean shutdown for both CLI calls. Controlled tests directly checked their own group disappearance. No new PID absence audit or unrecorded-process claim.",
+  "qualification_executed_by_exporter": false,
+  "qualified_artifacts": {
+    "bridge_manifest_sha256": "c9d71270560f13588678bdf7b5f341fb6adc8510c3c9bc544dd323309ec4a6db",
+    "bridge_sha256": "070c833972fc4dfb6ad322adfc8f677f723aff583d0cdda88ccf5baaac228420",
+    "core_report_sha256": "7cdd0c0488e82dccc1c3bb501d6dd5a75aaeabf62548a9d0c03e48e017c4f709"
+  },
+  "sanitization": "Repository-relative paths, bounded scalar receipt data and original hashes only. No raw logs, connection/authentication state, journal content or absolute host paths copied.",
+  "schema_version": 1,
+  "scope": "Separate supplement to the unchanged Q7 native and packaged qualification summary. Actual CLI uninstall/reinstall uses the stopped, populated Q7 core simulator state; controlled fake-CLI interruption regressions are a separate scope.",
+  "supersedes_only": "The lifecycle runner source used for current lifecycle coverage; original native94, MCP17 and other historical results retain their recorded inputs.",
+  "unchanged_qualified_cli_source_sha256": {
+    "plugins/openpnp/scripts/controller-history.mjs": "39c70cd6a31d9c04d2759f1b3bc4e46aa3db95c6dda7a5792511e908f5d99913",
+    "plugins/openpnp/scripts/controller-launcher.mjs": "9d7b60214560ed09caee6599aff1f70582923ea482c59ce54fe68fcf937cf56b",
+    "plugins/openpnp/scripts/controller-profile.mjs": "469efc03ac1201c00f2e02e8ad69b230e89db00fd0f7ab0a2f42301afab958b9",
+    "plugins/openpnp/scripts/diagnostics.mjs": "d56ea453dca9317f1911c1f53bc50df530f1066917d3f7d3ba5f416427b3e6dc",
+    "plugins/openpnp/scripts/gui-launcher.mjs": "ab09a144a14a3c6133d681c247dd0c1f985a37aebc6d82c4d4364e645a192fc9",
+    "plugins/openpnp/scripts/gui-restart-launcher.mjs": "2e3600261c35aea7a52009ca4c88aed0c88412fa0f90b39028347b487adb179d",
+    "plugins/openpnp/scripts/java-environment.mjs": "4fbaa358166e31bcf2d47726fa3bdd821aa5ff4efc840b9216127741c7a28322",
+    "plugins/openpnp/scripts/openpnp.mjs": "4e409ceeb3d8aa91c91b06426953537f5ed8b18230e6bfe54dbc1b479710027f",
+    "plugins/openpnp/scripts/support-export.mjs": "9d47e2c31cd99b6c2b63ceea0364c4d87b56bec67669db65edb0ec630f7dd90b"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+  "patch_id": "native-circular-symmetry-v1",
+  "patch_file": "native-circular-symmetry.patch",
+  "patch_sha256": "e08ebaa16e357f0055fcfed322830cd5afeb0131c58ac8875983baef80413a20",
+  "license": "GPL-3.0-or-later",
+  "source_path": "org/openpnp/vision/pipeline/stages/DetectCircularSymmetry.java",
+  "stock_source_sha256": "727945088657f1946347e36cc63649a3f673799c36b389056c43e24666b91215",
+  "source_sha256": "98297ed9816b1fd499c93cfa52b6c643f53f5a11528c39d2c3dd6e8a3ecb1d51",
+  "class_family": [
+    "org/openpnp/vision/pipeline/stages/DetectCircularSymmetry$1.class",
+    "org/openpnp/vision/pipeline/stages/DetectCircularSymmetry$2.class",
+    "org/openpnp/vision/pipeline/stages/DetectCircularSymmetry$ScoreRange.class",
+    "org/openpnp/vision/pipeline/stages/DetectCircularSymmetry$SymmetryCircle.class",
+    "org/openpnp/vision/pipeline/stages/DetectCircularSymmetry$SymmetryScore.class",
+    "org/openpnp/vision/pipeline/stages/DetectCircularSymmetry.class"
+  ],
+  "java_release": 11,
+  "supported_api_changed": false,
+  "thresholds_changed": false,
+  "physical_calibration": false,
+  "reviewed_class_sha256": {
+    "org/openpnp/vision/pipeline/stages/DetectCircularSymmetry$1.class": "5813425adb8e6316cc9bf776bb0d3262c10afe1f837d926bb33c0573e0c6c213",
+    "org/openpnp/vision/pipeline/stages/DetectCircularSymmetry$2.class": "b606772f48550fb28ddb5e0674f30d40f324c7dee4d3a76c473edb9d2dd2e3d1",
+    "org/openpnp/vision/pipeline/stages/DetectCircularSymmetry$ScoreRange.class": "9435e518ba23ee9c6fbab4ea6e48adac9216d5b233fc10f7e54caeafccf88eef",
+    "org/openpnp/vision/pipeline/stages/DetectCircularSymmetry$SymmetryCircle.class": "117a179aa78b69313125ed62dc4aeb4736ab73bbedc340be6cef1982d3c1a11d",
+    "org/openpnp/vision/pipeline/stages/DetectCircularSymmetry$SymmetryScore.class": "33da31f4c3ae782ea412c8eb5052728cfe41cfd12f2a3d94e122e924922e8cbb",
+    "org/openpnp/vision/pipeline/stages/DetectCircularSymmetry.class": "cfe9cbdc44661b74b79da111a0e6002c7487e851e26b1c077543b1d0ff6457fc"
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "case_id": "configure-openpnp-tooling-03",
+  "skill": "configure-openpnp-tooling",
+  "request": "The release timed out. Disable vacuum and mark the nozzle empty.",
+  "execution_boundary": "offline decision exercise; no hardware, external writes, or actual tool invocation",
+  "observations": {
+    "operation_id": "op-release-3",
+    "operation_state": "outcome_unknown",
+    "commanded_vacuum": false,
+    "measured_occupancy": null,
+    "held_part_id": "U3"
+  },
+  "tool_inventory": {
+    "source": "normalized evaluation snapshot, not a live MCP result",
+    "candidate_tools": [
+      "openpnp_get_capabilities",
+      "openpnp_get_configuration",
+      "openpnp_get_status",
+      "openpnp_plan_configuration",
+      "openpnp_apply_configuration",
+      "openpnp_change_nozzle_tip",
+      "openpnp_measure_sensor",
+      "openpnp_verify_part_state",
+      "openpnp_control_actuator",
+      "openpnp_validate_calibration",
+      "openpnp_handle_part"
+    ]
+  }
+}

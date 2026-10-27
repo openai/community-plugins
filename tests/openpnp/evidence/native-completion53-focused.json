@@ -1,0 +1,383 @@
+{
+  "passed": true,
+  "profiles": {
+    "completion": {
+      "summary": {
+        "kind": "private-native-wrapper-completion-focused-test-summary",
+        "final_candidate": "attempt05",
+        "final_candidate_jar_sha256": "d36f62d5004f555539667b590eabdb3e712b42813c3045e7bc82611603bb8923",
+        "final_candidate_source_sha256": "1f3fc93234f0ca0c600a51f2a6ee8e62743406d5947fa04c184a2aba8628bcc2",
+        "final_native_report": {
+          "path": "attempt-07/report.json",
+          "sha256": "17db38f3ed64c9403f70bc61da319b03742c2273592a0819f8959599374588db",
+          "cases": 7,
+          "native_assertions": 194,
+          "native_job_next_calls": 3,
+          "native_feeds": 0,
+          "native_placements": 0,
+          "child_processes_reaped": 7,
+          "watchdogs": 0
+        },
+        "offline_verification": {
+          "path": "attempt-07-offline-verification.json",
+          "sha256": "5499ba7ef62905f27ade11543b74d8f4b503b65849eb47b15e1eb7e40d8f80b4",
+          "checks": 196,
+          "native_runs_added": 0
+        },
+        "source_review": {
+          "path": "source-review.json",
+          "sha256": "28a865920a726fb13c3564ad143d2e0e4a093b84a7e186f794f954e6dd503fdf"
+        },
+        "test_sha256": "dfa18ca5350a8be50a55c94e387d7841305a8763ce7b4bf17d63bf21f8b9f93a",
+        "runner_sha256": "57a6bdbe1e41bcba67ac0c52fb80fa14642890226a94a3a41ce4375a8d7cf76e",
+        "attempts_preserved": [
+          {
+            "path": "attempt-01/report.json",
+            "sha256": "9c6afa50ae12074da8e50236c8b326279c4d61ed161d6ac5b9c80affad4b2bdc",
+            "passed": false,
+            "candidate_jar_sha256": "3bf519e56b041dd95fb1abb49e11aae1610350ce597015dcc321e2007d6ddf9d",
+            "cases": 5,
+            "assertions": 5
+          },
+          {
+            "path": "attempt-02/report.json",
+            "sha256": "9ee0f00f0ec3dce04f0f1aa1513eae3cb8eb5edd9334e4c35da230463d1eabe8",
+            "passed": false,
+            "candidate_jar_sha256": "3bf519e56b041dd95fb1abb49e11aae1610350ce597015dcc321e2007d6ddf9d",
+            "cases": 5,
+            "assertions": 119
+          },
+          {
+            "path": "attempt-03/report.json",
+            "sha256": "c46ca72c52d9ec5896949a290c9e5a7783585602f96002947a08fbd9664bd1ff",
+            "passed": false,
+            "candidate_jar_sha256": "fffdd1014f615843e2c9809256a4aacfc4429d4b84feaa6ca3d7d424a6bb9c3e",
+            "cases": 5,
+            "assertions": 123
+          },
+          {
+            "path": "attempt-04/report.json",
+            "sha256": "448a9726a04193ca158482eeeaa97337f1ff2b3bd77fbd2d0a5bc320b8064298",
+            "passed": true,
+            "candidate_jar_sha256": "fffdd1014f615843e2c9809256a4aacfc4429d4b84feaa6ca3d7d424a6bb9c3e",
+            "cases": 1,
+            "assertions": 24
+          },
+          {
+            "path": "attempt-05/report.json",
+            "sha256": "39528f8470492fb9e9ec8f05f4bd7fb1b2d84bd750314a3e56c173a4af88a184",
+            "passed": true,
+            "candidate_jar_sha256": "f57e51dcdf935bc25c85293d6ed09982685ad2883492f78de7a100faa37b0b55",
+            "cases": 6,
+            "assertions": 153
+          },
+          {
+            "path": "attempt-06/report.json",
+            "sha256": "1126a53b59a4abddc33646b1f7815b78a9fcbbd88a442f909962dc1c08a650a3",
+            "passed": true,
+            "candidate_jar_sha256": "ea9e319d37ad17aea95324fb68323a7da0418aef5decd7f7944e8e79918a9314",
+            "cases": 7,
+            "assertions": 188
+          },
+          {
+            "path": "attempt-07/report.json",
+            "sha256": "17db38f3ed64c9403f70bc61da319b03742c2273592a0819f8959599374588db",
+            "passed": true,
+            "candidate_jar_sha256": "d36f62d5004f555539667b590eabdb3e712b42813c3045e7bc82611603bb8923",
+            "cases": 7,
+            "assertions": 194
+          }
+        ],
+        "runtime_manifest_sha256": "f09a24910958b030e692d737eae11a53f35dc9ccd4b5dc978de5ceb6d935a024",
+        "input_unchanged": true,
+        "production_edits": false,
+        "scope": "Private candidate Bridge; actual native simulator and journal with test-only bounded wrapper/force seams. Headless lifecycle method checks only.",
+        "deferred": [
+          "actual GUI integration",
+          "native fatal/cancellation/crash paths beyond parent-owned evidence",
+          "full existing native suite",
+          "physical hardware/standstill/controller qualification",
+          "actual JDK11 runtime"
+        ]
+      },
+      "source_sha256": "8d38e843075076f80dacc61385fb8af208e9b30e07582c7ddd94fabb76325341",
+      "source_path": "validation/native-wrapper-completion53-fix-tests/summary.json"
+    },
+    "exceptions": {
+      "summary": {
+        "passed": true,
+        "recorded_at": "2026-09-11T11:32:57.438294+00:00",
+        "native_cases": 4,
+        "native_assertions": 57,
+        "offline_checks": 106,
+        "bridge_jar_sha256": "d36f62d5004f555539667b590eabdb3e712b42813c3045e7bc82611603bb8923",
+        "native_report_sha256": "81a431c931d3ac16609984bc52bc95a2ed766e6b441256c577fee0e27059f8f5",
+        "effect_counts": {
+          "body-error": {
+            "intents": 1,
+            "outcomes": 0,
+            "unknown": 1,
+            "journal_sha256": "914cd961a5e58294049de3ff06ce406c08c1e2f84033a16ac9559ac8acfb1ccf"
+          },
+          "busy-finally-error": {
+            "intents": 1,
+            "outcomes": 1,
+            "unknown": 1,
+            "journal_sha256": "cfee25c7e55feafad3cdfd88b82fca9b848066f6a30aac81cbb0971d2b9c55dc"
+          },
+          "cancel-after-body": {
+            "intents": 1,
+            "outcomes": 1,
+            "unknown": 1,
+            "journal_sha256": "1a277b1cfe6cd22bd5dfcaefa50f622616e1c621a24e19766a992ee5099e2cab"
+          },
+          "cancel-before-body": {
+            "intents": 0,
+            "outcomes": 0,
+            "unknown": 1,
+            "journal_sha256": "7f187ce589a316e7bfaa885221e0553eed531d246739f4b7725996434ad48798"
+          }
+        },
+        "scope": "actual native Future errors and test-only reflective cancellation; disabled isolated simulators",
+        "production_changed": false,
+        "physical_qualification": false,
+        "executed_java_runtime": 17,
+        "compiled_release": 11,
+        "retained_failures": [
+          "attempt01 busy-finally busy-state assumption; pinned native afterExecute clears taskThread; corrected test verifies two failing idle notifications"
+        ],
+        "GUI_qualified_by_this_harness": false
+      },
+      "source_sha256": "3d487184d38564775ff9e6ebf54e2b1e006ee7fa4f76ba19fe3bf7c7a1774c73",
+      "source_path": "validation/native-wrapper-exceptions53/summary.json"
+    },
+    "crash": {
+      "summary": {
+        "kind": "private-native-wrapper-completion-process-death-qualification",
+        "recorded_at": "2026-09-11T11:39:50.003921+00:00",
+        "passed": true,
+        "candidate_bridge_jar_sha256": "d36f62d5004f555539667b590eabdb3e712b42813c3045e7bc82611603bb8923",
+        "candidate_source_sha256": {
+          "org/openpnp/codex/Bridge.java": "1f3fc93234f0ca0c600a51f2a6ee8e62743406d5947fa04c184a2aba8628bcc2"
+        },
+        "runtime_manifest_sha256": "f09a24910958b030e692d737eae11a53f35dc9ccd4b5dc978de5ceb6d935a024",
+        "native_report": {
+          "path": "attempt-02/report.json",
+          "sha256": "cc2a2b7bf977024594059374c02cac745658631d2bc61179e4e72b6c9514635c"
+        },
+        "offline_oracle": {
+          "path": "attempt-02-offline-verification.json",
+          "sha256": "e65ef139481b280e1e768a12a08598bd4b1a35f90346a3c34771b3d382998236",
+          "checks": 469,
+          "same_author_as_native_harness": true,
+          "independent_from_parent_Bridge_implementation": true,
+          "new_native_execution": false
+        },
+        "native_cases": 3,
+        "actual_halted_JVMs": 3,
+        "fresh_recovery_JVMs": 6,
+        "native_halt_assertions": 55,
+        "native_recovery_assertions": 135,
+        "native_assertions_total": 190,
+        "native_child_elapsed_seconds_sum": 7.626803084393032,
+        "watchdogs_fired": 0,
+        "all_children_reaped": true,
+        "cases": [
+          {
+            "case": "body-staged",
+            "seam": "native-body-staged-actual-CommandJog-blocked",
+            "halt_assertions": 17,
+            "recovery_assertions": 44,
+            "recovered_state": "outcome_unknown",
+            "native_effect_intents": 1,
+            "native_effect_outcomes": 1,
+            "native_disables_in_producer": 1,
+            "new_native_effects_on_recovery": 0,
+            "native_steps": 0,
+            "native_feeds": 0,
+            "placements": 0,
+            "halt_journal_sha256": "446c73925d78850b74869b0ed3caf00b86345a3b1a33d90c1daded4aec887b1f",
+            "final_journal_sha256": "f6078d9660011151836628ff77ecf1df39f700a29903a687d7ee9a76123d33f0"
+          },
+          {
+            "case": "before-terminal-write",
+            "seam": "wrapper-complete-before-terminal-write-and-force",
+            "halt_assertions": 19,
+            "recovery_assertions": 44,
+            "recovered_state": "outcome_unknown",
+            "native_effect_intents": 1,
+            "native_effect_outcomes": 1,
+            "native_disables_in_producer": 1,
+            "new_native_effects_on_recovery": 0,
+            "native_steps": 0,
+            "native_feeds": 0,
+            "placements": 0,
+            "halt_journal_sha256": "56501c25b0caa1d64beffd7e22328af2fd4e6f6ee6853a466bb0dc8d9ea9ba45",
+            "final_journal_sha256": "c40fb18790dae66623ac88bfbc9e69906d4d65dba901539e3c8dea0cbf64813b"
+          },
+          {
+            "case": "after-terminal-force",
+            "seam": "terminal-force-returned-before-live-publication",
+            "halt_assertions": 19,
+            "recovery_assertions": 47,
+            "recovered_state": "succeeded",
+            "native_effect_intents": 1,
+            "native_effect_outcomes": 1,
+            "native_disables_in_producer": 1,
+            "new_native_effects_on_recovery": 0,
+            "native_steps": 0,
+            "native_feeds": 0,
+            "placements": 0,
+            "halt_journal_sha256": "8b7e937c4d2f9660abfa4c7bf9e16fa5b028795526e8c25014fc47d6c1ca2ec4",
+            "final_journal_sha256": "8b7e937c4d2f9660abfa4c7bf9e16fa5b028795526e8c25014fc47d6c1ca2ec4"
+          }
+        ],
+        "preserved_attempts": [
+          {
+            "path": "attempt-01/report.json",
+            "sha256": "29e2181d91d3431a5e7428db272ef9ebb9daaa5c3c4ea178d51d97f627024d73",
+            "passed": false,
+            "reason": "Sandbox refused owned local listener with SocketException: Operation not permitted before any Bridge operation; test compilation passed; no test or implementation edit before rerun."
+          },
+          {
+            "path": "attempt-02/report.json",
+            "sha256": "cc2a2b7bf977024594059374c02cac745658631d2bc61179e4e72b6c9514635c",
+            "passed": true,
+            "local_network_escalation_used": true
+          }
+        ],
+        "files": {
+          "run.py": "dc0dc62590c0ebd473221331d60ff0aa22d5ab51b7c6cd4a18c70cc3e07d8a0f",
+          "verify.py": "a60129c7c71e42042bce121ace47c0c5507d2616c787ed0ddd9ccb248278c7a2",
+          "README.md": "47537420c026fc27260651908c0e360010a077a831f0c7dfdf8eae8528b9b131",
+          "tests/org/openpnp/codex/NativeWrapperCompletionHaltTest.java": "b1d6c3d4fd937cc48c0484cba01390d294422c3d7e235a6cd71846eb9ab9f55b"
+        },
+        "production_and_prior_evidence_unchanged_during_native_window": true,
+        "candidate_and_runtime_unchanged_during_native_window": true,
+        "limits": {
+          "simulation_only": true,
+          "physical_qualification": false,
+          "physical_placement_crash_qualification": false,
+          "power_loss_qualification": false,
+          "consumption_reconstruction_qualified": false,
+          "complete_unforced_bytes_detection_qualified": false,
+          "pre_force_window": "before forwarding any terminal bytes, after actual native Future completion",
+          "source_release_11_and_classfile_55": true,
+          "actual_jdk11_execution": false,
+          "actual_jdk_version": 17,
+          "original_process_cleanup_at_halt": false,
+          "recovery_issued_mutations": false,
+          "raw_private_fixtures_contain_local_test_session_data": true
+        }
+      },
+      "source_sha256": "e8058f87066076b75e0140f1c2047c3a0c665a0a6b29dc15a8c3402c515f29ad",
+      "source_path": "validation/native-wrapper-completion53-crash/summary.json"
+    }
+  },
+  "physical_qualification": false,
+  "canonical_class_equivalence": {
+    "passed": true,
+    "production_classes": 96,
+    "class_sha256": {
+      "org/openpnp/codex/Bridge$ConfigurationMutationFence.class": "5d8874d9bb531cc9b866e4fc4903803ac45010a5e030aea236aaf7df4f2308c6",
+      "org/openpnp/codex/Bridge$Fault.class": "6f77eb0e6fe3677c8a80f58f036b551974ca9eafcbff7d372d399060ccb2f4f8",
+      "org/openpnp/codex/Bridge$NativeSubmission.class": "ed5daa9957ee61b84e8eba798f052a1a6e074b7b4c1aef5ea925c1c551c94ebe",
+      "org/openpnp/codex/Bridge$StructureAdapter.class": "346632c3327df6e16d966efbd381aefa7632cd63006b2d9411e503288442d925",
+      "org/openpnp/codex/Bridge$StructurePlan.class": "fca39ab12ace6e6329b087a54f8fcfd250b7469e57359aadef0abb81cd579568",
+      "org/openpnp/codex/Bridge.class": "5a540d4fba9cfe75b3d45b14d9caad61be1ecb29e43a627a51cfb99124950557",
+      "org/openpnp/codex/BuildManifest.class": "b1a6fb0d7551057c2a9f62f96001a0f6bce0f91f935a4a69610eb525d330ed80",
+      "org/openpnp/codex/CanonicalJobImporter$PartSpec.class": "de662fc36130085571d3770a833556315ac70a065038a1226199003563615f0d",
+      "org/openpnp/codex/CanonicalJobImporter.class": "865b1f6cf0dae3d5173efe7f2adf435e4cf39db0367bb84b2a7e83752e98cc4c",
+      "org/openpnp/codex/GuiBootstrap.class": "e5720776a4b1b8c95f70b9612513842e628740a6ac5ed4a62fd60fc7dc0995c5",
+      "org/openpnp/codex/GuiExampleScripts.class": "43df6968bc69b8cddfeded5d85b810c95b4f49f4decbefc8a188fde863f3a704",
+      "org/openpnp/codex/GuiOwnership$ScriptRejected.class": "a1d6168f97a22cb99872cc6648560a21872fdc0a70eb24ddb56a164df8fb2c5b",
+      "org/openpnp/codex/GuiOwnership.class": "4ee3cdcb8634448bf7511b418331ecab59eb1427cbca523d749d63bd2b1459e0",
+      "org/openpnp/codex/GuiSimulatorController$1.class": "3fdf925b1a0f47bc986b7cfd547e6fb98674fea55d997eaccdcf04bb3eadbeb6",
+      "org/openpnp/codex/GuiSimulatorController$2.class": "bfdfd01e13013b2c9209d1d07e51d4978988e72b3e4d5f6e56fcb4fa61290468",
+      "org/openpnp/codex/GuiSimulatorController$Checked.class": "e81d6a0f2fdb03f2eb63657134f39a82b5a820ae69cc00405e8a0c799ac51eec",
+      "org/openpnp/codex/GuiSimulatorController.class": "e54db45862bb74d12ba6c201cfc4195e177e31400ac8a2da24814d2447285104",
+      "org/openpnp/codex/IsolatedPreferencesFactory$MemoryNode.class": "30a322b5d00d1fda25ed0ede5b4d73489bfa2f732ef77a860fbd10e18bc1198d",
+      "org/openpnp/codex/IsolatedPreferencesFactory.class": "b1167ab67784f02402c33aed9b0a9a29c1861fcb713a66e874fce5f2ed54f09f",
+      "org/openpnp/codex/NativeActionLedger$DurabilityFence.class": "3411032b8539db6132ba7a78a1e3fca44de1fa3b7227c6cc3720e6778d09c422",
+      "org/openpnp/codex/NativeActionLedger$Replay.class": "29728e28e36ad18a387522db1e31032f542501d81e6aa6b1e8c0fdd26dc55702",
+      "org/openpnp/codex/NativeActionLedger$Sink.class": "4e5e062953433ab6175e80174d1171cbf1b7b149ed7f7bf5936f6834e5d5bef9",
+      "org/openpnp/codex/NativeActionLedger$StepScope$1.class": "089465621104170cc8b1994fcdb6b64c7948e43a2c862a4ff4f1ea2082c9f95b",
+      "org/openpnp/codex/NativeActionLedger$StepScope.class": "83389879a623c689f67684b3fc8cbea973728962c67141c58d7001ebbe6b2bf4",
+      "org/openpnp/codex/NativeActionLedger$UnresolvedActionFence.class": "4c4da59dcff6bfbd5a005a17c022143a2cbb5d37f9badae8338b95e58d12e884",
+      "org/openpnp/codex/NativeActionLedger.class": "1c249533811752e427145681c5f0527dda80962387b24157f8a9e73d2d664b1c",
+      "org/openpnp/codex/NativeAdoptedSimulatorMain.class": "e9e32cbed3122d0bca9428729976e8b99e33d0231063f338743ac9c9fe842afa",
+      "org/openpnp/codex/NativeBoardLoads$Root.class": "91294091c1dcb0f2ce96d123918c02003ee5066e803b17633130dd76dabf16ab",
+      "org/openpnp/codex/NativeBoardLoads$Sink.class": "327b25699961614224ab0dfa72e802ebcfd76079afe8e5e7ac8fee6f3090bcfa",
+      "org/openpnp/codex/NativeBoardLoads.class": "f98bf75301ae4e82ed75b82f6a8011003de8a5f32af6d540e5ae4c53f7e95e29",
+      "org/openpnp/codex/NativeCameraSettling$Settings.class": "83ea2272b3e933cf3a4aac44a921b2004b9f697cd6e78be660d6acd6dd675da3",
+      "org/openpnp/codex/NativeCameraSettling.class": "9ca0ce8a502d8dbc6bd5a4eca15609cc198261fb674eee2ebd697d527bce0c99",
+      "org/openpnp/codex/NativeConfigurationSnapshots$Restore.class": "b98e9709af4404548ed02d178f00c283cc35959684da713f5d7a3a5937af2128",
+      "org/openpnp/codex/NativeConfigurationSnapshots$Snapshot.class": "a2abcca42a9ba4a7dc7c55fb7c9e6b5af82baad6f145a2be73efa88e3045f09e",
+      "org/openpnp/codex/NativeConfigurationSnapshots.class": "8a12c9ac31aa52017496a3b7f7d1c40624bf59496db0327973dafe51d8c6c262",
+      "org/openpnp/codex/NativeDocumentStore$PublicationProbe.class": "d959332c0917c8955907eb840355b4aaded5af85a713c709424c73a23bbbf239",
+      "org/openpnp/codex/NativeDocumentStore$Record.class": "55ba1572964dc60fde77ffccc30d21c14aecf832f4b23b109bdecc76541ad4e1",
+      "org/openpnp/codex/NativeDocumentStore.class": "0a1ee8cfe76dafced3bb33ec8a7eaf219b6aae679bc427e0b29aee331a823835",
+      "org/openpnp/codex/NativeJobDocuments$Graph.class": "a598713b2d13adb9f5cfa0ca6fabdfbf96a5fc4932dea7ca5d5807eb225c5d99",
+      "org/openpnp/codex/NativeJobDocuments$LineageMetadata.class": "cea34fe5803bf23dd4ac917f230c86be7c3f011472db70ff3acca1fb0065a460",
+      "org/openpnp/codex/NativeJobDocuments$Receipt.class": "0f60d4e4f81f63205f124ae95ff708570cab200d48ba8ea693a478f7ac8ae0db",
+      "org/openpnp/codex/NativeJobDocuments$Reloaded.class": "714f6d990b135477b428679fc979069cab7e26aa51d7abdbdc3656eb9abcfc2b",
+      "org/openpnp/codex/NativeJobDocuments$Saved.class": "4a3ae8a259b48588ccb7ca7524c48f5b269b0b23827f767f8234b7ffc8b4df0f",
+      "org/openpnp/codex/NativeJobDocuments.class": "3e9c0afb17fb9d290fe89e29e712abed86632087babfd01dec962c7f78b31645",
+      "org/openpnp/codex/NativeJobLineage$Alias.class": "5a2bc21ef32e36090421d4beec1a730e9b29a50067ee9c1cbaa378552c81c3d8",
+      "org/openpnp/codex/NativeJobLineage$Document.class": "37a9cd84f75e7643fd4750a05aba7f6141748b7bcf884a0f7d7a699b9f346c60",
+      "org/openpnp/codex/NativeJobLineage$Fault.class": "1e240363a50cf4a6789eb2b64bcb75b2fca4179b3fd2ef01d17cab7ab6908009",
+      "org/openpnp/codex/NativeJobLineage$Load.class": "c136825ae228e3ae2ec7e1ba9ce261cad2a9397a459a3ae7d1e5a219755aa8f2",
+      "org/openpnp/codex/NativeJobLineage$PendingPermit.class": "73783f55ffeebf5859f07cc2da87617946851788d998af6931e72ba6a078551a",
+      "org/openpnp/codex/NativeJobLineage$Sink.class": "d9c997c85f0d7af038c75aa5a0c43da9dda8bfaec8499c19cd45825de769b7b2",
+      "org/openpnp/codex/NativeJobLineage$Snapshot.class": "4ac6d50ab23d68de3c885ae082e0cdc2b0a40dc27b41f64b3e931657cc377461",
+      "org/openpnp/codex/NativeJobLineage$State.class": "d85872539ed9aeb1ded8b07f3bb860be7c481fe4f71df35fe926eddba81e8469",
+      "org/openpnp/codex/NativeJobLineage.class": "2c0f450051c670bb188972a72a1050dc4a6820b17ea93e73b665538f9fa0e1ee",
+      "org/openpnp/codex/NativeJobPreflight$Review.class": "27f3e52164e5265000b6d77dfd6f3e0ab3851cb8d6d253da82909bf2969e912a",
+      "org/openpnp/codex/NativeJobPreflight.class": "b9bc1788da686b87ca271688198fc2eac635277357f7edbc94fe1c502c62ffdd",
+      "org/openpnp/codex/NativeMappedAxisSettings$Change.class": "7b71c7cabf7865fb6e4285be9378cfe32fc9d20e1bee86c46f41d51cdf682ecc",
+      "org/openpnp/codex/NativeMappedAxisSettings$Fault.class": "3ded5cff239792257b4332229bd8403c547814a6b30d3a5569d51f5276ba83ec",
+      "org/openpnp/codex/NativeMappedAxisSettings$Plan.class": "c14177fdf63691d04e7a6a739f9061979e1446129b53ce5ed7641c6427853e9e",
+      "org/openpnp/codex/NativeMappedAxisSettings$Snapshot.class": "05226f7bc655833c4831c4d569298ce714a7c839cd0b54e55a6418fdb28941ab",
+      "org/openpnp/codex/NativeMappedAxisSettings.class": "3fb1049f948f19e9081acba1011cd6ee80a9faab594ee6055499361ed9aabb38",
+      "org/openpnp/codex/NativePlacementEdits$Builder.class": "524b906f80f11016be20406390175fff3aeddde4be112eabdbe2e21d36fdd3db",
+      "org/openpnp/codex/NativePlacementEdits$Edit.class": "0c3275677aa4e17d40eb32b12ce73dbc8ff22f57ad4f53aebc2335c1043458bd",
+      "org/openpnp/codex/NativePlacementEdits$Fault.class": "159e752547ea192cd5768813b3bacac1de5b3079c6e659e5795d6dda4c8a5264",
+      "org/openpnp/codex/NativePlacementEdits$Graph.class": "b14fe96b06ca845d420616bae6c710a517e973df70ee36e51eedd961113ebf8d",
+      "org/openpnp/codex/NativePlacementEdits$Membership.class": "66ca4e29070bb5dbab73766c0bd327aaec5ac387ad51c20a3b1a21d447735de8",
+      "org/openpnp/codex/NativePlacementEdits$Node.class": "889fd7b2ae0375db786345e43801f2077bdd9ecdec107f372e2224b03c0f365a",
+      "org/openpnp/codex/NativePlacementEdits$Patch.class": "e853f859692039b2cdf0af11c2d851823deb0c52ef9045549321737934a96fff",
+      "org/openpnp/codex/NativePlacementEdits$Spec.class": "b03025a9728f7ed2d185f20dcd95843975ece4cb5e0e149a4be5b66b115a2986",
+      "org/openpnp/codex/NativePlacementEdits$StructureAuthority.class": "f60cf0a87be44c950ac5a4241b83577a6adff43055febcccf1e029f713e35d49",
+      "org/openpnp/codex/NativePlacementEdits$StructureBuilder.class": "e9e89b034e8b04dedb4f9eb628ab83ed2acb57355a1a78232a243898d45ff9f1",
+      "org/openpnp/codex/NativePlacementEdits$StructurePatch.class": "c18ef47db38de55747455b3c8ffc64cab68075934e68a25fb930fe699f04d1e3",
+      "org/openpnp/codex/NativePlacementEdits$StructurePublicationFence.class": "e4aecf870d6337e243ab72f96fa9d54730c12d9cea1b4b0652a1be410f9cc804",
+      "org/openpnp/codex/NativePlacementEdits$StructureState.class": "f27f8579c889093a6dbccfc544c0f1419b0600a23838bbfdaa7b06541eccb097",
+      "org/openpnp/codex/NativePlacementEdits$Value.class": "a7d40b0bef15629add90671c8335b23a21f43e672fccf8bade321ab942b21b41",
+      "org/openpnp/codex/NativePlacementEdits.class": "b6434e06ca8b3537d06a907c50bc7456ed7afb482ae365d459f7c190af1ad799",
+      "org/openpnp/codex/NativePortableConfiguration$1.class": "473943df259fdd920234d8d8d925226c9f6e972f2f4efd3b05e15107208ec037",
+      "org/openpnp/codex/NativePortableConfiguration$Prepared.class": "2855a4ab93545c16537348d90b5a83fcafe71981b120c152bffdb24b0e3458ec",
+      "org/openpnp/codex/NativePortableConfiguration$ResourceMap.class": "c9f10904fe7f6868b8151454fb66c75a70386e2c441e507682c67ebe5bf895ba",
+      "org/openpnp/codex/NativePortableConfiguration$WriteProbe.class": "59d47a03483979245e8421c24a7c5fc244d2e7466fbd1f5c3ed08ceea96ff589",
+      "org/openpnp/codex/NativePortableConfiguration.class": "1f5be0b62e07d7f9b6019d583be8f3b2f89dea634c921d21d935fdb933dc9906",
+      "org/openpnp/codex/NativePortableConfigurationMain.class": "98885e0f450871f413e3ad36545dc1b0cc13592d5e9f6f9df95406522c3f7583",
+      "org/openpnp/codex/NativePortableLaunch.class": "a9ce851b780205ac17642f457a03f037bf85bc0095e0bd226a2f8b19905b7bd8",
+      "org/openpnp/codex/NativePortableLimits.class": "e5753f5c9719411f8545d59c0b32a87e89a13c8396972cf16a6e5e5258021576",
+      "org/openpnp/codex/NativePortablePipelines.class": "ac593493513e89d06023ff35296f988b51c08bc242a222cfe1457c54e94224d8",
+      "org/openpnp/codex/NativeSettings$Edit.class": "202635ee6da7c25c30f065a06bdc888c8efdaa2da7a3a3e626f72f156ea6e3cc",
+      "org/openpnp/codex/NativeSettings$Guard.class": "de67ac12b54920014f8954a6725f380948a16e71c3037ee112204cdf8d6ca97f",
+      "org/openpnp/codex/NativeSettings$Patch.class": "a6db43121d9fc29ca182c419c168440d11cc6997663712e12f8d7dc61d4c72bc",
+      "org/openpnp/codex/NativeSettings$Stager$PackageRef.class": "8e971f60aa4bfefe34d6ff7b61d684c66f5761c18c58cb7892fe34b1942f587a",
+      "org/openpnp/codex/NativeSettings$Stager$PartRef.class": "6f651f8e33c16666c48a1e152f67960c0899549fc876b1df6ff11f5e0bdbd3f1",
+      "org/openpnp/codex/NativeSettings$Stager.class": "b6967f71c6216673e0955d037b1a6eba92614f8167bd229e677f6099990e9ecf",
+      "org/openpnp/codex/NativeSettings.class": "1973533676b8e3a59c92a5d479198afc99c5e5d3713d3dcdd5dd741a3dd27f67",
+      "org/openpnp/codex/NativeVisionSettings$Holder.class": "4ac8b505101f9359a998bdb4482694ba1184422d53a6e01859558e2002a67c90",
+      "org/openpnp/codex/NativeVisionSettings$Patch.class": "635f1cc58df6820e01931987ed1746354984292d67c5e09354740ec62eb82326",
+      "org/openpnp/codex/NativeVisionSettings$State.class": "7d1908261d3f6d0cbd702febb3db12e7bc9dcbff0fe76fc6ee8fed0e3a7b81ad",
+      "org/openpnp/codex/NativeVisionSettings.class": "24593ea2e6c3eeacf95745fc97e69b9d5de2fa7ad433a5eaa143e9d68b0f0932",
+      "org/openpnp/codex/SimulatorMain.class": "8a9401fee2e6b098ce575c3d0ce6e4e1d596370a0c1f72528bbbf67d3bfc7aca"
+    },
+    "private_jar_sha256": "d36f62d5004f555539667b590eabdb3e712b42813c3045e7bc82611603bb8923",
+    "canonical_jar_sha256": "f167e1185bd6937bd91b70cb5a599f405e33281fc9c58d1f043774d2bf74859a",
+    "runtime_unchanged": true
+  }
+}

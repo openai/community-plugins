@@ -1,0 +1,331 @@
+{
+  "scope": "Frozen Q72 full legacy structure tool and exact other tool definitions; source-only regression fixture.",
+  "structure_tool": {
+    "name": "openpnp_plan_placement_structure",
+    "description": "Preview adding or removing real placements/fiducials on existing boards in a trusted unused simulator job. Returns an operation whose completed result binds a plan, exact lineage/revision and every affected instance. Requires disabled machine, empty nozzles, complete empty current/retired native history and no prior processor admission. New records require every placement field and an existing part/package. Native coordinates are local holder mm/in and degrees. Pseudo-dependent removal, panel structural edits, renaming and reused logical IDs are refused. Planning retains a receipt without publishing placements.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        },
+        "job_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_job_revision": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "expected_board_load_revision": {
+          "type": "string",
+          "pattern": "^load-[0-9]+$",
+          "maxLength": 64
+        },
+        "changes": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 100,
+          "items": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "action": {
+                    "const": "add"
+                  },
+                  "scope": {
+                    "enum": [
+                      "job_instance",
+                      "job_shared_definition"
+                    ]
+                  },
+                  "holder_instance_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 2048,
+                    "pattern": "^[^\\u0000]+$"
+                  },
+                  "placement_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128,
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,127}$"
+                  },
+                  "placement": {
+                    "type": "object",
+                    "properties": {
+                      "location": {
+                        "oneOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "frame": {
+                                "const": "holder"
+                              },
+                              "units": {
+                                "const": "mm"
+                              },
+                              "x": {
+                                "type": "number",
+                                "minimum": -10000,
+                                "maximum": 10000
+                              },
+                              "y": {
+                                "type": "number",
+                                "minimum": -10000,
+                                "maximum": 10000
+                              },
+                              "z": {
+                                "type": "number",
+                                "minimum": -1000,
+                                "maximum": 1000
+                              },
+                              "rotation": {
+                                "type": "number",
+                                "minimum": -360,
+                                "maximum": 360
+                              }
+                            },
+                            "required": [
+                              "frame",
+                              "units",
+                              "x",
+                              "y",
+                              "z",
+                              "rotation"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "frame": {
+                                "const": "holder"
+                              },
+                              "units": {
+                                "const": "in"
+                              },
+                              "x": {
+                                "type": "number",
+                                "minimum": -393.7007874015748,
+                                "maximum": 393.7007874015748
+                              },
+                              "y": {
+                                "type": "number",
+                                "minimum": -393.7007874015748,
+                                "maximum": 393.7007874015748
+                              },
+                              "z": {
+                                "type": "number",
+                                "minimum": -39.37007874015748,
+                                "maximum": 39.37007874015748
+                              },
+                              "rotation": {
+                                "type": "number",
+                                "minimum": -360,
+                                "maximum": 360
+                              }
+                            },
+                            "required": [
+                              "frame",
+                              "units",
+                              "x",
+                              "y",
+                              "z",
+                              "rotation"
+                            ],
+                            "additionalProperties": false
+                          }
+                        ]
+                      },
+                      "side": {
+                        "enum": [
+                          "Top",
+                          "Bottom"
+                        ]
+                      },
+                      "type": {
+                        "enum": [
+                          "Placement",
+                          "Fiducial"
+                        ]
+                      },
+                      "part_id": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 128,
+                        "pattern": "^[^\\u0000]+$"
+                      },
+                      "enabled": {
+                        "type": "boolean"
+                      },
+                      "error_handling": {
+                        "enum": [
+                          "Default",
+                          "Alert",
+                          "Defer"
+                        ]
+                      },
+                      "comments": {
+                        "type": "string",
+                        "maxLength": 2048,
+                        "pattern": "^[^\\u0000]*$"
+                      },
+                      "rank": {
+                        "type": "integer",
+                        "minimum": -100000,
+                        "maximum": 100000
+                      }
+                    },
+                    "required": [
+                      "location",
+                      "side",
+                      "type",
+                      "part_id",
+                      "enabled",
+                      "error_handling",
+                      "comments",
+                      "rank"
+                    ],
+                    "additionalProperties": false,
+                    "minProperties": 1
+                  }
+                },
+                "required": [
+                  "action",
+                  "scope",
+                  "holder_instance_id",
+                  "placement_id",
+                  "placement"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "action": {
+                    "const": "remove"
+                  },
+                  "scope": {
+                    "enum": [
+                      "job_instance",
+                      "job_shared_definition"
+                    ]
+                  },
+                  "holder_instance_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 2048,
+                    "pattern": "^[^\\u0000]+$"
+                  },
+                  "placement_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128,
+                    "pattern": "^[^⇒\\u0000]+$"
+                  }
+                },
+                "required": [
+                  "action",
+                  "scope",
+                  "holder_instance_id",
+                  "placement_id"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id",
+        "expected_config_revision",
+        "job_id",
+        "expected_job_revision",
+        "expected_board_load_revision",
+        "changes"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "plan placement structure",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  "other_tool_sha256": {
+    "openpnp_run_controller_diagnostic": "3117cef6b9c738bf2ccb2236d7a097e3ee817eb8de42e785fd97f6e19bbb42a7",
+    "openpnp_get_capabilities": "aa38b865189fe3a7cb3dc01373b6495335f958198d1a75be4bb6405d59a2e718",
+    "openpnp_get_status": "4eb87d2327a11f6c701829884fe886887018b4e26a519dbb0fc135370b7785b3",
+    "openpnp_get_configuration": "16ed903ed32dcf6a9b5eee0993c7e9406fcdc08e8996a69efef386cc2d949d4d",
+    "openpnp_request_control_session": "9d5ef04a20fce7f42561283858e3be0a7bb3d39484fe7219ec6b35199110ce69",
+    "openpnp_get_control_session": "2efd769ecbfc88ada802b4ec7d36770398cc5f0a3050fd4275fcb9b01e7dfade",
+    "openpnp_get_request_status": "f3ce7375198d29015ff22b5e4ed4f8d06bbff2540c07e8ba378f2d3285d726ec",
+    "openpnp_renew_control_session": "376b11d5a774eda454ec6c12f8ce4e0fcf1063ae545b48e660dcd14fe7188951",
+    "openpnp_release_control_session": "13ead775ab93a9cba91e2390b6be946e65953414decc0d16cf2bbb7908291e06",
+    "openpnp_set_machine_enabled": "6dbd1e83477f78582b15af0a5e00a426c4dfad58da184c495ee2a273cb50f938",
+    "openpnp_home_machine": "f2f16e39f70cf24c02faa121320360d10c0c29e7b704154f1ba528ceb7a54aba",
+    "openpnp_plan_motion": "dfa9d5edcfe05d089fa4d923d33d93aa0c516c4b16efa40ec8aa195031c4e6df",
+    "openpnp_execute_motion": "55c6116407ba963234a161531e109c77f00683c249036d3e1e3db7cd2f959f7f",
+    "openpnp_capture_camera": "a5639e387189ef2bd5fa0abeba92cc88ca9d70781b72112d33562eb42a10fb2c",
+    "openpnp_get_operation": "4b21427ee9c06d82f5e406e633af7b26a2bf04b09b5b1b7097fcc7cd9ab41087",
+    "openpnp_get_events": "1daea5128e2b7e885bff6be6a106535c2a01a2a7f98c9d22a544f22131e5da4b",
+    "openpnp_prepare_job": "62b80a890b5a47508523be637712053090266dd161facb799c064b41fca5299c",
+    "openpnp_validate_job": "bacfb0a5939f3a292a5f0b2a46dce1e0edbab2579a05434119e6438b740333ec",
+    "openpnp_save_job": "5e7890c2fa27d8cdab94ad99f8fd580ed9eeb6b59265a1b733e850b5d3d4071c",
+    "openpnp_load_job": "1ce14ec77940f0cfc4626a5f45a05939ebcbff0c6501de8507192c951ac1de93",
+    "openpnp_get_board_loads": "e3ead8d04bbeddceaee0061d8da0aeb52a8afb8d76b5927773c3262582f6436a",
+    "openpnp_get_material_loads": "3351059c62b50ad600e8f1f0d99d4d43efbaf4dbdf6f8d35f551fb116cec638a",
+    "openpnp_register_material_load": "bada2baef73f38f387a2cb02b35ccff41ebad38260face3ac24aca51770c023f",
+    "openpnp_register_board_load": "a324859c3bc2d5fc4d5ed67d0e95cb78b9b69072052bd35b9663e255c6900c86",
+    "openpnp_inspect_job": "a1af7032afc7d01004a87e2ca7aab317ec779127ba18fb2f90879438e4a9c21f",
+    "openpnp_plan_placement_edits": "1c7f5abd5572077d10f19b367f3704115f7f7afe6f19b17fddaf7d57fce3b72b",
+    "openpnp_apply_placement_edits": "eae5dfd06df4ac41ab0ad082518704be6eeaf5e1023b7f4c209f49af9f773419",
+    "openpnp_apply_placement_structure": "00b0fab5e62438286acf5f95ba15a501739bd3e28d2bbc4fe4dfe802f023d96a",
+    "openpnp_start_job": "6d910c75fb849a93c83c99a6d422086ef76bf860d8ed47196c0327a8661e288e",
+    "openpnp_step_job": "96fe1b0e135a15f3be1212ff800457996ecf30087b8db7c6f84f939b0eb4811f",
+    "openpnp_pause_job": "830d9dfff514ddc461ddc1185f33cf5f3606710d9c0bdcc6f34bc95fd1f0d5a3",
+    "openpnp_resume_job": "c689b1316df50e04fff989921d6274818f577ad6ec77053690f18ca3a2f0a1c1",
+    "openpnp_abort_job": "38364e4fe4ceb277f0fd3245e7e37a59c91a1a34ae9b2cadab23090ab5273cd2",
+    "openpnp_plan_configuration": "ee955fd6e3c600adea6688b8259b68947474e7ca91b9b0396b3a652f0a1d4565",
+    "openpnp_apply_configuration": "aebba20afcf0a194605736261b3ecbd389accd3c7032a03b829bff7af10081a2",
+    "openpnp_test_feeder": "1c4d22bedde2134032f1b626450ddc88e20a997d89029d9da5cf05baa53206a5",
+    "openpnp_control_actuator": "c275ee3183569af4cc49d45c282d11666cd37615d479be0cdad455a50a6dfc20",
+    "openpnp_change_nozzle_tip": "8555f0281f508ddf8e1bfdd12ec8773f702a5737063fb9209cf5045084aa9d96",
+    "openpnp_backup_configuration": "b068bc5a5bde7c99d1f871a59c51370385d3886c1c022c72ccb0564b720d1a6e",
+    "openpnp_export_portable_configuration": "829faa76f040b78c4c202487bc88a140136dfadbdc7ec2c356b870d20a29a75f",
+    "openpnp_export_run_report": "22a26ec4cf3f758b63b22b63cfd47737e37235ba4bed275760c2c4555eb7cbe0",
+    "openpnp_get_native_artifact": "d36346c507c103820d56b974f414688d1ceb58dada6ed03908ea71c8db9c4851",
+    "openpnp_run_calibration": "9ce7d66997558e7ed75b3cd849a19eb9109d9e7c594c5703ba72cd1f94159848",
+    "openpnp_validate_calibration": "7c14eb0ec7335bab01f4a56b6b5e2375790dc323a03a1d0b2e8d0783d85ff57e",
+    "openpnp_locate_fiducials": "f9cc938af5f4f38c44eab735213b0517fb84a9126b3a76afb278366b22ec3bae",
+    "openpnp_list_issues": "ce3cd4b9ae927911f708da9e7168d4aa5c0d48f34ea9495b7339d908bdeccd7e",
+    "openpnp_restore_configuration": "d256bc1802763d27b32d9b247bfe888693b3eaa90bd3910c27d6f9f91ee0db2c",
+    "openpnp_reconcile_operation": "0980a8ce8b7c8fef75638c187fc2292abb043c71b563484d009c7c79263c7a47",
+    "openpnp_import_job": "a802a17dba98f29d7c8c0a1382a2bede7173bff46f2a4e8205ded133df7b3332",
+    "openpnp_validate_imported_job": "e90b07ddb8339f944ad2598cd6189edf2ab64b776c8ef010216f8802a8614bbb",
+    "openpnp_get_artifact": "2bb159a8839d28c7506b0f9b07d309a4700909a450fbd2bf6b74a6b5ab4a704f",
+    "openpnp_read_response_page": "60a3ac4a1123222275bcd8ae4f80fb296ecc25c2e0fd3d8bb41d869431eaa1fe",
+    "openpnp_record_inspection": "672e207fbc05e5b5ceb9dc23ea8a7f29421ffe14a9ba72e3f73deb382cf6a82d",
+    "openpnp_assess_inspection_coverage": "79a1726026a219f7caf3477dad75360ea00e69d5bf1e9241e8fb49bc90e5857d"
+  }
+}

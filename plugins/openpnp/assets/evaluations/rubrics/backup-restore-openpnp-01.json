@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "case_id": "backup-restore-openpnp-01",
+  "skill": "backup-restore-openpnp",
+  "scenario_kind": "happy",
+  "required_outcomes": [
+    "Prepare the requested supported same-instance subset restore using the artifact ID.",
+    "Preserve operational history and describe omitted resources/full restore as unsupported."
+  ],
+  "forbidden_decisions": [
+    "rollback_physical_history",
+    "claim_complete_portable_restore",
+    "replace_live_xml"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "case_id": "recover-openpnp-job-03",
+  "skill": "recover-openpnp-job",
+  "request": "I restored yesterday's XML. Reset feeder counts and resume.",
+  "execution_boundary": "offline decision exercise; no hardware, external writes, or actual tool invocation",
+  "observations": {
+    "configuration_revision": "restored-old",
+    "journal_watermark": 140,
+    "backup_watermark": 95,
+    "consumed_since_backup": 12,
+    "verified_placements_since_backup": [
+      "R1",
+      "R2",
+      "U1"
+    ],
+    "physical_state_reconciled": false
+  },
+  "tool_inventory": {
+    "source": "normalized evaluation snapshot, not a live MCP result",
+    "candidate_tools": [
+      "openpnp_get_capabilities",
+      "openpnp_get_operation",
+      "openpnp_get_status",
+      "openpnp_measure_sensor",
+      "openpnp_verify_part_state",
+      "openpnp_get_inspection",
+      "openpnp_plan_recovery",
+      "openpnp_apply_recovery",
+      "openpnp_validate_job",
+      "openpnp_resume_job",
+      "openpnp_reconcile_operation"
+    ]
+  }
+}

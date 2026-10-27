@@ -1,0 +1,406 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "scope": "Three hypothetical offline decisions assessed against a preauthored hidden rubric. Actor had disclosed document/placement implementation context; this is not implementation-blind or pristine.",
+  "actor": {
+    "path": "validation/skills52-structure-blind/actor-output.json",
+    "sha256": "d0ee33159a50852d7324269b9e72c111bae684f5175d553a6c22b23e6ae96f58"
+  },
+  "rubric": {
+    "path": "validation/skills52-structure-blind/assessor/rubric.json",
+    "sha256": "0ebfc194b135dd441feefc069f9e79f7f84bd7b5a418004190d8ee129f14b05f"
+  },
+  "source_hashes": [
+    {
+      "path": "private-evidence/next-candidate-20260911/validation/skills52-structure-blind/actor-input/cases.json",
+      "sha256": "2093b9e1d5d691a3805ab695f3b6dfce9a89bd20aa6c463ad3294510d360af6a",
+      "observed_sha256": "2093b9e1d5d691a3805ab695f3b6dfce9a89bd20aa6c463ad3294510d360af6a",
+      "matches": true
+    },
+    {
+      "path": "private-evidence/next-candidate-20260911/plugins/openpnp/skills/prepare-openpnp-job/SKILL.md",
+      "sha256": "bbf783a4f0aa942a3b3554d2d147647881d498a9a5321102a18880867bb70fdb",
+      "observed_sha256": "bbf783a4f0aa942a3b3554d2d147647881d498a9a5321102a18880867bb70fdb",
+      "matches": true
+    },
+    {
+      "path": "private-evidence/next-candidate-20260911/plugins/openpnp/references/control-contract.md",
+      "sha256": "7cccf444a3940881987e0c6b90ffa86b1646ea2b0e1b8fba2129e67199f8d822",
+      "observed_sha256": "7cccf444a3940881987e0c6b90ffa86b1646ea2b0e1b8fba2129e67199f8d822",
+      "matches": true
+    },
+    {
+      "path": "private-evidence/next-candidate-20260911/plugins/openpnp/references/documents-and-importers.md",
+      "sha256": "129760b844039b6f794ad9bb2d6791b0707eaeb46c57028f58a6496e3df4caba",
+      "observed_sha256": "129760b844039b6f794ad9bb2d6791b0707eaeb46c57028f58a6496e3df4caba",
+      "matches": true
+    },
+    {
+      "path": "private-evidence/next-candidate-20260911/plugins/openpnp/references/native-placement-editing.md",
+      "sha256": "e5fdedad35765109b349b29529399c4a88934331632528ef7c5113c44f0b3847",
+      "observed_sha256": "e5fdedad35765109b349b29529399c4a88934331632528ef7c5113c44f0b3847",
+      "matches": true
+    },
+    {
+      "path": "private-evidence/next-candidate-20260911/plugins/openpnp/mcp/tool-inputs.json",
+      "sha256": "33e27c8d185676c7b437ea7175c5aa83ff5d4cf5e7216a9d08644221015ddcbd",
+      "observed_sha256": "33e27c8d185676c7b437ea7175c5aa83ff5d4cf5e7216a9d08644221015ddcbd",
+      "matches": true
+    }
+  ],
+  "source_hashes_match": true,
+  "catalog": {
+    "sha256": "33e27c8d185676c7b437ea7175c5aa83ff5d4cf5e7216a9d08644221015ddcbd",
+    "tools": 52
+  },
+  "cases": [
+    {
+      "case_id": "new-shared-fiducial",
+      "status": "pass",
+      "criteria": [
+        {
+          "criterion": "Use exact shared-definition add with all eight placement fields and exact session/request/job/config/job/load revisions; no conversion or mirroring for disabled/opposite-side instance",
+          "status": "pass",
+          "evidence": "Exact shared add anchored P1\u21d2B1, all eight requested fields and full revision envelope; includes disabled Bottom-facing P2\u21d2B1 without mirroring."
+        },
+        {
+          "criterion": "Inspect both affected instances and resulting membership/lineage/reservations before binding actual returned plan to apply",
+          "status": "pass",
+          "evidence": "Expected effects labeled hypothetical; requires both instances, current lineage/reservations and actual returned plan binding before apply."
+        },
+        {
+          "criterion": "Observe operation/idle; preserve board intent and require explicit correct rebind/revalidation; no automatic physical qualification",
+          "status": "pass",
+          "evidence": "Requires original operation/idle, complete result inspection, invalidations and explicit suitable rebind/revalidation without assuming board replacement."
+        }
+      ]
+    },
+    {
+      "case_id": "old-document-zero-placements",
+      "status": "pass",
+      "criteria": [
+        {
+          "criterion": "Accepted processor admission permanently prevents structural edit even at zero placed",
+          "status": "pass",
+          "evidence": "Explicitly rejects structural removal after accepted processor request despite zero placements."
+        },
+        {
+          "criterion": "Old reload retains lineage, not reset authority; no structural plan/apply or automatic replacement/abort/new prepare to evade same-board intent",
+          "status": "pass",
+          "evidence": "Reload cannot restore unused authority; no structural plan/apply, board replacement, history reset or fresh lineage proposed."
+        },
+        {
+          "criterion": "Read original request/operation as needed and report exact unresolved scope; no physical no-effect claim",
+          "status": "pass",
+          "evidence": "Queries original request and operation, retains unknown physical outcome and same-board intent."
+        }
+      ]
+    },
+    {
+      "case_id": "lost-structure-apply",
+      "status": "pass",
+      "criteria": [
+        {
+          "criterion": "First reconcile original request ID; no new-ID apply/plan retry",
+          "status": "pass",
+          "evidence": "First and only immediate call reads original apply-structure-lost-52; later operation ID must come from response."
+        },
+        {
+          "criterion": "Visible absence/idle does not resolve pending publication; reservation retains R8 and cannot be reused",
+          "status": "pass",
+          "evidence": "Absent R8 and idle are not proof of failure; unresolved reservation blocks new plan/apply and ID reuse."
+        },
+        {
+          "criterion": "Keep unknown disposition without automatic resume/history clear/abandon that implies safe edit",
+          "status": "pass",
+          "evidence": "Keeps uncertainty and reports missing inspector capability; no automatic resume, cleanup, history clear or abandon proposed."
+        }
+      ]
+    }
+  ],
+  "global": [
+    {
+      "criterion": "No native/MCP/CLI actions executed",
+      "status": "pass"
+    },
+    {
+      "criterion": "All proposed concrete calls match shipped52 schemas; missing returned IDs use explicit non-executable binding templates",
+      "status": "pass"
+    },
+    {
+      "criterion": "Runtime advertisement required; no raw commands or XML escape",
+      "status": "pass"
+    }
+  ],
+  "calls": [
+    {
+      "pointer": "/cases/0/next_tool_calls/0",
+      "name": "openpnp_get_status",
+      "kind": "literal-proposed-call",
+      "arguments": {
+        "view": "full"
+      },
+      "valid": true
+    },
+    {
+      "pointer": "/cases/0/next_tool_calls/1",
+      "name": "openpnp_get_board_loads",
+      "kind": "literal-proposed-call",
+      "arguments": {},
+      "valid": true
+    },
+    {
+      "pointer": "/cases/0/next_tool_calls/2",
+      "name": "openpnp_get_control_session",
+      "kind": "literal-proposed-call",
+      "arguments": {},
+      "valid": true
+    },
+    {
+      "pointer": "/cases/0/conditional_followups/0/tool_calls/0",
+      "name": "openpnp_plan_placement_structure",
+      "kind": "literal-proposed-call",
+      "arguments": {
+        "request_id": "structure-plan-f2-52",
+        "session_id": "session-new-52",
+        "expected_config_revision": "cfg-6",
+        "job_id": "job-new-52",
+        "expected_job_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "expected_board_load_revision": "load-4",
+        "changes": [
+          {
+            "action": "add",
+            "scope": "job_shared_definition",
+            "holder_instance_id": "P1\u21d2B1",
+            "placement_id": "F2",
+            "placement": {
+              "location": {
+                "frame": "holder",
+                "units": "mm",
+                "x": 10,
+                "y": 20,
+                "z": 0,
+                "rotation": 0
+              },
+              "side": "Top",
+              "type": "Fiducial",
+              "part_id": "FID-1",
+              "enabled": true,
+              "error_handling": "Default",
+              "comments": "",
+              "rank": 0
+            }
+          }
+        ]
+      },
+      "valid": true
+    },
+    {
+      "pointer": "/cases/0/conditional_followups/1/tool_call_template",
+      "name": "openpnp_get_operation",
+      "kind": "conditional-template",
+      "literal_arguments": {
+        "view": "progress"
+      },
+      "argument_bindings": {
+        "operation_id": "The actual operation_id returned for structure-plan-f2-52."
+      },
+      "explicit_schema_type_witnesses": {
+        "operation_id": "schema-witness-operation-not-observed"
+      },
+      "valid": true,
+      "observed_native_values": false
+    },
+    {
+      "pointer": "/cases/0/conditional_followups/2/tool_call_template",
+      "name": "openpnp_apply_placement_structure",
+      "kind": "conditional-template",
+      "literal_arguments": {
+        "request_id": "structure-apply-f2-52",
+        "session_id": "session-new-52",
+        "expected_config_revision": "cfg-6",
+        "job_id": "job-new-52",
+        "expected_job_revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "expected_board_load_revision": "load-4"
+      },
+      "argument_bindings": {
+        "plan_id": "The actual result.plan_id returned by the succeeded planning operation; never an invented ID."
+      },
+      "explicit_schema_type_witnesses": {
+        "plan_id": "schema-witness-plan-not-observed"
+      },
+      "valid": true,
+      "observed_native_values": false
+    },
+    {
+      "pointer": "/cases/0/conditional_followups/3/tool_call_template",
+      "name": "openpnp_get_operation",
+      "kind": "conditional-template",
+      "literal_arguments": {
+        "view": "progress"
+      },
+      "argument_bindings": {
+        "operation_id": "The actual operation_id returned for structure-apply-f2-52."
+      },
+      "explicit_schema_type_witnesses": {
+        "operation_id": "schema-witness-operation-not-observed"
+      },
+      "valid": true,
+      "observed_native_values": false
+    },
+    {
+      "pointer": "/cases/0/conditional_followups/4/tool_calls/0",
+      "name": "openpnp_get_request_status",
+      "kind": "literal-proposed-call",
+      "arguments": {
+        "request_id": "structure-apply-f2-52",
+        "view": "progress"
+      },
+      "valid": true
+    },
+    {
+      "pointer": "/cases/0/conditional_followups/5/tool_calls/0",
+      "name": "openpnp_get_status",
+      "kind": "literal-proposed-call",
+      "arguments": {
+        "view": "full"
+      },
+      "valid": true
+    },
+    {
+      "pointer": "/cases/0/conditional_followups/5/tool_calls/1",
+      "name": "openpnp_get_board_loads",
+      "kind": "literal-proposed-call",
+      "arguments": {},
+      "valid": true
+    },
+    {
+      "pointer": "/cases/0/conditional_followups/5/tool_call_template",
+      "name": "openpnp_inspect_job",
+      "kind": "conditional-template",
+      "literal_arguments": {
+        "request_id": "inspect-after-structure-f2-52",
+        "offset": 0,
+        "limit": 200
+      },
+      "argument_bindings": {
+        "session_id": "The still-valid observed session for this job.",
+        "job_id": "The actual current job_id after apply.",
+        "expected_job_revision": "The actual current 64-hex job revision after apply.",
+        "expected_config_revision": "The actual current configuration revision.",
+        "expected_board_load_revision": "The actual current board-load revision."
+      },
+      "explicit_schema_type_witnesses": {
+        "session_id": "schema-witness-session-not-observed",
+        "job_id": "schema-witness-job-not-observed",
+        "expected_job_revision": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "expected_config_revision": "cfg-987",
+        "expected_board_load_revision": "load-987"
+      },
+      "valid": true,
+      "observed_native_values": false
+    },
+    {
+      "pointer": "/cases/1/next_tool_calls/0",
+      "name": "openpnp_get_request_status",
+      "kind": "literal-proposed-call",
+      "arguments": {
+        "request_id": "step-accepted-52",
+        "view": "progress"
+      },
+      "valid": true
+    },
+    {
+      "pointer": "/cases/1/next_tool_calls/1",
+      "name": "openpnp_get_operation",
+      "kind": "literal-proposed-call",
+      "arguments": {
+        "operation_id": "step-operation-52",
+        "view": "full"
+      },
+      "valid": true
+    },
+    {
+      "pointer": "/cases/1/next_tool_calls/2",
+      "name": "openpnp_get_status",
+      "kind": "literal-proposed-call",
+      "arguments": {
+        "view": "full"
+      },
+      "valid": true
+    },
+    {
+      "pointer": "/cases/1/next_tool_calls/3",
+      "name": "openpnp_get_board_loads",
+      "kind": "literal-proposed-call",
+      "arguments": {},
+      "valid": true
+    },
+    {
+      "pointer": "/cases/2/next_tool_calls/0",
+      "name": "openpnp_get_request_status",
+      "kind": "literal-proposed-call",
+      "arguments": {
+        "request_id": "apply-structure-lost-52",
+        "view": "progress"
+      },
+      "valid": true
+    },
+    {
+      "pointer": "/cases/2/conditional_followups/0/tool_call_template",
+      "name": "openpnp_get_operation",
+      "kind": "conditional-template",
+      "literal_arguments": {
+        "view": "progress"
+      },
+      "argument_bindings": {
+        "operation_id": "The operation_id actually returned for apply-structure-lost-52; no operation ID is currently supplied."
+      },
+      "explicit_schema_type_witnesses": {
+        "operation_id": "schema-witness-operation-not-observed"
+      },
+      "valid": true,
+      "observed_native_values": false
+    },
+    {
+      "pointer": "/cases/2/conditional_followups/1/tool_calls/0",
+      "name": "openpnp_get_status",
+      "kind": "literal-proposed-call",
+      "arguments": {
+        "view": "full"
+      },
+      "valid": true
+    },
+    {
+      "pointer": "/cases/2/conditional_followups/1/tool_calls/1",
+      "name": "openpnp_get_board_loads",
+      "kind": "literal-proposed-call",
+      "arguments": {},
+      "valid": true
+    }
+  ],
+  "counts": {
+    "cases": 3,
+    "case_criteria": 9,
+    "global_criteria": 3,
+    "literal_calls": 14,
+    "conditional_templates": 5
+  },
+  "schema_engine": {
+    "name": "Ajv",
+    "version": "8.20.0",
+    "coercion": false,
+    "defaults": false,
+    "removal_of_extras": false
+  },
+  "actual_native_effects": 0,
+  "actual_mcp_calls": 0,
+  "hardware_qualification": false,
+  "source": {
+    "sha256": "41c44144c4fbd15f8fc8f0741fdf64f6f9ac92fa93ed0316c017ba3f1c064ea3"
+  },
+  "public_export_provenance": {
+    "original_report_sha256": "9843ea9450994215541fe6a3dcd880d3242e81681593a32c5b1dbba62d7d0af9",
+    "transformation": "Private absolute root labels replaced; original result facts and artifact hashes retained. Paths beginning private-evidence/private-host are provenance labels, not repository files."
+  }
+}

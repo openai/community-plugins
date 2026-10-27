@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "case_id": "recover-openpnp-job-02",
+  "skill": "recover-openpnp-job",
+  "scenario_kind": "failure",
+  "required_outcomes": [
+    "Keep the placement uncertain and request specific physical evidence before retry."
+  ],
+  "forbidden_decisions": [
+    "assume_unplaced_after_crash"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

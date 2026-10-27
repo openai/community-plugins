@@ -1,0 +1,447 @@
+{
+  "schema_version": 1,
+  "purpose": "Packaging and dependency contract; does not prove runtime support or behavioral competence.",
+  "skills": [
+    {
+      "name": "setup-openpnp",
+      "entrypoint": "skills/setup-openpnp/SKILL.md",
+      "metadata": "skills/setup-openpnp/agents/openai.yaml",
+      "references": [
+        "references/control-contract.md",
+        "references/installation-and-adoption.md",
+        "references/portable-simulator-adoption.md",
+        "references/controller-diagnostics.md"
+      ],
+      "tool_names": [
+        "openpnp_get_capabilities",
+        "openpnp_get_status",
+        "openpnp_get_configuration",
+        "openpnp_connect",
+        "openpnp_backup_configuration",
+        "openpnp_read_response_page",
+        "openpnp_export_portable_configuration",
+        "openpnp_run_controller_diagnostic"
+      ],
+      "post_historical_tool_additions": [
+        "openpnp_read_response_page",
+        "openpnp_export_portable_configuration",
+        "openpnp_run_controller_diagnostic"
+      ]
+    },
+    {
+      "name": "commission-openpnp-machine",
+      "entrypoint": "skills/commission-openpnp-machine/SKILL.md",
+      "metadata": "skills/commission-openpnp-machine/agents/openai.yaml",
+      "references": [
+        "references/control-contract.md",
+        "references/commissioning.md",
+        "references/controller-diagnostics.md"
+      ],
+      "tool_names": [
+        "openpnp_get_capabilities",
+        "openpnp_get_status",
+        "openpnp_get_configuration",
+        "openpnp_plan_configuration",
+        "openpnp_apply_configuration",
+        "openpnp_backup_configuration",
+        "openpnp_list_issues",
+        "openpnp_plan_solution",
+        "openpnp_apply_solution",
+        "openpnp_run_calibration",
+        "openpnp_validate_calibration",
+        "openpnp_read_response_page",
+        "openpnp_run_controller_diagnostic"
+      ],
+      "post_historical_tool_additions": [
+        "openpnp_read_response_page",
+        "openpnp_run_controller_diagnostic"
+      ]
+    },
+    {
+      "name": "calibrate-openpnp-motion",
+      "entrypoint": "skills/calibrate-openpnp-motion/SKILL.md",
+      "metadata": "skills/calibrate-openpnp-motion/agents/openai.yaml",
+      "references": [
+        "references/control-contract.md",
+        "references/motion-and-homing.md"
+      ],
+      "tool_names": [
+        "openpnp_get_capabilities",
+        "openpnp_get_status",
+        "openpnp_home_machine",
+        "openpnp_plan_motion",
+        "openpnp_execute_motion",
+        "openpnp_run_calibration",
+        "openpnp_measure_sensor",
+        "openpnp_validate_calibration",
+        "openpnp_read_response_page"
+      ],
+      "post_historical_tool_additions": [
+        "openpnp_read_response_page"
+      ]
+    },
+    {
+      "name": "calibrate-openpnp-vision",
+      "entrypoint": "skills/calibrate-openpnp-vision/SKILL.md",
+      "metadata": "skills/calibrate-openpnp-vision/agents/openai.yaml",
+      "references": [
+        "references/control-contract.md",
+        "references/camera-and-vision-calibration.md"
+      ],
+      "tool_names": [
+        "openpnp_get_capabilities",
+        "openpnp_get_configuration",
+        "openpnp_capture_camera",
+        "openpnp_plan_configuration",
+        "openpnp_apply_configuration",
+        "openpnp_run_calibration",
+        "openpnp_validate_calibration",
+        "openpnp_read_response_page"
+      ],
+      "post_historical_tool_additions": [
+        "openpnp_read_response_page"
+      ]
+    },
+    {
+      "name": "configure-openpnp-tooling",
+      "entrypoint": "skills/configure-openpnp-tooling/SKILL.md",
+      "metadata": "skills/configure-openpnp-tooling/agents/openai.yaml",
+      "references": [
+        "references/control-contract.md",
+        "references/tooling-and-pneumatics.md",
+        "references/vacuum-sensing.md"
+      ],
+      "tool_names": [
+        "openpnp_get_capabilities",
+        "openpnp_get_configuration",
+        "openpnp_get_status",
+        "openpnp_plan_configuration",
+        "openpnp_apply_configuration",
+        "openpnp_change_nozzle_tip",
+        "openpnp_measure_sensor",
+        "openpnp_verify_part_state",
+        "openpnp_control_actuator",
+        "openpnp_validate_calibration",
+        "openpnp_handle_part",
+        "openpnp_read_response_page"
+      ],
+      "post_historical_tool_additions": [
+        "openpnp_read_response_page"
+      ]
+    },
+    {
+      "name": "configure-openpnp-feeders",
+      "entrypoint": "skills/configure-openpnp-feeders/SKILL.md",
+      "metadata": "skills/configure-openpnp-feeders/agents/openai.yaml",
+      "references": [
+        "references/control-contract.md",
+        "references/feeders-and-materials.md",
+        "references/virtual-tray-loads.md"
+      ],
+      "tool_names": [
+        "openpnp_get_capabilities",
+        "openpnp_get_configuration",
+        "openpnp_plan_configuration",
+        "openpnp_apply_configuration",
+        "openpnp_test_feeder",
+        "openpnp_handle_part",
+        "openpnp_get_operation",
+        "openpnp_get_status",
+        "openpnp_read_response_page",
+        "openpnp_get_material_loads",
+        "openpnp_register_material_load"
+      ],
+      "post_historical_tool_additions": [
+        "openpnp_read_response_page",
+        "openpnp_get_material_loads",
+        "openpnp_register_material_load"
+      ]
+    },
+    {
+      "name": "prepare-openpnp-job",
+      "entrypoint": "skills/prepare-openpnp-job/SKILL.md",
+      "metadata": "skills/prepare-openpnp-job/agents/openai.yaml",
+      "references": [
+        "references/control-contract.md",
+        "references/documents-and-importers.md",
+        "references/native-placement-editing.md",
+        "references/boards-panels-and-registration.md"
+      ],
+      "tool_names": [
+        "openpnp_get_capabilities",
+        "openpnp_prepare_job",
+        "openpnp_plan_configuration",
+        "openpnp_apply_configuration",
+        "openpnp_validate_job",
+        "openpnp_get_artifact",
+        "openpnp_import_job",
+        "openpnp_validate_imported_job",
+        "openpnp_read_response_page",
+        "openpnp_get_board_loads",
+        "openpnp_register_board_load",
+        "openpnp_inspect_job",
+        "openpnp_plan_placement_edits",
+        "openpnp_apply_placement_edits",
+        "openpnp_plan_placement_structure",
+        "openpnp_apply_placement_structure"
+      ],
+      "post_historical_tool_additions": [
+        "openpnp_read_response_page",
+        "openpnp_get_board_loads",
+        "openpnp_register_board_load",
+        "openpnp_inspect_job",
+        "openpnp_plan_placement_edits",
+        "openpnp_apply_placement_edits",
+        "openpnp_plan_placement_structure",
+        "openpnp_apply_placement_structure"
+      ]
+    },
+    {
+      "name": "align-openpnp-board",
+      "entrypoint": "skills/align-openpnp-board/SKILL.md",
+      "metadata": "skills/align-openpnp-board/agents/openai.yaml",
+      "references": [
+        "references/control-contract.md",
+        "references/boards-panels-and-registration.md",
+        "references/native-placement-editing.md"
+      ],
+      "tool_names": [
+        "openpnp_get_capabilities",
+        "openpnp_get_status",
+        "openpnp_register_board_load",
+        "openpnp_locate_fiducials",
+        "openpnp_get_artifact",
+        "openpnp_read_response_page",
+        "openpnp_get_board_loads",
+        "openpnp_inspect_job"
+      ],
+      "post_historical_tool_additions": [
+        "openpnp_read_response_page",
+        "openpnp_get_board_loads",
+        "openpnp_inspect_job"
+      ]
+    },
+    {
+      "name": "validate-openpnp-job",
+      "entrypoint": "skills/validate-openpnp-job/SKILL.md",
+      "metadata": "skills/validate-openpnp-job/agents/openai.yaml",
+      "references": [
+        "references/control-contract.md",
+        "references/validation-and-inspection.md",
+        "references/native-placement-editing.md",
+        "references/boards-panels-and-registration.md",
+        "references/native-loaded-board-inspection.md"
+      ],
+      "tool_names": [
+        "openpnp_get_capabilities",
+        "openpnp_get_status",
+        "openpnp_validate_job",
+        "openpnp_start_job",
+        "openpnp_step_job",
+        "openpnp_record_inspection",
+        "openpnp_get_inspection",
+        "openpnp_validate_imported_job",
+        "openpnp_read_response_page",
+        "openpnp_get_board_loads",
+        "openpnp_request_board_inspection",
+        "openpnp_get_board_inspection"
+      ],
+      "post_historical_tool_additions": [
+        "openpnp_read_response_page",
+        "openpnp_get_board_loads",
+        "openpnp_request_board_inspection",
+        "openpnp_get_board_inspection"
+      ]
+    },
+    {
+      "name": "run-openpnp-job",
+      "entrypoint": "skills/run-openpnp-job/SKILL.md",
+      "metadata": "skills/run-openpnp-job/agents/openai.yaml",
+      "references": [
+        "references/control-contract.md",
+        "references/job-control-and-changeover.md",
+        "references/boards-panels-and-registration.md",
+        "references/virtual-tray-loads.md"
+      ],
+      "tool_names": [
+        "openpnp_get_capabilities",
+        "openpnp_get_status",
+        "openpnp_get_control_session",
+        "openpnp_request_control_session",
+        "openpnp_start_job",
+        "openpnp_step_job",
+        "openpnp_get_events",
+        "openpnp_get_operation",
+        "openpnp_renew_control_session",
+        "openpnp_pause_job",
+        "openpnp_resume_job",
+        "openpnp_abort_job",
+        "openpnp_register_board_load",
+        "openpnp_export_run_report",
+        "openpnp_read_response_page",
+        "openpnp_get_board_loads",
+        "openpnp_get_material_loads",
+        "openpnp_register_material_load"
+      ],
+      "post_historical_tool_additions": [
+        "openpnp_read_response_page",
+        "openpnp_get_board_loads",
+        "openpnp_get_material_loads",
+        "openpnp_register_material_load"
+      ]
+    },
+    {
+      "name": "recover-openpnp-job",
+      "entrypoint": "skills/recover-openpnp-job/SKILL.md",
+      "metadata": "skills/recover-openpnp-job/agents/openai.yaml",
+      "references": [
+        "references/control-contract.md",
+        "references/fault-recovery.md",
+        "references/native-placement-editing.md",
+        "references/boards-panels-and-registration.md",
+        "references/controller-diagnostics.md",
+        "references/virtual-tray-loads.md",
+        "references/vacuum-sensing.md",
+        "references/sensing-reconciliation.md"
+      ],
+      "tool_names": [
+        "openpnp_get_capabilities",
+        "openpnp_get_operation",
+        "openpnp_get_status",
+        "openpnp_measure_sensor",
+        "openpnp_verify_part_state",
+        "openpnp_get_inspection",
+        "openpnp_plan_recovery",
+        "openpnp_apply_recovery",
+        "openpnp_validate_job",
+        "openpnp_resume_job",
+        "openpnp_reconcile_operation",
+        "openpnp_read_response_page",
+        "openpnp_get_board_loads",
+        "openpnp_run_controller_diagnostic",
+        "openpnp_get_material_loads",
+        "openpnp_register_material_load",
+        "openpnp_request_sensing_reconciliation",
+        "openpnp_get_sensing_reconciliation"
+      ],
+      "post_historical_tool_additions": [
+        "openpnp_read_response_page",
+        "openpnp_get_board_loads",
+        "openpnp_run_controller_diagnostic",
+        "openpnp_get_material_loads",
+        "openpnp_register_material_load",
+        "openpnp_request_sensing_reconciliation",
+        "openpnp_get_sensing_reconciliation"
+      ]
+    },
+    {
+      "name": "maintain-openpnp-machine",
+      "entrypoint": "skills/maintain-openpnp-machine/SKILL.md",
+      "metadata": "skills/maintain-openpnp-machine/agents/openai.yaml",
+      "references": [
+        "references/control-contract.md",
+        "references/startup-shutdown-and-maintenance.md",
+        "references/installation-and-adoption.md",
+        "scripts/SUPPORT_EXPORT.md"
+      ],
+      "tool_names": [
+        "openpnp_get_capabilities",
+        "openpnp_get_status",
+        "openpnp_get_configuration",
+        "openpnp_get_events",
+        "openpnp_capture_camera",
+        "openpnp_measure_sensor",
+        "openpnp_verify_part_state",
+        "openpnp_plan_configuration",
+        "openpnp_apply_configuration",
+        "openpnp_validate_calibration",
+        "openpnp_plan_motion",
+        "openpnp_execute_motion",
+        "openpnp_set_machine_enabled",
+        "openpnp_disconnect",
+        "openpnp_read_response_page"
+      ],
+      "post_historical_tool_additions": [
+        "openpnp_read_response_page"
+      ]
+    },
+    {
+      "name": "optimize-openpnp-production",
+      "entrypoint": "skills/optimize-openpnp-production/SKILL.md",
+      "metadata": "skills/optimize-openpnp-production/agents/openai.yaml",
+      "references": [
+        "references/control-contract.md",
+        "references/performance-experiments.md"
+      ],
+      "tool_names": [
+        "openpnp_get_capabilities",
+        "openpnp_export_run_report",
+        "openpnp_get_configuration",
+        "openpnp_plan_configuration",
+        "openpnp_backup_configuration",
+        "openpnp_apply_configuration",
+        "openpnp_prepare_job",
+        "openpnp_validate_job",
+        "openpnp_start_job",
+        "openpnp_get_inspection",
+        "openpnp_restore_configuration",
+        "openpnp_read_response_page"
+      ],
+      "post_historical_tool_additions": [
+        "openpnp_read_response_page"
+      ]
+    },
+    {
+      "name": "backup-restore-openpnp",
+      "entrypoint": "skills/backup-restore-openpnp/SKILL.md",
+      "metadata": "skills/backup-restore-openpnp/agents/openai.yaml",
+      "references": [
+        "references/control-contract.md",
+        "references/backup-restore-and-migration.md",
+        "references/portable-simulator-adoption.md"
+      ],
+      "tool_names": [
+        "openpnp_get_capabilities",
+        "openpnp_get_status",
+        "openpnp_get_configuration",
+        "openpnp_backup_configuration",
+        "openpnp_restore_configuration",
+        "openpnp_validate_calibration",
+        "openpnp_read_response_page",
+        "openpnp_export_portable_configuration"
+      ],
+      "post_historical_tool_additions": [
+        "openpnp_read_response_page",
+        "openpnp_export_portable_configuration"
+      ]
+    }
+  ],
+  "shared_tool_names": [
+    "openpnp_get_capabilities",
+    "openpnp_get_status",
+    "openpnp_get_request_status",
+    "openpnp_get_operation",
+    "openpnp_get_events",
+    "openpnp_request_control_session",
+    "openpnp_renew_control_session",
+    "openpnp_get_native_artifact",
+    "openpnp_reconcile_operation",
+    "openpnp_assess_inspection_coverage",
+    "openpnp_save_job",
+    "openpnp_load_job",
+    "openpnp_get_artifact"
+  ],
+  "conditional_tool_names": [
+    "openpnp_apply_recovery",
+    "openpnp_apply_solution",
+    "openpnp_connect",
+    "openpnp_disconnect",
+    "openpnp_get_inspection",
+    "openpnp_handle_part",
+    "openpnp_plan_recovery",
+    "openpnp_plan_solution"
+  ],
+  "conditional_tool_policy": "A referenced conditional operation is not advertised as implemented; inspect runtime support and otherwise deliver supported preparation plus the exact gap.",
+  "inventory_version": "private-controller53-proposal",
+  "historical_inventory_policy": "The immutable42 raw evaluation cases predate response retention and the native job/load additions. Per-skill post_historical_tool_additions document exact inventory additions; old cases are not modified or retroactively qualified."
+}

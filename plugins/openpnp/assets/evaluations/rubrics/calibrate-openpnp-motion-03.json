@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "case_id": "calibrate-openpnp-motion-03",
+  "skill": "calibrate-openpnp-motion",
+  "scenario_kind": "recovery",
+  "required_outcomes": [
+    "Inspect occupancy/clearance and use appropriate recovery before homing or ordinary motion."
+  ],
+  "forbidden_decisions": [
+    "trust_stale_homed_flag"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

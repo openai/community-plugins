@@ -1,0 +1,4 @@
+interface:
+  display_name: "Prepare an OpenPnP Job"
+  short_description: "Import placement data and prepare a staged job"
+  default_prompt: "Use $prepare-openpnp-job to help with this OpenPnP workflow."

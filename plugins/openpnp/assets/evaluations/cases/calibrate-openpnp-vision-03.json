@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "case_id": "calibrate-openpnp-vision-03",
+  "skill": "calibrate-openpnp-vision",
+  "request": "I changed camera resolution and the old calibration still says valid.",
+  "execution_boundary": "offline decision exercise; no hardware, external writes, or actual tool invocation",
+  "observations": {
+    "previous_resolution": [
+      1280,
+      720
+    ],
+    "current_resolution": [
+      1920,
+      1080
+    ],
+    "old_calibration": {
+      "resolution": [
+        1280,
+        720
+      ],
+      "reported_valid": true
+    },
+    "dependent_records": [
+      "nozzle-offset",
+      "fiducial-transform"
+    ]
+  },
+  "tool_inventory": {
+    "source": "normalized evaluation snapshot, not a live MCP result",
+    "candidate_tools": [
+      "openpnp_get_capabilities",
+      "openpnp_get_configuration",
+      "openpnp_capture_camera",
+      "openpnp_plan_configuration",
+      "openpnp_apply_configuration",
+      "openpnp_run_calibration",
+      "openpnp_validate_calibration"
+    ]
+  }
+}

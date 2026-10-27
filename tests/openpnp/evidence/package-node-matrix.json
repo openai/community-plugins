@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-11T05:29:25.193179+00:00",
+  "status": "passed",
+  "command": "node --test --test-concurrency=1 tests/openpnp/*.test.mjs",
+  "runs": [
+    {
+      "node": "22.19.0",
+      "platform": "macOS ARM64",
+      "tests": 104,
+      "passed": 102,
+      "failed": 0,
+      "skipped": 2,
+      "intentional_skips": [
+        "live.test.mjs requires selected native simulator",
+        "reconnect-live.test.mjs requires selected native simulator"
+      ],
+      "exit_code": 0,
+      "log": "package-node22.log",
+      "log_sha256": "062a83028b0b5d4236138773ae0e2207118c6843537a4047dee9aced6e516cb7",
+      "private_original_log_sha256": "55a1a979bcab5518aa99ac652d605b86d2d9cd6e48f96929bf344077a1d98f0d",
+      "sanitization": "Only temporary launcher fixture connection_file paths replaced with a portable placeholder; test outcomes and timings unchanged."
+    },
+    {
+      "node": "24.20.0",
+      "platform": "macOS ARM64",
+      "tests": 104,
+      "passed": 102,
+      "failed": 0,
+      "skipped": 2,
+      "intentional_skips": [
+        "live.test.mjs requires selected native simulator",
+        "reconnect-live.test.mjs requires selected native simulator"
+      ],
+      "exit_code": 0,
+      "log": "package-node24.log",
+      "log_sha256": "2823571069f4980918520aa245f7606569fd494e68d47baf1e8f2065609ad56b",
+      "private_original_log_sha256": "0782514cdee408fa11a3d363a4b86462306a3f676e85926c94d09e9167be812e",
+      "sanitization": "Only temporary launcher fixture connection_file paths replaced with a portable placeholder; test outcomes and timings unchanged."
+    },
+    {
+      "node": "26.0.0",
+      "platform": "macOS ARM64",
+      "tests": 104,
+      "passed": 102,
+      "failed": 0,
+      "skipped": 2,
+      "intentional_skips": [
+        "live.test.mjs requires selected native simulator",
+        "reconnect-live.test.mjs requires selected native simulator"
+      ],
+      "exit_code": 0,
+      "log": "package-node26.log",
+      "log_sha256": "4916882e525ee1a438c77d6b05d93d7e035afbac48d693a3705c5e63275dd973",
+      "private_original_log_sha256": "c1245284712b5971d92312ae5852c804787c1650fa34b44363dbd03ae03807ef",
+      "sanitization": "Only temporary launcher fixture connection_file paths replaced with a portable placeholder; test outcomes and timings unchanged."
+    }
+  ],
+  "source_sha256": {
+    "scripts/openpnp-soak.mjs": "1a196a56edd01aee1973618393e655fe1fb694a89a62775830c1d69c684b461a",
+    "src/openpnp/node/artifacts.mjs": "901d2451181002a14e6fcfa636fd531932c4f870a59282ad62e7ad6ba5e9ada3",
+    "src/openpnp/node/build.mjs": "714a4ac465425483d104754908e2a10ac0d11fb076bc81ad05d0dc3c920f908a",
+    "src/openpnp/node/client.mjs": "738aa5956894d8d52f4627c3df8050dc8e23c5d06ff926e77cde5c4a58d8c835",
+    "src/openpnp/node/contracts.mjs": "63101a1f19e528a219830bfc3e9e032a8a6eaea2e5df4e281bebffdd22504eae",
+    "src/openpnp/node/errors.mjs": "a76cd6c5360d831fc86e6ff6b84537e0ebde6dc0e94789c924eaea0612027607",
+    "src/openpnp/node/notices.mjs": "e7a231ab99f1ae337b903733e2c60350c6afb9befe3e2d4dc1f25bfffb388962",
+    "src/openpnp/node/runtime.mjs": "2859495906e26b37138d3db2d98705074bddadf096e2d42911f714b47d61062a",
+    "src/openpnp/node/server.mjs": "8f58fc579c6af518c5623e1fd615884f6eda27d553375ed5bf29f4b6f9045603",
+    "src/openpnp/node/settings-contracts.mjs": "158064a2fc42664358d2d77fb96be4607182ed2b75e783ca93a18d37afa01bfc",
+    "tests/openpnp/coverage.test.mjs": "02d67d06cc159ce9447285ee3bc34534f2cab1173116a4b2dffdc2bea65fe075",
+    "tests/openpnp/diagnostics.test.mjs": "d9903aea95a9e43397f6e35d4fd6f6f8daaa6fae2d0945ee6d65d33d6f3d00bf",
+    "tests/openpnp/domain-geometry.test.mjs": "8f4257e6dd4671aa397d61fc6f0004df211d6d78a9b0fbc291d71c41fe16520b",
+    "tests/openpnp/domain-imports.test.mjs": "fb358ad4d1e88e590339d8c75508f8713c6e1150fca39f117376753e89077dbb",
+    "tests/openpnp/domain-ledger.test.mjs": "9483a8b8a27855f339c63b4c5c361725b56f2ac2ea494c48d08bf7ff7aa079ed",
+    "tests/openpnp/evidence-tools.test.mjs": "20d9d67fb04d1777ac158c7358ca4fdd247a1de41d2ae27f5dda0b29a93d5820",
+    "tests/openpnp/installer.test.mjs": "0fbae589c1cc0e8b275f6f0a9c541aaeaf1b762d140a65d5f02f6e3cd6642dfc",
+    "tests/openpnp/launcher.test.mjs": "e96d06f6f8590ce36df4b5ebf09bc22bbf67a6777552db2ac3d5dc73748b4149",
+    "tests/openpnp/live.test.mjs": "c8c6eaab6aafb65fb8aec6040ec2c8fd254417d3f4579ba3782dbc82140be59b",
+    "tests/openpnp/mcp.test.mjs": "3f285e4e8776af7b4cbc63b32117b0763d23ddd19023fdd4ab615e2a5f4cf7ee",
+    "tests/openpnp/reconnect-live.test.mjs": "8e6aaf0e0c929fadc5e1391b3dd4a9ecb4bce23602fc62e6a2d6a75a70419080",
+    "tests/openpnp/skills.contract.test.mjs": "fa9ff2c7de944772abc2d62010d4e9ca64864418b9184e43611c516d943beb74",
+    "tests/openpnp/skills.fixtures.test.mjs": "f668cb26fea69ca9b28214da806ce2c15cfb5e2edf7cd7db2a735048e0174e1a",
+    "tests/openpnp/skills.post-freeze.test.mjs": "eca0773ce16fb651f227001e5eb1be3190e4dd6d12e55e79a715e66048092f28",
+    "tests/openpnp/soak-harness.test.mjs": "f4f88e58bfa40f5a7408fa51fd6dd658bcd6ea924518115f7f9abd6d060fd41f",
+    "tests/openpnp/transport.test.mjs": "979612b7bc1b014261ce2ef742dd30ab648911d0fe72e3d669ab05ff5ba5c2e4"
+  },
+  "native_integration": "Selected-machine workflows have separate live runs; their default skips do not establish native compatibility.",
+  "hardware_qualified": false
+}

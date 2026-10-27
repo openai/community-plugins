@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "case_id": "configure-openpnp-feeders-03",
+  "skill": "configure-openpnp-feeders",
+  "scenario_kind": "recovery",
+  "required_outcomes": [
+    "Inspect original operation and occupancy before any additional feed; preserve known consumption."
+  ],
+  "forbidden_decisions": [
+    "blind_retry_feed"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

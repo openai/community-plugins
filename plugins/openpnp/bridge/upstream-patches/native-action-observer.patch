@@ -1,0 +1,126 @@
+--- a/src/main/java/org/openpnp/scripting/Scripting.java
++++ b/src/main/java/org/openpnp/scripting/Scripting.java
+@@ -31,6 +31,68 @@
+ import bsh.engine.BshScriptEngineFactory;
+ 
+ public class Scripting {
++    public static boolean hasNativeActionObserverApi() { return true; }
++
++    /** A scoped Java observer, independent of interpreter exception wrapping. */
++    public interface NativeObserver {
++        void beforeScripts(String event, Map<String, Object> globals);
++        void afterScripts(String event, Map<String, Object> globals);
++    }
++
++    // One non-inherited registration on the executing native machine thread only.
++    private static final ThreadLocal<NativeObserverScope> nativeObserver = new ThreadLocal<>();
++
++    public static final class NativeObserverScope implements AutoCloseable {
++        private final Thread owner = Thread.currentThread();
++        private final NativeObserver observer;
++        private boolean closed;
++        private NativeObserverScope(NativeObserver observer) { this.observer = observer; }
++        @Override public void close() {
++            if (Thread.currentThread() != owner) throw new IllegalStateException("Native observer thread changed");
++            if (closed) return;
++            if (nativeObserver.get() != this) throw new IllegalStateException("Native observer registration changed");
++            nativeObserver.remove();
++            closed = true;
++        }
++    }
++
++    public static NativeObserverScope observeNativeEvents(NativeObserver observer) {
++        if (observer == null) throw new IllegalArgumentException("Native observer is required");
++        if (nativeObserver.get() != null) throw new IllegalStateException("Native observer already registered");
++        NativeObserverScope scope = new NativeObserverScope(observer);
++        nativeObserver.set(scope);
++        return scope;
++    }
++
++    /** Policy rejection must not be interpreted as a retryable feeder/nozzle failure. */
++    public static final class ExecutionRejected extends Error {
++        private static final long serialVersionUID = 1L;
++        private ExecutionRejected(RuntimeException cause) { super("Script execution rejected by native ownership policy", cause); }
++    }
++    public final class ExecutionConstraint implements AutoCloseable {
++        private final java.util.function.Consumer<File> guard;
++        private boolean closed;
++        private ExecutionConstraint(java.util.function.Consumer<File> guard) { this.guard = guard; }
++        @Override public void close() {
++            synchronized (Scripting.this) {
++                if (closed) return;
++                if (executionConstraint != this) throw new IllegalStateException("Script policy registration changed");
++                executionConstraint = null;
++                closed = true;
++            }
++        }
++    }
++    private int activeExecutionCount;
++    private ExecutionConstraint executionConstraint;
++    public synchronized int getActiveExecutionCount() { return activeExecutionCount; }
++    public synchronized ExecutionConstraint constrainExecution(java.util.function.Consumer<File> guard) {
++        if (guard == null) throw new IllegalArgumentException("Script execution guard is required");
++        if (executionConstraint != null || activeExecutionCount != 0)
++            throw new IllegalStateException("Script execution or another policy is active");
++        executionConstraint = new ExecutionConstraint(guard);
++        return executionConstraint;
++    }
++
+     private final ScriptEngineManager manager = new ScriptEngineManager();
+     private final File scriptsDirectory;
+     private final File eventsDirectory;
+@@ -139,6 +201,23 @@
+     }
+ 
+     public void execute(File script, Map<String, Object> additionalGlobals) throws Exception {
++        ExecutionConstraint constraint;
++        synchronized (this) {
++            activeExecutionCount++;
++            constraint = executionConstraint;
++        }
++        try {
++            if (constraint != null) {
++                try { constraint.guard.accept(script); }
++                catch (RuntimeException rejected) { throw new ExecutionRejected(rejected); }
++            }
++            executeWithEngine(script, additionalGlobals);
++        } finally {
++            synchronized (this) { activeExecutionCount--; }
++        }
++    }
++
++    private void executeWithEngine(File script, Map<String, Object> additionalGlobals) throws Exception {
+         String extension = Files.getFileExtension(script.getName());
+         String engineName = extensionToEngineNameMap.get(extension);
+         if(engineName==null) {
+@@ -220,6 +299,10 @@
+     // It returns true if and only if we have found there to be no scripts
+     // associated with this event
+     public Boolean hasNoScript(String event) {
++        return nativeObserver.get() == null && hasNoEventScript(event);
++    }
++
++    private Boolean hasNoEventScript(String event) {
+         if (eventsDirectory == null) {
+             return true;
+         }
+@@ -236,11 +319,18 @@
+     }
+ 
+     public void on(String event, Map<String, Object> globals) throws Exception {
++        NativeObserverScope scope = nativeObserver.get();
++        if (scope != null) scope.observer.beforeScripts(event, globals);
++        runEventScripts(event, globals);
++        if (scope != null) scope.observer.afterScripts(event, globals);
++    }
++
++    private void runEventScripts(String event, Map<String, Object> globals) throws Exception {
+         Logger.trace("Scripting.on " + event);
+         if (eventsDirectory == null) {
+             return;
+         }
+-        if (hasNoScript(event)) {
++        if (hasNoEventScript(event)) {
+             return;
+         }
+         Boolean foundEventScript = false;

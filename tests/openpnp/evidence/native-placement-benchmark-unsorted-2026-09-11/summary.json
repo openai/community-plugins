@@ -1,0 +1,590 @@
+{
+  "started_utc": "2026-09-11T05:24:55.660663+00:00",
+  "source_sha256": {
+    "src/openpnp/java/org/openpnp/codex/Bridge.java": "04130abd16338fa660da2bbea0c9ea049a0b2955f864b3abf63f15ef125e0280",
+    "src/openpnp/java/org/openpnp/codex/BuildManifest.java": "707038c3f604862a2dda606e47d3dfbea35a9374f68ab91a6944690b10e9ea8d",
+    "src/openpnp/java/org/openpnp/codex/CanonicalJobImporter.java": "f27739e88b047d19ba90c036c7121578795a049cb95905a6b1706f740147688e",
+    "src/openpnp/java/org/openpnp/codex/NativeConfigurationSnapshots.java": "cbd249ed378b97108268b075dc181499eaa718cc2ffc1f9edff3f95f282b9f14",
+    "src/openpnp/java/org/openpnp/codex/NativeJobDocuments.java": "de036c0ddc6ba18cb5deba3124ffc6acff646cd189de8fee7b06c7cf31f674f7",
+    "src/openpnp/java/org/openpnp/codex/NativeJobPreflight.java": "8163b65bc83c26df5806c1643a5f9311bec89169c813a982716feef43e69f3c3",
+    "src/openpnp/java/org/openpnp/codex/NativeSettings.java": "5b7cbfb342a85170e95b579ace6b98a36a0600c1598e17d52459b4d60f63ce25",
+    "src/openpnp/java/org/openpnp/codex/SimulatorMain.java": "ced0ca152d7d2d5ebf40bbf69e1805d8fc2165dac1fa435fa166cd3f21bd3396",
+    "scripts/openpnp-placement-benchmark.py": "f5b240a1ba236510c664c6e0057c7cb28e391c59c39a89a88cd902a7c7406a7f",
+    "tests/openpnp/native/NativePlacementBenchmark.java": "0dc4ea6bcf6069cdb684077433c8ca54a2aa4abe35ae5f83ac173df7f820ed6c"
+  },
+  "compilation": {
+    "compiler": "javac 17.0.16",
+    "release": 11,
+    "sources_unchanged_during_compilation": true,
+    "compiled_class_sha256": {
+      "org/openpnp/codex/Bridge$Fault.class": "2d38058202f5e4ce40bd737919e4ffd2694e509aaa473942c06b6187262aceeb",
+      "org/openpnp/codex/Bridge.class": "97df4388274d0d504be077a992795ace30982f0f1b942370e52e4d9955a72cfc",
+      "org/openpnp/codex/BuildManifest.class": "b1a6fb0d7551057c2a9f62f96001a0f6bce0f91f935a4a69610eb525d330ed80",
+      "org/openpnp/codex/CanonicalJobImporter$PartSpec.class": "de662fc36130085571d3770a833556315ac70a065038a1226199003563615f0d",
+      "org/openpnp/codex/CanonicalJobImporter.class": "94af4601220dff9f85314eeac7d45c49356de73e6ce78c540db5fb7dc3df9523",
+      "org/openpnp/codex/NativeConfigurationSnapshots$Restore.class": "ddea4ffc0655b619bec47be4f687f645dd4f87bf9eb835dfb197d718cfc26d98",
+      "org/openpnp/codex/NativeConfigurationSnapshots$Snapshot.class": "ed81b6daee7f50652a4dc4b6686dd6919c0dcc37d4101b5e0666587ccb2ae3f0",
+      "org/openpnp/codex/NativeConfigurationSnapshots.class": "05f3001b514fdf66c8cb46eb35d6413b69a720889e845d6c105fd946eef59a85",
+      "org/openpnp/codex/NativeJobDocuments$Graph.class": "16e43aa805423b679dc12241d6a20df077d84fb4c394a28e2d8c0b5dd204701b",
+      "org/openpnp/codex/NativeJobDocuments$Receipt.class": "789099a139283dd583e38a80535db153cdacea51d21af574204e0d246bcf51d3",
+      "org/openpnp/codex/NativeJobDocuments$Saved.class": "65ec578080aefc22f2c1496ceb4aac642b134609737e1a45d867fe4339122b56",
+      "org/openpnp/codex/NativeJobDocuments.class": "f66008211474bcf1385f098e9d13a74497ac6b5a589cd4a6dcca2527400b20a0",
+      "org/openpnp/codex/NativeJobPreflight$Review.class": "27f3e52164e5265000b6d77dfd6f3e0ab3851cb8d6d253da82909bf2969e912a",
+      "org/openpnp/codex/NativeJobPreflight.class": "b9bc1788da686b87ca271688198fc2eac635277357f7edbc94fe1c502c62ffdd",
+      "org/openpnp/codex/NativePlacementBenchmark.class": "fd0553ab69e826a5e13de3d432ab9c5ba1a58d54124a6ff678f197c19b77a4e9",
+      "org/openpnp/codex/NativeSettings$Edit.class": "202635ee6da7c25c30f065a06bdc888c8efdaa2da7a3a3e626f72f156ea6e3cc",
+      "org/openpnp/codex/NativeSettings$Patch.class": "325d7a7297b1df6fbe5b0dedba5087e972e3993c15a3222507201b1314a06aef",
+      "org/openpnp/codex/NativeSettings$Stager$PackageRef.class": "4914dbdfbd23454f77dfe1d2b62c4ecd04d47dc287b6cb5b1d5a0bb37a4a8ac9",
+      "org/openpnp/codex/NativeSettings$Stager$PartRef.class": "dd1956637aaae3bbfd347a8b25653d616982b643a3c094896a465232e6d95ab0",
+      "org/openpnp/codex/NativeSettings$Stager.class": "dce27c9962bb231dcf4bf413aa1b8b071eaa63f04e8d5d8ae210ed6df3303de8",
+      "org/openpnp/codex/NativeSettings.class": "bbb09acaea878ab86126f4924fc0ce3cd7bee9e6fd2b61d6ae8ed8cfad58a62b",
+      "org/openpnp/codex/SimulatorMain.class": "fe0d4d68ecfb3b8e2478ff5e738b151e6fe6ca0b0d138c7d33e526badfa41d12"
+    },
+    "native_classpath_artifacts": [
+      {
+        "file": "openpnp-gui-0.0.1-alpha-SNAPSHOT.jar",
+        "sha256": "518491253ff3b6767362d4a163c932989fa6d71b76fc1bb0e5f35da5cb7a4e43"
+      },
+      {
+        "file": "activation-1.1.1.jar",
+        "sha256": "ae475120e9fcd99b4b00b38329bd61cdc5eb754eee03fe66c01f50e137724f99"
+      },
+      {
+        "file": "apiguardian-api-1.1.0.jar",
+        "sha256": "a9aae9ff8ae3e17a2a18f79175e82b16267c246fbbd3ca9dfbbb290b08dcfdd4"
+      },
+      {
+        "file": "asm-7.3.1.jar",
+        "sha256": "2f67e11ceec819ebd88ddee5300aba699b1cbab2e20c22e97cf027d3be93959b"
+      },
+      {
+        "file": "asm-analysis-7.3.1.jar",
+        "sha256": "46b8a8efd4b94facb5ab4b35afe30ee0546ae7a43d2c64e6def56c2f168fefa5"
+      },
+      {
+        "file": "asm-commons-7.3.1.jar",
+        "sha256": "87cd8bb3c6bf6bcbb33fca48060c5065f66ebf6a3d7de9bf18bff51bcf156ebc"
+      },
+      {
+        "file": "asm-tree-7.3.1.jar",
+        "sha256": "f91a4a8aa868c5c4665bb4fd134019a91f9f8b9216527fba295e3c8b5422b78b"
+      },
+      {
+        "file": "asm-util-7.3.1.jar",
+        "sha256": "182128592742ed4883ac82bf205f137b6bfbe1234c68e6feb13759e75a85b729"
+      },
+      {
+        "file": "avalon-framework-api-4.3.1.jar",
+        "sha256": "bca4c94b5e53acee3c97fe11cce0749d682d5591bf4a217cd45273adeb08c60f"
+      },
+      {
+        "file": "avalon-framework-impl-4.3.1.jar",
+        "sha256": "1a429bd5ba87c55b9c84648d0404eb6499b7c05a2c9f21b1bb9621fbf117589f"
+      },
+      {
+        "file": "batik-anim-1.7.jar",
+        "sha256": "60f020a29b01ecf1c8b72630f97352a353ada91a922541892741006161f32c4b"
+      },
+      {
+        "file": "batik-awt-util-1.7.jar",
+        "sha256": "61611a77c5f8d7d748d11c1e226bab904effcd893ad0256d5be72eca857cfef3"
+      },
+      {
+        "file": "batik-bridge-1.7.jar",
+        "sha256": "e7c5a7d772c4f2eef5d34842019440a7ec3f4b00375a9a8350af4804823c832d"
+      },
+      {
+        "file": "batik-css-1.7.jar",
+        "sha256": "91694732cee7c2b2b8bf6792842867407eaa816be065087f1f444fc06b46b578"
+      },
+      {
+        "file": "batik-dom-1.7.jar",
+        "sha256": "7a02277b4d97c8fe68696f214c152628ee80835b9d3c85c97236d38c210ce931"
+      },
+      {
+        "file": "batik-ext-1.7.jar",
+        "sha256": "de85a6de7cdd36ee9ff28dfe7e03d515be92a702d61028f8928c0cd56f1ee375"
+      },
+      {
+        "file": "batik-gvt-1.7.jar",
+        "sha256": "64acbb6dc4ce2a6eceee205ab96aa299d4e3e4648c45b62584a1c751e1072812"
+      },
+      {
+        "file": "batik-js-1.7.jar",
+        "sha256": "f7d917d038b136702461e3dbd5f83dd9946b664398d88f090284447b8e00fbba"
+      },
+      {
+        "file": "batik-parser-1.7.jar",
+        "sha256": "1ab8db369007bc4ec12b01465a657dd47e05ad08c37dce85bf9ceb78232660a0"
+      },
+      {
+        "file": "batik-script-1.7.jar",
+        "sha256": "a631659faacabe358e7d8548a71bee4ec9b2ee2c07fa52f88f99c2cf04c72aa5"
+      },
+      {
+        "file": "batik-svg-dom-1.7.jar",
+        "sha256": "3ec7e519f3f89f04bc0596efe0a09d8423f53aaff2654ff2d3bca595aebb7cda"
+      },
+      {
+        "file": "batik-svggen-1.7.jar",
+        "sha256": "38c90060eebbfc457eb0b3a5ac7776c1b4d9708b9d0b34332f04b63ed76d1a40"
+      },
+      {
+        "file": "batik-transcoder-1.7.jar",
+        "sha256": "08a25d1fa6329751c1bcea5274624c7ee9c23ae955b9872bc14ac6804dd7300a"
+      },
+      {
+        "file": "batik-util-1.7.jar",
+        "sha256": "9e3f1f53bfccdc942dbe2ceaa94ffe23c63ba3703e40941572205420dfcad81e"
+      },
+      {
+        "file": "batik-xml-1.7.jar",
+        "sha256": "b09ffcdf6b7ff3a97c4db23ce2767e90015081e766a81e220c4b1c47dfcba1b2"
+      },
+      {
+        "file": "beansbinding-1.2.1.jar",
+        "sha256": "2c7b4e8d3af02d7410e350e20da92e65aa48c69250b855387721705f7dccfd99"
+      },
+      {
+        "file": "bridj-0.6.2.jar",
+        "sha256": "a344c1d7430700c6d6aa3a322ec65f3e4a4fab3777c99f5dff4f64a9ec47c09c"
+      },
+      {
+        "file": "bsh-2.0b5.jar",
+        "sha256": "6232199563807354b3bcb5aceb3dc136502f022c6b0ef743987a83f66fee5a5c"
+      },
+      {
+        "file": "byte-buddy-1.10.18.jar",
+        "sha256": "7a1fc6eabf10dd3085e62e7cb3281084f00ab92a736e0980fc99a1460fa1f5ce"
+      },
+      {
+        "file": "byte-buddy-agent-1.10.18.jar",
+        "sha256": "c5b5f85433a9e281fd1ee82d5b8e142e5c494670b29970e627f13e189ff1dc2e"
+      },
+      {
+        "file": "classgraph-4.8.141.jar",
+        "sha256": "4a99956890765d019697a1c5d2f045c79a6c914bbe76a26739d72ae43b2f541a"
+      },
+      {
+        "file": "commons-beanutils-1.9.3.jar",
+        "sha256": "c058e39c7c64203d3a448f3adb588cb03d6378ed808485618f26e137f29dae73"
+      },
+      {
+        "file": "commons-codec-1.6.jar",
+        "sha256": "54b34e941b8e1414bd3e40d736efd3481772dc26db3296f6aa45cec9f6203d86"
+      },
+      {
+        "file": "commons-collections-3.2.2.jar",
+        "sha256": "eeeae917917144a68a741d4c0dff66aa5c5c5fd85593ff217bced3fc8ca783b8"
+      },
+      {
+        "file": "commons-io-2.7.jar",
+        "sha256": "4547858fff38bbf15262d520685b184a3dce96897bc1844871f055b96e8f6e95"
+      },
+      {
+        "file": "commons-lang3-3.12.0.jar",
+        "sha256": "d919d904486c037f8d193412da0c92e22a9fa24230b9d67a57855c5c31c7e94e"
+      },
+      {
+        "file": "commons-logging-1.2.jar",
+        "sha256": "daddea1ea0be0f56978ab3006b8ac92834afeefbd9b7e4e6316fca57df0fa636"
+      },
+      {
+        "file": "commons-math3-3.6.1.jar",
+        "sha256": "1e56d7b058d28b65abd256b8458e3885b674c1d588fa43cd7d1cbb9c7ef2b308"
+      },
+      {
+        "file": "commons-pool2-2.11.1.jar",
+        "sha256": "ea0505ee7515e58b1ac0e686e4d1a5d9f7d808e251a61bc371aa0595b9963f83"
+      },
+      {
+        "file": "core-3.3.0.jar",
+        "sha256": "bba7724e02a997cec38213af77133ee8e24b0d5cf5fa7ecbc16a4fa93f11ee0d"
+      },
+      {
+        "file": "flatlaf-1.0.jar",
+        "sha256": "135d8d5ac39fec29d9b3ff52cb30726d3f976b0698615be32534fd7924f29ec7"
+      },
+      {
+        "file": "flatlaf-extras-1.0.jar",
+        "sha256": "df2ec4d31b4ae1c249aec00c112654d9eed4979a95e95bc73bc6063e6a106eb4"
+      },
+      {
+        "file": "fop-0.94.jar",
+        "sha256": "98afa42bcf60aa228f36239815dc0c91f129ef3f7d1a08896707925f2341df80"
+      },
+      {
+        "file": "gson-2.2.3.jar",
+        "sha256": "853a55c219993a781d0884d42793d27e120efefab06c1ff86fb59c22c2a3cef1"
+      },
+      {
+        "file": "gst1-java-core-1.4.0.jar",
+        "sha256": "f0726b2f74753c184abf0281aefe664fdec853ec051b79a5eb64e4e79089ca47"
+      },
+      {
+        "file": "guava-14.0.1.jar",
+        "sha256": "d69df3331840605ef0e5fe4add60f2d28e870e3820937ea29f713d2035d9ab97"
+      },
+      {
+        "file": "httpasyncclient-4.1.1.jar",
+        "sha256": "27cb2c5eba8e85799f38b7cb0341406ef967e061f91018c68733ec6856ff7633"
+      },
+      {
+        "file": "httpclient-4.5.2.jar",
+        "sha256": "0dffc621400d6c632f55787d996b8aeca36b30746a716e079a985f24d8074057"
+      },
+      {
+        "file": "httpcore-4.4.4.jar",
+        "sha256": "f7bc09dc8a7003822d109634ffd3845d579d12e725ae54673e323a7ce7f5e325"
+      },
+      {
+        "file": "httpcore-nio-4.4.4.jar",
+        "sha256": "f21be11ed00a7c655204c03d3ff38c2e8ac88db0913da3598ce5f9ffd686ae1f"
+      },
+      {
+        "file": "httpmime-4.5.2.jar",
+        "sha256": "231a3f7e4962053db2be8461d5422e68fc458a3a7dd7d8ada803a348e21f8f07"
+      },
+      {
+        "file": "jSerialComm-2.10.2.jar",
+        "sha256": "e5c915fdaeeef4971ef8c00118c6a86d7653da0534d76bc013824a2438306fae"
+      },
+      {
+        "file": "javase-2.2.jar",
+        "sha256": "cc32f41b3fcff840bcdd08f14d24e7c170e382bd5c5a81a072ac075e66cc8426"
+      },
+      {
+        "file": "javassist-3.27.0-GA.jar",
+        "sha256": "0730bdb1547a5a3f458d60400d804078d80f329c5b5dbc2498a4e220de8f7013"
+      },
+      {
+        "file": "javax.xml.soap-api-1.4.0.jar",
+        "sha256": "141374e33be99768611a2d42b9d33571a0c5b9763beca9c2dc90900d8cc8f767"
+      },
+      {
+        "file": "jaxb-api-2.2.11.jar",
+        "sha256": "273d82f8653b53ad9d00ce2b2febaef357e79a273560e796ff3fcfec765f8910"
+      },
+      {
+        "file": "jaxb-core-2.2.11.jar",
+        "sha256": "b13da0c655a3d590a2a945553648c407e6347648c9f7a3f811b7b3a8a1974baa"
+      },
+      {
+        "file": "jaxb-impl-2.2.11.jar",
+        "sha256": "f91793a96f185a2fc004c86a37086f060985854ce6b19935e03c4de51e3201d2"
+      },
+      {
+        "file": "jaxws-api-2.3.0.jar",
+        "sha256": "c261f75c1a25ecb17d1936efe34a34236b5d0e79415b34ffb9324359a30a8c08"
+      },
+      {
+        "file": "jcodec-0.1.9.jar",
+        "sha256": "180a1440d94365c332d3db632902bf0642b60a4b224fb1037a23f40229052b71"
+      },
+      {
+        "file": "jcodec-javase-0.1.9.jar",
+        "sha256": "06aece877ce564394a0a99767691285058980eab2499116eedae7444fe42db15"
+      },
+      {
+        "file": "jfreechart-1.5.3.jar",
+        "sha256": "23bd63ece2284d6578ed51f336cd33681c53f817e4595a705690922a3c0f0f44"
+      },
+      {
+        "file": "jgoodies-common-1.8.0.jar",
+        "sha256": "bc2336a74aaf7233aae156a1750953941248544247ff0d97fa58d84e3ebf0735"
+      },
+      {
+        "file": "jgoodies-forms-1.8.0.jar",
+        "sha256": "a2ae46793814fa6c42dabb561c59336029907a3c03d1b82f977f1ed6a4e5011e"
+      },
+      {
+        "file": "jna-5.8.0.jar",
+        "sha256": "930273cc1c492f25661ea62413a6da3fd7f6e01bf1c4dcc0817fc8696a7b07ac"
+      },
+      {
+        "file": "json-20160212.jar",
+        "sha256": "0aaf0e7e286ece88fb60b9ba14dd45c05a48e55618876efb7d1b6f19c25e7a29"
+      },
+      {
+        "file": "junit-jupiter-api-5.7.1.jar",
+        "sha256": "ce7b985bc469e2625759a4ebc45533c70581a05a348278c1d6408e9b2e35e314"
+      },
+      {
+        "file": "junit-jupiter-engine-5.7.1.jar",
+        "sha256": "56616c9350b3624f76cffef6b24ce7bb222915bfd5688f96d3cf4cef34f077cb"
+      },
+      {
+        "file": "junit-platform-commons-1.7.1.jar",
+        "sha256": "7c546be86864718fbaceb79fa84ff1d3a516500fc428f1b21d061c2e0fbc5a4b"
+      },
+      {
+        "file": "junit-platform-engine-1.7.1.jar",
+        "sha256": "37df5a9cd6dbc1f754ba2b46f96b8874a83660e1796bf38c738f022dcf86c23f"
+      },
+      {
+        "file": "jython-standalone-2.7.1.jar",
+        "sha256": "c4410d1a731948131a71f24c4e1ed0c5326711265b474b173acab2723c258c4b"
+      },
+      {
+        "file": "l2fprod-common-annotations-1.0.3.jar",
+        "sha256": "f2300e025a798dc64281525fc99a71ccd58c23a95f93f8309a86701d9a887688"
+      },
+      {
+        "file": "l2fprod-properties-editor-1.0.3.jar",
+        "sha256": "b4abdee067de9a0a1baf6f65878c13a6890a3d72cb4aaddc4b5dbbf88fad1159"
+      },
+      {
+        "file": "mockito-core-3.6.28.jar",
+        "sha256": "8f6bb5d54f0de3453215745f2844b1f0dc00b24abcb41c97059562743a83a9b2"
+      },
+      {
+        "file": "nashorn-core-15.4.jar",
+        "sha256": "6f816e84dfd63a81d4eaa7829c08337bbaff3ec683ff3bf6bbd90d017a00dc6f"
+      },
+      {
+        "file": "objenesis-3.1.jar",
+        "sha256": "cdb3d038c188de6f46ffd5cd930be2d5e5dba59c53b26437995d534e3db2fb80"
+      },
+      {
+        "file": "onvif-java-lib-2016-03-16.jar",
+        "sha256": "4e3669278ce51a0b61f984333811541a7e2d2cf1cd6c8bc2841bf40a14e64f99"
+      },
+      {
+        "file": "opencv-4.5.5-1.jar",
+        "sha256": "847c3255a3a47af0860ded022a8d51b3b5946d29c6002c91da72f3d36c0e5832"
+      },
+      {
+        "file": "openpnp-capture-java-0.0.28-0.jar",
+        "sha256": "f72037f28b15e32b6ea2246ed6eec7cb02baef871d66a14ba08690df4ada6226"
+      },
+      {
+        "file": "opentest4j-1.2.0.jar",
+        "sha256": "58812de60898d976fb81ef3b62da05c6604c18fd4a249f5044282479fc286af2"
+      },
+      {
+        "file": "pastebin4j-1.2.1.jar",
+        "sha256": "2144e5675e929cf53a9b84f44f726480ae515c5aa3adc595dfee2515a6290949"
+      },
+      {
+        "file": "serializer-2.7.2.jar",
+        "sha256": "e8f5b4340d3b12a0cfa44ac2db4be4e0639e479ae847df04c4ed8b521734bb4a"
+      },
+      {
+        "file": "simple-xml-2.9.0.jar",
+        "sha256": "18c2793164c942253b9c44520fd861de7fd87509d63a7bd30cbfb38eb5acc78e"
+      },
+      {
+        "file": "slf4j-api-1.7.2.jar",
+        "sha256": "3bae789b401333b2a1d1603b7fa573e19908628191707203f6eb708cdee2c052"
+      },
+      {
+        "file": "stax-1.2.0.jar",
+        "sha256": "df6905a047b05e23bc91f03ba57ac2f87c1ddf83e048aa0e5bd13169d5ebf0d9"
+      },
+      {
+        "file": "stax-api-1.0.1.jar",
+        "sha256": "d1968436fc216c901fb9b82c7e878b50fd1d30091676da95b2edd3a9c0ccf92e"
+      },
+      {
+        "file": "svgSalamander-1.1.2.4.jar",
+        "sha256": "f30a5c5fc4d73d7f2aa4cf086ddc03cf2b387316c04fc4bf1ff94411afd51fd8"
+      },
+      {
+        "file": "swingx-all-1.6.4.jar",
+        "sha256": "5bc8bb080fdf3ef968485ae90f7877fbcfc05b2cfe4753824acb5a36a1ee2036"
+      },
+      {
+        "file": "tinylog-1.3.jar",
+        "sha256": "0cd9a85b5b1393bac2dbd4422ad573194920af71caf99f10b3812fc7194c07fe"
+      },
+      {
+        "file": "unirest-java-1.4.9.jar",
+        "sha256": "88d9d28faa03d05deab9b4813597aee231c4ea5279edbb13d2ef35db118127f9"
+      },
+      {
+        "file": "utils-1.07.00.jar",
+        "sha256": "9e135fee1b2143d4e609872bc0d736ea36b751a7ddddb11d84e08b042829475a"
+      },
+      {
+        "file": "webcam-capture-0.3.10.jar",
+        "sha256": "a6cf33a1f4722619dd3c1b99709116f3f31f56a289c6f75af0bbbd19e5a9b10b"
+      },
+      {
+        "file": "xalan-2.7.2.jar",
+        "sha256": "a44bd80e82cb0f4cfac0dac8575746223802514e3cec9dc75235bc0de646af14"
+      },
+      {
+        "file": "xml-apis-1.3.04.jar",
+        "sha256": "d404aa881eb9c5f7a4fb546e84ea11506cd417a72b5972e88eff17f43f9f8a64"
+      },
+      {
+        "file": "xml-apis-ext-1.3.04.jar",
+        "sha256": "d0b4887dc34d57de49074a58affad439a013d0baffa1a8034f8ef2a5ea191646"
+      },
+      {
+        "file": "xmlgraphics-commons-1.2.jar",
+        "sha256": "2fff00adf9a2fec136113882610564336f8d92f2ad09fc4f893c8990e54628a7"
+      },
+      {
+        "file": "xpp3-1.1.3.3.jar",
+        "sha256": "b14a6716def83417542d5515677d947fecd2597c125f2c82aa9be8792f66b5ee"
+      }
+    ],
+    "native_classpath_resolution": "Explicit ordered JAR paths resolved before compilation and reused unchanged by every trial JVM",
+    "production_bridge_jar_sha256": "6f9efe43114463e0e0c8dea1de6000987b05794d4a556ae57d8ee9b56abf8045",
+    "production_jar_class_count": 21,
+    "all_production_jar_classes_match_private_benchmark_classes": true
+  },
+  "design": "alternating paired modes; fresh JVM and fresh finite native fixture per trial; warmup excluded",
+  "command_parameters": {
+    "java": "[cached JDK 17]/bin/java",
+    "classpath": "[pinned upstream GUI JAR]:[pinned dependency JARs]",
+    "sample_root": "[pinned upstream]/samples",
+    "count": 100,
+    "warmup": 20,
+    "repetitions": 3,
+    "expected_job_order": "Unsorted"
+  },
+  "recipe_scope": "This benchmark requires the public native Unsorted job order for the sustained-workload preordered grid; other native planning, vision, feed, place and durable journal behavior remains enabled. Default profile job order is outside this benchmark.",
+  "limitations": [
+    "Three or more pairs characterize this machine, fixture and exact classes only; no population confidence claim.",
+    "Accelerated native simulator uses zero dwell/settle times and finite virtual zero-pitch trays; physical-machine cycle times differ.",
+    "Bridge uses production durable journal, guards, artifact writes and 2 ms polling. HTTP/MCP transport is excluded.",
+    "Camera timings include settled native capture and PNG encoding; bridge additionally stores artifacts and receipts.",
+    "Other host load is not controlled; paired order reduces but does not remove scheduling and cache variation."
+  ],
+  "physical_qualification": false,
+  "completed_utc": "2026-09-11T05:26:29.323504+00:00",
+  "all_exact_counts_pass": true,
+  "sources_and_compiled_classes_unchanged_through_execution": true,
+  "pairs": [
+    {
+      "pair_index": 1,
+      "direct_seconds": 4.110245,
+      "bridge_seconds": 18.163870958,
+      "overhead_seconds": 14.053625958000001,
+      "overhead_percent": 341.91698932788677
+    },
+    {
+      "pair_index": 2,
+      "direct_seconds": 4.102021583,
+      "bridge_seconds": 17.994787208,
+      "overhead_seconds": 13.892765625000003,
+      "overhead_percent": 338.6809489880736
+    },
+    {
+      "pair_index": 3,
+      "direct_seconds": 4.098327166,
+      "bridge_seconds": 17.995705334,
+      "overhead_seconds": 13.897378168,
+      "overhead_percent": 339.09879824367346
+    }
+  ],
+  "placement_seconds": {
+    "direct": {
+      "n": 3,
+      "min": 4.098327166,
+      "median": 4.102021583,
+      "max": 4.110245,
+      "mean": 4.103531249666666,
+      "sample_stdev": 0.006100656677458823
+    },
+    "bridge": {
+      "n": 3,
+      "min": 17.994787208,
+      "median": 17.995705334,
+      "max": 18.163870958,
+      "mean": 18.051454500000002,
+      "sample_stdev": 0.09735659074139372
+    }
+  },
+  "paired_overhead_percent": {
+    "n": 3,
+    "min": 338.6809489880736,
+    "median": 339.09879824367346,
+    "max": 341.91698932788677,
+    "mean": 339.89891218654464,
+    "sample_stdev": 1.7601494287153907
+  },
+  "measured_median_overhead_percent": 339.09879824367346,
+  "target_added_cycle_time_percent": 5,
+  "target_5_percent_met": false,
+  "target_evaluation": "Every observed paired overhead must be at most 5%; this is descriptive sample evidence, not a population guarantee.",
+  "simulator_throughput_placements_per_hour": {
+    "direct": {
+      "each_trial": [
+        87586.0198114711,
+        87761.60551956802,
+        87840.71779007406
+      ],
+      "median": 87761.60551956802,
+      "aggregate": 87729.3185056756,
+      "scope": "Arithmetic conversion of measured job duration; not a sustained hourly observation."
+    },
+    "bridge": {
+      "each_trial": [
+        19819.56383815001,
+        20005.793668955062,
+        20004.772989910973
+      ],
+      "median": 20004.772989910973,
+      "aggregate": 19942.991297460267,
+      "scope": "Arithmetic conversion of measured job duration; not a sustained hourly observation."
+    }
+  },
+  "camera_seconds": {
+    "direct": {
+      "n": 60,
+      "min": 0.006439167,
+      "median": 0.006887167,
+      "max": 0.011809916,
+      "mean": 0.007144267383333333,
+      "sample_stdev": 0.0007952466379953997
+    },
+    "bridge": {
+      "n": 60,
+      "min": 0.017480125,
+      "median": 0.0200780205,
+      "max": 0.021937292,
+      "mean": 0.0199423812,
+      "sample_stdev": 0.0010925973757857116
+    }
+  },
+  "total_measured_placements": 600,
+  "total_warmup_placements": 120,
+  "run_files": [
+    "pair-1-direct.json",
+    "pair-1-bridge.json",
+    "pair-2-bridge.json",
+    "pair-2-direct.json",
+    "pair-3-direct.json",
+    "pair-3-bridge.json"
+  ],
+  "raw_log_sha256": {
+    "compilation.stderr.log": "9b6c6ffdd39c68c880d14826fc00105a2f56ed3880d1a1c6150831ca057aac02",
+    "compilation.stdout.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "pair-1-bridge.stderr.log": "9ff8722a1002877983ffcda25b63ad17fe52d96aa66df24dcbecb474b828c332",
+    "pair-1-bridge.stdout.log": "c143611c066b1735b3882a7bc39f2d1060be7e481bc22bea47817e95704f9f0c",
+    "pair-1-direct.stderr.log": "68f53db41fedbef466c7c5f88af0d41da8029c2bf4fae29be4430aba8caca61a",
+    "pair-1-direct.stdout.log": "05e9939554dd610a99887cb04763a702c97c4cc10ef40e883ecc042c3c56e5ca",
+    "pair-2-bridge.stderr.log": "d8fbc19d3225555c6f00c87e3c1c47f14c6cb42247abce9a31e52a45b6ba9cbd",
+    "pair-2-bridge.stdout.log": "86f4781686f0c261b767f4a7e4f49c0291ef7278f2a901b0b1e3d549855ea5bf",
+    "pair-2-direct.stderr.log": "075e278f01fc60a29b18579250da4929b00b25ebca0c37f6471b1e4a6d131585",
+    "pair-2-direct.stdout.log": "b9b9aa57f9755bc8d764bace7f653f15653957d5139921c9058b179d9e5dc396",
+    "pair-3-bridge.stderr.log": "d3928e97163bad2b41e445607a3c9a70776983eb8aaf2579a1ca193075980f6c",
+    "pair-3-bridge.stdout.log": "8de6cff38297c2a2f0b3159925ce3f8f514b9163d974b78e5ea682e1b5388799",
+    "pair-3-direct.stderr.log": "8d499d990bcef62696efb668c6e60d1a4419ff84058e16cb19596c149b9c27fa",
+    "pair-3-direct.stdout.log": "762ca17cace03f2d590169da7251b88534a220f1dbd900e1035518fb8c130dd1"
+  },
+  "raw_logs_public": false,
+  "redactions": [
+    "Host-specific Java, classpath, sample and journal paths replaced with labels; timing/count/hash values unchanged."
+  ],
+  "historical_recipe_comparison": {
+    "prior_evidence": "../native-placement-benchmark-2026-09-11/summary.json",
+    "prior_bridge_jar_sha256": "c85b1c12e27a4df842f59cd56742d2bc2f2819286282a678ed84fe0ae5e6f24c",
+    "prior_median_added_time_percent": 219.21819543456314,
+    "changed_recipe": "Sustained profile now explicitly selects public native JobOrderHint.Unsorted for the preordered grid. The prior recipe retained default NozzleTips ordering. Earlier evidence and failed target remain unchanged.",
+    "cross_recipe_interpretation": "Each result compares direct and Bridge under its own matched recipe; do not treat the two overhead percentages as the same fixed native baseline."
+  }
+}

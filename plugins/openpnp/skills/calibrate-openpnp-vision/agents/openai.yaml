@@ -1,0 +1,4 @@
+interface:
+  display_name: "Calibrate OpenPnP Vision"
+  short_description: "Calibrate cameras, offsets, and alignment"
+  default_prompt: "Use $calibrate-openpnp-vision to help with this OpenPnP workflow."

@@ -1,0 +1,179 @@
+{
+  "provenance": {
+    "source_report_sha256": "81a431c931d3ac16609984bc52bc95a2ed766e6b441256c577fee0e27059f8f5",
+    "bridge_sha256": "d36f62d5004f555539667b590eabdb3e712b42813c3045e7bc82611603bb8923",
+    "pinned_upstream": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+    "simulation_only": true,
+    "test_only_actual_future_cancellation": true
+  },
+  "observations": {
+    "body-error": {
+      "operation": {
+        "operation_id": "78843f54-f290-42a0-b7f2-04f62d8e933b",
+        "request_id": "36f4aff1-7abb-48df-88fd-4940f9a266c9",
+        "request_digest": "08dd5cf7d120e7ec18c46c3d40e83be3fe030c4cc623416a363548a52a0157ff",
+        "method": "openpnp_set_machine_enabled",
+        "state": "outcome_unknown",
+        "bridge_instance_id": "24f6df99-7f72-4373-9f4a-309a82b584d3",
+        "config_revision": "cfg-1",
+        "accepted_at": "2026-09-11T11:31:17.722222Z",
+        "updated_at": "2026-09-11T11:31:17.739534Z",
+        "native_effect_pending": true,
+        "native_effect_kind": "machine-enable",
+        "result": {
+          "code": "NATIVE_WRAPPER_FAILED",
+          "known_body_outcome": {
+            "captured": false,
+            "body_failure": {
+              "type": "java.lang.AssertionError",
+              "message": "CONTROLLED_NATIVE_BODY_ERROR_AFTER_DISABLE"
+            }
+          },
+          "wrapper_error": {
+            "type": "java.lang.AssertionError",
+            "message": "CONTROLLED_NATIVE_BODY_ERROR_AFTER_DISABLE"
+          },
+          "repeat_action_performed": false
+        },
+        "native_completion": {
+          "submission_id": "bd3d7844-9cbf-47ab-ae15-6c4a0f100bcc",
+          "phase": "wrapper-failed",
+          "native_wrapper_completed": true,
+          "native_wrapper_succeeded": false,
+          "physical_outcome_verified": false
+        }
+      }
+    },
+    "busy-finally-error": {
+      "operation": {
+        "operation_id": "08851445-f52b-4976-ad8f-197b41147603",
+        "request_id": "eb79798e-95b6-4005-b40b-66e3357460ba",
+        "request_digest": "4198248b65b3c0be61d35c451763f506ec922be52b1016ae2b4025dcd642db78",
+        "method": "openpnp_set_machine_enabled",
+        "state": "outcome_unknown",
+        "bridge_instance_id": "05d37675-a48a-4908-81e1-5398357cca92",
+        "config_revision": "cfg-1",
+        "accepted_at": "2026-09-11T11:31:18.615374Z",
+        "updated_at": "2026-09-11T11:31:18.655875Z",
+        "native_effect_pending": false,
+        "native_effect_kind": "machine-enable",
+        "result": {
+          "code": "NATIVE_WRAPPER_FAILED",
+          "known_body_outcome": {
+            "captured": true,
+            "state": "succeeded",
+            "result": {
+              "enabled": false
+            }
+          },
+          "wrapper_error": {
+            "type": "java.lang.AssertionError",
+            "message": "CONTROLLED_NATIVE_BUSY_FINALLY_ERROR"
+          },
+          "repeat_action_performed": false
+        },
+        "native_completion": {
+          "submission_id": "2269349e-805b-49f6-8b02-115820b10de6",
+          "phase": "wrapper-failed",
+          "native_wrapper_completed": true,
+          "native_wrapper_succeeded": false,
+          "physical_outcome_verified": false
+        }
+      }
+    },
+    "cancel-after-body": {
+      "operation": {
+        "operation_id": "e98b8c6c-114e-421a-946f-67c79eb26601",
+        "request_id": "12332140-4708-460e-9e43-bb97cf90e63f",
+        "request_digest": "a9771c73d8e70b9e7077140b7ba5f521a9cc8ba30619e4e62ec6a566dd341848",
+        "method": "openpnp_set_machine_enabled",
+        "state": "outcome_unknown",
+        "bridge_instance_id": "5ec8ff26-a8b4-424f-b4f1-52153b98bbe2",
+        "config_revision": "cfg-1",
+        "accepted_at": "2026-09-11T11:31:19.493457Z",
+        "updated_at": "2026-09-11T11:31:19.527494Z",
+        "native_effect_pending": false,
+        "native_effect_kind": "machine-enable",
+        "result": {
+          "code": "NATIVE_FUTURE_CANCELLED",
+          "known_body_outcome": {
+            "captured": true,
+            "state": "succeeded",
+            "result": {
+              "enabled": false
+            }
+          },
+          "wrapper_error": {
+            "type": "java.util.concurrent.CancellationException",
+            "message": "CancellationException"
+          },
+          "repeat_action_performed": false
+        },
+        "native_completion": {
+          "submission_id": "1a3a82a7-0e76-4dec-add5-297d2fba27dd",
+          "operation_id": "e98b8c6c-114e-421a-946f-67c79eb26601",
+          "phase": "cancelled-ownership-retained",
+          "body_entered": true,
+          "body_exited": true,
+          "completion_publication_attempted": true,
+          "completion_observation": {
+            "phase": "cancelled-ownership-retained",
+            "native_wrapper_completed": false,
+            "native_wrapper_succeeded": false,
+            "wrapper_error": {
+              "type": "java.util.concurrent.CancellationException",
+              "message": "CancellationException"
+            },
+            "body_entered": true,
+            "body_exited": true
+          },
+          "ownership_retained": true
+        }
+      }
+    },
+    "cancel-before-body": {
+      "operation": {
+        "operation_id": "34174326-de14-4c22-bd8d-875a9e1ae266",
+        "request_id": "f362473e-e74b-4112-ab75-0425484d0008",
+        "request_digest": "b3969d6c6f7b49dfa52b2b24940d8ce7a15a6269301266da4bdb8790e2af0b95",
+        "method": "openpnp_set_machine_enabled",
+        "state": "outcome_unknown",
+        "bridge_instance_id": "b9dad851-8e60-4798-8971-114a65dac4b5",
+        "config_revision": "cfg-1",
+        "accepted_at": "2026-09-11T11:31:20.367482Z",
+        "result": {
+          "code": "NATIVE_FUTURE_CANCELLED",
+          "known_body_outcome": {
+            "captured": false
+          },
+          "wrapper_error": {
+            "type": "java.util.concurrent.CancellationException",
+            "message": "CancellationException"
+          },
+          "repeat_action_performed": false
+        },
+        "native_completion": {
+          "submission_id": "51f60d63-56e9-4598-858d-95319b650216",
+          "operation_id": "34174326-de14-4c22-bd8d-875a9e1ae266",
+          "phase": "cancelled-ownership-retained",
+          "body_entered": false,
+          "body_exited": false,
+          "completion_publication_attempted": true,
+          "completion_observation": {
+            "phase": "cancelled-ownership-retained",
+            "native_wrapper_completed": false,
+            "native_wrapper_succeeded": false,
+            "wrapper_error": {
+              "type": "java.util.concurrent.CancellationException",
+              "message": "CancellationException"
+            },
+            "body_entered": false,
+            "body_exited": false
+          },
+          "ownership_retained": true
+        },
+        "updated_at": "2026-09-11T11:31:20.374237Z"
+      }
+    }
+  }
+}

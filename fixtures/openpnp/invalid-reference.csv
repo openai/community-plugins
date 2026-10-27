@@ -1,0 +1,5 @@
+Ref,Value,Package,X (mm),Y (mm),Rotation,Side
+R1,10k,R_0603,NaN,5,0,top
+R2,10k,R_0603,10,5,0,underground
+R3,10k,R_0603,10,5,0,top
+R3,10k,R_0603,11,5,0,top
