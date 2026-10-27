@@ -79,6 +79,10 @@ public final class NativeMappedAxisSettings {
                 axis.setMapInput1(mm(change.input1Mm)); axis.setMapOutput1(mm(change.output1Mm));
                 // Setter publishes native property change after its reference/ID update.
                 axis.setInputAxis(input);
+                if(machine.isHomed()) {
+                    machine.setHomed(false);
+                    fail("CONFIGURATION_FAULT", "Native listener reinstated homing during mapped configuration; observation revoked");
+                }
                 if(!expectedAfter.same(snapshot(machine)))
                     fail("CONFIGURATION_FAULT","A native setter/listener changed staged axis values or references");
             } catch(Exception e) {

@@ -14,7 +14,7 @@ Moving/reclamping/flipping a board invalidates registration. Re-register and rev
 
 ## Candidate native load records
 
-The [55-tool catalog](native-placement-editing.md#version-and-authority) adds `openpnp_get_board_loads` and `openpnp_register_board_load`. Read actual installed support first. The registry exposes exact root and descendant IDs, `load_id`, job/load revisions, side, retained placement-history counts, definition matching and unresolved presence. Inspect `complete_native_history`: explicit changeover requires the additive native complete-history API. Stock compatibility can initialize fresh simulator imports but cannot claim complete explicit changeover.
+The [61-tool catalog](native-placement-editing.md#version-and-authority) adds `openpnp_get_board_loads` and `openpnp_register_board_load`. Read actual installed support first. The registry exposes exact root and descendant IDs, `load_id`, job/load revisions, side, retained placement-history counts, definition matching and unresolved presence. Inspect `complete_native_history`: explicit changeover requires the additive native complete-history API. Stock compatibility can initialize fresh simulator imports but cannot claim complete explicit changeover.
 
 `openpnp_register_board_load` takes session/request IDs, `expected_config_revision`, `expected_board_load_revision`, the current `job_id`, exact `root_instance_id`, `side` (`top`/`bottom`), and one action:
 

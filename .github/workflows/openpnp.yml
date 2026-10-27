@@ -127,6 +127,9 @@ jobs:
             validation/ci/ci-packaged/validation/mcp/*/*.process.json
             validation/ci/ci-packaged/validation/controller/report.json
             validation/ci/ci-packaged/validation/controller/*.log
+            validation/ci/ci-packaged/validation/installed-lifecycle/report.json
+            validation/ci/ci-packaged/validation/installed-lifecycle/*.log
+            validation/ci/ci-packaged/validation/installed-lifecycle/*.process.json
             validation/ci/ci-packaged/validation/history/report.json
             validation/ci/ci-packaged/validation/history/*.stdout.log
             validation/ci/ci-packaged/validation/history/*.stderr.log

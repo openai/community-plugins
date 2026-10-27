@@ -2,32 +2,35 @@
 
 ## Current review candidate
 
-**Not complete against the full implementation plan. All R01–R18 remain partial.** The current review contains 61 typed MCP tools, 34 configuration changes and 14 skills. It uses the source41 native build and stage06 packaging; it has no qualified physical-machine profile.
+**This is a simulator review candidate. The full implementation plan is unfinished; all R01–R18 remain partial.** PR #5 provides 61 typed MCP tools, 34 configuration change types and 14 skills against pinned OpenPnP commit `5bd404cfc70f34103a3ca0fbb6b50c2b465f407c`. Physical-machine control remains unsupported and unqualified.
+
+The revision fixes configuration changes that could leave homing valid after axis-dependent geometry changed. Supported mapped-axis, backlash, nozzle-assembly and restore paths invalidate affected state, reject callbacks that restore homing during the change, and preserve a configuration fault when native effects may already have occurred. Ordinary controls retain their existing behavior. Dependency security updates, installed-lifecycle checks and reproducible scripted GUI restart checks are also included.
 
 The implemented simulator workflows include guarded configuration, camera/motion/calibration operations, job import and editing, native execution, material/board identity tracking, loaded-board inspection, sensing faults and explicitly authorized local recovery. Restart replacement reconstructs preserved native graphs under a fresh decision, observes source/load state and requires a separate continuation before new execution. Historical unknown operations and original placed history are preserved.
 
-## Bounded evidence
+## Current bounded evidence
 
 | Campaign | Verified result |
 | --- | --- |
-| macOS ARM64 native | 91 actual OpenPnP test programs pass; 790 inputs unchanged. |
-| Linux ARM64 native | 91 programs pass; 58 sensing child JVM cases pass 865 checks. Exact packaged Bridge used; all Bridge/test classes match the macOS build. Linux runtime/compiler distinctions remain recorded. |
-| Packaged headless MCP | All 17 workflows pass against real native OpenPnP, with 4,325 unchanged inputs and clean owned-process exits. |
-| Packaged native GUI restart | Atomic-intent and pre-archive crashes each recover in a fresh JVM, complete a separate local continuation and one native placement through public MCP. Actual scripted Swing forms, shipped bootstrap and a disclosed inspection helper are used. Each third JVM reads retained history without restoring authority. |
-| Separate source-SDK history | One live case passes after clean standalone recovery; source InMemoryTransport to actual Bridge HTTP. Not an additional packaged stdio suite. |
-| Actual stage06 CLI | Installation, native sensing preparation and real Main launch pass. Desktop tool could not bind Java Main, so bootstrap/grant/SDK/restart were not exercised. Normal owned cancellation closed all three process groups. |
-| Stage06 assembly and Node22 | Source/offline verification and package assembly pass. All 73 test files run: 475 pass, 18 live skips, zero failures. Stage05 Node24/26 passes retain their earlier package scope. |
+| macOS ARM64 native | Qualification07: 94 actual OpenPnP test programs pass; 800 inputs unchanged. |
+| Packaged headless MCP | Qualification07: all 17 workflows pass against real OpenPnP with unchanged inputs and clean owned-process completion. Sixteen use the shipped launcher; mapped axes use an explicit native test fixture. |
+| Installed lifecycle | The final corrected runner passes uninstall/reinstall against the stopped, populated simulator state, preserving all 78 other state files and the unchanged journal. Seven controlled interruption/control regressions are separate harness evidence. |
+| Controller and offline history | The packaged controller recipe passes 15 checks. Seven valid histories inspect successfully; three malformed copies are refused without restoring native authority. |
+| Actual JVM halt/recovery | A separately recorded crash campaign passes 14 actual halts and 28 fresh recoveries against matching production hashes. It does not simulate host power loss or qualify physical recovery. |
+| Scripted native GUI | All nine routes pass: seven component routes and two packaged restart-to-placement journeys. Each atomic-intent/pre-archive restart completes one native placement through public MCP and a third-JVM history check, with 4,736 unchanged inputs. |
+| Root master and package | Node 22.19.0, 24.20.0 and 26.0.0 each pass 416 Node tests and 84 Python harness tests; 24 Node tests explicitly skip. Source rebuild, offline discovery and package bindings pass; package/source bytes remain unchanged during each run. Node22 also runs the nine GUI routes. |
+| Dependency audit | The October 27, 2026 UTC dependency refresh records zero production or full npm-audit findings for the selected lockfile. This is a time-specific audit result. |
 
-[Portable report and exact source hashes](../tests/openpnp/evidence/sensing79-review/summary.json) · [Requirement coverage](../tests/openpnp/coverage.json) · [Verification commands](../tests/openpnp/README.md).
+[Native/package report and exact hashes](../tests/openpnp/evidence/pr5-qualification/final-candidate/summary.json) · [GUI and Node matrix](../tests/openpnp/evidence/pr5-qualification/final-candidate/gui-matrix.json) · [Lifecycle correction](../tests/openpnp/evidence/pr5-qualification/final-candidate/lifecycle-correction.json) · [Requirement coverage](../tests/openpnp/coverage.json) · [Verification commands](../tests/openpnp/README.md).
 
-These campaigns qualify their stated simulator paths. They do not establish physical accuracy, independent placement inspection, all interruption boundaries or overall readiness. No hosted CI result or published PR is asserted by this document. Review preparation is separate from release promotion.
+The tested Bridge is `070c833972fc4dfb6ad322adfc8f677f723aff583d0cdda88ccf5baaac228420`; the generated MCP is `f328aaf1421f264db693707ccb1c1a29083c0a5bac975a2c010216381b4b2d48`. The linked receipts identify the remaining artifacts and original inputs.
 
-## Known source41 limitation
+Qualification06 retained a GUI takeover timing failure. The corrected fixture waits inside a real initialized native step and requires local revocation before releasing it, then checks abort, one completed step, one cleanup, wrapper completion and durable journal records. The earlier failure remains separate from the passing final GUI run.
 
-Source41 has a reproduced mapped-axis homing postcondition defect: a native input-axis setter listener can mark the machine homed during configuration apply, and the singleton apply path can report success. A separate S80 repair is under test and is not included here. Treat this path as unqualified; require independent current-state verification before dependent operation.
+These campaigns qualify only their stated simulator paths. GUI forms are invoked programmatically through Swing; they are not manual desktop qualification. Synthetic sensors, native model geometry and placed flags do not establish physical accuracy or independent inspection. Hosted CI and independent review must be checked on the submitted PR head; no hosted pass or merge is asserted here.
 
 ## Remaining work
 
-See [remaining work](openpnp-remaining-work.md) and the [comprehensive plan](openpnp-codex-plugin-implementation-plan.md). Manual installed-desktop use, all fourteen skills under a uniform fresh evaluation, current performance, continuous endurance and physical qualification remain open. No physical machine is available; that work is deferred until an exact machine/controller/firmware/camera/feeder/host is selected.
+See [remaining work](openpnp-remaining-work.md) and the [comprehensive plan](openpnp-codex-plugin-implementation-plan.md). Manual installed-desktop use, uniform fresh independent evaluation of all fourteen skills, broader configuration/recovery coverage, current performance, continuous endurance and physical qualification remain open. No physical machine is available; that work is deferred until an exact machine/controller/firmware/camera/feeder/host is selected.
 
-Historical milestones and their retained failures remain under `tests/openpnp/evidence/` and the historical sections of `coverage.json`. Older sensing78/inspection75 results are not current source41 evidence. Public historical exports replace private root paths with provenance labels and retain the original report SHA-256.
+Historical source41/stage06, sensing78, inspection75 and other milestones remain under `tests/openpnp/evidence/` and the historical sections of `coverage.json`. Their Linux, desktop, skill and performance results do not transfer to this revision. Public exports omit private runtime/configuration state, connection files, credentials and raw journals while retaining original receipt hashes.

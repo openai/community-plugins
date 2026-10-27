@@ -2,7 +2,7 @@
 
 The bundled MCP JavaScript contains the following dependencies. Exact resolution is locked in `src/openpnp/node/package-lock.json`; build input inventory is in `src/openpnp/node/build-inputs.json`.
 
-## @modelcontextprotocol/sdk 1.30.0
+## @modelcontextprotocol/sdk 1.32.1
 
 License: MIT
 
@@ -114,7 +114,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-## fast-uri 3.1.7
+## fast-uri 3.1.9
 
 License: BSD-3-Clause
 
@@ -179,7 +179,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-## zod 4.5.4
+## zod 4.6.7
 
 License: MIT
 

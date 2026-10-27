@@ -4,7 +4,7 @@
   "behavioral_qualification": false,
   "native_qualification": false,
   "hardware_qualification": false,
-  "source_stage": "private-s79-package79-staging06",
+  "source_stage": "pr5-qualification07",
   "historical_case_count": 42,
   "frozen_packaged_baseline": {
     "bridge_sha256": "c65dafb99dd9995add34ffe44ad09a13d0ebf2b39ae0f92180defa397c06c4a1",
@@ -79,7 +79,7 @@
       "openpnp_step_job",
       "openpnp_export_portable_configuration"
     ],
-    "source_status": "package79-staging06 canonical source staged; no qualification inherited from historical candidates"
+    "source_status": "Existing PR simulator scope with homing fixes; authored skill fixtures remain separate from executed simulator qualification."
   },
   "historical_case_sha256": {
     "setup-openpnp-01": "d3e2a2256598722a28cefb2c04c6f2e895688ffac565c311b0544d8eab84aa1e",
@@ -199,13 +199,13 @@
   "candidate_packaged_mcp": {
     "tool_count": 61,
     "dependency_count": 8,
-    "server_sha256": "75d5f3df16f1177fc07ff57c966c4209b50431b7a1b35965cc6ee9d90989d460",
+    "server_sha256": "f328aaf1421f264db693707ccb1c1a29083c0a5bac975a2c010216381b4b2d48",
     "tool_inputs_sha256": "ff4b09d08c6f57fbb474d22cd3ce35ca09d0fa2b09cfd0ef6cb49a03a2e3581a",
-    "third_party_notices_sha256": "93c4d8f7b237889ae80be75f745ac69bb9ade35e5de39d343dba005c6e000a0d",
-    "native_bridge_sha256": "62b17d35cb4d39c531fdd6698dece3f41ad19f92e604e35b3fc9f8e9c8aac907",
+    "third_party_notices_sha256": "bde10a6d24eaad77dce6c85237a89e1e69a261992292dfb3a22380d2e71e6d5f",
+    "native_bridge_sha256": "070c833972fc4dfb6ad322adfc8f677f723aff583d0cdda88ccf5baaac228420",
     "native_runtime_manifest_sha256": "007f28c38d244186aec519de0d919b474b2dd54fc671883e8207c50ab75619de",
     "controller_history_helper_sha256": "8ad8c257013db2180ca89f6e2c72ba77689e666bbda01169e23e3e3bc4f98d51",
-    "native_publication": "private-staging-only",
+    "native_publication": "pr5-qualification07-candidate",
     "qualification_status": "assembled-unqualified",
     "historical_receipts_apply_to_this_build": false,
     "behavioral_qualification": false,
@@ -214,7 +214,7 @@
     "full_implementation_plan_completed": false,
     "uniform_fresh_skill_qualification": false,
     "sensing_recovery_workflow_qualification": false,
-    "scope": "Exact selected canonical Java11 production and Java17 tests plus current MCP source/skills staged privately. Assembly and offline contract checks do not qualify native GUI/MCP workflows; earlier claims remain historical."
+    "scope": "Authored contract metadata only; these false qualification flags are not executed test results. Current artifact byte identities are updated together. Separate exact-build simulator evidence is recorded in tests/openpnp/evidence/pr5-qualification/final-candidate/summary.json; historical receipts do not qualify this candidate."
   },
   "prior_candidate_packaged_mcp": {
     "tool_count": 48,
@@ -764,5 +764,48 @@
       ]
     },
     "source_stage": "private-material55-integration"
+  },
+  "historical_source41_stage06_candidate": {
+    "tool_count": 61,
+    "dependency_count": 8,
+    "server_sha256": "75d5f3df16f1177fc07ff57c966c4209b50431b7a1b35965cc6ee9d90989d460",
+    "tool_inputs_sha256": "ff4b09d08c6f57fbb474d22cd3ce35ca09d0fa2b09cfd0ef6cb49a03a2e3581a",
+    "third_party_notices_sha256": "93c4d8f7b237889ae80be75f745ac69bb9ade35e5de39d343dba005c6e000a0d",
+    "native_bridge_sha256": "62b17d35cb4d39c531fdd6698dece3f41ad19f92e604e35b3fc9f8e9c8aac907",
+    "native_runtime_manifest_sha256": "007f28c38d244186aec519de0d919b474b2dd54fc671883e8207c50ab75619de",
+    "controller_history_helper_sha256": "8ad8c257013db2180ca89f6e2c72ba77689e666bbda01169e23e3e3bc4f98d51",
+    "native_publication": "private-staging-only",
+    "qualification_status": "assembled-unqualified",
+    "historical_receipts_apply_to_this_build": false,
+    "behavioral_qualification": false,
+    "native_workflow_qualification": false,
+    "hardware_qualification": false,
+    "full_implementation_plan_completed": false,
+    "uniform_fresh_skill_qualification": false,
+    "sensing_recovery_workflow_qualification": false,
+    "scope": "Exact selected canonical Java11 production and Java17 tests plus current MCP source/skills staged privately. Assembly and offline contract checks do not qualify native GUI/MCP workflows; earlier claims remain historical."
+  },
+  "historical_pr5_qualification06_candidate": {
+    "source_stage": "pr5-qualification06",
+    "candidate_packaged_mcp": {
+      "tool_count": 61,
+      "dependency_count": 8,
+      "server_sha256": "cae083938be7c46a2382685e82ae6bd03e47a6773ac0568f6df629e3cd67bea9",
+      "tool_inputs_sha256": "ff4b09d08c6f57fbb474d22cd3ce35ca09d0fa2b09cfd0ef6cb49a03a2e3581a",
+      "third_party_notices_sha256": "1d2ab3dc9ab5d92b8d8abee54b2060ef7eb8fc08c63f103dcd3d123651d46a49",
+      "native_bridge_sha256": "070c833972fc4dfb6ad322adfc8f677f723aff583d0cdda88ccf5baaac228420",
+      "native_runtime_manifest_sha256": "007f28c38d244186aec519de0d919b474b2dd54fc671883e8207c50ab75619de",
+      "controller_history_helper_sha256": "8ad8c257013db2180ca89f6e2c72ba77689e666bbda01169e23e3e3bc4f98d51",
+      "native_publication": "pr5-qualification06-candidate",
+      "qualification_status": "assembled-unqualified",
+      "historical_receipts_apply_to_this_build": false,
+      "behavioral_qualification": false,
+      "native_workflow_qualification": false,
+      "hardware_qualification": false,
+      "full_implementation_plan_completed": false,
+      "uniform_fresh_skill_qualification": false,
+      "sensing_recovery_workflow_qualification": false,
+      "scope": "Authored contract metadata only; these false qualification flags are not executed test results. Current artifact byte identities are updated together. Separate exact-build simulator evidence is recorded in tests/openpnp/evidence/pr5-qualification/summary.json; historical receipts do not qualify this candidate."
+    }
   }
 }

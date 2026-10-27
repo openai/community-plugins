@@ -526,6 +526,30 @@
       "path": "tests/openpnp/evidence/sensing79-review/summary.json",
       "sha256": "c2b2103b4cfd4de729ba75b878fd2c3904592d71ba82f257338cd0fa708aad27",
       "scope": "Public-safe exact-artifact current simulator campaign summary; distinct scope per result."
+    },
+    {
+      "id": "pr5-qualification07",
+      "path": "tests/openpnp/evidence/pr5-qualification/final-candidate/summary.json",
+      "sha256": "2f8985855c24f1cbeff54639131ff94cbc85eea4a70f1f3ec996cdc02ed062f5",
+      "scope": "Exact-artifact macOS94 native programs,17 packaged MCP workflows, controller/history and separately bound crash05 evidence. Each campaign retains its original input scope."
+    },
+    {
+      "id": "pr5-qualification07-gui-matrix",
+      "path": "tests/openpnp/evidence/pr5-qualification/final-candidate/gui-matrix.json",
+      "sha256": "739bc3be6ea5a103f38014588442f4fda7b5e5954a86f350260701f5e71f21b1",
+      "scope": "Canonical Node22/24/26 root masters and nine scripted native GUI routes, including two restart journeys; no manual desktop or physical qualification."
+    },
+    {
+      "id": "pr5-qualification07-lifecycle",
+      "path": "tests/openpnp/evidence/pr5-qualification/final-candidate/lifecycle-correction.json",
+      "sha256": "008126b39e0c51a73ca30df290e84dc53ba761dc6e72ef2480ad8a4a08f51c51",
+      "scope": "Corrected runner with actual stopped-state uninstall/reinstall preserving78files and journal; seven controlled cancellation regressions are a separate scope."
+    },
+    {
+      "id": "pr5-qualification07-dependencies",
+      "path": "tests/openpnp/evidence/pr5-qualification/final-candidate/dependency-summary.json",
+      "sha256": "90f081abcac3234d99be19b2b8e5193bb4d99a1ff89f5ce7bc42942981aa4191",
+      "scope": "Time-specific dependency audits and Fusion supported-Node master results for exact recorded inputs."
     }
   ],
   "requirements": [
@@ -605,13 +629,21 @@
         "sensing79-stage05-package-node",
         "sensing79-stage05-macos-native91",
         "sensing79-stage05-headless-mcp",
-        "sensing79-review"
+        "sensing79-review",
+        "pr5-qualification07",
+        "pr5-qualification07-gui-matrix",
+        "pr5-qualification07-lifecycle"
       ],
-      "implemented_scope": "Fresh isolated simulator installation, verified runtime/package discovery and profile-specific capabilities; separate default, sustained, fresh portable-adopted and owned-controller diagnostic launches. Native GUI attachment uses explicit local ownership and isolated preferences/scripts; normal, topology and unknown-exit component workflows are covered through exact GUI64 artifact reuse. Stage05 adds the explicit saved-session source-absent GUI restart launcher and canonical Java11/17 restart-capable build. Offline launch contracts pass on Node22/24/26. Actual programmatic shipped-bootstrap GUI/MCP restart passes at two process-death boundaries; the separate real fresh sensing-GUI CLI attempt fails in its Java17 preparer before Main.",
-      "remaining_scope": "Fix and qualify the shipped Java17 sensing-GUI preparer launch, then the actual CLI saved-session restart from a freshly created session. Complete clean-host/upgrade/uninstall/desktop interaction and device enumeration coverage; physical-host qualification remains separate.",
-      "evidence_note": "Historical evidence retains its original artifact scope. New sensing79-stage05 evidence is bounded as described by each manifest; mapped test source presence is not proof of execution. Full requirement remains partial.",
-      "remaining_software_scope": "Fix Java17 sensing-GUI preparer; qualify actual fresh CLI\u2192saved-session restart,clean host and desktop lifecycle.",
-      "remaining_hardware_qualification": "Real device enumeration and selected physical host."
+      "implemented_scope": "Fresh isolated simulator installation, verified runtime/package discovery and profile-specific capabilities; separate default, sustained, fresh portable-adopted and owned-controller diagnostic launches. Qualification07 covers 17 packaged MCP workflows, nine scripted GUI routes with explicit local ownership and isolated preferences/scripts, and two shipped-bootstrap saved-session restart journeys ending in a native placement. The corrected stopped-state uninstall/reinstall check preserves 78 other files and the unchanged journal. Offline source/discovery and launcher contracts pass on Node 22/24/26.",
+      "remaining_scope": "Qualify the complete fresh sensing-GUI CLI to saved-session restart operator journey on the current package. Extend clean-host, versioned update/rollback, installation/uninstall, manual desktop interaction and device enumeration coverage; physical-host qualification remains separate.",
+      "evidence_note": "Current headless, scripted GUI and stopped-state lifecycle campaigns retain distinct artifact and input bindings. The historical stage05 preparer failure and source41/stage06 successful CLI preparation/Main launch remain bound to their original builds; neither establishes current manual desktop qualification. The full requirement remains partial.",
+      "remaining_software_scope": "Qualify the full fresh sensing-GUI CLI and saved-session restart operator journey, clean-host and versioned update/rollback paths, and manual desktop lifecycle.",
+      "remaining_hardware_qualification": "Real device enumeration and selected physical host.",
+      "historical_scope_before_pr5_qualification07": {
+        "implemented_scope": "Fresh isolated simulator installation, verified runtime/package discovery and profile-specific capabilities; separate default, sustained, fresh portable-adopted and owned-controller diagnostic launches. Native GUI attachment uses explicit local ownership and isolated preferences/scripts; normal, topology and unknown-exit component workflows are covered through exact GUI64 artifact reuse. Stage05 adds the explicit saved-session source-absent GUI restart launcher and canonical Java11/17 restart-capable build. Offline launch contracts pass on Node22/24/26. Actual programmatic shipped-bootstrap GUI/MCP restart passes at two process-death boundaries; the separate real fresh sensing-GUI CLI attempt fails in its Java17 preparer before Main.",
+        "remaining_scope": "Fix and qualify the shipped Java17 sensing-GUI preparer launch, then the actual CLI saved-session restart from a freshly created session. Complete clean-host/upgrade/uninstall/desktop interaction and device enumeration coverage; physical-host qualification remains separate.",
+        "evidence_note": "Historical evidence retains its original artifact scope. New sensing79-stage05 evidence is bounded as described by each manifest; mapped test source presence is not proof of execution. Full requirement remains partial."
+      }
     },
     {
       "id": "R02",
@@ -841,7 +873,10 @@
         "tests/openpnp/native/NativeNozzleAssemblyTest.java",
         "tests/openpnp/native/NativeNozzleAssemblyBridgeTest.java",
         "tests/openpnp/native/NativeCameraRegistrationTest.java",
-        "tests/openpnp/native/NativeCameraRegistrationSuiteTest.java"
+        "tests/openpnp/native/NativeCameraRegistrationSuiteTest.java",
+        "tests/openpnp/native/NativeMappedHomingBoundaryTest.java",
+        "tests/openpnp/native/NativeBacklashHomingBoundaryTest.java",
+        "tests/openpnp/native/NativeConfigurationHomingBoundaryTest.java"
       ],
       "acceptance_scenarios": [
         "A03",
@@ -862,11 +897,12 @@
         "registration68-bounded-simulator",
         "sensing79-stage05-macos-native91",
         "sensing79-stage05-headless-mcp",
-        "sensing79-review"
+        "sensing79-review",
+        "pr5-qualification07"
       ],
-      "implemented_scope": "Native homing, bounded absolute motion, native completion barriers, revision checks and linear axis limits. Existing exact mapped XYZ axes support direct compatible controller-axis link and bounded point geometry changes with pre-effect identity checks. Exact supported linear controller XYZ axes support five backlash methods with bounded signed offset, speed factor, sneak-up and tolerance, disabled executor-owned apply, readback and changed-only restore. Edits revoke homing, installed-tip runout, dormant advanced-camera validity, registration, job validation and motion plans. Preview distinguishes logical soft limits from compensation excursions. Complete nozzle-assembly creation adds bounded independent Z/Rotation axes only within its separate simulator profile. Camera geometry invalidation clears registration through a separate path without adding homing revocation.",
-      "remaining_scope": "Physical direction/scale/backlash measurements, coupled/chained/nonlinear or rotary mappings, general axis/topology creation or deletion beyond the complete nozzle-assembly profile, and mapped-source limit transactions remain unsupported. Known source41 defect: native inputAxis setter listeners can reassert homed during singleton apply; separate S80 repair is not included.",
-      "evidence_note": "Registration68 evidence binds Bridge 1bba8ee0, MCP a24b35e7 and macOS runtime cafc2d92, with a separately recorded equivalent Linux runtime. Current 68-main native suite and MCP mapped/backlash workflows preserve prior motion, homing, restore and compensation behavior. The registration helper refactor retains axis-triggered invalidation; camera geometry uses the registration-only path without adding a homing revocation. NativeCameraRegistrationSuiteTest passes ten cases / 246 checks on each platform using seeded native caches, without homing or movement. Historical 67 and mapped-skill receipts remain artifact-specific; this requirement remains partial.",
+      "implemented_scope": "Native homing, bounded absolute motion, native completion barriers, revision checks and linear axis limits. Existing exact mapped XYZ axes support direct compatible controller-axis link and bounded point geometry changes with pre-effect identity checks. Exact supported linear controller XYZ axes support five backlash methods with bounded signed offset, speed factor, sneak-up and tolerance, disabled executor-owned apply, readback and changed-only restore. Edits revoke homing, installed-tip runout, dormant advanced-camera validity, registration, job validation and motion plans. Preview distinguishes logical soft limits from compensation excursions. Complete nozzle-assembly creation adds bounded independent Z/Rotation axes only within its separate simulator profile. Camera geometry invalidation clears registration through a separate path without adding homing revocation. Qualification07 repairs callbacks that reassert native homing during affected mapped-axis, backlash, nozzle-assembly and supported restore changes, retaining fault and unknown-effect guards.",
+      "remaining_scope": "Physical direction/scale/backlash measurements, coupled/chained/nonlinear or rotary mappings, general axis/topology creation or deletion beyond the complete nozzle-assembly profile, and mapped-source limit transactions remain unsupported.",
+      "evidence_note": "Current qualification07 includes 94 native programs and 17 packaged workflows with targeted affected-family and normal-control homing regressions. Earlier registration/motion campaigns remain in historical scopes; physical homing is unqualified.",
       "historical_scope_before_combined60": {
         "implemented_scope": "Native homing, bounded absolute motion, controller completion barrier, revision checks and linear axis limits. Existing exact mapped XYZ axes can change their direct compatible controller-axis link and bounded point geometry through a separate single-change staged plan. Native object/link/source changes are rechecked before effect; successful edits invalidate affected homing/calibration/registration/job validation/motion plans.",
         "remaining_scope": "Physical direction/scale/backlash measurements, coupled/chained/nonlinear or rotary mappings, general topology creation/deletion and mapped-source limit transactions.",
@@ -882,7 +918,12 @@
         "evidence_note": "Combined67 evidence binds Bridge 90dcd751, MCP a24b35e7 and macOS runtime cafc2d92; Linux uses its separately recorded equivalent native runtime. Current native67 and actual MCP mapped/backlash workflows cover staged refusal, readback, homing/motion and restore; the portable/backlash cross-feature native main also passes on both platforms. A separate historical mapped-skill decision covers runout and dormant camera validity, without measured calibration. Historical receipts retain their original artifact scopes; this requirement remains partial."
       },
       "remaining_software_scope": "Broaden required motion/kinematics and map-limit transactions within an explicitly selected profile; bounded direct/mapped linear subset exists.",
-      "remaining_hardware_qualification": "Direction/scale/backlash and workspace/clearance measurement."
+      "remaining_hardware_qualification": "Direction/scale/backlash and workspace/clearance measurement.",
+      "historical_scope_before_pr5_qualification07": {
+        "implemented_scope": "Native homing, bounded absolute motion, native completion barriers, revision checks and linear axis limits. Existing exact mapped XYZ axes support direct compatible controller-axis link and bounded point geometry changes with pre-effect identity checks. Exact supported linear controller XYZ axes support five backlash methods with bounded signed offset, speed factor, sneak-up and tolerance, disabled executor-owned apply, readback and changed-only restore. Edits revoke homing, installed-tip runout, dormant advanced-camera validity, registration, job validation and motion plans. Preview distinguishes logical soft limits from compensation excursions. Complete nozzle-assembly creation adds bounded independent Z/Rotation axes only within its separate simulator profile. Camera geometry invalidation clears registration through a separate path without adding homing revocation.",
+        "remaining_scope": "Physical direction/scale/backlash measurements, coupled/chained/nonlinear or rotary mappings, general axis/topology creation or deletion beyond the complete nozzle-assembly profile, and mapped-source limit transactions remain unsupported. Known source41 defect: native inputAxis setter listeners can reassert homed during singleton apply; separate S80 repair is not included.",
+        "evidence_note": "Registration68 evidence binds Bridge 1bba8ee0, MCP a24b35e7 and macOS runtime cafc2d92, with a separately recorded equivalent Linux runtime. Current 68-main native suite and MCP mapped/backlash workflows preserve prior motion, homing, restore and compensation behavior. The registration helper refactor retains axis-triggered invalidation; camera geometry uses the registration-only path without adding a homing revocation. NativeCameraRegistrationSuiteTest passes ten cases / 246 checks on each platform using seeded native caches, without homing or movement. Historical 67 and mapped-skill receipts remain artifact-specific; this requirement remains partial."
+      }
     },
     {
       "id": "R05",
@@ -2271,14 +2312,22 @@
         "sensing79-stage05-package-node",
         "sensing79-stage05-macos-native91",
         "sensing79-stage05-headless-mcp",
-        "sensing79-review"
+        "sensing79-review",
+        "pr5-qualification07",
+        "pr5-qualification07-gui-matrix",
+        "pr5-qualification07-lifecycle"
       ],
       "implemented_scope": "Durable operation history, original-request reconciliation, unknown-outcome fences, native action hook pairs and complete scoped placement history. Bounded progress explicitly exposes pending/publication uncertainty; exact full responses remain hash-verifiable and pageable without automatic effect replay. Journal decoding preserves exact numbers before lossy conversion and uses ordinary maps; controller success replay requires coherent completion/results after durable retirement. Board/material replay retains observations and continuity without restoring runtime authority. Topology preimage records bind recovery artifacts before graph effects; partial creation uses fresh adoption rather than deleting objects or replaying the plan. S79 adds typed request/read tools for local standalone sensing recovery, failed-job replacement, repeated continuation and explicit source-absent restart. Exact receipts preserve old unknown outcomes and missing old wrapper provenance. Restart reconstructs inactive graphs and records fresh source/load observations without fault clearance; a separate local continuation repairs/disposes/probes, adopts completed steps without replay, supersedes unknown load candidates with fresh IDs, and publishes a newly validated job. Actual packaged GUI/MCP intent-force and pre-archive crash journeys each finish one fresh placement; third-JVM reads remain inert.",
       "remaining_scope": "General controller/power-loss recovery and safe resumption of arbitrary interrupted jobs remain unsupported; no automatic old-job resume or unknown physical-effect inference. Current two crash seams do not close all before/after-feed/pick/release,partial-write,disk-full or repeated-restart transaction phases. Scoped native component tests are distinct from full packaged crash qualification. The stage05 preparer failure is retained. Stage06 actual CLI install/preparation/Main launch pass, but desktop automation is blocked before local bootstrap/grant/restart.",
       "evidence_note": "Historical evidence retains its original artifact scope. New sensing79-stage05 evidence is bounded as described by each manifest; mapped test source presence is not proof of execution. Full requirement remains partial.",
       "inspection75_evidence_note": "Current bounded inspection qualification is scoped in the inspection75 evidence. Model/reducer overlays, native stock journeys, GUI MCP behavior and historical reports remain distinct; no physical or production authority is established.",
       "remaining_software_scope": "Broaden full packaged crash-phase matrix and operational controller recovery; current supported replacement restart does not resume arbitrary old jobs.",
-      "remaining_hardware_qualification": "Operator resolution of real uncertain physical effects without inferred presence."
+      "remaining_hardware_qualification": "Operator resolution of real uncertain physical effects without inferred presence.",
+      "historical_scope_before_pr5_qualification07": {
+        "implemented_scope": "Durable operation history, original-request reconciliation, unknown-outcome fences, native action hook pairs and complete scoped placement history. Bounded progress explicitly exposes pending/publication uncertainty; exact full responses remain hash-verifiable and pageable without automatic effect replay. Journal decoding preserves exact numbers before lossy conversion and uses ordinary maps; controller success replay requires coherent completion/results after durable retirement. Board/material replay retains observations and continuity without restoring runtime authority. Topology preimage records bind recovery artifacts before graph effects; partial creation uses fresh adoption rather than deleting objects or replaying the plan. S79 adds typed request/read tools for local standalone sensing recovery, failed-job replacement, repeated continuation and explicit source-absent restart. Exact receipts preserve old unknown outcomes and missing old wrapper provenance. Restart reconstructs inactive graphs and records fresh source/load observations without fault clearance; a separate local continuation repairs/disposes/probes, adopts completed steps without replay, supersedes unknown load candidates with fresh IDs, and publishes a newly validated job. Actual packaged GUI/MCP intent-force and pre-archive crash journeys each finish one fresh placement; third-JVM reads remain inert.",
+        "remaining_scope": "General controller/power-loss recovery and safe resumption of arbitrary interrupted jobs remain unsupported; no automatic old-job resume or unknown physical-effect inference. Current two crash seams do not close all before/after-feed/pick/release,partial-write,disk-full or repeated-restart transaction phases. Scoped native component tests are distinct from full packaged crash qualification. The stage05 preparer failure is retained. Stage06 actual CLI install/preparation/Main launch pass, but desktop automation is blocked before local bootstrap/grant/restart.",
+        "evidence_note": "Historical evidence retains its original artifact scope. New sensing79-stage05 evidence is bounded as described by each manifest; mapped test source presence is not proof of execution. Full requirement remains partial."
+      }
     },
     {
       "id": "R17",
@@ -2455,7 +2504,9 @@
         "tests/openpnp/sensing-recovery-skill-routing.test.mjs",
         "tests/openpnp/gui-restart-launcher.test.mjs",
         "tests/openpnp/sensing-restart-contracts.test.mjs",
-        "tests/openpnp/native/NativeGuiRestartPackagedMcpTest.java"
+        "tests/openpnp/native/NativeGuiRestartPackagedMcpTest.java",
+        "tests/openpnp/test_installed_lifecycle_runner.py",
+        "tests/openpnp/test_native_gui_restart_runner.py"
       ],
       "acceptance_scenarios": [
         "A01",
@@ -2530,11 +2581,14 @@
         "sensing79-stage05-package-node",
         "sensing79-stage05-macos-native91",
         "sensing79-stage05-headless-mcp",
-        "sensing79-review"
+        "sensing79-review",
+        "pr5-qualification07",
+        "pr5-qualification07-gui-matrix",
+        "pr5-qualification07-lifecycle"
       ],
-      "implemented_scope": "Stage05 privately assembles61tools/34typedchanges/14skills with63production sources and176compiled native test sources, six stock-derived patches, exact MCP/runtime/helper bindings and Java11production/Java17tests. MacOS91native programs,17headless packagedMCP suites, two full GUI/MCP restart boundaries and73-file non-live Node22/24/26 suites have distinct current-artifact evidence. Each Node run passes475 with18explicit live skips.",
-      "remaining_scope": "Full package qualification remains open: qualify real fresh sensing-GUI CLI/desktop use; finish current platform/desktop/install-upgrade-uninstall coverage, complete reference-profile software adapters, sustained resources and independent14-skill behavior. Source41 Linux ARM64 passes 91 native mains with exact class/packaged Bridge binding; other-platform GUI and hosted CI remain separate. Physical validation is separate. Historical panel74/S78 inventories and success flags do not describe stage05.",
-      "evidence_note": "Historical evidence retains its original artifact scope. New sensing79-stage05 evidence is bounded as described by each manifest; mapped test source presence is not proof of execution. Full requirement remains partial.",
+      "implemented_scope": "Current simulator candidate assembles 61 tools, 34 typed changes and 14 skills with 63 production Java sources and 180 native test sources. Qualification07 runs 94 native programs, 17 headless packaged MCP workflows, 15 controller checks and 7 valid/3 malformed offline histories on macOS ARM64. The canonical Node 22/24/26 masters each pass 416 JavaScript and 84 Python checks with 24 explicit prerequisite skips; Node 22 additionally passes 9 scripted native GUI routes, including 2 restart-to-placement journeys. Corrected installed lifecycle preserves 78 files and the unchanged journal; cancellation regressions are separately controlled subprocess tests.",
+      "remaining_scope": "Manual installed-desktop workflows, wider platform/install/update/rollback coverage, full reference-profile software support, sustained resource criteria and uniform fresh independent 14-skill behavior remain unqualified. Current hosted results must be checked on the submitted PR head; historical source41 Linux results do not qualify this candidate. Physical-machine support remains deferred.",
+      "evidence_note": "Current headless, scripted GUI, installed lifecycle and controlled interruption campaigns have distinct source/artifact bindings. Historical successes and failures retain their original scopes. All full-plan requirements remain partial.",
       "historical_scope_before_combined60": {
         "implemented_scope": "Locked MCP package, corresponding native source/patches,14skills, native40-program ARM64 macOS/Linux evidence, including the exact published macOSJAR executed on Linux, threeNode-version matrix, canonical subprocess-safe validation runner and fresh skill decisions with frozen provenance. Selective offline support-export CLI projects allowed provenance/diagnostics/selected operation records; optional raw camera/job-document artifacts require exact ID/hash/kind. Private exclusive archive publication preserves uncertain results and leaves native journals/state untouched. Canonical build26 now has48 passing macOS native programs and matching52-tool MCP evidence; the Node22/24/26 matrix includes bounded completion-progress projection. GUI, exceptional-Future and process-crash evidence explicitly records equivalence of all96 production classes between private and packaged artifacts.",
         "remaining_scope": "Wider platform/desktop/upgrade matrix, sustained resource criteria and complete configuration/device support. Portable49 simulator integration is qualified separately in the recorded evidence; original eight-hour run failed after6h15m21s. Fresh supervised endurance and sustained resource qualification remain required.",
@@ -2567,8 +2621,13 @@
         "evidence_note": "Panel73 binds Bridge07bf/MCP0207/native8107/macOSruntimefb945 and equivalent Linux compilation. All77 native programs and15 packaged MCP workflows pass; Node22/24/26 each pass378 tests. Six native GUI journeys,15controller checks and current-build history7valid/3malformed pass. Root publication defect and earlier setup/test/assembly failures remain retained with exact scopes. Expected native fault-injection unknowns confer no replay/publication authority; MCP workflows have no unresolved operations. All requirements remain partial; simulator-only."
       },
       "inspection75_evidence_note": "Current bounded inspection qualification is scoped in the inspection75 evidence. Model/reducer overlays, native stock journeys, GUI MCP behavior and historical reports remain distinct; no physical or production authority is established.",
-      "remaining_software_scope": "Close actual CLI defect,platform/install/upgrade/uninstall cases,evidence retention steady-state and fresh independent14-skill behavioral matrix.",
-      "remaining_hardware_qualification": "Physical support-profile qualification; no machine presently available."
+      "remaining_software_scope": "Qualify manual installed-desktop and broader platform/update/rollback journeys, evidence retention steady-state and uniform fresh independent 14-skill behavior.",
+      "remaining_hardware_qualification": "Physical support-profile qualification; no machine presently available.",
+      "historical_scope_before_pr5_qualification07": {
+        "implemented_scope": "Stage05 privately assembles61tools/34typedchanges/14skills with63production sources and176compiled native test sources, six stock-derived patches, exact MCP/runtime/helper bindings and Java11production/Java17tests. MacOS91native programs,17headless packagedMCP suites, two full GUI/MCP restart boundaries and73-file non-live Node22/24/26 suites have distinct current-artifact evidence. Each Node run passes475 with18explicit live skips.",
+        "remaining_scope": "Full package qualification remains open: qualify real fresh sensing-GUI CLI/desktop use; finish current platform/desktop/install-upgrade-uninstall coverage, complete reference-profile software adapters, sustained resources and independent14-skill behavior. Source41 Linux ARM64 passes 91 native mains with exact class/packaged Bridge binding; other-platform GUI and hosted CI remain separate. Physical validation is separate. Historical panel74/S78 inventories and success flags do not describe stage05.",
+        "evidence_note": "Historical evidence retains its original artifact scope. New sensing79-stage05 evidence is bounded as described by each manifest; mapped test source presence is not proof of execution. Full requirement remains partial."
+      }
     }
   ],
   "qualified_candidate_baseline": {
@@ -2594,65 +2653,75 @@
     "physical_qualification": false
   },
   "current_candidate": {
-    "stage": "review/source41-stage06",
-    "status": "review-candidate-with-bounded-simulator-evidence",
+    "stage": "pr5-qualification07",
+    "status": "simulator-review-candidate-with-bounded-evidence",
     "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
     "tool_count": 61,
     "typed_configuration_changes": 34,
     "skill_count": 14,
     "production_source_count": 63,
-    "native_test_source_count": 176,
-    "native_bridge_sha256": "62b17d35cb4d39c531fdd6698dece3f41ad19f92e604e35b3fc9f8e9c8aac907",
-    "mcp_server_sha256": "75d5f3df16f1177fc07ff57c966c4209b50431b7a1b35965cc6ee9d90989d460",
+    "native_test_source_count": 180,
+    "native_bridge_sha256": "070c833972fc4dfb6ad322adfc8f677f723aff583d0cdda88ccf5baaac228420",
+    "mcp_server_sha256": "f328aaf1421f264db693707ccb1c1a29083c0a5bac975a2c010216381b4b2d48",
     "tool_catalog_sha256": "ff4b09d08c6f57fbb474d22cd3ce35ca09d0fa2b09cfd0ef6cb49a03a2e3581a",
     "patched_native_jar_sha256": "e0a6ab35c3cdbcf355ecfa9c592751efeef69b0d2f124295ef37ea807de56bd5",
     "runtime_manifest_sha256": "007f28c38d244186aec519de0d919b474b2dd54fc671883e8207c50ab75619de",
-    "build_manifest_sha256": "86542eae4f9423b388dabcd47ef224de96035499c22fdc836dd204891d13cb49",
+    "build_manifest_sha256": "c9d71270560f13588678bdf7b5f341fb6adc8510c3c9bc544dd323309ec4a6db",
     "production_java_release": 11,
     "test_java_release": 17,
     "bounded_evidence_ids": [
-      "sensing79-stage05-package-node",
-      "sensing79-stage05-headless-mcp",
-      "sensing79-stage05-gui-restart-mcp",
-      "sensing79-stage05-gui-cli-failure",
-      "sensing79-stage05-macos-native91-delivery",
-      "sensing79-stage05-macos-native91",
-      "sensing79-review"
+      "pr5-qualification07",
+      "pr5-qualification07-gui-matrix",
+      "pr5-qualification07-lifecycle",
+      "pr5-qualification07-dependencies"
     ],
-    "macos_native_programs_passed": 91,
+    "macos_native_programs_passed": 94,
+    "native_input_count": 800,
     "packaged_headless_mcp_suites_passed": 17,
+    "scripted_gui_routes_passed": 9,
     "packaged_gui_restart_boundaries_passed": [
       "intent-force",
       "zip-before"
     ],
     "packaged_gui_post_restart_placements": 2,
-    "non_live_tests_per_node": {
+    "installed_lifecycle_preserved_files": 78,
+    "controller_checks_passed": 15,
+    "offline_history_valid_cases": 7,
+    "offline_history_malformed_refusals": 3,
+    "separate_jvm_halt_campaign": {
+      "campaign": "pr5-crash05",
+      "actual_halts": 14,
+      "recoveries": 28,
+      "matching_production_bytes": true
+    },
+    "root_master_versions": {
       "22.19.0": {
-        "passed": 475,
-        "skipped": 18
+        "javascript_passed": 416,
+        "javascript_skipped": 24,
+        "python_harness_passed": 84
       },
       "24.20.0": {
-        "passed": 475,
-        "skipped": 18
+        "javascript_passed": 416,
+        "javascript_skipped": 24,
+        "python_harness_passed": 84
       },
       "26.0.0": {
-        "passed": 475,
-        "skipped": 18
+        "javascript_passed": 416,
+        "javascript_skipped": 24,
+        "python_harness_passed": 84
       }
     },
-    "shipped_gui_sensing_cli": "Stage06 actual CLI install/native sensing preparation/real Main launch pass. Desktop tool cannot bind Java app; no local bootstrap/grant/SDK/restart or manual installation qualification.",
-    "linux_current_candidate_qualification": "91 native mains on Linux ARM64; exact packaged Bridge and platform runtime are separately bound",
+    "linux_current_candidate_qualification": "Hosted results must be checked on the submitted PR head; local macOS evidence does not establish Linux execution.",
     "combined_qualification": false,
     "fresh_skill_behavior_qualification": false,
+    "manual_desktop_qualification": false,
     "continuous_eight_hour_qualification": false,
     "current_performance_target_qualification": false,
     "hardware_qualified": false,
     "full_plan_complete": false,
-    "uncovered_live_test": null,
-    "qualification_note": "Distinct campaign scopes in sensing79-review summary. All R01\u2013R18 partial; no physical, manual installation, uniform skill, performance, endurance or hosted CI completion claim.",
-    "source_sdk_history_live_cases_passed": 1,
-    "known_source41_defects": [
-      "Mapped-axis inputAxis setter listener can restore homed during apply; singleton apply can report success. Separate S80 repair is not included."
+    "qualification_note": "Distinct simulator campaign scopes are linked above; all R01-R18 remain partial. No physical, manual installed-desktop, uniform fresh skill, performance, endurance or hosted CI completion claim. Authored skill fixtures retain false qualification flags.",
+    "repaired_source41_defects": [
+      "Axis-dependent apply and restore reject callbacks that reassert native homing, invalidate affected state and preserve configuration faults/unknown effects."
     ]
   },
   "qualified_candidate_history": [
@@ -3281,5 +3350,67 @@
     "full_plan_complete": false,
     "uncovered_live_test": "sensing-reconciliation-history-contracts.test.mjs optional source-SDK history case is skipped; it is outside the17headless suite runner and current GUI third-JVM direct-read scope.",
     "qualification_note": "These are distinct scoped observations. Programmatic native GUI/MCP success does not close the shipped CLI failure; existing S78/historical results retain their original artifacts. No installation or promotion performed by this proposal."
+  },
+  "historical_source41_stage06_current_candidate": {
+    "stage": "review/source41-stage06",
+    "status": "review-candidate-with-bounded-simulator-evidence",
+    "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+    "tool_count": 61,
+    "typed_configuration_changes": 34,
+    "skill_count": 14,
+    "production_source_count": 63,
+    "native_test_source_count": 176,
+    "native_bridge_sha256": "62b17d35cb4d39c531fdd6698dece3f41ad19f92e604e35b3fc9f8e9c8aac907",
+    "mcp_server_sha256": "75d5f3df16f1177fc07ff57c966c4209b50431b7a1b35965cc6ee9d90989d460",
+    "tool_catalog_sha256": "ff4b09d08c6f57fbb474d22cd3ce35ca09d0fa2b09cfd0ef6cb49a03a2e3581a",
+    "patched_native_jar_sha256": "e0a6ab35c3cdbcf355ecfa9c592751efeef69b0d2f124295ef37ea807de56bd5",
+    "runtime_manifest_sha256": "007f28c38d244186aec519de0d919b474b2dd54fc671883e8207c50ab75619de",
+    "build_manifest_sha256": "86542eae4f9423b388dabcd47ef224de96035499c22fdc836dd204891d13cb49",
+    "production_java_release": 11,
+    "test_java_release": 17,
+    "bounded_evidence_ids": [
+      "sensing79-stage05-package-node",
+      "sensing79-stage05-headless-mcp",
+      "sensing79-stage05-gui-restart-mcp",
+      "sensing79-stage05-gui-cli-failure",
+      "sensing79-stage05-macos-native91-delivery",
+      "sensing79-stage05-macos-native91",
+      "sensing79-review"
+    ],
+    "macos_native_programs_passed": 91,
+    "packaged_headless_mcp_suites_passed": 17,
+    "packaged_gui_restart_boundaries_passed": [
+      "intent-force",
+      "zip-before"
+    ],
+    "packaged_gui_post_restart_placements": 2,
+    "non_live_tests_per_node": {
+      "22.19.0": {
+        "passed": 475,
+        "skipped": 18
+      },
+      "24.20.0": {
+        "passed": 475,
+        "skipped": 18
+      },
+      "26.0.0": {
+        "passed": 475,
+        "skipped": 18
+      }
+    },
+    "shipped_gui_sensing_cli": "Stage06 actual CLI install/native sensing preparation/real Main launch pass. Desktop tool cannot bind Java app; no local bootstrap/grant/SDK/restart or manual installation qualification.",
+    "linux_current_candidate_qualification": "91 native mains on Linux ARM64; exact packaged Bridge and platform runtime are separately bound",
+    "combined_qualification": false,
+    "fresh_skill_behavior_qualification": false,
+    "continuous_eight_hour_qualification": false,
+    "current_performance_target_qualification": false,
+    "hardware_qualified": false,
+    "full_plan_complete": false,
+    "uncovered_live_test": null,
+    "qualification_note": "Distinct campaign scopes in sensing79-review summary. All R01\u2013R18 partial; no physical, manual installation, uniform skill, performance, endurance or hosted CI completion claim.",
+    "source_sdk_history_live_cases_passed": 1,
+    "known_source41_defects": [
+      "Mapped-axis inputAxis setter listener can restore homed during apply; singleton apply can report success. Separate S80 repair is not included."
+    ]
   }
 }

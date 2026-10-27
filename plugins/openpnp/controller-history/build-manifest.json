@@ -9,7 +9,7 @@
   "reducer_source_sha256": "55508b5624d43e29bb744a6ecdc457eb1dc8793ca865b17dafa7367138ff5ee2",
   "journal_json_class_sha256": "f421e9162db4bdb979ac3d24141ec8fb4b0cb170a8b644b7f0d746efc4a36a23",
   "journal_json_source_sha256": "61053170793eb45f85ff674046d1a946be960c778b3a43fa39999933a21d9174",
-  "built_against_bridge_sha256": "62b17d35cb4d39c531fdd6698dece3f41ad19f92e604e35b3fc9f8e9c8aac907",
+  "built_against_bridge_sha256": "070c833972fc4dfb6ad322adfc8f677f723aff583d0cdda88ccf5baaac228420",
   "gson_sha256": "853a55c219993a781d0884d42793d27e120efefab06c1ff86fb59c22c2a3cef1",
   "runtime_manifest_sha256": "007f28c38d244186aec519de0d919b474b2dd54fc671883e8207c50ab75619de",
   "compiler_sha256": "5e5855eda29ab49e8bcc56b344df2f9159f91e27949f725435dc4660d57b2ffd",

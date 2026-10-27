@@ -45,15 +45,21 @@ test('qualification refuses reused, escaped and symlinked output directories', a
   reserveOutput(planned.output);
   assert.throws(() => reserveOutput(planned.output), { code: 'EEXIST' });
 });
-test('GUI gate requires explicit compatible immutable build and dispatches seven distinct cases', async t => {
+test('GUI gate requires explicit compatible immutable build and dispatches nine distinct cases', async t => {
   const f = await fixture(t), build = path.join(f.dir, 'immutable build'), java = path.join(f.dir, 'jdk');
   await mkdir(path.join(build, 'runtime'), { recursive: true }); await mkdir(path.join(build, 'test-classes')); await writeFile(path.join(build, 'runtime/codex-build-manifest.json'), '{}');
-  await mkdir(path.join(java, 'bin'), { recursive: true }); await writeFile(path.join(java, 'bin/java'), 'test prerequisite');
+  await mkdir(path.join(java, 'bin'), { recursive: true }); await writeFile(path.join(java, 'bin/java'), 'test prerequisite'); await writeFile(path.join(java, 'bin/javac'), 'test prerequisite');
   const env = { ...f.env, OPENPNP_TEST_GUI: '1', OPENPNP_TEST_GUI_BUILD: build, OPENPNP_TEST_JAVA_HOME: java };
   assert.throws(() => planMaster({ ...f.opts, env }), /display/);
   const p = planMaster({ ...f.opts, platform: 'darwin', env });
-  assert.equal(p.phases.length, 8); assert.equal(new Set(p.phases.map(x => x.id)).size, 8);
-  assert.ok(p.phases.at(-1).args.includes('--board-inspection')); assert.ok(p.phases.at(-1).args.includes(process.execPath));
+  assert.equal(p.phases.length, 10); assert.equal(new Set(p.phases.map(x => x.id)).size, 10);
+  assert.ok(p.phases.find(x => x.id === 'gui-board-inspection').args.includes('--board-inspection'));
+  for (const boundary of ['intent-force', 'zip-before']) {
+    const phase = p.phases.find(x => x.id === `gui-restart-${boundary}`);
+    assert.equal(phase.args[0], 'scripts/openpnp-test-native-gui-restart.py');
+    assert.ok(phase.args.includes(boundary)); assert.ok(phase.args.includes(process.execPath));
+    assert.ok(phase.args.includes(build)); assert.ok(phase.args.includes(java));
+  }
 });
 test('dispatcher forwards arguments without a shell and stops at first failed phase', async t => {
   const f = await fixture(t); const calls = [], logs = [], plan = { skipped: [{ id: 'hardware', reason: 'not qualified' }], phases: ['one', 'two', 'three'].map(id => ({ id, command: '/exact runtime', args: [id, 'a;literal'], env: { SELECTED: id } })) };

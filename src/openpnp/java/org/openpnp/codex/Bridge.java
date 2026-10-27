@@ -649,28 +649,30 @@ public final class Bridge implements AutoCloseable {
             requireProfileChanges((com.google.gson.JsonArray)plan.get("changes"));
             NativeSettings.Patch patch=takeConfigurationPatch(p,plan);
             final boolean sensing=patch.isVacuumSensingChange();
-            final boolean mapped=patch.requiresRetainedPlan()&&!sensing;
+            final boolean axisDependencies=patch.invalidatesAxisDependencies();
             final boolean cameraGeometry=patch.metadata().stream().anyMatch(e->"set_camera_geometry".equals(e.get("type")));
             final boolean assembly=patch.metadata().stream().anyMatch(e->NativeNozzleAssembly.TYPE.equals(e.get("type")));
-            final String axisReason=assembly?"nozzle-assembly-topology":patch.metadata().stream().anyMatch(e->NativeAxisBacklashSettings.TYPE.equals(e.get("type")))?"axis-backlash":"mapped-axis-geometry";
+            final String axisReason=assembly?"nozzle-assembly-topology":patch.metadata().stream().anyMatch(e->NativeAxisBacklashSettings.TYPE.equals(e.get("type")))?"axis-backlash":patch.metadata().stream().anyMatch(e->NativeMappedAxisSettings.TYPE.equals(e.get("type")))?"mapped-axis-geometry":"axis-motion-limits";
             patch.validateCurrentState();
             Map<String,Object> recovery=assembly?topologyRecoveryPreimage():null;
             if(sensing)beginNativeEffect("vacuum-sensing-configuration-model");
-            if(mapped||cameraGeometry)beginNativeEffect(mapped?(assembly?"nozzle-assembly-configuration-model":axisReason.equals("axis-backlash")?"axis-backlash-configuration-model":"mapped-axis-configuration-model"):"camera-geometry-configuration-model");
+            if(axisDependencies||cameraGeometry)beginNativeEffect(axisDependencies?(assembly?"nozzle-assembly-configuration-model":axisReason.equals("axis-backlash")?"axis-backlash-configuration-model":axisReason.equals("mapped-axis-geometry")?"mapped-axis-configuration-model":"axis-motion-limits-configuration-model"):"camera-geometry-configuration-model");
             try {
                 beginConfigurationChange();
-                if(mapped)invalidateAxisDependencies(axisReason);
+                if(axisDependencies)invalidateAxisDependencies(axisReason);
                 else if(cameraGeometry)invalidateRegistrationDependencies("camera-geometry");
-                config.save();patch.apply();config.save();
+                config.save();if(axisDependencies)requireAxisDependenciesInvalidated();
+                patch.apply();if(axisDependencies)requireAxisDependenciesInvalidated();
+                config.save();if(axisDependencies)requireAxisDependenciesInvalidated();
                 Map<String,Object> result=map("config_revision",revisionString(),"persisted",true,"configuration_root",config.getConfigurationDirectory().getAbsolutePath());
                 if(assembly){
                     result.put("created_assembly",patch.result());result.put("recovery_preimage",recovery);
                     event("topology_model_persisted",map("schema_version",1,"profile",NativeTopologyJournal.PROFILE,"operation_id",nativeOperationContext.get(),"submission_id",submissionContext.get().token,"result",result));
                 }
-                if(mapped||cameraGeometry||sensing)completeNativeEffect();
+                if(axisDependencies||cameraGeometry||sensing)completeNativeEffect();
                 return result;
             }catch(Exception e){if(assembly)topologyFault=true;configurationFailed(e);throw e;}
-            catch(Error e){if(!mapped&&!cameraGeometry&&!sensing)throw e;if(assembly)topologyFault=true;configurationFailed(e);throw new ConfigurationMutationFence(e);}
+            catch(Error e){if(!axisDependencies&&!cameraGeometry&&!sensing)throw e;if(assembly)topologyFault=true;configurationFailed(e);throw new ConfigurationMutationFence(e);}
         }
         case "openpnp_inspect_job": {
             requireJobEditScope(p);Map<String,Object> inspected;
@@ -862,13 +864,14 @@ public final class Bridge implements AutoCloseable {
             NativeConfigurationSnapshots.Restore restore=NativeConfigurationSnapshots.prepareRestore(config,backup);
             if("sustained-workload".equals(simulatorProfile) && restore.report.get("restored_job_order")!=null && !"Unsorted".equals(restore.report.get("restored_job_order")))throw new Fault("SIMULATOR_PROFILE_MISMATCH","Restored order would violate the sustained Unsorted profile");
             restore.validateCurrentState();
-            final boolean backlash=restore.invalidatesAxisDependencies();
+            final boolean axisDependencies=restore.invalidatesAxisDependencies();
+            final String axisReason=restore.axisDependencyReason();
             final boolean cameraGeometry=restore.invalidatesCameraRegistration();
-            if(backlash||cameraGeometry)beginNativeEffect(backlash?"axis-backlash-restore-model":"camera-geometry-restore-model");
+            if(axisDependencies||cameraGeometry)beginNativeEffect(axisDependencies?axisReason+"-model":"camera-geometry-restore-model");
             beginConfigurationChange();
-            try{if(backlash)invalidateAxisDependencies("axis-backlash-restore");else if(cameraGeometry)invalidateRegistrationDependencies("camera-geometry-restore");config.save();restore.apply();config.save();if(backlash||cameraGeometry)completeNativeEffect();}
+            try{if(axisDependencies)invalidateAxisDependencies(axisReason);else if(cameraGeometry)invalidateRegistrationDependencies("camera-geometry-restore");config.save();if(axisDependencies)requireAxisDependenciesInvalidated();restore.apply();if(axisDependencies)requireAxisDependenciesInvalidated();config.save();if(axisDependencies)requireAxisDependenciesInvalidated();if(axisDependencies||cameraGeometry)completeNativeEffect();}
             catch(Exception e){configurationFailed(e);throw e;}
-            catch(Error e){if(!backlash&&!cameraGeometry)throw e;configurationFailed(e);throw new ConfigurationMutationFence(e);}
+            catch(Error e){if(!axisDependencies&&!cameraGeometry)throw e;configurationFailed(e);throw new ConfigurationMutationFence(e);}
             restore.report.put("config_revision",revisionString());restore.report.put("job",jobSummary());return restore.report;
         }
         case "openpnp_export_run_report": return artifact("application/json",runReportBytes(),map("kind","run-report"));
@@ -2266,6 +2269,14 @@ public final class Bridge implements AutoCloseable {
         machine.setHomed(false);
         ReferenceNozzleTipCalibration.resetAllNozzleTips();
         for(Camera camera:machine.getAllCameras())if(camera instanceof org.openpnp.machine.reference.camera.ReferenceCamera)((org.openpnp.machine.reference.camera.ReferenceCamera)camera).getAdvancedCalibration().setValid(false);
+    }
+    /** A native setter or save callback cannot grant homing after an axis-changing operation.
+     * The caller retains the effect intent and fences the partial configuration on failure. */
+    private void requireAxisDependenciesInvalidated()throws Fault {
+        if(machine.isHomed()) {
+            machine.setHomed(false);
+            throw new Fault("CONFIGURATION_FAULT","Native configuration callback reinstated homing; observation revoked");
+        }
     }
     private synchronized Map<String,Object> lineageReadback(){
         try{return (Map<String,Object>)plain(jobLineage.describe(jobId));}

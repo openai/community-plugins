@@ -1,0 +1,630 @@
+{
+  "schema": 1,
+  "kind": "pr5-minimal-dependency-refresh",
+  "recorded_at": "2026-10-27T05:20:19.390865+00:00",
+  "package_resolution_and_fetches": "Existing configured Socket npm registry only; no registry override or policy exception. Canonical public lockfile identities were normalized only after exact package name/version/tarball-path/integrity checks against configured-registry metadata.",
+  "npm_cli_version": "11.12.1",
+  "host_platform": "darwin-arm64",
+  "python_test_runtime": "3.14.6",
+  "packages": [
+    {
+      "path": "src/openpnp/node",
+      "version_changes": [
+        {
+          "path": "node_modules/body-parser",
+          "before_version": "2.3.0",
+          "after_version": "2.4.0",
+          "integrity": "sha512-Ifk1KcLrxaGt1occQagQNFNNOqRt1LFuehEnHHzB8Z6cRgIxRU1TBaiIsUiCdA+gy5PL7Y1IX31DNKkRmxtXjQ=="
+        },
+        {
+          "path": "node_modules/qs",
+          "before_version": "6.16.0",
+          "after_version": "6.16.1",
+          "integrity": "sha512-5Px6J7rfHBAGUhNQ3es4YzcOdBBw0SDcVtThJml4RdnKw4tKs2epA0kPZ+K8X+WiHktT93RHVcQ/3ym5aTCgtg=="
+        },
+        {
+          "path": "node_modules/zod",
+          "before_version": "4.5.4",
+          "after_version": "4.6.7",
+          "integrity": "sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg=="
+        }
+      ],
+      "manifest_sha256": "6b2af070c6284d8fb5cfc3c0fd565fb5eae1e9988aee917278f839baa7d34ed3",
+      "lock_sha256": "5a3caf922e7f04c53d6c95d833344bff7c2eda11b41ae418a88f1e7c81bdacce",
+      "manifest_changed": false,
+      "public_locked_tarballs": 121,
+      "fresh_cache_install": {
+        "exit_code": 0,
+        "install_scripts_disabled": true,
+        "configured_registry_only": true
+      },
+      "installed_tree_exit_code": 0,
+      "audit_before": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 2,
+        "critical": 0,
+        "total": 2
+      },
+      "runtime_audit_after": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      },
+      "full_audit_after": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      }
+    },
+    {
+      "path": "plugins/autodesk-fusion",
+      "version_changes": [
+        {
+          "path": "node_modules/zod",
+          "before_version": "4.4.3",
+          "after_version": "4.6.7",
+          "integrity": "sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg=="
+        }
+      ],
+      "manifest_sha256": "8ef140ed10e7251c723ea0750cccea5b4f971784a3dde9f9e3b800f36ff9e678",
+      "lock_sha256": "1fb4c9b3bb61264a6467baeb478a6fac52a75934f638b7df9f2bf65be9b29696",
+      "manifest_changed": true,
+      "public_locked_tarballs": 64,
+      "fresh_cache_install": {
+        "exit_code": 0,
+        "install_scripts_disabled": true,
+        "configured_registry_only": true
+      },
+      "installed_tree_exit_code": 0,
+      "audit_before": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 1,
+        "critical": 0,
+        "total": 1
+      },
+      "runtime_audit_after": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      },
+      "full_audit_after": {
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "high": 0,
+        "critical": 0,
+        "total": 0
+      }
+    }
+  ],
+  "fusion_master_runs": [
+    {
+      "exit_code": 0,
+      "node": "22.19.0",
+      "generated_bytes_equal_initial_build": true,
+      "javascript_companion": {
+        "tests": 13,
+        "pass": 12,
+        "fail": 0,
+        "skipped": 1
+      },
+      "javascript_package": {
+        "tests": 632,
+        "pass": 620,
+        "fail": 0,
+        "skipped": 12
+      },
+      "python": {
+        "tests": 157,
+        "pass": 156,
+        "skipped": 1,
+        "fail": 0
+      },
+      "log_sha256": "cd8d14491fa9456ab22ad798fc32c8de1e3ffdb575af7446e41755200af17089"
+    },
+    {
+      "exit_code": 0,
+      "node": "24.20.0",
+      "started_at": "2026-10-27T05:15:37.616942+00:00",
+      "finished_at": "2026-10-27T05:17:29.265029+00:00",
+      "generated_bytes_equal_initial_build": true,
+      "javascript_companion": {
+        "tests": 13,
+        "pass": 12,
+        "fail": 0,
+        "skipped": 1
+      },
+      "javascript_package": {
+        "tests": 632,
+        "pass": 620,
+        "fail": 0,
+        "skipped": 12
+      },
+      "python": {
+        "tests": 157,
+        "pass": 156,
+        "skipped": 1,
+        "fail": 0
+      },
+      "log_sha256": "be81642758261c5c4b82fdae298468df6f03cff327125aeaad8b228a8d8defca"
+    },
+    {
+      "exit_code": 0,
+      "node": "26.0.0",
+      "started_at": "2026-10-27T05:17:29.289478+00:00",
+      "finished_at": "2026-10-27T05:19:24.840014+00:00",
+      "generated_bytes_equal_initial_build": true,
+      "javascript_companion": {
+        "tests": 13,
+        "pass": 12,
+        "fail": 0,
+        "skipped": 1
+      },
+      "javascript_package": {
+        "tests": 632,
+        "pass": 620,
+        "fail": 0,
+        "skipped": 12
+      },
+      "python": {
+        "tests": 157,
+        "pass": 156,
+        "skipped": 1,
+        "fail": 0
+      },
+      "log_sha256": "5a705ff9599451c1fc9ff2554818525f12f0d510aa0a2123071de24be9a2e22a"
+    }
+  ],
+  "fusion_build_reproducibility": {
+    "initial_build_plus_master_builds": 4,
+    "identical_direct_generated_file_hashes": 49,
+    "build_receipt_bound_files": 161,
+    "build_receipt_sha256": "6fe5b5059eca87c1b1760aed47dc89e31afef65d421a6ae17bafcbdbf458afeb",
+    "generated_hashes": {
+      "plugins/autodesk-fusion/dist/build-receipt.json": "6fe5b5059eca87c1b1760aed47dc89e31afef65d421a6ae17bafcbdbf458afeb",
+      "plugins/autodesk-fusion/dist/chunk-LNNNQITG.mjs": "dae7dd76fd498a5da125ef79ba1d6b243d4fc5034c01e74b44a340b8f4dfb732",
+      "plugins/autodesk-fusion/dist/index.d.mts": "e747335bc7db47d79474deaa7a7285bf1688359763351705379d49efcddc6d75",
+      "plugins/autodesk-fusion/dist/webapi-UDI3LYLY.mjs": "762afe2f866d7f72728b24ccd5c193cf7abca384543f928778e6e6ac87ff5c67",
+      "plugins/autodesk-fusion/dist/index.mjs": "f2ecf21044478379bde1966225d9708f6de3a3cbe85d5e84ebe29a2669c0b613",
+      "plugins/autodesk-fusion/dist/chunk-KPHHJXNH.mjs": "0d593cf6e3c0db89e03d571676d2914abc2e61b0851d0e6192112fc15e5100f9",
+      "plugins/autodesk-fusion/dist/server.mjs": "86698addcdb531c3937a69d5a2752cf00935f8a641aa9e8d1e22c4d1fbece7f2",
+      "plugins/autodesk-fusion/dist/chunk-7P6ASYW6.mjs": "30c77128186890ab8043f3a2502ab91c7d9dec358dd35ee0d89835189b1caa03",
+      "plugins/autodesk-fusion/dist/chunk-XEZVKDHW.mjs": "10dad7336486acf027d0cd91ab0c47c5363904cdc21d767a52302cacc67eadf6",
+      "plugins/autodesk-fusion/dist/cli.mjs": "6351df9ec089b6189b2a3d47a96182b2af8e1dba4c56e3be2cfa9109af83f0e3",
+      "plugins/autodesk-fusion/dist/types/fixture.d.ts": "49d5b20b32a1b3f4ed9cd9608da4b7f03e23a1d5471bd3fff0e4a566057ca37f",
+      "plugins/autodesk-fusion/dist/types/cloud-automation.d.ts": "4da1ec9397733e5753d760f29b5aeba7e88be46a30b35d806ea25a71d4d4fede",
+      "plugins/autodesk-fusion/dist/types/native-security.d.ts": "aa520101d2d02ac70c20b7f0d1e2359de0d9c2b91b5eb39bfed8b8e4bdbc0fd9",
+      "plugins/autodesk-fusion/dist/types/handoff.d.ts": "00d942d0dbfb71578dc000479da3ba8ac43195ef8ec6a9b0bb407aa0e9dfc75d",
+      "plugins/autodesk-fusion/dist/types/runtime.d.ts": "a85211508c7821ae54b44cd4f93d8104c45b08717b7ff0a9de3633952c169480",
+      "plugins/autodesk-fusion/dist/types/qualification.d.ts": "d26980169bf0aa8a5a36ba4a355c756bc533b5428ded96e90beef07e43b05385",
+      "plugins/autodesk-fusion/dist/types/bom.d.ts": "48911fd481b662200b7e01eb80cfed007de0155d3bb1cc90bfe726551ccccf7f",
+      "plugins/autodesk-fusion/dist/types/server.d.ts": "f8a27a69479d5aeca9ca412048a1cc330eda47ec02a63076b5ad08c78c5fd8dd",
+      "plugins/autodesk-fusion/dist/types/cloud-http.d.ts": "3d964bad9458e9feb001f2acfb54410f4ec333ddcea04fd63da627d9c5a05661",
+      "plugins/autodesk-fusion/dist/types/cloud-batches.d.ts": "3fbebaee0eb4305e423977bd998e35b6c760cb995ca47ff5583e0f45e8e341b5",
+      "plugins/autodesk-fusion/dist/types/retention.d.ts": "f63d58c033e1fdf977f5dfbf1383f1a4e8db491465bbf9ed903c2a2e8713d0e0",
+      "plugins/autodesk-fusion/dist/types/addin.d.ts": "cd015b9314f3528898d46297053fa16b7ec52441814c9d96edb4a2803a7b8882",
+      "plugins/autodesk-fusion/dist/types/types.d.ts": "2c0d73cd3621cf94f4ae6c41168d8ddb05950b1b83c60580a9e3358405667435",
+      "plugins/autodesk-fusion/dist/types/artifact-validation.d.ts": "67c7db53a17409944aae0a9a09340dd3411d8220e7a60976727a3b9c00316466",
+      "plugins/autodesk-fusion/dist/types/cloud.d.ts": "f95c488d9ef9f820a4c7ccf57f0f19fe74f579741e07359071aaa0df5627c044",
+      "plugins/autodesk-fusion/dist/types/engine.d.ts": "bfc0d6e94151d43b409576685874361bb2923b52145c764a5739075befc20537",
+      "plugins/autodesk-fusion/dist/types/cli.d.ts": "0723931f43118bb1f42fdb87c5621ae45e43f497b27fad7a16518c74ff22be5a",
+      "plugins/autodesk-fusion/dist/types/native.d.ts": "522a20a1e3efc65fd041012e5cd168b47e830a3aed979f8e179e7a178a5138f9",
+      "plugins/autodesk-fusion/dist/types/manage-drafts.d.ts": "fad13bb0366720f313f6476b9e29d34b1c4f404aca087024b991bd4e18e87c71",
+      "plugins/autodesk-fusion/dist/types/oauth.d.ts": "e559003972516e175ada6e88395495dd752fbf8bdc397c44cfab2a67e0ef310e",
+      "plugins/autodesk-fusion/dist/types/native-script.d.ts": "039d679fd5669717312161b7899659628e1a41d7f5dfe1a107a1e86b92dab17a",
+      "plugins/autodesk-fusion/dist/types/credentials.d.ts": "5812deeb28dce375c321306c727587fd8a4fb52f0acac762b2bbafe9cc7b2380",
+      "plugins/autodesk-fusion/dist/types/safety.d.ts": "acd13810cbb131dbe134f1692ac6ffe3c0b386f24cbbc0a48699b31fb4be1b62",
+      "plugins/autodesk-fusion/dist/types/catalog.d.ts": "4ad1fabbedd4dc8d1bd9411cc10efd1a5fa4383dd4699ba2bccf72cc6d67a4aa",
+      "plugins/autodesk-fusion/dist/types/index.d.ts": "734cf5a2ef53b2f319b8894bad833208a19f64adab58bbbe50084844d27befae",
+      "plugins/autodesk-fusion/dist/types/storage.d.ts": "2e1485f4b397803a62c8a8181dbf2849405b0e3a1b222b6147edbcd69cfdac39",
+      "plugins/autodesk-fusion/dist/types/cloud-coordinator.d.ts": "bc14a8e703cfc1bdcd9dbd5cd4d470f2f75b2ecda3f35ac5aa268eb0a26c5b91",
+      "plugins/autodesk-fusion/dist/types/cloud-tools.d.ts": "671cb09b8dcc994bd5cf19dfb5a68b0a798f9e89910016c2324412fa71494036",
+      "plugins/autodesk-fusion/dist/types/artifacts.d.ts": "d0162df1eb2214275624b1848912b1d9fdf0dc23a91e9379ebd5d15d15cff0a7",
+      "plugins/autodesk-fusion/dist/types/profile.d.ts": "05356be2f8d506e9b8f0a7aaa3e6596baae7ff26ed1b62513dbca5c675f9d6e3",
+      "plugins/autodesk-fusion/dist/addin/CodexFusionInterop/CodexFusionInterop.manifest": "8073792b879ed3d5f299a675136ca2558aecb505d0f62930f1514933d8fc0f6c",
+      "plugins/autodesk-fusion/dist/addin/CodexFusionInterop/bridge.py": "c0d1facbafcdfc7fb51fb7d03c0f1856885601acfda856e156ef6c2f54c2ebbb",
+      "plugins/autodesk-fusion/dist/addin/CodexFusionInterop/__init__.py": "75d0258f81b32cbb4f33cd27049c1e61269d2e77c9fd59993435874298b969c7",
+      "plugins/autodesk-fusion/dist/addin/CodexFusionInterop/fusion_runtime.py": "4b3bf6281bc516fe82a723529effed96c793af6e0f054db0e63d154a6884f7df",
+      "plugins/autodesk-fusion/dist/addin/CodexFusionInterop/CodexFusionInterop.py": "4acdb768cd2d56dee12a71437a71fe4eee44785a32b7973e462ab03d9efaecb1",
+      "plugins/autodesk-fusion/dist/addin/CodexFusionInterop/private_storage.py": "4484fdda7987a92f9472a591299d2ed96b48e3752614b731634239817612310c",
+      "plugins/autodesk-fusion/dist/addin/CodexFusionInterop/handler-manifest.json": "00f22fe9bf41fa78a7e3a67c6e1717944908c4d4c71fb099953ac6bb5fb0da5d",
+      "plugins/autodesk-fusion/THIRD_PARTY_NOTICES.txt": "7cf47e5c32343adfefcc4c952e9affb1e14108042ea48da609d0713dd3dd17e3",
+      "plugins/autodesk-fusion/docs/software-inventory.json": "986b596b59d09d308a5dc9b30800e7999c05fb8f8b44b93b1ce0df0f09189049"
+    }
+  },
+  "fusion_generated_catalog_change": {
+    "before_sha256": "4a784348f164d0a479330ab95d55a57416bae16743f80dbe20394a2cdcba3fdf",
+    "after_sha256": "5342d09398d8e4a88cf540340941c981b5d36fbdb08bbaa80739d602df617124",
+    "only_change": "Zod 4.6.7 JSON Schema serialization now includes fixed tuple cardinality, matching existing z.tuple runtime validators.",
+    "changed_tuple_schemas": [
+      {
+        "path": "/operations/16/input_schema/properties/curves/items/oneOf/0/properties/start",
+        "tuple_length": 2,
+        "added_items_false": true,
+        "min_items": 2,
+        "max_items": 2
+      },
+      {
+        "path": "/operations/16/input_schema/properties/curves/items/oneOf/0/properties/end",
+        "tuple_length": 2,
+        "added_items_false": true,
+        "min_items": 2,
+        "max_items": 2
+      },
+      {
+        "path": "/operations/16/input_schema/properties/curves/items/oneOf/1/properties/center",
+        "tuple_length": 2,
+        "added_items_false": true,
+        "min_items": 2,
+        "max_items": 2
+      },
+      {
+        "path": "/operations/16/input_schema/properties/curves/items/oneOf/2/properties/corner1",
+        "tuple_length": 2,
+        "added_items_false": true,
+        "min_items": 2,
+        "max_items": 2
+      },
+      {
+        "path": "/operations/16/input_schema/properties/curves/items/oneOf/2/properties/corner2",
+        "tuple_length": 2,
+        "added_items_false": true,
+        "min_items": 2,
+        "max_items": 2
+      },
+      {
+        "path": "/operations/17/input_schema/oneOf/0/properties/text_position",
+        "tuple_length": 2,
+        "added_items_false": true,
+        "min_items": 2,
+        "max_items": 2
+      },
+      {
+        "path": "/operations/17/input_schema/oneOf/0/properties/entity_ids",
+        "tuple_length": 2,
+        "added_items_false": true,
+        "min_items": 2,
+        "max_items": 2
+      },
+      {
+        "path": "/operations/17/input_schema/oneOf/1/properties/text_position",
+        "tuple_length": 2,
+        "added_items_false": true,
+        "min_items": 2,
+        "max_items": 2
+      },
+      {
+        "path": "/operations/17/input_schema/oneOf/1/properties/entity_ids",
+        "tuple_length": 1,
+        "added_items_false": true,
+        "min_items": 1,
+        "max_items": 1
+      },
+      {
+        "path": "/operations/18/input_schema/properties/constraints/items/oneOf/0/properties/entity_ids",
+        "tuple_length": 1,
+        "added_items_false": true,
+        "min_items": 1,
+        "max_items": 1
+      },
+      {
+        "path": "/operations/18/input_schema/properties/constraints/items/oneOf/1/properties/entity_ids",
+        "tuple_length": 2,
+        "added_items_false": true,
+        "min_items": 2,
+        "max_items": 2
+      },
+      {
+        "path": "/operations/27/input_schema/properties/positions/items",
+        "tuple_length": 3,
+        "added_items_false": true,
+        "min_items": 3,
+        "max_items": 3
+      },
+      {
+        "path": "/operations/36/input_schema/properties/occurrence_ids",
+        "tuple_length": 2,
+        "added_items_false": true,
+        "min_items": 2,
+        "max_items": 2
+      }
+    ]
+  },
+  "fusion_source_bindings": {
+    ".github/workflows/autodesk-fusion.yml": "bc1912fc96ecb03f5c697008733eb610c8008530239ee73ef723263a76ac38ec",
+    "package.json": "aa5383257e210e98986a192f646b5616489a1bef97120c05776ce5748c21e177",
+    "plugins/autodesk-fusion/addin/CodexFusionInterop/CodexFusionInterop.manifest": "8073792b879ed3d5f299a675136ca2558aecb505d0f62930f1514933d8fc0f6c",
+    "plugins/autodesk-fusion/addin/CodexFusionInterop/CodexFusionInterop.py": "4acdb768cd2d56dee12a71437a71fe4eee44785a32b7973e462ab03d9efaecb1",
+    "plugins/autodesk-fusion/addin/CodexFusionInterop/__init__.py": "75d0258f81b32cbb4f33cd27049c1e61269d2e77c9fd59993435874298b969c7",
+    "plugins/autodesk-fusion/addin/CodexFusionInterop/bridge.py": "c0d1facbafcdfc7fb51fb7d03c0f1856885601acfda856e156ef6c2f54c2ebbb",
+    "plugins/autodesk-fusion/addin/CodexFusionInterop/private_storage.py": "4484fdda7987a92f9472a591299d2ed96b48e3752614b731634239817612310c",
+    "plugins/autodesk-fusion/addin/README.md": "88ce25e84c383ebae77efa048557a3e02cbb38773739f5f993f9bc259efc2f6d",
+    "plugins/autodesk-fusion/addin/tests/protocol_fixture.py": "c0e7511f67c820c6777640e49e33020b89ce1cbc13f0ef335c16cd05a542fb8a",
+    "plugins/autodesk-fusion/addin/tests/test_bridge.py": "544dfc8e64319d6240756beb0beb2f5325b9bf25537e79f3977590fc45358d62",
+    "plugins/autodesk-fusion/handlers/fusion_runtime.py": "4b3bf6281bc516fe82a723529effed96c793af6e0f054db0e63d154a6884f7df",
+    "plugins/autodesk-fusion/scripts/benchmark-local.mjs": "9be22317abf59a7a52f4f92b25528d9d3908d01f9f9d60972db23911b819ae17",
+    "plugins/autodesk-fusion/scripts/build-native.mjs": "3a5358781127811d3c59e8243b5bfe4cee42b3ed003325b2221c3eb7c3209994",
+    "plugins/autodesk-fusion/scripts/build.mjs": "64edaa3b7eb70e32636ae08bba15f9f253eeee1bd629c4185a14b1cc6a7fcab8",
+    "plugins/autodesk-fusion/scripts/evaluate-workflows.mjs": "3ae17944c01f57f7b5fddb04c0a5e8e2cc2bd2fcba3f068f9233af2fa197d9ee",
+    "plugins/autodesk-fusion/scripts/evaluation-observations.mjs": "a91f38bdf0d212e43b3ba0f084d9ce50bc09232d4db33298b4f482cd52235359",
+    "plugins/autodesk-fusion/scripts/fusionctl.mjs": "4787c17b962f52c51df08c6bb67d15d64ff13ad6f299278d1e7dac614a45d51b",
+    "plugins/autodesk-fusion/scripts/reassess-workflows.mjs": "158faed32154f28f31ce677b24c10d32e435fb85e3d0153ae8d361f705466619",
+    "plugins/autodesk-fusion/scripts/test-python.mjs": "1be94b1316f4c62d1dddd9cdc16aa054bbe551054a0ceb7483a19c30266da3a9",
+    "plugins/autodesk-fusion/scripts/verify-native.mjs": "756b21cefbd72d7396cc854e6574958ddab5e37f95ac26e4a992ac798cb509d1",
+    "plugins/autodesk-fusion/src/addin.ts": "c45b2b80eedc48b7240f56f90a5b8d60bdf64c447f6a686ae245e53af4a367fd",
+    "plugins/autodesk-fusion/src/artifact-validation.ts": "c8a89b4486ac3976a385e997f15a3f7aa1a7364467791c7b40bc7ded27a54c58",
+    "plugins/autodesk-fusion/src/artifacts.ts": "d05b9290574eb16dbc0a72f52eb479c634bf5cc38407e1b217ff689252ec2a99",
+    "plugins/autodesk-fusion/src/bom.ts": "20dada299e1a23d7599c9e6db715df9c4e38966bb55c3604b718581fa1b4d4fb",
+    "plugins/autodesk-fusion/src/catalog.ts": "fcf92f88447e2268f3740061d5340ab4a9163315508bd66e1d260e9868597d98",
+    "plugins/autodesk-fusion/src/cli.ts": "e76f9d87f6a24256ddc10f3362297c510ef4e6b277661f5f924e33f99e1fb3e9",
+    "plugins/autodesk-fusion/src/cloud-automation.ts": "d0bcf4af67baa51ec2176f532ebcc0559439358127c6455d05a0670c98c95463",
+    "plugins/autodesk-fusion/src/cloud-batches.ts": "9af42981695191b9749cfd3be5842817aba5a535c07b37c9e975c6d1ff513961",
+    "plugins/autodesk-fusion/src/cloud-coordinator.ts": "183b83299d8912238e58867c7af95ec13ee309d9db7ea07936fa739378d45a97",
+    "plugins/autodesk-fusion/src/cloud-http.ts": "425f40acd33180420d501ebc6a0c0e900a784f56460871d936e60366b8b4fb5c",
+    "plugins/autodesk-fusion/src/cloud-tools.ts": "11b7c9f4e9d72f62a83d524fe999fd59e40b93ab9fef205d7a1179ada349632f",
+    "plugins/autodesk-fusion/src/cloud.ts": "5025d88e22e520eb7a3a21e04b1de5f79478fc9b7799f3818aee720b4cfc9795",
+    "plugins/autodesk-fusion/src/credentials.ts": "3f8c592271c4a143054661cf881eaabd72135a7eac94f699e51881e2ec58fe70",
+    "plugins/autodesk-fusion/src/engine.ts": "f3d31ee6b00927ba5345db72869c6ebdb38a29ee9cd3cfbef05f64b0c7e0f66a",
+    "plugins/autodesk-fusion/src/fixture.ts": "f69e0ae9dc3ea6f4914fa375b9dffe28d8bb2571b7f9525ec2fd92f620e1adcb",
+    "plugins/autodesk-fusion/src/handoff.ts": "939f1d5387edf78cd4ea34298eb39c3594fa758cf2eddbb189f65ed8643c9815",
+    "plugins/autodesk-fusion/src/index.ts": "734cf5a2ef53b2f319b8894bad833208a19f64adab58bbbe50084844d27befae",
+    "plugins/autodesk-fusion/src/manage-drafts.ts": "b707f21d3a38bdb767aeb276c9a18e43605e536b34d25e64b5f8048d01c8bf5e",
+    "plugins/autodesk-fusion/src/native-script.ts": "f627e07e872a52db57534ad38f55d93e404c5f0dd14af386047b686450986160",
+    "plugins/autodesk-fusion/src/native-security.ts": "b8ae566fc1fe0d4e03d7232bc2188a4e3c77cafd2dacd6403141d0780236352e",
+    "plugins/autodesk-fusion/src/native.ts": "2ae4187c45e0f95d1dec22f8d242bfab8eb95d462a229ddf39088e59f01b9951",
+    "plugins/autodesk-fusion/src/oauth.ts": "6769d77d624c4ddce0add4737f9e4e4fd0aed7251a325bdf30ca824962206242",
+    "plugins/autodesk-fusion/src/profile.ts": "119fb022f75bf757883f7d421c9d692808aba171634171606f4e5c57024c4af0",
+    "plugins/autodesk-fusion/src/qualification.ts": "07d270c50e5d54f948ab70d096aaea6a0fb8c6c9cf7df7d0cb7431b1fcf98570",
+    "plugins/autodesk-fusion/src/retention.ts": "a9a58cc2c89ea6f3f992380a3475aaf1dba0ee8b9cb17a46e3060d4fae2bb54e",
+    "plugins/autodesk-fusion/src/runtime.ts": "a67da1146ed9efe9a25ef0bbe9180e6b1c89712c015b928abefd2b3bbbcf1a9e",
+    "plugins/autodesk-fusion/src/safety.ts": "6f4008813a243869af5a57dae69efe35860041a47462435d8e9f793177c5d269",
+    "plugins/autodesk-fusion/src/server.ts": "e098675dfa0cd50f277bbb260b97fc3612b0953d94b822a58a448ecb914e1428",
+    "plugins/autodesk-fusion/src/storage.ts": "6be6c7ae29f38a76056a0b3dfa0ea69e7a8b51f7e988e03470e9d5348f3c35ca",
+    "plugins/autodesk-fusion/src/types.ts": "45d0a364aea3aca1980f2bf4acff0770ea65cb0dedc9691b80d56b026c3d7703",
+    "plugins/autodesk-fusion/tests/addin.test.mjs": "a2b89fec69f96b770e842dfa73362e73b9107649ed6379b0a57964fe32846ccb",
+    "plugins/autodesk-fusion/tests/artifact-fidelity.test.mjs": "14a4c32ca45a281d11c314a7e5c02512d8d89e3473fd556f66b64ab2840b284c",
+    "plugins/autodesk-fusion/tests/benchmark.test.mjs": "75a11f100768d97a3293da014a1f30ec8cceff06b4c57aa48f28dc58a8de1dc3",
+    "plugins/autodesk-fusion/tests/bom.test.mjs": "c189344a19d8f33ea376664dac3f9b71f881e8c95706783b58908fb5db409778",
+    "plugins/autodesk-fusion/tests/cad-feature-contracts.test.mjs": "5a9a8102288c197b85c70be0d50f8a7291a65e039d9b6b4324897141d61c750c",
+    "plugins/autodesk-fusion/tests/catalog.test.mjs": "35cd29fb702118f10ce0ed7716d1910f1f47b51f0450fe12e42ca126c71f9c28",
+    "plugins/autodesk-fusion/tests/cli-native-enrollment.test.mjs": "a62ed29a684432890c68fa05360c6a122f2c082ffa42cd2004ed7b68d31501c0",
+    "plugins/autodesk-fusion/tests/cloud-automation.test.mjs": "9ee68474bf15e54a13a91b3dfa428e32a292c89f23a9bffd45de07c1ddd27912",
+    "plugins/autodesk-fusion/tests/cloud-batches.test.mjs": "a3a009a8d3d36ff1919970452e33d22be2ae5de064e0fc8d57f1be513af60c9e",
+    "plugins/autodesk-fusion/tests/cloud.test.mjs": "6fe1ec063871db272de8bc3492468ab6885e019b11529749fc99cdbefc3eb8a1",
+    "plugins/autodesk-fusion/tests/coordinator.test.mjs": "28c76ec67469012dcf8c1fc4bf29a1a75475238573ffc66755409496cd345151",
+    "plugins/autodesk-fusion/tests/credentials-cleanup.test.mjs": "4c6301db5feaf294c4ffdd13fecc79566e083acbdd9c2080b48d1ee01aff6326",
+    "plugins/autodesk-fusion/tests/engine.test.mjs": "571b5ca5c582953a07f8412a89929ee707321fca42f9d36e750d47ab278e2f20",
+    "plugins/autodesk-fusion/tests/evaluation-observations.test.mjs": "89e77bc9ed5b9402ff3e4518aae4df80cec59cfb301888b77db7e1ca5cea17a8",
+    "plugins/autodesk-fusion/tests/fixture-pagination.test.mjs": "e7df40caaf1cc05187397237d6669c79e83e59d37cc6cce10e26780af58b5906",
+    "plugins/autodesk-fusion/tests/governance.test.mjs": "dd81f0101e2258a581c58a72f8fb424012c34f62934d2e163f6078be6eedb0cc",
+    "plugins/autodesk-fusion/tests/handoff.test.mjs": "951db0ab63f2406c109efe7d07bb0a0f72ea0aef561d4da36f5f27c17c8f3e5f",
+    "plugins/autodesk-fusion/tests/installed.test.mjs": "93f9c685aeda512e1f5a1b5070bbbbe0b42ece3f6264d98966b47d0ac23d5040",
+    "plugins/autodesk-fusion/tests/manage-drafts.test.mjs": "fd682d2e6645742993ca111f18ca33078963b8754016149f3350d5e5f9775c22",
+    "plugins/autodesk-fusion/tests/mcp-input-defaults.test.mjs": "4068ec4b44bc359c2aa192ee545e9c6614239556a366e8d729ed3debb73bc186",
+    "plugins/autodesk-fusion/tests/native-credentials.test.mjs": "4da6faf5a651496ff3a14d764a3fecfc2b38d47557e15c04bcdf00cb5329be00",
+    "plugins/autodesk-fusion/tests/native-distribution.test.mjs": "f7e1aef9de26849c21adb19d0bfde75c87267fef8befb991862828869baf3b38",
+    "plugins/autodesk-fusion/tests/native-fixtures.mjs": "e06e1e2cd5a4357c8cfff9abed32b96452c9270216b98a9502a0b6d5abdfa81f",
+    "plugins/autodesk-fusion/tests/native.test.mjs": "5e3021bfb67a3bc1c2a5b92875643db1cd2f549259128017dda15f661e303a37",
+    "plugins/autodesk-fusion/tests/oauth.test.mjs": "4c2775b7a0e6ef97785d5f0d4f02855aed0df6971496b9ebbb16224a759ec84f",
+    "plugins/autodesk-fusion/tests/python/test_cad_feature_variants.py": "0b05ec1553e5ff62979dcfa61f40e0110c0180fc7a5b5fd32071cb4b520579de",
+    "plugins/autodesk-fusion/tests/python/test_fusion_runtime.py": "12bc144b25c625a15f5e98b9f9e2232f8c0c40ca0a05408fb1de09e75ef58a0e",
+    "plugins/autodesk-fusion/tests/qualification.test.mjs": "1ce80f3ae3d8d266eeffe71edcd177e6bdebd6e2fccf1d11e760166477749776",
+    "plugins/autodesk-fusion/tests/recipe-reference.test.mjs": "9d4d144aa746210478d44f2b88935c5968bb704f1f16c374f98246f170baa301",
+    "plugins/autodesk-fusion/tests/retention-integration.test.mjs": "c6e0e549ad92d62434da50fbc7c2d405cd9d6b81e20d58539b475cfc21412753",
+    "plugins/autodesk-fusion/tests/retention.test.mjs": "5e9231e6617991656e12a88d72eaa95b9683d03038d9a2ae22ea8dfdb9814b59",
+    "plugins/autodesk-fusion/tests/safety.test.mjs": "48ae45359ebda43e954968c4f4fda056834b0a9f20c27cd23af2fce466d1418b",
+    "plugins/autodesk-fusion/tests/storage.test.mjs": "66bbb4aaa0db0b9b33f38dc8b9694dc6e9619bb98822dd10dee31ee43fe31d2a",
+    "plugins/autodesk-fusion/tests/workflow-evaluation.test.mjs": "78816fcc45ca21447cbdff4d2e34cb810a497913d3edda50315c6d5ef51a1d4a",
+    "plugins/autodesk-fusion/tests/workflow-reassessment.test.mjs": "dde581e37210e5627eb15de21b60abf7e8fbe3f6897b1c7bca0915f12b0de8cd",
+    "scripts/validate-autodesk-fusion.mjs": "a0d24c0d184f6d0e96bee4d028a17308fb5ad30d667f2357bea5301288ad2837",
+    "tests/autodesk-fusion/README.md": "2c6424150f5252f9770d4b6e13c8e8fce3b1af81c5abfd27b1925c24d3c5ebbf",
+    "tests/autodesk-fusion/integration/packaged.test.mjs": "72088e57edee48f6712cb4aa943252a94307aee6b39decdff0ff62d230e6176c",
+    "tests/autodesk-fusion/security/security.test.mjs": "730186261442bf2f17794ea8aa8247705bfb207218181ce6705865af39c3286a",
+    "tests/autodesk-fusion/support/packaged-client.mjs": "f2ea3561166a55d3c0c489573dc7a96416bb7b66700559da7a1a5c06646e850e",
+    "tests/autodesk-fusion/unit/catalog.test.mjs": "aade8ef7f88c3a9eac283c72cfb5a4249bae95cf2b39e942cf1e1ceddd472c3a",
+    "tests/autodesk-fusion/unit/packaged-client.test.mjs": "038a5d8ce0f8f842882a8bdb5527a814d2e507b1d674f14784bae67f25a63614"
+  },
+  "source_binding_capture_note": "Inventory captured after the Node22 master and during Node24; verified unchanged at completion. Fusion production source was not edited. Build receipts also bind packaged source inputs.",
+  "evidence_artifacts": {
+    "before-hashes.json": {
+      "sha256": "9167b624a150a3d33ae3004a3f3509b89a2ed40a65e9fb06911afdf85d88c202",
+      "bytes": 6568
+    },
+    "dependency-files-final.json": {
+      "sha256": "4d50b4a7d534d9b528a449cb8135d489871a596f656cd8b1a3c1adbcdb25704d",
+      "bytes": 567
+    },
+    "fusion-audit-all.json": {
+      "sha256": "9e0d3c85d52a606bb6393a07a0322382652332cdbe3d3f88cb553fe3013558a8",
+      "bytes": 362
+    },
+    "fusion-audit-all.stderr": {
+      "sha256": "9aac3da9a7039a99c345545c32f286aa65c358d571bfce7e00d94625d095c829",
+      "bytes": 150
+    },
+    "fusion-audit-before.json": {
+      "sha256": "275e89957101be61eccbbf06b8b6bd41c25332af7d62d48a579fd91c1ae365cb",
+      "bytes": 1209
+    },
+    "fusion-audit-runtime.json": {
+      "sha256": "9e0d3c85d52a606bb6393a07a0322382652332cdbe3d3f88cb553fe3013558a8",
+      "bytes": 362
+    },
+    "fusion-audit-runtime.stderr": {
+      "sha256": "9aac3da9a7039a99c345545c32f286aa65c358d571bfce7e00d94625d095c829",
+      "bytes": 150
+    },
+    "fusion-build-hashes.json": {
+      "sha256": "dc170bd34eaa194ffd1c5049d4d6f5bb469aa91e5aba11fd9c474168fac658b3",
+      "bytes": 6132
+    },
+    "fusion-build.log": {
+      "sha256": "3388d8f3136509403fb6935887d52edfa79b692bf75433a7a411317c417745fb",
+      "bytes": 261
+    },
+    "fusion-catalog-schema-change.json": {
+      "sha256": "d53217c5e8a16edbb17c4021637f8614d706f7baaa077581028b7c6b40e93887",
+      "bytes": 2961
+    },
+    "fusion-clean-install.log": {
+      "sha256": "564e871e304d2d5af02c7fe7af7f88ad42724cb31aa036224b0403f3de1222a5",
+      "bytes": 6997
+    },
+    "fusion-generated-changes.json": {
+      "sha256": "19c60faeb52da98fa428099f4c51a5615ff338a3ae8e6a15c04108f61885cdd4",
+      "bytes": 3063
+    },
+    "fusion-installed-tree-final.json": {
+      "sha256": "e54c3203bf272fb565c3f8a9464f1f631e63531923f67181cf95c4a545fe95d6",
+      "bytes": 6489
+    },
+    "fusion-installed-tree-final.result.json": {
+      "sha256": "403e7661bdbc3327bc157fdeeabe22208711016e85ec0032271336ee2ac97e14",
+      "bytes": 44
+    },
+    "fusion-installed-tree-final.stderr": {
+      "sha256": "9aac3da9a7039a99c345545c32f286aa65c358d571bfce7e00d94625d095c829",
+      "bytes": 150
+    },
+    "fusion-installed-tree.json": {
+      "sha256": "e54c3203bf272fb565c3f8a9464f1f631e63531923f67181cf95c4a545fe95d6",
+      "bytes": 6489
+    },
+    "fusion-installed-tree.stderr": {
+      "sha256": "9aac3da9a7039a99c345545c32f286aa65c358d571bfce7e00d94625d095c829",
+      "bytes": 150
+    },
+    "fusion-master-node22.log": {
+      "sha256": "cd8d14491fa9456ab22ad798fc32c8de1e3ffdb575af7446e41755200af17089",
+      "bytes": 153849
+    },
+    "fusion-master-node22.result.json": {
+      "sha256": "33355553ef6bb9182375b3ec3ae790c9cab449f9d8567eefa36c6380108c8594",
+      "bytes": 89
+    },
+    "fusion-master-node24.log": {
+      "sha256": "be81642758261c5c4b82fdae298468df6f03cff327125aeaad8b228a8d8defca",
+      "bytes": 69754
+    },
+    "fusion-master-node24.result.json": {
+      "sha256": "f78149ce19684069eb7ee8fe1856cfa2d21282fd2922a0a13b18c0efadac74f7",
+      "bytes": 195
+    },
+    "fusion-master-node26.log": {
+      "sha256": "5a705ff9599451c1fc9ff2554818525f12f0d510aa0a2123071de24be9a2e22a",
+      "bytes": 69782
+    },
+    "fusion-master-node26.result.json": {
+      "sha256": "59e8929007f4d23fa8774692acc18fbb76ac3171923bb5d8398dc36773ce7950",
+      "bytes": 194
+    },
+    "fusion-resolution.log": {
+      "sha256": "c959e5a4173cd4ee0a4f28fbd90f9b69b0c656396723459adfcceec35ad27d35",
+      "bytes": 168
+    },
+    "fusion-test-source-bindings.json": {
+      "sha256": "19aeb44599d3a778505b7513c40ed9bbdfda546bf86e84f844ca86a80f94dcdf",
+      "bytes": 11170
+    },
+    "fusion-url-normalization.json": {
+      "sha256": "b8f1f784f4a3cfbd549c53daafa276a0b0df6667dff29be75ffe22b316792d4a",
+      "bytes": 451
+    },
+    "openpnp-audit-after.json": {
+      "sha256": "afada4301bc7cd49370a8c76be723a9d2ea89e32feeea096998a5bc757cb6b18",
+      "bytes": 363
+    },
+    "openpnp-audit-after.stderr": {
+      "sha256": "9aac3da9a7039a99c345545c32f286aa65c358d571bfce7e00d94625d095c829",
+      "bytes": 150
+    },
+    "openpnp-audit-all.json": {
+      "sha256": "afada4301bc7cd49370a8c76be723a9d2ea89e32feeea096998a5bc757cb6b18",
+      "bytes": 363
+    },
+    "openpnp-audit-all.stderr": {
+      "sha256": "9aac3da9a7039a99c345545c32f286aa65c358d571bfce7e00d94625d095c829",
+      "bytes": 150
+    },
+    "openpnp-audit-before.json": {
+      "sha256": "d4ce37a64b25b1aa612c428609e4f4ae3a398de67c4f046f8d8b6d1e6623679d",
+      "bytes": 1959
+    },
+    "openpnp-clean-install.log": {
+      "sha256": "dbd9be55385ce037df8bf81bf8b48f2ed1bcbd795099b0bcceedbdf0eb5fa8a9",
+      "bytes": 30813
+    },
+    "openpnp-installed-tree-final.json": {
+      "sha256": "68347a176f3854840d6df42df8444523eecdb72a226f20a4478089ba00bcafd2",
+      "bytes": 30093
+    },
+    "openpnp-installed-tree-final.result.json": {
+      "sha256": "403e7661bdbc3327bc157fdeeabe22208711016e85ec0032271336ee2ac97e14",
+      "bytes": 44
+    },
+    "openpnp-installed-tree-final.stderr": {
+      "sha256": "9aac3da9a7039a99c345545c32f286aa65c358d571bfce7e00d94625d095c829",
+      "bytes": 150
+    },
+    "openpnp-installed-tree.json": {
+      "sha256": "68347a176f3854840d6df42df8444523eecdb72a226f20a4478089ba00bcafd2",
+      "bytes": 30093
+    },
+    "openpnp-installed-tree.stderr": {
+      "sha256": "9aac3da9a7039a99c345545c32f286aa65c358d571bfce7e00d94625d095c829",
+      "bytes": 150
+    },
+    "openpnp-lock-resolution-changes.json": {
+      "sha256": "9a5913c4bbf249d8b172912aa34f5799ca80506ce303ba21a3e33c069609debd",
+      "bytes": 3462
+    },
+    "openpnp-resolution.log": {
+      "sha256": "286f254d778554b9fb9134d6d8eeade7c02ee6a36ffb8293fa644c1b11426030",
+      "bytes": 380
+    },
+    "openpnp-url-normalization.json": {
+      "sha256": "516257f285e4675098e15d8cb668efd51541c39b4fe2f5b91c885ba8d59fc4a6",
+      "bytes": 1274
+    },
+    "registry-body-parser-2.4.0.json": {
+      "sha256": "053888e0beccb59885381f312f1383a663fa8d6078ef5fcbfa3a152d26f162b8",
+      "bytes": 1167
+    },
+    "registry-qs-6.16.1.json": {
+      "sha256": "95fde645fecb64817a8460e2b5b9c0c63f81826d1b99ec05baddbf13ffa1ef77",
+      "bytes": 785
+    },
+    "registry-zod-4.6.7.json": {
+      "sha256": "8159474d8ff52f4dc3c7d6a59f36e7f9704bd79579352a9a4bb2f8130317d8c3",
+      "bytes": 841
+    },
+    "runtime-identities.json": {
+      "sha256": "7644e84c5b58195e2230ddb10e1e50064e0ee08a37384d4cb07979d514c0fa98",
+      "bytes": 729
+    }
+  },
+  "limits": {
+    "openpnp_mcp_rebuilt_by_this_task": false,
+    "earlier_stage06_preserved": true,
+    "physical_qualification": false,
+    "licensed_fusion_or_live_cloud_qualification": false,
+    "windows_host_tests_executed": false,
+    "real_os_vault_opt_in_executed": false,
+    "python_312_executed": false,
+    "audit_is_time_specific_advisory_observation": true
+  },
+  "skips": "Per runtime: 1 companion Windows skip; 12 package skips (11 Windows ACL/reparse-point cases and the opt-in real OS vault case); 1 Python provider-only skip. Skips are not qualification passes."
+}

@@ -40,6 +40,11 @@ public final class NativeAxisBacklashSettings {
             validateCurrentState();used=true;machine.setHomed(false);ReferenceNozzleTipCalibration.resetAllNozzleTips();
             for(Camera c:machine.getAllCameras())if(c instanceof ReferenceCamera)((ReferenceCamera)c).getAdvancedCalibration().setValid(false);
             axis.setBacklashCompensationMethod(method);axis.setBacklashOffset(mm(offset));axis.setBacklashSpeedFactor(speed);axis.setSneakUpOffset(mm(sneak));axis.setAcceptableTolerance(mm(tolerance));
+            // Returning native listeners must not restore the homing observation invalidated above.
+            if(machine.isHomed()){
+                machine.setHomed(false);
+                fail("CONFIGURATION_FAULT","Native listener reinstated homing during backlash configuration; observation revoked");
+            }
             if(!state(axis).equals(Arrays.asList(method,offset,speed,sneak,tolerance)))fail("CONFIGURATION_FAULT","Native setter/listener changed the staged backlash values; never replay");
         }
         public Map<String,Object> metadata(){Map<String,Object> out=behavior(axis,method,offset,speed,sneak,tolerance);out.put("type",TYPE);out.put("requires_disabled",true);out.put("requires_validation",true);out.put("caller_must_invalidate",Arrays.asList("homing","nozzle-runout","vision-registration","fiducial-registration","job-validation"));return out;}

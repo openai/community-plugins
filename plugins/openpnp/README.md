@@ -2,13 +2,13 @@
 
 Configure and operate the pinned OpenPnP native simulator through **61 typed MCP tools, 34 configuration change types and 14 skills**. This review candidate includes guarded configuration, native vision/motion/jobs, material and board loads, inspection records, and local sensing reconciliation with bounded crash/restart replacement. Read runtime capabilities before choosing a workflow.
 
-The current source41 build passes 91 native programs on each of macOS ARM64 and Linux ARM64, 17 packaged MCP workflows, and two scripted native GUI restart-to-placement journeys. Stage06 package assembly and Node22 pass 475 tests with 18 explicit live-test skips. A separate source-SDK live history case passes. These are distinct scoped results; see [qualification and limitations](references/qualification.md).
+This revision passes 94 native OpenPnP programs, all 17 packaged MCP workflows, installed lifecycle, controller/history and nine scripted GUI routes on macOS ARM64. A separate matching-production campaign passes 14 JVM halts and 28 recoveries. Node 22.19.0, 24.20.0 and 26.0.0 each pass 416 Node tests and 84 Python harness tests, with 24 explicit Node skips. See [qualification and limitations](references/qualification.md) for exact artifacts and evidence boundaries.
 
-**The full implementation plan remains unfinished: all R01–R18 are partial.** No physical machine is available. Manual desktop installation, uniform fresh evaluation of all fourteen skills, current performance and continuous endurance remain unqualified. Physical control is unavailable in this candidate.
+**The full implementation plan remains unfinished: all R01–R18 are partial.** No physical machine is available. Manual desktop installation, uniform fresh evaluation of all fourteen skills, current performance and continuous endurance remain unqualified. Physical control is unsupported and unqualified in this candidate.
 
-## Known source41 limitation
+## Configuration validity
 
-Source41 has a reproduced mapped-axis homing postcondition defect: a native input-axis setter listener can mark the machine homed during configuration apply, and the singleton apply path can report success. A separate S80 repair is under test and is not included here. Treat this path as unqualified; require independent current-state verification before dependent operation.
+Supported mapped-axis, backlash, nozzle-assembly and restore changes invalidate affected homing and calibration state. If a native callback restores homing during an affected configuration change, the operation fails and retains a configuration fault; possible partial effects remain recorded. Re-establish the required native state before dependent work. These checks are qualified only for the supported simulator paths.
 
 ## Prerequisites
 

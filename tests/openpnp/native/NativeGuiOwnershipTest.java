@@ -12,6 +12,8 @@ import java.security.MessageDigest;
 import java.util.*;
 import java.util.List;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
 import javax.swing.*;
 import org.openpnp.gui.MainFrame;
@@ -63,8 +65,7 @@ public final class NativeGuiOwnershipTest {
             if(Boolean.getBoolean("openpnp.codex.test.unknownExit")){unknownExit(root);throw new AssertionError("unknown exit did not terminate JVM");}
             JsonObject prepared=run("openpnp_prepare_job",mutation("sample","pnp-test")).getAsJsonObject("result");
             check(edt(()->frame.getJobTab().getJob().getBoardLocations().size())>0,"prepared native job published to actual JobPanel");run("openpnp_validate_job",mutation());
-            JsonObject started=rpc("openpnp_start_job",mutation("job_id",prepared.get("job_id").getAsString()));click("Take local control");awaitOwnership(false);
-            JsonObject stopped=rpc("openpnp_get_operation",object("operation_id",started.get("operation_id").getAsString()));check(Arrays.asList("aborted","succeeded").contains(stopped.get("state").getAsString()),"takeover drains native job: "+stopped);
+            takeoverRunningJob(prepared.get("job_id").getAsString());
             expect("LOCAL_GRANT_REQUIRED","openpnp_home_machine",mutation());passed.add("local revocation drains owned native job and rejects stale session");
             // The default finite strip fixture may consume a partial board on abort; a fresh sample uses remaining stock.
             click("Allow Codex control");awaitOwnership(true);session=rpc("openpnp_request_control_session",object("request_id","gui-grant-two","ttl_seconds",300)).get("session_id").getAsString();
@@ -77,6 +78,53 @@ public final class NativeGuiOwnershipTest {
             click("Disconnect bridge");waitUntil(()->edt(()->frame.getRootPane().getClientProperty(KEY))==null,30000,"second disconnect");passed.add("drained detach closes registry/resources and native bootstrap reattaches");
             System.out.println("OPENPNP_NATIVE_GUI_RESULT "+JSON.toJson(map("passed",passed,"simulation_only",true,"physical_qualification",false,"native_gui",true,"preferences_implementation",java.util.prefs.Preferences.userRoot().getClass().getName(),"bridge_on_application_classpath",false,"bridge_sha256",sha(jar),"runtime_manifest_sha256",sha(runtime.resolve("codex-build-manifest.json")))));
         }catch(Throwable failure){failure.printStackTrace();exit=1;}finally{try{config.getMachine().close();}catch(Exception ignored){}edt(()->{for(Window window:Window.getWindows())window.dispose();return null;});}System.exit(exit);
+    }
+    /** Hold the actual first native next() after preflight safe-Z, not its admission or completion. */
+    static final class TakeoverGate implements JobProcessor.TextStatusListener,AutoCloseable {
+        final JobProcessor processor=config.getMachine().getPnpJobProcessor();
+        final CountDownLatch entered=new CountDownLatch(1),release=new CountDownLatch(1);
+        final AtomicBoolean once=new AtomicBoolean(),held=new AtomicBoolean();
+        final AtomicInteger cleanupCalls=new AtomicInteger();
+        final AtomicReference<Throwable> failure=new AtomicReference<>();
+        TakeoverGate(){processor.addTextStatusListener(this);}
+        public void textStatus(String text){
+            if("Cleaning up.".equals(text))cleanupCalls.incrementAndGet();
+            if(!"Preparing feeders.".equals(text)||!once.compareAndSet(false,true))return;
+            held.set(true);
+            try{
+                check(config.getMachine().isTask(Thread.currentThread())&&!SwingUtilities.isEventDispatchThread(),"takeover gate is inside actual native processor task");
+                entered.countDown();
+                check(release.await(20,TimeUnit.SECONDS),"bounded running-job takeover gate released");
+            }catch(Throwable error){failure.set(error);throw new AssertionError("Native takeover gate failed",error);}
+            finally{held.set(false);}
+        }
+        public void close()throws Exception{
+            release.countDown();waitUntil(()->!config.getMachine().isBusy(),10000,"takeover listener native drain");processor.removeTextStatusListener(this);
+        }
+    }
+    static void takeoverRunningJob(String jobId)throws Exception {
+        try(TakeoverGate gate=new TakeoverGate()){
+            JsonObject started=rpc("openpnp_start_job",mutation("job_id",jobId));String id=started.get("operation_id").getAsString();
+            check(gate.entered.await(10,TimeUnit.SECONDS),"actual native first step reaches takeover gate");
+            JsonObject running=rpc("openpnp_get_operation",object("operation_id",id));
+            check(gate.failure.get()==null&&gate.held.get()&&"running".equals(running.get("state").getAsString())&&running.get("initialized").getAsBoolean()
+                &&running.get("native_steps_started").getAsInt()==1&&running.get("native_effect_pending").getAsBoolean(),"takeover targets an initialized running native step: "+running);
+            FutureTask<Void> press=new FutureTask<>(()->{click("Take local control");return null;});SwingUtilities.invokeLater(press);press.get(2,TimeUnit.SECONDS);
+            waitUntil(()->"revoking".equals(rpc("openpnp_get_status",object()).getAsJsonObject("gui_ownership").get("state").getAsString()),5000,"actual local revocation while native step held");
+            check(gate.held.get(),"local takeover is accepted before the held native step returns");
+            expect("OWNERSHIP_REVOKED","openpnp_home_machine",mutation());
+            gate.release.countDown();awaitOwnership(false);
+            JsonObject stopped=rpc("openpnp_get_operation",object("operation_id",id));
+            check("aborted".equals(stopped.get("state").getAsString()),"takeover aborts running native job: "+stopped);
+            check(gate.failure.get()==null&&gate.cleanupCalls.get()==1&&stopped.get("native_steps_started").getAsInt()==1&&!stopped.get("native_effect_pending").getAsBoolean(),"one native step and one cleanup complete without a pending effect");
+            JsonObject completion=stopped.getAsJsonObject("native_completion");check(completion.get("native_wrapper_completed").getAsBoolean()&&completion.get("native_wrapper_succeeded").getAsBoolean(),"takeover publishes only after actual successful native wrapper completion");
+            int stepCompletions=0,cleanupCompletions=0;
+            for(String line:Files.readAllLines(state.resolve("journal/operations.jsonl"))){JsonObject row=new JsonParser().parse(line).getAsJsonObject(),payload=row.getAsJsonObject("payload");if(payload==null||!payload.has("operation_id")||!id.equals(payload.get("operation_id").getAsString()))continue;
+                if("native_step_complete".equals(row.get("type").getAsString()))stepCompletions++;
+                if("cleanup_complete".equals(row.get("type").getAsString())){cleanupCompletions++;check(payload.get("native_cleanup_invoked").getAsBoolean(),"native abort cleanup was actually invoked");}}
+            check(stepCompletions==1&&cleanupCompletions==1&&!config.getMachine().isBusy()&&((AbstractMachine)config.getMachine()).getExternalExecutionControl().getPendingTaskCount()==0,"durable native step and cleanup completed before local ownership release");
+            System.out.println("OPENPNP_GUI_TAKEOVER_PROOF "+JSON.toJson(map("running_step_held_before_takeover",true,"state",stopped.get("state").getAsString(),"native_steps_completed",stepCompletions,"native_cleanup_completed",cleanupCompletions,"native_wrapper_completed",true,"physical_qualification",false)));
+        }
     }
     static void unknownExit(Path root)throws Exception {
         org.openpnp.machine.reference.feeder.ReferenceStripFeeder feeder=(org.openpnp.machine.reference.feeder.ReferenceStripFeeder)config.getMachine().getFeeders().get(0);

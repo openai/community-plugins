@@ -30,7 +30,9 @@ public final class NativeConfigurationSnapshots {
         public final Map<String,Object> report;
         private Restore(List<NativeSettings.Patch> patches,Map<String,Object> report){this.patches=patches;this.report=report;}
         public void validateCurrentState()throws Exception{for(NativeSettings.Patch patch:patches)patch.validateCurrentState();}
-        public boolean invalidatesAxisDependencies(){return patches.stream().anyMatch(patch->patch.requiresRetainedPlan()&&!patch.isVacuumSensingChange());}
+        public boolean invalidatesAxisDependencies(){return patches.stream().anyMatch(NativeSettings.Patch::invalidatesAxisDependencies);}
+        public String axisDependencyReason(){return patches.stream().anyMatch(patch->patch.metadata().stream()
+            .anyMatch(effect->NativeAxisBacklashSettings.TYPE.equals(effect.get("type"))))?"axis-backlash-restore":"axis-motion-limits-restore";}
         public boolean invalidatesCameraRegistration(){return patches.stream().anyMatch(patch->patch.metadata().stream().anyMatch(effect->"set_camera_geometry".equals(effect.get("type"))));}
         public void apply()throws Exception{validateCurrentState();for(NativeSettings.Patch patch:patches)patch.apply();}
     }

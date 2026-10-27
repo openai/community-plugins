@@ -53,10 +53,13 @@ export function planMaster({ root = ROOT, env = process.env, node = process.exec
     const build = directory(env.OPENPNP_TEST_GUI_BUILD, 'OPENPNP_TEST_GUI_BUILD');
     const javaHome = directory(env.OPENPNP_TEST_JAVA_HOME, 'OPENPNP_TEST_JAVA_HOME');
     ensure(build.startsWith(root + path.sep) && existsSync(path.join(build, 'runtime/codex-build-manifest.json')) && existsSync(path.join(build, 'test-classes')), 'Explicit compatible immutable GUI build below this checkout required');
-    ensure(existsSync(path.join(javaHome, 'bin/java')), 'GUI Java executable missing');
+    ensure(existsSync(path.join(javaHome, 'bin/java')) && existsSync(path.join(javaHome, 'bin/javac')), 'GUI JDK java/javac executables missing');
     ensure(platform === 'darwin' || (platform === 'linux' && (env.DISPLAY || env.WAYLAND_DISPLAY)), 'Native GUI requires an explicit desktop display');
     for (const name of ['ownership', 'unknown-exit', 'topology', 'panel-membership', 'panel-takeover', 'title', 'board-inspection']) {
       phases.push({ id: `gui-${name}`, command: 'python3', args: ['scripts/openpnp-test-native-gui.py', '--build', build, '--java-home', javaHome, '--run', path.join(output, `gui-${name}`), '--node', node, ...(name === 'ownership' ? [] : [`--${name}`])] });
+    }
+    for (const boundary of ['intent-force', 'zip-before']) {
+      phases.push({ id: `gui-restart-${boundary}`, command: 'python3', args: ['scripts/openpnp-test-native-gui-restart.py', '--build', build, '--java-home', javaHome, '--node', node, '--boundary', boundary, '--run', path.join(output, `gui-restart-${boundary}`)] });
     }
   } else skipped.push({ id: 'native-gui', reason: 'Set OPENPNP_TEST_GUI=1 with OPENPNP_TEST_GUI_BUILD, OPENPNP_TEST_JAVA_HOME and a compatible native display. Scripted GUI is distinct from manual desktop qualification.' });
   skipped.push({ id: 'physical,manual-desktop,performance,endurance', reason: 'Separate explicit qualification protocols and environments; the master never infers these from bounded tests. See tests/openpnp/README.md.' });

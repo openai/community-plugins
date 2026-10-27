@@ -14,7 +14,7 @@ If both native material-load tools are advertised, follow [virtual tray load cha
 1. Inspect capabilities/configuration and resolve the physical feeder, slot/address, assigned part/lot, tape or tray geometry, remaining quantity, and pickup pose.
 2. Prepare the supported assignment or geometry change with `openpnp_plan_configuration`. Check pitch, index, orientation/polarity, height, usable pockets, and nozzle compatibility; apply the returned plan.
 3. Coordinate loading/refill through the actual operator evidence path. A powered feeder identity and its mounted slot geometry are separate facts.
-4. Use `openpnp_test_feeder` or a supported `openpnp_handle_part` recipe for a bounded feed/pick test. Inspect both the material position and nozzle occupancy; include native retry consumption.
+4. Use `openpnp_test_feeder` for a bounded feeder advance. It does not pick a part or establish nozzle occupancy; inspect the resulting material position and consumption. Test a pick only through a separately advertised and admitted handling recipe, then inspect nozzle occupancy and include native retry consumption.
 5. After failure or timeout, inspect the recorded operation and fresh physical state before advancing again. A repeat of the request ID queries its result; a new request could consume another pocket.
 
 ## Completion and recovery

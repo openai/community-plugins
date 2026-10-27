@@ -6,7 +6,7 @@
   "engines": { "node": ">=22.19.0" },
   "scripts": { "build": "node build.mjs && node notices.mjs" },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "1.30.0",
+    "@modelcontextprotocol/sdk": "1.32.1",
     "ajv": "8.20.0"
   },
   "devDependencies": { "esbuild": "0.28.2" }

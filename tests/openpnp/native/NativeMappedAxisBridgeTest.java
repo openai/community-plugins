@@ -56,11 +56,14 @@ public final class NativeMappedAxisBridgeTest {
   machine.addListener(new MachineListener.Adapter(){@Override public void machineEnabled(Machine m){enabled++;}@Override public void machineHomed(Machine m,boolean h){if(h)homed++;}@Override public void machineHeadActivity(Machine m,Head h){activity++;}});
   before=counts();
  }
- @SuppressWarnings("unchecked") static NativeBoardLoads seedDependencies()throws Exception{
+ static NativeBoardLoads seedDependencies()throws Exception{return seedDependencies(true);}
+ /** Assembly recovery preimages require the admitted default without synthetic runout objects.
+  * Existing callers retain the original stale-runout fixture and all its assertions. */
+ @SuppressWarnings("unchecked") static NativeBoardLoads seedDependencies(boolean seedSyntheticRunout)throws Exception{
   terminal("openpnp_prepare_job",mutation("sample","pnp-test"),"succeeded");job=(Job)field(bridge,"job");NativeBoardLoads loads=(NativeBoardLoads)field(bridge,"boardLoads");
   task(()->{loads.registrationCompleted(job,revision());for(PlacementsHolderLocation<?> r:job.getRootPanelLocation().getChildren()){r.setLocalToParentTransform(AffineTransform.getTranslateInstance(11,12));r.setPlacementsTransformStatus(PlacementsHolderLocation.PlacementsTransformStatus.LocallySet);}
    for(Camera camera:machine.getAllCameras())((org.openpnp.machine.reference.camera.ReferenceCamera)camera).getAdvancedCalibration().setValid(true);
-   ReferenceNozzle nozzle=(ReferenceNozzle)machine.getDefaultHead().getDefaultNozzle();for(NozzleTip tip:machine.getNozzleTips())if(tip.getClass()==ReferenceNozzleTip.class){ReferenceNozzleTipCalibration c=((ReferenceNozzleTip)tip).getCalibration();Map<String,Object> lookup=(Map<String,Object>)field(c,"runoutCompensationLookup");lookup.put(nozzle.getId(),new ReferenceNozzleTipCalibration.TableBasedRunoutCompensation(Arrays.asList(new Location(LengthUnit.Millimeters,0.1,0,0,0),new Location(LengthUnit.Millimeters,-0.1,0,0,180))));check(c.isCalibrated(nozzle),"synthetic native runout cache is populated");}return null;});
+   ReferenceNozzle nozzle=(ReferenceNozzle)machine.getDefaultHead().getDefaultNozzle();if(seedSyntheticRunout)for(NozzleTip tip:machine.getNozzleTips())if(tip.getClass()==ReferenceNozzleTip.class){ReferenceNozzleTipCalibration c=((ReferenceNozzleTip)tip).getCalibration();Map<String,Object> lookup=(Map<String,Object>)field(c,"runoutCompensationLookup");lookup.put(nozzle.getId(),new ReferenceNozzleTipCalibration.TableBasedRunoutCompensation(Arrays.asList(new Location(LengthUnit.Millimeters,0.1,0,0,0),new Location(LengthUnit.Millimeters,-0.1,0,0,180))));check(c.isCalibrated(nozzle),"synthetic native runout cache is populated");}return null;});
   // Seed validation *evidence state only*. No native validation/home/vision success is claimed.
   synchronized(bridge){set(bridge,"jobState","validated");set(bridge,"validatedBoardLoadRevision",loads.revision());}
   return loads;

@@ -256,7 +256,7 @@ class QualificationTests(unittest.TestCase):
 
     def test_shell_command_wiring_and_first_failure_without_process_qualification(self):
         script = SCRIPT.with_suffix(".sh")
-        for failure in ("none", "stage", "mcp"):
+        for failure in ("none", "stage", "mcp", "lifecycle"):
             with self.subTest(failure=failure):
                 root = self.root / ("shell fixture " + failure)
                 target = root / "scripts/openpnp-ci-qualification.sh"
@@ -283,6 +283,7 @@ if name=='python3' and args[0].endswith('openpnp-build-controller-history.py'):
  package=Path(args[args.index('--output')+1])/'package';package.mkdir(parents=True)
  (package/'synthetic-marker').write_text('not a Java artifact')
 if name=='python3' and args[0].endswith('openpnp-test-native-mcp.py') and os.environ['CI_WIRING_FAILURE']=='mcp':sys.exit(38)
+if name=='python3' and args[0].endswith('openpnp-test-installed-lifecycle.py') and os.environ['CI_WIRING_FAILURE']=='lifecycle':sys.exit(39)
 ''')
                 stub.chmod(0o755)
                 for name in ("python3", "node", "npm"):
@@ -292,10 +293,11 @@ if name=='python3' and args[0].endswith('openpnp-test-native-mcp.py') and os.env
                        "CI_WIRING_CALLS": str(call_file), "CI_WIRING_FAILURE": failure}
                 result = subprocess.run(["/bin/bash", str(target)], env=env, capture_output=True, timeout=10)
                 calls = [json.loads(line) for line in call_file.read_text().splitlines()]
-                self.assertEqual(result.returncode, {"none": 0, "stage": 37, "mcp": 38}[failure], result.stderr)
+                self.assertEqual(result.returncode, {"none": 0, "stage": 37, "mcp": 38, "lifecycle": 39}[failure], result.stderr)
                 staged = [c for c in calls if len(c) > 2 and c[0] == "python3" and c[2] == "stage"]
                 self.assertEqual(len(staged), 1)
                 native_calls = [c for c in calls if any("test-native-mcp.py" in arg for arg in c)]
+                lifecycle_calls = [c for c in calls if any("test-installed-lifecycle.py" in arg for arg in c)]
                 history_calls = [c for c in calls if len(c) > 2 and c[2] == "history"]
                 controller_calls = [c for c in calls if any("test-controller.mjs" in arg for arg in c)]
                 if failure != "stage":
@@ -304,9 +306,20 @@ if name=='python3' and args[0].endswith('openpnp-test-native-mcp.py') and os.env
                     self.assertEqual(call[call.index("--suite") + 1], "all")
                     self.assertEqual(call[call.index("--runtime") + 1], str(root / "validation/ci-native/build/runtime"))
                     self.assertEqual(call[call.index("--mapped-test-classes") + 1], str(root / "validation/ci-packaged/validation/mapped-classes"))
+                self.assertEqual(len(lifecycle_calls), 1 if failure in ("none", "lifecycle") else 0)
+                if lifecycle_calls:
+                    stage = root / "validation/ci-packaged"
+                    self.assertEqual(lifecycle_calls[0], [
+                        "python3", str(stage / "scripts/openpnp-test-installed-lifecycle.py"),
+                        "--core-suite", str(stage / "validation/mcp/core"),
+                        "--output", str(stage / "validation/installed-lifecycle"),
+                        "--node", str(binaries / "node")])
+                    self.assertLess(calls.index(native_calls[0]), calls.index(lifecycle_calls[0]))
                 self.assertEqual(len(controller_calls), 1 if failure == "none" else 0)
                 self.assertEqual(len(history_calls), 1 if failure == "none" else 0)
                 if history_calls:
+                    self.assertLess(calls.index(lifecycle_calls[0]), calls.index(controller_calls[0]))
+                    self.assertLess(calls.index(controller_calls[0]), calls.index(history_calls[0]))
                     call = history_calls[0]
                     self.assertEqual(call[call.index("--native-tests") + 1], str(root / "validation/ci-native/native-tests"))
 

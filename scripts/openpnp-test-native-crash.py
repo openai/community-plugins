@@ -267,11 +267,12 @@ def run_logged(command, env, logfile, timeout):
     process = None
     cleanup = None
     started = time.monotonic()
-    result = {"exit_code": None, "timeout": False, "interrupted": False, "command": command}
+    result = {"pid": None, "exit_code": None, "timeout": False, "interrupted": False, "command": command}
     try:
         with logfile.open("xb") as log:
             process = subprocess.Popen(command, cwd=ROOT, env=env, stdout=log, stderr=subprocess.STDOUT,
                                        stdin=subprocess.DEVNULL, start_new_session=True)
+            result["pid"] = process.pid
             try:
                 result["exit_code"] = process.wait(timeout=timeout)
             except subprocess.TimeoutExpired:

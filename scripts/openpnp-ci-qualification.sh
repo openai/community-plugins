@@ -28,6 +28,8 @@ node "$stage/scripts/verify-openpnp-package.mjs" > "$stage/validation/package-ve
 python3 "$stage/scripts/openpnp-test-native-mcp.py" \
   --runtime "$build/runtime" --output "$stage/validation/mcp" --node "$node" --java "$java" \
   --suite all --mapped-test-classes "$stage/validation/mapped-classes"
+python3 "$stage/scripts/openpnp-test-installed-lifecycle.py" \
+  --core-suite "$stage/validation/mcp/core" --output "$stage/validation/installed-lifecycle" --node "$node"
 node "$stage/scripts/openpnp-test-controller.mjs" \
   --runtime "$build/runtime" --output "$stage/validation/controller" --java "$java"
 python3 "$stage/scripts/openpnp-ci-qualification.py" history \

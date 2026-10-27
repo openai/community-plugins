@@ -46,6 +46,12 @@ public final class NativeSettings {
         private Patch(List<Edit> edits,List<Map<String,Object>> effects,Guard guard,boolean vacuum){this.edits=edits;this.effects=effects;retainedGuard=guard;vacuumSensingChange=vacuum;}
         public boolean isVacuumSensingChange(){return vacuumSensingChange;}
         public boolean requiresRetainedPlan(){return retainedGuard!=null;}
+        /** Configuration families that revoke homing, independent of how their plan is retained. */
+        public boolean invalidatesAxisDependencies(){return effects.stream().anyMatch(effect->{
+            Object type=effect.get("type");
+            return "set_axis_motion_limits".equals(type)||NativeAxisBacklashSettings.TYPE.equals(type)
+                ||NativeMappedAxisSettings.TYPE.equals(type)||NativeNozzleAssembly.TYPE.equals(type);
+        });}
         public synchronized void validateCurrentState()throws Exception{
             if(used)fail("PATCH_ALREADY_APPLIED","A used patch cannot be replayed");
             if(retainedGuard!=null)retainedGuard.validate();
