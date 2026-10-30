@@ -1,0 +1,47 @@
+[
+  {
+    "id": "f-token-01",
+    "unit": "unit.token-verifier",
+    "severity": "note",
+    "confidence": 0.95,
+    "title": "Bearer prefix and key lookup fail closed",
+    "detail": "verifyRequestHeader rejects non-string headers and empty key identifiers before consulting activeKeys.",
+    "evidence": "source/token-verifier.js:2-9",
+    "recommendation": "Preserve the explicit MISSING_BEARER_PREFIX and UNKNOWN_KEY_ID reason codes.",
+    "status": "open",
+    "createdPass": 1,
+    "updatedPass": 2,
+    "lastPerspective": "skeptic",
+    "lastWhy": "Re-verified source/token-verifier.js:2-9; fail-closed note holds."
+  },
+  {
+    "id": "f-rate-01",
+    "unit": "unit.rate-limiter",
+    "severity": "must",
+    "confidence": 0.9,
+    "title": "Non-finite or backward clock values corrupt rate-limit windows",
+    "detail": "If nowMs is NaN or moves backward relative to entry.windowStartMs, the 60000ms reset condition fails to normalize the window.",
+    "evidence": "source/rate-limiter.js:2-6",
+    "recommendation": "Validate Number.isFinite(nowMs) and clamp or reset when nowMs < entry.windowStartMs.",
+    "status": "open",
+    "createdPass": 1,
+    "updatedPass": 2,
+    "lastPerspective": "dreamer",
+    "lastWhy": "Re-verified source/rate-limiter.js:2-6; clock skew and NaN window check holds."
+  },
+  {
+    "id": "f-session-01",
+    "unit": "unit.session-store",
+    "severity": "should",
+    "confidence": 0.85,
+    "title": "Null or malformed session entries throw TypeError during pruning",
+    "detail": "Iterating records accesses record.expiresAtMs without guarding against null or undefined elements in the array.",
+    "evidence": "source/session-store.js:3-5",
+    "recommendation": "Check record && Number.isFinite(record.expiresAtMs) && Number.isFinite(nowMs) before comparing.",
+    "status": "open",
+    "createdPass": 1,
+    "updatedPass": 2,
+    "lastPerspective": "builder",
+    "lastWhy": "Re-verified source/session-store.js:3-5; null-record guard recommendation holds."
+  }
+]
