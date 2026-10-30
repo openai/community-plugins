@@ -1,0 +1,6 @@
+interface:
+  display_name: "Ponder"
+  short_description: "Run a coverage-gated multi-pass review and deliberation loop"
+  default_prompt: "Use $ponder on the bundled synthetic fixture only to inspect unit coverage, pass convergence, and ledger integrity. Do not edit files yet."
+policy:
+  allow_implicit_invocation: false

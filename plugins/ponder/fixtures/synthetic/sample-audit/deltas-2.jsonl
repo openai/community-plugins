@@ -1,0 +1,3 @@
+{"op":"keep","id":"f-token-01","perspective":"skeptic","why":"Re-verified source/token-verifier.js:2-9; fail-closed note holds."}
+{"op":"keep","id":"f-rate-01","perspective":"dreamer","why":"Re-verified source/rate-limiter.js:2-6; clock skew and NaN window check holds."}
+{"op":"keep","id":"f-session-01","perspective":"builder","why":"Re-verified source/session-store.js:3-5; null-record guard recommendation holds."}

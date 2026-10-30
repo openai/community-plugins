@@ -1,0 +1,39 @@
+{
+  "name": "ponder",
+  "version": "0.1.0",
+  "description": "Run a coverage-gated, multi-pass review and deliberation loop with an append-only ledger.",
+  "author": {
+    "name": "Quinn O'Donnell",
+    "url": "https://github.com/Quinnod345"
+  },
+  "homepage": "https://github.com/Quinnod345/ponder",
+  "repository": "https://github.com/Quinnod345/ponder",
+  "license": "MIT",
+  "keywords": [
+    "code-review",
+    "audit",
+    "deliberation",
+    "verification",
+    "developer-tools"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Ponder",
+    "shortDescription": "Coverage-gated multi-pass review and planning loop.",
+    "longDescription": "Run repeated grading passes over an explicitly declared codebase, UI, or plan across four perspectives (Skeptic, Builder, Dreamer, Empath) with an append-only delta ledger, deliberation gate, and coverage verification before stopping.",
+    "developerName": "Quinn O'Donnell",
+    "category": "Developer Tools",
+    "websiteURL": "https://github.com/Quinnod345/ponder",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "brandColor": "#0F766E",
+    "logo": "./assets/icon.svg",
+    "composerIcon": "./assets/icon.svg",
+    "defaultPrompt": [
+      "Use $ponder on the bundled synthetic fixture only to inspect unit coverage, pass convergence, and ledger integrity. Do not edit files yet.",
+      "Use $ponder to run a two-pass review over my explicitly declared source files and record ledger artifacts only in my declared session directory."
+    ]
+  }
+}

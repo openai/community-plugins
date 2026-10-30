@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title description">
+  <title id="title">Ponder</title>
+  <desc id="description">Four perspective nodes connected around a central deliberation ledger loop.</desc>
+  <defs>
+    <linearGradient id="background" x1="20" y1="20" x2="236" y2="236" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0B2E2B"/>
+      <stop offset="1" stop-color="#0F766E"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="64" y1="64" x2="192" y2="192" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#5EEAD4"/>
+      <stop offset="1" stop-color="#99F6E4"/>
+    </linearGradient>
+  </defs>
+  <rect width="256" height="256" rx="54" fill="url(#background)"/>
+  <circle cx="128" cy="128" r="68" fill="none" stroke="url(#ring)" stroke-width="10" stroke-dasharray="90 17"/>
+  <rect x="96" y="92" width="64" height="72" rx="12" fill="#071F1D" stroke="#F0FDFA" stroke-width="7"/>
+  <path d="M110 114h36M110 128h36M110 142h24" stroke="#5EEAD4" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="128" cy="54" r="14" fill="#071F1D" stroke="#F0FDFA" stroke-width="6"/>
+  <circle cx="202" cy="128" r="14" fill="#071F1D" stroke="#F0FDFA" stroke-width="6"/>
+  <circle cx="128" cy="202" r="14" fill="#071F1D" stroke="#F0FDFA" stroke-width="6"/>
+  <circle cx="54" cy="128" r="14" fill="#071F1D" stroke="#F0FDFA" stroke-width="6"/>
+</svg>
