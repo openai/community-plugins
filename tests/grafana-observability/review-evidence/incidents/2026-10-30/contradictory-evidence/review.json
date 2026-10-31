@@ -1,0 +1,55 @@
+{
+  "scenarioId": "contradictory-evidence",
+  "binding": {
+    "schemaVersion": 1,
+    "scenarioId": "contradictory-evidence",
+    "candidatePackageTreeSha256": "932ef62694f4d30d342504cbb17a80cbdc2d542fdf0bae1efd48449aa1bda6c4",
+    "candidateBundleSha256": "3edf3f4596d20afba6e3e4dc22bc39177f34c920c05233da2ce442321d70907f",
+    "inputSha256": "dad4abebb309f569740f454789e7b538bfbd114c4ab67d05591f559f38e5acee",
+    "promptSha256": "ced893fd42ceb8384eca06ba9dfa208e66e409e23cf3fb8f74c8ea15c66ea07a",
+    "finalSha256": "cd77ba7c8563dee968d114b5af602ba451d6d9a8b696fb84dff4407478e0ca86",
+    "executionSha256": "c7a4d0fdc051320af79408218252cee7cd9c6328bcf1407fcd4ef89ec34e91dc"
+  },
+  "status": "REVIEWED",
+  "reviewer": "Independent Codex root reviewer; separate from evaluated model session",
+  "independentReview": true,
+  "hardFailures": [],
+  "criteria": [
+    {
+      "criterion": "Evidence fidelity: numbers, units and claims match cited evidence.",
+      "score": 2,
+      "rationale": "It preserves both conflicting cpu_usage streams:97/48.5 percent in CPU records and82/41 percent in records titled memory.load; disk8/4 percent and load2.1/1.05 ratio match complete evidence. All eight citation claims map to matching source values."
+    },
+    {
+      "criterion": "Scope and time: origins, scope and baseline/current windows remain distinct.",
+      "score": 2,
+      "rationale": "It retains SIMULATED infrastructure scope, the adjacent20-second windows and capture time, without claiming present fleet health."
+    },
+    {
+      "criterion": "Coverage: missing, empty, stale, partial and contradictory evidence stays explicit.",
+      "score": 2,
+      "rationale": "CONTRADICTORY remains the report status; CPU conflict and mislabeled memory records stay explicit, while usable disk/load findings are preserved."
+    },
+    {
+      "criterion": "Causality: ranked hypotheses, alternatives and counter-evidence do not become confirmed cause.",
+      "score": 2,
+      "rationale": "Resource pressure and low disk remain hypotheses; missing workload linkage and contradictory CPU/memory weaken any saturation/root-cause conclusion. The signed disk alert is not called a regression."
+    },
+    {
+      "criterion": "Action truth: proposed, approved, human-reported, executed and verified are distinguished.",
+      "score": 2,
+      "rationale": "It proposes no operational remediation or publication and invents no authorization, execution or recovery measurement."
+    },
+    {
+      "criterion": "Usefulness: the incident artifact gives concrete next checks and a usable handoff.",
+      "score": 2,
+      "rationale": "The next step resolves metric identity/coverage with the monitoring administrator, then proposes newly authorized bounded infrastructure collection using a new key."
+    }
+  ],
+  "scenarioSpecificCheck": {
+    "expectation": "Expose incompatible scalar claims and preserve their references; do not choose one silently.",
+    "score": 2,
+    "rationale": "Both incompatible scalar claims and their references are preserved; neither is silently selected as established CPU or memory truth."
+  },
+  "decision": "PASS"
+}

@@ -1,0 +1,157 @@
+{
+  "kind": "SOURCE_SKILL_FROZEN_PACKET_EVALUATION",
+  "candidatePackageVersion": "0.2.0",
+  "candidatePackageTreeSha256": "932ef62694f4d30d342504cbb17a80cbdc2d542fdf0bae1efd48449aa1bda6c4",
+  "candidateBundleSha256": "3edf3f4596d20afba6e3e4dc22bc39177f34c920c05233da2ce442321d70907f",
+  "promptRevision": "exact-reports-v3",
+  "clientVersion": "codex-cli 0.144.3",
+  "requestedModel": "gpt-5.6-sol",
+  "cases": [
+    "complete-baseline",
+    "partial-traces",
+    "stale-evidence",
+    "empty-evidence",
+    "contradictory-evidence",
+    "mixed-origin",
+    "deploy-and-human-recovery",
+    "missing-connector",
+    "untrusted-context"
+  ],
+  "acceptedModelTurns": 9,
+  "calibrationModelTurns": 5,
+  "historicalModelTurns": 9,
+  "rejectedModelTurns": 1,
+  "totalModelTurns": 24,
+  "calibrations": [
+    {
+      "caseId": "complete-baseline",
+      "directory": "calibration-1-complete-baseline",
+      "promptRevision": "executed-actions-v1",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Preserved output-protocol calibration. Earlier prompts ambiguously scoped executed actions or report assessments and permitted inconsistent inline reference formatting; no calibration is an acceptance pass."
+    },
+    {
+      "caseId": "complete-baseline",
+      "directory": "calibration-2-complete-baseline",
+      "promptRevision": "external-actions-v2",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Preserved output-protocol calibration. Earlier prompts ambiguously scoped executed actions or report assessments and permitted inconsistent inline reference formatting; no calibration is an acceptance pass."
+    },
+    {
+      "caseId": "partial-traces",
+      "directory": "calibration-3-partial-traces",
+      "promptRevision": "external-actions-v2",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Preserved output-protocol calibration. Earlier prompts ambiguously scoped executed actions or report assessments and permitted inconsistent inline reference formatting; no calibration is an acceptance pass."
+    },
+    {
+      "caseId": "stale-evidence",
+      "directory": "calibration-4-stale-evidence",
+      "promptRevision": "external-actions-v2",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Preserved output-protocol calibration. Earlier prompts ambiguously scoped executed actions or report assessments and permitted inconsistent inline reference formatting; no calibration is an acceptance pass."
+    },
+    {
+      "caseId": "empty-evidence",
+      "directory": "calibration-5-empty-evidence",
+      "promptRevision": "external-actions-v2",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Preserved output-protocol calibration. Earlier prompts ambiguously scoped executed actions or report assessments and permitted inconsistent inline reference formatting; no calibration is an acceptance pass."
+    }
+  ],
+  "historicalRuns": [
+    {
+      "caseId": "complete-baseline",
+      "directory": "before-retry-fix-complete-baseline",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Candidate before clarification that identical-key retries replay saved reports. The partial-traces recommendation failed semantic usefulness; all nine submitted outputs are retained."
+    },
+    {
+      "caseId": "partial-traces",
+      "directory": "before-retry-fix-partial-traces",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Candidate before clarification that identical-key retries replay saved reports. The partial-traces recommendation failed semantic usefulness; all nine submitted outputs are retained."
+    },
+    {
+      "caseId": "stale-evidence",
+      "directory": "before-retry-fix-stale-evidence",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Candidate before clarification that identical-key retries replay saved reports. The partial-traces recommendation failed semantic usefulness; all nine submitted outputs are retained."
+    },
+    {
+      "caseId": "empty-evidence",
+      "directory": "before-retry-fix-empty-evidence",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Candidate before clarification that identical-key retries replay saved reports. The partial-traces recommendation failed semantic usefulness; all nine submitted outputs are retained."
+    },
+    {
+      "caseId": "contradictory-evidence",
+      "directory": "before-retry-fix-contradictory-evidence",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Candidate before clarification that identical-key retries replay saved reports. The partial-traces recommendation failed semantic usefulness; all nine submitted outputs are retained."
+    },
+    {
+      "caseId": "mixed-origin",
+      "directory": "before-retry-fix-mixed-origin",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Candidate before clarification that identical-key retries replay saved reports. The partial-traces recommendation failed semantic usefulness; all nine submitted outputs are retained."
+    },
+    {
+      "caseId": "deploy-and-human-recovery",
+      "directory": "before-retry-fix-deploy-and-human-recovery",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Candidate before clarification that identical-key retries replay saved reports. The partial-traces recommendation failed semantic usefulness; all nine submitted outputs are retained."
+    },
+    {
+      "caseId": "missing-connector",
+      "directory": "before-retry-fix-missing-connector",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Candidate before clarification that identical-key retries replay saved reports. The partial-traces recommendation failed semantic usefulness; all nine submitted outputs are retained."
+    },
+    {
+      "caseId": "untrusted-context",
+      "directory": "before-retry-fix-untrusted-context",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Candidate before clarification that identical-key retries replay saved reports. The partial-traces recommendation failed semantic usefulness; all nine submitted outputs are retained."
+    }
+  ],
+  "rejectedRuns": [
+    {
+      "caseId": "deploy-and-human-recovery",
+      "directory": "rejected-final-deploy-reference",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate.json",
+      "excludedFromAcceptance": true,
+      "reason": "One current-candidate output mistyped an inline evidence ID. Independent review rejected it; exact text is retained, and a separate same-prompt repeat was reviewed for acceptance."
+    }
+  ],
+  "limitations": [
+    "Source-skill reasoning over frozen synthetic evidence; no installed-plugin model turn or model-driven MCP collection.",
+    "Nine scenarios have passing outputs; one additional current-candidate output failed exact citation fidelity. This is not a reliability-rate estimate.",
+    "Before-fix and calibration outputs are preserved and excluded from acceptance. CLI availability probes are outside these incident-scenario counts.",
+    "No live provider, production monitoring, remediation, communication, scheduling or measured recovery was tested."
+  ]
+}

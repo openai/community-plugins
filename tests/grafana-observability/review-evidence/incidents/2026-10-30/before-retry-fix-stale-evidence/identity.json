@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "stale-evidence",
+  "candidatePackageTreeSha256": "3cb7bb07e48467f3a8dfc59f05b33553c8d03f35894395e35bac2490715fdb4b",
+  "candidateBundleSha256": "eb1fdf903dc621d3c1b3c05bb4f9610f179e42a2f1e8119552b53d8d6eb66c3b",
+  "inputSha256": "edce4ba90e8c5ff433d6313b5bce29bf610355efa2f89e7a15616542486b340f",
+  "promptSha256": "0c3e0c17586d6f697860b40a18077040cdee1ccff3cdb8d283aab70951a4462c",
+  "finalSha256": "a0d2747c4c7cd75e2dd94bbc5455913cdef5385dd22eb37f7de55f92f55a7420",
+  "executionSha256": "a6a85c1b730151d2ed8e08a92fa4be678429512905de2965a744ba27ebae3c50"
+}

@@ -1,0 +1,55 @@
+{
+  "scenarioId": "partial-traces",
+  "binding": {
+    "schemaVersion": 1,
+    "scenarioId": "partial-traces",
+    "candidatePackageTreeSha256": "932ef62694f4d30d342504cbb17a80cbdc2d542fdf0bae1efd48449aa1bda6c4",
+    "candidateBundleSha256": "3edf3f4596d20afba6e3e4dc22bc39177f34c920c05233da2ce442321d70907f",
+    "inputSha256": "1a18fc06eaba3660fa44ee9b93561d39daf3e9c4c1a6c0b20b60d8f628761742",
+    "promptSha256": "fd209440d7abbdcbf848dc388f3b3fb25273e7e7ee765dc9cb6211889fb96645",
+    "finalSha256": "aa7e41a3a168f2a60f7580147071b80c038f2774bfe3db8786823ae475f1ddd3",
+    "executionSha256": "1ce9bca786ef6dd4759517578cd6771eb087be7abf7e225c1d4df22b90860472"
+  },
+  "status": "REVIEWED",
+  "reviewer": "Independent Codex root reviewer; separate from evaluated model session",
+  "independentReview": true,
+  "hardFailures": [],
+  "criteria": [
+    {
+      "criterion": "Evidence fidelity: numbers, units and claims match cited evidence.",
+      "score": 2,
+      "rationale": "All ten citation claims agree with source records: the six metric endpoints and two503 events remain usable; both slow-trace entries are ERROR with no trace values."
+    },
+    {
+      "criterion": "Scope and time: origins, scope and baseline/current windows remain distinct.",
+      "score": 2,
+      "rationale": "It retains SIMULATED apm scope and both original20-second windows, labels capture as imported and historical, and withholds current health."
+    },
+    {
+      "criterion": "Coverage: missing, empty, stale, partial and contradictory evidence stays explicit.",
+      "score": 2,
+      "rationale": "PARTIAL remains the report status; failed required traces and profile-read warning are explicit, and UNAVAILABLE is not treated as absence of slow traces."
+    },
+    {
+      "criterion": "Causality: ranked hypotheses, alternatives and counter-evidence do not become confirmed cause.",
+      "score": 2,
+      "rationale": "Load and checkout-path explanations include correlation, baseline503 s and missing trace attribution as limitations; cause is unconfirmed."
+    },
+    {
+      "criterion": "Action truth: proposed, approved, human-reported, executed and verified are distinguished.",
+      "score": 2,
+      "rationale": "Proposed trace collection is separated from authorization and execution; no remediation or verified effect is invented and executed_actions stays empty."
+    },
+    {
+      "criterion": "Usefulness: the incident artifact gives concrete next checks and a usable handoff.",
+      "score": 2,
+      "rationale": "The corrected next step first addresses trace availability/access, then uses a NEW nonsecret idempotency key for new authorized collection over the same bounded historical windows. It explicitly says onboarding-partial would replay the saved report."
+    }
+  ],
+  "scenarioSpecificCheck": {
+    "expectation": "Trace collection failed. Do not infer trace findings or complete coverage; retain usable APM evidence.",
+    "score": 2,
+    "rationale": "The response preserves usable APM metrics while naming both failed trace windows, invents no trace finding, and fixes the previously observed replay-versus-recollection error."
+  },
+  "decision": "PASS"
+}

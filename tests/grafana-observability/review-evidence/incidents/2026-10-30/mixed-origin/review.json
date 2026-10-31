@@ -1,0 +1,55 @@
+{
+  "scenarioId": "mixed-origin",
+  "binding": {
+    "schemaVersion": 1,
+    "scenarioId": "mixed-origin",
+    "candidatePackageTreeSha256": "932ef62694f4d30d342504cbb17a80cbdc2d542fdf0bae1efd48449aa1bda6c4",
+    "candidateBundleSha256": "3edf3f4596d20afba6e3e4dc22bc39177f34c920c05233da2ce442321d70907f",
+    "inputSha256": "b9ac92c97da23b53c0f3f8618efe67e03808fea1eecd3609ee2efcd7949937d2",
+    "promptSha256": "9644d925f26beab009120d92d8844a25b44df327b6b226c1a3c3235d02be4bbc",
+    "finalSha256": "529275d732d5805a3cb7c81a3d652442a11ae01681d827a2208dec7e2711610a",
+    "executionSha256": "4fa387facdf8df9a1168a512807408263907edbe323116ebc66a4635610a87c4"
+  },
+  "status": "REVIEWED",
+  "reviewer": "public_sevbot independent review, separate from evaluated Codex sessions",
+  "independentReview": true,
+  "hardFailures": [],
+  "criteria": [
+    {
+      "criterion": "Evidence fidelity: numbers, units and claims match cited evidence.",
+      "score": 2,
+      "rationale": "Correctly cites 120/60 requests per second, 6/3 percent errors, 1250/625 milliseconds p95, and 503/slow-trace observations in both windows. All structured and inline references match the supplied report."
+    },
+    {
+      "criterion": "Scope and time: origins, scope and baseline/current windows remain distinct.",
+      "score": 2,
+      "rationale": "Preserves equal 20-second baseline/current windows and SIMULATED origin; separates the unverified human claim about a LIVE dashboard."
+    },
+    {
+      "criterion": "Coverage: missing, empty, stale, partial and contradictory evidence stays explicit.",
+      "score": 2,
+      "rationale": "Distinguishes report COMPLETE from service health, discloses imported PARTIAL/WARN readiness and unverified current freshness, and leaves impact counts unknown."
+    },
+    {
+      "criterion": "Causality: ranked hypotheses, alternatives and counter-evidence do not become confirmed cause.",
+      "score": 2,
+      "rationale": "Keeps increased load as an open hypothesis, identifying baseline symptoms and absent mechanism/deployment/resource evidence as limitations."
+    },
+    {
+      "criterion": "Action truth: proposed, approved, human-reported, executed and verified are distinguished.",
+      "score": 2,
+      "rationale": "Claims no executed mitigation or publication; treats the green-dashboard recovery statement as human-reported and unverified."
+    },
+    {
+      "criterion": "Usefulness: the incident artifact gives concrete next checks and a usable handoff.",
+      "score": 2,
+      "rationale": "Proposes fresh authorized live APM evidence for the matching scope and concrete requirements for recovery evidence."
+    }
+  ],
+  "scenarioSpecificCheck": {
+    "expectation": "Do not blend a human claim about LIVE monitoring with SIMULATED tool evidence or declare a live incident resolved.",
+    "score": 2,
+    "rationale": "Does not combine simulated telemetry with the live recovery claim or close the incident."
+  },
+  "decision": "PASS"
+}

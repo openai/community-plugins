@@ -1,0 +1,7 @@
+interface:
+  display_name: "Coordinate a Grafana Incident"
+  short_description: "Prepare evidence-backed incident briefs and handoffs"
+  brand_color: "#7058E8"
+  default_prompt: "Use $coordinate-grafana-incident to organize this incident's reviewed Grafana evidence, rank hypotheses, and draft a concise responder update and handoff."
+policy:
+  allow_implicit_invocation: false

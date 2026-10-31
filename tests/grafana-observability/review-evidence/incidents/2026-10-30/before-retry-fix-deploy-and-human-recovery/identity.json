@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "deploy-and-human-recovery",
+  "candidatePackageTreeSha256": "3cb7bb07e48467f3a8dfc59f05b33553c8d03f35894395e35bac2490715fdb4b",
+  "candidateBundleSha256": "eb1fdf903dc621d3c1b3c05bb4f9610f179e42a2f1e8119552b53d8d6eb66c3b",
+  "inputSha256": "f8e388857601a9a403962c7dc8678d37b6d5b760d16f6c22d6c67b02ff994de1",
+  "promptSha256": "3d415b12514c64fe129411dc3731f9d2c47702fb43c256b7ebd729c01133d446",
+  "finalSha256": "3fdbf05a599c80799e1a29c00f9842f38513b5790bfcbb0b00f1aec5ef6f5928",
+  "executionSha256": "74d57f175e2245ee2b2425e43aac9afcb1ce123c4e2cd22007fd11adcdf90a67"
+}

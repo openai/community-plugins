@@ -1,0 +1,15 @@
+{
+  "status": "NOT_GRADED",
+  "decision": null,
+  "binding": {
+    "schemaVersion": 1,
+    "scenarioId": "complete-baseline",
+    "candidatePackageTreeSha256": "3cb7bb07e48467f3a8dfc59f05b33553c8d03f35894395e35bac2490715fdb4b",
+    "candidateBundleSha256": "eb1fdf903dc621d3c1b3c05bb4f9610f179e42a2f1e8119552b53d8d6eb66c3b",
+    "inputSha256": "1fe502ceca1a39887a5ad2c635e99d96da824a93acf6f73334dd216cd46bd4c3",
+    "promptSha256": "1b226ac771d0bd7a1747370d3f0efdce5c5bcb9932c9e71a621ac49638e743be",
+    "finalSha256": "c9f69853aa6edf4d485bbed1191be5dfa0d3099520b2f430b4c6fbbe157b334a",
+    "executionSha256": "71cf2d53c431973e0974875c6a10a94664c4c1027222b7375f1aceb66b22e8f1"
+  },
+  "reason": "All already-submitted outputs preserved when review found the partial-traces retry defect. This output was not assigned an acceptance grade; the corrected candidate was evaluated separately."
+}

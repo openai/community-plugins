@@ -45,12 +45,12 @@ is intentional: the verifier does not spoof npm's platform or architecture.
 
 | Artifact | Purpose |
 | --- | --- |
-| [`source.tar.gz`](../vendor/grafana-observability-source/source.tar.gz) | Authoritative qualified first-party source, build helpers, lockfile, schemas, static plugin inputs, and focused tests: 327 files, about 556 KB compressed. |
+| [`source.tar.gz`](../vendor/grafana-observability-source/source.tar.gz) | Authoritative qualified first-party source, build helpers, lockfile, schemas, static plugin inputs, and focused tests: 334 files, about 563 KB compressed. |
 | [`manifest.json`](../vendor/grafana-observability-source/manifest.json) | SHA-256 and byte length for the archive, every source file, all 64 generated files, the lockfile, native asset, and review patch. Also records the observed upstream revision and changed-file inventory. |
-| [`qualification.patch`](../vendor/grafana-observability-source/qualification.patch) | Human-readable 18-file change from the public-normalized pre-qualification source to this distribution. Its headers contain repository-relative paths. |
+| [`qualification.patch`](../vendor/grafana-observability-source/qualification.patch) | Human-readable 25-file change from the public-normalized pre-qualification source to this distribution. Its headers contain repository-relative paths. |
 
 The source archive SHA-256 is
-`5fc0e01c25d33701416751064a71ebf315abd38ab9418570a3fad1b0451ef106`.
+`3864ae28bb3ceba0fe69e22d4137ac070562a7af4c96fd7de39b660cc006402d`.
 The manifest is authoritative when a reviewed update changes this snapshot.
 
 The uncompressed TAR is deterministic: sorted paths, regular files only, fixed
@@ -97,6 +97,11 @@ The reviewed changes cover:
 - Distribution manifest links, the README release allowlist, five explicitly allowed
   nonsecret launch settings, and verified client-launch guidance. Setup is based
   on effective permissions; a Viewer role label alone does not prove read-only access.
+- Version 0.2.0's two explicitly invoked incident skills, shared evidence and
+  writing guidance, and package documentation. This update changes static plugin
+  inputs; all 64 generated runtime files remain identical to version 0.1.0.
+  The synthetic onboarding companion and model-evaluation harness live in this
+  repository and are verified separately from the installable package.
 
 ## Canonical build
 

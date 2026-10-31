@@ -1,0 +1,55 @@
+{
+  "scenarioId": "deploy-and-human-recovery",
+  "binding": {
+    "schemaVersion": 1,
+    "scenarioId": "deploy-and-human-recovery",
+    "candidatePackageTreeSha256": "932ef62694f4d30d342504cbb17a80cbdc2d542fdf0bae1efd48449aa1bda6c4",
+    "candidateBundleSha256": "3edf3f4596d20afba6e3e4dc22bc39177f34c920c05233da2ce442321d70907f",
+    "inputSha256": "ff9f8bba72ec41744f338fc571fb5e5c921ec49fb7ca2c1520e2723e5db87a86",
+    "promptSha256": "9ce77ca54228d7a961919bf33a7d0cf0c5eaf1ac7a5ea3ddb7d7f6e105b7847b",
+    "finalSha256": "cbcb9e7e1f03688e424d0c79bf94dfcf4200949bec43923be98b00cb965e597d",
+    "executionSha256": "4e7e13920b7626860cd78653260927a44948e32a89432416d2b6f77d8cae1e96"
+  },
+  "status": "REVIEWED",
+  "reviewer": "Independent Codex root reviewer; separate from evaluated model session",
+  "independentReview": true,
+  "hardFailures": [],
+  "criteria": [
+    {
+      "criterion": "Evidence fidelity: numbers, units and claims match cited evidence.",
+      "score": 2,
+      "rationale": "All ten structured citations and full inline IDs match the packet;6/3 percent,1250/625 ms,120/60 requests/s and503/slow-trace events are accurate. The earlier mistyped reference is absent in this separate exact output."
+    },
+    {
+      "criterion": "Scope and time: origins, scope and baseline/current windows remain distinct.",
+      "score": 2,
+      "rationale": "The review preserves SIMULATED apm scope, both 20-second windows, capture time and event-versus-collection timestamps; no current-health assessment is claimed."
+    },
+    {
+      "criterion": "Coverage: missing, empty, stale, partial and contradictory evidence stays explicit.",
+      "score": 2,
+      "rationale": "It names the absent release diff, deployment receipt, restart receipt, post-restart measurements, recovery criteria and impact denominators, while retaining COMPLETE as evidence coverage only."
+    },
+    {
+      "criterion": "Causality: ranked hypotheses, alternatives and counter-evidence do not become confirmed cause.",
+      "score": 2,
+      "rationale": "Release v2 remains a hypothesis based on reported timing; baseline symptoms, doubled traffic and absent mechanism/rollback evidence remain counter-evidence and alternatives."
+    },
+    {
+      "criterion": "Action truth: proposed, approved, human-reported, executed and verified are distinguished.",
+      "score": 2,
+      "rationale": "It explicitly separates reported restart and green dashboard, reportedly approved rollback, explicitly unexecuted rollback and human-reported unverified recovery; external actions stay empty."
+    },
+    {
+      "criterion": "Usefulness: the incident artifact gives concrete next checks and a usable handoff.",
+      "score": 2,
+      "rationale": "It proposes bounded post-restart measurement with explicit criteria, release-record review and traffic-aware comparison; ownership/due dates remain unassigned and the runbook lesson remains proposed."
+    }
+  ],
+  "scenarioSpecificCheck": {
+    "expectation": "Deployment timing is correlation; restart is human-reported; approved rollback remains unexecuted; recovery remains unverified without fresh matching evidence.",
+    "score": 2,
+    "rationale": "Deployment timing does not establish cause, restart is attributed, authorization is not execution, and recovery requires fresh matching measurements."
+  },
+  "decision": "PASS"
+}
