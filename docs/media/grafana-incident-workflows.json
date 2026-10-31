@@ -1,0 +1,336 @@
+{
+  "schemaVersion": 1,
+  "kind": "REAL_MODEL_DRIVEN_PACKAGED_SKILLS_AND_MCP_SYNTHETIC_DEMO",
+  "recordedAt": "2026-10-31T19:44:48.767Z",
+  "sourceRevision": "337528fa1e79f44e7bb7d4d232351c4988c0c2c9",
+  "candidatePackageTreeSha256": "932ef62694f4d30d342504cbb17a80cbdc2d542fdf0bae1efd48449aa1bda6c4",
+  "clientVersion": "0.144.3",
+  "requestedModel": "gpt-5.6-sol",
+  "reportedModel": "gpt-5.6-sol",
+  "installedPlugin": false,
+  "workspaceSkills": true,
+  "sameThreadAndMcpSession": true,
+  "modelTurns": 2,
+  "modelMcpCalls": 19,
+  "packCollections": 1,
+  "providerReads": 10,
+  "unexpectedRequests": 0,
+  "toolTypes": [
+    "grafana_get_evidence",
+    "grafana_list_packs",
+    "grafana_profile_status",
+    "grafana_resolve_link",
+    "grafana_run_pack"
+  ],
+  "approval": {
+    "decision": "allow-once",
+    "source": "Explicit human user approval relayed to the exact scoped client request",
+    "persistentGrant": false
+  },
+  "source": {
+    "filename": "full-recording.webm",
+    "sha256": "6821f4780243f289331b99e55dab3e6954d294442efacd365bb8a36fbfcb002d",
+    "durationSeconds": 168.48,
+    "manifestSha256": "6604835c01d323496fabee5151fe33ec0ae78016b5a693494ce556ea723ec47f",
+    "eventLedgerSha256": "7682ed0aa0de058171095d24b98351c5d6e73b5c8f18d93110d1776f0142dcf6",
+    "sessionId": "2026-10-31T19-44-45-977Z-86cd827b",
+    "originalWebmRetainedLocally": true
+  },
+  "outputs": {
+    "edited": {
+      "filename": "grafana-incident-workflows.mp4",
+      "bytes": 14449390,
+      "sha256": "771bf71e73ab4e13662851f4fe56120c010cef51a5f32920902a51d7099f227a",
+      "durationSeconds": 105.1,
+      "width": 1920,
+      "height": 1080,
+      "codec": "h264",
+      "pixelFormat": "yuv420p",
+      "frameRate": "30/1",
+      "fullDecodePassed": true
+    },
+    "full": {
+      "filename": "grafana-incident-workflows-full.mp4",
+      "bytes": 24514964,
+      "sha256": "ea8066113f8eb309dd01a66b8ebdf3a923128a49d0606f7c57e6dc9d10f0caad",
+      "durationSeconds": 168.466667,
+      "width": 1920,
+      "height": 1080,
+      "codec": "h264",
+      "pixelFormat": "yuv420p",
+      "frameRate": "30/1",
+      "fullDecodePassed": true
+    },
+    "poster": {
+      "filename": "grafana-incident-workflows.png",
+      "source": "ACTUAL_BROWSER_SCREENSHOT",
+      "capturedAt": "2026-10-31T19:47:28.035Z",
+      "bytes": 390256,
+      "sha256": "395933173ceb0c4971b214bc268062313c22a2006d5bf99b92bb0dedcb3e79ce"
+    }
+  },
+  "editing": {
+    "disclosure": "Waiting and selected reading intervals are cut. Recorded footage stays at normal speed; the full uncut recording is also available.",
+    "sourceSpeed": 1,
+    "sourceFullFrame": true,
+    "sourceResultsReplayed": false,
+    "modelResultsInjected": false,
+    "sourceOverlays": false,
+    "narration": false,
+    "music": false,
+    "timeline": [
+      {
+        "type": "editorial_card",
+        "kind": "intro",
+        "outputStart": 0,
+        "outputEnd": 4,
+        "caption": "Grafana incident workflows"
+      },
+      {
+        "type": "editorial_card",
+        "kind": "chapter",
+        "outputStart": 4,
+        "outputEnd": 6.5,
+        "caption": "Connect the synthetic provider"
+      },
+      {
+        "type": "actual_source_footage",
+        "outputStart": 6.5,
+        "outputEnd": 13.1,
+        "sourceStart": 0.4,
+        "sourceEnd": 7,
+        "speed": 1,
+        "fullFrame": true,
+        "crop": false,
+        "overlays": false,
+        "caption": "Connect the synthetic provider"
+      },
+      {
+        "type": "actual_source_footage",
+        "outputStart": 13.1,
+        "outputEnd": 20.4,
+        "sourceStart": 11.5,
+        "sourceEnd": 18.8,
+        "speed": 1,
+        "fullFrame": true,
+        "crop": false,
+        "overlays": false,
+        "caption": null
+      },
+      {
+        "type": "editorial_card",
+        "kind": "chapter",
+        "outputStart": 20.4,
+        "outputEnd": 22.9,
+        "caption": "Collect and inspect the evidence"
+      },
+      {
+        "type": "actual_source_footage",
+        "outputStart": 22.9,
+        "outputEnd": 37,
+        "sourceStart": 36.9,
+        "sourceEnd": 51,
+        "speed": 1,
+        "fullFrame": true,
+        "crop": false,
+        "overlays": false,
+        "caption": "Collect and inspect the evidence"
+      },
+      {
+        "type": "editorial_card",
+        "kind": "chapter",
+        "outputStart": 37,
+        "outputEnd": 39.5,
+        "caption": "$coordinate-grafana-incident"
+      },
+      {
+        "type": "actual_source_footage",
+        "outputStart": 39.5,
+        "outputEnd": 46.8,
+        "sourceStart": 79.2,
+        "sourceEnd": 86.5,
+        "speed": 1,
+        "fullFrame": true,
+        "crop": false,
+        "overlays": false,
+        "caption": "$coordinate-grafana-incident"
+      },
+      {
+        "type": "editorial_card",
+        "kind": "chapter",
+        "outputStart": 46.8,
+        "outputEnd": 49.3,
+        "caption": "$review-grafana-incident"
+      },
+      {
+        "type": "actual_source_footage",
+        "outputStart": 49.3,
+        "outputEnd": 61,
+        "sourceStart": 91.3,
+        "sourceEnd": 103,
+        "speed": 1,
+        "fullFrame": true,
+        "crop": false,
+        "overlays": false,
+        "caption": "$review-grafana-incident"
+      },
+      {
+        "type": "editorial_card",
+        "kind": "chapter",
+        "outputStart": 61,
+        "outputEnd": 63.5,
+        "caption": "Read the handoff and review"
+      },
+      {
+        "type": "actual_source_footage",
+        "outputStart": 63.5,
+        "outputEnd": 78.1,
+        "sourceStart": 129.3,
+        "sourceEnd": 143.9,
+        "speed": 1,
+        "fullFrame": true,
+        "crop": false,
+        "overlays": false,
+        "caption": "Read the handoff and review"
+      },
+      {
+        "type": "actual_source_footage",
+        "outputStart": 78.1,
+        "outputEnd": 102.1,
+        "sourceStart": 144.3,
+        "sourceEnd": 168.3,
+        "speed": 1,
+        "fullFrame": true,
+        "crop": false,
+        "overlays": false,
+        "caption": null
+      },
+      {
+        "type": "editorial_card",
+        "kind": "outro",
+        "outputStart": 102.1,
+        "outputEnd": 105.1,
+        "caption": "Incident brief. Evidence review."
+      }
+    ],
+    "omitted": [
+      {
+        "sourceStart": 0,
+        "sourceEnd": 0.4,
+        "duration": 0.4,
+        "reason": "Initial browser paint"
+      },
+      {
+        "sourceStart": 7,
+        "sourceEnd": 11.5,
+        "duration": 4.5,
+        "reason": "Initial model thinking"
+      },
+      {
+        "sourceStart": 18.8,
+        "sourceEnd": 36.9,
+        "duration": 18.1,
+        "reason": "Waiting for the explicit user approval to be relayed"
+      },
+      {
+        "sourceStart": 51,
+        "sourceEnd": 79.2,
+        "duration": 28.2,
+        "reason": "Model drafting; the completed original is shown next"
+      },
+      {
+        "sourceStart": 86.5,
+        "sourceEnd": 91.3,
+        "duration": 4.8,
+        "reason": "Additional reading time on the incident brief"
+      },
+      {
+        "sourceStart": 103,
+        "sourceEnd": 129.3,
+        "duration": 26.3,
+        "reason": "Review drafting and repeated display of the brief's opening paragraphs"
+      },
+      {
+        "sourceStart": 143.9,
+        "sourceEnd": 144.3,
+        "duration": 0.4,
+        "reason": "Brief tab-transition interval"
+      },
+      {
+        "sourceStart": 168.3,
+        "sourceEnd": 168.48,
+        "duration": 0.18,
+        "reason": "Recording tail outside the explicit edit-decision ranges"
+      }
+    ],
+    "editDecisionsSha256": "d4e94b283fcfa69b8a23a3b6c48fefbe2948a12834449ec2f0155eb00f46922d"
+  },
+  "drafts": [
+    {
+      "stage": "coordinate",
+      "filename": "grafana-incident-workflows-coordinate.md",
+      "sha256": "ce1a57ab0e96c879042600b5f47d2e4c2cbabbd811cb9e070952381495c0698f",
+      "turnStatus": "completed"
+    },
+    {
+      "stage": "review",
+      "filename": "grafana-incident-workflows-review.md",
+      "sha256": "e650eb52bf2d0fc13e34c01325df2abffea1d3dd436f69cdbbb3c2e8bb54f81a",
+      "turnStatus": "completed"
+    }
+  ],
+  "evidence": {
+    "filename": "grafana-incident-workflows-evidence.json",
+    "sha256": "b4cc61d744d8097c67b58d79b3e9f0d074b40f55d831df64cbd8ab6a7661399e",
+    "kind": "NORMALIZED_MCP_RESPONSES_NOT_RAW_PROVIDER_PAYLOADS"
+  },
+  "cleanup": {
+    "temporaryStateRemoved": true,
+    "mcpClosed": true,
+    "providerClosed": true,
+    "appServerExit": {
+      "code": 0,
+      "signal": null
+    },
+    "workspaceRemoved": true
+  },
+  "review": {
+    "semanticResult": "PASS",
+    "reviewer": "Independent agent plus parent assistant inspection, separate from the recorded model turns",
+    "checks": [
+      "Both drafts use 12 exact valid report/evidence/link references",
+      "Metrics, windows and collection timestamps match tool results",
+      "Review reopens four evidence cards and one owned link without recollection",
+      "Synthetic origin, partial readiness, open hypotheses and unevaluated recovery preserved"
+    ],
+    "visualResult": "PASS",
+    "knownCosmeticIssue": "Recording console restarts the second ordered-list item at 1; the preserved source draft is correctly numbered.",
+    "visualCoverage": "All seven editorial cards and seven encoded-footage keyframes, plus actual captured poster; both videos fully decoded. Sampled visual inspection, not uninterrupted real-time playback.",
+    "visualReviewer": "Independent agent plus parent assistant; corrected collection-approval caption verified by parent"
+  },
+  "boundaries": {
+    "origin": "SIMULATED",
+    "interface": "Purpose-built local recording console, not a shipped Codex or Grafana interface",
+    "rootCause": "NOT_ESTABLISHED",
+    "recovery": "NOT_ASSESSED",
+    "productionConnected": false,
+    "installedPluginActivationProven": false,
+    "sourceLinks": "Ended loopback fixture; historical receipts only"
+  },
+  "earlierRecordedAttempts": [
+    {
+      "result": "FAILED",
+      "reason": "Recorder restarted the process that owned the report references",
+      "completedModelTurns": 1,
+      "sourceSha256": "98c3ee3cb414184c3f6bb1b1a83bba503858b8a8cd63e981154babc58aa34484",
+      "retainedLocally": true
+    },
+    {
+      "result": "FAILED",
+      "reason": "Client approval request was not yet relayed; no collection performed",
+      "completedModelTurns": 0,
+      "sourceSha256": "765b9af746e72d0e5ca348c72e9bd72ed945f0af4bcaf98b686594cd10e503aa",
+      "retainedLocally": true
+    }
+  ]
+}

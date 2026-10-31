@@ -4,6 +4,10 @@ Use this repository companion to try successful Grafana evidence collection
 without a Grafana account, token, Docker, plugin installation, or production
 access. It requires Node.js 22.19+ and a reviewed checkout of this repository.
 
+Watch the [recorded incident workflow](grafana-incident-video.md) to see both new
+skills use the synthetic provider in a real Codex session, including the
+one-time collection approval and evidence reuse during review.
+
 From the repository root:
 
 ```sh
