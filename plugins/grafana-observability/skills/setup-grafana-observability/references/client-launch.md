@@ -40,7 +40,7 @@ PRODUCTION_MONITORING_STATE_ROOT = "/absolute/private/grafana-state"
 ```
 
 With the default Codex home, this release's installed root is
-`~/.codex/plugins/cache/community-plugins/grafana-observability/0.1.0`; expand `~` in
+`~/.codex/plugins/cache/community-plugins/grafana-observability/0.2.0`; expand `~` in
 the `cwd` value. Check installed versions with
 `codex plugin list --marketplace community-plugins --json`, and update `cwd` after a
 plugin upgrade. If the client cannot find Node, set `command` to the absolute

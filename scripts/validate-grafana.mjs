@@ -25,8 +25,8 @@ export const GRAFANA_LAUNCH_ENV_VARS = Object.freeze([
   "PRODUCTION_MONITORING_STATE_ROOT",
 ]);
 const SKILLS = [
-  "analyze-log-signals", "inspect-infrastructure-health", "investigate-application-performance",
-  "monitor-iot-edge", "review-business-kpis", "setup-grafana-observability",
+  "analyze-log-signals", "coordinate-grafana-incident", "inspect-infrastructure-health", "investigate-application-performance",
+  "monitor-iot-edge", "review-business-kpis", "review-grafana-incident", "setup-grafana-observability",
 ];
 const SHA256 = /^[a-f0-9]{64}$/u;
 const NATIVE_SHA256 = "9627560bd2490b8495504df6b48dafe0153883aab09fd8eee976f826c74a6fff";

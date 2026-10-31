@@ -1,0 +1,15 @@
+{
+  "status": "NOT_GRADED",
+  "decision": null,
+  "binding": {
+    "schemaVersion": 1,
+    "scenarioId": "missing-connector",
+    "candidatePackageTreeSha256": "3cb7bb07e48467f3a8dfc59f05b33553c8d03f35894395e35bac2490715fdb4b",
+    "candidateBundleSha256": "eb1fdf903dc621d3c1b3c05bb4f9610f179e42a2f1e8119552b53d8d6eb66c3b",
+    "inputSha256": "12dd5abfc5c02889a05030d9b9d00e9343fa525844dc704e7816201299d56551",
+    "promptSha256": "834084ff51a5ebaf1dad3d226d91ea54224ee55275a21991bc48bd7fc9a6618b",
+    "finalSha256": "07ec7daf44f739a8fd30ebff83c81d820eb8b5af239f619cd5fac6829dfe432f",
+    "executionSha256": "48932935622907ebd2165b0cbc0bfac917dda292a526e5581a4389255f868268"
+  },
+  "reason": "All already-submitted outputs preserved when review found the partial-traces retry defect. This output was not assigned an acceptance grade; the corrected candidate was evaluated separately."
+}

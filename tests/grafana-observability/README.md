@@ -7,17 +7,43 @@ never a production Grafana instance.
 | Command | Coverage / requirements |
 | --- | --- |
 | `npm run validate` | Marketplace, plugin layout, schemas, native asset, and entrypoint integrity. |
-| `npm run test:grafana` | Copied-package MCP protocol, five-pack synthetic collection, error/scope/ownership checks, media, and provenance. Docker and Keychain cases are skipped unless opted in. |
+| `npm run test:grafana-observability` | Canonical master (alias: `test:grafana`): copied-package MCP protocol, five-pack synthetic collection, synthetic onboarding, incident evaluator checks, error/scope/ownership checks, media, and provenance. External integrations and model evaluations require explicit opt-in. |
+| `npm run demo:grafana:synthetic` | Credential-free repository onboarding using actual packaged MCP collection against bounded synthetic HTTP; see the [onboarding guide](../../docs/grafana-synthetic-onboarding.md). |
+| `npm run test:grafana:behavior -- --prepare` | Prepare actual packaged-tool evidence packets and exact candidate instructions without a model turn. See the [evaluation guide](../../docs/grafana-incident-evaluations.md) for opt-in runs and independent semantic review. |
 | `npm run test:grafana:live` | All five packs and 17 operations against real Grafana 12.1.0, Prometheus, Loki, Tempo, and SELECT-only PostgreSQL. Requires local Docker/Compose. |
 | `npm run test:grafana:matrix` | The same real-provider checks across the four pinned Grafana releases. Requires local Docker/Compose. |
 | `npm run test:grafana:auth` | Real read-token admission and revocation. Requires local Docker/Compose; CLI terminal input/storage use explicit test seams. |
-| `npm run test:grafana:installed` | Official, SHA-256-pinned Codex 0.144.3 installs the exact package, starts MCP, and verifies the five-setting environment allowlist. Requires local Docker and the pinned client/image downloads; execution is network-disabled with no host configuration mounted. |
+| `npm run test:grafana:installed` | Official, SHA-256-pinned Codex 0.144.3 installs the exact package, discovers all eight skills, rejects inactive collection, and runs signed synthetic APM through the installed MCP in both launcher modes. Verifies the five-setting environment allowlist. Requires local Docker and the pinned client/image downloads; execution is network-disabled with no host configuration mounted. |
 | `npm run test:grafana:keychain` | Creates, reads, rotates, and deletes one disposable OS credential. macOS arm64 only. |
 | `npm run test:grafana:handoff` | Real PTY → Keychain → shared-profile broker → packaged MCP. Requires macOS arm64, Python 3, local Docker/Compose, and an **absent** shared-profile store. Creates and deletes one real disposable profile/Keychain item, then removes only its verified empty metadata. Refuses existing user state. |
 | `npm run verify:grafana:source` | Dependency-free source/archive and generated-file integrity verification. |
 | `npm run verify:grafana:source -- --rebuild --test` | Locked source build, exact output comparison, typecheck, and source regressions. macOS arm64, npm 10+, Git, and OpenSSL required; add `--offline` when dependencies are cached. |
 
 ## Recorded qualification
+
+Incident-workflow qualification on 2026-10-30 (macOS arm64, Node 26.0.0):
+
+- The complete marketplace master suite and package validators passed after the
+  incident-workflow changes; its Grafana checks include the retained evaluations.
+- The final source archive passed 183 tests with no failures or skips and
+  reproduced all 64 runtime files exactly. Runtime bytes remain unchanged.
+- The final installed package passed both official Codex 0.144.3 launcher modes
+  in isolated Linux arm64 containers: eight discovered skills, five tools,
+  inactive-pack denial, and ten synthetic APM reads with owned evidence/links
+  and successful cleanup. These installation checks submit zero model turns.
+- [Retained incident evaluations](review-evidence/incidents/2026-10-30/manifest.json)
+  contain nine independently reviewed passing scenario outputs from Codex CLI
+  0.144.3, explicitly requesting `gpt-5.6-sol`; JSON traces did not report a
+  resolved model identifier. One additional current-candidate response failed
+  exact inline citation fidelity and is retained with its failing review; a
+  separate repeat passed. Five format-calibration turns and all nine turns from
+  before the retry-guidance correction are also retained, excluded from
+  acceptance. Total: 24 incident-scenario turns, each with zero tool attempts.
+- These model results qualify reasoning over frozen synthetic evidence. They
+  do not establish installed-plugin model activation, autonomous MCP collection,
+  production monitoring, remediation, publication, recovery or a reliability rate.
+  Real-provider, authentication and native-keychain checks below are the earlier
+  runtime baseline, not newly repeated production qualification.
 
 Local qualification on 2026-08-20:
 
@@ -44,16 +70,18 @@ Local qualification on 2026-08-20:
 
 The installed-client check uses Codex's actual installer and app-server in a
 fresh Linux container, without a model turn. It verifies exact installed bytes,
-cache-relative launch paths, the five tools, fixture readiness, and environment
-filtering; it does not exercise the Desktop GUI. The authenticated CLI fixture
+eight discovered skills, cache-relative launch paths, the five tools, inactive
+fixture denial, signed synthetic APM collection, and environment filtering.
+The Desktop GUI remains outside this check. The authenticated CLI fixture
 uses scripted input and an in-memory store; its MCP worker uses a separately
 enrolled test credential reference. That fixture alone does not prove the
 combined real-terminal/Keychain/shared-profile handoff; the separate native
 handoff test covers that path without those seams. It does not automate the
 Desktop GUI or make a production Grafana connection.
 
-The installed-client check qualifies ordered startup, not simultaneous startup
-against shared artifact/state directories. Storage rejects unmarked
+The installed-client check qualifies ordered startup and synthetic collection.
+Simultaneous startup against shared artifact/state directories remains outside
+this check. Storage rejects unmarked
 roots and uncertain/live writer locks; those checks are not bypassed or retried
 to make the tests pass.
 
