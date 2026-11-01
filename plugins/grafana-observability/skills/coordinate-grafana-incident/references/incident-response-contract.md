@@ -47,6 +47,8 @@ For each material hypothesis, record:
 
 Use open, supported, weakened, or rejected as narrative assessments, not replacements for provider statuses. Keep a hypothesis open when only correlation or insufficient evidence supports it. Do not perform a check requiring an inactive pack, broader scope, raw provider access, or operational changes.
 
+Before proposing a check, identify the fields it needs and whether the available evidence or approved pack actually supplies them. `grafana_get_evidence` reopens a saved normalized record; it cannot add missing fields. A slow-trace event summary does not imply child spans, per-component timing, or the component that emitted an error. Repeating the same pack with a new key can refresh its measurements but does not make its schema richer. If the supplied detail lacks the needed fields, state that limitation and request a separately reviewed source or pack that provides those specific fields. Do not promise that reopening the existing report will reveal them, or use an unavailable field as the next check in a handoff.
+
 When blocked, request the missing information or access precisely, explain why it matters, and identify which conclusion must remain open. Do not repeat an unchanged failing check.
 
 ## Actions and recovery

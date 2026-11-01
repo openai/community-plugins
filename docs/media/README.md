@@ -10,7 +10,7 @@ recording console is visibly labeled; it is not a shipped product interface.
 
 ## Earlier production-monitoring illustration
 
-The plugin README links the older **8×, 22.6-second** clip; its **180.767-second** walkthrough is the readable version. Both are silent H.264/yuv420p videos at 1680 × 956, 30 fps, with fast-start enabled and source metadata removed. The matching poster is the redacted full-video frame at 2:07.5.
+The earlier illustration remains available as an [8×, 22.6-second clip](grafana-production-monitoring-demo-8x.mp4) and a [180.767-second full walkthrough](grafana-production-monitoring-demo.mp4). Both are silent H.264/yuv420p videos at 1680 × 956, 30 fps, with fast-start enabled and source metadata removed. The matching [poster](grafana-production-monitoring-demo.png) is the redacted full-video frame at 2:07.5. The plugin README now features the incident workflow recording above.
 
 This illustrates a local `checkout-evidence` workflow, **not the packaged plugin's end-to-end test results**. The metrics, investigation, and human approval flow are retained; only identity/UI display text is replaced. An on-screen caption makes that distinction explicit.
 

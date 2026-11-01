@@ -14,13 +14,16 @@ Inclusion in OpenAI's official Plugins Directory requires a separate review. See
 [OpenAI's plugin packaging docs](https://developers.openai.com/plugins/build/plugins)
 for the distinction between public directory publishing and repo marketplaces.
 
+**Grafana incident workflows:** [Watch the 1:45 demo](docs/grafana-incident-video.md) · [Try it without credentials](docs/grafana-synthetic-onboarding.md#quick-start) · [Install and set up Grafana](plugins/grafana-observability/README.md#install).
+For the unmerged changes in PR #48, follow the [draft preview setup](docs/grafana-synthetic-onboarding.md#preview-a-draft-pr).
+
 ## Add it to Codex
 
 In Codex, choose **Add plugin marketplace** and use a repository slug or clone
 URL, not a raw `marketplace.json` URL:
 
 ```text
-Source: tonyloehr/community-plugins
+Source: openai/community-plugins
 Git ref: main
 Sparse paths:
 .agents/plugins
@@ -67,7 +70,7 @@ The same flow from the CLI:
 
 ```sh
 # Load the full catalog efficiently.
-codex plugin marketplace add tonyloehr/community-plugins \
+codex plugin marketplace add openai/community-plugins \
   --ref main \
   --sparse .agents/plugins \
   --sparse plugins
@@ -88,7 +91,7 @@ codex plugin add autodesk-fusion@community-plugins
 If you want a full checkout instead of a sparse one:
 
 ```sh
-codex plugin marketplace add tonyloehr/community-plugins --ref main
+codex plugin marketplace add openai/community-plugins --ref main
 ```
 
 The `@community-plugins` selector comes from the top-level `name` in
@@ -153,31 +156,31 @@ Use $setup-autodesk-fusion to check the synthetic fixture and explain the availa
 Browse before installing:
 
 ```text
-Add the Git-backed marketplace from tonyloehr/community-plugins at ref main. Use sparse paths .agents/plugins and plugins. List the available plugins and recommend the best fit for this repository, but do not install or authenticate anything yet.
+Add the Git-backed marketplace from openai/community-plugins at ref main. Use sparse paths .agents/plugins and plugins. List the available plugins and recommend the best fit for this repository, but do not install or authenticate anything yet.
 ```
 
 Install one plugin:
 
 ```text
-If community-plugins is not already configured, add it from tonyloehr/community-plugins at ref main using sparse paths .agents/plugins and plugins/grafana-observability. Install grafana-observability@community-plugins, explain its permissions and authentication policy, and give me the credential-free smoke-test prompt for a new Codex task.
+If community-plugins is not already configured, add it from openai/community-plugins at ref main using sparse paths .agents/plugins and plugins/grafana-observability. Install grafana-observability@community-plugins, explain its permissions and authentication policy, and give me the credential-free smoke-test prompt for a new Codex task.
 ```
 
 Install ReviewOps without private data:
 
 ```text
-If community-plugins is not already configured, add it from tonyloehr/community-plugins at ref main using sparse paths .agents/plugins and plugins/reviewops-auditor-benchmark. Install reviewops-auditor-benchmark@community-plugins, explain its read-only offline boundary, and give me the synthetic-fixture smoke-test prompt for a new Codex task.
+If community-plugins is not already configured, add it from openai/community-plugins at ref main using sparse paths .agents/plugins and plugins/reviewops-auditor-benchmark. Install reviewops-auditor-benchmark@community-plugins, explain its read-only offline boundary, and give me the synthetic-fixture smoke-test prompt for a new Codex task.
 ```
 
 Install React Native to SwiftUI with a read-only first run:
 
 ```text
-If community-plugins is not already configured, add it from tonyloehr/community-plugins at ref main using sparse paths .agents/plugins and plugins/react-native-to-swiftui. Install react-native-to-swiftui@community-plugins, explain its Read and Write boundaries and ON_USE authentication policy, and give me the read-only parity-planning prompt for a new Codex task.
+If community-plugins is not already configured, add it from openai/community-plugins at ref main using sparse paths .agents/plugins and plugins/react-native-to-swiftui. Install react-native-to-swiftui@community-plugins, explain its Read and Write boundaries and ON_USE authentication policy, and give me the read-only parity-planning prompt for a new Codex task.
 ```
 
 Review before adoption:
 
 ```text
-Review tonyloehr/community-plugins before I install it. Inspect .agents/plugins/marketplace.json, each plugin manifest, declared capabilities, authentication policy, external endpoints, licenses, and setup instructions. Flag anything that needs security or admin review.
+Review openai/community-plugins before I install it. Inspect .agents/plugins/marketplace.json, each plugin manifest, declared capabilities, authentication policy, external endpoints, licenses, and setup instructions. Flag anything that needs security or admin review.
 ```
 
 ## Update or remove

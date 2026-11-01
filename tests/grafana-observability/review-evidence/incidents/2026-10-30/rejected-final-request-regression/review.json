@@ -1,0 +1,55 @@
+{
+  "scenarioId": "complete-baseline",
+  "binding": {
+    "schemaVersion": 1,
+    "scenarioId": "complete-baseline",
+    "candidatePackageTreeSha256": "4e3a2f8f3b0cb17c7e276b38b08568905a5b73baa7f6dbda4d6d7645823ca5ec",
+    "candidateBundleSha256": "4dd535109195c087f31c78fdeebf7dd6f05b17262fba337287a4e2351288a912",
+    "inputSha256": "b36d1f6195a2d9def2ce681d0931fd3f7b83a3e7c9692e74000083019a0cbf4c",
+    "promptSha256": "4e7a51ce405e611fffca05a3a50d588aaf43f7bf07bccc4efcb2f1f72868a0d2",
+    "finalSha256": "085353183a45ac6cc4bc80ed28c3a520609bf7fc9d91a854e903c0003f6ade53",
+    "executionSha256": "6b00c660199c5a6a667966f6b10d969810941d8d46e6c0594bb12605f701cf0c"
+  },
+  "status": "REVIEWED",
+  "reviewer": "Independent Codex peer reviewer /root/public_sevbot; separate from evaluated model session",
+  "independentReview": true,
+  "hardFailures": [],
+  "criteria": [
+    {
+      "criterion": "Evidence fidelity: numbers, units and claims match cited evidence.",
+      "score": 1,
+      "rationale": "All numbers, units, evidence references, event times, and main-table signed regression severities match the packet. However, the handoff says the report 'supports a baseline regression in request rate, error rate, and p95 latency'. The packet's request-rate signal is NEUTRAL and no signed-rule request-rate REGRESSION exists. The contract permits regression language only with the returned classification; the otherwise correct table does not remove this conflicting handoff claim."
+    },
+    {
+      "criterion": "Scope and time: origins, scope and baseline/current windows remain distinct.",
+      "score": 2,
+      "rationale": "The artifact preserves SIMULATED apm scope, the exact baseline/current windows ending 00:17:28Z and 00:17:48Z, and the later capture/collection times. It explicitly withholds freshness verification and any current-health conclusion."
+    },
+    {
+      "criterion": "Coverage: missing, empty, stale, partial and contradictory evidence stays explicit.",
+      "score": 2,
+      "rationale": "COMPLETE report coverage is separated from PARTIAL/WARN profile readiness, and missing affected-user totals, component attribution, and recovery measurements are explicit. It accurately explains that expected evidence completion does not establish service health."
+    },
+    {
+      "criterion": "Causality: ranked hypotheses, alternatives and counter-evidence do not become confirmed cause.",
+      "score": 2,
+      "rationale": "Load sensitivity and an already degraded component remain open hypotheses, with baseline symptoms and missing mechanism evidence as limitations. A deployment/configuration explanation is expressly weakened by absent records, not presented as observed or confirmed."
+    },
+    {
+      "criterion": "Action truth: proposed, approved, human-reported, executed and verified are distinguished.",
+      "score": 2,
+      "rationale": "No remediation, communication, or fresh measurement is claimed. The brief and handoff stay drafts, action authorization/execution/effect are not established, and the execution receipt records one completed turn with zero tool attempts."
+    },
+    {
+      "criterion": "Usefulness: the incident artifact gives concrete next checks and a usable handoff.",
+      "score": 2,
+      "rationale": "The main next check now identifies the absent component/dependency timing fields and requests a separately reviewed bounded source for the exact windows. It explicitly says reopening the existing normalized records cannot reveal child spans or the error emitter, so the earlier impossible re-read check is corrected."
+    }
+  ],
+  "scenarioSpecificCheck": {
+    "expectation": "Quantify the regression with the actual current/baseline values and preserve SIMULATED origin; no confirmed root cause.",
+    "score": 2,
+    "rationale": "The response accurately quantifies the error-rate and latency regressions, preserves SIMULATED origin, and confirms no root cause. The extra request-rate regression wording is separately captured as an evidence-fidelity defect."
+  },
+  "decision": "FAIL"
+}

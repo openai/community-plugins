@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "missing-connector",
+  "candidatePackageTreeSha256": "932ef62694f4d30d342504cbb17a80cbdc2d542fdf0bae1efd48449aa1bda6c4",
+  "candidateBundleSha256": "3edf3f4596d20afba6e3e4dc22bc39177f34c920c05233da2ce442321d70907f",
+  "inputSha256": "4cabace3bb425d41eeec4dde5db9806763cd45ec931c08454b79644323e8e530",
+  "promptSha256": "accd316702de640339b4bc7601197b982028960cfd830f09ce51da7f44e188f5",
+  "finalSha256": "612001c7ccc136cbf1f848375f10dd12371657c93e513282f095123eca3f4c17",
+  "executionSha256": "b5f6812280f43e430b66f02bb32f87cdf0ac73b3b9a885bd42775669ae3cf68c"
+}

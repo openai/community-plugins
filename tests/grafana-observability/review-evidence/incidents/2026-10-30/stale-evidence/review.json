@@ -3,53 +3,53 @@
   "binding": {
     "schemaVersion": 1,
     "scenarioId": "stale-evidence",
-    "candidatePackageTreeSha256": "932ef62694f4d30d342504cbb17a80cbdc2d542fdf0bae1efd48449aa1bda6c4",
-    "candidateBundleSha256": "3edf3f4596d20afba6e3e4dc22bc39177f34c920c05233da2ce442321d70907f",
-    "inputSha256": "d3bdd367a8c80fa850c21f896f8216177c8d88915dabaeb268286a4414b5a197",
-    "promptSha256": "1e6f33e83d0ff44404316723a63a98f797cef577b39fc26abaabe9eb8ca21108",
-    "finalSha256": "ee683472f52d5d4c036affe8f7d7d536921bba82bcb520b02f2e501baa478cf5",
-    "executionSha256": "feb344cb79790eee628056b0775c10ef7f6d6ba752fe91c315c6d47dde532275"
+    "candidatePackageTreeSha256": "4e3a2f8f3b0cb17c7e276b38b08568905a5b73baa7f6dbda4d6d7645823ca5ec",
+    "candidateBundleSha256": "4dd535109195c087f31c78fdeebf7dd6f05b17262fba337287a4e2351288a912",
+    "inputSha256": "d71b1791cbff1c071c92fbe3d4b687c900cb81c182bf1fad50c51c42d3d86cf0",
+    "promptSha256": "d227d7a606bdd3f6e35e963ab62afa3a3d189852b4948126f081ec072a0e27a4",
+    "finalSha256": "d36c7c01469997679874e330d3b1a57adb17c91a85a71b622b3cd1a8e07eb0e9",
+    "executionSha256": "884b65958cda5c3c3a33833b2e465c241f0976da893ddf3176a260f2de9eaa37"
   },
   "status": "REVIEWED",
-  "reviewer": "Independent Codex root reviewer; separate from evaluated model session",
+  "reviewer": "Independent Codex peer reviewer /root/public_sevbot; separate from evaluated model session",
   "independentReview": true,
   "hardFailures": [],
   "criteria": [
     {
       "criterion": "Evidence fidelity: numbers, units and claims match cited evidence.",
       "score": 2,
-      "rationale": "The endpoint values and event claims match the stale source records; it preserves WARNING signal severities and DEVIATION evidence-gap classification instead of inventing signed regressions."
+      "rationale": "The exact citations support all six endpoint metric values and both-window HTTP 503/slow-trace observations. Units remain requests per second, percent, and milliseconds. It accurately states that all issues are blocked DEVIATION evidence gaps and does not promote the numerical changes into signed regressions."
     },
     {
       "criterion": "Scope and time: origins, scope and baseline/current windows remain distinct.",
       "score": 2,
-      "rationale": "It explicitly separates observations around00:06 Z from collection around01:06 Z and capture01:06:32 Z, retaining SIMULATED apm scope and both windows."
+      "rationale": "SIMULATED apm scope and the two exact 23:18Z-23:19Z windows are separated from collection and capture after 00:19Z. The response explicitly describes a frozen imported capture and withholds independent freshness, present impact, and current health."
     },
     {
       "criterion": "Coverage: missing, empty, stale, partial and contradictory evidence stays explicit.",
       "score": 2,
-      "rationale": "Report and all ten evidence items remain STALE, historical profile warnings are not presented as present access, and current impact/recovery remain unestablished."
+      "rationale": "The report and all ten evidence entries remain STALE, and historical PARTIAL/WARN profile readiness remains unverified. Missing current measurements, component attribution, affected-user counts, mitigation records, and recovery evidence are explicit rather than filled in."
     },
     {
       "criterion": "Causality: ranked hypotheses, alternatives and counter-evidence do not become confirmed cause.",
       "score": 2,
-      "rationale": "Traffic correlation and an independent checkout fault remain open alternatives; stale coverage, existing baseline symptoms and absent mechanism constrain both."
+      "rationale": "Traffic-associated worsening and an independently persistent checkout fault remain open alternatives. Existing baseline symptoms, old evidence, absent causal detail, and lack of signed regressions prevent a confirmed cause; neither explanation is presented as measured recovery or a known fault."
     },
     {
       "criterion": "Action truth: proposed, approved, human-reported, executed and verified are distinguished.",
       "score": 2,
-      "rationale": "It reports no fresh collection, operational action, publication or recovery measurement; structured recovery remains unknown."
+      "rationale": "No action authorization, execution, effect, or communication is invented. The brief remains a draft with unknown recovery and empty executed_actions; the execution receipt records one completed turn and no tools."
     },
     {
       "criterion": "Usefulness: the incident artifact gives concrete next checks and a usable handoff.",
       "score": 2,
-      "rationale": "It requests resolution of the exact read-authorization warning followed by one fresh bounded same-scope comparison, with escalation to the profile administrator if blocked."
+      "rationale": "The handoff first asks for a fresh bounded APM collection with a qualifying baseline after confirming read authorization. If symptoms reproduce, it requests a separately reviewed component-level source and explicitly says the saved report cannot add missing fields. It does not present re-reading stale data as current verification."
     }
   ],
   "scenarioSpecificCheck": {
     "expectation": "Historical stale evidence cannot establish current health, current impact or verified recovery.",
     "score": 2,
-    "rationale": "Historical measurements are never converted into current health or verified recovery, and the recommended check obtains fresh evidence."
+    "rationale": "Historical endpoint observations remain useful but never establish current health, ongoing impact, or verified recovery. The primary next step seeks fresh matching evidence and preserves the source-reported STALE classification."
   },
   "decision": "PASS"
 }

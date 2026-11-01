@@ -1,0 +1,796 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "empty-evidence",
+  "origin": "SIMULATED",
+  "capturedAt": "2026-10-31T01:06:40.711Z",
+  "interpretation": "Frozen repository-generated evidence. Tool outputs are unchanged; they describe their collection time, not current monitoring. The model receives no connected Grafana tools. Authored context below is not tool evidence.",
+  "toolOutputs": [
+    {
+      "profile": {
+        "schemaVersion": "1.0.0",
+        "status": "PARTIAL",
+        "profileAlias": "local-grafana-e2e",
+        "readiness": "WARN",
+        "originModes": [
+          "SIMULATED"
+        ],
+        "checks": [
+          {
+            "name": "trust-bundle",
+            "status": "PASS"
+          },
+          {
+            "name": "production-mutation",
+            "status": "PASS"
+          },
+          {
+            "name": "raw-provider-retention",
+            "status": "PASS"
+          },
+          {
+            "name": "signed-worker:adapter.grafana.v1",
+            "status": "PASS"
+          },
+          {
+            "name": "read-only-transport",
+            "status": "PASS"
+          },
+          {
+            "name": "provider-scope-admission:grafana",
+            "status": "PASS"
+          },
+          {
+            "name": "provider-connectivity:grafana",
+            "status": "PASS"
+          },
+          {
+            "name": "provider-clock:grafana",
+            "status": "PASS"
+          },
+          {
+            "name": "provider-read-authorization:grafana",
+            "status": "WARN"
+          }
+        ],
+        "limitations": [
+          "This status is read-only and does not expose credentials or provider configuration."
+        ]
+      },
+      "packs": {
+        "schemaVersion": "1.0.0",
+        "status": "COMPLETE",
+        "profileAlias": "local-grafana-e2e",
+        "packs": [
+          {
+            "packId": "grafana.apm",
+            "revision": 1,
+            "useCase": "APPLICATION_PERFORMANCE",
+            "requiredOperationCount": 5,
+            "optionalOperationCount": 0
+          },
+          {
+            "packId": "grafana.business-kpis",
+            "revision": 1,
+            "useCase": "BUSINESS_INTELLIGENCE",
+            "requiredOperationCount": 3,
+            "optionalOperationCount": 0
+          },
+          {
+            "packId": "grafana.infrastructure",
+            "revision": 1,
+            "useCase": "INFRASTRUCTURE",
+            "requiredOperationCount": 4,
+            "optionalOperationCount": 0
+          },
+          {
+            "packId": "grafana.iot-edge",
+            "revision": 1,
+            "useCase": "IOT_EDGE",
+            "requiredOperationCount": 2,
+            "optionalOperationCount": 0
+          },
+          {
+            "packId": "grafana.logs",
+            "revision": 1,
+            "useCase": "LOG_ANALYTICS",
+            "requiredOperationCount": 3,
+            "optionalOperationCount": 0
+          }
+        ],
+        "limitations": [
+          "Packs contain reviewed frozen operations; provider queries and datasource identities are not returned."
+        ]
+      },
+      "request": {
+        "idempotencyKey": "onboarding-empty",
+        "profileAlias": "local-grafana-e2e",
+        "packId": "grafana.apm",
+        "scopeAlias": "apm",
+        "origin": "SIMULATED",
+        "window": {
+          "start": "2026-10-31T01:06:12.000Z",
+          "end": "2026-10-31T01:06:32.000Z"
+        },
+        "baselineWindow": {
+          "start": "2026-10-31T01:05:52.000Z",
+          "end": "2026-10-31T01:06:12.000Z"
+        }
+      },
+      "report": {
+        "schemaVersion": "1.0.0",
+        "status": "EMPTY",
+        "reportRef": "gfrpt_ff3e6d3a2e1a43da6f9caaf867f80dbc92ac48bf15b7a7056b52f4207ee5ad6c",
+        "profileAlias": "local-grafana-e2e",
+        "pack": {
+          "packId": "grafana.apm",
+          "revision": 1,
+          "useCase": "APPLICATION_PERFORMANCE",
+          "requiredOperationCount": 5,
+          "optionalOperationCount": 0
+        },
+        "scopeAlias": "apm",
+        "origin": "SIMULATED",
+        "window": {
+          "start": "2026-10-31T01:06:12.000Z",
+          "end": "2026-10-31T01:06:32.000Z"
+        },
+        "baselineWindow": {
+          "start": "2026-10-31T01:05:52.000Z",
+          "end": "2026-10-31T01:06:12.000Z"
+        },
+        "evidenceSummary": {
+          "COMPLETE": 0,
+          "EMPTY": 10,
+          "STALE": 0,
+          "CONTRADICTORY": 0,
+          "ERROR": 0
+        },
+        "collectionFailures": 0,
+        "evidence": [
+          {
+            "evidenceRef": "gfev_a3bbbd5f66b05b2437583fdb776a999ccf2d68064bb83ff7fd628a7cd536d01c",
+            "title": "grafana.apm.error.codes",
+            "domain": "LOGS",
+            "status": "EMPTY",
+            "summary": "grafana.apm.error.codes returned empty normalized evidence.",
+            "observedAt": "2026-10-31T01:06:32.000Z",
+            "linkRefs": [
+              "gflnk_650b09d218e2a82ced94fca9d0845aee8153263ef899cf5cd52f98be1d1b7bb4"
+            ]
+          },
+          {
+            "evidenceRef": "gfev_7b93c85a20909e2d41267dc0b90ec28703d1bec29c79e3161171696d24101c64",
+            "title": "grafana.apm.error.codes",
+            "domain": "LOGS",
+            "status": "EMPTY",
+            "summary": "grafana.apm.error.codes returned empty normalized evidence.",
+            "observedAt": "2026-10-31T01:06:12.000Z",
+            "linkRefs": [
+              "gflnk_6ba753a10dc4ba76facf8170b5d85de043b29b69881a2f3c700738455cbe3f77"
+            ]
+          },
+          {
+            "evidenceRef": "gfev_b56c78fa07b71d4638bf3066cd619899d297234d7f07cf31c78a8c9f5f968650",
+            "title": "grafana.apm.error.rate",
+            "domain": "METRICS",
+            "status": "EMPTY",
+            "summary": "grafana.apm.error.rate returned empty normalized evidence.",
+            "observedAt": "2026-10-31T01:06:12.000Z",
+            "linkRefs": [
+              "gflnk_6673c4d2b7138622c3b47004da0e9cf5f5234340467a4bd77e279b6f4b80d968"
+            ]
+          },
+          {
+            "evidenceRef": "gfev_059db18341882cb37cb5e3106ed9f0c6bab8ef4bf4b103895f4ccf7417bbda67",
+            "title": "grafana.apm.error.rate",
+            "domain": "METRICS",
+            "status": "EMPTY",
+            "summary": "grafana.apm.error.rate returned empty normalized evidence.",
+            "observedAt": "2026-10-31T01:06:32.000Z",
+            "linkRefs": [
+              "gflnk_6f5431a2f006ffc0738db83acda4ab45860c4d62479185f7df00aa2ab95babaf"
+            ]
+          },
+          {
+            "evidenceRef": "gfev_3a66ec3ba98fab0ec7b3ee471e11a8c837d60a9ac6f6632d4cd0d4c5aa7aaf79",
+            "title": "grafana.apm.latency.p95",
+            "domain": "METRICS",
+            "status": "EMPTY",
+            "summary": "grafana.apm.latency.p95 returned empty normalized evidence.",
+            "observedAt": "2026-10-31T01:06:32.000Z",
+            "linkRefs": [
+              "gflnk_85b5a37ce3315e5a5f0d3149f19666b3100f53a908b0311bed83031d572afacb"
+            ]
+          },
+          {
+            "evidenceRef": "gfev_feacfe34e423c92eaf9e0c7d0a9c7d2df1c6beb384f00a33f495320d13eb3e07",
+            "title": "grafana.apm.latency.p95",
+            "domain": "METRICS",
+            "status": "EMPTY",
+            "summary": "grafana.apm.latency.p95 returned empty normalized evidence.",
+            "observedAt": "2026-10-31T01:06:12.000Z",
+            "linkRefs": [
+              "gflnk_7237abdda2376eb82487514514f756b41c40b8c00951a609d64fdebdeccc177f"
+            ]
+          },
+          {
+            "evidenceRef": "gfev_b4576f5856cf5c8a74c27ae460a8bba9f34e323f955c646f7ad04206e16e532e",
+            "title": "grafana.apm.request.rate",
+            "domain": "METRICS",
+            "status": "EMPTY",
+            "summary": "grafana.apm.request.rate returned empty normalized evidence.",
+            "observedAt": "2026-10-31T01:06:32.000Z",
+            "linkRefs": [
+              "gflnk_7b43e073ec78b177a61e3ea0dd305fa1c20d8bf1af8df4727325dfe4439b3d07"
+            ]
+          },
+          {
+            "evidenceRef": "gfev_49899f7822527a9ff6a71cc8342216ec043a441bfb9d3ee4b88717d04d233239",
+            "title": "grafana.apm.request.rate",
+            "domain": "METRICS",
+            "status": "EMPTY",
+            "summary": "grafana.apm.request.rate returned empty normalized evidence.",
+            "observedAt": "2026-10-31T01:06:12.000Z",
+            "linkRefs": [
+              "gflnk_3e2a1f51be41b7179426a3a2441a60dbce4709b7cc7a0d9bc148302e77c1ecad"
+            ]
+          },
+          {
+            "evidenceRef": "gfev_2bf353096337909116571f6aeb0852be0fee8d49114a02dc8e4a3d86d76f8291",
+            "title": "grafana.apm.traces.slow",
+            "domain": "TRACES",
+            "status": "EMPTY",
+            "summary": "grafana.apm.traces.slow returned empty normalized evidence.",
+            "observedAt": "2026-10-31T01:06:12.000Z",
+            "linkRefs": [
+              "gflnk_afdc55eb90cceb5a506a325eab874efe9eee41f8cf48f5001f9b5853bae3f757"
+            ]
+          },
+          {
+            "evidenceRef": "gfev_bb58be0f07e58ae56415b01fcee87669bdebad49e67243001b1c74dbf4dcad68",
+            "title": "grafana.apm.traces.slow",
+            "domain": "TRACES",
+            "status": "EMPTY",
+            "summary": "grafana.apm.traces.slow returned empty normalized evidence.",
+            "observedAt": "2026-10-31T01:06:32.000Z",
+            "linkRefs": [
+              "gflnk_1972f2e3676cf1efcf3ce7e10c352e4967a904bb9187069170955680d58ecfc4"
+            ]
+          }
+        ],
+        "signals": [],
+        "issues": [
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Named evidence gap",
+            "summary": "grafana.apm.latency.p95: EMPTY",
+            "evidenceRefs": []
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Required current evidence is incomplete",
+            "summary": "grafana.apm.error.rate produced EMPTY evidence for the sealed current window.",
+            "evidenceRefs": [
+              "gfev_059db18341882cb37cb5e3106ed9f0c6bab8ef4bf4b103895f4ccf7417bbda67"
+            ]
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Required baseline evidence is incomplete",
+            "summary": "grafana.apm.traces.slow produced EMPTY evidence for the sealed baseline window.",
+            "evidenceRefs": [
+              "gfev_2bf353096337909116571f6aeb0852be0fee8d49114a02dc8e4a3d86d76f8291"
+            ]
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Named evidence gap",
+            "summary": "grafana.apm.error.rate did not produce fresh complete evidence",
+            "evidenceRefs": []
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Required baseline evidence is incomplete",
+            "summary": "grafana.apm.latency.p95 produced EMPTY evidence for the sealed baseline window.",
+            "evidenceRefs": [
+              "gfev_feacfe34e423c92eaf9e0c7d0a9c7d2df1c6beb384f00a33f495320d13eb3e07"
+            ]
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Named evidence gap",
+            "summary": "No analysis draft was submitted; this artifact is evidence-only and cannot claim a complete investigation.",
+            "evidenceRefs": []
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Required baseline evidence is incomplete",
+            "summary": "grafana.apm.error.rate produced EMPTY evidence for the sealed baseline window.",
+            "evidenceRefs": [
+              "gfev_b56c78fa07b71d4638bf3066cd619899d297234d7f07cf31c78a8c9f5f968650"
+            ]
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Named evidence gap",
+            "summary": "grafana.apm.request.rate did not produce fresh complete evidence",
+            "evidenceRefs": []
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Required current evidence is incomplete",
+            "summary": "grafana.apm.request.rate produced EMPTY evidence for the sealed current window.",
+            "evidenceRefs": [
+              "gfev_b4576f5856cf5c8a74c27ae460a8bba9f34e323f955c646f7ad04206e16e532e"
+            ]
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Required current evidence is incomplete",
+            "summary": "grafana.apm.traces.slow produced EMPTY evidence for the sealed current window.",
+            "evidenceRefs": [
+              "gfev_bb58be0f07e58ae56415b01fcee87669bdebad49e67243001b1c74dbf4dcad68"
+            ]
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Named evidence gap",
+            "summary": "grafana.apm.error.codes did not produce fresh complete evidence",
+            "evidenceRefs": []
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Required baseline evidence is incomplete",
+            "summary": "grafana.apm.request.rate produced EMPTY evidence for the sealed baseline window.",
+            "evidenceRefs": [
+              "gfev_49899f7822527a9ff6a71cc8342216ec043a441bfb9d3ee4b88717d04d233239"
+            ]
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Named evidence gap",
+            "summary": "grafana.apm.error.rate: EMPTY",
+            "evidenceRefs": []
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Required current evidence is incomplete",
+            "summary": "grafana.apm.latency.p95 produced EMPTY evidence for the sealed current window.",
+            "evidenceRefs": [
+              "gfev_3a66ec3ba98fab0ec7b3ee471e11a8c837d60a9ac6f6632d4cd0d4c5aa7aaf79"
+            ]
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Required current evidence is incomplete",
+            "summary": "grafana.apm.error.codes produced EMPTY evidence for the sealed current window.",
+            "evidenceRefs": [
+              "gfev_a3bbbd5f66b05b2437583fdb776a999ccf2d68064bb83ff7fd628a7cd536d01c"
+            ]
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Named evidence gap",
+            "summary": "grafana.apm.latency.p95 did not produce fresh complete evidence",
+            "evidenceRefs": []
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Named evidence gap",
+            "summary": "grafana.apm.error.codes: EMPTY",
+            "evidenceRefs": []
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "OPEN",
+            "classification": "DEVIATION",
+            "title": "Reviewed evidence deviation",
+            "summary": "The reviewed operation completed with an explicit empty result.",
+            "evidenceRefs": [
+              "gfev_b4576f5856cf5c8a74c27ae460a8bba9f34e323f955c646f7ad04206e16e532e"
+            ]
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Required baseline evidence is incomplete",
+            "summary": "grafana.apm.error.codes produced EMPTY evidence for the sealed baseline window.",
+            "evidenceRefs": [
+              "gfev_7b93c85a20909e2d41267dc0b90ec28703d1bec29c79e3161171696d24101c64"
+            ]
+          }
+        ],
+        "limitations": [
+          "Evidence is read-only and cannot authorize a patch or mutate Grafana.",
+          "Datasource identities and frozen provider queries are intentionally omitted."
+        ]
+      },
+      "evidence": [
+        {
+          "schemaVersion": "1.0.0",
+          "status": "EMPTY",
+          "reportRef": "gfrpt_ff3e6d3a2e1a43da6f9caaf867f80dbc92ac48bf15b7a7056b52f4207ee5ad6c",
+          "evidenceRef": "gfev_a3bbbd5f66b05b2437583fdb776a999ccf2d68064bb83ff7fd628a7cd536d01c",
+          "title": "grafana.apm.error.codes",
+          "domain": "LOGS",
+          "origin": "SIMULATED",
+          "authority": "CORROBORATING",
+          "provider": "grafana",
+          "evaluatedAt": "2026-10-31T01:06:32.000Z",
+          "collectedAt": "2026-10-31T01:06:34.575Z",
+          "window": {
+            "end": "2026-10-31T01:06:32.000Z",
+            "start": "2026-10-31T01:06:12.000Z"
+          },
+          "summary": "grafana.apm.error.codes returned empty normalized evidence.",
+          "values": [],
+          "limitationCount": 0,
+          "linkRefs": [
+            "gflnk_650b09d218e2a82ced94fca9d0845aee8153263ef899cf5cd52f98be1d1b7bb4"
+          ]
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "EMPTY",
+          "reportRef": "gfrpt_ff3e6d3a2e1a43da6f9caaf867f80dbc92ac48bf15b7a7056b52f4207ee5ad6c",
+          "evidenceRef": "gfev_7b93c85a20909e2d41267dc0b90ec28703d1bec29c79e3161171696d24101c64",
+          "title": "grafana.apm.error.codes",
+          "domain": "LOGS",
+          "origin": "SIMULATED",
+          "authority": "CORROBORATING",
+          "provider": "grafana",
+          "evaluatedAt": "2026-10-31T01:06:12.000Z",
+          "collectedAt": "2026-10-31T01:06:37.120Z",
+          "window": {
+            "end": "2026-10-31T01:06:12.000Z",
+            "start": "2026-10-31T01:05:52.000Z"
+          },
+          "summary": "grafana.apm.error.codes returned empty normalized evidence.",
+          "values": [],
+          "limitationCount": 0,
+          "linkRefs": [
+            "gflnk_6ba753a10dc4ba76facf8170b5d85de043b29b69881a2f3c700738455cbe3f77"
+          ]
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "EMPTY",
+          "reportRef": "gfrpt_ff3e6d3a2e1a43da6f9caaf867f80dbc92ac48bf15b7a7056b52f4207ee5ad6c",
+          "evidenceRef": "gfev_b56c78fa07b71d4638bf3066cd619899d297234d7f07cf31c78a8c9f5f968650",
+          "title": "grafana.apm.error.rate",
+          "domain": "METRICS",
+          "origin": "SIMULATED",
+          "authority": "CORROBORATING",
+          "provider": "grafana",
+          "evaluatedAt": "2026-10-31T01:06:12.000Z",
+          "collectedAt": "2026-10-31T01:06:37.607Z",
+          "window": {
+            "end": "2026-10-31T01:06:12.000Z",
+            "start": "2026-10-31T01:05:52.000Z"
+          },
+          "summary": "grafana.apm.error.rate returned empty normalized evidence.",
+          "values": [],
+          "limitationCount": 0,
+          "linkRefs": [
+            "gflnk_6673c4d2b7138622c3b47004da0e9cf5f5234340467a4bd77e279b6f4b80d968"
+          ]
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "EMPTY",
+          "reportRef": "gfrpt_ff3e6d3a2e1a43da6f9caaf867f80dbc92ac48bf15b7a7056b52f4207ee5ad6c",
+          "evidenceRef": "gfev_059db18341882cb37cb5e3106ed9f0c6bab8ef4bf4b103895f4ccf7417bbda67",
+          "title": "grafana.apm.error.rate",
+          "domain": "METRICS",
+          "origin": "SIMULATED",
+          "authority": "CORROBORATING",
+          "provider": "grafana",
+          "evaluatedAt": "2026-10-31T01:06:32.000Z",
+          "collectedAt": "2026-10-31T01:06:34.890Z",
+          "window": {
+            "end": "2026-10-31T01:06:32.000Z",
+            "start": "2026-10-31T01:06:12.000Z"
+          },
+          "summary": "grafana.apm.error.rate returned empty normalized evidence.",
+          "values": [],
+          "limitationCount": 0,
+          "linkRefs": [
+            "gflnk_6f5431a2f006ffc0738db83acda4ab45860c4d62479185f7df00aa2ab95babaf"
+          ]
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "EMPTY",
+          "reportRef": "gfrpt_ff3e6d3a2e1a43da6f9caaf867f80dbc92ac48bf15b7a7056b52f4207ee5ad6c",
+          "evidenceRef": "gfev_3a66ec3ba98fab0ec7b3ee471e11a8c837d60a9ac6f6632d4cd0d4c5aa7aaf79",
+          "title": "grafana.apm.latency.p95",
+          "domain": "METRICS",
+          "origin": "SIMULATED",
+          "authority": "CORROBORATING",
+          "provider": "grafana",
+          "evaluatedAt": "2026-10-31T01:06:32.000Z",
+          "collectedAt": "2026-10-31T01:06:35.241Z",
+          "window": {
+            "end": "2026-10-31T01:06:32.000Z",
+            "start": "2026-10-31T01:06:12.000Z"
+          },
+          "summary": "grafana.apm.latency.p95 returned empty normalized evidence.",
+          "values": [],
+          "limitationCount": 0,
+          "linkRefs": [
+            "gflnk_85b5a37ce3315e5a5f0d3149f19666b3100f53a908b0311bed83031d572afacb"
+          ]
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "EMPTY",
+          "reportRef": "gfrpt_ff3e6d3a2e1a43da6f9caaf867f80dbc92ac48bf15b7a7056b52f4207ee5ad6c",
+          "evidenceRef": "gfev_feacfe34e423c92eaf9e0c7d0a9c7d2df1c6beb384f00a33f495320d13eb3e07",
+          "title": "grafana.apm.latency.p95",
+          "domain": "METRICS",
+          "origin": "SIMULATED",
+          "authority": "CORROBORATING",
+          "provider": "grafana",
+          "evaluatedAt": "2026-10-31T01:06:12.000Z",
+          "collectedAt": "2026-10-31T01:06:38.013Z",
+          "window": {
+            "end": "2026-10-31T01:06:12.000Z",
+            "start": "2026-10-31T01:05:52.000Z"
+          },
+          "summary": "grafana.apm.latency.p95 returned empty normalized evidence.",
+          "values": [],
+          "limitationCount": 0,
+          "linkRefs": [
+            "gflnk_7237abdda2376eb82487514514f756b41c40b8c00951a609d64fdebdeccc177f"
+          ]
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "EMPTY",
+          "reportRef": "gfrpt_ff3e6d3a2e1a43da6f9caaf867f80dbc92ac48bf15b7a7056b52f4207ee5ad6c",
+          "evidenceRef": "gfev_b4576f5856cf5c8a74c27ae460a8bba9f34e323f955c646f7ad04206e16e532e",
+          "title": "grafana.apm.request.rate",
+          "domain": "METRICS",
+          "origin": "SIMULATED",
+          "authority": "CORROBORATING",
+          "provider": "grafana",
+          "evaluatedAt": "2026-10-31T01:06:32.000Z",
+          "collectedAt": "2026-10-31T01:06:34.261Z",
+          "window": {
+            "end": "2026-10-31T01:06:32.000Z",
+            "start": "2026-10-31T01:06:12.000Z"
+          },
+          "summary": "grafana.apm.request.rate returned empty normalized evidence.",
+          "values": [],
+          "limitationCount": 0,
+          "linkRefs": [
+            "gflnk_7b43e073ec78b177a61e3ea0dd305fa1c20d8bf1af8df4727325dfe4439b3d07"
+          ]
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "EMPTY",
+          "reportRef": "gfrpt_ff3e6d3a2e1a43da6f9caaf867f80dbc92ac48bf15b7a7056b52f4207ee5ad6c",
+          "evidenceRef": "gfev_49899f7822527a9ff6a71cc8342216ec043a441bfb9d3ee4b88717d04d233239",
+          "title": "grafana.apm.request.rate",
+          "domain": "METRICS",
+          "origin": "SIMULATED",
+          "authority": "CORROBORATING",
+          "provider": "grafana",
+          "evaluatedAt": "2026-10-31T01:06:12.000Z",
+          "collectedAt": "2026-10-31T01:06:36.457Z",
+          "window": {
+            "end": "2026-10-31T01:06:12.000Z",
+            "start": "2026-10-31T01:05:52.000Z"
+          },
+          "summary": "grafana.apm.request.rate returned empty normalized evidence.",
+          "values": [],
+          "limitationCount": 0,
+          "linkRefs": [
+            "gflnk_3e2a1f51be41b7179426a3a2441a60dbce4709b7cc7a0d9bc148302e77c1ecad"
+          ]
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "EMPTY",
+          "reportRef": "gfrpt_ff3e6d3a2e1a43da6f9caaf867f80dbc92ac48bf15b7a7056b52f4207ee5ad6c",
+          "evidenceRef": "gfev_2bf353096337909116571f6aeb0852be0fee8d49114a02dc8e4a3d86d76f8291",
+          "title": "grafana.apm.traces.slow",
+          "domain": "TRACES",
+          "origin": "SIMULATED",
+          "authority": "CORROBORATING",
+          "provider": "grafana",
+          "evaluatedAt": "2026-10-31T01:06:12.000Z",
+          "collectedAt": "2026-10-31T01:06:38.466Z",
+          "window": {
+            "end": "2026-10-31T01:06:12.000Z",
+            "start": "2026-10-31T01:05:52.000Z"
+          },
+          "summary": "grafana.apm.traces.slow returned empty normalized evidence.",
+          "values": [],
+          "limitationCount": 0,
+          "linkRefs": [
+            "gflnk_afdc55eb90cceb5a506a325eab874efe9eee41f8cf48f5001f9b5853bae3f757"
+          ]
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "EMPTY",
+          "reportRef": "gfrpt_ff3e6d3a2e1a43da6f9caaf867f80dbc92ac48bf15b7a7056b52f4207ee5ad6c",
+          "evidenceRef": "gfev_bb58be0f07e58ae56415b01fcee87669bdebad49e67243001b1c74dbf4dcad68",
+          "title": "grafana.apm.traces.slow",
+          "domain": "TRACES",
+          "origin": "SIMULATED",
+          "authority": "CORROBORATING",
+          "provider": "grafana",
+          "evaluatedAt": "2026-10-31T01:06:32.000Z",
+          "collectedAt": "2026-10-31T01:06:35.605Z",
+          "window": {
+            "end": "2026-10-31T01:06:32.000Z",
+            "start": "2026-10-31T01:06:12.000Z"
+          },
+          "summary": "grafana.apm.traces.slow returned empty normalized evidence.",
+          "values": [],
+          "limitationCount": 0,
+          "linkRefs": [
+            "gflnk_1972f2e3676cf1efcf3ce7e10c352e4967a904bb9187069170955680d58ecfc4"
+          ]
+        }
+      ],
+      "links": [
+        {
+          "schemaVersion": "1.0.0",
+          "status": "COMPLETE",
+          "reportRef": "gfrpt_ff3e6d3a2e1a43da6f9caaf867f80dbc92ac48bf15b7a7056b52f4207ee5ad6c",
+          "linkRef": "gflnk_650b09d218e2a82ced94fca9d0845aee8153263ef899cf5cd52f98be1d1b7bb4",
+          "mode": "OPEN_EXTERNAL",
+          "label": "Open Grafana evidence",
+          "url": "http://127.0.0.1:59547/d/synthetic-apm?viewPanel=6"
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "COMPLETE",
+          "reportRef": "gfrpt_ff3e6d3a2e1a43da6f9caaf867f80dbc92ac48bf15b7a7056b52f4207ee5ad6c",
+          "linkRef": "gflnk_6ba753a10dc4ba76facf8170b5d85de043b29b69881a2f3c700738455cbe3f77",
+          "mode": "OPEN_EXTERNAL",
+          "label": "Open Grafana evidence",
+          "url": "http://127.0.0.1:59547/d/synthetic-apm?viewPanel=6"
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "COMPLETE",
+          "reportRef": "gfrpt_ff3e6d3a2e1a43da6f9caaf867f80dbc92ac48bf15b7a7056b52f4207ee5ad6c",
+          "linkRef": "gflnk_6673c4d2b7138622c3b47004da0e9cf5f5234340467a4bd77e279b6f4b80d968",
+          "mode": "OPEN_EXTERNAL",
+          "label": "Open Grafana evidence",
+          "url": "http://127.0.0.1:59547/d/synthetic-apm?viewPanel=7"
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "COMPLETE",
+          "reportRef": "gfrpt_ff3e6d3a2e1a43da6f9caaf867f80dbc92ac48bf15b7a7056b52f4207ee5ad6c",
+          "linkRef": "gflnk_6f5431a2f006ffc0738db83acda4ab45860c4d62479185f7df00aa2ab95babaf",
+          "mode": "OPEN_EXTERNAL",
+          "label": "Open Grafana evidence",
+          "url": "http://127.0.0.1:59547/d/synthetic-apm?viewPanel=7"
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "COMPLETE",
+          "reportRef": "gfrpt_ff3e6d3a2e1a43da6f9caaf867f80dbc92ac48bf15b7a7056b52f4207ee5ad6c",
+          "linkRef": "gflnk_85b5a37ce3315e5a5f0d3149f19666b3100f53a908b0311bed83031d572afacb",
+          "mode": "OPEN_EXTERNAL",
+          "label": "Open Grafana evidence",
+          "url": "http://127.0.0.1:59547/d/synthetic-apm?viewPanel=8"
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "COMPLETE",
+          "reportRef": "gfrpt_ff3e6d3a2e1a43da6f9caaf867f80dbc92ac48bf15b7a7056b52f4207ee5ad6c",
+          "linkRef": "gflnk_7237abdda2376eb82487514514f756b41c40b8c00951a609d64fdebdeccc177f",
+          "mode": "OPEN_EXTERNAL",
+          "label": "Open Grafana evidence",
+          "url": "http://127.0.0.1:59547/d/synthetic-apm?viewPanel=8"
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "COMPLETE",
+          "reportRef": "gfrpt_ff3e6d3a2e1a43da6f9caaf867f80dbc92ac48bf15b7a7056b52f4207ee5ad6c",
+          "linkRef": "gflnk_7b43e073ec78b177a61e3ea0dd305fa1c20d8bf1af8df4727325dfe4439b3d07",
+          "mode": "OPEN_EXTERNAL",
+          "label": "Open Grafana evidence",
+          "url": "http://127.0.0.1:59547/d/synthetic-apm?viewPanel=5"
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "COMPLETE",
+          "reportRef": "gfrpt_ff3e6d3a2e1a43da6f9caaf867f80dbc92ac48bf15b7a7056b52f4207ee5ad6c",
+          "linkRef": "gflnk_3e2a1f51be41b7179426a3a2441a60dbce4709b7cc7a0d9bc148302e77c1ecad",
+          "mode": "OPEN_EXTERNAL",
+          "label": "Open Grafana evidence",
+          "url": "http://127.0.0.1:59547/d/synthetic-apm?viewPanel=5"
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "COMPLETE",
+          "reportRef": "gfrpt_ff3e6d3a2e1a43da6f9caaf867f80dbc92ac48bf15b7a7056b52f4207ee5ad6c",
+          "linkRef": "gflnk_afdc55eb90cceb5a506a325eab874efe9eee41f8cf48f5001f9b5853bae3f757",
+          "mode": "OPEN_EXTERNAL",
+          "label": "Open Grafana evidence",
+          "url": "http://127.0.0.1:59547/d/synthetic-apm?viewPanel=9"
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "COMPLETE",
+          "reportRef": "gfrpt_ff3e6d3a2e1a43da6f9caaf867f80dbc92ac48bf15b7a7056b52f4207ee5ad6c",
+          "linkRef": "gflnk_1972f2e3676cf1efcf3ce7e10c352e4967a904bb9187069170955680d58ecfc4",
+          "mode": "OPEN_EXTERNAL",
+          "label": "Open Grafana evidence",
+          "url": "http://127.0.0.1:59547/d/synthetic-apm?viewPanel=9"
+        }
+      ]
+    }
+  ],
+  "transport": {
+    "kind": "PACKAGED_MCP_STDIO_AND_SIGNED_WORKER",
+    "provider": "LOOPBACK_SYNTHETIC_GRAFANA_HTTP",
+    "requiredOperationsPerWindow": 5,
+    "providerReads": 10,
+    "unexpectedRequests": 0
+  },
+  "authoredContext": []
+}

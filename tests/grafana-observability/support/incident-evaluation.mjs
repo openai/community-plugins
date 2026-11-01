@@ -237,6 +237,29 @@ export function recordEvent(trace, line) {
   if (/tool|command|function_call|web_search|file_change/iu.test(type)) trace.toolAttempts.push({ eventType: type, itemType: null });
 }
 
+/** Bind a saved final to the actual last completed agent message. Message text
+ * stays in memory only; do not add it to the retained, sanitized trace. Codex's
+ * output file may add terminal LF/CRLF newlines, so ignore only those newlines.
+ */
+export function createFinalOutputBinding() {
+  let lastCompletedText = null;
+  return {
+    record(line) {
+      let event;
+      try { event = JSON.parse(line); } catch { return; } // recordEvent reports malformed JSON.
+      if (event?.type === "item.completed" && event.item?.type === "agent_message") {
+        lastCompletedText = typeof event.item.text === "string" ? event.item.text : null;
+      }
+    },
+    assertMatches(final) {
+      assert.ok(typeof final === "string" && final.trim().length > 0, "Saved final must contain output text");
+      assert.ok(lastCompletedText !== null, "No completed agent message is available to bind the saved final");
+      const normalize = (value) => value.replace(/(?:\r?\n)+$/u, "");
+      assert.ok(normalize(final) === normalize(lastCompletedText), "Saved final differs from the last completed agent message");
+    },
+  };
+}
+
 export function receiptIdentity({ scenarioId, bundle, packet, prompt, final = null, execution = null }) {
   return {
     schemaVersion: 1, scenarioId, candidatePackageTreeSha256: bundle.packageTreeSha256,
@@ -287,9 +310,14 @@ export function finalizeRecord({ scenario, bundle, packet, prompt, final, events
   assert.ok(["HARNESS_CODEX_EXEC", "DIRECT_CODEX_EXEC"].includes(execution.source));
   assert.equal(execution.code, 0, "An unsuccessful client invocation cannot finalize an accepted model output");
   const trace = newTrace();
-  for (const line of events.split(/\r?\n/u)) if (line.trim()) recordEvent(trace, line);
+  const binding = createFinalOutputBinding();
+  for (const line of events.split(/\r?\n/u)) if (line.trim()) {
+    recordEvent(trace, line);
+    binding.record(line);
+  }
+  binding.assertMatches(final);
   for (const line of diagnostics.split(/\r?\n/u)) if (line.trim()) recordDiagnostic(trace, line);
-  const sanitizedExecution = { ...execution, reportedModel: trace.reportedModel, trace };
+  const sanitizedExecution = { ...execution, reportedModel: trace.reportedModel, trace, finalOutputBinding: "MATCHED" };
   const identity = receiptIdentity({ scenarioId: scenario.id, bundle, packet, prompt, final, execution: sanitizedExecution });
   return {
     identity,
@@ -310,6 +338,7 @@ export function validateRetainedRecord({ scenario, bundle, packet, final, identi
   if (Object.hasOwn(execution, "signal")) assert.equal(execution.signal, null);
   if (Object.hasOwn(execution, "timedOut")) assert.equal(execution.timedOut, false);
   if (Object.hasOwn(execution, "outputBoundExceeded")) assert.equal(execution.outputBoundExceeded, false);
+  assert.equal(execution.finalOutputBinding, "MATCHED", "Current acceptance requires the saved final to match its emitted agent message");
   const prompt = evaluationPrompt(scenario, packet, bundle);
   const expected = receiptIdentity({ scenarioId: scenario.id, bundle, packet, prompt, final, execution });
   assert.deepEqual(identity, expected, "Retained receipt does not match candidate/input/prompt/final/execution bytes");
@@ -329,6 +358,7 @@ export function validateArchivedRecord({ scenario, bundle, packet, final, identi
   assert.deepEqual(packet.authoredContext, scenario.notes ?? []);
   assert.ok(["HARNESS_CODEX_EXEC", "DIRECT_CODEX_EXEC"].includes(execution.source));
   assert.equal(execution.code, 0);
+  if (Object.hasOwn(execution, "finalOutputBinding")) assert.equal(execution.finalOutputBinding, "MATCHED");
   assert.equal(execution.trace.completedTurns, 1);
   assert.equal(execution.trace.invalidJsonLines, 0);
   assert.deepEqual(execution.trace.toolAttempts, []);

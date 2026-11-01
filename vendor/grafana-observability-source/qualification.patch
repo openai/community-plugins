@@ -1,7 +1,8 @@
 diff --git a/adapters/grafana/src/adapter.ts b/adapters/grafana/src/adapter.ts
+index 5599773..cec1b7b 100644
 --- a/adapters/grafana/src/adapter.ts
 +++ b/adapters/grafana/src/adapter.ts
-@@ -25,6 +25,7 @@
+@@ -25,6 +25,7 @@ import {
  
  import { CompiledGrafanaCatalog, grafanaCatalogEntryHash } from "./catalog.ts";
  import { normalizeGrafanaFrames } from "./frame-normalizer.ts";
@@ -9,7 +10,7 @@ diff --git a/adapters/grafana/src/adapter.ts b/adapters/grafana/src/adapter.ts
  import {
    canonicalGrafanaDatasourceType,
    GrafanaTransportError,
-@@ -550,6 +551,24 @@
+@@ -550,6 +551,24 @@ function buildDatasourceQueryTarget(binding: GrafanaBinding, context: AdapterExe
  
  function buildRequest(binding: GrafanaBinding, context: AdapterExecutionContext): GrafanaHttpRequest {
    if (binding.route === "datasource-query") {
@@ -34,7 +35,7 @@ diff --git a/adapters/grafana/src/adapter.ts b/adapters/grafana/src/adapter.ts
      return {
        method: "POST",
        path: "/api/ds/query",
-@@ -718,7 +737,9 @@
+@@ -718,7 +737,9 @@ export class GrafanaAdapter implements EvidenceAdapter<GrafanaBinding> {
      const request = buildRequest(operation.binding, context);
      const body = await requestJson(this.#transport, request, context);
      if (trustedEntry.route === "datasource-query") {
@@ -47,6 +48,7 @@ diff --git a/adapters/grafana/src/adapter.ts b/adapters/grafana/src/adapter.ts
          collectionState: normalized.records.length === 0 ? "EMPTY" : "COMPLETE",
 diff --git a/adapters/grafana/src/native-response.ts b/adapters/grafana/src/native-response.ts
 new file mode 100644
+index 0000000..6ffc4fd
 --- /dev/null
 +++ b/adapters/grafana/src/native-response.ts
 @@ -0,0 +1,306 @@
@@ -357,9 +359,10 @@ new file mode 100644
 +  return body;
 +}
 diff --git a/adapters/grafana/src/types.ts b/adapters/grafana/src/types.ts
+index f6e26d7..f6b465b 100644
 --- a/adapters/grafana/src/types.ts
 +++ b/adapters/grafana/src/types.ts
-@@ -209,6 +209,7 @@
+@@ -209,6 +209,7 @@ export interface GrafanaHttpGetRequest extends GrafanaHttpRequestBase {
      | "/api/search"
      | `/api/datasources/uid/${string}`
      | `/api/datasources/uid/${string}/health`
@@ -368,9 +371,10 @@ diff --git a/adapters/grafana/src/types.ts b/adapters/grafana/src/types.ts
      | "/api/v1/provisioning/alert-rules";
    query: Readonly<Record<string, string>>;
 diff --git a/packages/grafana-credential-profile/src/macos-keychain-loader.ts b/packages/grafana-credential-profile/src/macos-keychain-loader.ts
+index d4e68b1..2d3d399 100644
 --- a/packages/grafana-credential-profile/src/macos-keychain-loader.ts
 +++ b/packages/grafana-credential-profile/src/macos-keychain-loader.ts
-@@ -14,6 +14,7 @@
+@@ -14,6 +14,7 @@ import {
  
  const SHA256 = /^[a-f0-9]{64}$/u;
  const MAX_NATIVE_ASSET_BYTES = 64 * 1_024 * 1_024;
@@ -378,7 +382,7 @@ diff --git a/packages/grafana-credential-profile/src/macos-keychain-loader.ts b/
  
  export interface HashPinnedMacOsKeychainAsset {
    /** A code-owned file URL resolved relative to the signed plugin bundle. */
-@@ -25,7 +26,8 @@
+@@ -25,7 +26,8 @@ export interface HashPinnedMacOsKeychainAsset {
  export type NativeAddonImporter = (absolutePath: string) => unknown | Promise<unknown>;
  
  interface RawAsyncEntry {
@@ -388,12 +392,10 @@ diff --git a/packages/grafana-credential-profile/src/macos-keychain-loader.ts b/
    setSecret(secret: Uint8Array, signal?: AbortSignal): Promise<void>;
    deleteCredential(signal?: AbortSignal): Promise<boolean>;
  }
-@@ -42,6 +44,52 @@
-   return value !== null && typeof value === "object" && !Array.isArray(value)
-     ? value as Record<string, unknown>
+@@ -44,6 +46,52 @@ function record(value: unknown): Record<string, unknown> | undefined {
      : undefined;
-+}
-+
+ }
+ 
 +function copyNativeSecret(value: unknown): Uint8Array | undefined {
 +  if (value === undefined || value === null) return undefined;
 +  if (value instanceof Uint8Array) {
@@ -438,10 +440,12 @@ diff --git a/packages/grafana-credential-profile/src/macos-keychain-loader.ts b/
 +  } catch {
 +    // Rejected immutable or exotic values cannot be reliably overwritten.
 +  }
- }
- 
++}
++
  function adaptMacOsKeychainAddon(value: unknown): NativeKeyringModule {
-@@ -61,14 +109,12 @@
+   const AsyncEntry = record(value)?.AsyncEntry;
+   if (typeof AsyncEntry !== "function") throw new NativeKeyringUnavailableError();
+@@ -61,14 +109,12 @@ function adaptMacOsKeychainAddon(value: unknown): NativeKeyringModule {
        }
        return {
          async getSecret(signal?: AbortSignal): Promise<Uint8Array | undefined> {
@@ -459,7 +463,7 @@ diff --git a/packages/grafana-credential-profile/src/macos-keychain-loader.ts b/
            }
          },
          async setSecret(secret: Uint8Array, signal?: AbortSignal): Promise<void> {
-@@ -195,12 +241,10 @@
+@@ -195,12 +241,10 @@ async function importPrivateVerifiedCopy(
      } finally {
        verified.fill(0);
      }
@@ -477,9 +481,10 @@ diff --git a/packages/grafana-credential-profile/src/macos-keychain-loader.ts b/
    } catch {
      throw new NativeKeyringUnavailableError();
 diff --git a/packages/observability-cli/src/entrypoint.ts b/packages/observability-cli/src/entrypoint.ts
+index cc40e96..895738b 100644
 --- a/packages/observability-cli/src/entrypoint.ts
 +++ b/packages/observability-cli/src/entrypoint.ts
-@@ -10,6 +10,7 @@
+@@ -10,6 +10,7 @@ import {
  
  import { runObservabilityCli, type ObservabilityCliIo } from "./main.ts";
  import { HttpGrafanaConnectionDiscovery } from "./grafana-discovery.ts";
@@ -487,7 +492,7 @@ diff --git a/packages/observability-cli/src/entrypoint.ts b/packages/observabili
  
  export const BUNDLED_MACOS_KEYCHAIN_ASSETS = Object.freeze({
    arm64: Object.freeze({
-@@ -62,19 +63,27 @@
+@@ -62,19 +63,27 @@ export function createBundledMacOsKeychainLoader(options: {
  export async function runObservabilityCliEntrypoint(options: {
    argv?: readonly string[];
    io?: ObservabilityCliIo;
@@ -519,7 +524,7 @@ diff --git a/packages/observability-cli/src/entrypoint.ts b/packages/observabili
      profileStore: new SharedGrafanaProfileStore(
        options.platform === undefined ? {} : { platform: options.platform },
      ),
-@@ -88,11 +97,9 @@
+@@ -88,11 +97,9 @@ const directlyExecuted = process.argv[1] !== undefined
    && pathToFileURL(process.argv[1]).href === import.meta.url;
  
  if (directlyExecuted) {
@@ -535,24 +540,27 @@ diff --git a/packages/observability-cli/src/entrypoint.ts b/packages/observabili
    }).catch(() => {
      process.stderr.write("The shared Grafana credential store is unavailable.\n");
 diff --git a/packages/observability-cli/src/help.ts b/packages/observability-cli/src/help.ts
+index 8e4428b..ef4bb0e 100644
 --- a/packages/observability-cli/src/help.ts
 +++ b/packages/observability-cli/src/help.ts
-@@ -1,4 +1,11 @@
+@@ -1,5 +1,12 @@
  export const OBSERVABILITY_CLI_VERSION = "0.1.0";
-+
+ 
 +/** Informational commands must not initialize a platform credential backend. */
 +export function observabilityCliInformation(argv: readonly string[]): string | undefined {
 +  if (argv.length === 1 && argv[0] === "--version") return `${OBSERVABILITY_CLI_VERSION}\n`;
 +  if (argv.length === 0 || (argv.length === 1 && argv[0] === "--help")) return observabilityCliHelp();
 +  return undefined;
 +}
- 
++
  export function observabilityCliHelp(): string {
    return `observabilityctl ${OBSERVABILITY_CLI_VERSION}
+ 
 diff --git a/packages/observability-cli/src/main.ts b/packages/observability-cli/src/main.ts
+index 4e52a0d..5a392aa 100644
 --- a/packages/observability-cli/src/main.ts
 +++ b/packages/observability-cli/src/main.ts
-@@ -27,7 +27,7 @@
+@@ -27,7 +27,7 @@ import {
    type GrafanaConnectionDiscovery,
    type GrafanaConnectionPreview,
  } from "./grafana-discovery.ts";
@@ -561,7 +569,7 @@ diff --git a/packages/observability-cli/src/main.ts b/packages/observability-cli
  import {
    confirmSharedProfileActivation,
    confirmSharedProfileDeletion,
-@@ -497,12 +497,9 @@
+@@ -497,12 +497,9 @@ export async function runObservabilityCli(
    argv: readonly string[],
    dependencies: ObservabilityCliDependencies,
  ): Promise<number> {
@@ -578,6 +586,7 @@ diff --git a/packages/observability-cli/src/main.ts b/packages/observability-cli
    }
    try {
 diff --git a/plugins/grafana-observability/.codex-plugin/plugin.json b/plugins/grafana-observability/.codex-plugin/plugin.json
+index 0e9b007..017307f 100644
 --- a/plugins/grafana-observability/.codex-plugin/plugin.json
 +++ b/plugins/grafana-observability/.codex-plugin/plugin.json
 @@ -1,13 +1,13 @@
@@ -634,6 +643,7 @@ diff --git a/plugins/grafana-observability/.codex-plugin/plugin.json b/plugins/g
    },
    "mcpServers": "./.mcp.json"
 diff --git a/plugins/grafana-observability/.mcp.json b/plugins/grafana-observability/.mcp.json
+index c9ae127..be29de9 100644
 --- a/plugins/grafana-observability/.mcp.json
 +++ b/plugins/grafana-observability/.mcp.json
 @@ -7,6 +7,13 @@
@@ -652,18 +662,21 @@ diff --git a/plugins/grafana-observability/.mcp.json b/plugins/grafana-observabi
    }
 diff --git a/plugins/grafana-observability/README.md b/plugins/grafana-observability/README.md
 new file mode 100644
+index 0000000..1c527df
 --- /dev/null
 +++ b/plugins/grafana-observability/README.md
-@@ -0,0 +1,141 @@
+@@ -0,0 +1,146 @@
 +# Grafana Observability for Codex
 +
 +Investigate infrastructure, application performance, logs, edge devices, and business KPIs using administrator-approved, read-only Grafana evidence. Turn that evidence into incident briefs, handoffs, and postmortem drafts.
 +
-+[![Watch the Grafana production-monitoring demo](../../docs/media/grafana-production-monitoring-demo.png)](../../docs/media/grafana-production-monitoring-demo-8x.mp4)
++[![Watch the Grafana incident workflow demo](../../docs/media/grafana-incident-workflows.png)](../../docs/media/grafana-incident-workflows.mp4)
 +
-+**[Watch the 23-second demo · 8× speed](../../docs/media/grafana-production-monitoring-demo-8x.mp4)** · [Full walkthrough · 3 minutes](../../docs/media/grafana-production-monitoring-demo.mp4)
++**[Watch the incident walkthrough · 1:45](../../docs/media/grafana-incident-workflows.mp4)** · [Full recording · 2:48](../../docs/media/grafana-incident-workflows-full.mp4) · [Recording details and receipts](../../docs/grafana-incident-video.md)
 +
-+The recording illustrates a local production-monitoring workflow, including a separately approved code patch. This plugin collects evidence; it does **not** patch, deploy, restart services, or change Grafana. The recording is not an installed-package test.
++The recording shows both incident skills collecting and reviewing **SIMULATED** evidence through the packaged MCP server. A custom recording console displays the real Codex model and tool run. The skills produce drafts; they do not patch, deploy, restart services, or change Grafana.
++
++**Start here:** [Install and check setup](#install) · [Try the synthetic demo](../../docs/grafana-synthetic-onboarding.md#quick-start) · [Connect Grafana](#connect-a-real-grafana-instance)
 +
 +## What it does
 +
@@ -714,13 +727,16 @@ new file mode 100644
 +Requires **Node.js 22.19+**. Installation and MCP startup are tested with **Codex CLI 0.144.3**. From a reviewed local checkout:
 +
 +```sh
-+codex plugin marketplace add .
++codex plugin marketplace add . && \
 +codex plugin add grafana-observability@community-plugins
 +```
 +
 +Run the first command from the repository root, then start a new Codex task.
++When reviewing a draft PR, use its reviewed checkout; see the
++[PR preview instructions](../../docs/grafana-synthetic-onboarding.md#preview-a-draft-pr)
++and [existing-marketplace setup](../../docs/grafana-synthetic-onboarding.md#use-the-result-with-incident-workflows).
 +The GitHub-backed marketplace can be added with
-+`codex plugin marketplace add openai/community-plugins --ref main`.
++`codex plugin marketplace add openai/community-plugins --ref main` for merged releases.
 +
 +Start with:
 +
@@ -794,10 +810,11 @@ new file mode 100644
 +
 +The [incident evaluation guide](../../docs/grafana-incident-evaluations.md)
 +separates deterministic runtime checks, actual client installation, and opt-in
-+model evaluations of the candidate skills. A passing layout check or a demo
-+recording is not proof of model behavior.
++model evaluations of the candidate skills. The video demonstrates one synthetic
++scenario; it does not replace the broader behavioral or real-provider checks.
 diff --git a/plugins/grafana-observability/skills/coordinate-grafana-incident/SKILL.md b/plugins/grafana-observability/skills/coordinate-grafana-incident/SKILL.md
 new file mode 100644
+index 0000000..88d39f7
 --- /dev/null
 +++ b/plugins/grafana-observability/skills/coordinate-grafana-incident/SKILL.md
 @@ -0,0 +1,38 @@
@@ -841,6 +858,7 @@ new file mode 100644
 +Return the incident brief and requested draft. Preserve `COMPLETE`, `EMPTY`, `STALE`, `PARTIAL`, `CONTRADICTORY`, and `ERROR` per source report; do not replace them with an invented aggregate health verdict. End with the smallest useful next check or a specific escalation need. Do not promise a next update or continued monitoring after this task.
 diff --git a/plugins/grafana-observability/skills/coordinate-grafana-incident/agents/openai.yaml b/plugins/grafana-observability/skills/coordinate-grafana-incident/agents/openai.yaml
 new file mode 100644
+index 0000000..915f555
 --- /dev/null
 +++ b/plugins/grafana-observability/skills/coordinate-grafana-incident/agents/openai.yaml
 @@ -0,0 +1,7 @@
@@ -853,6 +871,7 @@ new file mode 100644
 +  allow_implicit_invocation: false
 diff --git a/plugins/grafana-observability/skills/coordinate-grafana-incident/references/incident-brief-template.md b/plugins/grafana-observability/skills/coordinate-grafana-incident/references/incident-brief-template.md
 new file mode 100644
+index 0000000..d99a0a1
 --- /dev/null
 +++ b/plugins/grafana-observability/skills/coordinate-grafana-incident/references/incident-brief-template.md
 @@ -0,0 +1,47 @@
@@ -905,9 +924,10 @@ new file mode 100644
 +- Superseded findings and why:
 diff --git a/plugins/grafana-observability/skills/coordinate-grafana-incident/references/incident-response-contract.md b/plugins/grafana-observability/skills/coordinate-grafana-incident/references/incident-response-contract.md
 new file mode 100644
+index 0000000..0698620
 --- /dev/null
 +++ b/plugins/grafana-observability/skills/coordinate-grafana-incident/references/incident-response-contract.md
-@@ -0,0 +1,85 @@
+@@ -0,0 +1,87 @@
 +# Incident response contract
 +
 +These workflows operate during an active Codex task. They organize evidence and prepare drafts. They do not supply background monitoring, a shared incident database, messaging authority, or operational remediation.
@@ -957,6 +977,8 @@ new file mode 100644
 +
 +Use open, supported, weakened, or rejected as narrative assessments, not replacements for provider statuses. Keep a hypothesis open when only correlation or insufficient evidence supports it. Do not perform a check requiring an inactive pack, broader scope, raw provider access, or operational changes.
 +
++Before proposing a check, identify the fields it needs and whether the available evidence or approved pack actually supplies them. `grafana_get_evidence` reopens a saved normalized record; it cannot add missing fields. A slow-trace event summary does not imply child spans, per-component timing, or the component that emitted an error. Repeating the same pack with a new key can refresh its measurements but does not make its schema richer. If the supplied detail lacks the needed fields, state that limitation and request a separately reviewed source or pack that provides those specific fields. Do not promise that reopening the existing report will reveal them, or use an unavailable field as the next check in a handoff.
++
 +When blocked, request the missing information or access precisely, explain why it matters, and identify which conclusion must remain open. Do not repeat an unchanged failing check.
 +
 +## Actions and recovery
@@ -995,6 +1017,7 @@ new file mode 100644
 +The agent does not approve its own lesson. Later incidents may contradict it.
 diff --git a/plugins/grafana-observability/skills/coordinate-grafana-incident/references/incident-review-template.md b/plugins/grafana-observability/skills/coordinate-grafana-incident/references/incident-review-template.md
 new file mode 100644
+index 0000000..da610fc
 --- /dev/null
 +++ b/plugins/grafana-observability/skills/coordinate-grafana-incident/references/incident-review-template.md
 @@ -0,0 +1,56 @@
@@ -1056,6 +1079,7 @@ new file mode 100644
 +This draft does not close the incident, approve guidance, or establish recovery beyond the cited measurements.
 diff --git a/plugins/grafana-observability/skills/review-grafana-incident/SKILL.md b/plugins/grafana-observability/skills/review-grafana-incident/SKILL.md
 new file mode 100644
+index 0000000..7e7ed05
 --- /dev/null
 +++ b/plugins/grafana-observability/skills/review-grafana-incident/SKILL.md
 @@ -0,0 +1,34 @@
@@ -1095,6 +1119,7 @@ new file mode 100644
 +Use the incident review template without inventing missing fields. Cite material assertions, identify unavailable sources, preserve report statuses and origin, and separate proposed work from completed work. The result is a review draft, not incident closure, approved guidance, or a claim of production recovery beyond the cited measurements.
 diff --git a/plugins/grafana-observability/skills/review-grafana-incident/agents/openai.yaml b/plugins/grafana-observability/skills/review-grafana-incident/agents/openai.yaml
 new file mode 100644
+index 0000000..1eb971c
 --- /dev/null
 +++ b/plugins/grafana-observability/skills/review-grafana-incident/agents/openai.yaml
 @@ -0,0 +1,7 @@
@@ -1105,8 +1130,22 @@ new file mode 100644
 +  default_prompt: "Use $review-grafana-incident to prepare a source-backed postmortem, preserve unresolved questions, and propose a runbook improvement."
 +policy:
 +  allow_implicit_invocation: false
+diff --git a/plugins/grafana-observability/skills/setup-grafana-observability/SKILL.md b/plugins/grafana-observability/skills/setup-grafana-observability/SKILL.md
+index 7335666..47e4e4d 100644
+--- a/plugins/grafana-observability/skills/setup-grafana-observability/SKILL.md
++++ b/plugins/grafana-observability/skills/setup-grafana-observability/SKILL.md
+@@ -29,7 +29,7 @@ Guide a shared-credential connection through the human terminal flow when needed
+ 3. Explain the separate human administrator step. A saved panel is only one field in the strict enrollment envelope; a raw dashboard export is rejected. The exact Prometheus and PostgreSQL envelope examples are bundled at `./skills/setup-grafana-observability/references/saved-panel-enrollment.md`. After reviewing and replacing every example value, the operator may run `node ./scripts/grafana-authorityctl.mjs saved-panel enroll --input <absolute-enrollment-json> --output <absolute-proposal-json>` from the installed plugin root. This offline command accepts one bounded regular JSON file, compiles exactly target A through the certified datasource validators, and emits one hash-pinned proposal without contacting Grafana or activating anything. PostgreSQL enrollment additionally requires `postgresMaxRows` and the exact hash-bound `postgresReadOnlyIdentity: { roleIdentitySha256: "<64-lowercase-hex>", privilegeModel: "SELECT_ONLY" }` attestation. A separately provisioned organizational authority bundle and reviewed distribution path are prerequisites. This plugin validates and activates that bundle; it does not assemble or sign trust roots. If no reviewed bundle or distribution path exists, stop and request one from the organizational monitoring administrator.
+ 4. Before activation, the human operator must provision a real owner-only (`0700`) receipt parent directory outside both the inspected checkout and trust root; the CLI does not create that parent. The operator validates the assembled root with `node ./scripts/grafana-authorityctl.mjs trust-root validate --root <absolute-admin-root>`, reviews the exact returned root-manifest and trust-bundle digests, and only then runs `node ./scripts/grafana-authorityctl.mjs trust-root activate --root <absolute-admin-root> --receipt <absolute-owner-only-receipt> --expected-root-manifest-sha256 <reviewed-digest> --expected-trust-bundle-sha256 <reviewed-digest>`. The operator configures the local MCP launcher with `PRODUCTION_MONITORING_MODE=live` plus absolute `PRODUCTION_MONITORING_TRUST_ROOT` and `PRODUCTION_MONITORING_ACTIVATION_RECEIPT` paths, then restarts the worker. Never run shell commands or perform or imply this human activation from the skill.
+    The bundled launcher forwards only the five reviewed non-secret mode, authority, receipt, artifact, and state settings. A Desktop app started from the Dock does not inherit terminal exports. Refer the human operator to `./skills/setup-grafana-observability/references/client-launch.md` for the tested explicit Codex configuration; do not change their client configuration from this skill.
+-5. This 0.1.0 release supports seamless native setup only on macOS arm64. macOS x64, Linux, Windows, and musl fail closed because their native credential assets are not included. A separately administered headless Linux trust root may use an enterprise broker or named environment reference, but that is outside this interactive shared-profile flow and receives no seamless-keychain claim. If the CLI reports that the credential store is unavailable, report this platform or assembly limitation and do not solicit or retry through files, environment secrets, or shell credential helpers.
++5. The packaged native credential broker supports seamless native setup only on macOS arm64. macOS x64, Linux, Windows, and musl fail closed because their native credential assets are not included. A separately administered headless Linux trust root may use an enterprise broker or named environment reference, but that is outside this interactive shared-profile flow and receives no seamless-keychain claim. If the CLI reports that the credential store is unavailable, report this platform or assembly limitation and do not solicit or retry through files, environment secrets, or shell credential helpers.
+ 6. After the user confirms both credential connection and administrator activation, obtain the exact non-secret `profileAlias` and call `grafana_profile_status({profileAlias})`.
+ 7. Report readiness, origin modes, check statuses, and limitations. Stop if the result is `ERROR` or readiness is `BLOCKED`.
+ 8. Call `grafana_list_packs({profileAlias})`.
 diff --git a/plugins/grafana-observability/skills/setup-grafana-observability/references/client-launch.md b/plugins/grafana-observability/skills/setup-grafana-observability/references/client-launch.md
 new file mode 100644
+index 0000000..817df82
 --- /dev/null
 +++ b/plugins/grafana-observability/skills/setup-grafana-observability/references/client-launch.md
 @@ -0,0 +1,58 @@
@@ -1169,9 +1208,10 @@ new file mode 100644
 +network-disabled container. That check verifies fixture startup and environment
 +handling; it is not a Desktop GUI or installed-client live-authentication test.
 diff --git a/scripts/plugin-descriptors.mjs b/scripts/plugin-descriptors.mjs
+index 9e83fc6..dc1eb20 100644
 --- a/scripts/plugin-descriptors.mjs
 +++ b/scripts/plugin-descriptors.mjs
-@@ -24,6 +24,7 @@
+@@ -24,6 +24,7 @@ const grafanaObservabilityReleaseEntries = [
    ".codex-plugin",
    ".mcp.json",
    "LICENSE",
@@ -1180,9 +1220,10 @@ diff --git a/scripts/plugin-descriptors.mjs b/scripts/plugin-descriptors.mjs
    "assets",
    "mcp",
 diff --git a/tests/adapters/grafana/grafana-adapter.test.ts b/tests/adapters/grafana/grafana-adapter.test.ts
+index 63d66f4..c5b753d 100644
 --- a/tests/adapters/grafana/grafana-adapter.test.ts
 +++ b/tests/adapters/grafana/grafana-adapter.test.ts
-@@ -536,14 +536,29 @@
+@@ -536,14 +536,29 @@ test("datasource-query emits exactly one certified target for Prometheus, Loki,
    ];
    for (const [datasourceType, entry] of cases) {
      await t.test(datasourceType, async () => {
@@ -1217,6 +1258,7 @@ diff --git a/tests/adapters/grafana/grafana-adapter.test.ts b/tests/adapters/gra
          const queries = request.body.queries;
 diff --git a/tests/distribution/grafana-native-response.test.ts b/tests/distribution/grafana-native-response.test.ts
 new file mode 100644
+index 0000000..8de07d9
 --- /dev/null
 +++ b/tests/distribution/grafana-native-response.test.ts
 @@ -0,0 +1,216 @@
@@ -1438,6 +1480,7 @@ new file mode 100644
 +});
 diff --git a/tests/distribution/macos-keychain-loader-regression.test.ts b/tests/distribution/macos-keychain-loader-regression.test.ts
 new file mode 100644
+index 0000000..f415f43
 --- /dev/null
 +++ b/tests/distribution/macos-keychain-loader-regression.test.ts
 @@ -0,0 +1,137 @@
@@ -1580,6 +1623,7 @@ new file mode 100644
 +});
 diff --git a/tests/distribution/observability-cli-information.test.ts b/tests/distribution/observability-cli-information.test.ts
 new file mode 100644
+index 0000000..0e072f0
 --- /dev/null
 +++ b/tests/distribution/observability-cli-information.test.ts
 @@ -0,0 +1,47 @@
@@ -1631,9 +1675,10 @@ new file mode 100644
 +  assert.equal(observabilityCliInformation(["grafana", "--help"]), undefined);
 +});
 diff --git a/tests/grafana-mcp-server/actual-grafana-adapter-runtime.test.ts b/tests/grafana-mcp-server/actual-grafana-adapter-runtime.test.ts
+index 8c861ea..d2656ae 100644
 --- a/tests/grafana-mcp-server/actual-grafana-adapter-runtime.test.ts
 +++ b/tests/grafana-mcp-server/actual-grafana-adapter-runtime.test.ts
-@@ -120,8 +120,10 @@
+@@ -120,8 +120,10 @@ test("all five packs use the actual Grafana adapter, frozen targets, and frame n
      const requests = fixture.transport.requests.filter((request) => request.operationId === operationId);
      assert.equal(requests.length, 1, operationId);
      assert.equal(requests[0]!.targetCount, 1, operationId);
@@ -1647,9 +1692,10 @@ diff --git a/tests/grafana-mcp-server/actual-grafana-adapter-runtime.test.ts b/t
      const evidence = collectedEvidence.find((item) => item.operationId === operationId);
      assert.ok(evidence !== undefined, operationId);
 diff --git a/tests/grafana-mcp-server/real-grafana-adapter-fixture.ts b/tests/grafana-mcp-server/real-grafana-adapter-fixture.ts
+index b4e157a..0610dca 100644
 --- a/tests/grafana-mcp-server/real-grafana-adapter-fixture.ts
 +++ b/tests/grafana-mcp-server/real-grafana-adapter-fixture.ts
-@@ -167,8 +167,8 @@
+@@ -167,8 +167,8 @@ export interface CapturedGrafanaQuery {
    datasourceType: CertifiedDatasourceType;
    datasourceUid: string;
    targetCount: number;
@@ -1660,7 +1706,7 @@ diff --git a/tests/grafana-mcp-server/real-grafana-adapter-fixture.ts b/tests/gr
  }
  
  function isEventSpec(spec: FixtureSpec): spec is EventFixtureSpec {
-@@ -442,6 +442,29 @@
+@@ -442,6 +442,29 @@ async function* chunks(value: unknown): AsyncGenerator<Uint8Array> {
  }
  
  function responseFor(compiled: CompiledFixtureSpec): GrafanaHttpResponse {
@@ -1690,7 +1736,7 @@ diff --git a/tests/grafana-mcp-server/real-grafana-adapter-fixture.ts b/tests/gr
    return {
      status: 200,
      body: chunks({
-@@ -475,8 +498,35 @@
+@@ -475,8 +498,35 @@ export class DeterministicGrafanaTransport implements GrafanaTransport {
      if (request.method === "GET" && request.path === "/api/health") {
        return { status: 200, body: chunks({ database: "ok", version: "13.1.0" }) };
      }
@@ -1727,7 +1773,7 @@ diff --git a/tests/grafana-mcp-server/real-grafana-adapter-fixture.ts b/tests/gr
      }
      const queries = request.body.queries;
      if (!Array.isArray(queries) || queries.length !== 1) {
-@@ -496,7 +546,7 @@
+@@ -496,7 +546,7 @@ export class DeterministicGrafanaTransport implements GrafanaTransport {
        throw new TypeError("The deterministic Grafana fixture datasource binding is invalid");
      }
      const compiled = this.#byUid.get(uid);

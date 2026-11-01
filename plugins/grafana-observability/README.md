@@ -2,11 +2,13 @@
 
 Investigate infrastructure, application performance, logs, edge devices, and business KPIs using administrator-approved, read-only Grafana evidence. Turn that evidence into incident briefs, handoffs, and postmortem drafts.
 
-[![Watch the Grafana production-monitoring demo](../../docs/media/grafana-production-monitoring-demo.png)](../../docs/media/grafana-production-monitoring-demo-8x.mp4)
+[![Watch the Grafana incident workflow demo](../../docs/media/grafana-incident-workflows.png)](../../docs/media/grafana-incident-workflows.mp4)
 
-**[Watch the 23-second demo · 8× speed](../../docs/media/grafana-production-monitoring-demo-8x.mp4)** · [Full walkthrough · 3 minutes](../../docs/media/grafana-production-monitoring-demo.mp4)
+**[Watch the incident walkthrough · 1:45](../../docs/media/grafana-incident-workflows.mp4)** · [Full recording · 2:48](../../docs/media/grafana-incident-workflows-full.mp4) · [Recording details and receipts](../../docs/grafana-incident-video.md)
 
-The recording illustrates a local production-monitoring workflow, including a separately approved code patch. This plugin collects evidence; it does **not** patch, deploy, restart services, or change Grafana. The recording is not an installed-package test.
+The recording shows both incident skills collecting and reviewing **SIMULATED** evidence through the packaged MCP server. A custom recording console displays the real Codex model and tool run. The skills produce drafts; they do not patch, deploy, restart services, or change Grafana.
+
+**Start here:** [Install and check setup](#install) · [Try the synthetic demo](../../docs/grafana-synthetic-onboarding.md#quick-start) · [Connect Grafana](#connect-a-real-grafana-instance)
 
 ## What it does
 
@@ -57,13 +59,16 @@ this plugin does not add those connectors.
 Requires **Node.js 22.19+**. Installation and MCP startup are tested with **Codex CLI 0.144.3**. From a reviewed local checkout:
 
 ```sh
-codex plugin marketplace add .
+codex plugin marketplace add . && \
 codex plugin add grafana-observability@community-plugins
 ```
 
 Run the first command from the repository root, then start a new Codex task.
+When reviewing a draft PR, use its reviewed checkout; see the
+[PR preview instructions](../../docs/grafana-synthetic-onboarding.md#preview-a-draft-pr)
+and [existing-marketplace setup](../../docs/grafana-synthetic-onboarding.md#use-the-result-with-incident-workflows).
 The GitHub-backed marketplace can be added with
-`codex plugin marketplace add openai/community-plugins --ref main`.
+`codex plugin marketplace add openai/community-plugins --ref main` for merged releases.
 
 Start with:
 
@@ -137,5 +142,5 @@ The tests launch an isolated copy of the actual package, not a development serve
 
 The [incident evaluation guide](../../docs/grafana-incident-evaluations.md)
 separates deterministic runtime checks, actual client installation, and opt-in
-model evaluations of the candidate skills. A passing layout check or a demo
-recording is not proof of model behavior.
+model evaluations of the candidate skills. The video demonstrates one synthetic
+scenario; it does not replace the broader behavioral or real-provider checks.

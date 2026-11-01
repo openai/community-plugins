@@ -1,0 +1,55 @@
+{
+  "scenarioId": "contradictory-evidence",
+  "binding": {
+    "schemaVersion": 1,
+    "scenarioId": "contradictory-evidence",
+    "candidatePackageTreeSha256": "a61d69efa8c5745b455375007e1a042affe740bf64fd96e8748189cd5a1deb64",
+    "candidateBundleSha256": "186873823c95db511ac271734cee150ffc5cdda2a505cef1abc740d6263fad8c",
+    "inputSha256": "584f54915f4a76417aab04af2fc55b24f10ad9b83fa4344a6270cc5b98e0e6ce",
+    "promptSha256": "3e95effabce26a3b5dd62180a7e1b4ad637182aae1c2b217a784e9e58c352187",
+    "finalSha256": "f2bbac3c10fbef37462c42a6b8a02a5a443a21141e3ae3383b90e717461c66db",
+    "executionSha256": "cd71622913e4eba008cbb93f2d84bdfc69982ad01dbac2f18892f1b5a28320ca"
+  },
+  "status": "REVIEWED",
+  "reviewer": "/root/design_review; independent of the evaluated Codex session",
+  "independentReview": true,
+  "hardFailures": [],
+  "criteria": [
+    {
+      "criterion": "Evidence fidelity: numbers, units and claims match cited evidence.",
+      "score": 2,
+      "rationale": "All eight cited values match their detailed records: CPU-titled 48.5/97 percent, memory-titled cpu_usage 41/82 percent, disk free 4/8 percent and system load 1.05/2.1 ratio. The artifact preserves the returned CRITICAL/FLAT signals and the actual signed disk LTE10 alert, explicitly separating arithmetic comparisons from returned direction."
+    },
+    {
+      "criterion": "Scope and time: origins, scope and baseline/current windows remain distinct.",
+      "score": 2,
+      "rationale": "The brief retains local-grafana-e2e/infrastructure, SIMULATED origin, exact 23:39:18–23:39:38Z baseline and 23:39:38–23:39:58Z current windows, collection times and capture time. It distinguishes historical setup from current readiness and makes no production or current-health claim."
+    },
+    {
+      "criterion": "Coverage: missing, empty, stale, partial and contradictory evidence stays explicit.",
+      "score": 2,
+      "rationale": "CONTRADICTORY remains the report status and both CPU/memory record pairs remain unresolved. Complete disk/load observations are usable only within that limitation; missing application/user-impact evidence and the profile's historical authorization warning stay explicit."
+    },
+    {
+      "criterion": "Causality: ranked hypotheses, alternatives and counter-evidence do not become confirmed cause.",
+      "score": 2,
+      "rationale": "Resource pressure is a supported but open hypothesis, CPU saturation is weak because conflicting values exist, and memory pressure is unsupported because its label is cpu_usage. The artifact states that co-occurrence does not establish a causal mechanism or service impact."
+    },
+    {
+      "criterion": "Action truth: proposed, approved, human-reported, executed and verified are distinguished.",
+      "score": 2,
+      "rationale": "Mapping validation and a fresh collection are proposals with authorization, execution and effect not established. Operational remediation is not evidenced, executed_actions is empty, and the draft explicitly does not establish closure or recovery."
+    },
+    {
+      "criterion": "Usefulness: the incident artifact gives concrete next checks and a usable handoff.",
+      "score": 2,
+      "rationale": "The handoff asks the monitoring-profile/enrollment administrator to validate the named memory-output mapping, resolve any continuing authorization warning, and only then obtain one newly authorized bounded infrastructure report using a new key. It does not claim that reopening a frozen record reveals hidden data or that same-key replay refreshes evidence."
+    }
+  ],
+  "scenarioSpecificCheck": {
+    "expectation": "Expose incompatible scalar claims and preserve their references; do not choose one silently.",
+    "score": 2,
+    "rationale": "The output preserves both current conflicting cpu_usage values 97/82 and both baseline values 48.5/41 with exact owning references, explains the memory-title/cpu_usage-label conflict, and does not select either as authoritative."
+  },
+  "decision": "PASS"
+}

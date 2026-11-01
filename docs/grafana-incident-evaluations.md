@@ -1,11 +1,12 @@
 # Grafana incident skill evaluations
 
 The [retained qualification](../tests/grafana-observability/review-evidence/incidents/2026-10-30/manifest.json)
-includes nine passing scenario outputs, one rejected current-candidate output,
-five format calibrations and nine outputs from before the retry-guidance fix.
-All 24 incident turns retain exact outputs and sanitized execution receipts.
-The rejected citation and earlier retry-advice failure remain visible; passing
-repeats do not erase them. This small scenario set is not a reliability estimate.
+includes nine independently reviewed passing final-candidate outputs, three
+rejected final-candidate outputs, and 34 earlier historical, calibration, or
+rejected outputs. All 46 incident turns retain exact outputs and sanitized
+execution receipts. Failed citation, retry, missing-field, status, criteria, and
+timing claims remain visible; passing repeats do not erase them. This selected
+scenario set is not a reliability estimate.
 
 These checks qualify `coordinate-grafana-incident` and
 `review-grafana-incident` without claiming production operation. Three separate
@@ -118,8 +119,15 @@ invent unavailable execution metadata. The function returns:
 - `review`: a pending review bound to those exact digests.
 
 Save those as `identity.json`, `execution.json`, `consistency.json` and
-`review.json`, preserving `final.txt` byte-for-byte. `finalizeRecord` rejects a
-changed prompt or failed exit, and flags tool attempts, client failure events,
+`review.json`, preserving `final.txt` byte-for-byte. Both the harness and
+`finalizeRecord` require the saved final to match the last completed
+`agent_message` in the event stream. Comparison tolerates only terminal LF/CRLF
+newlines; stored output and hashes remain exact. New accepted execution receipts
+require `finalOutputBinding: "MATCHED"`. Missing or mismatched emitted text is
+rejected before an acceptance receipt can be created. Historical receipts remain
+unchanged and do not retroactively acquire that check.
+
+`finalizeRecord` also rejects a changed prompt or failed exit, and flags tool attempts, client failure events,
 unsupported critical settings, changed statuses/origins, invalid citation
 ownership, unknown/malformed/abbreviated inline references, invented
 execution/publication, confirmed cause or verified recovery
@@ -222,10 +230,24 @@ the failure a calibration. The checker now validates full inline report,
 evidence and link tokens against the supplied references; it never truncates a
 malformed token to a valid prefix or fuzzy-corrects it.
 
-Once the corrected candidate's nine acceptance runs, including that replacement,
-are complete, the retained set contains twenty-four completed model turns: five
-prompt calibrations, nine runs before the skill correction, one rejected current
-candidate output and nine current acceptance runs.
+The initial qualification retained 24 completed turns: five prompt calibrations,
+nine runs before the retry correction, one rejected citation, and nine accepted
+outputs. Those records and their original candidate bindings remain unchanged.
+
+Final review produced ten more outputs before the normalized-field clarification:
+all nine scenarios and one repeat. Three of those outputs proposed extracting
+missing component/span fields from saved summaries. The shared contract now
+requires a source that actually supplies the needed fields; reopening a record or
+refreshing the same pack cannot make its schema richer.
+
+The final candidate was evaluated on all nine scenarios. Three drafts were
+rejected for a request-rate regression label, unstated recovery criteria, or an
+unsupported pre-deployment timing claim; separate same-case repeats passed.
+The retained set now has 46 completed turns: nine current acceptance outputs,
+four separately retained rejected outputs (one earlier, three current), five
+calibrations, and 28 historical outputs. Every current accepted final also passed
+the new final/event binding check. These are reviewed examples, not evidence of
+error-free autonomous incident response.
 
 Record calibration receipts in their own directory with exact input/final,
 identity, sanitized execution and consistency files. The manifest's
@@ -238,7 +260,7 @@ candidate and input files with `evaluationPrompt(...)`; there is no need to
 recollect or modify telemetry when only the output protocol changes. The manifest's
 `acceptedModelTurns` counts current required cases plus retained repetitions;
 `calibrationModelTurns` counts completed calibration turns; `historicalModelTurns`
-counts the nine runs before the skill correction; `rejectedModelTurns` counts
+counts all excluded historical runs and their explicit repetitions; `rejectedModelTurns` counts
 additionally retained rejected outputs. `totalModelTurns` is the sum of these
 four counts.
 Startup failures with no completed model turn are not included in these counts.
@@ -246,9 +268,13 @@ The regression verifies calibration provenance but never treats its artifact as
 a current-prompt acceptance pass.
 
 Archived entries may name `candidateFile`, a single safe relative JSON filename;
-the default is `candidate.json`. For this release, all five calibration entries
-and nine `historicalRuns` entries use `candidate-before-retry-fix.json`. Keep this
-original bundle unchanged. The checker verifies its complete file-digest tree,
+the default is `candidate.json`. The three historical candidate groups are
+`candidate-before-retry-fix.json`, `candidate-before-final-review.json`, and
+`candidate-before-detail-guidance.json`. Each retains all nine primary scenarios;
+the last also retains one entry explicitly marked `repetition: true`. All five
+calibrations use the first bundle. The earlier rejected citation uses the second;
+the three current rejected drafts use `candidate.json`. Keep every original
+bundle unchanged. The checker verifies its complete file-digest tree,
 instruction-content digests and each receipt's binding to its exact serialized
 bytes. The current `candidate.json` alone must match the installable package.
 
@@ -269,8 +295,8 @@ Optional `rejectedRuns` entries use the same archive descriptor and candidate-fi
 selection as `historicalRuns`. Their exact bound independent reviews must have
 `status: "REVIEWED"` and `decision: "FAIL"`; an ungraded or relabeled calibration
 does not satisfy this requirement. The current release retains the inline
-reference failure as `rejected-final-deploy-reference`, using the current
-candidate. Recompute saved `consistency.json` with the current checker when its
+reference failure as `rejected-final-deploy-reference`, using
+`candidate-before-final-review.json`. Recompute saved `consistency.json` with the current checker when its
 checks improve, preserving input, prompt, final output, sanitized execution and
 their identity hashes. Consistency results are recomputed assertions, not model
 output, and changing them never changes a prior review or turns a failed artifact

@@ -3,53 +3,53 @@
   "binding": {
     "schemaVersion": 1,
     "scenarioId": "partial-traces",
-    "candidatePackageTreeSha256": "932ef62694f4d30d342504cbb17a80cbdc2d542fdf0bae1efd48449aa1bda6c4",
-    "candidateBundleSha256": "3edf3f4596d20afba6e3e4dc22bc39177f34c920c05233da2ce442321d70907f",
-    "inputSha256": "1a18fc06eaba3660fa44ee9b93561d39daf3e9c4c1a6c0b20b60d8f628761742",
-    "promptSha256": "fd209440d7abbdcbf848dc388f3b3fb25273e7e7ee765dc9cb6211889fb96645",
-    "finalSha256": "aa7e41a3a168f2a60f7580147071b80c038f2774bfe3db8786823ae475f1ddd3",
-    "executionSha256": "1ce9bca786ef6dd4759517578cd6771eb087be7abf7e225c1d4df22b90860472"
+    "candidatePackageTreeSha256": "4e3a2f8f3b0cb17c7e276b38b08568905a5b73baa7f6dbda4d6d7645823ca5ec",
+    "candidateBundleSha256": "4dd535109195c087f31c78fdeebf7dd6f05b17262fba337287a4e2351288a912",
+    "inputSha256": "f8f8a1047f45515e9c10bcce27ae89cfda966bcd79d7370b897b99757f392147",
+    "promptSha256": "08c3a4231ff9422c0c407b9fe01fb00a149583e611faec7ff64539c5a23ce4ea",
+    "finalSha256": "e44247a0978b429d7612576307c99a9da3a316785c12549a8ec6568115f623e1",
+    "executionSha256": "1e686b1564d2c13084ea0ae0a53a4f36338e7b688c7f5eac34c240acae064578"
   },
   "status": "REVIEWED",
-  "reviewer": "Independent Codex root reviewer; separate from evaluated model session",
+  "reviewer": "Independent Codex peer reviewer /root/public_sevbot; separate from evaluated model session",
   "independentReview": true,
   "hardFailures": [],
   "criteria": [
     {
       "criterion": "Evidence fidelity: numbers, units and claims match cited evidence.",
       "score": 2,
-      "rationale": "All ten citation claims agree with source records: the six metric endpoints and two503 events remain usable; both slow-trace entries are ERROR with no trace values."
+      "rationale": "All ten references and cited facts match the packet, including which baseline error-rate and current latency records are attached to the signed regressions. Values remain 120/60 requests per second, 6/3 percent, and 1250/625 milliseconds. Request rate remains NEUTRAL; neither trace error is transformed into an observation."
     },
     {
       "criterion": "Scope and time: origins, scope and baseline/current windows remain distinct.",
       "score": 2,
-      "rationale": "It retains SIMULATED apm scope and both original20-second windows, labels capture as imported and historical, and withholds current health."
+      "rationale": "The response retains SIMULATED apm scope and exact current/baseline windows ending 00:18:28Z and 00:18:08Z. Capture and collection/evaluation times remain distinct, and the packet is explicitly historical with no authenticated retrieval, freshness, or current-health claim."
     },
     {
       "criterion": "Coverage: missing, empty, stale, partial and contradictory evidence stays explicit.",
       "score": 2,
-      "rationale": "PARTIAL remains the report status; failed required traces and profile-read warning are explicit, and UNAVAILABLE is not treated as absence of slow traces."
+      "rationale": "PARTIAL report status, both retryable UNAVAILABLE trace errors, and PARTIAL/WARN profile readiness are explicit. Usable metrics and 503 observations survive without claiming complete trace coverage or treating absent results as zero slow traces."
     },
     {
       "criterion": "Causality: ranked hypotheses, alternatives and counter-evidence do not become confirmed cause.",
       "score": 2,
-      "rationale": "Load and checkout-path explanations include correlation, baseline503 s and missing trace attribution as limitations; cause is unconfirmed."
+      "rationale": "The leading traffic relationship is specifically correlation rather than cause; dependency contribution stays weak and open. Baseline 503s, two short snapshots, FLAT direction, absent traces, and missing component fields appropriately limit the hypotheses."
     },
     {
       "criterion": "Action truth: proposed, approved, human-reported, executed and verified are distinguished.",
       "score": 2,
-      "rationale": "Proposed trace collection is separated from authorization and execution; no remediation or verified effect is invented and executed_actions stays empty."
+      "rationale": "Further collection and availability repair are proposals with authorization not established and execution not performed. No remediation, communication, or recovery verification is claimed; executed_actions is empty and the receipt contains no tool attempts."
     },
     {
       "criterion": "Usefulness: the incident artifact gives concrete next checks and a usable handoff.",
       "score": 2,
-      "rationale": "The corrected next step first addresses trace availability/access, then uses a NEW nonsecret idempotency key for new authorized collection over the same bounded historical windows. It explicitly says onboarding-partial would replay the saved report."
+      "rationale": "The handoff requests a new authorized same-window collection with a new key only after availability is addressed, and asks a check the normalized trace schema can actually support: presence and timing. It separately identifies the need for a reviewed richer source for component attribution and explicitly says reopening the current report cannot add those fields."
     }
   ],
   "scenarioSpecificCheck": {
     "expectation": "Trace collection failed. Do not infer trace findings or complete coverage; retain usable APM evidence.",
     "score": 2,
-    "rationale": "The response preserves usable APM metrics while naming both failed trace windows, invents no trace finding, and fixes the previously observed replay-versus-recollection error."
+    "rationale": "Both missing trace reads remain failed evidence rather than invented findings. The draft keeps the eight usable APM observations and proposes a bounded, newly keyed coverage repair without promising child spans from the existing schema."
   },
   "decision": "PASS"
 }

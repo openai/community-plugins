@@ -1,0 +1,55 @@
+{
+  "scenarioId": "complete-baseline",
+  "binding": {
+    "schemaVersion": 1,
+    "scenarioId": "complete-baseline",
+    "candidatePackageTreeSha256": "a61d69efa8c5745b455375007e1a042affe740bf64fd96e8748189cd5a1deb64",
+    "candidateBundleSha256": "186873823c95db511ac271734cee150ffc5cdda2a505cef1abc740d6263fad8c",
+    "inputSha256": "a306793de13efac8d03bf68d51c507eba06bcf4fa93ebe433d0764d2d799038b",
+    "promptSha256": "1a835bc261bf8f517e8ca429221c2a4764de20f18433e85eb1e81872bbe30881",
+    "finalSha256": "56a9ee6177647a6c3f0623b2bc370f35ce9f910fb7345c983d3076a47e57b5b4",
+    "executionSha256": "ff28ad00f40be4ff40e65b65ac1e14c4f6befdb789df7fa3c9d6afdea8eae429"
+  },
+  "status": "REVIEWED",
+  "reviewer": "Independent Codex peer reviewer /root/public_sevbot; separate from evaluated model session",
+  "independentReview": true,
+  "hardFailures": [],
+  "criteria": [
+    {
+      "criterion": "Evidence fidelity: numbers, units and claims match cited evidence.",
+      "score": 2,
+      "rationale": "The numerical comparisons and all ten cited observations match the exact packet: 120/60 requests per second, 6/3 percent, 1250/625 milliseconds, and 503/slow-trace event times. Signed error/latency regression severities and the distinct current signal severities are preserved."
+    },
+    {
+      "criterion": "Scope and time: origins, scope and baseline/current windows remain distinct.",
+      "score": 2,
+      "rationale": "SIMULATED apm scope, the exact adjacent 20-second windows ending 23:52:14Z and 23:52:34Z, capture time, and collection times are retained. The response treats the supplied capture as historical and explicitly withholds independently verified freshness and current health."
+    },
+    {
+      "criterion": "Coverage: missing, empty, stale, partial and contradictory evidence stays explicit.",
+      "score": 2,
+      "rationale": "The source-reported COMPLETE report is separated from PARTIAL/WARN profile readiness. Missing causal attribution, totals, affected users, and recovery measurements are named; COMPLETE is not treated as healthy or a complete investigation."
+    },
+    {
+      "criterion": "Causality: ranked hypotheses, alternatives and counter-evidence do not become confirmed cause.",
+      "score": 2,
+      "rationale": "Three explanations remain ranked open hypotheses. Baseline symptoms, absent saturation/dependency/span detail, and the two short windows are counter-evidence; no cause is confirmed."
+    },
+    {
+      "criterion": "Action truth: proposed, approved, human-reported, executed and verified are distinguished.",
+      "score": 2,
+      "rationale": "The action record labels further inspection as proposed, unauthorized and unexecuted. No operational action, communication, or recovery verification is invented, and the execution receipt confirms no tool attempts."
+    },
+    {
+      "criterion": "Usefulness: the incident artifact gives concrete next checks and a usable handoff.",
+      "score": 1,
+      "rationale": "The useful measurements and draft handoff are undermined by the primary next check: inspect existing report-owned trace detail to find a component whose span duration increased. Both full supplied trace records contain only one EVENT summary and no spans or component durations. Reopening those immutable records cannot produce the requested fields. The conditional later escalation does not fix the initial infeasible discriminator."
+    }
+  ],
+  "scenarioSpecificCheck": {
+    "expectation": "Quantify the regression with the actual current/baseline values and preserve SIMULATED origin; no confirmed root cause.",
+    "score": 2,
+    "rationale": "The synthetic regression is accurately quantified and origin and unresolved cause are retained. The historical output nevertheless fails the separate usefulness criterion because its main handoff check expects unavailable span fields."
+  },
+  "decision": "FAIL"
+}

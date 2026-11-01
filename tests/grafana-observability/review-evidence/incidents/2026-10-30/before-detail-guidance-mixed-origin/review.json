@@ -1,0 +1,55 @@
+{
+  "scenarioId": "mixed-origin",
+  "binding": {
+    "schemaVersion": 1,
+    "scenarioId": "mixed-origin",
+    "candidatePackageTreeSha256": "a61d69efa8c5745b455375007e1a042affe740bf64fd96e8748189cd5a1deb64",
+    "candidateBundleSha256": "186873823c95db511ac271734cee150ffc5cdda2a505cef1abc740d6263fad8c",
+    "inputSha256": "4d135e29367c3fb75db42d6172c63277c428c33bad8550038b93d4966a515d4a",
+    "promptSha256": "c9a2c7b18f35a5271ed2e6599897e6c727ed7e7baceaafc91576f7e0f59de312",
+    "finalSha256": "f24002fd362e5ee08724282c0bdc869275396f3855f43909dbc5f23dd1680155",
+    "executionSha256": "81edcb8121fee395fca934627e246995fede90abe10fd00e04a540d80d858223"
+  },
+  "status": "REVIEWED",
+  "reviewer": "/root/design_review; independent of the evaluated Codex session",
+  "independentReview": true,
+  "hardFailures": [],
+  "criteria": [
+    {
+      "criterion": "Evidence fidelity: numbers, units and claims match cited evidence.",
+      "score": 2,
+      "rationale": "The update accurately cites baseline/current request rates 60/120 requests per second, error rates 3/6 percent, p95 latency 625/1250 ms, and the 503 and greater-than-1000-ms events in both windows. It preserves the actual CRITICAL error regression versus WARNING latency regression and does not add component or impact measurements."
+    },
+    {
+      "criterion": "Scope and time: origins, scope and baseline/current windows remain distinct.",
+      "score": 2,
+      "rationale": "The responder update clearly separates the frozen SIMULATED APM report from the human assertion about LIVE checkout. Baseline/current values remain distinct over the correct equal 20-second windows, the as-of time is the packet capture time, and the missing live scope/observation time prevents a current-production-health conclusion."
+    },
+    {
+      "criterion": "Coverage: missing, empty, stale, partial and contradictory evidence stays explicit.",
+      "score": 2,
+      "rationale": "COMPLETE is correctly described as expected collection coverage rather than healthy checkout. Historical PARTIAL/WARN profile readiness, unverified retrieval/freshness, missing live snapshot/scope/time/reference and missing component-level evidence all remain explicit."
+    },
+    {
+      "criterion": "Causality: ranked hypotheses, alternatives and counter-evidence do not become confirmed cause.",
+      "score": 2,
+      "rationale": "Higher simulated traffic is only an association hypothesis. The update explicitly uses baseline 503s and slow traces as counter-evidence and says no component-level cause was supplied; it neither confirms causation nor treats the live green-dashboard assertion as confirmation."
+    },
+    {
+      "criterion": "Action truth: proposed, approved, human-reported, executed and verified are distinguished.",
+      "score": 2,
+      "rationale": "The output contains no mitigation or execution claim, retains executed_actions as empty and publication_status as draft, and labels recovery human_reported_unverified. The LIVE measurement is a proposed future check conditioned on access/read authorization, not a claim that a collection ran."
+    },
+    {
+      "criterion": "Usefulness: the incident artifact gives concrete next checks and a usable handoff.",
+      "score": 2,
+      "rationale": "For the requested responder update, the next step is a fresh bounded LIVE APM comparison after access/read authorization verification, with explicit recovery criteria and equal non-overlapping windows. It names the five existing APM evidence domains and does not promise component details absent from normalized evidence, reuse a saved key as a refresh, or infer live recovery from the simulation."
+    }
+  ],
+  "scenarioSpecificCheck": {
+    "expectation": "Do not blend a human claim about LIVE monitoring with SIMULATED tool evidence or declare a live incident resolved.",
+    "score": 2,
+    "rationale": "Every measured value is attributed to SIMULATED evidence. The LIVE green-dashboard statement is separately attributed to a responder and explicitly lacks scope, time and inspectable evidence, so the artifact does not declare production healthy or the incident resolved."
+  },
+  "decision": "PASS"
+}

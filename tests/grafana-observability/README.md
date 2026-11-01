@@ -21,7 +21,7 @@ never a production Grafana instance.
 
 ## Recorded qualification
 
-Incident-workflow qualification on 2026-10-30 (macOS arm64, Node 26.0.0):
+Incident-workflow qualification on 2026-10-30–31 (macOS arm64, Node 26.0.0):
 
 - The complete marketplace master suite and package validators passed after the
   incident-workflow changes; its Grafana checks include the retained evaluations.
@@ -34,11 +34,15 @@ Incident-workflow qualification on 2026-10-30 (macOS arm64, Node 26.0.0):
 - [Retained incident evaluations](review-evidence/incidents/2026-10-30/manifest.json)
   contain nine independently reviewed passing scenario outputs from Codex CLI
   0.144.3, explicitly requesting `gpt-5.6-sol`; JSON traces did not report a
-  resolved model identifier. One additional current-candidate response failed
-  exact inline citation fidelity and is retained with its failing review; a
-  separate repeat passed. Five format-calibration turns and all nine turns from
-  before the retry-guidance correction are also retained, excluded from
-  acceptance. Total: 24 incident-scenario turns, each with zero tool attempts.
+  resolved model identifier. Three other final-candidate drafts were rejected
+  for status, recovery-criteria, or timing claims; separate same-case repeats
+  passed. The earlier rejected citation, five calibrations, and 28 historical
+  outputs remain excluded from acceptance. Total: 46 incident-scenario turns,
+  each with zero tool attempts. Current acceptance requires the saved final to
+  match the emitted agent response; older receipts retain their original format.
+  The fake CLI used by the event-binding integration test requires POSIX.
+  Windows skips that fixture; platform-independent unit checks still cover
+  binding logic. That skip is not Windows client qualification.
 - These model results qualify reasoning over frozen synthetic evidence. They
   do not establish installed-plugin model activation, autonomous MCP collection,
   production monitoring, remediation, publication, recovery or a reliability rate.

@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "scenarioId": "contradictory-evidence",
   "origin": "SIMULATED",
-  "capturedAt": "2026-10-31T01:06:46.835Z",
+  "capturedAt": "2026-11-01T00:18:37.157Z",
   "interpretation": "Frozen repository-generated evidence. Tool outputs are unchanged; they describe their collection time, not current monitoring. The model receives no connected Grafana tools. Authored context below is not tool evidence.",
   "toolOutputs": [
     {
@@ -108,18 +108,18 @@
         "scopeAlias": "infrastructure",
         "origin": "SIMULATED",
         "window": {
-          "start": "2026-10-31T01:06:20.000Z",
-          "end": "2026-10-31T01:06:40.000Z"
+          "start": "2026-11-01T00:18:07.000Z",
+          "end": "2026-11-01T00:18:27.000Z"
         },
         "baselineWindow": {
-          "start": "2026-10-31T01:06:00.000Z",
-          "end": "2026-10-31T01:06:20.000Z"
+          "start": "2026-11-01T00:17:47.000Z",
+          "end": "2026-11-01T00:18:07.000Z"
         }
       },
       "report": {
         "schemaVersion": "1.0.0",
         "status": "CONTRADICTORY",
-        "reportRef": "gfrpt_77dc40c0945094b38d19315d4fa671982ba9e00af7819e2f06015203ff291178",
+        "reportRef": "gfrpt_ef779916498dbbfd1091dc9769440be1ce9d78a4a61aaf80a8cc53513c71765f",
         "profileAlias": "local-grafana-e2e",
         "pack": {
           "packId": "grafana.infrastructure",
@@ -131,12 +131,12 @@
         "scopeAlias": "infrastructure",
         "origin": "SIMULATED",
         "window": {
-          "start": "2026-10-31T01:06:20.000Z",
-          "end": "2026-10-31T01:06:40.000Z"
+          "start": "2026-11-01T00:18:07.000Z",
+          "end": "2026-11-01T00:18:27.000Z"
         },
         "baselineWindow": {
-          "start": "2026-10-31T01:06:00.000Z",
-          "end": "2026-10-31T01:06:20.000Z"
+          "start": "2026-11-01T00:17:47.000Z",
+          "end": "2026-11-01T00:18:07.000Z"
         },
         "evidenceSummary": {
           "COMPLETE": 4,
@@ -148,91 +148,91 @@
         "collectionFailures": 0,
         "evidence": [
           {
-            "evidenceRef": "gfev_a19009b1d7082144db12c293ea944428bdaddf9dd87e430bd92bb0e344aeee31",
+            "evidenceRef": "gfev_821d643e9866db2e9e606140f455e8cc0407658c8540f792a9748e97605a0f1f",
             "title": "grafana.infrastructure.cpu.usage",
             "domain": "METRICS",
             "status": "CONTRADICTORY",
             "summary": "cpu_usage is 48.5 from grafana.",
-            "observedAt": "2026-10-31T01:06:20.000Z",
+            "observedAt": "2026-11-01T00:18:07.000Z",
             "linkRefs": [
-              "gflnk_78b4463ac522bf04c5d83ed00b86c3feb6cc5aa34eeb97b91f4193fd8bc7b9aa"
+              "gflnk_e18047674b8f2d643e61ab456b189ba1a322b85a3b6f944fc45cf75c86951fe9"
             ]
           },
           {
-            "evidenceRef": "gfev_24a26abe8b2cd0bce29d33f5b0cdbdfe0cb227f1ce5eca19e94840f1f3726310",
+            "evidenceRef": "gfev_5b1b9148f875851bb840b6b0e6c96462934302111402e71498e8003e339550df",
             "title": "grafana.infrastructure.cpu.usage",
             "domain": "METRICS",
             "status": "CONTRADICTORY",
             "summary": "cpu_usage is 97 from grafana.",
-            "observedAt": "2026-10-31T01:06:40.000Z",
+            "observedAt": "2026-11-01T00:18:27.000Z",
             "linkRefs": [
-              "gflnk_17f64b03977702cb8354e77931dd2d3b2f713a777872bdfa7e20941fcd18e053"
+              "gflnk_1e4bda1a2a23c59a1f1757bfe1e40c1207c019e04e7d3506e00e79d6d5a73d27"
             ]
           },
           {
-            "evidenceRef": "gfev_2473d5c12da83d5e8270ce0f9fbed733c90d0143129b80589311e6b174e13445",
+            "evidenceRef": "gfev_b5e9283933efc25a5e8a21e91da0b8da3a477ce77a6a9ce29a1e86d71ff0b471",
             "title": "grafana.infrastructure.disk.free",
             "domain": "METRICS",
             "status": "COMPLETE",
             "summary": "disk_free is 8 from grafana.",
-            "observedAt": "2026-10-31T01:06:40.000Z",
+            "observedAt": "2026-11-01T00:18:27.000Z",
             "linkRefs": [
-              "gflnk_6eb3c7026e31bded7260e6f21096340c9389fd7bc493abd02e7b0dd013bcf9df"
+              "gflnk_b921f8cf528785a802b80a2a2197a84d849659725ab78e32f4a67b2727ba65c1"
             ]
           },
           {
-            "evidenceRef": "gfev_c7d65730b5da4da563f7f4f6e4292876f7fa8d19b48d4430fb9bb46159891479",
+            "evidenceRef": "gfev_6d5d30c6b19d749e327fc2dcaa6554fdd8011f50ce14bdb8aad2f497890b5967",
             "title": "grafana.infrastructure.disk.free",
             "domain": "METRICS",
             "status": "COMPLETE",
             "summary": "disk_free is 4 from grafana.",
-            "observedAt": "2026-10-31T01:06:20.000Z",
+            "observedAt": "2026-11-01T00:18:07.000Z",
             "linkRefs": [
-              "gflnk_5e8d95d3c35d9417f633d160208727e24e9774de32643c83477c9838240ee931"
+              "gflnk_bb63e75e842095dc4bdaafcc05ce65a5702d695008f0ba8a9b162446e76b393d"
             ]
           },
           {
-            "evidenceRef": "gfev_cc491544cc0b5ed6cd187c808671f7c47c36055d044709e000f0bd9835ade309",
+            "evidenceRef": "gfev_57034503fed5b20fcb63507d828c6a395194122885f496f0af9cfa8e9e867ae8",
             "title": "grafana.infrastructure.memory.load",
             "domain": "METRICS",
             "status": "CONTRADICTORY",
             "summary": "cpu_usage is 82 from grafana.",
-            "observedAt": "2026-10-31T01:06:40.000Z",
+            "observedAt": "2026-11-01T00:18:27.000Z",
             "linkRefs": [
-              "gflnk_ff75e4057b52c9ab80a86475a1592840266d2beddd8ec1fe078e028a9299ed95"
+              "gflnk_2e7f8ab909ef99653e2dc3ef746c6cf4073e970ab9f1672d71a10e047ec29f8d"
             ]
           },
           {
-            "evidenceRef": "gfev_2826ad193e8817e863d1a3de85b82ae16e05d0770a6764029018e646c1c31af2",
+            "evidenceRef": "gfev_f6d8880b85578fb2913ea842324b4821ba9513372a2b9452db413c2acb3f59c5",
             "title": "grafana.infrastructure.memory.load",
             "domain": "METRICS",
             "status": "CONTRADICTORY",
             "summary": "cpu_usage is 41 from grafana.",
-            "observedAt": "2026-10-31T01:06:20.000Z",
+            "observedAt": "2026-11-01T00:18:07.000Z",
             "linkRefs": [
-              "gflnk_2f8a6a688afb45efd3739c4d9f515b0d5135453c4514d8ca4aecd7d3e603ee5c"
+              "gflnk_d75c95074329d5eb269c01f69f89c990a567af4cbc8d21b127826426b5eb5ebc"
             ]
           },
           {
-            "evidenceRef": "gfev_bf5c4c19bc934d820e2de681d3e6f7633b1c0df1fff6cd68aa87db52efab8e14",
-            "title": "grafana.infrastructure.system.load",
-            "domain": "METRICS",
-            "status": "COMPLETE",
-            "summary": "system_load is 105% from grafana.",
-            "observedAt": "2026-10-31T01:06:20.000Z",
-            "linkRefs": [
-              "gflnk_1e44af837b381cbc18c3e8fd21b0dc721ade1d291fb63ac96dae7c38a370f17d"
-            ]
-          },
-          {
-            "evidenceRef": "gfev_c872950ca28415fe803b8ad76d39ca0a00c491d098464686e78c25385908518d",
+            "evidenceRef": "gfev_9259e51c4cf941db057490a089633f73ae32c090fb1adf21cd0b1a87f530525f",
             "title": "grafana.infrastructure.system.load",
             "domain": "METRICS",
             "status": "COMPLETE",
             "summary": "system_load is 210% from grafana.",
-            "observedAt": "2026-10-31T01:06:40.000Z",
+            "observedAt": "2026-11-01T00:18:27.000Z",
             "linkRefs": [
-              "gflnk_951f9f80436640218a8e74be9ef3d9b3019e018a2c2ae122bdd6379d819ef6b4"
+              "gflnk_dc6b4396f85bba9d436dbaf9b2825039509166846b96cc218c25ab202fa12167"
+            ]
+          },
+          {
+            "evidenceRef": "gfev_f2145ccae227fb5685fd416d5607b9ddfdfdc025dc3eef0aa2929dd6115b2576",
+            "title": "grafana.infrastructure.system.load",
+            "domain": "METRICS",
+            "status": "COMPLETE",
+            "summary": "system_load is 105% from grafana.",
+            "observedAt": "2026-11-01T00:18:07.000Z",
+            "linkRefs": [
+              "gflnk_42c85f76df6c0441a434ddbdeed06fb69681879ffbaeb3d28174a6128e3ba073"
             ]
           }
         ],
@@ -245,7 +245,7 @@
             "severity": "CRITICAL",
             "direction": "FLAT",
             "evidenceRefs": [
-              "gfev_24a26abe8b2cd0bce29d33f5b0cdbdfe0cb227f1ce5eca19e94840f1f3726310"
+              "gfev_5b1b9148f875851bb840b6b0e6c96462934302111402e71498e8003e339550df"
             ]
           },
           {
@@ -256,7 +256,7 @@
             "severity": "CRITICAL",
             "direction": "FLAT",
             "evidenceRefs": [
-              "gfev_2473d5c12da83d5e8270ce0f9fbed733c90d0143129b80589311e6b174e13445"
+              "gfev_b5e9283933efc25a5e8a21e91da0b8da3a477ce77a6a9ce29a1e86d71ff0b471"
             ]
           },
           {
@@ -267,23 +267,11 @@
             "severity": "CRITICAL",
             "direction": "FLAT",
             "evidenceRefs": [
-              "gfev_c872950ca28415fe803b8ad76d39ca0a00c491d098464686e78c25385908518d"
+              "gfev_9259e51c4cf941db057490a089633f73ae32c090fb1adf21cd0b1a87f530525f"
             ]
           }
         ],
         "issues": [
-          {
-            "kind": "CONTRADICTION",
-            "severity": "CRITICAL",
-            "status": "BLOCKED",
-            "classification": "SIGNED_RULE",
-            "title": "Unresolved evidence contradiction",
-            "summary": "Normalized scalar values disagree across evidence sources",
-            "evidenceRefs": [
-              "gfev_24a26abe8b2cd0bce29d33f5b0cdbdfe0cb227f1ce5eca19e94840f1f3726310",
-              "gfev_cc491544cc0b5ed6cd187c808671f7c47c36055d044709e000f0bd9835ade309"
-            ]
-          },
           {
             "kind": "ALERT",
             "severity": "CRITICAL",
@@ -292,7 +280,7 @@
             "title": "Reviewed capability rule matched",
             "summary": "disk_free was 8; the signed LTE 10 rule matched.",
             "evidenceRefs": [
-              "gfev_2473d5c12da83d5e8270ce0f9fbed733c90d0143129b80589311e6b174e13445"
+              "gfev_b5e9283933efc25a5e8a21e91da0b8da3a477ce77a6a9ce29a1e86d71ff0b471"
             ]
           },
           {
@@ -303,8 +291,20 @@
             "title": "Unresolved evidence contradiction",
             "summary": "Normalized scalar values disagree across evidence sources",
             "evidenceRefs": [
-              "gfev_a19009b1d7082144db12c293ea944428bdaddf9dd87e430bd92bb0e344aeee31",
-              "gfev_2826ad193e8817e863d1a3de85b82ae16e05d0770a6764029018e646c1c31af2"
+              "gfev_821d643e9866db2e9e606140f455e8cc0407658c8540f792a9748e97605a0f1f",
+              "gfev_f6d8880b85578fb2913ea842324b4821ba9513372a2b9452db413c2acb3f59c5"
+            ]
+          },
+          {
+            "kind": "CONTRADICTION",
+            "severity": "CRITICAL",
+            "status": "BLOCKED",
+            "classification": "SIGNED_RULE",
+            "title": "Unresolved evidence contradiction",
+            "summary": "Normalized scalar values disagree across evidence sources",
+            "evidenceRefs": [
+              "gfev_5b1b9148f875851bb840b6b0e6c96462934302111402e71498e8003e339550df",
+              "gfev_57034503fed5b20fcb63507d828c6a395194122885f496f0af9cfa8e9e867ae8"
             ]
           },
           {
@@ -315,18 +315,7 @@
             "title": "Required current evidence is incomplete",
             "summary": "grafana.infrastructure.memory.load produced CONTRADICTORY evidence for the sealed current window.",
             "evidenceRefs": [
-              "gfev_cc491544cc0b5ed6cd187c808671f7c47c36055d044709e000f0bd9835ade309"
-            ]
-          },
-          {
-            "kind": "EVIDENCE_GAP",
-            "severity": "WARNING",
-            "status": "BLOCKED",
-            "classification": "DEVIATION",
-            "title": "Required baseline evidence is incomplete",
-            "summary": "grafana.infrastructure.memory.load produced CONTRADICTORY evidence for the sealed baseline window.",
-            "evidenceRefs": [
-              "gfev_2826ad193e8817e863d1a3de85b82ae16e05d0770a6764029018e646c1c31af2"
+              "gfev_57034503fed5b20fcb63507d828c6a395194122885f496f0af9cfa8e9e867ae8"
             ]
           },
           {
@@ -352,6 +341,28 @@
             "severity": "WARNING",
             "status": "BLOCKED",
             "classification": "DEVIATION",
+            "title": "Required current evidence is incomplete",
+            "summary": "grafana.infrastructure.cpu.usage produced CONTRADICTORY evidence for the sealed current window.",
+            "evidenceRefs": [
+              "gfev_5b1b9148f875851bb840b6b0e6c96462934302111402e71498e8003e339550df"
+            ]
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Required baseline evidence is incomplete",
+            "summary": "grafana.infrastructure.memory.load produced CONTRADICTORY evidence for the sealed baseline window.",
+            "evidenceRefs": [
+              "gfev_f6d8880b85578fb2913ea842324b4821ba9513372a2b9452db413c2acb3f59c5"
+            ]
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
             "title": "Named evidence gap",
             "summary": "grafana.infrastructure.cpu.usage: CONTRADICTORY",
             "evidenceRefs": []
@@ -364,18 +375,7 @@
             "title": "Required baseline evidence is incomplete",
             "summary": "grafana.infrastructure.cpu.usage produced CONTRADICTORY evidence for the sealed baseline window.",
             "evidenceRefs": [
-              "gfev_a19009b1d7082144db12c293ea944428bdaddf9dd87e430bd92bb0e344aeee31"
-            ]
-          },
-          {
-            "kind": "EVIDENCE_GAP",
-            "severity": "WARNING",
-            "status": "BLOCKED",
-            "classification": "DEVIATION",
-            "title": "Required current evidence is incomplete",
-            "summary": "grafana.infrastructure.cpu.usage produced CONTRADICTORY evidence for the sealed current window.",
-            "evidenceRefs": [
-              "gfev_24a26abe8b2cd0bce29d33f5b0cdbdfe0cb227f1ce5eca19e94840f1f3726310"
+              "gfev_821d643e9866db2e9e606140f455e8cc0407658c8540f792a9748e97605a0f1f"
             ]
           }
         ],
@@ -388,18 +388,18 @@
         {
           "schemaVersion": "1.0.0",
           "status": "CONTRADICTORY",
-          "reportRef": "gfrpt_77dc40c0945094b38d19315d4fa671982ba9e00af7819e2f06015203ff291178",
-          "evidenceRef": "gfev_a19009b1d7082144db12c293ea944428bdaddf9dd87e430bd92bb0e344aeee31",
+          "reportRef": "gfrpt_ef779916498dbbfd1091dc9769440be1ce9d78a4a61aaf80a8cc53513c71765f",
+          "evidenceRef": "gfev_821d643e9866db2e9e606140f455e8cc0407658c8540f792a9748e97605a0f1f",
           "title": "grafana.infrastructure.cpu.usage",
           "domain": "METRICS",
           "origin": "SIMULATED",
           "authority": "CORROBORATING",
           "provider": "grafana",
-          "evaluatedAt": "2026-10-31T01:06:20.000Z",
-          "collectedAt": "2026-10-31T01:06:43.892Z",
+          "evaluatedAt": "2026-11-01T00:18:07.000Z",
+          "collectedAt": "2026-11-01T00:18:32.416Z",
           "window": {
-            "end": "2026-10-31T01:06:20.000Z",
-            "start": "2026-10-31T01:06:00.000Z"
+            "end": "2026-11-01T00:18:07.000Z",
+            "start": "2026-11-01T00:17:47.000Z"
           },
           "summary": "cpu_usage is 48.5 from grafana.",
           "values": [
@@ -410,7 +410,7 @@
               "unit": "percent",
               "points": [
                 {
-                  "at": "2026-10-31T01:06:20.000Z",
+                  "at": "2026-11-01T00:18:07.000Z",
                   "value": 48.5
                 }
               ]
@@ -418,24 +418,24 @@
           ],
           "limitationCount": 0,
           "linkRefs": [
-            "gflnk_78b4463ac522bf04c5d83ed00b86c3feb6cc5aa34eeb97b91f4193fd8bc7b9aa"
+            "gflnk_e18047674b8f2d643e61ab456b189ba1a322b85a3b6f944fc45cf75c86951fe9"
           ]
         },
         {
           "schemaVersion": "1.0.0",
           "status": "CONTRADICTORY",
-          "reportRef": "gfrpt_77dc40c0945094b38d19315d4fa671982ba9e00af7819e2f06015203ff291178",
-          "evidenceRef": "gfev_24a26abe8b2cd0bce29d33f5b0cdbdfe0cb227f1ce5eca19e94840f1f3726310",
+          "reportRef": "gfrpt_ef779916498dbbfd1091dc9769440be1ce9d78a4a61aaf80a8cc53513c71765f",
+          "evidenceRef": "gfev_5b1b9148f875851bb840b6b0e6c96462934302111402e71498e8003e339550df",
           "title": "grafana.infrastructure.cpu.usage",
           "domain": "METRICS",
           "origin": "SIMULATED",
           "authority": "CORROBORATING",
           "provider": "grafana",
-          "evaluatedAt": "2026-10-31T01:06:40.000Z",
-          "collectedAt": "2026-10-31T01:06:42.528Z",
+          "evaluatedAt": "2026-11-01T00:18:27.000Z",
+          "collectedAt": "2026-11-01T00:18:29.931Z",
           "window": {
-            "end": "2026-10-31T01:06:40.000Z",
-            "start": "2026-10-31T01:06:20.000Z"
+            "end": "2026-11-01T00:18:27.000Z",
+            "start": "2026-11-01T00:18:07.000Z"
           },
           "summary": "cpu_usage is 97 from grafana.",
           "values": [
@@ -446,7 +446,7 @@
               "unit": "percent",
               "points": [
                 {
-                  "at": "2026-10-31T01:06:40.000Z",
+                  "at": "2026-11-01T00:18:27.000Z",
                   "value": 97
                 }
               ]
@@ -454,24 +454,24 @@
           ],
           "limitationCount": 0,
           "linkRefs": [
-            "gflnk_17f64b03977702cb8354e77931dd2d3b2f713a777872bdfa7e20941fcd18e053"
+            "gflnk_1e4bda1a2a23c59a1f1757bfe1e40c1207c019e04e7d3506e00e79d6d5a73d27"
           ]
         },
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_77dc40c0945094b38d19315d4fa671982ba9e00af7819e2f06015203ff291178",
-          "evidenceRef": "gfev_2473d5c12da83d5e8270ce0f9fbed733c90d0143129b80589311e6b174e13445",
+          "reportRef": "gfrpt_ef779916498dbbfd1091dc9769440be1ce9d78a4a61aaf80a8cc53513c71765f",
+          "evidenceRef": "gfev_b5e9283933efc25a5e8a21e91da0b8da3a477ce77a6a9ce29a1e86d71ff0b471",
           "title": "grafana.infrastructure.disk.free",
           "domain": "METRICS",
           "origin": "SIMULATED",
           "authority": "CORROBORATING",
           "provider": "grafana",
-          "evaluatedAt": "2026-10-31T01:06:40.000Z",
-          "collectedAt": "2026-10-31T01:06:43.087Z",
+          "evaluatedAt": "2026-11-01T00:18:27.000Z",
+          "collectedAt": "2026-11-01T00:18:30.873Z",
           "window": {
-            "end": "2026-10-31T01:06:40.000Z",
-            "start": "2026-10-31T01:06:20.000Z"
+            "end": "2026-11-01T00:18:27.000Z",
+            "start": "2026-11-01T00:18:07.000Z"
           },
           "summary": "disk_free is 8 from grafana.",
           "values": [
@@ -482,7 +482,7 @@
               "unit": "percent",
               "points": [
                 {
-                  "at": "2026-10-31T01:06:40.000Z",
+                  "at": "2026-11-01T00:18:27.000Z",
                   "value": 8
                 }
               ]
@@ -490,24 +490,24 @@
           ],
           "limitationCount": 0,
           "linkRefs": [
-            "gflnk_6eb3c7026e31bded7260e6f21096340c9389fd7bc493abd02e7b0dd013bcf9df"
+            "gflnk_b921f8cf528785a802b80a2a2197a84d849659725ab78e32f4a67b2727ba65c1"
           ]
         },
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_77dc40c0945094b38d19315d4fa671982ba9e00af7819e2f06015203ff291178",
-          "evidenceRef": "gfev_c7d65730b5da4da563f7f4f6e4292876f7fa8d19b48d4430fb9bb46159891479",
+          "reportRef": "gfrpt_ef779916498dbbfd1091dc9769440be1ce9d78a4a61aaf80a8cc53513c71765f",
+          "evidenceRef": "gfev_6d5d30c6b19d749e327fc2dcaa6554fdd8011f50ce14bdb8aad2f497890b5967",
           "title": "grafana.infrastructure.disk.free",
           "domain": "METRICS",
           "origin": "SIMULATED",
           "authority": "CORROBORATING",
           "provider": "grafana",
-          "evaluatedAt": "2026-10-31T01:06:20.000Z",
-          "collectedAt": "2026-10-31T01:06:44.456Z",
+          "evaluatedAt": "2026-11-01T00:18:07.000Z",
+          "collectedAt": "2026-11-01T00:18:33.533Z",
           "window": {
-            "end": "2026-10-31T01:06:20.000Z",
-            "start": "2026-10-31T01:06:00.000Z"
+            "end": "2026-11-01T00:18:07.000Z",
+            "start": "2026-11-01T00:17:47.000Z"
           },
           "summary": "disk_free is 4 from grafana.",
           "values": [
@@ -518,7 +518,7 @@
               "unit": "percent",
               "points": [
                 {
-                  "at": "2026-10-31T01:06:20.000Z",
+                  "at": "2026-11-01T00:18:07.000Z",
                   "value": 4
                 }
               ]
@@ -526,24 +526,24 @@
           ],
           "limitationCount": 0,
           "linkRefs": [
-            "gflnk_5e8d95d3c35d9417f633d160208727e24e9774de32643c83477c9838240ee931"
+            "gflnk_bb63e75e842095dc4bdaafcc05ce65a5702d695008f0ba8a9b162446e76b393d"
           ]
         },
         {
           "schemaVersion": "1.0.0",
           "status": "CONTRADICTORY",
-          "reportRef": "gfrpt_77dc40c0945094b38d19315d4fa671982ba9e00af7819e2f06015203ff291178",
-          "evidenceRef": "gfev_cc491544cc0b5ed6cd187c808671f7c47c36055d044709e000f0bd9835ade309",
+          "reportRef": "gfrpt_ef779916498dbbfd1091dc9769440be1ce9d78a4a61aaf80a8cc53513c71765f",
+          "evidenceRef": "gfev_57034503fed5b20fcb63507d828c6a395194122885f496f0af9cfa8e9e867ae8",
           "title": "grafana.infrastructure.memory.load",
           "domain": "METRICS",
           "origin": "SIMULATED",
           "authority": "CORROBORATING",
           "provider": "grafana",
-          "evaluatedAt": "2026-10-31T01:06:40.000Z",
-          "collectedAt": "2026-10-31T01:06:42.812Z",
+          "evaluatedAt": "2026-11-01T00:18:27.000Z",
+          "collectedAt": "2026-11-01T00:18:30.316Z",
           "window": {
-            "end": "2026-10-31T01:06:40.000Z",
-            "start": "2026-10-31T01:06:20.000Z"
+            "end": "2026-11-01T00:18:27.000Z",
+            "start": "2026-11-01T00:18:07.000Z"
           },
           "summary": "cpu_usage is 82 from grafana.",
           "values": [
@@ -554,7 +554,7 @@
               "unit": "percent",
               "points": [
                 {
-                  "at": "2026-10-31T01:06:40.000Z",
+                  "at": "2026-11-01T00:18:27.000Z",
                   "value": 82
                 }
               ]
@@ -562,24 +562,24 @@
           ],
           "limitationCount": 0,
           "linkRefs": [
-            "gflnk_ff75e4057b52c9ab80a86475a1592840266d2beddd8ec1fe078e028a9299ed95"
+            "gflnk_2e7f8ab909ef99653e2dc3ef746c6cf4073e970ab9f1672d71a10e047ec29f8d"
           ]
         },
         {
           "schemaVersion": "1.0.0",
           "status": "CONTRADICTORY",
-          "reportRef": "gfrpt_77dc40c0945094b38d19315d4fa671982ba9e00af7819e2f06015203ff291178",
-          "evidenceRef": "gfev_2826ad193e8817e863d1a3de85b82ae16e05d0770a6764029018e646c1c31af2",
+          "reportRef": "gfrpt_ef779916498dbbfd1091dc9769440be1ce9d78a4a61aaf80a8cc53513c71765f",
+          "evidenceRef": "gfev_f6d8880b85578fb2913ea842324b4821ba9513372a2b9452db413c2acb3f59c5",
           "title": "grafana.infrastructure.memory.load",
           "domain": "METRICS",
           "origin": "SIMULATED",
           "authority": "CORROBORATING",
           "provider": "grafana",
-          "evaluatedAt": "2026-10-31T01:06:20.000Z",
-          "collectedAt": "2026-10-31T01:06:44.168Z",
+          "evaluatedAt": "2026-11-01T00:18:07.000Z",
+          "collectedAt": "2026-11-01T00:18:32.983Z",
           "window": {
-            "end": "2026-10-31T01:06:20.000Z",
-            "start": "2026-10-31T01:06:00.000Z"
+            "end": "2026-11-01T00:18:07.000Z",
+            "start": "2026-11-01T00:17:47.000Z"
           },
           "summary": "cpu_usage is 41 from grafana.",
           "values": [
@@ -590,7 +590,7 @@
               "unit": "percent",
               "points": [
                 {
-                  "at": "2026-10-31T01:06:20.000Z",
+                  "at": "2026-11-01T00:18:07.000Z",
                   "value": 41
                 }
               ]
@@ -598,60 +598,24 @@
           ],
           "limitationCount": 0,
           "linkRefs": [
-            "gflnk_2f8a6a688afb45efd3739c4d9f515b0d5135453c4514d8ca4aecd7d3e603ee5c"
+            "gflnk_d75c95074329d5eb269c01f69f89c990a567af4cbc8d21b127826426b5eb5ebc"
           ]
         },
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_77dc40c0945094b38d19315d4fa671982ba9e00af7819e2f06015203ff291178",
-          "evidenceRef": "gfev_bf5c4c19bc934d820e2de681d3e6f7633b1c0df1fff6cd68aa87db52efab8e14",
+          "reportRef": "gfrpt_ef779916498dbbfd1091dc9769440be1ce9d78a4a61aaf80a8cc53513c71765f",
+          "evidenceRef": "gfev_9259e51c4cf941db057490a089633f73ae32c090fb1adf21cd0b1a87f530525f",
           "title": "grafana.infrastructure.system.load",
           "domain": "METRICS",
           "origin": "SIMULATED",
           "authority": "CORROBORATING",
           "provider": "grafana",
-          "evaluatedAt": "2026-10-31T01:06:20.000Z",
-          "collectedAt": "2026-10-31T01:06:44.742Z",
+          "evaluatedAt": "2026-11-01T00:18:27.000Z",
+          "collectedAt": "2026-11-01T00:18:31.428Z",
           "window": {
-            "end": "2026-10-31T01:06:20.000Z",
-            "start": "2026-10-31T01:06:00.000Z"
-          },
-          "summary": "system_load is 105% from grafana.",
-          "values": [
-            {
-              "kind": "METRIC",
-              "label": "system_load",
-              "value": 1.05,
-              "unit": "ratio",
-              "points": [
-                {
-                  "at": "2026-10-31T01:06:20.000Z",
-                  "value": 1.05
-                }
-              ]
-            }
-          ],
-          "limitationCount": 0,
-          "linkRefs": [
-            "gflnk_1e44af837b381cbc18c3e8fd21b0dc721ade1d291fb63ac96dae7c38a370f17d"
-          ]
-        },
-        {
-          "schemaVersion": "1.0.0",
-          "status": "COMPLETE",
-          "reportRef": "gfrpt_77dc40c0945094b38d19315d4fa671982ba9e00af7819e2f06015203ff291178",
-          "evidenceRef": "gfev_c872950ca28415fe803b8ad76d39ca0a00c491d098464686e78c25385908518d",
-          "title": "grafana.infrastructure.system.load",
-          "domain": "METRICS",
-          "origin": "SIMULATED",
-          "authority": "CORROBORATING",
-          "provider": "grafana",
-          "evaluatedAt": "2026-10-31T01:06:40.000Z",
-          "collectedAt": "2026-10-31T01:06:43.394Z",
-          "window": {
-            "end": "2026-10-31T01:06:40.000Z",
-            "start": "2026-10-31T01:06:20.000Z"
+            "end": "2026-11-01T00:18:27.000Z",
+            "start": "2026-11-01T00:18:07.000Z"
           },
           "summary": "system_load is 210% from grafana.",
           "values": [
@@ -662,7 +626,7 @@
               "unit": "ratio",
               "points": [
                 {
-                  "at": "2026-10-31T01:06:40.000Z",
+                  "at": "2026-11-01T00:18:27.000Z",
                   "value": 2.1
                 }
               ]
@@ -670,7 +634,43 @@
           ],
           "limitationCount": 0,
           "linkRefs": [
-            "gflnk_951f9f80436640218a8e74be9ef3d9b3019e018a2c2ae122bdd6379d819ef6b4"
+            "gflnk_dc6b4396f85bba9d436dbaf9b2825039509166846b96cc218c25ab202fa12167"
+          ]
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "COMPLETE",
+          "reportRef": "gfrpt_ef779916498dbbfd1091dc9769440be1ce9d78a4a61aaf80a8cc53513c71765f",
+          "evidenceRef": "gfev_f2145ccae227fb5685fd416d5607b9ddfdfdc025dc3eef0aa2929dd6115b2576",
+          "title": "grafana.infrastructure.system.load",
+          "domain": "METRICS",
+          "origin": "SIMULATED",
+          "authority": "CORROBORATING",
+          "provider": "grafana",
+          "evaluatedAt": "2026-11-01T00:18:07.000Z",
+          "collectedAt": "2026-11-01T00:18:34.114Z",
+          "window": {
+            "end": "2026-11-01T00:18:07.000Z",
+            "start": "2026-11-01T00:17:47.000Z"
+          },
+          "summary": "system_load is 105% from grafana.",
+          "values": [
+            {
+              "kind": "METRIC",
+              "label": "system_load",
+              "value": 1.05,
+              "unit": "ratio",
+              "points": [
+                {
+                  "at": "2026-11-01T00:18:07.000Z",
+                  "value": 1.05
+                }
+              ]
+            }
+          ],
+          "limitationCount": 0,
+          "linkRefs": [
+            "gflnk_42c85f76df6c0441a434ddbdeed06fb69681879ffbaeb3d28174a6128e3ba073"
           ]
         }
       ],
@@ -678,74 +678,74 @@
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_77dc40c0945094b38d19315d4fa671982ba9e00af7819e2f06015203ff291178",
-          "linkRef": "gflnk_78b4463ac522bf04c5d83ed00b86c3feb6cc5aa34eeb97b91f4193fd8bc7b9aa",
+          "reportRef": "gfrpt_ef779916498dbbfd1091dc9769440be1ce9d78a4a61aaf80a8cc53513c71765f",
+          "linkRef": "gflnk_e18047674b8f2d643e61ab456b189ba1a322b85a3b6f944fc45cf75c86951fe9",
           "mode": "OPEN_EXTERNAL",
           "label": "Open Grafana evidence",
-          "url": "http://127.0.0.1:59599/d/synthetic-infrastructure?viewPanel=1"
+          "url": "http://127.0.0.1:52505/d/synthetic-infrastructure?viewPanel=1"
         },
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_77dc40c0945094b38d19315d4fa671982ba9e00af7819e2f06015203ff291178",
-          "linkRef": "gflnk_17f64b03977702cb8354e77931dd2d3b2f713a777872bdfa7e20941fcd18e053",
+          "reportRef": "gfrpt_ef779916498dbbfd1091dc9769440be1ce9d78a4a61aaf80a8cc53513c71765f",
+          "linkRef": "gflnk_1e4bda1a2a23c59a1f1757bfe1e40c1207c019e04e7d3506e00e79d6d5a73d27",
           "mode": "OPEN_EXTERNAL",
           "label": "Open Grafana evidence",
-          "url": "http://127.0.0.1:59599/d/synthetic-infrastructure?viewPanel=1"
+          "url": "http://127.0.0.1:52505/d/synthetic-infrastructure?viewPanel=1"
         },
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_77dc40c0945094b38d19315d4fa671982ba9e00af7819e2f06015203ff291178",
-          "linkRef": "gflnk_6eb3c7026e31bded7260e6f21096340c9389fd7bc493abd02e7b0dd013bcf9df",
+          "reportRef": "gfrpt_ef779916498dbbfd1091dc9769440be1ce9d78a4a61aaf80a8cc53513c71765f",
+          "linkRef": "gflnk_b921f8cf528785a802b80a2a2197a84d849659725ab78e32f4a67b2727ba65c1",
           "mode": "OPEN_EXTERNAL",
           "label": "Open Grafana evidence",
-          "url": "http://127.0.0.1:59599/d/synthetic-infrastructure?viewPanel=3"
+          "url": "http://127.0.0.1:52505/d/synthetic-infrastructure?viewPanel=3"
         },
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_77dc40c0945094b38d19315d4fa671982ba9e00af7819e2f06015203ff291178",
-          "linkRef": "gflnk_5e8d95d3c35d9417f633d160208727e24e9774de32643c83477c9838240ee931",
+          "reportRef": "gfrpt_ef779916498dbbfd1091dc9769440be1ce9d78a4a61aaf80a8cc53513c71765f",
+          "linkRef": "gflnk_bb63e75e842095dc4bdaafcc05ce65a5702d695008f0ba8a9b162446e76b393d",
           "mode": "OPEN_EXTERNAL",
           "label": "Open Grafana evidence",
-          "url": "http://127.0.0.1:59599/d/synthetic-infrastructure?viewPanel=3"
+          "url": "http://127.0.0.1:52505/d/synthetic-infrastructure?viewPanel=3"
         },
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_77dc40c0945094b38d19315d4fa671982ba9e00af7819e2f06015203ff291178",
-          "linkRef": "gflnk_ff75e4057b52c9ab80a86475a1592840266d2beddd8ec1fe078e028a9299ed95",
+          "reportRef": "gfrpt_ef779916498dbbfd1091dc9769440be1ce9d78a4a61aaf80a8cc53513c71765f",
+          "linkRef": "gflnk_2e7f8ab909ef99653e2dc3ef746c6cf4073e970ab9f1672d71a10e047ec29f8d",
           "mode": "OPEN_EXTERNAL",
           "label": "Open Grafana evidence",
-          "url": "http://127.0.0.1:59599/d/synthetic-infrastructure?viewPanel=2"
+          "url": "http://127.0.0.1:52505/d/synthetic-infrastructure?viewPanel=2"
         },
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_77dc40c0945094b38d19315d4fa671982ba9e00af7819e2f06015203ff291178",
-          "linkRef": "gflnk_2f8a6a688afb45efd3739c4d9f515b0d5135453c4514d8ca4aecd7d3e603ee5c",
+          "reportRef": "gfrpt_ef779916498dbbfd1091dc9769440be1ce9d78a4a61aaf80a8cc53513c71765f",
+          "linkRef": "gflnk_d75c95074329d5eb269c01f69f89c990a567af4cbc8d21b127826426b5eb5ebc",
           "mode": "OPEN_EXTERNAL",
           "label": "Open Grafana evidence",
-          "url": "http://127.0.0.1:59599/d/synthetic-infrastructure?viewPanel=2"
+          "url": "http://127.0.0.1:52505/d/synthetic-infrastructure?viewPanel=2"
         },
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_77dc40c0945094b38d19315d4fa671982ba9e00af7819e2f06015203ff291178",
-          "linkRef": "gflnk_1e44af837b381cbc18c3e8fd21b0dc721ade1d291fb63ac96dae7c38a370f17d",
+          "reportRef": "gfrpt_ef779916498dbbfd1091dc9769440be1ce9d78a4a61aaf80a8cc53513c71765f",
+          "linkRef": "gflnk_dc6b4396f85bba9d436dbaf9b2825039509166846b96cc218c25ab202fa12167",
           "mode": "OPEN_EXTERNAL",
           "label": "Open Grafana evidence",
-          "url": "http://127.0.0.1:59599/d/synthetic-infrastructure?viewPanel=4"
+          "url": "http://127.0.0.1:52505/d/synthetic-infrastructure?viewPanel=4"
         },
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_77dc40c0945094b38d19315d4fa671982ba9e00af7819e2f06015203ff291178",
-          "linkRef": "gflnk_951f9f80436640218a8e74be9ef3d9b3019e018a2c2ae122bdd6379d819ef6b4",
+          "reportRef": "gfrpt_ef779916498dbbfd1091dc9769440be1ce9d78a4a61aaf80a8cc53513c71765f",
+          "linkRef": "gflnk_42c85f76df6c0441a434ddbdeed06fb69681879ffbaeb3d28174a6128e3ba073",
           "mode": "OPEN_EXTERNAL",
           "label": "Open Grafana evidence",
-          "url": "http://127.0.0.1:59599/d/synthetic-infrastructure?viewPanel=4"
+          "url": "http://127.0.0.1:52505/d/synthetic-infrastructure?viewPanel=4"
         }
       ]
     }

@@ -1,14 +1,15 @@
 import assert from "node:assert/strict";
-import { spawn } from "node:child_process";
-import { lstatSync, readFileSync } from "node:fs";
-import { join } from "node:path";
+import { spawn, spawnSync } from "node:child_process";
+import { existsSync, lstatSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { delimiter, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import test from "node:test";
 
 import { SOURCE_PLUGIN_ROOT } from "./helpers/mcp-client.mjs";
 import { collectSyntheticIncident, startSyntheticSession } from "./helpers/synthetic-session.mjs";
 import {
-  CASES, CURRENT_PROMPT_REVISION, INCIDENT_SKILLS, candidateBundle, checkOutput, evaluationPrompt, finalizeRecord, makePacket,
+  CASES, CURRENT_PROMPT_REVISION, INCIDENT_SKILLS, candidateBundle, checkOutput, createFinalOutputBinding, evaluationPrompt, finalizeRecord, makePacket,
   newTrace, recordDiagnostic, recordEvent, receiptIdentity, reviewTemplate, sha256, validateArchivedRecord, validateCandidateBundle, validateRetainedRecord, validateReview,
 } from "./support/incident-evaluation.mjs";
 
@@ -27,6 +28,57 @@ function structuralAnswer(packet) {
     cause_status: "hypothesis", recovery_status: "unknown", publication_status: "draft", executed_actions: [],
   };
 }
+
+function historicalRunGroups(runs) {
+  assert.ok(Array.isArray(runs));
+  const groups = new Map([
+    ["candidate-before-retry-fix.json", []],
+    ["candidate-before-final-review.json", []],
+    ["candidate-before-detail-guidance.json", []],
+  ]);
+  const expectedCases = CASES.map((entry) => entry.id).sort();
+  for (const run of runs) {
+    assert.ok(groups.has(run.candidateFile), "Historical runs must name one of the three preserved candidate bundles");
+    assert.ok(expectedCases.includes(run.caseId), "Historical repetitions must also identify a required scenario");
+    assert.ok(!Object.hasOwn(run, "repetition") || run.repetition === true, "An extra historical turn must explicitly declare repetition:true; primary turns omit that field");
+    groups.get(run.candidateFile).push(run);
+  }
+  for (const [candidateFile, group] of groups) {
+    const primary = group.filter((entry) => entry.repetition !== true);
+    assert.deepEqual(primary.map((entry) => entry.caseId).sort(), expectedCases, `Retain every primary historical scenario exactly once for ${candidateFile}; repetitions cannot replace missing primaries`);
+  }
+  return groups;
+}
+
+test("historical candidate groups retain nine primary cases and explicitly marked repetitions", () => {
+  // Descriptor-only checker fixtures, not model outputs or acceptance receipts.
+  const runs = ["candidate-before-retry-fix.json", "candidate-before-final-review.json", "candidate-before-detail-guidance.json"]
+    .flatMap((candidateFile) => CASES.map(({ id }) => ({ candidateFile, caseId: id })));
+  assert.equal(historicalRunGroups(runs).size, 3);
+  assert.throws(() => historicalRunGroups(runs.slice(0, CASES.length * 2)), "Dropping any historical group loses observed outcomes");
+  assert.throws(() => historicalRunGroups(runs.slice(1)), "Every group must remain complete");
+  const duplicate = structuredClone(runs);
+  duplicate[1].caseId = duplicate[0].caseId;
+  assert.throws(() => historicalRunGroups(duplicate), "Duplicate cases cannot replace a missing historical result");
+  assert.throws(() => historicalRunGroups([...runs, { ...runs[0] }]), "An extra unmarked primary cannot be counted as a repetition");
+  const repetition = { ...runs.at(-CASES.length), repetition: true };
+  const repeated = [repetition, ...runs];
+  const groups = historicalRunGroups(repeated);
+  assert.equal(groups.get(repetition.candidateFile).length, CASES.length + 1);
+  assert.equal([...groups.values()].flat().length, runs.length + 1, "Every explicit repetition remains counted rather than being deduplicated");
+  assert.throws(() => historicalRunGroups([...runs, { ...repetition, repetition: undefined }]), "An extra turn without an explicit true marker cannot be accepted");
+  const missingPrimary = runs.filter((entry) => entry.candidateFile !== repetition.candidateFile || entry.caseId !== repetition.caseId);
+  assert.throws(() => historicalRunGroups([...missingPrimary, repetition]), "A repetition cannot substitute for a missing primary");
+  assert.throws(() => historicalRunGroups([...runs, { ...repetition, caseId: "unknown-case" }]), "Repetitions must attach to a known primary scenario");
+  for (const marker of [false, "true", 1, null]) {
+    assert.throws(() => historicalRunGroups([...runs, { ...repetition, repetition: marker }]), "Reject malformed repetition declarations");
+  }
+  for (const candidateFile of ["candidate.json", "unknown-candidate.json", undefined]) {
+    const changed = structuredClone(runs);
+    changed[0].candidateFile = candidateFile;
+    assert.throws(() => historicalRunGroups(changed), "History cannot silently bind to the current or an unspecified candidate");
+  }
+});
 
 test("incident evaluation packets preserve actual packaged report states, baseline windows and owned evidence", { timeout: 180_000 }, async () => {
   const expected = { complete: "COMPLETE", partial: "PARTIAL", stale: "STALE", empty: "EMPTY", contradictory: "CONTRADICTORY" };
@@ -204,7 +256,11 @@ test("direct CLI finalization binds exact bytes and fails closed on critical con
   assert.equal(receipt.identity.finalSha256, sha256(final));
   assert.deepEqual(receipt.review.binding, receipt.identity);
   assert.equal(receipt.execution.source, "DIRECT_CODEX_EXEC");
+  assert.equal(receipt.execution.finalOutputBinding, "MATCHED");
   assert.ok(receipt.identity.executionSha256);
+  const unrelatedEvents = `${JSON.stringify({ type: "item.completed", item: { type: "agent_message", text: "Different model output" } })}\n${JSON.stringify({ type: "turn.completed" })}\n`;
+  assert.throws(() => finalizeRecord({ ...args, events: unrelatedEvents }), /Saved final differs/u, "A valid saved answer cannot borrow completion evidence from another answer");
+  assert.throws(() => finalizeRecord({ ...args, events: `${JSON.stringify({ type: "turn.completed" })}\n` }), /No completed agent message/u, "A turn-completion counter alone does not prove the saved final was emitted");
   assert.throws(() => finalizeRecord({ ...args, prompt: `${prompt} changed` }));
   const calibrationPrompt = evaluationPrompt(scenario, packet, bundle, { revision: "executed-actions-v1" });
   assert.notEqual(sha256(calibrationPrompt), sha256(prompt));
@@ -232,6 +288,12 @@ test("direct CLI finalization binds exact bytes and fails closed on critical con
   }
   const retained = { scenario, bundle, packet, final, ...receipt };
   assert.deepEqual(validateRetainedRecord(retained), receipt.identity);
+  const legacy = structuredClone(retained);
+  delete legacy.execution.finalOutputBinding;
+  legacy.identity = receiptIdentity({ scenarioId: scenario.id, bundle, packet, prompt, final, execution: legacy.execution });
+  legacy.review.binding = legacy.identity;
+  assert.throws(() => validateRetainedRecord(legacy), /Current acceptance requires/u, "Old receipts cannot silently acquire the new event-binding guarantee");
+  assert.deepEqual(validateArchivedRecord({ ...legacy, promptRevision: CURRENT_PROMPT_REVISION }), legacy.identity, "Historical receipts remain valid without rewriting their original execution metadata");
   assert.throws(() => validateRetainedRecord({ ...retained, final: `${final} ` }), "Changed output invalidates the exact receipt");
   assert.throws(() => validateRetainedRecord({ ...retained, execution: { ...receipt.execution, code: 1 } }));
   const alteredTrace = structuredClone(retained);
@@ -253,6 +315,77 @@ test("direct CLI finalization binds exact bytes and fails closed on critical con
   failedReview.criteria.at(-1).rationale = "Checker fixture demonstrating a preserved failing historical grade.";
   failedReview.decision = "FAIL";
   assert.deepEqual(validateArchivedRecord({ ...archived, review: failedReview }), receipt.identity);
+});
+
+test("final-output binding selects the last completed message and normalizes only terminal newlines", () => {
+  const binding = createFinalOutputBinding();
+  const event = (type, text) => JSON.stringify({ type, item: { type: "agent_message", text } });
+  binding.record(event("item.completed", "Earlier answer"));
+  binding.record(event("item.started", "Unfinished replacement"));
+  binding.assertMatches("Earlier answer\r\n");
+  assert.throws(() => binding.assertMatches("Unfinished replacement"));
+  binding.record(event("item.completed", "Final answer\n"));
+  binding.assertMatches("Final answer");
+  binding.assertMatches("Final answer\r\n");
+  binding.assertMatches("Final answer\n\n");
+  assert.throws(() => binding.assertMatches("Earlier answer"));
+  assert.throws(() => binding.assertMatches("Final answer "), "Whitespace other than terminal newlines must remain exact");
+  assert.throws(() => binding.assertMatches("Final\nanswer"), "Do not normalize internal whitespace");
+  assert.throws(() => binding.assertMatches("Final answer changed"));
+  binding.record(event("item.completed", null));
+  assert.throws(() => binding.assertMatches("Final answer"), /No completed agent message/u);
+  assert.deepEqual(JSON.parse(JSON.stringify(binding)), {}, "Raw message text must not become retained trace data");
+});
+
+test("evaluation harness rejects a mismatched saved final without retaining it", {
+  timeout: 30_000,
+  skip: process.platform === "win32" && "The fake CLI uses a POSIX executable; this fixture does not qualify a Windows Codex client",
+}, (t) => {
+  // A task-owned fake executable exercises the actual harness entrypoint. It
+  // submits no model turn, opens no connector and never reads authentication.
+  const root = mkdtempSync(join(tmpdir(), "grafana-final-binding-test-"));
+  t.after(() => rmSync(root, { recursive: true, force: true }));
+  const bin = join(root, "bin");
+  mkdirSync(bin);
+  const scenario = CASES.find((entry) => entry.id === "missing-connector");
+  const answer = `${JSON.stringify(structuralAnswer(makePacket(scenario, null)))}\n`;
+  const script = fileURLToPath(new URL("../../scripts/evaluate-grafana-incidents.mjs", import.meta.url));
+  for (const mismatch of [true, false]) {
+    const source = `#!${process.execPath}
+const { writeFileSync } = require("node:fs");
+const args = process.argv.slice(2);
+if (args[0] === "--version") { process.stdout.write("codex-cli 0.0.0-test\\n"); process.exit(0); }
+if (args[0] !== "exec") process.exit(2);
+process.stdin.resume();
+process.stdin.on("end", () => {
+  const final = ${JSON.stringify(answer)};
+  writeFileSync(args[args.indexOf("--output-last-message") + 1], final);
+  const emitted = ${mismatch ? '"Different test-only output"' : 'final.replace(/\\n$/u, "")'};
+  process.stdout.write(JSON.stringify({ type: "item.completed", item: { type: "agent_message", text: emitted } }) + "\\n");
+  process.stdout.write(JSON.stringify({ type: "turn.completed" }) + "\\n");
+});
+`;
+    writeFileSync(join(bin, "codex"), source, { mode: 0o700 });
+    const out = join(root, mismatch ? "mismatch" : "matched");
+    const result = spawnSync(process.execPath, [script, "--run", "--cases", scenario.id, "--out", out], {
+      env: { ...process.env, PATH: `${bin}${delimiter}${process.env.PATH ?? ""}`, GRAFANA_E2E_SKILL_EVAL: "1" },
+      encoding: "utf8", timeout: 10_000, maxBuffer: 64 * 1024,
+    });
+    assert.equal(result.error, undefined, result.error?.message);
+    const directory = join(out, scenario.id);
+    const execution = JSON.parse(readFileSync(join(directory, "execution.json"), "utf8"));
+    assert.equal(execution.code, 0, "The fake client itself completed successfully");
+    assert.equal(execution.trace.completedTurns, 1);
+    assert.equal(execution.finalOutputBinding, mismatch ? "MISMATCH" : "MATCHED");
+    assert.equal(result.status, mismatch ? 1 : 0, result.stderr);
+    assert.equal(existsSync(join(directory, "final.txt")), !mismatch, "Mismatched final text must not become evaluation evidence");
+    assert.equal(existsSync(join(directory, "identity.json")), !mismatch, "Mismatched final text must not receive an identity receipt");
+    if (!mismatch) {
+      assert.equal(readFileSync(join(directory, "final.txt"), "utf8"), answer, "Keep the exact original bytes after checking terminal-newline equivalence");
+      const review = JSON.parse(readFileSync(join(directory, "review.json"), "utf8"));
+      assert.equal(review.status, "PENDING_INDEPENDENT_REVIEW");
+    }
+  }
 });
 
 test("retained incident evaluations match the exact current candidate and independent bound reviews", () => {
@@ -317,8 +450,7 @@ test("retained incident evaluations match the exact current candidate and indepe
   assert.equal(manifest.acceptedModelTurns, runs.length);
   assert.equal(manifest.calibrationModelTurns, calibrations.length);
   const historicalRuns = manifest.historicalRuns;
-  assert.ok(Array.isArray(historicalRuns));
-  assert.deepEqual(historicalRuns.map((entry) => entry.caseId).sort(), CASES.map((entry) => entry.id).sort(), "Retain all nine runs against the candidate before the retry correction");
+  historicalRunGroups(historicalRuns);
   assert.equal(manifest.historicalModelTurns, historicalRuns.length);
   const rejectedRuns = manifest.rejectedRuns ?? [];
   assert.ok(Array.isArray(rejectedRuns));
@@ -355,11 +487,19 @@ test("retained incident evaluations match the exact current candidate and indepe
   for (const historical of historicalRuns) {
     assert.equal(historical.promptRevision, CURRENT_PROMPT_REVISION);
     const archived = checkArchive(historical, true);
-    assert.notEqual(archived.bundle.packageTreeSha256, current.packageTreeSha256, "Before-fix history cannot use the corrected candidate");
-    if (historical.caseId === "partial-traces") {
+    assert.notEqual(archived.bundle.packageTreeSha256, current.packageTreeSha256, "Historical groups cannot use the current candidate");
+    if (historical.candidateFile === "candidate-before-retry-fix.json" && historical.caseId === "partial-traces" && historical.repetition !== true) {
       assert.equal(archived.review.status, "REVIEWED");
       assert.equal(archived.review.decision, "FAIL", "Preserve the discovered retry-advice failure");
       assert.ok(archived.review.criteria.find((entry) => entry.criterion.startsWith("Usefulness:")).score < 2);
+    }
+    if (historical.candidateFile === "candidate-before-final-review.json" && historical.repetition !== true) {
+      assert.equal(archived.review.status, "REVIEWED");
+      assert.equal(archived.review.decision, "PASS", "Preserve the nine independently accepted outcomes from the previous candidate as history");
+    }
+    if (historical.candidateFile === "candidate-before-detail-guidance.json" || historical.repetition === true) {
+      assert.equal(archived.review.status, "REVIEWED", "All detail-guidance history and explicit repetitions require completed independent reviews");
+      assert.ok(["PASS", "FAIL"].includes(archived.review.decision), "Preserve the independently reviewed outcome of each historical turn");
     }
   }
   for (const rejected of rejectedRuns) {

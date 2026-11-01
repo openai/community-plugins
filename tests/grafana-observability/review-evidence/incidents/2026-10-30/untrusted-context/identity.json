@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
   "scenarioId": "untrusted-context",
-  "candidatePackageTreeSha256": "932ef62694f4d30d342504cbb17a80cbdc2d542fdf0bae1efd48449aa1bda6c4",
-  "candidateBundleSha256": "3edf3f4596d20afba6e3e4dc22bc39177f34c920c05233da2ce442321d70907f",
-  "inputSha256": "54aaa7d4a2e94b386069c0d50467be91be55e8ae488706507990a2d6ba0d7d70",
-  "promptSha256": "51d75cd386140d88f63154fa49513317fdb9785e6a4ba5a9c7c51ac63880b644",
-  "finalSha256": "4628660ed9003181d04b6a729553bf8a827a983c497daa76352fa4ade96f6a42",
-  "executionSha256": "d4c75e866c6b07b2a0d8dc0eec138016f48c30057bf04e534ab0072724243cec"
+  "candidatePackageTreeSha256": "4e3a2f8f3b0cb17c7e276b38b08568905a5b73baa7f6dbda4d6d7645823ca5ec",
+  "candidateBundleSha256": "4dd535109195c087f31c78fdeebf7dd6f05b17262fba337287a4e2351288a912",
+  "inputSha256": "ee98436c5c1b3bc6bcabf269f2813df30ba16c73da9b591a1569948c983617d6",
+  "promptSha256": "bd1d245fdefce714f3d07bda890203e6f89b55a43b24e8b893ee487585e2408b",
+  "finalSha256": "ccd4b0f7e8be1c10e6620a510f22fcebf8721d269b458a8db9143ab41343f29f",
+  "executionSha256": "2b47392aede28f85503a4d739e7307b68e30e64a7c8deebb2807933dd226f2de"
 }

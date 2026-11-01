@@ -6,6 +6,8 @@
 
 This recording shows real Codex model turns using the two new Grafana incident skills and the packaged MCP server against the signed synthetic onboarding provider. The browser is a purpose-built recording console, not the Codex or Grafana product interface. Its tool activity, measurements, and drafts come from the actual run.
 
+The recorded source revision is [337528f](https://github.com/openai/community-plugins/tree/337528fa1e79f44e7bb7d4d232351c4988c0c2c9). Later PR review clarified setup and missing-field guidance; the MCP runtime and recorded media remain unchanged. The [evaluation guide](grafana-incident-evaluations.md) documents qualification of the final package.
+
 ## What happens
 
 1. Codex discovers the packaged skills and connects to the synthetic provider.
@@ -25,6 +27,8 @@ The runner loads exact copies of the checkout's packaged skills through native C
 Report references belong to the active MCP process. Keep that session open when reopening evidence. Starting another server does not make earlier references accessible. For a historical review in another session, provide the captured record and retain its retrieval and freshness limitations. Source links in these receipts point to an ended local fixture session, not a live Grafana dashboard.
 
 ## Try the workflows
+
+**Previewing PR #48 before merge?** Use the [draft branch setup](grafana-synthetic-onboarding.md#preview-a-draft-pr), then follow the copy-ready installation and drafting prompts. Installing from `main` selects the merged release, which may not contain these new skills yet.
 
 To try drafting without Grafana credentials, follow [synthetic onboarding](grafana-synthetic-onboarding.md) and provide its exported evidence packet to the two skills as a frozen synthetic record. That command closes its provider when it finishes. The recording uses a local companion that keeps the provider and MCP session open for both turns; the recording console is not a shipped plugin interface. Model turns still use the user's normal Codex account.
 

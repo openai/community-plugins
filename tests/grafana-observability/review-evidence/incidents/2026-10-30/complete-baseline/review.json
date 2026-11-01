@@ -3,53 +3,53 @@
   "binding": {
     "schemaVersion": 1,
     "scenarioId": "complete-baseline",
-    "candidatePackageTreeSha256": "932ef62694f4d30d342504cbb17a80cbdc2d542fdf0bae1efd48449aa1bda6c4",
-    "candidateBundleSha256": "3edf3f4596d20afba6e3e4dc22bc39177f34c920c05233da2ce442321d70907f",
-    "inputSha256": "fb14dfe3d406db4191bec12f4b17633f246268abb734f1bc43a3e371395c356c",
-    "promptSha256": "febc8d327ae0e72bd7b4c2bba953a67e0ee0649f079a6ed8f10fbfe811245f09",
-    "finalSha256": "09e6790ef56888373320df586d2abb783e4dcb1985e38ed6afec187868726530",
-    "executionSha256": "cbfcdd3c2ffe5899c19e8dd80f85321455a8d923e3a03a88f70d167cbc23cd3e"
+    "candidatePackageTreeSha256": "4e3a2f8f3b0cb17c7e276b38b08568905a5b73baa7f6dbda4d6d7645823ca5ec",
+    "candidateBundleSha256": "4dd535109195c087f31c78fdeebf7dd6f05b17262fba337287a4e2351288a912",
+    "inputSha256": "ea432ea3eb044b70e026471ec626cccab5cf995d91e0e9cc2bf84c1adc979856",
+    "promptSha256": "e182713065736657599949f6d2bc5566809e7bdaa014422623a05d0d7276da1d",
+    "finalSha256": "2631283c4819c5321ca8d296eebcc44c09adaa7a9a0b360b943ea9915aa57935",
+    "executionSha256": "e99bacd7a3a28798aed166a4a92ad1ac98b69f581949141b7bc1177d8b712e36"
   },
   "status": "REVIEWED",
-  "reviewer": "Independent Codex root reviewer; separate from evaluated model session",
+  "reviewer": "Independent Codex peer reviewer /root/public_sevbot; separate from evaluated model session",
   "independentReview": true,
   "hardFailures": [],
   "criteria": [
     {
       "criterion": "Evidence fidelity: numbers, units and claims match cited evidence.",
       "score": 2,
-      "rationale": "The artifact and all ten structured citation claims match the supplied endpoints: request rate 60→120 requests/s, error rate 3→6 percent (+3 percentage points), p95 latency 625→1250 ms. It correctly distinguishes current CRITICAL signal severity from WARNING latency-regression severity."
+      "rationale": "The six metric values, exact units, differences, event times and all ten citations match the packet. It correctly distinguishes the NEUTRAL request-rate increase from the signed error-rate and latency regressions, including their CRITICAL/WARNING issue severities and the current latency signal's separate CRITICAL severity. The handoff preserves this distinction."
     },
     {
       "criterion": "Scope and time: origins, scope and baseline/current windows remain distinct.",
       "score": 2,
-      "rationale": "It retains SIMULATED apm scope, the adjacent20-second windows ending01:05:52 Z and01:06:12 Z, capture time, and unverified retrieval/freshness; it makes no live-health claim."
+      "rationale": "The output retains SIMULATED apm origin/scope, exact adjacent baseline/current 20-second windows ending 00:22:04Z and 00:22:24Z, and the later capture/collection times. It labels the record imported and historical and makes no present-health or independently verified freshness claim."
     },
     {
       "criterion": "Coverage: missing, empty, stale, partial and contradictory evidence stays explicit.",
       "score": 2,
-      "rationale": "It preserves COMPLETE as collection completion, separately discloses profile PARTIAL/WARN, and leaves customer counts, duration and component-level evidence unknown."
+      "rationale": "COMPLETE expected coverage is not treated as health or a complete investigation. Historical PARTIAL/WARN profile readiness remains explicit, as do absent affected-user counts, incident duration, capacity/component fields, action records, and recovery criteria or measurements."
     },
     {
       "criterion": "Causality: ranked hypotheses, alternatives and counter-evidence do not become confirmed cause.",
       "score": 2,
-      "rationale": "Load, checkout503-path and pre-existing bottleneck explanations remain hypotheses; baseline symptoms and endpoint-only correlation are explicit counter-evidence."
+      "rationale": "Three ranked explanations remain open hypotheses. Load correlation is separated from saturation evidence, existing baseline 503/slow-trace observations limit a new-failure inference, and no component, deployment, or resource cause is invented."
     },
     {
       "criterion": "Action truth: proposed, approved, human-reported, executed and verified are distinguished.",
       "score": 2,
-      "rationale": "The action record establishes no remediation, authorization, execution or measured recovery; structured actions are empty and publication remains draft."
+      "rationale": "Capacity and component evidence gathering are proposed with authorization, execution and effect not established. The output reports no operational action or communication, keeps recovery unknown and publication draft, and returns empty executed_actions; its receipt records zero tool attempts."
     },
     {
       "criterion": "Usefulness: the incident artifact gives concrete next checks and a usable handoff.",
       "score": 2,
-      "rationale": "The handoff identifies temporal and component evidence needed to distinguish hypotheses, limits work to APM scope, and requires separately authorized fresh collection for current health."
+      "rationale": "The primary check asks for a bounded capacity comparison using an exact approved infrastructure scope/source whose authorization remains unverified, with predictions for saturation versus stable headroom. The fallback requests a separately reviewed source supplying named missing component fields. It explicitly states that neither reopening this report nor rerunning the same APM schema can add those fields."
     }
   ],
   "scenarioSpecificCheck": {
     "expectation": "Quantify the regression with the actual current/baseline values and preserve SIMULATED origin; no confirmed root cause.",
     "score": 2,
-    "rationale": "The actual baseline comparison is quantified without converting signed regressions into a confirmed cause or production claim."
+    "rationale": "The error-rate change from 3 to 6 percent (+3 percentage points) and latency change from 625 to 1250 milliseconds are accurately quantified and labeled from their returned signed rules. Request rate is a neutral increase, SIMULATED origin remains explicit, and no root cause or recovery is confirmed."
   },
   "decision": "PASS"
 }

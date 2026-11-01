@@ -8,7 +8,7 @@ import { fileURLToPath } from "node:url";
 
 import { collectSyntheticIncident, startSyntheticSession } from "../tests/grafana-observability/helpers/synthetic-session.mjs";
 import {
-  CASES, OUTPUT_SCHEMA, candidateBundle, checkOutput, evaluationPrompt, makePacket,
+  CASES, OUTPUT_SCHEMA, candidateBundle, checkOutput, createFinalOutputBinding, evaluationPrompt, makePacket,
   jsonBytes, newTrace, recordDiagnostic, recordEvent, receiptIdentity, reviewTemplate, sha256,
 } from "../tests/grafana-observability/support/incident-evaluation.mjs";
 
@@ -67,6 +67,7 @@ async function modelTurn({ prompt, work, model }) {
   if (model !== null) args.push("--model", model);
   args.push("-");
   const trace = newTrace();
+  const finalBinding = createFinalOutputBinding();
   const startedAt = new Date().toISOString();
   const begin = Date.now();
   const child = spawn("codex", args, { cwd: work, env: clientEnvironment(), stdio: ["pipe", "pipe", "pipe"] });
@@ -88,7 +89,7 @@ async function modelTurn({ prompt, work, model }) {
     while ((newline = buffered.indexOf("\n")) !== -1) {
       const line = buffered.slice(0, newline).trim();
       buffered = buffered.slice(newline + 1);
-      if (line) recordEvent(trace, line);
+      if (line) { recordEvent(trace, line); finalBinding.record(line); }
     }
     if (trace.toolAttempts.length > 0) stop();
   });
@@ -110,12 +111,15 @@ async function modelTurn({ prompt, work, model }) {
   try {
     exit = await new Promise((accept, reject) => { child.once("error", reject); child.once("close", (code, signal) => accept({ code, signal })); });
   } finally { clearTimeout(timer); clearTimeout(force); }
-  if (buffered.trim()) recordEvent(trace, buffered.trim());
+  if (buffered.trim()) { recordEvent(trace, buffered.trim()); finalBinding.record(buffered.trim()); }
   if (stderrLine.trim()) recordDiagnostic(trace, stderrLine.trim());
-  const execution = { source: "HARNESS_CODEX_EXEC", startedAt, durationMs: Date.now() - begin, ...exit, timedOut, outputBoundExceeded: exceeded, requestedModel: model ?? "CLIENT_DEFAULT", reportedModel: trace.reportedModel, trace };
+  const execution = { source: "HARNESS_CODEX_EXEC", startedAt, durationMs: Date.now() - begin, ...exit, timedOut, outputBoundExceeded: exceeded, requestedModel: model ?? "CLIENT_DEFAULT", reportedModel: trace.reportedModel, trace, finalOutputBinding: "NOT_CHECKED" };
   if (exit.code !== 0 || timedOut || exceeded || trace.toolAttempts.length > 0 || trace.criticalConfigurationErrors.length > 0 || trace.failureCategories.length > 0) return { execution, final: null };
   const final = readFileSync(finalPath, "utf8");
   assert.ok(Buffer.byteLength(final) <= 256 * 1024, "Final output exceeds retention bound");
+  try { finalBinding.assertMatches(final); }
+  catch { execution.finalOutputBinding = "MISMATCH"; return { execution, final: null }; }
+  execution.finalOutputBinding = "MATCHED";
   return { execution, final };
 }
 

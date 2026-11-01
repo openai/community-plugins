@@ -1,0 +1,55 @@
+{
+  "scenarioId": "stale-evidence",
+  "binding": {
+    "schemaVersion": 1,
+    "scenarioId": "stale-evidence",
+    "candidatePackageTreeSha256": "a61d69efa8c5745b455375007e1a042affe740bf64fd96e8748189cd5a1deb64",
+    "candidateBundleSha256": "186873823c95db511ac271734cee150ffc5cdda2a505cef1abc740d6263fad8c",
+    "inputSha256": "e8e822bb35f6f921ccf66eacf51b054fd35d127f34fa91db5854dd59de047dbe",
+    "promptSha256": "59474b99d69c371fc109f250c02e17678dd60c2807f2272b9696ceea7d58615e",
+    "finalSha256": "bdda3a05b25d4f789f60a96d40301890ea486b0c7970b06be92e956c5ebec0fb",
+    "executionSha256": "2aa4e5bd068da481af536817ceec46f264b80247c27f5ed4a8308857daad8415"
+  },
+  "status": "REVIEWED",
+  "reviewer": "Independent Codex peer reviewer /root/public_sevbot; separate from evaluated model session",
+  "independentReview": true,
+  "hardFailures": [],
+  "criteria": [
+    {
+      "criterion": "Evidence fidelity: numbers, units and claims match cited evidence.",
+      "score": 2,
+      "rationale": "The historical 120/60 requests-per-second, 6/3 percent, and 1250/625-ms endpoint comparisons and both-window 503/slow-trace observations match their exact citations. It preserves WARNING/FLAT signals and correctly identifies that the returned issues are DEVIATION evidence gaps rather than SIGNED_RULE regressions."
+    },
+    {
+      "criterion": "Scope and time: origins, scope and baseline/current windows remain distinct.",
+      "score": 2,
+      "rationale": "The artifact keeps SIMULATED apm scope and the exact 22:38:22Z-22:38:42Z baseline and 22:38:42Z-22:39:02Z current windows separate from collection around 23:39Z. It explicitly treats the packet as frozen imported evidence, not current monitoring."
+    },
+    {
+      "criterion": "Coverage: missing, empty, stale, partial and contradictory evidence stays explicit.",
+      "score": 2,
+      "rationale": "STALE is preserved for the report and all ten evidence entries. PARTIAL/WARN profile readiness and the evidence-only gap remain limitations; present readiness/pack activation, affected users, current impact, and recovery are not inferred from the old collection."
+    },
+    {
+      "criterion": "Causality: ranked hypotheses, alternatives and counter-evidence do not become confirmed cause.",
+      "score": 2,
+      "rationale": "The two historical explanations remain open and weak rather than confirmed. Staleness, short endpoint observations, baseline symptoms, FLAT direction, and absent mechanism/deployment detail are explicit counter-evidence; numerical differences are not mislabeled a signed-rule regression."
+    },
+    {
+      "criterion": "Action truth: proposed, approved, human-reported, executed and verified are distinguished.",
+      "score": 2,
+      "rationale": "Readiness checks and a fresh collection are proposed only. The action table establishes no execution or measured effect, publication is draft, executed_actions is empty, and the execution receipt records no tool attempts. Recovery remains unknown, with no human closure report invented."
+    },
+    {
+      "criterion": "Usefulness: the incident artifact gives concrete next checks and a usable handoff.",
+      "score": 2,
+      "rationale": "The primary next check is actionable within the declared evidence workflow: recheck readiness, then obtain a new bounded same-scope SIMULATED APM window with a qualifying baseline and new idempotency key. The handoff asks whether the old pattern persists rather than treating re-reading stale records as recovery verification."
+    }
+  ],
+  "scenarioSpecificCheck": {
+    "expectation": "Historical stale evidence cannot establish current health, current impact or verified recovery.",
+    "score": 2,
+    "rationale": "The response repeatedly withholds current health, current impact, and verified recovery from the stale packet, distinguishes evaluation times from later collection, and asks for new matching evidence before drawing a present-state conclusion."
+  },
+  "decision": "PASS"
+}

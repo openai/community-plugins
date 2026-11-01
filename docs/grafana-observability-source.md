@@ -45,12 +45,12 @@ is intentional: the verifier does not spoof npm's platform or architecture.
 
 | Artifact | Purpose |
 | --- | --- |
-| [`source.tar.gz`](../vendor/grafana-observability-source/source.tar.gz) | Authoritative qualified first-party source, build helpers, lockfile, schemas, static plugin inputs, and focused tests: 334 files, about 563 KB compressed. |
+| [`source.tar.gz`](../vendor/grafana-observability-source/source.tar.gz) | Authoritative qualified first-party source, build helpers, lockfile, schemas, static plugin inputs, and focused tests: 334 files, about 564 KB compressed. |
 | [`manifest.json`](../vendor/grafana-observability-source/manifest.json) | SHA-256 and byte length for the archive, every source file, all 64 generated files, the lockfile, native asset, and review patch. Also records the observed upstream revision and changed-file inventory. |
-| [`qualification.patch`](../vendor/grafana-observability-source/qualification.patch) | Human-readable 25-file change from the public-normalized pre-qualification source to this distribution. Its headers contain repository-relative paths. |
+| [`qualification.patch`](../vendor/grafana-observability-source/qualification.patch) | Human-readable 26-file change from the public-normalized pre-qualification source to this distribution. Its headers contain repository-relative paths. |
 
 The source archive SHA-256 is
-`3864ae28bb3ceba0fe69e22d4137ac070562a7af4c96fd7de39b660cc006402d`.
+`b867a9dc1aca76282b9c95ff0aaca00a08e750c46731f9524eb1f5cfea13ac3b`.
 The manifest is authoritative when a reviewed update changes this snapshot.
 
 The uncompressed TAR is deterministic: sorted paths, regular files only, fixed

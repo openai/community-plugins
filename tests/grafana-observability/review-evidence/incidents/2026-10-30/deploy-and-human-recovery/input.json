@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "scenarioId": "deploy-and-human-recovery",
   "origin": "SIMULATED",
-  "capturedAt": "2026-10-31T01:07:03.944Z",
+  "capturedAt": "2026-11-01T00:22:39.058Z",
   "interpretation": "Frozen repository-generated evidence. Tool outputs are unchanged; they describe their collection time, not current monitoring. The model receives no connected Grafana tools. Authored context below is not tool evidence.",
   "toolOutputs": [
     {
@@ -108,18 +108,18 @@
         "scopeAlias": "apm",
         "origin": "SIMULATED",
         "window": {
-          "start": "2026-10-31T01:06:33.000Z",
-          "end": "2026-10-31T01:06:53.000Z"
+          "start": "2026-11-01T00:22:04.000Z",
+          "end": "2026-11-01T00:22:24.000Z"
         },
         "baselineWindow": {
-          "start": "2026-10-31T01:06:13.000Z",
-          "end": "2026-10-31T01:06:33.000Z"
+          "start": "2026-11-01T00:21:44.000Z",
+          "end": "2026-11-01T00:22:04.000Z"
         }
       },
       "report": {
         "schemaVersion": "1.0.0",
         "status": "COMPLETE",
-        "reportRef": "gfrpt_b1218677a2e5a5c76c0f4f304e1207e7601a6c68250fafa4dba899f8f8a79676",
+        "reportRef": "gfrpt_e8956e81952b4fcbddd3b61e127682ab1488a4ad2deef709ba0ca09d0d885bd1",
         "profileAlias": "local-grafana-e2e",
         "pack": {
           "packId": "grafana.apm",
@@ -131,12 +131,12 @@
         "scopeAlias": "apm",
         "origin": "SIMULATED",
         "window": {
-          "start": "2026-10-31T01:06:33.000Z",
-          "end": "2026-10-31T01:06:53.000Z"
+          "start": "2026-11-01T00:22:04.000Z",
+          "end": "2026-11-01T00:22:24.000Z"
         },
         "baselineWindow": {
-          "start": "2026-10-31T01:06:13.000Z",
-          "end": "2026-10-31T01:06:33.000Z"
+          "start": "2026-11-01T00:21:44.000Z",
+          "end": "2026-11-01T00:22:04.000Z"
         },
         "evidenceSummary": {
           "COMPLETE": 10,
@@ -148,113 +148,113 @@
         "collectionFailures": 0,
         "evidence": [
           {
-            "evidenceRef": "gfev_8d29cbbfb82339349ce9d03a6cb3bae0f1c38beed327a1f6ddf62e3ea5a6a458",
+            "evidenceRef": "gfev_3326015240ef750ec835748a41bf646ae43c66906fdc0d351c61b490b43456ea",
             "title": "grafana.apm.error.codes",
             "domain": "LOGS",
             "status": "COMPLETE",
             "summary": "HTTP 503 response observed for checkout",
-            "observedAt": "2026-10-31T01:06:53.000Z",
+            "observedAt": "2026-11-01T00:22:24.000Z",
             "linkRefs": [
-              "gflnk_e40e0890da6f15f898f27c7924ca5bf81a9316d8785731fe92f35b271e59e2a4"
+              "gflnk_c801f59d85712139371289999671750e0858101a7835b1ce5df0094abe14e7ab"
             ]
           },
           {
-            "evidenceRef": "gfev_43f05ac68c4218bb9b1a874fa54c601270775a13c9aba818a39d2ee3e0908035",
+            "evidenceRef": "gfev_2482351bedf7434daf6ba25fc665d8cbb3c56dbbf597ec479e1f3a949b4820f9",
             "title": "grafana.apm.error.codes",
             "domain": "LOGS",
             "status": "COMPLETE",
             "summary": "HTTP 503 response observed for checkout",
-            "observedAt": "2026-10-31T01:06:33.000Z",
+            "observedAt": "2026-11-01T00:22:04.000Z",
             "linkRefs": [
-              "gflnk_dc85b47c1025f82db8faa1154b2ec1cf0760616fa4a6a294c5123a89c21656dc"
+              "gflnk_c8c2b2b8a4f68a47f37ef7fac6e2ee9f40131e0ff069914f5e6c96c10262e6c1"
             ]
           },
           {
-            "evidenceRef": "gfev_61871196d418d1944516fee94c38eab4b297ea8aff5b62b2b52e1f977c4d9f46",
-            "title": "grafana.apm.error.rate",
-            "domain": "METRICS",
-            "status": "COMPLETE",
-            "summary": "error_rate is 6 from grafana.",
-            "observedAt": "2026-10-31T01:06:53.000Z",
-            "linkRefs": [
-              "gflnk_cfe5149c371995b0fbfa6b625effa67cd1c7c7ae9140797ca966f56c82491c54"
-            ]
-          },
-          {
-            "evidenceRef": "gfev_f0feaecf2459500837927904a9da13cf4cc189c82b105fce8fcb43fbdfacfabf",
+            "evidenceRef": "gfev_a5902fee359726e6175bb10ce38dd53c3930617fa6951988c719b0d948adc99a",
             "title": "grafana.apm.error.rate",
             "domain": "METRICS",
             "status": "COMPLETE",
             "summary": "error_rate is 3 from grafana.",
-            "observedAt": "2026-10-31T01:06:33.000Z",
+            "observedAt": "2026-11-01T00:22:04.000Z",
             "linkRefs": [
-              "gflnk_a0c98e485d2b71f3959b0aa125e1fae0c5dee711ee1c24102ad9186eec872f45"
+              "gflnk_4ade9fe01e4e2ca05f446dd1a9027ba22908d014a917f3436f283fdf2d5d7314"
             ]
           },
           {
-            "evidenceRef": "gfev_b1e3b1fe6dcdfd74b90717fbb0104d0ef0d5a79f00687af54e7095e8e1e41474",
+            "evidenceRef": "gfev_f320cf86f5be0bda27fde9b32727408b1a14810e29125b5c8d4bd93ec38ba344",
+            "title": "grafana.apm.error.rate",
+            "domain": "METRICS",
+            "status": "COMPLETE",
+            "summary": "error_rate is 6 from grafana.",
+            "observedAt": "2026-11-01T00:22:24.000Z",
+            "linkRefs": [
+              "gflnk_8ccbe65d7b79b3233b69a78f6d2435d5750570a9ebb28e333271026c617a57a1"
+            ]
+          },
+          {
+            "evidenceRef": "gfev_0def784d5f80e22e43018773d39aa21379e89aef28a31e2ec41a9e6cefa1fb5f",
             "title": "grafana.apm.latency.p95",
             "domain": "METRICS",
             "status": "COMPLETE",
             "summary": "latency_p95 is 1250 from grafana.",
-            "observedAt": "2026-10-31T01:06:53.000Z",
+            "observedAt": "2026-11-01T00:22:24.000Z",
             "linkRefs": [
-              "gflnk_fb2ce23c2c461b8f436a93806156b81b5f9d3a333c1982b91ba263795040b393"
+              "gflnk_0dfe24513682fb2b43a0f0d5c7d3596176f623383c91a5104000577cd4091614"
             ]
           },
           {
-            "evidenceRef": "gfev_c146c0ad48e817e020a52dc93f7f090dcccd7e71e41447512cef6d25a878d9bd",
+            "evidenceRef": "gfev_c6baafefdeecd1fb926363f0e65d835b04b5f0f92b7c4598ff3a721648590d45",
             "title": "grafana.apm.latency.p95",
             "domain": "METRICS",
             "status": "COMPLETE",
             "summary": "latency_p95 is 625 from grafana.",
-            "observedAt": "2026-10-31T01:06:33.000Z",
+            "observedAt": "2026-11-01T00:22:04.000Z",
             "linkRefs": [
-              "gflnk_db333591a8026350fd88ed35ee2f8de7f939553b8a66c5266e1c5509ed633efc"
+              "gflnk_aaa8ce5604f20d08a973d18056fff53f816c9f089736b22d5998284af339e690"
             ]
           },
           {
-            "evidenceRef": "gfev_5677a2688af9f00fed0f865f080c64784b71bffcb87a2561f67e22bb1aca0160",
-            "title": "grafana.apm.request.rate",
-            "domain": "METRICS",
-            "status": "COMPLETE",
-            "summary": "request_rate is 120 from grafana.",
-            "observedAt": "2026-10-31T01:06:53.000Z",
-            "linkRefs": [
-              "gflnk_092f5e25e02d8db4c1c26d0f3d64ec9a5f229a89b5cf9c86eca105f525e36e3b"
-            ]
-          },
-          {
-            "evidenceRef": "gfev_58695a18be90c201fe8f49d645a7bddf95cdfdb4d94f341b3607f44edfd2f2d2",
+            "evidenceRef": "gfev_53f35b5fd3aea33a84429aa7550c56fb10aea875143843583e2ab0252ad65729",
             "title": "grafana.apm.request.rate",
             "domain": "METRICS",
             "status": "COMPLETE",
             "summary": "request_rate is 60 from grafana.",
-            "observedAt": "2026-10-31T01:06:33.000Z",
+            "observedAt": "2026-11-01T00:22:04.000Z",
             "linkRefs": [
-              "gflnk_365325aef387ff7bd3132fd57e2d8b875acd805b13af560133e5b299dd8c3e54"
+              "gflnk_a15f0c09a03f64eee040ae5f6e07fdf8abdf97a73014b89934064f15744fa153"
             ]
           },
           {
-            "evidenceRef": "gfev_6ded6382c3fb65af09f9c91c48ff27d2ff4ef9e92b48f83b90196d42c38ce7d9",
+            "evidenceRef": "gfev_99056a75a8ef7a039a06af0a158cc1137bf96e6cee8d6bc0ce15ebf054d43d21",
+            "title": "grafana.apm.request.rate",
+            "domain": "METRICS",
+            "status": "COMPLETE",
+            "summary": "request_rate is 120 from grafana.",
+            "observedAt": "2026-11-01T00:22:24.000Z",
+            "linkRefs": [
+              "gflnk_c6b163b0bf30fe6ed58883ebaef7fd810d6783d26529df8c33ce039165b81087"
+            ]
+          },
+          {
+            "evidenceRef": "gfev_0c0dc98a844fde732a1121baf819be3daf43229ce7eacef1b242b7994aef61ec",
             "title": "grafana.apm.traces.slow",
             "domain": "TRACES",
             "status": "COMPLETE",
             "summary": "Slow checkout trace exceeded 1000 ms",
-            "observedAt": "2026-10-31T01:06:53.000Z",
+            "observedAt": "2026-11-01T00:22:04.000Z",
             "linkRefs": [
-              "gflnk_e47ebfff20474497d733aa1620c3a35a7df31d9a585d1f0405af3ba252c202d4"
+              "gflnk_c2e763db058ba18a37c7869d380059127669078acbbee90acc40d68f0c72cbaf"
             ]
           },
           {
-            "evidenceRef": "gfev_b177163eef0f2552665c4ef46fbcb490ab5fd0641e7c54b14c84a3c424f7c4a7",
+            "evidenceRef": "gfev_2bf168b4026e887031b069d9d028571e5fde4f04e620d3268b687942332bab5e",
             "title": "grafana.apm.traces.slow",
             "domain": "TRACES",
             "status": "COMPLETE",
             "summary": "Slow checkout trace exceeded 1000 ms",
-            "observedAt": "2026-10-31T01:06:33.000Z",
+            "observedAt": "2026-11-01T00:22:24.000Z",
             "linkRefs": [
-              "gflnk_c5038d47da5267c67c359cc6f2fb4a2edcea741f718a4d58ac05ccfa1e7f0d51"
+              "gflnk_edcebd5c6432b140a8b231852cf6aeddc53a51b809e4871de63e900b39fd5354"
             ]
           }
         ],
@@ -267,7 +267,7 @@
             "severity": "NEUTRAL",
             "direction": "FLAT",
             "evidenceRefs": [
-              "gfev_5677a2688af9f00fed0f865f080c64784b71bffcb87a2561f67e22bb1aca0160"
+              "gfev_99056a75a8ef7a039a06af0a158cc1137bf96e6cee8d6bc0ce15ebf054d43d21"
             ]
           },
           {
@@ -278,7 +278,7 @@
             "severity": "CRITICAL",
             "direction": "FLAT",
             "evidenceRefs": [
-              "gfev_61871196d418d1944516fee94c38eab4b297ea8aff5b62b2b52e1f977c4d9f46"
+              "gfev_f320cf86f5be0bda27fde9b32727408b1a14810e29125b5c8d4bd93ec38ba344"
             ]
           },
           {
@@ -289,7 +289,7 @@
             "severity": "CRITICAL",
             "direction": "FLAT",
             "evidenceRefs": [
-              "gfev_b1e3b1fe6dcdfd74b90717fbb0104d0ef0d5a79f00687af54e7095e8e1e41474"
+              "gfev_0def784d5f80e22e43018773d39aa21379e89aef28a31e2ec41a9e6cefa1fb5f"
             ]
           }
         ],
@@ -302,7 +302,18 @@
             "title": "Reviewed capability rule matched",
             "summary": "error_rate changed by 3 from the sealed baseline; the signed rule matched.",
             "evidenceRefs": [
-              "gfev_61871196d418d1944516fee94c38eab4b297ea8aff5b62b2b52e1f977c4d9f46"
+              "gfev_a5902fee359726e6175bb10ce38dd53c3930617fa6951988c719b0d948adc99a"
+            ]
+          },
+          {
+            "kind": "REGRESSION",
+            "severity": "WARNING",
+            "status": "OPEN",
+            "classification": "SIGNED_RULE",
+            "title": "Reviewed capability rule matched",
+            "summary": "latency_p95 changed by 625 from the sealed baseline; the signed rule matched.",
+            "evidenceRefs": [
+              "gfev_0def784d5f80e22e43018773d39aa21379e89aef28a31e2ec41a9e6cefa1fb5f"
             ]
           },
           {
@@ -313,17 +324,6 @@
             "title": "Named evidence gap",
             "summary": "No analysis draft was submitted; this artifact is evidence-only and cannot claim a complete investigation.",
             "evidenceRefs": []
-          },
-          {
-            "kind": "REGRESSION",
-            "severity": "WARNING",
-            "status": "OPEN",
-            "classification": "SIGNED_RULE",
-            "title": "Reviewed capability rule matched",
-            "summary": "latency_p95 changed by 625 from the sealed baseline; the signed rule matched.",
-            "evidenceRefs": [
-              "gfev_b1e3b1fe6dcdfd74b90717fbb0104d0ef0d5a79f00687af54e7095e8e1e41474"
-            ]
           }
         ],
         "limitations": [
@@ -335,112 +335,76 @@
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_b1218677a2e5a5c76c0f4f304e1207e7601a6c68250fafa4dba899f8f8a79676",
-          "evidenceRef": "gfev_8d29cbbfb82339349ce9d03a6cb3bae0f1c38beed327a1f6ddf62e3ea5a6a458",
+          "reportRef": "gfrpt_e8956e81952b4fcbddd3b61e127682ab1488a4ad2deef709ba0ca09d0d885bd1",
+          "evidenceRef": "gfev_3326015240ef750ec835748a41bf646ae43c66906fdc0d351c61b490b43456ea",
           "title": "grafana.apm.error.codes",
           "domain": "LOGS",
           "origin": "SIMULATED",
           "authority": "CORROBORATING",
           "provider": "grafana",
-          "evaluatedAt": "2026-10-31T01:06:53.000Z",
-          "collectedAt": "2026-10-31T01:06:56.579Z",
+          "evaluatedAt": "2026-11-01T00:22:24.000Z",
+          "collectedAt": "2026-11-01T00:22:27.910Z",
           "window": {
-            "end": "2026-10-31T01:06:53.000Z",
-            "start": "2026-10-31T01:06:33.000Z"
+            "end": "2026-11-01T00:22:24.000Z",
+            "start": "2026-11-01T00:22:04.000Z"
           },
           "summary": "HTTP 503 response observed for checkout",
           "values": [
             {
               "kind": "EVENT",
-              "at": "2026-10-31T01:06:52.000Z",
+              "at": "2026-11-01T00:22:23.000Z",
               "summary": "HTTP 503 response observed for checkout"
             }
           ],
           "limitationCount": 0,
           "linkRefs": [
-            "gflnk_e40e0890da6f15f898f27c7924ca5bf81a9316d8785731fe92f35b271e59e2a4"
+            "gflnk_c801f59d85712139371289999671750e0858101a7835b1ce5df0094abe14e7ab"
           ]
         },
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_b1218677a2e5a5c76c0f4f304e1207e7601a6c68250fafa4dba899f8f8a79676",
-          "evidenceRef": "gfev_43f05ac68c4218bb9b1a874fa54c601270775a13c9aba818a39d2ee3e0908035",
+          "reportRef": "gfrpt_e8956e81952b4fcbddd3b61e127682ab1488a4ad2deef709ba0ca09d0d885bd1",
+          "evidenceRef": "gfev_2482351bedf7434daf6ba25fc665d8cbb3c56dbbf597ec479e1f3a949b4820f9",
           "title": "grafana.apm.error.codes",
           "domain": "LOGS",
           "origin": "SIMULATED",
           "authority": "CORROBORATING",
           "provider": "grafana",
-          "evaluatedAt": "2026-10-31T01:06:33.000Z",
-          "collectedAt": "2026-10-31T01:06:59.601Z",
+          "evaluatedAt": "2026-11-01T00:22:04.000Z",
+          "collectedAt": "2026-11-01T00:22:32.847Z",
           "window": {
-            "end": "2026-10-31T01:06:33.000Z",
-            "start": "2026-10-31T01:06:13.000Z"
+            "end": "2026-11-01T00:22:04.000Z",
+            "start": "2026-11-01T00:21:44.000Z"
           },
           "summary": "HTTP 503 response observed for checkout",
           "values": [
             {
               "kind": "EVENT",
-              "at": "2026-10-31T01:06:32.000Z",
+              "at": "2026-11-01T00:22:03.000Z",
               "summary": "HTTP 503 response observed for checkout"
             }
           ],
           "limitationCount": 0,
           "linkRefs": [
-            "gflnk_dc85b47c1025f82db8faa1154b2ec1cf0760616fa4a6a294c5123a89c21656dc"
+            "gflnk_c8c2b2b8a4f68a47f37ef7fac6e2ee9f40131e0ff069914f5e6c96c10262e6c1"
           ]
         },
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_b1218677a2e5a5c76c0f4f304e1207e7601a6c68250fafa4dba899f8f8a79676",
-          "evidenceRef": "gfev_61871196d418d1944516fee94c38eab4b297ea8aff5b62b2b52e1f977c4d9f46",
+          "reportRef": "gfrpt_e8956e81952b4fcbddd3b61e127682ab1488a4ad2deef709ba0ca09d0d885bd1",
+          "evidenceRef": "gfev_a5902fee359726e6175bb10ce38dd53c3930617fa6951988c719b0d948adc99a",
           "title": "grafana.apm.error.rate",
           "domain": "METRICS",
           "origin": "SIMULATED",
           "authority": "CORROBORATING",
           "provider": "grafana",
-          "evaluatedAt": "2026-10-31T01:06:53.000Z",
-          "collectedAt": "2026-10-31T01:06:57.102Z",
+          "evaluatedAt": "2026-11-01T00:22:04.000Z",
+          "collectedAt": "2026-11-01T00:22:33.634Z",
           "window": {
-            "end": "2026-10-31T01:06:53.000Z",
-            "start": "2026-10-31T01:06:33.000Z"
-          },
-          "summary": "error_rate is 6 from grafana.",
-          "values": [
-            {
-              "kind": "METRIC",
-              "label": "error_rate",
-              "value": 6,
-              "unit": "percent",
-              "points": [
-                {
-                  "at": "2026-10-31T01:06:53.000Z",
-                  "value": 6
-                }
-              ]
-            }
-          ],
-          "limitationCount": 0,
-          "linkRefs": [
-            "gflnk_cfe5149c371995b0fbfa6b625effa67cd1c7c7ae9140797ca966f56c82491c54"
-          ]
-        },
-        {
-          "schemaVersion": "1.0.0",
-          "status": "COMPLETE",
-          "reportRef": "gfrpt_b1218677a2e5a5c76c0f4f304e1207e7601a6c68250fafa4dba899f8f8a79676",
-          "evidenceRef": "gfev_f0feaecf2459500837927904a9da13cf4cc189c82b105fce8fcb43fbdfacfabf",
-          "title": "grafana.apm.error.rate",
-          "domain": "METRICS",
-          "origin": "SIMULATED",
-          "authority": "CORROBORATING",
-          "provider": "grafana",
-          "evaluatedAt": "2026-10-31T01:06:33.000Z",
-          "collectedAt": "2026-10-31T01:07:00.134Z",
-          "window": {
-            "end": "2026-10-31T01:06:33.000Z",
-            "start": "2026-10-31T01:06:13.000Z"
+            "end": "2026-11-01T00:22:04.000Z",
+            "start": "2026-11-01T00:21:44.000Z"
           },
           "summary": "error_rate is 3 from grafana.",
           "values": [
@@ -451,7 +415,7 @@
               "unit": "percent",
               "points": [
                 {
-                  "at": "2026-10-31T01:06:33.000Z",
+                  "at": "2026-11-01T00:22:04.000Z",
                   "value": 3
                 }
               ]
@@ -459,24 +423,60 @@
           ],
           "limitationCount": 0,
           "linkRefs": [
-            "gflnk_a0c98e485d2b71f3959b0aa125e1fae0c5dee711ee1c24102ad9186eec872f45"
+            "gflnk_4ade9fe01e4e2ca05f446dd1a9027ba22908d014a917f3436f283fdf2d5d7314"
           ]
         },
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_b1218677a2e5a5c76c0f4f304e1207e7601a6c68250fafa4dba899f8f8a79676",
-          "evidenceRef": "gfev_b1e3b1fe6dcdfd74b90717fbb0104d0ef0d5a79f00687af54e7095e8e1e41474",
+          "reportRef": "gfrpt_e8956e81952b4fcbddd3b61e127682ab1488a4ad2deef709ba0ca09d0d885bd1",
+          "evidenceRef": "gfev_f320cf86f5be0bda27fde9b32727408b1a14810e29125b5c8d4bd93ec38ba344",
+          "title": "grafana.apm.error.rate",
+          "domain": "METRICS",
+          "origin": "SIMULATED",
+          "authority": "CORROBORATING",
+          "provider": "grafana",
+          "evaluatedAt": "2026-11-01T00:22:24.000Z",
+          "collectedAt": "2026-11-01T00:22:28.716Z",
+          "window": {
+            "end": "2026-11-01T00:22:24.000Z",
+            "start": "2026-11-01T00:22:04.000Z"
+          },
+          "summary": "error_rate is 6 from grafana.",
+          "values": [
+            {
+              "kind": "METRIC",
+              "label": "error_rate",
+              "value": 6,
+              "unit": "percent",
+              "points": [
+                {
+                  "at": "2026-11-01T00:22:24.000Z",
+                  "value": 6
+                }
+              ]
+            }
+          ],
+          "limitationCount": 0,
+          "linkRefs": [
+            "gflnk_8ccbe65d7b79b3233b69a78f6d2435d5750570a9ebb28e333271026c617a57a1"
+          ]
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "COMPLETE",
+          "reportRef": "gfrpt_e8956e81952b4fcbddd3b61e127682ab1488a4ad2deef709ba0ca09d0d885bd1",
+          "evidenceRef": "gfev_0def784d5f80e22e43018773d39aa21379e89aef28a31e2ec41a9e6cefa1fb5f",
           "title": "grafana.apm.latency.p95",
           "domain": "METRICS",
           "origin": "SIMULATED",
           "authority": "CORROBORATING",
           "provider": "grafana",
-          "evaluatedAt": "2026-10-31T01:06:53.000Z",
-          "collectedAt": "2026-10-31T01:06:57.640Z",
+          "evaluatedAt": "2026-11-01T00:22:24.000Z",
+          "collectedAt": "2026-11-01T00:22:29.615Z",
           "window": {
-            "end": "2026-10-31T01:06:53.000Z",
-            "start": "2026-10-31T01:06:33.000Z"
+            "end": "2026-11-01T00:22:24.000Z",
+            "start": "2026-11-01T00:22:04.000Z"
           },
           "summary": "latency_p95 is 1250 from grafana.",
           "values": [
@@ -487,7 +487,7 @@
               "unit": "milliseconds",
               "points": [
                 {
-                  "at": "2026-10-31T01:06:53.000Z",
+                  "at": "2026-11-01T00:22:24.000Z",
                   "value": 1250
                 }
               ]
@@ -495,24 +495,24 @@
           ],
           "limitationCount": 0,
           "linkRefs": [
-            "gflnk_fb2ce23c2c461b8f436a93806156b81b5f9d3a333c1982b91ba263795040b393"
+            "gflnk_0dfe24513682fb2b43a0f0d5c7d3596176f623383c91a5104000577cd4091614"
           ]
         },
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_b1218677a2e5a5c76c0f4f304e1207e7601a6c68250fafa4dba899f8f8a79676",
-          "evidenceRef": "gfev_c146c0ad48e817e020a52dc93f7f090dcccd7e71e41447512cef6d25a878d9bd",
+          "reportRef": "gfrpt_e8956e81952b4fcbddd3b61e127682ab1488a4ad2deef709ba0ca09d0d885bd1",
+          "evidenceRef": "gfev_c6baafefdeecd1fb926363f0e65d835b04b5f0f92b7c4598ff3a721648590d45",
           "title": "grafana.apm.latency.p95",
           "domain": "METRICS",
           "origin": "SIMULATED",
           "authority": "CORROBORATING",
           "provider": "grafana",
-          "evaluatedAt": "2026-10-31T01:06:33.000Z",
-          "collectedAt": "2026-10-31T01:07:00.664Z",
+          "evaluatedAt": "2026-11-01T00:22:04.000Z",
+          "collectedAt": "2026-11-01T00:22:34.471Z",
           "window": {
-            "end": "2026-10-31T01:06:33.000Z",
-            "start": "2026-10-31T01:06:13.000Z"
+            "end": "2026-11-01T00:22:04.000Z",
+            "start": "2026-11-01T00:21:44.000Z"
           },
           "summary": "latency_p95 is 625 from grafana.",
           "values": [
@@ -523,7 +523,7 @@
               "unit": "milliseconds",
               "points": [
                 {
-                  "at": "2026-10-31T01:06:33.000Z",
+                  "at": "2026-11-01T00:22:04.000Z",
                   "value": 625
                 }
               ]
@@ -531,60 +531,24 @@
           ],
           "limitationCount": 0,
           "linkRefs": [
-            "gflnk_db333591a8026350fd88ed35ee2f8de7f939553b8a66c5266e1c5509ed633efc"
+            "gflnk_aaa8ce5604f20d08a973d18056fff53f816c9f089736b22d5998284af339e690"
           ]
         },
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_b1218677a2e5a5c76c0f4f304e1207e7601a6c68250fafa4dba899f8f8a79676",
-          "evidenceRef": "gfev_5677a2688af9f00fed0f865f080c64784b71bffcb87a2561f67e22bb1aca0160",
+          "reportRef": "gfrpt_e8956e81952b4fcbddd3b61e127682ab1488a4ad2deef709ba0ca09d0d885bd1",
+          "evidenceRef": "gfev_53f35b5fd3aea33a84429aa7550c56fb10aea875143843583e2ab0252ad65729",
           "title": "grafana.apm.request.rate",
           "domain": "METRICS",
           "origin": "SIMULATED",
           "authority": "CORROBORATING",
           "provider": "grafana",
-          "evaluatedAt": "2026-10-31T01:06:53.000Z",
-          "collectedAt": "2026-10-31T01:06:56.049Z",
+          "evaluatedAt": "2026-11-01T00:22:04.000Z",
+          "collectedAt": "2026-11-01T00:22:32.044Z",
           "window": {
-            "end": "2026-10-31T01:06:53.000Z",
-            "start": "2026-10-31T01:06:33.000Z"
-          },
-          "summary": "request_rate is 120 from grafana.",
-          "values": [
-            {
-              "kind": "METRIC",
-              "label": "request_rate",
-              "value": 120,
-              "unit": "requests_per_second",
-              "points": [
-                {
-                  "at": "2026-10-31T01:06:53.000Z",
-                  "value": 120
-                }
-              ]
-            }
-          ],
-          "limitationCount": 0,
-          "linkRefs": [
-            "gflnk_092f5e25e02d8db4c1c26d0f3d64ec9a5f229a89b5cf9c86eca105f525e36e3b"
-          ]
-        },
-        {
-          "schemaVersion": "1.0.0",
-          "status": "COMPLETE",
-          "reportRef": "gfrpt_b1218677a2e5a5c76c0f4f304e1207e7601a6c68250fafa4dba899f8f8a79676",
-          "evidenceRef": "gfev_58695a18be90c201fe8f49d645a7bddf95cdfdb4d94f341b3607f44edfd2f2d2",
-          "title": "grafana.apm.request.rate",
-          "domain": "METRICS",
-          "origin": "SIMULATED",
-          "authority": "CORROBORATING",
-          "provider": "grafana",
-          "evaluatedAt": "2026-10-31T01:06:33.000Z",
-          "collectedAt": "2026-10-31T01:06:59.071Z",
-          "window": {
-            "end": "2026-10-31T01:06:33.000Z",
-            "start": "2026-10-31T01:06:13.000Z"
+            "end": "2026-11-01T00:22:04.000Z",
+            "start": "2026-11-01T00:21:44.000Z"
           },
           "summary": "request_rate is 60 from grafana.",
           "values": [
@@ -595,7 +559,7 @@
               "unit": "requests_per_second",
               "points": [
                 {
-                  "at": "2026-10-31T01:06:33.000Z",
+                  "at": "2026-11-01T00:22:04.000Z",
                   "value": 60
                 }
               ]
@@ -603,65 +567,101 @@
           ],
           "limitationCount": 0,
           "linkRefs": [
-            "gflnk_365325aef387ff7bd3132fd57e2d8b875acd805b13af560133e5b299dd8c3e54"
+            "gflnk_a15f0c09a03f64eee040ae5f6e07fdf8abdf97a73014b89934064f15744fa153"
           ]
         },
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_b1218677a2e5a5c76c0f4f304e1207e7601a6c68250fafa4dba899f8f8a79676",
-          "evidenceRef": "gfev_6ded6382c3fb65af09f9c91c48ff27d2ff4ef9e92b48f83b90196d42c38ce7d9",
-          "title": "grafana.apm.traces.slow",
-          "domain": "TRACES",
+          "reportRef": "gfrpt_e8956e81952b4fcbddd3b61e127682ab1488a4ad2deef709ba0ca09d0d885bd1",
+          "evidenceRef": "gfev_99056a75a8ef7a039a06af0a158cc1137bf96e6cee8d6bc0ce15ebf054d43d21",
+          "title": "grafana.apm.request.rate",
+          "domain": "METRICS",
           "origin": "SIMULATED",
           "authority": "CORROBORATING",
           "provider": "grafana",
-          "evaluatedAt": "2026-10-31T01:06:53.000Z",
-          "collectedAt": "2026-10-31T01:06:58.142Z",
+          "evaluatedAt": "2026-11-01T00:22:24.000Z",
+          "collectedAt": "2026-11-01T00:22:27.101Z",
           "window": {
-            "end": "2026-10-31T01:06:53.000Z",
-            "start": "2026-10-31T01:06:33.000Z"
+            "end": "2026-11-01T00:22:24.000Z",
+            "start": "2026-11-01T00:22:04.000Z"
           },
-          "summary": "Slow checkout trace exceeded 1000 ms",
+          "summary": "request_rate is 120 from grafana.",
           "values": [
             {
-              "kind": "EVENT",
-              "at": "2026-10-31T01:06:52.000Z",
-              "summary": "Slow checkout trace exceeded 1000 ms"
+              "kind": "METRIC",
+              "label": "request_rate",
+              "value": 120,
+              "unit": "requests_per_second",
+              "points": [
+                {
+                  "at": "2026-11-01T00:22:24.000Z",
+                  "value": 120
+                }
+              ]
             }
           ],
           "limitationCount": 0,
           "linkRefs": [
-            "gflnk_e47ebfff20474497d733aa1620c3a35a7df31d9a585d1f0405af3ba252c202d4"
+            "gflnk_c6b163b0bf30fe6ed58883ebaef7fd810d6783d26529df8c33ce039165b81087"
           ]
         },
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_b1218677a2e5a5c76c0f4f304e1207e7601a6c68250fafa4dba899f8f8a79676",
-          "evidenceRef": "gfev_b177163eef0f2552665c4ef46fbcb490ab5fd0641e7c54b14c84a3c424f7c4a7",
+          "reportRef": "gfrpt_e8956e81952b4fcbddd3b61e127682ab1488a4ad2deef709ba0ca09d0d885bd1",
+          "evidenceRef": "gfev_0c0dc98a844fde732a1121baf819be3daf43229ce7eacef1b242b7994aef61ec",
           "title": "grafana.apm.traces.slow",
           "domain": "TRACES",
           "origin": "SIMULATED",
           "authority": "CORROBORATING",
           "provider": "grafana",
-          "evaluatedAt": "2026-10-31T01:06:33.000Z",
-          "collectedAt": "2026-10-31T01:07:01.190Z",
+          "evaluatedAt": "2026-11-01T00:22:04.000Z",
+          "collectedAt": "2026-11-01T00:22:35.312Z",
           "window": {
-            "end": "2026-10-31T01:06:33.000Z",
-            "start": "2026-10-31T01:06:13.000Z"
+            "end": "2026-11-01T00:22:04.000Z",
+            "start": "2026-11-01T00:21:44.000Z"
           },
           "summary": "Slow checkout trace exceeded 1000 ms",
           "values": [
             {
               "kind": "EVENT",
-              "at": "2026-10-31T01:06:32.000Z",
+              "at": "2026-11-01T00:22:03.000Z",
               "summary": "Slow checkout trace exceeded 1000 ms"
             }
           ],
           "limitationCount": 0,
           "linkRefs": [
-            "gflnk_c5038d47da5267c67c359cc6f2fb4a2edcea741f718a4d58ac05ccfa1e7f0d51"
+            "gflnk_c2e763db058ba18a37c7869d380059127669078acbbee90acc40d68f0c72cbaf"
+          ]
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "COMPLETE",
+          "reportRef": "gfrpt_e8956e81952b4fcbddd3b61e127682ab1488a4ad2deef709ba0ca09d0d885bd1",
+          "evidenceRef": "gfev_2bf168b4026e887031b069d9d028571e5fde4f04e620d3268b687942332bab5e",
+          "title": "grafana.apm.traces.slow",
+          "domain": "TRACES",
+          "origin": "SIMULATED",
+          "authority": "CORROBORATING",
+          "provider": "grafana",
+          "evaluatedAt": "2026-11-01T00:22:24.000Z",
+          "collectedAt": "2026-11-01T00:22:30.583Z",
+          "window": {
+            "end": "2026-11-01T00:22:24.000Z",
+            "start": "2026-11-01T00:22:04.000Z"
+          },
+          "summary": "Slow checkout trace exceeded 1000 ms",
+          "values": [
+            {
+              "kind": "EVENT",
+              "at": "2026-11-01T00:22:23.000Z",
+              "summary": "Slow checkout trace exceeded 1000 ms"
+            }
+          ],
+          "limitationCount": 0,
+          "linkRefs": [
+            "gflnk_edcebd5c6432b140a8b231852cf6aeddc53a51b809e4871de63e900b39fd5354"
           ]
         }
       ],
@@ -669,92 +669,92 @@
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_b1218677a2e5a5c76c0f4f304e1207e7601a6c68250fafa4dba899f8f8a79676",
-          "linkRef": "gflnk_e40e0890da6f15f898f27c7924ca5bf81a9316d8785731fe92f35b271e59e2a4",
+          "reportRef": "gfrpt_e8956e81952b4fcbddd3b61e127682ab1488a4ad2deef709ba0ca09d0d885bd1",
+          "linkRef": "gflnk_c801f59d85712139371289999671750e0858101a7835b1ce5df0094abe14e7ab",
           "mode": "OPEN_EXTERNAL",
           "label": "Open Grafana evidence",
-          "url": "http://127.0.0.1:59660/d/synthetic-apm?viewPanel=6"
+          "url": "http://127.0.0.1:53201/d/synthetic-apm?viewPanel=6"
         },
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_b1218677a2e5a5c76c0f4f304e1207e7601a6c68250fafa4dba899f8f8a79676",
-          "linkRef": "gflnk_dc85b47c1025f82db8faa1154b2ec1cf0760616fa4a6a294c5123a89c21656dc",
+          "reportRef": "gfrpt_e8956e81952b4fcbddd3b61e127682ab1488a4ad2deef709ba0ca09d0d885bd1",
+          "linkRef": "gflnk_c8c2b2b8a4f68a47f37ef7fac6e2ee9f40131e0ff069914f5e6c96c10262e6c1",
           "mode": "OPEN_EXTERNAL",
           "label": "Open Grafana evidence",
-          "url": "http://127.0.0.1:59660/d/synthetic-apm?viewPanel=6"
+          "url": "http://127.0.0.1:53201/d/synthetic-apm?viewPanel=6"
         },
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_b1218677a2e5a5c76c0f4f304e1207e7601a6c68250fafa4dba899f8f8a79676",
-          "linkRef": "gflnk_cfe5149c371995b0fbfa6b625effa67cd1c7c7ae9140797ca966f56c82491c54",
+          "reportRef": "gfrpt_e8956e81952b4fcbddd3b61e127682ab1488a4ad2deef709ba0ca09d0d885bd1",
+          "linkRef": "gflnk_4ade9fe01e4e2ca05f446dd1a9027ba22908d014a917f3436f283fdf2d5d7314",
           "mode": "OPEN_EXTERNAL",
           "label": "Open Grafana evidence",
-          "url": "http://127.0.0.1:59660/d/synthetic-apm?viewPanel=7"
+          "url": "http://127.0.0.1:53201/d/synthetic-apm?viewPanel=7"
         },
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_b1218677a2e5a5c76c0f4f304e1207e7601a6c68250fafa4dba899f8f8a79676",
-          "linkRef": "gflnk_a0c98e485d2b71f3959b0aa125e1fae0c5dee711ee1c24102ad9186eec872f45",
+          "reportRef": "gfrpt_e8956e81952b4fcbddd3b61e127682ab1488a4ad2deef709ba0ca09d0d885bd1",
+          "linkRef": "gflnk_8ccbe65d7b79b3233b69a78f6d2435d5750570a9ebb28e333271026c617a57a1",
           "mode": "OPEN_EXTERNAL",
           "label": "Open Grafana evidence",
-          "url": "http://127.0.0.1:59660/d/synthetic-apm?viewPanel=7"
+          "url": "http://127.0.0.1:53201/d/synthetic-apm?viewPanel=7"
         },
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_b1218677a2e5a5c76c0f4f304e1207e7601a6c68250fafa4dba899f8f8a79676",
-          "linkRef": "gflnk_fb2ce23c2c461b8f436a93806156b81b5f9d3a333c1982b91ba263795040b393",
+          "reportRef": "gfrpt_e8956e81952b4fcbddd3b61e127682ab1488a4ad2deef709ba0ca09d0d885bd1",
+          "linkRef": "gflnk_0dfe24513682fb2b43a0f0d5c7d3596176f623383c91a5104000577cd4091614",
           "mode": "OPEN_EXTERNAL",
           "label": "Open Grafana evidence",
-          "url": "http://127.0.0.1:59660/d/synthetic-apm?viewPanel=8"
+          "url": "http://127.0.0.1:53201/d/synthetic-apm?viewPanel=8"
         },
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_b1218677a2e5a5c76c0f4f304e1207e7601a6c68250fafa4dba899f8f8a79676",
-          "linkRef": "gflnk_db333591a8026350fd88ed35ee2f8de7f939553b8a66c5266e1c5509ed633efc",
+          "reportRef": "gfrpt_e8956e81952b4fcbddd3b61e127682ab1488a4ad2deef709ba0ca09d0d885bd1",
+          "linkRef": "gflnk_aaa8ce5604f20d08a973d18056fff53f816c9f089736b22d5998284af339e690",
           "mode": "OPEN_EXTERNAL",
           "label": "Open Grafana evidence",
-          "url": "http://127.0.0.1:59660/d/synthetic-apm?viewPanel=8"
+          "url": "http://127.0.0.1:53201/d/synthetic-apm?viewPanel=8"
         },
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_b1218677a2e5a5c76c0f4f304e1207e7601a6c68250fafa4dba899f8f8a79676",
-          "linkRef": "gflnk_092f5e25e02d8db4c1c26d0f3d64ec9a5f229a89b5cf9c86eca105f525e36e3b",
+          "reportRef": "gfrpt_e8956e81952b4fcbddd3b61e127682ab1488a4ad2deef709ba0ca09d0d885bd1",
+          "linkRef": "gflnk_a15f0c09a03f64eee040ae5f6e07fdf8abdf97a73014b89934064f15744fa153",
           "mode": "OPEN_EXTERNAL",
           "label": "Open Grafana evidence",
-          "url": "http://127.0.0.1:59660/d/synthetic-apm?viewPanel=5"
+          "url": "http://127.0.0.1:53201/d/synthetic-apm?viewPanel=5"
         },
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_b1218677a2e5a5c76c0f4f304e1207e7601a6c68250fafa4dba899f8f8a79676",
-          "linkRef": "gflnk_365325aef387ff7bd3132fd57e2d8b875acd805b13af560133e5b299dd8c3e54",
+          "reportRef": "gfrpt_e8956e81952b4fcbddd3b61e127682ab1488a4ad2deef709ba0ca09d0d885bd1",
+          "linkRef": "gflnk_c6b163b0bf30fe6ed58883ebaef7fd810d6783d26529df8c33ce039165b81087",
           "mode": "OPEN_EXTERNAL",
           "label": "Open Grafana evidence",
-          "url": "http://127.0.0.1:59660/d/synthetic-apm?viewPanel=5"
+          "url": "http://127.0.0.1:53201/d/synthetic-apm?viewPanel=5"
         },
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_b1218677a2e5a5c76c0f4f304e1207e7601a6c68250fafa4dba899f8f8a79676",
-          "linkRef": "gflnk_e47ebfff20474497d733aa1620c3a35a7df31d9a585d1f0405af3ba252c202d4",
+          "reportRef": "gfrpt_e8956e81952b4fcbddd3b61e127682ab1488a4ad2deef709ba0ca09d0d885bd1",
+          "linkRef": "gflnk_c2e763db058ba18a37c7869d380059127669078acbbee90acc40d68f0c72cbaf",
           "mode": "OPEN_EXTERNAL",
           "label": "Open Grafana evidence",
-          "url": "http://127.0.0.1:59660/d/synthetic-apm?viewPanel=9"
+          "url": "http://127.0.0.1:53201/d/synthetic-apm?viewPanel=9"
         },
         {
           "schemaVersion": "1.0.0",
           "status": "COMPLETE",
-          "reportRef": "gfrpt_b1218677a2e5a5c76c0f4f304e1207e7601a6c68250fafa4dba899f8f8a79676",
-          "linkRef": "gflnk_c5038d47da5267c67c359cc6f2fb4a2edcea741f718a4d58ac05ccfa1e7f0d51",
+          "reportRef": "gfrpt_e8956e81952b4fcbddd3b61e127682ab1488a4ad2deef709ba0ca09d0d885bd1",
+          "linkRef": "gflnk_edcebd5c6432b140a8b231852cf6aeddc53a51b809e4871de63e900b39fd5354",
           "mode": "OPEN_EXTERNAL",
           "label": "Open Grafana evidence",
-          "url": "http://127.0.0.1:59660/d/synthetic-apm?viewPanel=9"
+          "url": "http://127.0.0.1:53201/d/synthetic-apm?viewPanel=9"
         }
       ]
     }
