@@ -1,0 +1,20 @@
+[
+  {
+    "id": "unit.token-verifier",
+    "path": "source/token-verifier.js",
+    "kind": "module",
+    "label": "Bearer header parser and key-set lookup"
+  },
+  {
+    "id": "unit.rate-limiter",
+    "path": "source/rate-limiter.js",
+    "kind": "module",
+    "label": "Fixed-window request counter"
+  },
+  {
+    "id": "unit.session-store",
+    "path": "source/session-store.js",
+    "kind": "module",
+    "label": "In-memory session expiration filter"
+  }
+]

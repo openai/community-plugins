@@ -1,0 +1,11 @@
+{
+  "goal": "Audit synthetic session and rate-limit helpers for clock skew and bounds handling",
+  "lens": "code",
+  "voices": [
+    "skeptic",
+    "builder",
+    "dreamer",
+    "empath"
+  ],
+  "minPasses": 2
+}
