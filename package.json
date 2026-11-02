@@ -5,7 +5,7 @@
   "description": "Public Codex plugins and their reproducible validation suites.",
   "type": "module",
   "scripts": {
-    "validate": "npm run validate:marketplace && node scripts/validate-grafana.mjs && npm run validate:reviewops-auditor-benchmark && npm run validate:react-native-to-swiftui && npm run validate:autodesk-fusion",
+    "validate": "npm run validate:marketplace && node scripts/validate-grafana.mjs && npm run validate:reviewops-auditor-benchmark && npm run validate:react-native-to-swiftui && npm run validate:autodesk-fusion && npm run validate:openpnp",
     "validate:marketplace": "node scripts/validate-marketplace.mjs",
     "validate:grafana": "node scripts/validate-grafana.mjs",
     "validate:reviewops-auditor-benchmark": "node scripts/validate-reviewops-auditor-benchmark.mjs",
@@ -33,7 +33,23 @@
     "validate:autodesk-fusion": "node scripts/validate-autodesk-fusion.mjs",
     "test:autodesk-fusion": "npm run validate:autodesk-fusion && npm run test:autodesk-fusion:package && npm --prefix plugins/autodesk-fusion run verify && npm run validate:autodesk-fusion",
     "test:autodesk-fusion:package": "node --test --test-concurrency=1 tests/autodesk-fusion/unit/*.test.mjs tests/autodesk-fusion/integration/*.test.mjs tests/autodesk-fusion/security/*.test.mjs",
-    "build:autodesk-fusion": "npm --prefix plugins/autodesk-fusion run build"
+    "build:autodesk-fusion": "npm --prefix plugins/autodesk-fusion run build",
+    "build:openpnp": "npm --prefix src/openpnp/node ci --ignore-scripts --no-audit --no-fund && npm --prefix src/openpnp/node run build",
+    "pretest:openpnp": "npm --prefix src/openpnp/node ci --ignore-scripts --no-audit --no-fund",
+    "test:openpnp": "node scripts/test-openpnp.mjs",
+    "test:openpnp:native": "bash scripts/openpnp-build-native.sh --test",
+    "test:openpnp:native:docker": "bash scripts/openpnp-build-native-docker.sh --test",
+    "verify:openpnp:source": "node scripts/verify-openpnp-package.mjs",
+    "test:openpnp:mcp": "python3 scripts/openpnp-test-native-mcp.py",
+    "test:openpnp:mcp-harness": "python3 tests/openpnp/test_native_mcp_runner.py",
+    "test:openpnp:native:crash": "python3 scripts/openpnp-test-native-crash.py",
+    "test:openpnp:native:crash-harness": "python3 tests/openpnp/test_native_crash_runner.py",
+    "test:openpnp:controller": "node scripts/openpnp-test-controller.mjs",
+    "build:openpnp:controller-history": "python3 scripts/openpnp-build-controller-history.py",
+    "test:openpnp:controller-history": "node --test --test-concurrency=1 tests/openpnp/controller-history-cli.test.mjs tests/openpnp/controller-history-recovery56.test.mjs",
+    "validate:openpnp": "node scripts/verify-openpnp-package.mjs",
+    "test:openpnp:harness": "python3 -B -m unittest discover -s tests/openpnp -p \"test_*.py\"",
+    "test:openpnp:contracts": "node --test --test-concurrency=1 tests/openpnp/*.test.mjs && npm run test:openpnp:harness && npm run verify:openpnp:source"
   },
   "engines": {
     "node": ">=22.19.0"

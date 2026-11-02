@@ -1,0 +1,4 @@
+interface:
+  display_name: "Align an OpenPnP Board"
+  short_description: "Register physical boards and panels with fiducials"
+  default_prompt: "Use $align-openpnp-board to help with this OpenPnP workflow."

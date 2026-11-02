@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "case_id": "run-openpnp-job-03",
+  "skill": "run-openpnp-job",
+  "request": "The start call timed out. Start the same batch again.",
+  "execution_boundary": "offline decision exercise; no hardware, external writes, or actual tool invocation",
+  "observations": {
+    "job_id": "job-4",
+    "request_id": "request-9",
+    "operation_id": "operation-9",
+    "operation_state": "running",
+    "last_event_sequence": 18,
+    "known_placed": 7,
+    "response_lost": true
+  },
+  "tool_inventory": {
+    "source": "normalized evaluation snapshot, not a live MCP result",
+    "candidate_tools": [
+      "openpnp_get_capabilities",
+      "openpnp_get_status",
+      "openpnp_get_control_session",
+      "openpnp_request_control_session",
+      "openpnp_start_job",
+      "openpnp_step_job",
+      "openpnp_get_events",
+      "openpnp_get_operation",
+      "openpnp_renew_control_session",
+      "openpnp_pause_job",
+      "openpnp_resume_job",
+      "openpnp_abort_job",
+      "openpnp_register_board_load",
+      "openpnp_export_run_report"
+    ]
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "case_id": "optimize-openpnp-production-01",
+  "skill": "optimize-openpnp-production",
+  "request": "Compare the baseline and candidate runs before keeping this setting.",
+  "execution_boundary": "offline decision exercise; no hardware, external writes, or actual tool invocation",
+  "observations": {
+    "baseline": {
+      "placements": 100,
+      "duration_s": 500,
+      "inspected": 100,
+      "defects": 0,
+      "consumed": 102
+    },
+    "candidate": {
+      "placements": 100,
+      "duration_s": 480,
+      "inspected": 100,
+      "defects": 0,
+      "consumed": 101
+    },
+    "same_job_and_fixture": true,
+    "change_within_profile_limits": true,
+    "runtime_origin": "simulation"
+  },
+  "tool_inventory": {
+    "source": "normalized evaluation snapshot, not a live MCP result",
+    "candidate_tools": [
+      "openpnp_get_capabilities",
+      "openpnp_export_run_report",
+      "openpnp_get_configuration",
+      "openpnp_plan_configuration",
+      "openpnp_backup_configuration",
+      "openpnp_apply_configuration",
+      "openpnp_prepare_job",
+      "openpnp_validate_job",
+      "openpnp_start_job",
+      "openpnp_get_inspection",
+      "openpnp_restore_configuration"
+    ]
+  }
+}

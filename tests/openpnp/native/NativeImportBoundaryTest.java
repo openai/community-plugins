@@ -1,0 +1,22 @@
+/* SPDX-License-Identifier: GPL-3.0-or-later */
+package org.openpnp.codex;
+import com.google.gson.*;
+import java.nio.file.*;
+import java.util.*;
+import org.openpnp.model.*;
+
+/** Real native listeners, canonical graph validation, and maximum-size native XML round trip. */
+public final class NativeImportBoundaryTest {
+    static final Gson GSON=new Gson();static final List<String> passed=new ArrayList<>();
+    static JsonObject object(Object...pairs){return GSON.toJsonTree(Bridge.map(pairs)).getAsJsonObject();}
+    static void check(boolean condition,String text){if(!condition)throw new AssertionError(text);}
+    static int listeners(Configuration config)throws Exception{java.lang.reflect.Field f=Configuration.class.getDeclaredField("listeners");f.setAccessible(true);return((Set<?>)f.get(config)).size();}
+    static JsonObject canonical(String id,int count){JsonArray parts=new JsonArray(),boards=new JsonArray(),placements=new JsonArray(),instances=new JsonArray();parts.add(object("id",id,"packageId","R0603","heightMm",0.75));for(int i=0;i<count;i++)placements.add(object("ref","R"+i,"partId",id,"packageId","R0603","heightMm",0.75,"x",0.75+1.5*(i%100),"y",0.75+1.5*(i/100),"z",0,"rotation",0,"enabled",true,"side","top","type","placement"));JsonObject board=object("id","b","widthMm",150,"heightMm",150);board.add("placements",placements);boards.add(board);instances.add(object("id","root","kind","board","definitionId","b","x",0,"y",0,"z",0,"rotation",0,"side","top","enabled",true));JsonObject input=object("schemaVersion",1,"id","import-test","units","mm","coordinateConvention","openpnp-top-view");input.add("parts",parts);input.add("boards",boards);input.add("panels",new JsonArray());input.add("instances",instances);return input;}
+    public static void main(String[]args)throws Exception{Path root=Files.createTempDirectory("openpnp-native-import-boundary-");Configuration.initialize(root.toFile());Configuration c=Configuration.get();c.load();int exit=0;try{
+        int before=listeners(c);for(int i=0;i<100;i++){JsonObject invalid=canonical("Rejected-"+i,1);invalid.getAsJsonArray("instances").get(0).getAsJsonObject().addProperty("definitionId","missing");try{CanonicalJobImporter.load(c,invalid);throw new AssertionError("expected missing definition");}catch(Bridge.Fault e){check(e.code.equals("MISSING_DEFINITION"),e.code);}}check(listeners(c)==before,"100 late rejected imports must retain zero Part constructor listeners");passed.add("100 rejected graphs create no native Part listeners or installed identities");
+        JsonObject duplicate=canonical("Case-Import",1);duplicate.getAsJsonArray("parts").add(object("id","case-import","packageId","R0603","heightMm",0.75));try{CanonicalJobImporter.load(c,duplicate);throw new AssertionError("expected collision");}catch(Bridge.Fault e){check(e.code.equals("DUPLICATE_ID"),e.code);}check(listeners(c)==before&&c.getPart("Case-Import")==null,"native case-fold collision rejected before construction");passed.add("case-folded canonical part identities cannot overwrite native definitions");
+        Job created=CanonicalJobImporter.load(c,canonical("Created-Import",1));check(listeners(c)==before+2&&created.getBoardLocations().get(0).getBoard().getPlacements().get(0).getPart()==c.getPart("created-import"),"successful graph materializes and binds exactly one native Part");passed.add("successful import constructs one Part and binds actual placement model after graph validation");
+        Job maximum=CanonicalJobImporter.load(c,canonical("R0603-1K",10000));maximum.storePlacedStatus(maximum.getBoardLocations().get(0),"R0",true);NativeJobDocuments docs=new NativeJobDocuments(c,root.resolve("documents"));NativeJobDocuments.Saved saved=docs.save(maximum);Job loaded=docs.reload(saved.sha256);check(loaded.getBoardLocations().get(0).getBoard().getPlacements().size()==10000&&loaded.retrievePlacedStatus(loaded.getBoardLocations().get(0),"R0"),"10000 native records and placed status survive save/reload");passed.add("10000-placement native Job/Board XML bundle save/reload preserves placed history without running machine");
+        System.out.println("OPENPNP_NATIVE_IMPORT_BOUNDARY_RESULT "+GSON.toJson(Bridge.map("passed",passed,"upstream_commit",Bridge.UPSTREAM,"simulation_only",true,"physical_qualification",false,"placements_executed",0)));
+    }catch(Throwable e){e.printStackTrace();exit=1;}finally{c.getMachine().close();}System.exit(exit);}
+}

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Recover an OpenPnP Job"
+  short_description: "Recover faults without repeating uncertain actions"
+  default_prompt: "Use $recover-openpnp-job to help with this OpenPnP workflow."

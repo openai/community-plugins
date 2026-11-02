@@ -1,0 +1,19 @@
+# Owned controller diagnostic simulator
+
+Use this workflow only when the installed build advertises `openpnp_run_controller_diagnostic` under the dedicated diagnostic profile. Qualification records identify the exact tested Bridge and MCP artifacts.
+
+The dedicated profile `owned-tagged-controller-diagnostic-v1` runs a new in-process loopback responder with the exact native `org.openpnp.codex.prototype.tagged.OwnedTaggedGcodeDriver` and protocol `owned-tagged-gcode-v1`. It admits the fixed bind → connect (`G21`, `G90`) → identify (`M115`) → close recipe once. It performs no motion, feeding, physical-controller connection, commissioning or calibration. It cannot select a serial device, endpoint, command template or firmware profile.
+
+## Launch and observe
+
+Use the resolved installed plugin CLI: `node <PLUGIN>/scripts/openpnp.mjs start-controller-simulator --state-dir <NEW_ABSOLUTE_STATE> --openpnp-home <VERIFIED_RUNTIME> --java <JAVA_EXECUTABLE>`. The new state, plugin and runtime must be separate trees. Existing state is refused. The foreground launcher retains new state on failure; do not remove its journal or retry a spent generation. Startup publishes connection metadata only after the profile, build and fresh controller identity match. Startup itself does not run the diagnostic or acquire a lease.
+
+Read capabilities, configuration revision and control state. Bind `controller_instance_id` from `capabilities.bridge.controller_diagnostic.controller_instance_id`; do not invent an ID. Obtain the advertised control session, then call the diagnostic with that session, a new canonical lowercase UUID `request_id`, the observed `expected_config_revision` and controller ID. No other effect argument is supported.
+
+Poll the returned operation with `view:"progress"`; fetch `view:"full"` once at terminal or unknown outcome for the exact native receipt. Progress indicates whether uncommitted observation details exist; obtain a full read to inspect them. A cached observation has its own timestamp/sequence and does not prove current transport liveness. A successful recipe and correlated ACKs establish only the recorded simulator protocol observations, not physical motion completion or standstill.
+
+## Lost responses and spent generations
+
+Use `openpnp_get_request_status` with the **original** `request_id` and `view: "progress"`. If an operation ID is available, observe it separately with `openpnp_get_operation`; `operation_id` is not an argument to request-status reads. Preserve `outcome_unknown`, pending admission, forced-publication failure and recovered journal facts. An uncommitted admission may include the original operation ID even before a committed operation can be returned. Do not generate another request, replay the recipe, resume a job or use `abandon-after-simulator-reset` to authorize this diagnostic.
+
+One generation is consumed even when admission or completion is uncertain. A separately requested new diagnostic needs a new isolated launch and new controller identity; it does not settle the old outcome. Journal recovery is historical observation, never restored controller authority. For a closed controller-diagnostic journal, follow [offline controller history inspection](../controller-history/README.md) using the bundled `inspect-controller-history` CLI. It reads the matching installation and runtime metadata without launching the native machine or connecting a controller. An accepted result can still describe `outcome-unknown`; inspect its disposition and retain the original identities. Refused or locked history is not permission to rewrite the journal or stop active work just to make inspection available. The simulator launcher still requires new state; this offline inspection does not restart a retained generation. Process shutdown is resource cleanup and does not establish a physical emergency stop.

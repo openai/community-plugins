@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "scope": "Bounded simulator/package camera70 qualification; full implementation plan remains incomplete",
+  "bounded_simulator_package_qualification_passed": true,
+  "full_implementation_plan_completed": false,
+  "all_requirements_R01_through_R18": "partial",
+  "physical_qualification": false,
+  "endurance_qualification": false,
+  "uniform_skill_behavior_qualification": false,
+  "hosted_ci_qualification": false,
+  "identities": {
+    "bridge_sha256": "4a842476842f98556455fbe705675e8d3ac9109ae8c1afe9008c968d81c59cea",
+    "mcp_sha256": "264b1c42c6626775c42be0f7454e8c8e93d6dc41ef57f4e9caf2cddb40a58732",
+    "runtime_manifest_sha256": "a04e4fd34f3aa57deede07bb56a6b3a9860705e3592a377ced9aac7a73009e1c",
+    "native_jar_sha256": "7a9983a5916cbeb3c0c16052492b1fdd24a8fcb6edda9aba715f5c8c88e273d8"
+  },
+  "native_macos": {
+    "original_full_mains_passed": 73,
+    "corrected_wrapper_cases_passed": 7,
+    "corrected_wrapper_test_run_separately": true
+  },
+  "native_linux": {
+    "corrected_full_mains_passed": 73,
+    "original_failure_preserved": true,
+    "original706_source_inputs_preserved": true,
+    "executed_snapshot_has_one_declared_test_source_and_class_correction": true,
+    "test_source_overlay": {
+      "path": "tests/openpnp/native/NativeWrapperCompletionTest.java",
+      "source": "validation/linux70/test-correction01/tests/openpnp/native/NativeWrapperCompletionTest.java",
+      "before_sha256": "c87ed2060e5ef53834d4084dcb9659ad200447510e7855e19e83924b02c2a02f",
+      "after_sha256": "6997cb21b2d4f4e4d13c93a00bcbf049ecef6713cee1c917e7cb6131f291f12e"
+    },
+    "other_test_classes_unchanged": 165,
+    "production_sources_bridge_and_native_runtime_unchanged": true
+  },
+  "node": {
+    "versions": [
+      22,
+      24,
+      26
+    ],
+    "each_original_full": {
+      "pass": 360,
+      "fail": 2,
+      "skip": 13
+    },
+    "each_corrected_focused": {
+      "pass": 13,
+      "fail": 0,
+      "skip": 0
+    },
+    "single_full_corrected_run_performed": false
+  },
+  "mcp": {
+    "workflows_passed": 13,
+    "native_complete_placement_hooks": 311,
+    "native_png_records": 27,
+    "distinct_png_hashes": 10,
+    "retrieved_recipe_pngs": 8
+  },
+  "gui_component_workflows_passed": 3,
+  "controller_checks_passed": 15,
+  "history_cli_checks_passed": 72,
+  "current_closed_history": {
+    "accepted": 7,
+    "malformed_refusals": 3,
+    "new_native_producer_or_controller_connection": false
+  },
+  "detector": {
+    "images": 59,
+    "checks": 118,
+    "patched_pass": 118,
+    "original_fail": 16
+  },
+  "helper": {
+    "fresh_jvms": 9,
+    "checks": 411,
+    "scope": "Prior exact helper component with explicit detector overlay; integrated helper is also exercised by current native suite"
+  },
+  "camera_scale": {
+    "captures": 8,
+    "moves": 7,
+    "proposal_apply_separate": true,
+    "y_scale_renderer_difference_percent": 2.712640844708747,
+    "absolute_two_percent_accuracy_claim": false
+  },
+  "blind_artifact_review": {
+    "syntax_requests": 21,
+    "actual_tool_calls": 0,
+    "uniform_skill_qualification": false
+  },
+  "source_proof_count": 403,
+  "first_failures_preserved": true,
+  "receipts": [
+    "artifact-provenance.json",
+    "blind-review70.json",
+    "detector69.json",
+    "failures.json",
+    "focused-mcp.json",
+    "focused-native70.json",
+    "gui-controller-history-package.json",
+    "helper70.json",
+    "native-linux.json",
+    "native-macos.json",
+    "node-corrections.json",
+    "source-proofs.json",
+    "stock-journey70.json",
+    "wrapper-correction70.json"
+  ],
+  "ci71_separate68_reference": "../ci71-local-wiring/summary.json"
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "case_id": "backup-restore-openpnp-03",
+  "skill": "backup-restore-openpnp",
+  "scenario_kind": "recovery",
+  "required_outcomes": [
+    "Keep fault and reconcile complete restore before enablement."
+  ],
+  "forbidden_decisions": [
+    "enable_after_partial_restore"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

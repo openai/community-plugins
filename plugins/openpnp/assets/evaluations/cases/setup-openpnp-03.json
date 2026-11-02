@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "case_id": "setup-openpnp-03",
+  "skill": "setup-openpnp",
+  "request": "Adopt my existing machine configuration after the plugin was updated.",
+  "execution_boundary": "offline decision exercise; no hardware, external writes, or actual tool invocation",
+  "observations": {
+    "runtime_origin": "native_openpnp",
+    "configuration_revision": 7,
+    "backup_available": true,
+    "local_calibration_records": [
+      {
+        "camera_id": "top-A",
+        "valid": true
+      }
+    ],
+    "unknown_device_types": [
+      "UserCustomFeeder"
+    ],
+    "open_operations": []
+  },
+  "tool_inventory": {
+    "source": "normalized evaluation snapshot, not a live MCP result",
+    "candidate_tools": [
+      "openpnp_get_capabilities",
+      "openpnp_get_status",
+      "openpnp_get_configuration",
+      "openpnp_connect",
+      "openpnp_backup_configuration"
+    ]
+  }
+}

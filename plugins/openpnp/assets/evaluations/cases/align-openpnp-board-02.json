@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "case_id": "align-openpnp-board-02",
+  "skill": "align-openpnp-board",
+  "request": "The two detections are on the same fiducial; use them as F1 and F2.",
+  "execution_boundary": "offline decision exercise; no hardware, external writes, or actual tool invocation",
+  "observations": {
+    "physical_board_id": "pcb-5",
+    "model": "rigid-2d",
+    "detections": [
+      {
+        "identity": "F1",
+        "x": 10,
+        "y": 10
+      },
+      {
+        "identity": "F1",
+        "x": 10,
+        "y": 10
+      }
+    ],
+    "required_distinct_fiducials": 2
+  },
+  "tool_inventory": {
+    "source": "normalized evaluation snapshot, not a live MCP result",
+    "candidate_tools": [
+      "openpnp_get_capabilities",
+      "openpnp_get_status",
+      "openpnp_register_board_load",
+      "openpnp_locate_fiducials",
+      "openpnp_get_artifact"
+    ]
+  }
+}

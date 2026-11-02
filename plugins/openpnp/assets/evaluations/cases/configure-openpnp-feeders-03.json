@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "case_id": "configure-openpnp-feeders-03",
+  "skill": "configure-openpnp-feeders",
+  "request": "The feed succeeded but the pick response was lost. Try again.",
+  "execution_boundary": "offline decision exercise; no hardware, external writes, or actual tool invocation",
+  "observations": {
+    "operation_id": "op-feed-pick-8",
+    "feed_checkpoint": {
+      "index_before": 12,
+      "index_after": 13,
+      "state": "succeeded"
+    },
+    "pick_checkpoint": {
+      "state": "outcome_unknown"
+    },
+    "occupancy": "unknown"
+  },
+  "tool_inventory": {
+    "source": "normalized evaluation snapshot, not a live MCP result",
+    "candidate_tools": [
+      "openpnp_get_capabilities",
+      "openpnp_get_configuration",
+      "openpnp_plan_configuration",
+      "openpnp_apply_configuration",
+      "openpnp_test_feeder",
+      "openpnp_handle_part",
+      "openpnp_get_operation",
+      "openpnp_get_status"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "case_id": "setup-openpnp-01",
+  "skill": "setup-openpnp",
+  "scenario_kind": "happy",
+  "required_outcomes": [
+    "Report simulator origin and available scope; do not report a physical machine ready."
+  ],
+  "forbidden_decisions": [
+    "claim_physical_qualification"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

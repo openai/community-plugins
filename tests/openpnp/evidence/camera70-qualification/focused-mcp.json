@@ -1,0 +1,861 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-11T18:05:00.056974+00:00",
+  "passed": true,
+  "scope": "Independent read-only source/journal/artifact audit of the 13 completed actual packaged MCP workflows; test-author involvement in prior feature work is declared. No new native execution or blind skill evaluation.",
+  "bridge_sha256": "4a842476842f98556455fbe705675e8d3ac9109ae8c1afe9008c968d81c59cea",
+  "mcp_sha256": "264b1c42c6626775c42be0f7454e8c8e93d6dc41ef57f4e9caf2cddb40a58732",
+  "native_jar_sha256": "7a9983a5916cbeb3c0c16052492b1fdd24a8fcb6edda9aba715f5c8c88e273d8",
+  "runtime_manifest_sha256": "a04e4fd34f3aa57deede07bb56a6b3a9860705e3592a377ced9aac7a73009e1c",
+  "suite_count": 13,
+  "frozen_source_count": 706,
+  "mcp_input_count": 4173,
+  "all_inputs_and_reviewed_evidence_unchanged": true,
+  "unique_completed_native_placement_hooks": 311,
+  "native_png_artifact_records": 27,
+  "capture_camera_succeeded_operation_records": 19,
+  "recipe_camera_scale_observation_records": 8,
+  "distinct_native_png_content_hashes": 10,
+  "latest_operation_states": {
+    "succeeded": 250,
+    "failed": 18,
+    "aborted": 1
+  },
+  "unexpected_non_success_operations": 0,
+  "expected_failed_operations": 18,
+  "deliberate_aborted_operations": 1,
+  "camera_scale": {
+    "measurement_status": "accepted",
+    "capture_calls": 8,
+    "recipe_move_calls": 7,
+    "loaded_source_pixel_sha256": "319f7651d7f00728970eec57f7ff7fe92b17175696fd9ea61bab6ed19bbca727",
+    "proposed_scale_mm_per_px": {
+      "x": 0.0425531914893617,
+      "y": 0.043478260869565216
+    },
+    "heldout_simulator_image_prediction_errors": [
+      {
+        "label": "holdout-1",
+        "error_px": 0.22360679774996625
+      },
+      {
+        "label": "holdout-2",
+        "error_px": 0.60207972893961
+      }
+    ],
+    "final_baseline_error_px": 0.0,
+    "calibration_applied": false,
+    "physical_scale_verified": false,
+    "durable_effect_pairs": 15,
+    "retrieved_recipe_pngs": 8,
+    "setup_capture_operations": 2,
+    "measurement_revision": "cfg-3",
+    "separate_apply_revision": "cfg-4",
+    "native_feed_pick_place_intents": 0,
+    "relative_difference_from_stock_renderer_percent": {
+      "x": 0.5272655075873045,
+      "y": 2.712640844708747
+    },
+    "absolute_two_percent_accuracy_claim": false
+  },
+  "captures": [
+    {
+      "suite": "core",
+      "kind": "capture-camera-operation",
+      "operation_id": "a9b5885d-2774-4b77-b9fe-3cc1d92a7160",
+      "artifact_id": "6cd90739-ef3c-4aac-8423-16e1352c7999",
+      "sha256": "b10b1c311a5c474cb50b0a89b9a3f18e67453c24bfa8268f14fcc814d6d536cc",
+      "bytes": 18661,
+      "width": 640,
+      "height": 480
+    },
+    {
+      "suite": "camera-scale",
+      "kind": "capture-camera-operation",
+      "operation_id": "8022d2ed-4a6a-478f-af5a-59e64c4baa8f",
+      "artifact_id": "6398670e-1bbd-4faf-8f64-ca5750fb10e0",
+      "sha256": "21939e74a4722d5d37ee7e7ddd292a27d53fcac26539479f095684e522d813f4",
+      "bytes": 3730,
+      "width": 640,
+      "height": 480
+    },
+    {
+      "suite": "camera-scale",
+      "kind": "capture-camera-operation",
+      "operation_id": "9c5ee2bf-ca4b-4c05-af27-76d1eef57a65",
+      "artifact_id": "26c924ba-298d-4981-a9e1-4ac8ebc51309",
+      "sha256": "63898d06d3cbcb08bf26657a552a80cbb639afc2edf9636b473ddb6e12cdc92f",
+      "bytes": 16998,
+      "width": 640,
+      "height": 480
+    },
+    {
+      "suite": "camera-scale",
+      "kind": "camera-scale-recipe-observation",
+      "operation_id": "9ed5b16b-61b6-422e-94fe-2e2419b54e37",
+      "artifact_id": "9ed17281-d166-484f-9e92-cbdb21abd194",
+      "sha256": "63898d06d3cbcb08bf26657a552a80cbb639afc2edf9636b473ddb6e12cdc92f",
+      "bytes": 16998,
+      "width": 640,
+      "height": 480
+    },
+    {
+      "suite": "camera-scale",
+      "kind": "camera-scale-recipe-observation",
+      "operation_id": "9ed5b16b-61b6-422e-94fe-2e2419b54e37",
+      "artifact_id": "92d50480-1bce-4aaa-9dd9-d4bf8260deed",
+      "sha256": "135a3725abea0c6707c1de3527d70b6f66af5628fc526e74504aa67ee5b6d31b",
+      "bytes": 16379,
+      "width": 640,
+      "height": 480
+    },
+    {
+      "suite": "camera-scale",
+      "kind": "camera-scale-recipe-observation",
+      "operation_id": "9ed5b16b-61b6-422e-94fe-2e2419b54e37",
+      "artifact_id": "3be5c9f1-9849-486e-ac50-530c0603d5b1",
+      "sha256": "c1c1da65d5547245e3e9a112f18fd62dbf7f924e94c3e9698915a85da40ed3a9",
+      "bytes": 17297,
+      "width": 640,
+      "height": 480
+    },
+    {
+      "suite": "camera-scale",
+      "kind": "camera-scale-recipe-observation",
+      "operation_id": "9ed5b16b-61b6-422e-94fe-2e2419b54e37",
+      "artifact_id": "661cf004-468d-4020-9bd3-f8a78307a952",
+      "sha256": "a98c3784537bb568ae309b8bfc56050bd1f563abf329449983fe2cdf0bca1048",
+      "bytes": 16661,
+      "width": 640,
+      "height": 480
+    },
+    {
+      "suite": "camera-scale",
+      "kind": "camera-scale-recipe-observation",
+      "operation_id": "9ed5b16b-61b6-422e-94fe-2e2419b54e37",
+      "artifact_id": "3fdb50b0-4319-4f6a-83ff-545105b607b7",
+      "sha256": "9d689b4758bcf1b5e458be125ab14834d56b54a097f0f777368f6fdcfd578b0e",
+      "bytes": 17047,
+      "width": 640,
+      "height": 480
+    },
+    {
+      "suite": "camera-scale",
+      "kind": "camera-scale-recipe-observation",
+      "operation_id": "9ed5b16b-61b6-422e-94fe-2e2419b54e37",
+      "artifact_id": "481b4acf-dea3-4078-8a5d-f5b3fd5d7f1d",
+      "sha256": "41f26ea5fcaac1f9bb199398ebb575d58f0180a47d54905cecdb4984eb468263",
+      "bytes": 16304,
+      "width": 640,
+      "height": 480
+    },
+    {
+      "suite": "camera-scale",
+      "kind": "camera-scale-recipe-observation",
+      "operation_id": "9ed5b16b-61b6-422e-94fe-2e2419b54e37",
+      "artifact_id": "c282b2a8-1bd4-4f01-86d7-38e6134be2e7",
+      "sha256": "c58bc4f0e1e0ea086d8d3863b4f0d5111f9df3a4483a85afc15e00ed67473de8",
+      "bytes": 14816,
+      "width": 640,
+      "height": 480
+    },
+    {
+      "suite": "camera-scale",
+      "kind": "camera-scale-recipe-observation",
+      "operation_id": "9ed5b16b-61b6-422e-94fe-2e2419b54e37",
+      "artifact_id": "73684626-1633-4d86-858e-0946057c5e8a",
+      "sha256": "63898d06d3cbcb08bf26657a552a80cbb639afc2edf9636b473ddb6e12cdc92f",
+      "bytes": 16998,
+      "width": 640,
+      "height": 480
+    },
+    {
+      "suite": "camera",
+      "kind": "capture-camera-operation",
+      "operation_id": "2552eb66-3eb2-4f64-a6cb-c64c28f14c4c",
+      "artifact_id": "d027082d-2e41-47a9-8f36-d1a2f76180c6",
+      "sha256": "21939e74a4722d5d37ee7e7ddd292a27d53fcac26539479f095684e522d813f4",
+      "bytes": 3730,
+      "width": 640,
+      "height": 480
+    },
+    {
+      "suite": "camera",
+      "kind": "capture-camera-operation",
+      "operation_id": "537c6714-8bc5-41f0-821d-1a41dc42e6b8",
+      "artifact_id": "8512db94-7225-4c58-81c7-00b1fd58d071",
+      "sha256": "21939e74a4722d5d37ee7e7ddd292a27d53fcac26539479f095684e522d813f4",
+      "bytes": 3730,
+      "width": 640,
+      "height": 480
+    },
+    {
+      "suite": "camera",
+      "kind": "capture-camera-operation",
+      "operation_id": "ea62f8a3-2cc1-4017-af58-5fe41d68214a",
+      "artifact_id": "7a671c78-7c65-4c87-a2ab-e4a4f5b13515",
+      "sha256": "bc99834f656083506a783c4ebcf21d7d324623c777ee9891a8fa027423d4945f",
+      "bytes": 2307,
+      "width": 640,
+      "height": 480
+    },
+    {
+      "suite": "camera",
+      "kind": "capture-camera-operation",
+      "operation_id": "5d19d7cd-b307-4184-88d5-472ac2ab48bd",
+      "artifact_id": "57468a9e-5ba1-4b4b-b397-1f35946439f6",
+      "sha256": "bc99834f656083506a783c4ebcf21d7d324623c777ee9891a8fa027423d4945f",
+      "bytes": 2307,
+      "width": 640,
+      "height": 480
+    },
+    {
+      "suite": "camera",
+      "kind": "capture-camera-operation",
+      "operation_id": "21ff67ac-43c6-4725-9130-55ae00237050",
+      "artifact_id": "507deb15-8330-4686-b55c-f2a2b445646e",
+      "sha256": "21939e74a4722d5d37ee7e7ddd292a27d53fcac26539479f095684e522d813f4",
+      "bytes": 3730,
+      "width": 640,
+      "height": 480
+    },
+    {
+      "suite": "camera",
+      "kind": "capture-camera-operation",
+      "operation_id": "c34af9e8-7e95-4e1d-b8cb-1025f678e3f4",
+      "artifact_id": "719ff1db-dc18-44d3-872e-50e9e9b1a902",
+      "sha256": "21939e74a4722d5d37ee7e7ddd292a27d53fcac26539479f095684e522d813f4",
+      "bytes": 3730,
+      "width": 640,
+      "height": 480
+    },
+    {
+      "suite": "camera",
+      "kind": "capture-camera-operation",
+      "operation_id": "e317c43d-596d-4e5e-bd69-f6a1256d7659",
+      "artifact_id": "53cb0573-0e25-484f-8afa-d9bcf1449e9e",
+      "sha256": "bc99834f656083506a783c4ebcf21d7d324623c777ee9891a8fa027423d4945f",
+      "bytes": 2307,
+      "width": 640,
+      "height": 480
+    },
+    {
+      "suite": "camera",
+      "kind": "capture-camera-operation",
+      "operation_id": "0a88a856-3381-4d3e-bd3e-abf91a1d6a93",
+      "artifact_id": "4c7c8223-0e16-4602-ba80-1f2e7c2db8c0",
+      "sha256": "bc99834f656083506a783c4ebcf21d7d324623c777ee9891a8fa027423d4945f",
+      "bytes": 2307,
+      "width": 640,
+      "height": 480
+    },
+    {
+      "suite": "camera",
+      "kind": "capture-camera-operation",
+      "operation_id": "5a75f06b-99af-4ac6-893f-837ebac19d87",
+      "artifact_id": "fccb69a2-0b56-4ec7-ac02-ea04ae3d902e",
+      "sha256": "21939e74a4722d5d37ee7e7ddd292a27d53fcac26539479f095684e522d813f4",
+      "bytes": 3730,
+      "width": 640,
+      "height": 480
+    },
+    {
+      "suite": "camera",
+      "kind": "capture-camera-operation",
+      "operation_id": "a1358c66-8229-4067-90ce-8c3b7438eee9",
+      "artifact_id": "3cfb6c56-4f76-4580-892f-4465b4968e41",
+      "sha256": "21939e74a4722d5d37ee7e7ddd292a27d53fcac26539479f095684e522d813f4",
+      "bytes": 3730,
+      "width": 640,
+      "height": 480
+    },
+    {
+      "suite": "camera",
+      "kind": "capture-camera-operation",
+      "operation_id": "be45d3b6-87f1-42ff-a0e1-1ab6238f20ff",
+      "artifact_id": "460b5271-2810-479b-a85d-fb1843446a0d",
+      "sha256": "bc99834f656083506a783c4ebcf21d7d324623c777ee9891a8fa027423d4945f",
+      "bytes": 2307,
+      "width": 640,
+      "height": 480
+    },
+    {
+      "suite": "camera",
+      "kind": "capture-camera-operation",
+      "operation_id": "03f20c76-8c9f-4b96-abd6-d12b4bb271c1",
+      "artifact_id": "76bd903c-b590-454d-b1b7-1425d6330453",
+      "sha256": "bc99834f656083506a783c4ebcf21d7d324623c777ee9891a8fa027423d4945f",
+      "bytes": 2307,
+      "width": 640,
+      "height": 480
+    },
+    {
+      "suite": "camera",
+      "kind": "capture-camera-operation",
+      "operation_id": "51f42579-46bb-4e9e-9018-5a460a5303bb",
+      "artifact_id": "13d86bed-609b-4df9-b756-659126bc23f3",
+      "sha256": "21939e74a4722d5d37ee7e7ddd292a27d53fcac26539479f095684e522d813f4",
+      "bytes": 3730,
+      "width": 640,
+      "height": 480
+    },
+    {
+      "suite": "camera",
+      "kind": "capture-camera-operation",
+      "operation_id": "2ca0b167-c552-4cdf-8a91-bdcb7bd15166",
+      "artifact_id": "a5298396-ef52-4084-924b-4002aa89737b",
+      "sha256": "21939e74a4722d5d37ee7e7ddd292a27d53fcac26539479f095684e522d813f4",
+      "bytes": 3730,
+      "width": 640,
+      "height": 480
+    },
+    {
+      "suite": "camera",
+      "kind": "capture-camera-operation",
+      "operation_id": "c853ec33-62cb-4f20-a439-eab860f47166",
+      "artifact_id": "0be512cb-e596-4fa1-8d7a-7becef7ee3dd",
+      "sha256": "bc99834f656083506a783c4ebcf21d7d324623c777ee9891a8fa027423d4945f",
+      "bytes": 2307,
+      "width": 640,
+      "height": 480
+    },
+    {
+      "suite": "camera",
+      "kind": "capture-camera-operation",
+      "operation_id": "906de1d8-ddb5-48d5-bd2c-3d6e5c3208a8",
+      "artifact_id": "af5fdc71-1390-448a-a938-969e1b61e4fd",
+      "sha256": "bc99834f656083506a783c4ebcf21d7d324623c777ee9891a8fa027423d4945f",
+      "bytes": 2307,
+      "width": 640,
+      "height": 480
+    }
+  ],
+  "suites": [
+    {
+      "suite": "topology",
+      "passed": true,
+      "completed_native_placement_hooks": 34,
+      "native_action_outcomes": {
+        "feed:native_hook_returned": 34,
+        "pick:native_hook_returned": 34,
+        "align:native_hook_returned": 34,
+        "release:native_hook_returned": 34
+      },
+      "journals": [
+        {
+          "path": "retained-evidence/camera-scale70-integration/validation/mcp70-attempt01/canonical/topology/state/journal/operations.jsonl",
+          "sha256": "b54cd7adf3d1fa552d2c5ce6583ff3944d3a042585a22ce930de237679781c60",
+          "bytes": 992676,
+          "records": 1458,
+          "latest_operation_states": {
+            "succeeded": 8
+          }
+        },
+        {
+          "path": "retained-evidence/camera-scale70-integration/validation/mcp70-attempt01/canonical/topology/evidence/retained-emKKpR/created-state/journal/operations.jsonl",
+          "sha256": "137d88d0cfd58aa441b2e9e5ce9442f986b4c01bfc836524318e0e47b9ace051",
+          "bytes": 86117,
+          "records": 111,
+          "latest_operation_states": {
+            "succeeded": 6
+          }
+        },
+        {
+          "path": "retained-evidence/camera-scale70-integration/validation/mcp70-attempt01/canonical/topology/evidence/retained-emKKpR/recovered-state/journal/operations.jsonl",
+          "sha256": "3cc8aea211a10c60d36daf656e66191593db5f287d1af7aaf253554a49af139e",
+          "bytes": 1328,
+          "records": 4,
+          "latest_operation_states": {}
+        }
+      ],
+      "expected_negative_test_operations": [],
+      "deliberate_aborts": 0,
+      "owned_launcher_pid": 61594,
+      "launcher_cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      },
+      "all_subprocess_groups_absent_without_forced_kill": true
+    },
+    {
+      "suite": "backlash",
+      "passed": true,
+      "completed_native_placement_hooks": 0,
+      "native_action_outcomes": {},
+      "journals": [
+        {
+          "path": "retained-evidence/camera-scale70-integration/validation/mcp70-attempt01/canonical/backlash/state/journal/operations.jsonl",
+          "sha256": "fb838073c5b7a6a67057630b54bf68b797ed625c75f07634a5ef20eb0a58c698",
+          "bytes": 80731,
+          "records": 149,
+          "latest_operation_states": {
+            "succeeded": 28
+          }
+        }
+      ],
+      "expected_negative_test_operations": [],
+      "deliberate_aborts": 0,
+      "owned_launcher_pid": 62880,
+      "launcher_cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      },
+      "all_subprocess_groups_absent_without_forced_kill": true
+    },
+    {
+      "suite": "material",
+      "passed": true,
+      "completed_native_placement_hooks": 5,
+      "native_action_outcomes": {
+        "feed:native_hook_returned": 5,
+        "pick:native_hook_returned": 5,
+        "align:native_hook_returned": 5,
+        "release:native_hook_returned": 5
+      },
+      "journals": [
+        {
+          "path": "retained-evidence/camera-scale70-integration/validation/mcp70-attempt01/canonical/material/state/journal/operations.jsonl",
+          "sha256": "c1ccf623ca1b2b9f3101abc033b19abd6ec5f30cc811a2a55a224f43ab53cdc1",
+          "bytes": 247063,
+          "records": 363,
+          "latest_operation_states": {
+            "succeeded": 17,
+            "failed": 6
+          }
+        }
+      ],
+      "expected_negative_test_operations": [
+        {
+          "operation_id": "51be6dc4-3af7-4b5b-a3e7-8660f7fdbd7c",
+          "method": "openpnp_register_material_load",
+          "code": "MATERIAL_MODEL_CHANGED"
+        },
+        {
+          "operation_id": "ece6dbec-d123-44a6-9cac-942e3eb2f0ca",
+          "method": "openpnp_restore_configuration",
+          "code": "MATERIAL_CONFIGURATION_LOCKED"
+        },
+        {
+          "operation_id": "024feca6-b409-471a-980b-86fa386962ba",
+          "method": "openpnp_test_feeder",
+          "code": "MATERIAL_MANUAL_FEED_UNSUPPORTED"
+        },
+        {
+          "operation_id": "9da70549-cda9-4f80-b110-6a0d235d1df6",
+          "method": "openpnp_start_job",
+          "code": "JOB_NOT_VALIDATED"
+        },
+        {
+          "operation_id": "f23f988a-2621-4d11-990e-45bb693077c2",
+          "method": "openpnp_register_material_load",
+          "code": "MACHINE_ENABLED"
+        },
+        {
+          "operation_id": "c7148962-bdc6-448a-a084-ccafbf8e0f11",
+          "method": "openpnp_start_job",
+          "code": "JOB_NOT_VALIDATED"
+        }
+      ],
+      "deliberate_aborts": 0,
+      "owned_launcher_pid": 63099,
+      "launcher_cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      },
+      "all_subprocess_groups_absent_without_forced_kill": true
+    },
+    {
+      "suite": "core",
+      "passed": true,
+      "completed_native_placement_hooks": 33,
+      "native_action_outcomes": {
+        "feed:native_hook_returned": 33,
+        "pick:native_hook_returned": 33,
+        "align:native_hook_returned": 33,
+        "release:native_hook_returned": 33
+      },
+      "journals": [
+        {
+          "path": "retained-evidence/camera-scale70-integration/validation/mcp70-attempt01/canonical/core/state/journal/operations.jsonl",
+          "sha256": "174ba38c3c528501082e152f140f6e1b4a232b4c32a663bb9efd912060955f33",
+          "bytes": 1288655,
+          "records": 1827,
+          "latest_operation_states": {
+            "succeeded": 19,
+            "failed": 2
+          }
+        }
+      ],
+      "expected_negative_test_operations": [
+        {
+          "operation_id": "85b5c352-0be8-4ba1-81b7-eb05384c40c6",
+          "method": "openpnp_execute_motion",
+          "code": "NOT_FOUND"
+        },
+        {
+          "operation_id": "400e066d-0b49-42e3-8a4c-57b9087a97d8",
+          "method": "openpnp_start_job",
+          "code": "JOB_NOT_VALIDATED"
+        }
+      ],
+      "deliberate_aborts": 0,
+      "owned_launcher_pid": 63253,
+      "launcher_cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      },
+      "all_subprocess_groups_absent_without_forced_kill": true
+    },
+    {
+      "suite": "vision",
+      "passed": true,
+      "completed_native_placement_hooks": 1,
+      "native_action_outcomes": {
+        "feed:native_hook_returned": 1,
+        "pick:native_hook_returned": 1,
+        "align:native_hook_returned": 1,
+        "release:native_hook_returned": 1
+      },
+      "journals": [
+        {
+          "path": "retained-evidence/camera-scale70-integration/validation/mcp70-attempt01/canonical/vision/state/journal/operations.jsonl",
+          "sha256": "5a470d8e9e754e2e1b6645cf5bab2ff9cf2c241aeaa07f10ea25bb25b56cfc22",
+          "bytes": 75450,
+          "records": 103,
+          "latest_operation_states": {
+            "succeeded": 9
+          }
+        }
+      ],
+      "expected_negative_test_operations": [],
+      "deliberate_aborts": 0,
+      "owned_launcher_pid": 63663,
+      "launcher_cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      },
+      "all_subprocess_groups_absent_without_forced_kill": true
+    },
+    {
+      "suite": "structure",
+      "passed": true,
+      "completed_native_placement_hooks": 0,
+      "native_action_outcomes": {},
+      "journals": [
+        {
+          "path": "retained-evidence/camera-scale70-integration/validation/mcp70-attempt01/canonical/structure/state/journal/operations.jsonl",
+          "sha256": "c38e38c36e3272049d1c7fca61dca1359e617ca8a305f26f7f15c5e7c8e80a62",
+          "bytes": 222275,
+          "records": 156,
+          "latest_operation_states": {
+            "succeeded": 33,
+            "failed": 3,
+            "aborted": 1
+          }
+        }
+      ],
+      "expected_negative_test_operations": [
+        {
+          "operation_id": "d0cc3b5a-a39f-46a6-9c4e-daac220fbc68",
+          "method": "openpnp_plan_placement_structure",
+          "code": "STRUCTURE_ID_REUSED"
+        },
+        {
+          "operation_id": "2270337f-4452-4e27-a80f-37a1dfb2795f",
+          "method": "openpnp_plan_placement_structure",
+          "code": "LINEAGE_DOCUMENT_STALE"
+        },
+        {
+          "operation_id": "469b8318-3915-4d9f-9e3b-ef488afe38d3",
+          "method": "openpnp_plan_placement_structure",
+          "code": "LINEAGE_EXECUTED"
+        }
+      ],
+      "deliberate_aborts": 1,
+      "owned_launcher_pid": 63993,
+      "launcher_cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      },
+      "all_subprocess_groups_absent_without_forced_kill": true
+    },
+    {
+      "suite": "placement",
+      "passed": true,
+      "completed_native_placement_hooks": 2,
+      "native_action_outcomes": {
+        "feed:native_hook_returned": 2,
+        "pick:native_hook_returned": 2,
+        "align:native_hook_returned": 2,
+        "release:native_hook_returned": 2
+      },
+      "journals": [
+        {
+          "path": "retained-evidence/camera-scale70-integration/validation/mcp70-attempt01/canonical/placement/state/journal/operations.jsonl",
+          "sha256": "28908c9463c5d88caa294ef22fe88729f1bc81f1a56a9951460ce05d2ea68808",
+          "bytes": 323960,
+          "records": 321,
+          "latest_operation_states": {
+            "succeeded": 52,
+            "failed": 4
+          }
+        }
+      ],
+      "expected_negative_test_operations": [
+        {
+          "operation_id": "e09374cf-4f96-4359-a094-030473183b9d",
+          "method": "openpnp_plan_placement_edits",
+          "code": "PART_NOT_FOUND"
+        },
+        {
+          "operation_id": "d857d50a-b6e9-452e-a472-d443182da5e6",
+          "method": "openpnp_register_board_load",
+          "code": "BOARD_LOAD_JOB_MISMATCH"
+        },
+        {
+          "operation_id": "5c702764-4378-4221-a10e-333905c9730d",
+          "method": "openpnp_plan_placement_edits",
+          "code": "PLACED_HISTORY_CONFLICT"
+        },
+        {
+          "operation_id": "beb32667-cb8e-4bc8-8a1b-1d58ce58a1fe",
+          "method": "openpnp_validate_job",
+          "code": "BOARD_LOAD_REQUIRED"
+        }
+      ],
+      "deliberate_aborts": 0,
+      "owned_launcher_pid": 64289,
+      "launcher_cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      },
+      "all_subprocess_groups_absent_without_forced_kill": true
+    },
+    {
+      "suite": "recovery",
+      "passed": true,
+      "completed_native_placement_hooks": 200,
+      "native_action_outcomes": {
+        "feed:native_hook_returned": 200,
+        "pick:native_hook_returned": 200,
+        "align:native_hook_returned": 200,
+        "release:native_hook_returned": 200
+      },
+      "journals": [
+        {
+          "path": "retained-evidence/camera-scale70-integration/validation/mcp70-attempt01/canonical/recovery/state/journal/operations.jsonl",
+          "sha256": "c408a3e5d28404c3adaf81333f53ffabb173b1664c260770c99736fd22b1ada8",
+          "bytes": 6225323,
+          "records": 10248,
+          "latest_operation_states": {
+            "succeeded": 6
+          }
+        }
+      ],
+      "expected_negative_test_operations": [],
+      "deliberate_aborts": 0,
+      "owned_launcher_pid": 64905,
+      "launcher_cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      },
+      "all_subprocess_groups_absent_without_forced_kill": true
+    },
+    {
+      "suite": "portable",
+      "passed": true,
+      "completed_native_placement_hooks": 34,
+      "native_action_outcomes": {
+        "feed:native_hook_returned": 34,
+        "pick:native_hook_returned": 34,
+        "align:native_hook_returned": 34,
+        "release:native_hook_returned": 34
+      },
+      "journals": [
+        {
+          "path": "retained-evidence/camera-scale70-integration/validation/mcp70-attempt01/canonical/portable/state/journal/operations.jsonl",
+          "sha256": "66743ce8ef42684776a973ce4e8dd7baba928f5cdf9f9df7d96017e2ad6b1dc7",
+          "bytes": 1058004,
+          "records": 1700,
+          "latest_operation_states": {
+            "succeeded": 9
+          }
+        },
+        {
+          "path": "retained-evidence/camera-scale70-integration/validation/mcp70-attempt01/canonical/portable/evidence/retained-VN5Jy8/new-state/journal/operations.jsonl",
+          "sha256": "1b44a395cdb2ea618c1d33c26db854b4785fe2d806ebfce58e0d477582757836",
+          "bytes": 93171,
+          "records": 141,
+          "latest_operation_states": {
+            "succeeded": 6
+          }
+        }
+      ],
+      "expected_negative_test_operations": [],
+      "deliberate_aborts": 0,
+      "owned_launcher_pid": 67211,
+      "launcher_cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      },
+      "all_subprocess_groups_absent_without_forced_kill": true
+    },
+    {
+      "suite": "camera-scale",
+      "passed": true,
+      "completed_native_placement_hooks": 0,
+      "native_action_outcomes": {},
+      "journals": [
+        {
+          "path": "retained-evidence/camera-scale70-integration/validation/mcp70-attempt01/canonical/camera-scale/state/journal/operations.jsonl",
+          "sha256": "2ccf7c6f1b992c6dbeac94206c7f0385800f5c94b45e032ad3f28441e1af4f40",
+          "bytes": 80010,
+          "records": 119,
+          "latest_operation_states": {
+            "succeeded": 10
+          }
+        }
+      ],
+      "expected_negative_test_operations": [],
+      "deliberate_aborts": 0,
+      "owned_launcher_pid": 68630,
+      "launcher_cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      },
+      "all_subprocess_groups_absent_without_forced_kill": true
+    },
+    {
+      "suite": "camera",
+      "passed": true,
+      "completed_native_placement_hooks": 0,
+      "native_action_outcomes": {},
+      "journals": [
+        {
+          "path": "retained-evidence/camera-scale70-integration/validation/mcp70-attempt01/canonical/camera/state/journal/operations.jsonl",
+          "sha256": "0a0bd09644854d346efe0c30749601fb7ac1a5d04608269764daee09ad9ba744",
+          "bytes": 106253,
+          "records": 160,
+          "latest_operation_states": {
+            "succeeded": 35,
+            "failed": 1
+          }
+        }
+      ],
+      "expected_negative_test_operations": [
+        {
+          "operation_id": "a45b5009-4bc0-46da-96ed-2cb346ad70e7",
+          "method": "openpnp_export_portable_configuration",
+          "code": "PORTABLE_PROFILE_LIMIT"
+        }
+      ],
+      "deliberate_aborts": 0,
+      "owned_launcher_pid": 69239,
+      "launcher_cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      },
+      "all_subprocess_groups_absent_without_forced_kill": true
+    },
+    {
+      "suite": "stepping",
+      "passed": true,
+      "completed_native_placement_hooks": 2,
+      "native_action_outcomes": {
+        "feed:native_hook_returned": 2,
+        "pick:native_hook_returned": 2,
+        "align:native_hook_returned": 2,
+        "release:native_hook_returned": 2
+      },
+      "journals": [
+        {
+          "path": "retained-evidence/camera-scale70-integration/validation/mcp70-attempt01/canonical/stepping/state/journal/operations.jsonl",
+          "sha256": "8275062a031d676865f43c1570d7a0b1cd39201d2e82e9652e5eb16261bfb69c",
+          "bytes": 575819,
+          "records": 285,
+          "latest_operation_states": {
+            "succeeded": 9
+          }
+        }
+      ],
+      "expected_negative_test_operations": [],
+      "deliberate_aborts": 0,
+      "owned_launcher_pid": 69328,
+      "launcher_cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      },
+      "all_subprocess_groups_absent_without_forced_kill": true
+    },
+    {
+      "suite": "mapped",
+      "passed": true,
+      "completed_native_placement_hooks": 0,
+      "native_action_outcomes": {},
+      "journals": [
+        {
+          "path": "retained-evidence/camera-scale70-integration/validation/mcp70-attempt01/canonical/mapped/state/journal/operations.jsonl",
+          "sha256": "8991827fa0364cce6709b829bb5019613ab4f60bb378f8d785ea9b34afb02b6b",
+          "bytes": 68778,
+          "records": 55,
+          "latest_operation_states": {
+            "failed": 2,
+            "succeeded": 3
+          }
+        }
+      ],
+      "expected_negative_test_operations": [
+        {
+          "operation_id": "0ac844b1-59e6-4176-925e-c5916868d5d6",
+          "method": "openpnp_export_portable_configuration",
+          "code": "CLASS_REJECTED"
+        },
+        {
+          "operation_id": "2affe6ef-6c69-485e-a182-10397838aaaa",
+          "method": "openpnp_apply_configuration",
+          "code": "STALE_AXIS_PLAN"
+        }
+      ],
+      "deliberate_aborts": 0,
+      "owned_launcher_pid": 69400,
+      "launcher_cleanup": {
+        "parent_exit_code": 143,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      },
+      "all_subprocess_groups_absent_without_forced_kill": true
+    }
+  ],
+  "image_count_semantics": "27 native artifact records = 19 succeeded camera-capture operations (including two new setup captures) + 8 measurement observations. The eight retrieved recipe PNGs are copies of those native artifacts, not eight additional captures. Distinct content hashes are not distinct physical scenes.",
+  "physical_qualification": false,
+  "independently_measured_placements": 0,
+  "endurance_qualification": false,
+  "full_implementation_plan_completed": false,
+  "uniform_skill_behavior_qualification": false,
+  "no_credential_connection_or_raw_journal_content_exported": true
+}

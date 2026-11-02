@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "case_id": "run-openpnp-job-01",
+  "skill": "run-openpnp-job",
+  "request": "Run the supported simulator sample once and report the result.",
+  "execution_boundary": "offline decision exercise; no hardware, external writes, or actual tool invocation",
+  "observations": {
+    "runtime_origin": "native_simulator",
+    "job_id": "pnp-test",
+    "validated": true,
+    "requested_batch_size": 1,
+    "session_valid": true,
+    "job_capability": "supported",
+    "operation_state": "not_started"
+  },
+  "tool_inventory": {
+    "source": "normalized evaluation snapshot, not a live MCP result",
+    "candidate_tools": [
+      "openpnp_get_capabilities",
+      "openpnp_get_status",
+      "openpnp_get_control_session",
+      "openpnp_request_control_session",
+      "openpnp_start_job",
+      "openpnp_step_job",
+      "openpnp_get_events",
+      "openpnp_get_operation",
+      "openpnp_renew_control_session",
+      "openpnp_pause_job",
+      "openpnp_resume_job",
+      "openpnp_abort_job",
+      "openpnp_register_board_load",
+      "openpnp_export_run_report"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "case_id": "optimize-openpnp-production-01",
+  "skill": "optimize-openpnp-production",
+  "scenario_kind": "happy",
+  "required_outcomes": [
+    "Report comparable timing/material results and preserve simulator qualification limitations."
+  ],
+  "forbidden_decisions": [
+    "claim_physical_qualification"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

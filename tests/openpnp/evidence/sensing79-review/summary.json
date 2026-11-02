@@ -1,0 +1,225 @@
+{
+  "schema_version": 1,
+  "status": "review-candidate-with-bounded-simulator-evidence",
+  "functional_build": "reconciliation79/source41",
+  "package_base": "stage06",
+  "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+  "counts": {
+    "tools": 61,
+    "typed_configuration_changes": 34,
+    "skills": 14
+  },
+  "bindings": {
+    "bridge_sha256": "62b17d35cb4d39c531fdd6698dece3f41ad19f92e604e35b3fc9f8e9c8aac907",
+    "mcp_server_sha256": "75d5f3df16f1177fc07ff57c966c4209b50431b7a1b35965cc6ee9d90989d460",
+    "gui_launcher_sha256": "ab09a144a14a3c6133d681c247dd0c1f985a37aebc6d82c4d4364e645a192fc9",
+    "native_jar_sha256": "e0a6ab35c3cdbcf355ecfa9c592751efeef69b0d2f124295ef37ea807de56bd5",
+    "macos_runtime_manifest_sha256": "007f28c38d244186aec519de0d919b474b2dd54fc671883e8207c50ab75619de",
+    "stage06_package_inventory_sha256": "35940b861866a2590154b3cc7ba3f42888c9aff99b52e33757eea89718db487a"
+  },
+  "export_policy": "Selected nonsecret facts transcribed from immutable private reports. Provenance identifiers are labels, not repository paths; source SHA-256 values identify original reports. Raw journals, connection files, tokens, runtime/configuration state and private logs are not published. Review-only documentation and CI/test portability changes do not rename or requalify the native functional build.",
+  "campaigns": [
+    {
+      "id": "macos-native91",
+      "passed": true,
+      "native_mains": 91,
+      "bound_inputs": 790,
+      "unchanged_inputs": true,
+      "recorded_processes_absent": 92,
+      "forced_cleanup_count": 0,
+      "scope": "macOS ARM64 actual pinned native simulator; no physical or endurance qualification.",
+      "original_report": {
+        "private_provenance_id": "validation/package79-staging05/validation/native-full01/receipt.json",
+        "sha256": "b126fcefc67c20fa455fde620299f27c8ee2ed5871436e44f89fadd30c55216f"
+      }
+    },
+    {
+      "id": "linux-native91",
+      "passed": true,
+      "native_mains": 91,
+      "version_processes": 1,
+      "native_sensing_child_jvms": 58,
+      "sensing_child_checks": 865,
+      "bound_inputs": 887,
+      "unchanged_inputs": true,
+      "bridge_classes_identical": 266,
+      "test_classes_identical": 391,
+      "exact_macos_packaged_bridge_used": true,
+      "linux_runtime_manifest_sha256": "5ecc2f9eb9df73837acbd728b304b4f27a16565fa750a037a5c572cf102da0e5",
+      "linux_compiler": "17.0.15",
+      "macos_compiler": "17.0.16",
+      "jar_difference": "Rebuilt Bridge/launcher differ only in META-INF/MANIFEST.MF Created-By; every other member is identical.",
+      "all_recorded_processes_and_owned_container_absent": true,
+      "forced_cleanup_count": 0,
+      "scope": "Linux ARM64 headless actual native simulator; not Linux GUI/MCP or hosted CI.",
+      "original_report": {
+        "private_provenance_id": "validation/linux79-stage05-01/attempt-01/qualification-summary.json",
+        "sha256": "df0e1bba623518de66b67aad68a29e4cca71dd0958bc41c3e0b3dfb050bc1b14"
+      }
+    },
+    {
+      "id": "headless-mcp17",
+      "passed": true,
+      "packaged_stdio_suites": 17,
+      "shipped_cli_suites": 16,
+      "explicit_mapped_axis_test_fixture_suites": 1,
+      "bound_inputs": 4325,
+      "unchanged_inputs": true,
+      "owned_process_groups_absent": true,
+      "forced_cleanup_count": 0,
+      "scope": "Official SDK/generated packaged MCP through real native simulator HTTP; separate fresh fixture per suite.",
+      "original_report": {
+        "private_provenance_id": "validation/package79-staging05/validation/mcp-full01/report.json",
+        "sha256": "c77e6cddfd0c670c71135238b5e4011e6a12fe9cb9492dba7a03ffd47b50bc47"
+      }
+    },
+    {
+      "id": "gui-restart-mcp",
+      "passed": true,
+      "boundaries": [
+        "intent-force",
+        "zip-before"
+      ],
+      "native_post_restart_placements": 2,
+      "per_boundary_gui_assertions": 140,
+      "per_boundary_sdk_sessions": 30,
+      "per_boundary_mcp_calls": 226,
+      "per_boundary_public_workflow_dispatches": 26,
+      "direct_public_bridge_gui_calls": 0,
+      "per_boundary_inputs": 4096,
+      "unchanged_inputs": true,
+      "production_class_origins_verified": 266,
+      "shipped_bootstrap_bridge_off_application_classpath": true,
+      "test_only_child_loader_inspection": true,
+      "programmatic_native_swing_forms": true,
+      "third_jvm_history_assertions_per_boundary": 7,
+      "third_jvm_history_direct_read_calls": 3,
+      "no_history_authority_or_append": true,
+      "real_disconnect_and_owned_loader_closed": true,
+      "recorded_processes_absent_including_retained_failure": 176,
+      "forced_cleanup_count": 0,
+      "retained_failure": "zip-before01: test supplied extra job_id to public schema; corrected test only, no production change or uncertain mutation retry.",
+      "scope": "Scripted full packaged workflow with actual MainFrame/GuiSimulatorController; not manual desktop installation or independent skill actor competence.",
+      "original_report": {
+        "private_provenance_id": "validation/gui-restart79-full-mcp-prep01/delivery01/summary.json",
+        "sha256": "3e651a8a2a2870e3633029d2195e579da51ba269d912807a11a8685fb6f7f7ee"
+      }
+    },
+    {
+      "id": "source-sdk-history",
+      "passed": true,
+      "new_live_cases": 1,
+      "repeated_nonlive_contract_cases": 3,
+      "source_test": "tests/openpnp/sensing-reconciliation-history-contracts.test.mjs",
+      "source_test_sha256": "d93591d24c0c229a478b0e5e448b8405694d6344ff6fbba3615659a2a4210814",
+      "official_sdk_version": "1.30.0",
+      "transport": "Source server InMemoryTransport to actual native Bridge HTTP",
+      "generated_packaged_stdio": false,
+      "bound_inputs": 4408,
+      "unchanged_inputs": true,
+      "recorded_process_groups_absent": 5,
+      "forced_cleanup_count": 0,
+      "scope": "Clean standalone sensing recovery then fresh-JVM history, no source/lease/job authority restored. Separate from the 17 packaged suites.",
+      "original_report": {
+        "private_provenance_id": "validation/package79-staging05/validation/history-source41-live01/summary.json",
+        "sha256": "1f11062867ed42019bfb682311d2fc2d407f9856306868203d0672364624909d"
+      }
+    },
+    {
+      "id": "stage06-assembly-node22",
+      "passed": true,
+      "package_files": 261,
+      "tools": 61,
+      "source_test_files": 73,
+      "node": "22.19.0",
+      "tests": 493,
+      "passed_tests": 475,
+      "skipped_tests": 18,
+      "failed_tests": 0,
+      "assembly_bound_inputs": 4228,
+      "node_bound_inputs": 4522,
+      "unchanged_inputs": true,
+      "production_native_sources_changed": false,
+      "native_recompiled": false,
+      "all_recorded_processes_absent": true,
+      "forced_cleanup_count": 0,
+      "scope": "Stage06 GUI preparation script correction and metadata; source rebuild/offline package verification plus full Node22. Stage05 Node24/26 results retain their earlier package scope.",
+      "original_report": {
+        "private_provenance_id": "validation/package79-staging06/validation/integration12-delivery01/summary.json",
+        "sha256": "9fdda0c020d58c49a85ea33db6e2b64e2a906bd13a25e2c1b7c43a6dcfc7549c"
+      }
+    },
+    {
+      "id": "stage06-actual-cli-launch",
+      "status": "launch-passed-desktop-tool-blocked-closed",
+      "actual_cli_install": true,
+      "actual_native_preparer": true,
+      "real_org_openpnp_Main": true,
+      "main_class_substituted": false,
+      "test_agent_injected": false,
+      "desktop_control": false,
+      "local_bootstrap": false,
+      "local_grant": false,
+      "connection_file": false,
+      "mcp_sdk_control": false,
+      "job_execution": false,
+      "restart_attempted": false,
+      "inputs_unchanged": 4323,
+      "normal_launcher_cancellation": true,
+      "launcher_forced_stop": false,
+      "owned_process_groups_absent": 3,
+      "scope": "Shipped stage06 CLI install/preparation/Main launch only. Desktop tool could list Java Main but could not bind the app; no synthetic substitute or manual lifecycle qualification.",
+      "original_report": {
+        "private_provenance_id": "validation/package79-staging06/validation/gui-cli79-native02/summary.json",
+        "sha256": "e5b009addb9ea7dd4a7e5a50ec1ac712a348f3550cbeb468e4e33e0a40412f30"
+      }
+    }
+  ],
+  "requirements": {
+    "R01": "partial",
+    "R02": "partial",
+    "R03": "partial",
+    "R04": "partial",
+    "R05": "partial",
+    "R06": "partial",
+    "R07": "partial",
+    "R08": "partial",
+    "R09": "partial",
+    "R10": "partial",
+    "R11": "partial",
+    "R12": "partial",
+    "R13": "partial",
+    "R14": "partial",
+    "R15": "partial",
+    "R16": "partial",
+    "R17": "partial",
+    "R18": "partial"
+  },
+  "manual_desktop_install_qualified": false,
+  "uniform_fresh_14_skill_qualification": false,
+  "current_performance_target_qualified": false,
+  "continuous_eight_hour_qualified": false,
+  "physical_machine_qualified": false,
+  "hosted_ci_pass_claimed": false,
+  "full_implementation_plan_complete": false,
+  "known_source41_defects": [
+    {
+      "scope": "Mapped-axis singleton configuration apply homing postcondition",
+      "description": "Source41 has a reproduced mapped-axis homing postcondition defect: a native input-axis setter listener can mark the machine homed during configuration apply, and the singleton apply path can report success. A separate S80 repair is under test and is not included here. Treat this path as unqualified; require independent current-state verification before dependent operation.",
+      "repair_included": false,
+      "separate_repair": "S80; not part of this review candidate",
+      "counterexample": {
+        "private_provenance_id": "snapshot80-mapped-staging01/validation/source41-singleton01/report.json",
+        "original_report_sha256": "f553375e9ddac65b5421d88b855dea846b208400d04c04540035e30c406dd9d1",
+        "actual_bridge_sha256": "62b17d35cb4d39c531fdd6698dece3f41ad19f92e604e35b3fc9f8e9c8aac907",
+        "runtime_manifest_sha256": "007f28c38d244186aec519de0d919b474b2dd54fc671883e8207c50ab75619de",
+        "new_test_only_compiled": true,
+        "bound_inputs": 499,
+        "inputs_unchanged": true,
+        "expected_refusal_assertion_exit_code": 1,
+        "classification": "Retained failing counterexample; not a passing qualification test.",
+        "compiler_and_native_groups_absent": true
+      }
+    }
+  ]
+}

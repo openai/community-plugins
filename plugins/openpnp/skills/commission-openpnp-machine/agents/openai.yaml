@@ -1,0 +1,4 @@
+interface:
+  display_name: "Commission an OpenPnP Machine"
+  short_description: "Configure a machine from its qualified profile"
+  default_prompt: "Use $commission-openpnp-machine to help with this OpenPnP workflow."

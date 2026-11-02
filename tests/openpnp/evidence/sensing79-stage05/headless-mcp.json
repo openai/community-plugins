@@ -1,0 +1,292 @@
+{
+  "status": "passed",
+  "campaign": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/report.json",
+  "report_sha256": "c77e6cddfd0c670c71135238b5e4011e6a12fe9cb9492dba7a03ffd47b50bc47",
+  "suite_count": 17,
+  "suites": [
+    {
+      "suite": "sensing",
+      "passed": true,
+      "duration_seconds": 4.075,
+      "launcher": "shipped start-simulator CLI",
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "evidence": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/sensing/evidence",
+      "report": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/sensing/report.json"
+    },
+    {
+      "suite": "panel-library",
+      "passed": true,
+      "duration_seconds": 17.518,
+      "launcher": "shipped start-simulator CLI",
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "evidence": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/panel-library/evidence",
+      "report": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/panel-library/report.json"
+    },
+    {
+      "suite": "panel-membership",
+      "passed": true,
+      "duration_seconds": 8.593,
+      "launcher": "shipped start-simulator CLI",
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "evidence": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/panel-membership/evidence",
+      "report": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/panel-membership/report.json"
+    },
+    {
+      "suite": "part-bindings",
+      "passed": true,
+      "duration_seconds": 6.721,
+      "launcher": "shipped start-simulator CLI",
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "evidence": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/part-bindings/evidence",
+      "report": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/part-bindings/report.json"
+    },
+    {
+      "suite": "topology",
+      "passed": true,
+      "duration_seconds": 55.796,
+      "launcher": "shipped start-simulator CLI",
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "evidence": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/topology/evidence",
+      "report": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/topology/report.json"
+    },
+    {
+      "suite": "backlash",
+      "passed": true,
+      "duration_seconds": 4.883,
+      "launcher": "shipped start-simulator CLI",
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "evidence": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/backlash/evidence",
+      "report": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/backlash/report.json"
+    },
+    {
+      "suite": "material",
+      "passed": true,
+      "duration_seconds": 5.722,
+      "launcher": "shipped start-simulator CLI",
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "evidence": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/material/evidence",
+      "report": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/material/report.json"
+    },
+    {
+      "suite": "core",
+      "passed": true,
+      "duration_seconds": 20.499,
+      "launcher": "shipped start-simulator CLI",
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "evidence": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/core/evidence",
+      "report": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/core/report.json"
+    },
+    {
+      "suite": "vision",
+      "passed": true,
+      "duration_seconds": 5.246,
+      "launcher": "shipped start-simulator CLI",
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "evidence": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/vision/evidence",
+      "report": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/vision/report.json"
+    },
+    {
+      "suite": "structure",
+      "passed": true,
+      "duration_seconds": 4.475,
+      "launcher": "shipped start-simulator CLI",
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "evidence": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/structure/evidence",
+      "report": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/structure/report.json"
+    },
+    {
+      "suite": "placement",
+      "passed": true,
+      "duration_seconds": 8.161,
+      "launcher": "shipped start-simulator CLI",
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "evidence": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/placement/evidence",
+      "report": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/placement/report.json"
+    },
+    {
+      "suite": "recovery",
+      "passed": true,
+      "duration_seconds": 57.619,
+      "launcher": "shipped start-simulator CLI",
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "evidence": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/recovery/evidence",
+      "report": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/recovery/report.json"
+    },
+    {
+      "suite": "portable",
+      "passed": true,
+      "duration_seconds": 31.335,
+      "launcher": "shipped start-simulator CLI",
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "evidence": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/portable/evidence",
+      "report": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/portable/report.json"
+    },
+    {
+      "suite": "camera-scale",
+      "passed": true,
+      "duration_seconds": 37.45,
+      "launcher": "shipped start-simulator CLI",
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "evidence": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/camera-scale/evidence",
+      "report": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/camera-scale/report.json"
+    },
+    {
+      "suite": "camera",
+      "passed": true,
+      "duration_seconds": 6.732,
+      "launcher": "shipped start-simulator CLI",
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "evidence": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/camera/evidence",
+      "report": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/camera/report.json"
+    },
+    {
+      "suite": "stepping",
+      "passed": true,
+      "duration_seconds": 10.043,
+      "launcher": "shipped start-simulator CLI",
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "evidence": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/stepping/evidence",
+      "report": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/stepping/report.json"
+    },
+    {
+      "suite": "mapped",
+      "passed": true,
+      "duration_seconds": 2.923,
+      "launcher": "test-only existing mapped-axis fixture",
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "evidence": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/mapped/evidence",
+      "report": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01/mapped/report.json"
+    }
+  ],
+  "test_counts": {
+    "tests": 17,
+    "pass": 17,
+    "fail": 0,
+    "skipped": 0,
+    "todo": 0
+  },
+  "input_count": 4325,
+  "inputs_unchanged": true,
+  "all_inputs_rechecked_current": true,
+  "bridge_sha256": "62b17d35cb4d39c531fdd6698dece3f41ad19f92e604e35b3fc9f8e9c8aac907",
+  "runtime_manifest_sha256": "007f28c38d244186aec519de0d919b474b2dd54fc671883e8207c50ab75619de",
+  "node": "22.19.0",
+  "java": "17.0.16+8",
+  "shipped_start_simulator_suites": 16,
+  "test_only_mapped_fixture_suites": 1,
+  "mapped_fixture_provenance": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/mcp-full01-support/mapped-fixture-provenance.json",
+  "all_17_launcher_groups_absent": true,
+  "forced_cleanup_count": 0,
+  "interrupted_signals": [],
+  "physical_qualification": false,
+  "performance_benchmark": false,
+  "gui_qualification": "Not exercised by this headless packaged matrix",
+  "source_edits": false,
+  "mutation_retries": false,
+  "public_export_provenance": {
+    "original_report_sha256": "f1c1c185610310ef4c2072b84f925fd45331db7d75f5a363d70664e14ee536ed",
+    "transformation": "Private absolute root labels replaced; original result facts and artifact hashes retained. Paths beginning private-evidence/private-host are provenance labels, not repository files."
+  }
+}

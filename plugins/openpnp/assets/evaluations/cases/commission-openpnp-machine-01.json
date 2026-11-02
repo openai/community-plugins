@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "case_id": "commission-openpnp-machine-01",
+  "skill": "commission-openpnp-machine",
+  "request": "Prepare this machine for the manufacturer commissioning procedure.",
+  "execution_boundary": "offline decision exercise; no hardware, external writes, or actual tool invocation",
+  "observations": {
+    "profile": "lumen-v4.1-candidate",
+    "calibration_origin": "manufacturer_baseline",
+    "required_solutions": [
+      "camera-offsets"
+    ],
+    "optional_solutions": [
+      "backlash"
+    ],
+    "issue_severity": {
+      "camera-offsets": "suggestion",
+      "backlash": "error"
+    },
+    "mutation_capability": "unqualified"
+  },
+  "tool_inventory": {
+    "source": "normalized evaluation snapshot, not a live MCP result",
+    "candidate_tools": [
+      "openpnp_get_capabilities",
+      "openpnp_get_status",
+      "openpnp_get_configuration",
+      "openpnp_plan_configuration",
+      "openpnp_apply_configuration",
+      "openpnp_backup_configuration",
+      "openpnp_list_issues",
+      "openpnp_plan_solution",
+      "openpnp_apply_solution",
+      "openpnp_run_calibration",
+      "openpnp_validate_calibration"
+    ]
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "exit_code": 2,
+  "elapsed_seconds": 3.6134352684020996,
+  "bridge_sha256": "3a490050f0210973981d689f15edd6827e4f272b2184ac537de0d773b4f1612f",
+  "native_manifest_sha256": "f09a24910958b030e692d737eae11a53f35dc9ccd4b5dc978de5ceb6d935a024",
+  "native_log_sha256": "c86c0195908a7f41a320c6765797f49c053dff462335e479a8031abd008cf11b",
+  "test_source_sha256": "0b650424ea4be706dfe772c0fd53ade49c18f65a3c40d05f953a74d8270d3cbc",
+  "bootstrap_sha256": "c6c9ab3e882ab3c7b2f6b79f86d956c510a6fa3e4abc20f73f3c7412ab3fd696",
+  "simulation_only": true,
+  "physical_qualification": false,
+  "gui_test_application_classpath_has_bridge": false,
+  "runner_sha256": "4fef532fb2c5cebd435613d8f5bbc4ec46729ca99f23e8992f71ad919e557eea",
+  "owned_process_helper_sha256": "c7d7b61a80418e0981a001b7ccb3727b92b087bc4895c8f87a245892f7f0adfe",
+  "jvm_environment_sanitized": true,
+  "private_home_and_tmp": true,
+  "desktop_gestures_performed": false,
+  "process_cleanup": {
+    "parent_exit_code": 2,
+    "forced_kill": false,
+    "group_gone": true,
+    "errors": []
+  },
+  "local_unknown_exit_verified": true,
+  "actual_native_feed_count": 1
+}

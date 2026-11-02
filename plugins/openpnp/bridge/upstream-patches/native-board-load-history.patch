@@ -1,0 +1,17 @@
+--- a/src/main/java/org/openpnp/model/Job.java
++++ b/src/main/java/org/openpnp/model/Job.java
+@@ -289,6 +289,14 @@
+      * @param placementId - the id of the Placement
+      * @param placed - the status to be stored
+      */
++    /** Additive Codex load-history API. Includes orphaned keys for removed records. */
++    public static boolean hasBoardLoadHistoryApi() { return true; }
++
++    /** Immutable detached snapshot; call while holding the native machine owner. */
++    public Map<String, Boolean> getPlacedStatusSnapshot() {
++        return java.util.Collections.unmodifiableMap(new java.util.LinkedHashMap<>(placedStatusMap));
++    }
++
+     public void storePlacedStatus(PlacementsHolderLocation<?> placementsHolderLocation, String placementId, boolean placed) {
+         String key = placementsHolderLocation.getUniqueId() + PlacementsHolderLocation.ID_DELIMITTER + placementId;
+         this.placedStatusMap.put(key, placed);

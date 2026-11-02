@@ -1,0 +1,74 @@
+{
+  "scope": "Bounded focused panel73 simulator evidence, with exact artifact-specific historical proof.",
+  "focused_evidence_complete": true,
+  "full_qualification_passed": false,
+  "promotion_performed": false,
+  "full_implementation_plan_completed": false,
+  "all_R01_R18_statuses": "partial",
+  "current_focused_artifacts": {
+    "bridge_sha256": "07bf9e8931142fe696c108e4511cf5e2847afb0b01a1b0e11c44f8d035c01840",
+    "mcp_sha256": "0207671bf4434a588a2974d627f692168d77c3b10faa42c44c0e3f2595570c66",
+    "native_jar_sha256": "810773c1defa9a0200cce437d3f426d4c08419fb3f471d693f9e5c5f38f78f0b",
+    "runtime_manifest_sha256": "fb9459433a7475515a9f4340d401232e4fd284697db416f4fa89ba86abd8c84d"
+  },
+  "historical_model_override": {
+    "assertions": 155,
+    "refusals": 43,
+    "bridge_sha256": "0efe366a040bb8f826d0ba0d47c82022532048679d555253a5a412f708b97bfe",
+    "packaged_feature_qualification": false
+  },
+  "current_native_model": {
+    "assertions": 185,
+    "refusals": 48,
+    "source_overrides": false,
+    "Bridge_API_qualification": false
+  },
+  "current_Bridge": {
+    "cases": 26,
+    "JVM_phases": 44,
+    "phase_assertions": 1893,
+    "unknown_original_operations": 17,
+    "native_machine_events": 0
+  },
+  "current_MCP": {
+    "workflows": 1,
+    "placements": 8,
+    "matched_native_action_pairs": 32,
+    "refusals": 13,
+    "shared_native_panel_definition_identity_proven": false
+  },
+  "node_contract_checks": 26,
+  "independent_model_review": {
+    "historical_negative_checks": 19,
+    "corrected_checks": 55,
+    "corrected_cases": 7
+  },
+  "documentation": {
+    "schema_checks": 25,
+    "embedded_rows": 2,
+    "links": 8,
+    "tools": 55,
+    "skills": 14,
+    "behavioral_qualification": false
+  },
+  "historical_GUI_title": {
+    "corrected_checks": 33,
+    "baseline_checks_before_failure": 13,
+    "build_bridge_sha256": "0efe366a040bb8f826d0ba0d47c82022532048679d555253a5a412f708b97bfe",
+    "bridge_on_focused_title_classpath": false,
+    "native_sha256": "810773c1defa9a0200cce437d3f426d4c08419fb3f471d693f9e5c5f38f78f0b",
+    "earlier_GUI_normal_placements": 32,
+    "earlier_GUI_topology_placements": 32,
+    "earlier_GUI_unknown_feeds": 1
+  },
+  "pending_or_excluded": [
+    "Current panel membership GUI journey",
+    "Full current native/MCP/Node/platform matrices",
+    "Physical machine/clearance/placement accuracy",
+    "Independent inspection",
+    "Continuous endurance",
+    "Uniform14-skill blind/live qualification",
+    "HostedCI/release/promotion"
+  ],
+  "raw_credentials_configurations_journals_or_native_archives_copied": false
+}

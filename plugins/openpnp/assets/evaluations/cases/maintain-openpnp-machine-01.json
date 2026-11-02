@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "case_id": "maintain-openpnp-machine-01",
+  "skill": "maintain-openpnp-machine",
+  "request": "The pick failure rate increased after the nozzle was changed. Diagnose it.",
+  "execution_boundary": "offline decision exercise; no hardware, external writes, or actual tool invocation",
+  "observations": {
+    "old_tip": "tip-A",
+    "new_tip": "tip-B",
+    "last_calibration_tool": "tip-A",
+    "pick_failures_before": 1,
+    "attempts_before": 100,
+    "pick_failures_after": 15,
+    "attempts_after": 100,
+    "vacuum_samples_available": false
+  },
+  "tool_inventory": {
+    "source": "normalized evaluation snapshot, not a live MCP result",
+    "candidate_tools": [
+      "openpnp_get_capabilities",
+      "openpnp_get_status",
+      "openpnp_get_configuration",
+      "openpnp_get_events",
+      "openpnp_capture_camera",
+      "openpnp_measure_sensor",
+      "openpnp_verify_part_state",
+      "openpnp_plan_configuration",
+      "openpnp_apply_configuration",
+      "openpnp_validate_calibration",
+      "openpnp_plan_motion",
+      "openpnp_execute_motion",
+      "openpnp_set_machine_enabled",
+      "openpnp_disconnect"
+    ]
+  }
+}

@@ -1,0 +1,290 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-11T20:56:22.301587+00:00",
+  "bounded_skill_walkthrough_passed": true,
+  "scope": "Fresh independent simple one-panel/two-direct-board-child prepare/save/load/export/adopt/first-launch workflow, with original missing-example procedure gap and subsequent guidance fix preserved.",
+  "identities": {
+    "bridge_sha256": "97ac5292becbec033c9580bf9e061bf067e9a91224bf4fb7b44b5867240f5542",
+    "mcp_sha256": "3ee308132569e1f36fbdc4c563ca7235834a9a464a8cc49c957c5c5a6d7634e1",
+    "native_sha256": "810773c1defa9a0200cce437d3f426d4c08419fb3f471d693f9e5c5f38f78f0b"
+  },
+  "walkthrough_summary": "walkthrough/summary.json",
+  "independent_audit": "independent-audit.json",
+  "checks": 2605,
+  "raw_walkthrough_files_bound": 497,
+  "successful_native_mutations": 4,
+  "generation_files_verified": 11,
+  "no_job_execution_requested": true,
+  "native_job_action_records": 0,
+  "independent_native_effect_collector_installed": false,
+  "placement_effect_count": null,
+  "first_launch_once": true,
+  "owned_cleanup_recorded": true,
+  "initial_procedure_gap": "Public guidance lacked a canonical panel example; initial preparation produced flat roots and did not reach export. This original run remains unsuccessful.",
+  "guidance_fix": "Two new sample/reference files and three changed guidance/skill files. Separate informed validation preceded the fresh independent walkthrough.",
+  "informed_validation_scope": "Actual MCP preparation/save/load/export and CLI adoption only; its native_placements:0 field denotes no job execution, not an independently collected physical effect count.",
+  "retained_environment_failures": "Initial loopback sandbox failures resolved with authorized local escalation; fresh isolated state used, no spent activation replay. No automatic approval-review rejection.",
+  "retained_audit_failure": "Independent audit initially expected flat ZIP names; original sanitizer ZIP uses sanitized-evidence/ prefix. Corrected read-only audit passed without rerunning native work.",
+  "skill_view_scope": "Walkthrough used frozen complete plugin view with exact current five-file guidance overlay. Delivery README/current-status prose is refreshed after this behavioral check.",
+  "physical_qualification": false,
+  "uniform_fourteen_skill_qualification": false,
+  "full_implementation_plan_completed": false,
+  "original_prerequisite_evidence_hashes": [
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/build-identities.json",
+      "sha256": "f83a2865f8995c8ad5e6aa482269cd41683d5b786a0f842fe8a3ce207e065a42",
+      "bytes": 1381
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/openpnp_get_configuration-last.json",
+      "sha256": "fef96892326e5228a72a4706888b3737142e281ecb2ea2b517fe620115ba8692",
+      "bytes": 7503
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/close-output.jsonl",
+      "sha256": "ad5e21afedd4c296a0cf6a70500afc1b3b91e36a94ce87459f2f0fc7427563e4",
+      "bytes": 7835
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/openpnp_get_capabilities-last.json",
+      "sha256": "0f81572a2df74ce2213d80b4e4d5087126e1420ecb575056a709cdfd1e6e3da1",
+      "bytes": 33824
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/session.json",
+      "sha256": "993f1dae90cf7890d00ee6b8ca42af7ea9d453f0db348a6c04b49b95ef6b834a",
+      "bytes": 145
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/retention-identities.json",
+      "sha256": "bac8b007bd682a8e69008b7e1013436f351a3a4f3b276b9a88d86bde5539ed4f",
+      "bytes": 1005
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/report.json",
+      "sha256": "cd40ef00d7be91561f63cd126da11ae1b8f1359dc1f608d54429ed00755719f3",
+      "bytes": 4369
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/resources-output.log",
+      "sha256": "029c9166cfa74dd486b18f47cde1273c554c34b0fef145115f18e03c6f5c3f31",
+      "bytes": 251
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/openpnp_get_board_loads-last.json",
+      "sha256": "b38968ca957b69bc8f4df9dd8b2d87b8a3e88dec0541abdb2df2eab2d428a132",
+      "bytes": 26300
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/openpnp_release_control_session-last.json",
+      "sha256": "a2e172c5061f6c05c27c2e676bb1468691622776288b9c3cb0389b23457a9544",
+      "bytes": 249
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/discovery-output-connected.jsonl",
+      "sha256": "0e9df81e309bc49ab0eace61b1e1e78f282848930fbf201260d89db92b758e56",
+      "bytes": 48484
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/close.json",
+      "sha256": "7ff32892e6e51f86b3c0559cb0188049f06fae757e3e1808cbed1fef9578f66b",
+      "bytes": 192
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/REPORT.md",
+      "sha256": "3e9ec25d13a846c366119305b50f0231426bff276d5eeb4326f5e8f2db3972f8",
+      "bytes": 3349
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/openpnp_get_status-exact.json",
+      "sha256": "c36b17b72d49af7becb1858c7f29076eb4a07b8d2de3aedcc363220f8b5b08d9",
+      "bytes": 46809
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/discover.json",
+      "sha256": "6001d098129db3ce109dfb6395cb58a45aa5bdcffecf0ab53debb6052694a0ee",
+      "bytes": 175
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/openpnp_get_configuration-exact.json",
+      "sha256": "306bbe961e06815407c03891975f40d02181920e11b21ee8543dae386586ffd2",
+      "bytes": 44945
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/poll-prepare.json",
+      "sha256": "74d3f1bcf21a511749c4b9b48bd8d3f54f07eaeed36af8751dd47d63f8a1db54",
+      "bytes": 187
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/client.mjs",
+      "sha256": "e0a7ae5e70660e584b248157cf4f438b4e70d26a22c7d735f2b8fa4a8527eaa9",
+      "bytes": 2138
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/resources.json",
+      "sha256": "b536a1ed013cf4ad485072f0012a291ac5c5f54dd838fcd9d0d9a9690c903ff0",
+      "bytes": 18
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/source-process.log",
+      "sha256": "44064bb9592f2b3793619e60b90ce2aad8c2638248cad0cc94bed4d4f0a0f14e",
+      "bytes": 2184
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/exact-response-checks.json",
+      "sha256": "7c7f75f826f3cdc83d4f9534f08b9c7930dd9e219d03e77f7965c3f593166edd",
+      "bytes": 363
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/listResources.json",
+      "sha256": "14b41760dcb6d47a60e48e6482553232e677f1c53e3ff313543d55026df5a4df",
+      "bytes": 255
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/openpnp_request_control_session-last.json",
+      "sha256": "c14ca231aec517539f6e534ba78fdd9e0f9178dee0b423158052613aa73c76b5",
+      "bytes": 803
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/source-process-permitted.log",
+      "sha256": "502ec642fd0a65cbc322d911c63f9ba494fbdd39564f8ab5c90be9c2d30f43a7",
+      "bytes": 2005
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/owned-process-identities.txt",
+      "sha256": "6c7267ccbd318cc453024b00058b35cdbf66fee656de23c19c7b048360b41a5e",
+      "bytes": 18260
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/openpnp_prepare_job-last.json",
+      "sha256": "8ae833a33dea1b8679751d250b53b6b8e80546de584cef635bda123521f75bb9",
+      "bytes": 1558
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/openpnp_get_status-last.json",
+      "sha256": "f60145ccd157a6b914c7162045d2b429eb32b772becbe3f7b4f9e50ce9fc0112",
+      "bytes": 8841
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/discovery-output.jsonl",
+      "sha256": "d60e21df054eab2c926a8fb522164266affaca454ea4510b9a2da8df30bb5a7a",
+      "bytes": 3252
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/shutdown-process-check.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/pages-output.jsonl",
+      "sha256": "24df0ad6bbe50d001fc76cbfba6e6ab03ac41b07339724127130a7d2e42c7b27",
+      "bytes": 250528
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/openpnp_get_operation-last.json",
+      "sha256": "253cd059a9e1e038878af365987757b47794b07f3ccfddde2dd3589938365f21",
+      "bytes": 51139
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/prepare.json",
+      "sha256": "c3df9583f01eb9f37bc613026284c07529dff18c6f4eb87f9d3a387c6698acfd",
+      "bytes": 226
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/schemas.json",
+      "sha256": "ac5423803af9cde1ec52c6867875a7ab3cafff5014b6f76357142d5fd374e6dd",
+      "bytes": 168143
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/calls.jsonl",
+      "sha256": "cd4bef771dba5515d2c65079107c9680906737bcb133a4ef8a21876f20919e7c",
+      "bytes": 374459
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/pages.json",
+      "sha256": "5d1688fb429d29f1ed9681c746c8e3a5c63fe3ff199774ee70baeafc9445f570",
+      "bytes": 1233
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/install.json",
+      "sha256": "5274f58c3fb81700ee7f894d8ead781d2a80c56f07f97241959525db433787e5",
+      "bytes": 278
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/openpnp_read_response_page-last.json",
+      "sha256": "d461d4690c507fe2704de3d5f2655b60eea245458510dbe724e41e698af24f92",
+      "bytes": 33515
+    }
+  ],
+  "files": [
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill-final/sanitized-evidence/summary.json",
+      "path": "walkthrough/summary.json",
+      "sha256": "93efec42f24761847848cab2ce6bd308fb09a5023954f970ee20884e00286f67"
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill-final/sanitized-evidence/build-guidance-input-hashes.json",
+      "path": "walkthrough/build-guidance-input-hashes.json",
+      "sha256": "a3442a9155f2f6c4434f2782d22c91af97da29ee734fc781c83b9378514535f4"
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill-final/sanitized-evidence/canonical-panel-adjusted.json",
+      "path": "walkthrough/canonical-panel-adjusted.json",
+      "sha256": "1f3d6afcda6debeedf782b755e2b649721d7c33a23c505516cf29d9cd18ffe69"
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill-final/sanitized-evidence/README.md",
+      "path": "walkthrough/README.md",
+      "sha256": "f200f8403a159e5b77b1e26404bc2e6f4404e6c740a3f615f1a83d1e52b064b5"
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill-final/sanitized-evidence/original-local-evidence-hashes.json",
+      "path": "walkthrough/original-local-evidence-hashes.json",
+      "sha256": "f16e5d429141034a48e41a58fd0ac735dcdfc7d3f8d13379989e14d21ff470eb"
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill-final/sanitized-evidence/SHA256SUMS",
+      "path": "walkthrough/SHA256SUMS",
+      "sha256": "1e83a7a90af176b09406471c40971702114d6b6b94be3aeb9d17cf0da503c28c"
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill-final/freeze.json",
+      "path": "walkthrough-freeze.json",
+      "sha256": "0d6ba1a46323375c03e61a2edfc7a5338a18d69a6fe4a2eafdd73533a3aac246"
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-skill/REPORT.md",
+      "path": "original-prerequisite-gap.md",
+      "sha256": "3e9ec25d13a846c366119305b50f0231426bff276d5eeb4326f5e8f2db3972f8"
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-skill-docs-fix/delivery/validation-summary.json",
+      "path": "informed-example-validation.json",
+      "sha256": "3989427737b88c0e91d573e6d366a86c4021279d4a6a3c40b64aae5a8f26fcf3"
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-skill-docs-fix/delivery/manifest.json",
+      "path": "guidance-manifest.json",
+      "sha256": "108b6e95b3799060d6a29a265805d259396d0803c9189f2147e3c0a14f90250c"
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-review/report.json",
+      "path": "independent-audit.json",
+      "sha256": "6d42cbe12db1e7ea28c1b6ed6219ce7da3256dd819349f774cace27963ecec26"
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-review/audit.py",
+      "path": "independent-audit.py",
+      "sha256": "5a10221a9c83ac703540314e49651dac3781177098a31a17e7e3274f3198e499"
+    },
+    {
+      "source": "private-evidence/next-candidate-20260911/validation/panel-library74-blind-review/attempt01/failure.json",
+      "path": "retained-audit-attempt01.json",
+      "sha256": "3c5d17c89f9e89b149be92b51f0c03cb6d2cf201531c74f33ef645b891e1c9d4"
+    }
+  ],
+  "public_export_provenance": {
+    "original_report_sha256": "b22d52b22051761a9a8275aa1540b1c9dde4c4fee18ba18e0fffc521da4cb197",
+    "transformation": "Private absolute root labels replaced; original result facts and artifact hashes retained. Paths beginning private-evidence/private-host are provenance labels, not repository files."
+  }
+}

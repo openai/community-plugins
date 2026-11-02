@@ -1,0 +1,300 @@
+{
+  "schema_version": 1,
+  "qualification_status": "fixtures_authored_not_executed",
+  "cases": [
+    {
+      "case_id": "setup-openpnp-01",
+      "skill": "setup-openpnp",
+      "scenario_kind": "happy",
+      "case": "cases/setup-openpnp-01.json",
+      "rubric": "rubrics/setup-openpnp-01.json"
+    },
+    {
+      "case_id": "setup-openpnp-02",
+      "skill": "setup-openpnp",
+      "scenario_kind": "failure",
+      "case": "cases/setup-openpnp-02.json",
+      "rubric": "rubrics/setup-openpnp-02.json"
+    },
+    {
+      "case_id": "setup-openpnp-03",
+      "skill": "setup-openpnp",
+      "scenario_kind": "recovery",
+      "case": "cases/setup-openpnp-03.json",
+      "rubric": "rubrics/setup-openpnp-03.json"
+    },
+    {
+      "case_id": "commission-openpnp-machine-01",
+      "skill": "commission-openpnp-machine",
+      "scenario_kind": "happy",
+      "case": "cases/commission-openpnp-machine-01.json",
+      "rubric": "rubrics/commission-openpnp-machine-01.json"
+    },
+    {
+      "case_id": "commission-openpnp-machine-02",
+      "skill": "commission-openpnp-machine",
+      "scenario_kind": "failure",
+      "case": "cases/commission-openpnp-machine-02.json",
+      "rubric": "rubrics/commission-openpnp-machine-02.json"
+    },
+    {
+      "case_id": "commission-openpnp-machine-03",
+      "skill": "commission-openpnp-machine",
+      "scenario_kind": "recovery",
+      "case": "cases/commission-openpnp-machine-03.json",
+      "rubric": "rubrics/commission-openpnp-machine-03.json"
+    },
+    {
+      "case_id": "calibrate-openpnp-motion-01",
+      "skill": "calibrate-openpnp-motion",
+      "scenario_kind": "happy",
+      "case": "cases/calibrate-openpnp-motion-01.json",
+      "rubric": "rubrics/calibrate-openpnp-motion-01.json"
+    },
+    {
+      "case_id": "calibrate-openpnp-motion-02",
+      "skill": "calibrate-openpnp-motion",
+      "scenario_kind": "failure",
+      "case": "cases/calibrate-openpnp-motion-02.json",
+      "rubric": "rubrics/calibrate-openpnp-motion-02.json"
+    },
+    {
+      "case_id": "calibrate-openpnp-motion-03",
+      "skill": "calibrate-openpnp-motion",
+      "scenario_kind": "recovery",
+      "case": "cases/calibrate-openpnp-motion-03.json",
+      "rubric": "rubrics/calibrate-openpnp-motion-03.json"
+    },
+    {
+      "case_id": "calibrate-openpnp-vision-01",
+      "skill": "calibrate-openpnp-vision",
+      "scenario_kind": "happy",
+      "case": "cases/calibrate-openpnp-vision-01.json",
+      "rubric": "rubrics/calibrate-openpnp-vision-01.json"
+    },
+    {
+      "case_id": "calibrate-openpnp-vision-02",
+      "skill": "calibrate-openpnp-vision",
+      "scenario_kind": "failure",
+      "case": "cases/calibrate-openpnp-vision-02.json",
+      "rubric": "rubrics/calibrate-openpnp-vision-02.json"
+    },
+    {
+      "case_id": "calibrate-openpnp-vision-03",
+      "skill": "calibrate-openpnp-vision",
+      "scenario_kind": "recovery",
+      "case": "cases/calibrate-openpnp-vision-03.json",
+      "rubric": "rubrics/calibrate-openpnp-vision-03.json"
+    },
+    {
+      "case_id": "configure-openpnp-tooling-01",
+      "skill": "configure-openpnp-tooling",
+      "scenario_kind": "happy",
+      "case": "cases/configure-openpnp-tooling-01.json",
+      "rubric": "rubrics/configure-openpnp-tooling-01.json"
+    },
+    {
+      "case_id": "configure-openpnp-tooling-02",
+      "skill": "configure-openpnp-tooling",
+      "scenario_kind": "failure",
+      "case": "cases/configure-openpnp-tooling-02.json",
+      "rubric": "rubrics/configure-openpnp-tooling-02.json"
+    },
+    {
+      "case_id": "configure-openpnp-tooling-03",
+      "skill": "configure-openpnp-tooling",
+      "scenario_kind": "recovery",
+      "case": "cases/configure-openpnp-tooling-03.json",
+      "rubric": "rubrics/configure-openpnp-tooling-03.json"
+    },
+    {
+      "case_id": "configure-openpnp-feeders-01",
+      "skill": "configure-openpnp-feeders",
+      "scenario_kind": "happy",
+      "case": "cases/configure-openpnp-feeders-01.json",
+      "rubric": "rubrics/configure-openpnp-feeders-01.json"
+    },
+    {
+      "case_id": "configure-openpnp-feeders-02",
+      "skill": "configure-openpnp-feeders",
+      "scenario_kind": "failure",
+      "case": "cases/configure-openpnp-feeders-02.json",
+      "rubric": "rubrics/configure-openpnp-feeders-02.json"
+    },
+    {
+      "case_id": "configure-openpnp-feeders-03",
+      "skill": "configure-openpnp-feeders",
+      "scenario_kind": "recovery",
+      "case": "cases/configure-openpnp-feeders-03.json",
+      "rubric": "rubrics/configure-openpnp-feeders-03.json"
+    },
+    {
+      "case_id": "prepare-openpnp-job-01",
+      "skill": "prepare-openpnp-job",
+      "scenario_kind": "happy",
+      "case": "cases/prepare-openpnp-job-01.json",
+      "rubric": "rubrics/prepare-openpnp-job-01.json"
+    },
+    {
+      "case_id": "prepare-openpnp-job-02",
+      "skill": "prepare-openpnp-job",
+      "scenario_kind": "failure",
+      "case": "cases/prepare-openpnp-job-02.json",
+      "rubric": "rubrics/prepare-openpnp-job-02.json"
+    },
+    {
+      "case_id": "prepare-openpnp-job-03",
+      "skill": "prepare-openpnp-job",
+      "scenario_kind": "recovery",
+      "case": "cases/prepare-openpnp-job-03.json",
+      "rubric": "rubrics/prepare-openpnp-job-03.json"
+    },
+    {
+      "case_id": "align-openpnp-board-01",
+      "skill": "align-openpnp-board",
+      "scenario_kind": "happy",
+      "case": "cases/align-openpnp-board-01.json",
+      "rubric": "rubrics/align-openpnp-board-01.json"
+    },
+    {
+      "case_id": "align-openpnp-board-02",
+      "skill": "align-openpnp-board",
+      "scenario_kind": "failure",
+      "case": "cases/align-openpnp-board-02.json",
+      "rubric": "rubrics/align-openpnp-board-02.json"
+    },
+    {
+      "case_id": "align-openpnp-board-03",
+      "skill": "align-openpnp-board",
+      "scenario_kind": "recovery",
+      "case": "cases/align-openpnp-board-03.json",
+      "rubric": "rubrics/align-openpnp-board-03.json"
+    },
+    {
+      "case_id": "validate-openpnp-job-01",
+      "skill": "validate-openpnp-job",
+      "scenario_kind": "happy",
+      "case": "cases/validate-openpnp-job-01.json",
+      "rubric": "rubrics/validate-openpnp-job-01.json"
+    },
+    {
+      "case_id": "validate-openpnp-job-02",
+      "skill": "validate-openpnp-job",
+      "scenario_kind": "failure",
+      "case": "cases/validate-openpnp-job-02.json",
+      "rubric": "rubrics/validate-openpnp-job-02.json"
+    },
+    {
+      "case_id": "validate-openpnp-job-03",
+      "skill": "validate-openpnp-job",
+      "scenario_kind": "recovery",
+      "case": "cases/validate-openpnp-job-03.json",
+      "rubric": "rubrics/validate-openpnp-job-03.json"
+    },
+    {
+      "case_id": "run-openpnp-job-01",
+      "skill": "run-openpnp-job",
+      "scenario_kind": "happy",
+      "case": "cases/run-openpnp-job-01.json",
+      "rubric": "rubrics/run-openpnp-job-01.json"
+    },
+    {
+      "case_id": "run-openpnp-job-02",
+      "skill": "run-openpnp-job",
+      "scenario_kind": "failure",
+      "case": "cases/run-openpnp-job-02.json",
+      "rubric": "rubrics/run-openpnp-job-02.json"
+    },
+    {
+      "case_id": "run-openpnp-job-03",
+      "skill": "run-openpnp-job",
+      "scenario_kind": "recovery",
+      "case": "cases/run-openpnp-job-03.json",
+      "rubric": "rubrics/run-openpnp-job-03.json"
+    },
+    {
+      "case_id": "recover-openpnp-job-01",
+      "skill": "recover-openpnp-job",
+      "scenario_kind": "happy",
+      "case": "cases/recover-openpnp-job-01.json",
+      "rubric": "rubrics/recover-openpnp-job-01.json"
+    },
+    {
+      "case_id": "recover-openpnp-job-02",
+      "skill": "recover-openpnp-job",
+      "scenario_kind": "failure",
+      "case": "cases/recover-openpnp-job-02.json",
+      "rubric": "rubrics/recover-openpnp-job-02.json"
+    },
+    {
+      "case_id": "recover-openpnp-job-03",
+      "skill": "recover-openpnp-job",
+      "scenario_kind": "recovery",
+      "case": "cases/recover-openpnp-job-03.json",
+      "rubric": "rubrics/recover-openpnp-job-03.json"
+    },
+    {
+      "case_id": "maintain-openpnp-machine-01",
+      "skill": "maintain-openpnp-machine",
+      "scenario_kind": "happy",
+      "case": "cases/maintain-openpnp-machine-01.json",
+      "rubric": "rubrics/maintain-openpnp-machine-01.json"
+    },
+    {
+      "case_id": "maintain-openpnp-machine-02",
+      "skill": "maintain-openpnp-machine",
+      "scenario_kind": "failure",
+      "case": "cases/maintain-openpnp-machine-02.json",
+      "rubric": "rubrics/maintain-openpnp-machine-02.json"
+    },
+    {
+      "case_id": "maintain-openpnp-machine-03",
+      "skill": "maintain-openpnp-machine",
+      "scenario_kind": "recovery",
+      "case": "cases/maintain-openpnp-machine-03.json",
+      "rubric": "rubrics/maintain-openpnp-machine-03.json"
+    },
+    {
+      "case_id": "optimize-openpnp-production-01",
+      "skill": "optimize-openpnp-production",
+      "scenario_kind": "happy",
+      "case": "cases/optimize-openpnp-production-01.json",
+      "rubric": "rubrics/optimize-openpnp-production-01.json"
+    },
+    {
+      "case_id": "optimize-openpnp-production-02",
+      "skill": "optimize-openpnp-production",
+      "scenario_kind": "failure",
+      "case": "cases/optimize-openpnp-production-02.json",
+      "rubric": "rubrics/optimize-openpnp-production-02.json"
+    },
+    {
+      "case_id": "optimize-openpnp-production-03",
+      "skill": "optimize-openpnp-production",
+      "scenario_kind": "recovery",
+      "case": "cases/optimize-openpnp-production-03.json",
+      "rubric": "rubrics/optimize-openpnp-production-03.json"
+    },
+    {
+      "case_id": "backup-restore-openpnp-01",
+      "skill": "backup-restore-openpnp",
+      "scenario_kind": "happy",
+      "case": "cases/backup-restore-openpnp-01.json",
+      "rubric": "rubrics/backup-restore-openpnp-01.json"
+    },
+    {
+      "case_id": "backup-restore-openpnp-02",
+      "skill": "backup-restore-openpnp",
+      "scenario_kind": "failure",
+      "case": "cases/backup-restore-openpnp-02.json",
+      "rubric": "rubrics/backup-restore-openpnp-02.json"
+    },
+    {
+      "case_id": "backup-restore-openpnp-03",
+      "skill": "backup-restore-openpnp",
+      "scenario_kind": "recovery",
+      "case": "cases/backup-restore-openpnp-03.json",
+      "rubric": "rubrics/backup-restore-openpnp-03.json"
+    }
+  ]
+}

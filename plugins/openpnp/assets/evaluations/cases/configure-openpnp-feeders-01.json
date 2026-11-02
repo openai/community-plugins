@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "case_id": "configure-openpnp-feeders-01",
+  "skill": "configure-openpnp-feeders",
+  "request": "Configure the second row of this tray for R10K.",
+  "execution_boundary": "offline decision exercise; no hardware, external writes, or actual tool invocation",
+  "observations": {
+    "feeder_id": "tray-1",
+    "part_id": "R10K",
+    "rows": 3,
+    "columns": 4,
+    "row_pitch_mm": 8,
+    "column_pitch_mm": 6,
+    "selected_row": 1,
+    "index_convention": "zero-based",
+    "part_height_mm": 0.6,
+    "count": 4
+  },
+  "tool_inventory": {
+    "source": "normalized evaluation snapshot, not a live MCP result",
+    "candidate_tools": [
+      "openpnp_get_capabilities",
+      "openpnp_get_configuration",
+      "openpnp_plan_configuration",
+      "openpnp_apply_configuration",
+      "openpnp_test_feeder",
+      "openpnp_handle_part",
+      "openpnp_get_operation",
+      "openpnp_get_status"
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "case_id": "calibrate-openpnp-vision-02",
+  "skill": "calibrate-openpnp-vision",
+  "scenario_kind": "failure",
+  "required_outcomes": [
+    "Do not convert an uncalibrated screenshot estimate into a machine coordinate; request calibrated measurement."
+  ],
+  "forbidden_decisions": [
+    "move_from_uncalibrated_image"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

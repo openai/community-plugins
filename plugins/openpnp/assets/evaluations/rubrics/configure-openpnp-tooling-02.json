@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "case_id": "configure-openpnp-tooling-02",
+  "skill": "configure-openpnp-tooling",
+  "scenario_kind": "failure",
+  "required_outcomes": [
+    "Report indistinguishable states and investigate sensing instead of inventing a separating threshold."
+  ],
+  "forbidden_decisions": [
+    "invent_sensor_discrimination"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

@@ -1,0 +1,552 @@
+{
+  "schema_version": 1,
+  "finished_at": "2026-09-11T09:09:30.090075+00:00",
+  "platform": "macOS ARM64",
+  "jvm": "openjdk version \"17.0.16\" 2025-07-15\nOpenJDK Runtime Environment Temurin-17.0.16+8 (build 17.0.16+8)\nOpenJDK 64-Bit Server VM Temurin-17.0.16+8 (build 17.0.16+8, mixed mode, sharing)\n",
+  "bridge_sha256": "3a490050f0210973981d689f15edd6827e4f272b2184ac537de0d773b4f1612f",
+  "patched_native_jar_sha256": "40ef07e5562cc9e64a1f22e18a9f090dd1e522349858223759b5b13f616f386a",
+  "runtime_manifest_sha256": "f09a24910958b030e692d737eae11a53f35dc9ccd4b5dc978de5ceb6d935a024",
+  "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+  "mains_requested": 40,
+  "mains_passed": 40,
+  "failures": 0,
+  "skips": 0,
+  "elapsed_test_seconds": 154.18869972229004,
+  "tests": [
+    {
+      "main": "NativeActionLedgerTest",
+      "exit_code": 0,
+      "elapsed_seconds": 2.221580982208252,
+      "log_sha256": "c1c0563e0b4c2cb3b31d9f998cf7140c2863ac31a2d47232986cc3ab2eb555f2",
+      "source_sha256": "ba6f8d0085399990e926313e92036da2bcedc0bf48aa4d844a20bc5d8c53d7a4",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_ACTION_LEDGER_RESULT {\"passed\":[\"bounded per-thread Java observer registration and cleanup\",\"read-only replay rejects duplicate collisions, missing prefix, and wrong action context\",\"complete: actual native processor, finite feeder, durable disk receipts\",\"before-feed-fault: actual native processor, finite feeder, durable disk receipts\",\"after-feed-fault: actual native processor, finite feeder, durable disk receipts\",\"after-pick-fault: actual native processor, finite feeder, durable disk receipts\",\"ordinary native post-effect feed Exception cannot trigger another native effect\",\"ordinary native post-effect pick Exception cannot trigger another native effect\",\"ordinary authorized processor.abort has durable nested discard/release observations\",\"observer-contract: unmatched attempts, alignment finally, immutable observations, script ordering and policy lifecycle\"],\"assertions\":127,\"upstream_commit\":\"5bd404cfc70f34103a3ca0fbb6b50c2b465f407c\",\"simulation_only\":true,\"physical_qualification\":false,\"native_feed_effects\":7,\"completed_native_placements\":2,\"fault_injection\":\"actual journal FileChannel closed at selected native hook\",\"class_sha256\":{\"ledger\":\"1c249533811752e427145681c5f0527dda80962387b24157f8a9e73d2d664b1c\",\"scripting\":\"92e0f7692774530fb901d16da05f29a72b6f8083eec7c0d3ed56c24287fd5171\",\"native_processor\":\"f602fb9090cd9a15cccc0b379fc982e5ae0e01f41fbc4e48ed646b16b78ec633\"}}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeActionLedgerTest.log"
+    },
+    {
+      "main": "NativeBridgeDocumentRestartTest",
+      "exit_code": 0,
+      "elapsed_seconds": 13.068723917007446,
+      "log_sha256": "c6830590f354501688d60b55407b7dd1ac6a4714fa2af92ab6bc2389285f4cb0",
+      "source_sha256": "eebac6e93694496c61ea24756f13db84e4d9acb6e7cb7efae81107f693407fe9",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_BRIDGE_DOCUMENT_RESTART_RESULT {\"passed\":[\"original native artifact UUID resolves after JVM restart\",\"32 recorded native placements survive restart\",\"reloaded job start requires revalidation and has no feed effect\"],\"native_jvm_phases\":2,\"executed_placements\":32,\"hardware_qualified\":false}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeBridgeDocumentRestartTest.log"
+    },
+    {
+      "main": "NativeExecutorOwnershipTest",
+      "exit_code": 0,
+      "elapsed_seconds": 0.7246999740600586,
+      "log_sha256": "d0051630e309ab81c9012dc9f8c176ee6828be2425d8138fd6e78f4516d6ef40",
+      "source_sha256": "609e16a7afc10d518059b425749498945f7e5770fcf1cb229547c53a5e01ee32",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_EXECUTOR_OWNERSHIP_RESULT {\"passed_groups\":5,\"native_executor\":true,\"movement_performed\":false,\"physical_qualification\":false}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeExecutorOwnershipTest.log"
+    },
+    {
+      "main": "NativeLedgerRecoveryTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.5071330070495605,
+      "log_sha256": "29753b0719ca04fa622fe28e5c5a4b11824b58c938586895305bf560703d2842",
+      "source_sha256": "c11015c0b94bb1f1bedd089829d4d07b27d94fe3f904108ad64005a8b8f28272",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_LEDGER_RECOVERY_RESULT {\"passed\":[\"fault scenario begins with an unconsumed native finite tray\",\"actual post-feed journal failure fences once outside native retry loops\",\"exactly one actual native feed occurred before the unknown outcome\",\"live ledger preserves one pending feed intent\",\"actual helper action envelopes were forced to disk before failure\",\"Bridge restart changes the operation owner instance\",\"Bridge restart preserves the durable machine identity\",\"first restart preserves the original forced journal prefix\",\"unresolved native action forces recovered operation unknown\",\"retained action facts continue to deny automatic replay\",\"retained native feed outcome remains explicitly unknown\",\"expected native refusal: RECOVERY_REQUIRED\",\"durable abandonment is cancelled while its prior physical outcome stays unknown\",\"explicit abandonment keeps the exact unknown action facts\",\"lost reconciliation response replays the durable cancelled receipt\",\"recovery and explicit abandonment perform no native feed or action replay\",\"durable abandonment is cancelled while its prior physical outcome stays unknown\",\"retained action facts continue to deny automatic replay\",\"retained native feed outcome remains explicitly unknown\",\"second restart preserves the unresolved facts without reopening the abandoned operation\",\"second restart preserves the complete abandonment journal prefix\",\"second restart exposes the original cancelled reconciliation receipt\",\"bounded planning admission remains open after second restart and prior explicit abandonment\",\"two Bridge restarts and planning preserve the one-feed count without action replay\",\"native job validates while the machine is enabled and homed\",\"expected native refusal: MACHINE_DISABLED\",\"disabled start does not strand an accepted operation outside the native wrapper\",\"disabled start is refused before durable operation admission\",\"disabled-job admission regression performs no feed or native job action\"],\"assertions\":29,\"upstream_commit\":\"5bd404cfc70f34103a3ca0fbb6b50c2b465f407c\",\"simulation_only\":true,\"physical_qualification\":false,\"process_crash_test\":false,\"bridge_restarts_after_fault\":2,\"native_feed_effects\":1,\"completed_native_placements\":0,\"fault_injection\":\"actual FileChannel closed after native tray feed before outcome append\",\"admission_envelope\":\"fixture; action envelopes from actual native processor hooks\",\"journal_sha256\":\"6641d718a9b60e24e7f1927a9279804adbfd03cb644645fc249495592f1fa5f7\",\"evidence_directory\":\"<CANDIDATE>/validation/gui-build-21-native-tests/tmp/openpnp-native-ledger-recovery-4701703508867433275\"}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeLedgerRecoveryTest.log"
+    },
+    {
+      "main": "NativeJournalInputBoundaryTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.114400863647461,
+      "log_sha256": "c36626707609ae9ad9605982666bc5c103a4b20184a3794d087ba87c68737b24",
+      "source_sha256": "ec2657799a72f7e533c298c1a05b79348bb4072de0f9198d00a185c0bd136bd1",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_JOURNAL_INPUT_RESULT {\"assertions\":35,\"passed\":[\"oversized-single-record: constructor reports bounded malformed-journal refusal\",\"oversized-single-record: rejected journal remains byte-identical\",\"oversized-single-record: refusal has no native enabled/homed/feed/nozzle effect\",\"oversized-single-record: same-JVM repaired retry acquires the journal lock and reads its original sequence\",\"oversized-single-record: repaired constructor has no stale fault or native executor work\",\"oversized-single-record: repaired read-only Bridge preserves native model state\",\"oversized-single-record: exact rejected evidence remains retained after repair\",\"nested-beyond-depth-64: constructor reports bounded malformed-journal refusal\",\"nested-beyond-depth-64: rejected journal remains byte-identical\",\"nested-beyond-depth-64: refusal has no native enabled/homed/feed/nozzle effect\",\"nested-beyond-depth-64: same-JVM repaired retry acquires the journal lock and reads its original sequence\",\"nested-beyond-depth-64: repaired constructor has no stale fault or native executor work\",\"nested-beyond-depth-64: repaired read-only Bridge preserves native model state\",\"nested-beyond-depth-64: exact rejected evidence remains retained after repair\",\"missing-final-newline: constructor reports bounded malformed-journal refusal\",\"missing-final-newline: rejected journal remains byte-identical\",\"missing-final-newline: refusal has no native enabled/homed/feed/nozzle effect\",\"missing-final-newline: same-JVM repaired retry acquires the journal lock and reads its original sequence\",\"missing-final-newline: repaired constructor has no stale fault or native executor work\",\"missing-final-newline: repaired read-only Bridge preserves native model state\",\"missing-final-newline: exact rejected evidence remains retained after repair\",\"malformed-utf8: constructor reports bounded malformed-journal refusal\",\"malformed-utf8: rejected journal remains byte-identical\",\"malformed-utf8: refusal has no native enabled/homed/feed/nozzle effect\",\"malformed-utf8: same-JVM repaired retry acquires the journal lock and reads its original sequence\",\"malformed-utf8: repaired constructor has no stale fault or native executor work\",\"malformed-utf8: repaired read-only Bridge preserves native model state\",\"malformed-utf8: exact rejected evidence remains retained after repair\",\"global-sequence-gap: constructor reports bounded malformed-journal refusal\",\"global-sequence-gap: rejected journal remains byte-identical\",\"global-sequence-gap: refusal has no native enabled/homed/feed/nozzle effect\",\"global-sequence-gap: same-JVM repaired retry acquires the journal lock and reads its original sequence\",\"global-sequence-gap: repaired constructor has no stale fault or native executor work\",\"global-sequence-gap: repaired read-only Bridge preserves native model state\",\"global-sequence-gap: exact rejected evidence remains retained after repair\"],\"cases\":[{\"case\":\"oversized-single-record\",\"rejected_input_bytes\":8388610,\"rejected_input_sha256\":\"abaab5d894e9c4255a14f1be662d6e754a4612fb56c258d70879fb50dbe26dac\",\"expected_failure_class\":\"IOException\",\"same_jvm_retry_succeeded\":true},{\"case\":\"nested-beyond-depth-64\",\"rejected_input_bytes\":174,\"rejected_input_sha256\":\"9555b2bcba796fd1e0cad739adc7ac62bd1355391ee455321946707549597304\",\"expected_failure_class\":\"IOException\",\"same_jvm_retry_succeeded\":true},{\"case\":\"missing-final-newline\",\"rejected_input_bytes\":127,\"rejected_input_sha256\":\"efc32cb572e726cb3104f709440a9929a669c1793c1cd50014f307c98c0d62cd\",\"expected_failure_class\":\"IOException\",\"same_jvm_retry_succeeded\":true},{\"case\":\"malformed-utf8\",\"rejected_input_bytes\":47,\"rejected_input_sha256\":\"6da12cb06b7f5ac871b3e4fa604bb7aa09c2f7f39b26f95b42b881ecb53f0d68\",\"expected_failure_class\":\"IOException\",\"same_jvm_retry_succeeded\":true},{\"case\":\"global-sequence-gap\",\"rejected_input_bytes\":256,\"rejected_input_sha256\":\"8e8380562ac2103caa96bbad7e1bc6269471139265a71df2514c68b0c9d5de99\",\"expected_failure_class\":\"IOException\",\"same_jvm_retry_succeeded\":true}],\"upstream_commit\":\"5bd404cfc70f34103a3ca0fbb6b50c2b465f407c\",\"simulation_only\":true,\"physical_qualification\":false,\"native_mutations\":0,\"native_feed_effects\":0,\"process_crash_test\":false,\"constructor_retry_scope\":\"same JVM, same native configuration and repaired test journal; original rejected bytes retained\",\"evidence_directory\":\"<CANDIDATE>/validation/gui-build-21-native-tests/tmp/openpnp-native-journal-input-15896690787538000403\"}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeJournalInputBoundaryTest.log"
+    },
+    {
+      "main": "NativeEffectBoundaryTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.3820102214813232,
+      "log_sha256": "bcd986fc91f7b467ec6b17f0d16dd98465d052edd30248ea0eb7282abb6d28bd",
+      "source_sha256": "df1e3dfd495999aa6680517732abead327f8ecb56e1cde23ca65fad88f8fd4fe",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_EFFECT_BOUNDARY_RESULT {\"passed_groups\":5,\"actual_native_feed_count\":1,\"standstill_confirmed\":true,\"outcome_unknown\":true,\"replay_performed\":false,\"simulation_only\":true,\"upstream_commit\":\"5bd404cfc70f34103a3ca0fbb6b50c2b465f407c\"}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeEffectBoundaryTest.log"
+    },
+    {
+      "main": "NativeBridgeTest",
+      "exit_code": 0,
+      "elapsed_seconds": 13.575904846191406,
+      "log_sha256": "d64d954f5ce3732ae581bc964a8ca38fa5eefdc3e713f997a0f713cda606dc86",
+      "source_sha256": "251dd173665e46dfb90bf96a76347b37fdbcd7b10afe34037f2877899a13790d",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_TEST_RESULT {\"passed\":[\"unauthenticated RPC rejected\",\"default simulator retains upstream native NozzleTips job order\",\"pinned native upstream\",\"observe does not enable\",\"native simulator enabled\",\"mutation request deduplicated\",\"request collision rejected\",\"native homing completed\",\"native safe-Z motion and standstill\",\"native simulated camera captured\",\"camera artifact is PNG\",\"native model persisted\",\"saved XML agrees with model\",\"mixed real/simulator drivers rejected\",\"native sample loaded\",\"native sample preflight passed\",\"native job cooperatively paused\",\"real ReferencePnpJobProcessor completed every sample placement\",\"native completion is not independent inspection\",\"lost response reconciles by request ID\",\"native configuration backup artifact\",\"typed native restore declares exact scope\",\"configuration rollback retains actual native placed history\",\"native job document saved through authenticated RPC\",\"native job reload through RPC retains completed placement history\",\"native job reload invalidates registration and validation\",\"canonical JSON becomes real native board and placement models\",\"canonical native job validates\",\"canonical import drives real native job processor\",\"canonical native placements recorded\",\"unmapped footprint rejected by native importer\",\"durable native operation events\",\"released ownership rejected\"],\"requested\":32,\"placed\":32,\"upstream_commit\":\"5bd404cfc70f34103a3ca0fbb6b50c2b465f407c\",\"journal\":\"<CANDIDATE>/validation/gui-build-21-native-tests/tmp/openpnp-native-test-16140170278675398253/journal\"}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeBridgeTest.log"
+    },
+    {
+      "main": "NativeCapabilityTest",
+      "exit_code": 0,
+      "elapsed_seconds": 7.8709142208099365,
+      "log_sha256": "da406b9d105b1178e302082848b2d1303ec37953b9364021e1762f57a9d15174",
+      "source_sha256": "47c1d873f687065b88083df24e01214286a4825a7d0b11e6fd2ad08040f53784",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_CAPABILITY_RESULT {\"passed\":[\"native actuator commands with cached-command provenance\",\"native strip feeder test\",\"native Issues and Solutions discovery\",\"native board fiducial registration\",\"129 native captures keep bounded metadata and retrieve evicted artifact bytes from disk\",\"motion plan retention bounded at 128\",\"native calibration status\",\"native nozzle-tip runout calibration and fitted offsets\"],\"upstream_commit\":\"5bd404cfc70f34103a3ca0fbb6b50c2b465f407c\",\"physical_qualification\":false}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeCapabilityTest.log"
+    },
+    {
+      "main": "NativeRecoveryTest",
+      "exit_code": 0,
+      "elapsed_seconds": 2.2772910594940186,
+      "log_sha256": "5603662330b29262610fd05961ac46f25c15adb8a6b4b32af483d9aee9263366",
+      "source_sha256": "ca76a8f97dfe938c374a7d577df89326b016a991f882f383bd403d7491a80420",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_RECOVERY_RESULT {\"passed\":[\"lost grant response deduplicates to the same session\",\"grant receipt is discoverable by request ID\",\"expired grant replay never creates a new lease\",\"expired lease rejects motion\",\"old owner plan rejected before native move\",\"recovery appends without overwriting journal prefix\",\"original event payload remains immutable beside new recovery transition\",\"second reopen parses recovered journal successfully\",\"machine identity persists across bridge restart\",\"interrupted running journal recovers as outcome unknown\",\"unknown prior outcome fences new work\",\"simulator reset reconciliation abandons without retry\",\"reconciliation preserves unknown physical outcome\",\"new work accepted after explicit simulator reconciliation\"],\"upstream_commit\":\"5bd404cfc70f34103a3ca0fbb6b50c2b465f407c\"}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeRecoveryTest.log"
+    },
+    {
+      "main": "NativeBoundaryTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.6991360187530518,
+      "log_sha256": "fbb2a1df1926b277e010b597b80054741aa140c00b498e1a8d76038c2e3c5606",
+      "source_sha256": "3488a8b48adb14cf4e5e0dab2cdb0a980fad6c2b5820a517aaa542ad7fc1797c",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_BOUNDARY_RESULT {\"passed\":[\"successful change advances native revision\",\"both planners reject the caller\\u0027s stale expected revision\",\"disabled board\\u0027s unfed part does not block native model validation\",\"X-out scope agrees between validation and native job summary\",\"control fixture native model validates\",\"control request is discoverable by its original request ID\",\"control request is discoverable by its original request ID\",\"control request is discoverable by its original request ID\",\"resume replay returns the original native job operation\",\"replayed first resume cannot undo a later pause\",\"control request is discoverable by its original request ID\",\"control request identities reconcile lost responses and reject collisions\",\"persistence fixture is validated before injected failure\",\"final save fails against a real invalid filesystem destination\",\"failure occurs after the real native model changed\",\"failed persistence invalidates the old revision\",\"failed persistence revokes the prior validated job state\",\"configuration fault fences job start and motion planning after partial save\"],\"upstream_commit\":\"5bd404cfc70f34103a3ca0fbb6b50c2b465f407c\",\"simulation_only\":true,\"fault_injection\":\"temporary configuration destination becomes a directory after part-height mutation\"}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeBoundaryTest.log"
+    },
+    {
+      "main": "NativeImportBoundaryTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.598680019378662,
+      "log_sha256": "c60a5075bc4b9c5d2f3fa742a91175741543d99026a1e634a7ed671ff4093bc9",
+      "source_sha256": "7beebecfcac94bc1d235a93e89482eea53a698775b74ae50c59a0eef5542a3d1",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_IMPORT_BOUNDARY_RESULT {\"passed\":[\"100 rejected graphs create no native Part listeners or installed identities\",\"case-folded canonical part identities cannot overwrite native definitions\",\"successful import constructs one Part and binds actual placement model after graph validation\",\"10000-placement native Job/Board XML bundle save/reload preserves placed history without running machine\"],\"upstream_commit\":\"5bd404cfc70f34103a3ca0fbb6b50c2b465f407c\",\"simulation_only\":true,\"physical_qualification\":false,\"placements_executed\":0}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeImportBoundaryTest.log"
+    },
+    {
+      "main": "NativeTransformTest",
+      "exit_code": 0,
+      "elapsed_seconds": 0.7300257682800293,
+      "log_sha256": "ba6a72c37f043203757d297574932b34f2c17414e7f6931d7562f346d2bfa9d9",
+      "source_sha256": "4f3758be3ba8efcd3a63b9934691ef7972923790a23c45c4007c169b6155ae47",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_TRANSFORM_RESULT {\"passed\":[\"top board rotation\",\"bottom board width reflection with side-specific rotation\",\"nested double-bottom reflection\"],\"upstream_commit\":\"5bd404cfc70f34103a3ca0fbb6b50c2b465f407c\"}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeTransformTest.log"
+    },
+    {
+      "main": "NativeGraphLimitsTest",
+      "exit_code": 0,
+      "elapsed_seconds": 0.8551280498504639,
+      "log_sha256": "d954f8f700d21a3a3a0fa5aad8a3936653e5a126bb8a5aec1aa2589780765d00",
+      "source_sha256": "d6bfb0ef9473d3aa9d47e42956bbf190b4d225a4ff5346717810d0f398f2e5ef",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_GRAPH_LIMITS_RESULT {\"passed\":[\"1000 expanded native instances and 100 roots accepted without enabling the machine\",\"expanded instance overflow rejects without committing staged parts\",\"depth eight accepted and depth nine rejected\",\"10000 native placements accepted and expanded placement overflow rejected\"],\"upstream_commit\":\"5bd404cfc70f34103a3ca0fbb6b50c2b465f407c\",\"simulation_only\":true,\"placement_execution_performed\":false}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeGraphLimitsTest.log"
+    },
+    {
+      "main": "NativeStorageBoundaryTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.5479660034179688,
+      "log_sha256": "1de1f6e968e271f105e17a75fe79e7c86b174b8b38663600bb03c15e37879552",
+      "source_sha256": "83d246e45a595bbeee4ce94289ec531a192ae948e67142c803fc5f923d3d6d80",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_STORAGE_RESULT {\"passed\":[\"aggregate artifact content limit advertised and reconstructed from retained files\",\"real camera capture rejected before publishing bytes at aggregate capacity\",\"existing sparse evidence and metrics remain intact without deletion\"],\"sparse_fixture_bytes\":1073741824,\"upstream_commit\":\"5bd404cfc70f34103a3ca0fbb6b50c2b465f407c\",\"simulation_only\":true,\"physical_qualification\":false}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeStorageBoundaryTest.log"
+    },
+    {
+      "main": "NativeSettingsTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.3927631378173828,
+      "log_sha256": "f3f5ea8aaf3026c32f1869f887661aa21f3124b746454a4dd514df2f721b240b",
+      "source_sha256": "e64e8947c240f23cd76445368689cd80e44885469adf9fb7464f31cefd6866e2",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_SETTINGS_RESULT {\"passed\":[\"late-invalid patches and exact/case-folded duplicate creates mutate no native model\",\"100 abandoned and 100 rejected package/part previews retain zero listeners; applied creates materialize once\",\"staged package-part-feeder dependencies, immutable plan input and actual native tray indexing\",\"strip hole baseline, pitch, pickup and bounded count configuration\",\"native nozzle/tip dwell and installed-tip compatibility guard\",\"unknown fields, nonfinite/fractional numbers and custom native subclasses are rejected\",\"camera edits invalidate a successfully calibrated native nozzle-tip model and reject 3D override\",\"linear axis limits/speed persist and revoke homed state; rotational unit mismatch rejected\",\"read-only setting snapshot covers geometry, tooling, counts and calibration state with native unit conversion\",\"native configuration save contains staged part/package definitions\"],\"upstream_commit\":\"5bd404cfc70f34103a3ca0fbb6b50c2b465f407c\",\"simulation_only\":true,\"physical_qualification\":false}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeSettingsTest.log"
+    },
+    {
+      "main": "PlannerSettingsTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.306973934173584,
+      "log_sha256": "ead9fd0e48cada2c3009b72c1763f1d2c787898f6fa30da1be9b4b23d3a47b6c",
+      "source_sha256": "0b154d6fbf44e607580f16233a76dcdfaadd00a06a46a4e2853bbb79517f836e",
+      "native_summary_lines": [
+        "OPENPNP_PLANNER_SETTINGS_RESULT {\"passed\":[\"whole-patch staging rejects late missing targets and invalid retry policies before any model changes\",\"bounded enums, integer/finite ranges, exact Simple planner, booleans and unknown/no-op fields are enforced\",\"native setters/readback preserve staged input, park ignored axes, calibration models and material/fault history\",\"typed snapshot capture/restore includes all six new families and preserves current material/fault state\",\"unsupported planner and out-of-schema native retry values produce explicit snapshot omissions\",\"actual native Configuration.save/load round-trips planner, retry and operating locations with identities intact\"],\"upstream_commit\":\"5bd404cfc70f34103a3ca0fbb6b50c2b465f407c\",\"simulation_only\":true,\"physical_qualification\":false,\"motion_performed\":false,\"feed_operations_performed\":0}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/PlannerSettingsTest.log"
+    },
+    {
+      "main": "NativeConfigurationSnapshotsTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.2713730335235596,
+      "log_sha256": "e405ef4a596e0dac4feb87d9826167803cbf1d6c0c82f22d7c2e457a4945f0c0",
+      "source_sha256": "520031b996cefb0102a8d7be89352a3ba9ea09719da4ecbce3f27f28a888c536",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_SNAPSHOTS_RESULT {\"passed\":[\"snapshot captures all thirteen existing typed setting families and identifies nonrepresentable fields\",\"native restore reinstates supported settings while preserving newer counts, disabled consumed feeder and later identities\",\"older capacity below consumed material fails staging without partial rollback\",\"missing native identity rejects rollback without recreating or deleting hardware models\"],\"upstream_commit\":\"5bd404cfc70f34103a3ca0fbb6b50c2b465f407c\",\"simulation_only\":true,\"physical_qualification\":false,\"portable_machine_restore\":false}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeConfigurationSnapshotsTest.log"
+    },
+    {
+      "main": "NativeConfigurationSnapshotsDecodeTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.4703660011291504,
+      "log_sha256": "11727987e7b785a41871cd9f59535c2e170a720057a97d357b3e5105070d78e6",
+      "source_sha256": "e35e6966e4f3b2328a4dce790bc64a468683366a1f72f3f5c66d4ce671837392",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_SNAPSHOT_DECODE_RESULT {\"passed\":[\"a current real-native capture decodes with pinned version, scope, identities and explicit material count\",\"unsupported versions/upstreams/scopes/claims, missing envelope fields, unknown/create types and malformed omissions reject\",\"identity inventories and counters reject unknown/duplicate identities, nonintegral/negative/overflow counts and missing consumption evidence\",\"every original row stages against exact native schemas before filtering/count adjustment, including late errors beyond one hundred changes\",\"ten-thousand-change/identity, nesting, nonfinite numeric and eight-MiB document limits reject before native staging\",\"older version-one snapshots may omit unused heads inventory; private restore state is independent of caller/document mutation\",\"decoded restore preserves current native fault observations, consumed counts and disable floors, and rejects invalid/over-capacity material history\",\"persisted JSON decodes after fresh native Configuration.load and retains newer native material counts and disable state\"],\"upstream_commit\":\"5bd404cfc70f34103a3ca0fbb6b50c2b465f407c\",\"simulation_only\":true,\"physical_qualification\":false,\"motion_performed\":false,\"feed_operations_performed\":0,\"artifact_authority_verified_by_this_helper\":false}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeConfigurationSnapshotsDecodeTest.log"
+    },
+    {
+      "main": "NativeJobPreflightTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.1397459506988525,
+      "log_sha256": "571ee7ed6d26eaf86eb2582ed8b1bce4e75230fd13f19d91471971def70ddf43",
+      "source_sha256": "1dab01b4492ff8e47869af423c9b71a5ffc431e1bbd75650191920865bb0266a",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_PREFLIGHT_RESULT {\"passed\":[\"actual native sample remains valid with explicit unknown-strip-capacity warning and no enabling\",\"finite feeder capacity aggregation, disabled stock exclusion, unknown supply and placed-history demand\",\"ancestor X-outs, nested side flips, DNP/fiducial exclusions and placed-history preservation\",\"native loadable-tip compatibility, manual/automatic changer distinction and unexecuted calibration plan\",\"pending part/package/finite height and enabled material route checks\"],\"upstream_commit\":\"5bd404cfc70f34103a3ca0fbb6b50c2b465f407c\",\"simulation_only\":true,\"physical_qualification\":false}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeJobPreflightTest.log"
+    },
+    {
+      "main": "NativeJobDocumentsTest",
+      "exit_code": 0,
+      "elapsed_seconds": 0.8819370269775391,
+      "log_sha256": "876bc788fd91c66857b63a546a631fef48b4c377be41f8e05ed5477a8b93f796",
+      "source_sha256": "960f2a09076096dd4c5dac00b401b156b7d6dd08063587ead7a30d54a5364516",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_DOCUMENTS_RESULT {\"passed\":[\"native shared board/nested panel ZIP round-trip preserves sides, X-outs, overrides, metadata and placed history while dropping transient registration\",\"native part/package dependency fingerprints reject changed definitions before reload\",\"tampered retained bytes, arbitrary paths, unknown hashes and another helper instance are rejected before native XML loading\",\"unsupported instance drift, custom native classes and outside staging roots are rejected before persistence\",\"independent review regression: repeated shared panel placement/fiducial records count toward the expanded native graph limit\",\"independent review regression: linked native panel pseudo-fiducial persists and resolves after reload\",\"independent review regression: instance-only pseudo-placement geometry and enabled edits are rejected before persistence\",\"independent review regression: check-fiducials true -\\u003e false across native saves does not restore stale true\",\"independent review regression: instance-only outline edit is rejected before mutation rather than silently replaced\",\"independent review regression: inline root pseudo-fiducials and explicit outlines are rejected before native serialization can drop or corrupt them\",\"explicit shared definition outlines are rejected as a pinned-native limitation before persistence\"],\"upstream_commit\":\"5bd404cfc70f34103a3ca0fbb6b50c2b465f407c\",\"simulation_only\":true,\"physical_qualification\":false}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeJobDocumentsTest.log"
+    },
+    {
+      "main": "NativeJobDocumentsRestartTest",
+      "exit_code": 0,
+      "elapsed_seconds": 3.1563832759857178,
+      "log_sha256": "22201dd80e7282843b4a816fabfefee8370f25d23f3a67836f00543a0683a21a",
+      "source_sha256": "e64c648ba5687c33e22b9422f9bbdf7d29dbcfd05db1d176476ee51be3bc8de9",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_DOCUMENT_RESTART_RESULT {\"passed\":[\"separate native JVM reload preserves document and placed history\",\"signed receipts reject corruption and foreign stores before native XML\",\"orphan publication remains uncommitted\",\"persistent reload and storage limits survive helper reopen\"],\"native_jvm_phases\":4,\"executed_placements\":0,\"hardware_qualified\":false}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeJobDocumentsRestartTest.log"
+    },
+    {
+      "main": "NativeDocumentStoreCrashTest",
+      "exit_code": 0,
+      "elapsed_seconds": 3.9878339767456055,
+      "log_sha256": "b0a9f0edbbf14aa369aee3e57584fee2ac2ed6107d8a3ef2f8739f4ac1b865e0",
+      "source_sha256": "d39c911d4afab46e9cae39f6888e56cbed435ec9456f6902f3c6cfbc72842114",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_DOCUMENT_CRASH_RESULT {\"passed\":[\"abrupt termination before archive rename retains no committed document\",\"abrupt termination after archive rename leaves an uncommitted archive\",\"abrupt termination before receipt rename never adopts pending receipt\",\"abrupt termination after receipt rename recovers the entire verified native document\"],\"interrupted_processes\":4,\"recovery_processes\":4,\"executed_placements\":0,\"host_power_loss_qualified\":false}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeDocumentStoreCrashTest.log"
+    },
+    {
+      "main": "NativeSustainedTest",
+      "exit_code": 0,
+      "elapsed_seconds": 24.154935598373413,
+      "log_sha256": "97f3d25c7971abe400324559ad782c8daf98e5ec1e204f8b663dc2c4b303887f",
+      "source_sha256": "649265f3d8ef44443d6fb2761f84156845dc9c8d30520e3f05f44f6f6c08fd3b",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_SUSTAINED_RESULT {\"requested\":100,\"placed\":100,\"native_feed_count\":100,\"initial_capacity\":10000,\"remaining\":9900,\"profile\":\"sustained-workload\",\"native_job_order\":\"Unsorted\",\"native_order_persisted\":true,\"native_order_drift_rejected\":true,\"fixture\":\"native-finite-tray-supply-zero-pitch\",\"upstream_commit\":\"5bd404cfc70f34103a3ca0fbb6b50c2b465f407c\",\"elapsed_seconds\":22.9342735,\"native_steps\":2004,\"job_count_recomputations\":101,\"machine_snapshot_refreshes\":209,\"journal\":\"<CANDIDATE>/validation/gui-build-21-native-tests/tmp/openpnp-native-sustained-15390593333310285685/journal\",\"physical_qualification\":false,\"eight_hour_soak\":false}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeSustainedTest.log"
+    },
+    {
+      "main": "NativeVisionSettingsTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.1793510913848877,
+      "log_sha256": "8e1db53adee4a5ae4bca0417003b6a09d110c73208e6ed5f56a453d55dc24bff",
+      "source_sha256": "651d9546d6c396a16e48b63a00770cb73c12810792c177dd307858266949affd",
+      "native_summary_lines": [
+        "OPENPNP_VISION_SETTINGS_RESULT {\"passed\":[\"read-only native machine/package/part inheritance inventory\",\"whole-patch validation, stock immutability and unknown-field rejection\",\"native clone/assignment, exact inheritance, shared impact and immutable reviewed input\",\"stale native edit, referenced removal, kind mismatch, root and identity collisions reject\",\"fiducial configuration and explicit unused profile deletion\",\"allowlisted pipeline scalar edits, rejection boundaries and actual OpenCV positive/negative mask fixture\",\"native Configuration.save/load round-trip with no motion or feeds\"],\"upstream_commit\":\"5bd404cfc70f34103a3ca0fbb6b50c2b465f407c\",\"simulation_only\":true,\"physical_qualification\":false,\"camera_capture_performed\":false,\"feed_operations_performed\":0,\"image_evidence\":\"synthetic scalar OpenCV fixtures; no detector accuracy or independent inspection claim\"}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeVisionSettingsTest.log"
+    },
+    {
+      "main": "NativeVisionSettingsReviewTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.031959056854248,
+      "log_sha256": "244bf54a063e9a5984e7ab96c8f9cdd8177e88777be145bb35a6b8f2577df417",
+      "source_sha256": "ab92224b840e884b97267173923278c4ed4dafe488a9dc1045a11a33b111ad4a",
+      "native_summary_lines": [
+        "OPENPNP_VISION_REVIEW_RESULT {\"assertions\":112,\"groups\":[\"same-ID detached bottom/fiducial references on part, package and machine roots reject at admission and after preview\",\"same-ID detached Part.package admission and post-preview swap reject without repair\",\"describe preserves all native profile XML, pipeline/stage identities and parameter-targeted live scalar\",\"overridden direct edits reject; explicit native numeric/bool assignments execute and null restores native defaults\",\"every typed bottom/fiducial setting reads back without inferring physical qualification\"],\"expected_rejections\":[\"bottom/Part/admission:INVALID_VISION_REFERENCE\",\"bottom/Part/post-stage:INVALID_VISION_REFERENCE\",\"bottom/Package/admission:INVALID_VISION_REFERENCE\",\"bottom/Package/post-stage:INVALID_VISION_REFERENCE\",\"bottom/ReferenceBottomVision/admission:INVALID_VISION_REFERENCE\",\"bottom/ReferenceBottomVision/post-stage:INVALID_VISION_REFERENCE\",\"fiducial/Part/admission:INVALID_VISION_REFERENCE\",\"fiducial/Part/post-stage:INVALID_VISION_REFERENCE\",\"fiducial/Package/admission:INVALID_VISION_REFERENCE\",\"fiducial/Package/post-stage:INVALID_VISION_REFERENCE\",\"fiducial/ReferenceFiducialLocator/admission:INVALID_VISION_REFERENCE\",\"fiducial/ReferenceFiducialLocator/post-stage:INVALID_VISION_REFERENCE\",\"detached-package/admission:INVALID_VISION_REFERENCE\",\"detached-package/post-stage:INVALID_VISION_REFERENCE\",\"direct active parameter target:VISION_PARAMETER_OVERRIDDEN\",\"direct runtime Gaussian override:VISION_PARAMETER_OVERRIDDEN\"],\"native_numeric_parameter_applications\":2,\"native_boolean_parameter_applications\":2,\"pipeline_process_calls\":0,\"camera_capture_calls\":0,\"motion_calls\":0,\"feed_calls\":0,\"native_upstream_commit\":\"5bd404cfc70f34103a3ca0fbb6b50c2b465f407c\",\"physical_qualification\":false}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeVisionSettingsReviewTest.log"
+    },
+    {
+      "main": "NativeVisionIntegrationTest",
+      "exit_code": 0,
+      "elapsed_seconds": 0.8745429515838623,
+      "log_sha256": "0aab70028eb534fbaa1dcdf90884697a530022826abde29b220e8a3a1bfcf3c8",
+      "source_sha256": "1f81a5e2942a2cf9cee39315096bd73fe1425b6af50a101c7c0d3d19b8728a42",
+      "native_summary_lines": [
+        "OPENPNP_VISION_INTEGRATION_RESULT {\"assertions\":11,\"simulation_only\":true,\"physical_qualification\":false,\"motion_performed\":false,\"feed_operations_performed\":0}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeVisionIntegrationTest.log"
+    },
+    {
+      "main": "NativePlacementEditsTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.1431033611297607,
+      "log_sha256": "edc6333b0ee76edef17ee9f292f688dff900ec0673ea29e57c4c9fa93da40d1a",
+      "source_sha256": "2f494ddf5ce5e01937b6323ab90174314c308636fe9682d1fd2c009f7c2c4250",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_PLACEMENT_EDITS_RESULT {\"passed\":[\"read-only immutable preview, explicit inch/mm conversion, exact native part identity and single-use plan\",\"whole-batch rejection of late invalid parts, overlapping instance/shared edits and implicit machine coordinates\",\"job-local shared edits preserve sharing, bottom transforms, current/orphan history, outside jobs and native save/reload\",\"placed descendant blocks ambiguous shared history changes even when the anchor itself is pending\",\"nested instance geometry clones only required ancestor definitions and survives native reload with X-outs, overrides and fresh registration\",\"instance-only enable override uses native persistence without changing repeated sibling or shared geometry\",\"shared default update remains a real edit when every current instance already overrides that value\",\"derived native pseudo-fiducials regenerate after nested leaf edit, preserve siblings and persist; direct pseudo edit rejected\",\"real panel fiducial edits remain distinct from derived pseudo records and round-trip natively\",\"multilevel rotated pseudo derivation uses cloned parent relationships with independent golden coordinates and native round-trip\",\"stale plan detects changed placed status and native load geometry before publication\",\"no-op edits preserve placed history, existing native object identity and registration\",\"bounded typed edits reject nonfinite/out-of-range geometry, extra fields, oversized batches and preexisting unpersistable drift\",\"injected native setter/listener failure rolls back the original child tree, listeners and dirty flags and requires Bridge fencing\",\"successful replacement retires obsolete native instance listeners while preserving outside-job subscriptions and rollback subscriptions\",\"native duplicate references, custom root poses/outlines and post-preview shared-content changes reject before publication\",\"read-only native inspection pages every enabled/disabled/opposite-side/X-out/pseudo record with usable holder coordinates and complete history fingerprint\",\"inspection rejects invalid page ranges and returns explicit terminal pages without mutation\",\"native Configuration replacement invalidates an otherwise unchanged retained placement plan\"],\"count\":19,\"native_machine_enabled\":false,\"native_machine_homed\":false,\"motion_or_feed_methods_called_by_test\":false,\"physical_qualification\":false}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativePlacementEditsTest.log"
+    },
+    {
+      "main": "NativeCanonicalIdentityTest",
+      "exit_code": 0,
+      "elapsed_seconds": 0.7485048770904541,
+      "log_sha256": "ad830826fcc4641d866efa9b0c7f3e8f087b5cfc381c4ca3d5895a3625c42fe4",
+      "source_sha256": "772a0df7630f6098cbb0e857872215d40ca3002e06ee9c51107fe03ed61ed8e4",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_CANONICAL_IDENTITY_RESULT {\"assertions\":13,\"native_feed_effects\":0,\"simulation_only\":true}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeCanonicalIdentityTest.log"
+    },
+    {
+      "main": "NativeBoardLoadsTest",
+      "exit_code": 0,
+      "elapsed_seconds": 2.225270986557007,
+      "log_sha256": "b4221ee0e4449782d982b01d9f7bfd0b2c2a2963e480cbabd2d48ec55671699f",
+      "source_sha256": "3f100915aa13f90d6e2f642ae9f5e4c5d3c8523a63c63dd11ad4383ada5ebbb5",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_BOARD_LOADS_RESULT {\"passed\":[\"two actual native root instances are independently bound\",\"shared definition/repeated designator receives distinct simulator load identities\",\"repeated R1 designators have different loaded board identities\",\"actual native processor placed and fed two top-side parts\",\"native top-side placed states are retained per root\",\"native load refuses BOARD_LOAD_REVISION_CONFLICT\",\"stale load plan changes neither journal nor native side\",\"flip preserves both the flipped board identity and other root identity\",\"flip preserves completed top history while exposing native bottom side\",\"flip invalidates the native registration transform\",\"real bottom-side run adds one feed and placement without repeating completed top-side work\",\"replacement creates a distinct ledger and leaves another physical-simulated board alone\",\"replacement clears only selected subtree\\u0027s native history\",\"replacement consumes exactly one new native bottom-side part\",\"retired load retains both top and bottom completion history\",\"native load refuses BOARD_LOAD_REQUIRED\",\"restart refuses implicit board presence and does not alter durable bytes\",\"explicit same-load reattachment preserves IDs/history and performs no feed\",\"actual native side setter throws after durable load intent\",\"incomplete native change remains loading_unknown despite the changed model\",\"native load refuses BOARD_LOAD_UNKNOWN\",\"restart preserves unresolved loading intent and never replays a native feed\",\"agent input cannot make simulator loading physically verified\",\"actual native panel maps two child identities independently of repeated designators\",\"native panel executes one top and one globally bottom child placement\",\"panel flip preserves its panel load and every child board identity\",\"native parent flip composes child-side transforms including double reflection\",\"flipped native panel completes opposite child sides while preserving four distinct placement-history keys\"],\"assertions\":28,\"native_feed_effects\":8,\"completed_native_placements\":8,\"simulation_only\":true,\"physical_loading_verified\":false,\"process_crash_test\":false,\"journal\":\"<CANDIDATE>/validation/gui-build-21-native-tests/tmp/openpnp-native-board-loads-16555873462250751944/nested-loads.jsonl\"}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeBoardLoadsTest.log"
+    },
+    {
+      "main": "NativeBoardLoadBridgeTest",
+      "exit_code": 0,
+      "elapsed_seconds": 2.3301138877868652,
+      "log_sha256": "580c9ccc2079bbf43079607925b3df948e3bea0a7dd4145a702d064eb1d4f3e8",
+      "source_sha256": "a0090a4fe4369e76bf7d88e05b88589fcf1aaa7f8012500c014d86f6f1cbb815",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_BOARD_LOAD_BRIDGE_RESULT {\"passed\":[\"prepare returns two authoritative simulator-origin loads without physical verification\",\"actual native preflight binds current simulator load revision\",\"board-load revision advances independently of configuration revision\",\"flip invalidates prior job validation before any native placement\",\"stale expected load revision is rejected at admission\",\"stale admission creates no operation and consumes no material\",\"actual Bridge processor places exactly one bottom and one top part\",\"durable native completion binds actual loaded board identity\",\"durable native completion binds actual loaded board identity\",\"both native completed placements have scoped durable load checkpoints\",\"document reload and restart cannot infer current board presence\",\"unvalidated reload retains JOB_NOT_VALIDATED admission priority\",\"explicit same-load reattachment reconciles native saved history without replaying placements\",\"restart replays native checkpoint history from complete journal\"],\"assertions\":14,\"completed_native_placements\":2,\"native_feed_effects\":2,\"bridge_restarts\":1,\"physical_load_verified\":false,\"simulation_only\":true}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeBoardLoadBridgeTest.log"
+    },
+    {
+      "main": "NativeBoardLoadsReviewTest",
+      "exit_code": 0,
+      "elapsed_seconds": 1.1349592208862305,
+      "log_sha256": "fc6c1ad56b2e8558aa6ee5dbcde226408efa9f89f1cbbf292e7277095aaa43f7",
+      "source_sha256": "6549ce0a09b04c946967f88bb59d13af1eaa1363599bbcc994035960e294e48a",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_BOARD_LOAD_REVIEW_RESULT {\"passed\":[\"duplicate expanded IDs are refused before the durable sink\",\"ambiguous native history keys are refused before reset\",\"native parent links agree with the registered root\",\"pseudo metadata changes invalidate binding 0\",\"pseudo metadata changes invalidate binding 1\",\"pseudo metadata changes invalidate binding 2\",\"inline root changes cannot reuse load authority 0\",\"inline root changes cannot reuse load authority 1\",\"inline root changes cannot reuse load authority 2\",\"inline root changes cannot reuse load authority 3\",\"inline root changes cannot reuse load authority 4\",\"replacement scopes opaque history and preserves the retired ledger\",\"removed history cannot poison a durable checkpoint\",\"true-to-false history cannot erase a completed record\",\"opaque retained history remains in placement-capacity reservation\"],\"failed\":{},\"assertions\":54,\"native_model_only\":true,\"native_motion_effects\":0,\"native_feed_effects\":0,\"physical_loading_verified\":false,\"process_crash_test\":false,\"fixture_directory\":\"<CANDIDATE>/validation/gui-build-21-native-tests/tmp/openpnp-board-load-review-3361275970555331074\"}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeBoardLoadsReviewTest.log"
+    },
+    {
+      "main": "NativePortableConfigurationTest",
+      "exit_code": 0,
+      "elapsed_seconds": 10.627146005630493,
+      "log_sha256": "2a515084ed74f00377e4459c7bd1c735eacbbd82f47c536c9de436a4d652920e",
+      "source_sha256": "1bae82bce4f6666b3ca7e96fde5679907a2c6b0a5689414e05e14c5a9fd3472d",
+      "native_summary_lines": [
+        "OPENPNP_PORTABLE_SUITE_RESULT {\"phases\":8,\"actual_placements\":2,\"hardware_qualified\":false}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativePortableConfigurationTest.log"
+    },
+    {
+      "main": "NativePortableAllocationTest",
+      "exit_code": 0,
+      "elapsed_seconds": 4.260841131210327,
+      "log_sha256": "3a90ee346e43c7d6eccec8f45350dab80e26c95d67db4fae5f5f4add88685512",
+      "source_sha256": "85e97b0eaa635082e2614a848457409c71a6e5606b4fa422cafe8810c3865799",
+      "native_summary_lines": [
+        "OPENPNP_PORTABLE_ALLOCATION_RESULT {\"checks\":16,\"rejected_shapes\":7,\"native_feeds\":0,\"native_placements\":0,\"hardware_qualified\":false}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativePortableAllocationTest.log"
+    },
+    {
+      "main": "NativePortablePipelineTest",
+      "exit_code": 0,
+      "elapsed_seconds": 0.8295669555664062,
+      "log_sha256": "447d8bec9c517b0083e574c0d9665f043d1e42e86c368b4eb07abda85d5884b4",
+      "source_sha256": "af98ca8d2987791dab3c71fb29fc6598f70978081e23268e0fc17cbc3e18b470",
+      "native_summary_lines": [
+        "OPENPNP_STOCK_PIPELINE_PROFILES {\"openpnp-machine/machine/cameras/camera[org.openpnp.machine.reference.camera.SimulatedUpCamera]/advanced-calibration/pipeline\":[\"25f7c7404510b474e9302c036405a2d4ceba29e23735d4b0c7c3e2078f70f35c\"],\"openpnp-machine/machine/feeders/feeder[org.openpnp.machine.reference.feeder.ReferenceStripFeeder]/pipeline\":[\"688e75cc2f22973371cb0daa7143b9c4dcc8d088bdfe2fe789bb727893923d3f\"],\"openpnp-machine/machine/heads/head/cameras/camera[org.openpnp.machine.reference.camera.ImageCamera]/advanced-calibration/pipeline\":[\"25f7c7404510b474e9302c036405a2d4ceba29e23735d4b0c7c3e2078f70f35c\"],\"openpnp-machine/machine/nozzle-tips/nozzle-tip/calibration/pipeline\":[\"f63c7ec906e9ae8dcc121efa39ef51c34a59274670bb03c387a57213b900a8c1\"],\"openpnp-vision-settings/vision-settings[org.openpnp.model.BottomVisionSettings]/cv-pipeline\":[\"4e048f9fbd55f40b38b5e3f3e8dc6a14f662ffef5ad9dcdbd97fbdad9e36f975\",\"85ca4667cd719dc65e390bf8cb179b61e2e690f6271be9b40c7c0b2187d5a2c7\",\"b0657cf3566eb64b20b84d8fd826c71cff50cf1325d0b6016db1353f61d1ab9e\"],\"openpnp-vision-settings/vision-settings[org.openpnp.model.FiducialVisionSettings]/cv-pipeline\":[\"019eb7ec010806498e626dc6b313b2082d0984b1e44084b95eeab3df90373a9d\",\"3e38bbc102a215f11a75f5dfe80bf9675ec7a6f736eabf0d2ab2ae166f588fc6\"]}",
+        "OPENPNP_PORTABLE_PIPELINE_RESULT {\"checks\":173,\"contexts\":6,\"pipelines\":18,\"native_feeds\":0,\"native_placements\":0,\"hardware_qualified\":false}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativePortablePipelineTest.log"
+    },
+    {
+      "main": "NativePortableJourneyTest",
+      "exit_code": 0,
+      "elapsed_seconds": 17.196693658828735,
+      "log_sha256": "7956140036bb785ce532515f5208702fedc6766d0f11bf5c7b9993e2b4523a30",
+      "source_sha256": "8dd3b113364485a432a72e10596f7e39af382ae09672c1f0e12a79c32e93741b",
+      "native_summary_lines": [
+        "OPENPNP_PORTABLE_JOURNEY_RESULT {\"phases\":4,\"native_placements\":32,\"hardware_qualified\":false}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativePortableJourneyTest.log"
+    },
+    {
+      "main": "NativeCameraSettlingTest",
+      "exit_code": 0,
+      "elapsed_seconds": 2.879612922668457,
+      "log_sha256": "3c5c6280ea26bc9fcdd45da3218ae4ee5c16bea28b2b243eca103d4fe3e360de",
+      "source_sha256": "b5ecbc1405e918010a442549333cd046aadbd34aaef8eaa17f21ab685e80a773",
+      "native_summary_lines": [
+        "OPENPNP_CAMERA_SETTLING_SETTINGS_RESULT {\"checks\":85,\"groups\":[\"default camera identities, exact schema/integer/model boundaries, whole-patch rejection and unchanged calibration/geometry semantics\",\"all four dynamic methods on native head and machine cameras survive actual XML save/load with fixed dwell and geometry\",\"typed snapshot encode/decode restore including fixed/dynamic order, copied documents, strict late-row rejection and persisted restored values\",\"Motion and unsupported processing produce truthful omissions without changing native method or resetting to fixed dwell\",\"FixedTime snapshots explicitly omit four inactive dynamic parameters while restoring active method/dwell\",\"9999-row boundary aborts complete snapshot instead of publishing fixed fallback when dynamic append exceeds capacity\",\"fixed portable export still works; nonfixed export/adoption refuse while preserving source and destination absence\"],\"upstream_commit\":\"5bd404cfc70f34103a3ca0fbb6b50c2b465f407c\",\"native_camera_classes\":[\"org.openpnp.machine.reference.camera.ImageCamera\",\"org.openpnp.machine.reference.camera.SimulatedUpCamera\"],\"native_model_save_load\":true,\"native_camera_capture\":false,\"hardware_qualified\":false}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeCameraSettlingTest.log"
+    },
+    {
+      "main": "NativeCameraSettlingBridgeTest",
+      "exit_code": 0,
+      "elapsed_seconds": 3.328989028930664,
+      "log_sha256": "4f897b04e49ae58592b593da7e489258c805b45d0b4435be2b4c8024e2f6907b",
+      "source_sha256": "5b05d5c268d0d02913e1e0b6a4875e20fa34f80e2b377943bceab79b70e0e6c9",
+      "native_summary_lines": [
+        "OPENPNP_CAMERA_SETTLING_BRIDGE_RESULT {\"checks\":166,\"captures_with_verified_png\":18,\"additional_deduplicated_raw_capture\":1,\"native_camera_classes\":[\"org.openpnp.machine.reference.camera.ImageCamera\",\"org.openpnp.machine.reference.camera.SimulatedUpCamera\"],\"upstream_commit\":\"5bd404cfc70f34103a3ca0fbb6b50c2b465f407c\",\"native_feeds\":0,\"native_placements\":0,\"hardware_qualified\":false}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeCameraSettlingBridgeTest.log"
+    },
+    {
+      "main": "NativeMappedAxisBridgeTest",
+      "exit_code": 0,
+      "elapsed_seconds": 7.914076805114746,
+      "log_sha256": "43eb6c5594f1a2e4b6f0d45c46ff88926a0ddd1091cd707bd29011b51983e760",
+      "source_sha256": "23ac954d4227c2769133c522d6b42c128c253657445d506ab11d82f268c1ca4a",
+      "native_summary_lines": [
+        "OPENPNP_NATIVE_MAPPED_AXIS_RESULT {\"passed\":true,\"phases\":[{\"phase\":\"success\",\"passed\":true,\"exit_code\":0,\"forced_cleanup\":false,\"record\":{\"phase\":\"success\",\"passed\":true,\"assertions\":39,\"enable_events\":0,\"true_home_events\":0,\"head_activity_events\":0,\"native_placement_calls\":0,\"physical_qualification\":false,\"synthetic_validation_prerequisites\":true},\"log_sha256\":\"d69bcde179c3b200e32d95f968201b8ebd7bedcea906fc5437970bb8c6a593c3\"},{\"phase\":\"reload\",\"passed\":true,\"exit_code\":0,\"forced_cleanup\":false,\"record\":{\"phase\":\"reload\",\"passed\":true,\"assertions\":6,\"enable_events\":0,\"true_home_events\":0,\"head_activity_events\":0,\"native_placement_calls\":0,\"physical_qualification\":false,\"synthetic_validation_prerequisites\":true},\"log_sha256\":\"1a636a8ff06423762c172ecb9cb8ab45e921565b0509b2cd47bb0de580522376\"},{\"phase\":\"stale\",\"passed\":true,\"exit_code\":0,\"forced_cleanup\":false,\"record\":{\"phase\":\"stale\",\"passed\":true,\"assertions\":16,\"enable_events\":0,\"true_home_events\":0,\"head_activity_events\":0,\"native_placement_calls\":0,\"physical_qualification\":false,\"synthetic_validation_prerequisites\":true},\"log_sha256\":\"c75614b47e49799b9792f04a47d732d7f0038ca85a0978aafa3f045bd20929e5\"},{\"phase\":\"listener\",\"passed\":true,\"exit_code\":0,\"forced_cleanup\":false,\"record\":{\"phase\":\"listener\",\"passed\":true,\"assertions\":30,\"enable_events\":0,\"true_home_events\":0,\"head_activity_events\":0,\"native_placement_calls\":0,\"physical_qualification\":false,\"synthetic_validation_prerequisites\":true},\"log_sha256\":\"5fa3d93f70a8e3474ae291f27ee668767bfbdaf83e3216a9ff59c824739b4fec\"},{\"phase\":\"fatal\",\"passed\":true,\"exit_code\":0,\"forced_cleanup\":false,\"record\":{\"phase\":\"fatal\",\"passed\":true,\"assertions\":30,\"enable_events\":0,\"true_home_events\":0,\"head_activity_events\":0,\"native_placement_calls\":0,\"physical_qualification\":false,\"synthetic_validation_prerequisites\":true},\"log_sha256\":\"8c4735f916eee055d694d91651e28d490bc2e669f9b81dd9977c7976aa784d6f\"},{\"phase\":\"save-failure\",\"passed\":true,\"exit_code\":0,\"forced_cleanup\":false,\"record\":{\"phase\":\"save-failure\",\"passed\":true,\"assertions\":30,\"enable_events\":0,\"true_home_events\":0,\"head_activity_events\":0,\"native_placement_calls\":0,\"physical_qualification\":false,\"synthetic_validation_prerequisites\":true},\"log_sha256\":\"7857c224356638175c892e97da445f0c1198b93abf3d55a8b74b13e1bb1b23ff\"},{\"phase\":\"lifecycle\",\"passed\":true,\"exit_code\":0,\"forced_cleanup\":false,\"record\":{\"phase\":\"lifecycle\",\"passed\":true,\"assertions\":9,\"enable_events\":0,\"true_home_events\":0,\"head_activity_events\":0,\"native_placement_calls\":0,\"physical_qualification\":false,\"synthetic_validation_prerequisites\":true},\"log_sha256\":\"b520de86fac828aa544bcfac30dde993b5f132b3e00c2a19945135c42395cdec\"},{\"phase\":\"receipt-lock\",\"passed\":true,\"exit_code\":0,\"forced_cleanup\":false,\"record\":{\"phase\":\"receipt-lock\",\"passed\":true,\"assertions\":6,\"enable_events\":0,\"true_home_events\":0,\"head_activity_events\":0,\"native_placement_calls\":0,\"physical_qualification\":false,\"synthetic_validation_prerequisites\":true},\"log_sha256\":\"c22a7c45baae4251e88183977ce11ef8a627592a7ec5e3ee007ac1246060b36a\"}],\"assertions\":166,\"evidence_directory\":\"<CANDIDATE>/validation/gui-build-21-native-tests/tmp/openpnp-mapped-native-suite-4774410437199643739\",\"fresh_jvms\":8,\"hardware_qualified\":false,\"synthetic_validation_prerequisites\":true}"
+      ],
+      "raw_log": "validation/gui-build-21-native-tests/NativeMappedAxisBridgeTest.log"
+    },
+    {
+      "main": "NativeJobSteppingTest",
+      "exit_code": 0,
+      "elapsed_seconds": 4.966235160827637,
+      "log_sha256": "6fa7d72aeb62bab4b9f523c29bb1464d6511ac01ea32f96e87511004cc5bec0f",
+      "source_sha256": "5723528caf87acdc5b867a3763694681ede60dec04a68796697458b1dfa22688",
+      "native_summary_lines": [],
+      "raw_log": "validation/gui-build-21-native-tests/NativeJobSteppingTest.log"
+    },
+    {
+      "main": "NativeJobSteppingRaceTest",
+      "exit_code": 0,
+      "elapsed_seconds": 2.5818257331848145,
+      "log_sha256": "21c54d7207f6e2e74a2d72c6098f23fbea4289d45cc5f8512e111ec31ad43914",
+      "source_sha256": "cd812953547a1913d968e95f6329383668525dd09fb99a559802e560b34e3292",
+      "native_summary_lines": [],
+      "raw_log": "validation/gui-build-21-native-tests/NativeJobSteppingRaceTest.log"
+    }
+  ],
+  "simulation_only": true,
+  "physical_qualification": false,
+  "gui_tests_executed": false,
+  "crash_qualification": "separate canonical14case run against preserved build20; not rerun here",
+  "jvm_environment_sanitized": true,
+  "preferences_scope": "direct main JVMs use fresh in-memory PreferencesFactory and private user.home; child JVM inheritance is harness-specific",
+  "known_test_isolation_limit": "Three legacy restart/crash harnesses omit explicit preference-factory/user.home forwarding in child JVMs. Their test results remain valid; private OS preference storage is not claimed for those child JVMs. A scoped corrected rerun follows.",
+  "source_observation": {
+    "production_sources_match_build": true,
+    "executed_test_sources_match_build": true,
+    "input_manifest_sha256": "1cf37b5eaa19ed5dbe889b824c9ab950f3c525abe14a71e3ded54b91bd29a175",
+    "current_input_differences": [],
+    "declared_concurrent_change": "Only the unused NativeMappedAxisFixtureMain was temporarily edited after compile, then restored; compiled artifact and executed test sources stayed unchanged. Do not claim uninterrupted whole-source-tree immutability."
+  },
+  "bridge_class_entry_sha256": {
+    "org/openpnp/codex/Bridge$ConfigurationMutationFence.class": "17ffe8bb4c606a96492ab03cc132be3af3f2edaa9abdf296de16c75aefce944a",
+    "org/openpnp/codex/Bridge$Fault.class": "8dd09196009b6504c7abd7fef863b8cdc1016531835cbf232b4225e987d90781",
+    "org/openpnp/codex/Bridge.class": "49792844627f4cedce9bba0658d52e08deddaae66120adeb7ef0685e12ac1f03",
+    "org/openpnp/codex/BuildManifest.class": "b1a6fb0d7551057c2a9f62f96001a0f6bce0f91f935a4a69610eb525d330ed80",
+    "org/openpnp/codex/CanonicalJobImporter$PartSpec.class": "de662fc36130085571d3770a833556315ac70a065038a1226199003563615f0d",
+    "org/openpnp/codex/CanonicalJobImporter.class": "865b1f6cf0dae3d5173efe7f2adf435e4cf39db0367bb84b2a7e83752e98cc4c",
+    "org/openpnp/codex/GuiBootstrap.class": "e5720776a4b1b8c95f70b9612513842e628740a6ac5ed4a62fd60fc7dc0995c5",
+    "org/openpnp/codex/GuiExampleScripts.class": "43df6968bc69b8cddfeded5d85b810c95b4f49f4decbefc8a188fde863f3a704",
+    "org/openpnp/codex/GuiOwnership$ScriptRejected.class": "a1d6168f97a22cb99872cc6648560a21872fdc0a70eb24ddb56a164df8fb2c5b",
+    "org/openpnp/codex/GuiOwnership.class": "4ee3cdcb8634448bf7511b418331ecab59eb1427cbca523d749d63bd2b1459e0",
+    "org/openpnp/codex/GuiSimulatorController$1.class": "3fdf925b1a0f47bc986b7cfd547e6fb98674fea55d997eaccdcf04bb3eadbeb6",
+    "org/openpnp/codex/GuiSimulatorController$2.class": "bfdfd01e13013b2c9209d1d07e51d4978988e72b3e4d5f6e56fcb4fa61290468",
+    "org/openpnp/codex/GuiSimulatorController$Checked.class": "e81d6a0f2fdb03f2eb63657134f39a82b5a820ae69cc00405e8a0c799ac51eec",
+    "org/openpnp/codex/GuiSimulatorController.class": "e54db45862bb74d12ba6c201cfc4195e177e31400ac8a2da24814d2447285104",
+    "org/openpnp/codex/IsolatedPreferencesFactory$MemoryNode.class": "30a322b5d00d1fda25ed0ede5b4d73489bfa2f732ef77a860fbd10e18bc1198d",
+    "org/openpnp/codex/IsolatedPreferencesFactory.class": "b1167ab67784f02402c33aed9b0a9a29c1861fcb713a66e874fce5f2ed54f09f",
+    "org/openpnp/codex/NativeActionLedger$DurabilityFence.class": "3411032b8539db6132ba7a78a1e3fca44de1fa3b7227c6cc3720e6778d09c422",
+    "org/openpnp/codex/NativeActionLedger$Replay.class": "29728e28e36ad18a387522db1e31032f542501d81e6aa6b1e8c0fdd26dc55702",
+    "org/openpnp/codex/NativeActionLedger$Sink.class": "4e5e062953433ab6175e80174d1171cbf1b7b149ed7f7bf5936f6834e5d5bef9",
+    "org/openpnp/codex/NativeActionLedger$StepScope$1.class": "089465621104170cc8b1994fcdb6b64c7948e43a2c862a4ff4f1ea2082c9f95b",
+    "org/openpnp/codex/NativeActionLedger$StepScope.class": "83389879a623c689f67684b3fc8cbea973728962c67141c58d7001ebbe6b2bf4",
+    "org/openpnp/codex/NativeActionLedger$UnresolvedActionFence.class": "4c4da59dcff6bfbd5a005a17c022143a2cbb5d37f9badae8338b95e58d12e884",
+    "org/openpnp/codex/NativeActionLedger.class": "1c249533811752e427145681c5f0527dda80962387b24157f8a9e73d2d664b1c",
+    "org/openpnp/codex/NativeAdoptedSimulatorMain.class": "e9e32cbed3122d0bca9428729976e8b99e33d0231063f338743ac9c9fe842afa",
+    "org/openpnp/codex/NativeBoardLoads$Root.class": "91294091c1dcb0f2ce96d123918c02003ee5066e803b17633130dd76dabf16ab",
+    "org/openpnp/codex/NativeBoardLoads$Sink.class": "327b25699961614224ab0dfa72e802ebcfd76079afe8e5e7ac8fee6f3090bcfa",
+    "org/openpnp/codex/NativeBoardLoads.class": "f98bf75301ae4e82ed75b82f6a8011003de8a5f32af6d540e5ae4c53f7e95e29",
+    "org/openpnp/codex/NativeCameraSettling$Settings.class": "83ea2272b3e933cf3a4aac44a921b2004b9f697cd6e78be660d6acd6dd675da3",
+    "org/openpnp/codex/NativeCameraSettling.class": "9ca0ce8a502d8dbc6bd5a4eca15609cc198261fb674eee2ebd697d527bce0c99",
+    "org/openpnp/codex/NativeConfigurationSnapshots$Restore.class": "b98e9709af4404548ed02d178f00c283cc35959684da713f5d7a3a5937af2128",
+    "org/openpnp/codex/NativeConfigurationSnapshots$Snapshot.class": "a2abcca42a9ba4a7dc7c55fb7c9e6b5af82baad6f145a2be73efa88e3045f09e",
+    "org/openpnp/codex/NativeConfigurationSnapshots.class": "8a12c9ac31aa52017496a3b7f7d1c40624bf59496db0327973dafe51d8c6c262",
+    "org/openpnp/codex/NativeDocumentStore$PublicationProbe.class": "d959332c0917c8955907eb840355b4aaded5af85a713c709424c73a23bbbf239",
+    "org/openpnp/codex/NativeDocumentStore$Record.class": "55ba1572964dc60fde77ffccc30d21c14aecf832f4b23b109bdecc76541ad4e1",
+    "org/openpnp/codex/NativeDocumentStore.class": "0a1ee8cfe76dafced3bb33ec8a7eaf219b6aae679bc427e0b29aee331a823835",
+    "org/openpnp/codex/NativeJobDocuments$Graph.class": "79af70c6b31c0f3a759dd338efa1d682c15c2da7c1ac5ce1a255dbfbc23b7ca5",
+    "org/openpnp/codex/NativeJobDocuments$Receipt.class": "4b4292f1a9003f03710c43ed1896dac995dbcd8f2955a45aff9408179729bfff",
+    "org/openpnp/codex/NativeJobDocuments$Saved.class": "bb6a60b83f5bbdf3a21f2bf70bdeb48cedd4b06e32a3d04aa229ad58c30a4b70",
+    "org/openpnp/codex/NativeJobDocuments.class": "1f7c79e093557eaaaa6903fdbb5c7e68fe6bb3ec00e3cbb14819ab8e48d5d680",
+    "org/openpnp/codex/NativeJobPreflight$Review.class": "27f3e52164e5265000b6d77dfd6f3e0ab3851cb8d6d253da82909bf2969e912a",
+    "org/openpnp/codex/NativeJobPreflight.class": "b9bc1788da686b87ca271688198fc2eac635277357f7edbc94fe1c502c62ffdd",
+    "org/openpnp/codex/NativeMappedAxisSettings$Change.class": "7b71c7cabf7865fb6e4285be9378cfe32fc9d20e1bee86c46f41d51cdf682ecc",
+    "org/openpnp/codex/NativeMappedAxisSettings$Fault.class": "3ded5cff239792257b4332229bd8403c547814a6b30d3a5569d51f5276ba83ec",
+    "org/openpnp/codex/NativeMappedAxisSettings$Plan.class": "c14177fdf63691d04e7a6a739f9061979e1446129b53ce5ed7641c6427853e9e",
+    "org/openpnp/codex/NativeMappedAxisSettings$Snapshot.class": "05226f7bc655833c4831c4d569298ce714a7c839cd0b54e55a6418fdb28941ab",
+    "org/openpnp/codex/NativeMappedAxisSettings.class": "3fb1049f948f19e9081acba1011cd6ee80a9faab594ee6055499361ed9aabb38",
+    "org/openpnp/codex/NativePlacementEdits$Builder.class": "6d4b074194a6c4b31d413485a763004d8f0c84a982b1d73e47148a00f0500a0a",
+    "org/openpnp/codex/NativePlacementEdits$Edit.class": "1c255fc1a18466891174bfd8cdeb7b5c7b9b6a2cf987752be5f8bf4d7ef1e113",
+    "org/openpnp/codex/NativePlacementEdits$Fault.class": "159e752547ea192cd5768813b3bacac1de5b3079c6e659e5795d6dda4c8a5264",
+    "org/openpnp/codex/NativePlacementEdits$Graph.class": "421a674e14096f8ab5325abcbaa57048747fb69644bca9b69eab474b51faa6f1",
+    "org/openpnp/codex/NativePlacementEdits$Node.class": "ef0462da9b1e9a591817dacb160439a9d65be0efc76dd0cdb9f0e7c052704838",
+    "org/openpnp/codex/NativePlacementEdits$Patch.class": "e853f859692039b2cdf0af11c2d851823deb0c52ef9045549321737934a96fff",
+    "org/openpnp/codex/NativePlacementEdits$Spec.class": "6d6794481ca7b3bd254cf2676f70805111e0cfdf909e070892a424bd4142fd89",
+    "org/openpnp/codex/NativePlacementEdits$Value.class": "1661c1c4884d943dadd4dec51db811ecc90ea50e6e207e4556cea169c74539f2",
+    "org/openpnp/codex/NativePlacementEdits.class": "8f0ed671f0a933648352e9bb6c2596ca29939d835cb74058e8a3c95b3b31294e",
+    "org/openpnp/codex/NativePortableConfiguration$1.class": "473943df259fdd920234d8d8d925226c9f6e972f2f4efd3b05e15107208ec037",
+    "org/openpnp/codex/NativePortableConfiguration$Prepared.class": "2855a4ab93545c16537348d90b5a83fcafe71981b120c152bffdb24b0e3458ec",
+    "org/openpnp/codex/NativePortableConfiguration$ResourceMap.class": "c9f10904fe7f6868b8151454fb66c75a70386e2c441e507682c67ebe5bf895ba",
+    "org/openpnp/codex/NativePortableConfiguration$WriteProbe.class": "59d47a03483979245e8421c24a7c5fc244d2e7466fbd1f5c3ed08ceea96ff589",
+    "org/openpnp/codex/NativePortableConfiguration.class": "1f5be0b62e07d7f9b6019d583be8f3b2f89dea634c921d21d935fdb933dc9906",
+    "org/openpnp/codex/NativePortableConfigurationMain.class": "98885e0f450871f413e3ad36545dc1b0cc13592d5e9f6f9df95406522c3f7583",
+    "org/openpnp/codex/NativePortableLaunch.class": "a9ce851b780205ac17642f457a03f037bf85bc0095e0bd226a2f8b19905b7bd8",
+    "org/openpnp/codex/NativePortableLimits.class": "e5753f5c9719411f8545d59c0b32a87e89a13c8396972cf16a6e5e5258021576",
+    "org/openpnp/codex/NativePortablePipelines.class": "ac593493513e89d06023ff35296f988b51c08bc242a222cfe1457c54e94224d8",
+    "org/openpnp/codex/NativeSettings$Edit.class": "202635ee6da7c25c30f065a06bdc888c8efdaa2da7a3a3e626f72f156ea6e3cc",
+    "org/openpnp/codex/NativeSettings$Guard.class": "de67ac12b54920014f8954a6725f380948a16e71c3037ee112204cdf8d6ca97f",
+    "org/openpnp/codex/NativeSettings$Patch.class": "a6db43121d9fc29ca182c419c168440d11cc6997663712e12f8d7dc61d4c72bc",
+    "org/openpnp/codex/NativeSettings$Stager$PackageRef.class": "8e971f60aa4bfefe34d6ff7b61d684c66f5761c18c58cb7892fe34b1942f587a",
+    "org/openpnp/codex/NativeSettings$Stager$PartRef.class": "6f651f8e33c16666c48a1e152f67960c0899549fc876b1df6ff11f5e0bdbd3f1",
+    "org/openpnp/codex/NativeSettings$Stager.class": "b6967f71c6216673e0955d037b1a6eba92614f8167bd229e677f6099990e9ecf",
+    "org/openpnp/codex/NativeSettings.class": "1973533676b8e3a59c92a5d479198afc99c5e5d3713d3dcdd5dd741a3dd27f67",
+    "org/openpnp/codex/NativeVisionSettings$Holder.class": "4ac8b505101f9359a998bdb4482694ba1184422d53a6e01859558e2002a67c90",
+    "org/openpnp/codex/NativeVisionSettings$Patch.class": "635f1cc58df6820e01931987ed1746354984292d67c5e09354740ec62eb82326",
+    "org/openpnp/codex/NativeVisionSettings$State.class": "7d1908261d3f6d0cbd702febb3db12e7bc9dcbff0fe76fc6ee8fed0e3a7b81ad",
+    "org/openpnp/codex/NativeVisionSettings.class": "24593ea2e6c3eeacf95745fc97e69b9d5de2fa7ad433a5eaa143e9d68b0f0932",
+    "org/openpnp/codex/SimulatorMain.class": "8a9401fee2e6b098ce575c3d0ce6e4e1d596370a0c1f72528bbbf67d3bfc7aca"
+  },
+  "java_classfile_major_version": 55,
+  "runtime_files_verified": 110,
+  "build_manifest_sha256": "24faf30daffcfde659033dcc5f8a5e2bfaf89b0b34e90744e1b18e584c23d2a1",
+  "raw_receipt_sha256": "2e2ba1c8ba3ed5ba024c255ad407b6311f0c3f4a49bc5338487f083cc0357afb",
+  "raw_logs_scope": "private exact raw logs; public summary paths replaced with explicitly labelled placeholders",
+  "command": "python3 scripts/openpnp-test-native-candidate.py --build validation/gui-build-21 --java-home <JDK17> --run validation/gui-build-21-native-tests --test NativeActionLedgerTest --test NativeBridgeDocumentRestartTest --test NativeExecutorOwnershipTest --test NativeLedgerRecoveryTest --test NativeJournalInputBoundaryTest --test NativeEffectBoundaryTest --test NativeBridgeTest --test NativeCapabilityTest --test NativeRecoveryTest --test NativeBoundaryTest --test NativeImportBoundaryTest --test NativeTransformTest --test NativeGraphLimitsTest --test NativeStorageBoundaryTest --test NativeSettingsTest --test PlannerSettingsTest --test NativeConfigurationSnapshotsTest --test NativeConfigurationSnapshotsDecodeTest --test NativeJobPreflightTest --test NativeJobDocumentsTest --test NativeJobDocumentsRestartTest --test NativeDocumentStoreCrashTest --test NativeSustainedTest --test NativeVisionSettingsTest --test NativeVisionSettingsReviewTest --test NativeVisionIntegrationTest --test NativePlacementEditsTest --test NativeCanonicalIdentityTest --test NativeBoardLoadsTest --test NativeBoardLoadBridgeTest --test NativeBoardLoadsReviewTest --test NativePortableConfigurationTest --test NativePortableAllocationTest --test NativePortablePipelineTest --test NativePortableJourneyTest --test NativeCameraSettlingTest --test NativeCameraSettlingBridgeTest --test NativeMappedAxisBridgeTest --test NativeJobSteppingTest --test NativeJobSteppingRaceTest"
+}

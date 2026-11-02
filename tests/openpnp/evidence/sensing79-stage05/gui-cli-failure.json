@@ -1,0 +1,24 @@
+{
+  "status": "failed-preserved-real-cli-preparer-defect",
+  "install_exit_code": 0,
+  "launcher_exit_code": 1,
+  "owned_launcher_pid": 47563,
+  "owned_group_absent": true,
+  "forced_cleanup": false,
+  "source_edits": false,
+  "inputs_unchanged": true,
+  "input_count": 4323,
+  "native_main_launched": false,
+  "gui_interaction_performed": false,
+  "source_absent_restart_qualified": false,
+  "cause": "Shipped prepareArgs omits module opens: native Configuration.saveMachine cannot reflect java.awt.Color.value under JDK17.",
+  "minimal_proposed_fix": "Add the same three --add-opens options already used in Main launch to the GuiSensingFixture preparer JVM.",
+  "original_session": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/gui-cli79-native01/state/gui-simulators/gui-xShffL",
+  "preparer_failure": "private-evidence/reconciliation79-integration/validation/package79-staging05/validation/gui-cli79-native01/state/gui-simulators/gui-xShffL/sensing-preparation-failure.json",
+  "log_sha256": "afb0ad022bdb7d2053ae4d964eae03acfa201ffa2da5f6cd28bb01d0a37d1005",
+  "next_attempt_requires": "Fresh owned session with a newly frozen corrected launcher; retain this partial preparation unchanged.",
+  "public_export_provenance": {
+    "original_report_sha256": "70ed194f65b3cba2ebf92a94f392d689511d6b354ed82caed56dd1b3efa96436",
+    "transformation": "Private absolute root labels replaced; original result facts and artifact hashes retained. Paths beginning private-evidence/private-host are provenance labels, not repository files."
+  }
+}

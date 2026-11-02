@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "checked_at": "2026-09-11T23:23:32.642348+00:00",
+  "status": "unshipped-development",
+  "scope": "R08 native vacuum sensing foundations tested on the pinned actual OpenPnP simulator; no new public Bridge/MCP sensing capability.",
+  "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+  "platform": "macOS ARM64; JDK17 compiling Java11 bytecode",
+  "bridge_sha256": "e9727f9cc0c58cff639949d799dbd6edfe393f627a0832ff18601c921ece51d7",
+  "native_sha256": "d0cbaf1a7cc4b82cae6292c8f477b8650234eb7d6a6e304b9ea3dce92d828798",
+  "runtime_manifest_sha256": "f4991a96a3846cc07a81654c43e21c2b4e2e19553f9fcf59a4e683eb912d913b",
+  "build": {
+    "source_pairs": 55,
+    "test_source_files": 108,
+    "native_patches": 6,
+    "frozen_build_inputs": 170,
+    "inputs_unchanged": true,
+    "runtime_inventory_unchanged": true,
+    "source_manifest": "build-manifest.json"
+  },
+  "source_checkpoint": "src/openpnp/experiments/vacuum-sensing77/manifest.json",
+  "source_checkpoint_sha256": "0d5d9c7170d1ccdeb0b17e690140b285a76f687a4db0b91d2eed030ca3e5fb9e",
+  "overlay_files": 13,
+  "native_corresponding_sources": 4,
+  "focused": {
+    "passed": true,
+    "programs": 4,
+    "native_sensing_assertions": 362,
+    "settings_checks": 84,
+    "settings_fresh_JVM_reload": true,
+    "native_operations_assertions": 53,
+    "journal_reducer_checks": 105,
+    "journal_refusals": 57,
+    "receipt": "focused-results.json"
+  },
+  "journal_integration": {
+    "passed": true,
+    "cases": 9,
+    "assertions": 53,
+    "fresh_JVM_history_checks": 224,
+    "forced_records": 196,
+    "matched_native_action_pairs": 19,
+    "native_complete_hooks": 2,
+    "class_overlays": false,
+    "receipt": "journal-results.json",
+    "context": "Test-supplied logical job/load/material/lineage identifiers; no public Bridge authority binding."
+  },
+  "native_regression": {
+    "passed": true,
+    "programs": 82,
+    "receipt": "regression-results.json",
+    "loopback_listener_access_required": true,
+    "cleanup": "The runner closes each owned main/group; crash tests deliberately terminate child processes. No blanket natural-exit claim."
+  },
+  "retained_attempts": "retained-attempts.json",
+  "qualified_package": {
+    "baseline": "inspection75",
+    "changed": false,
+    "tools": 57,
+    "typed_changes": 33,
+    "skills": 14,
+    "bridge_sha256": "970e4635953f3bdc33499088ad560d6f6190d01e2285c152f6a56a109a7caf45",
+    "native_sha256": "810773c1defa9a0200cce437d3f426d4c08419fb3f471d693f9e5c5f38f78f0b"
+  },
+  "pending": [
+    "Public Bridge/MCP schemas, discovery and asynchronous operations",
+    "Authentic sessions/revisions/job/load/material/lineage binding",
+    "Attest sensing sources before native initialization or first feed",
+    "Invalidate old empty observations at configuration/source/native-action boundaries",
+    "Persistent occupancy reconciliation, takeover, cancellation and restart integration",
+    "Sensing-aware snapshots and guarded portable adoption",
+    "Release package provenance, GUI/MCP/Node/platform and skill workflow qualification",
+    "Broader pumps, Difference sensing, mapped axes/planners, pressure calibration and changers"
+  ],
+  "limitations": [
+    "Synthetic declared signal scenarios are not pneumatic physics or pressure accuracy",
+    "Current candidate is qualified here only for the listed native macOS component/regression tests",
+    "The failed performance target and continuous-endurance requirement remain open",
+    "Regression elapsed fields use wall-clock time and do not qualify latency or continuous duration"
+  ],
+  "hardware_available": false,
+  "physical_qualification": false,
+  "public_sensing_integration": false,
+  "full_requirement_passed": false,
+  "full_plan_complete": false,
+  "goal_status": "active"
+}

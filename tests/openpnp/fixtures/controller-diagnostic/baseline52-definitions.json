@@ -1,0 +1,4322 @@
+[
+  {
+    "name": "openpnp_get_capabilities",
+    "description": "Discover this bridge build, genuine simulator attestation, supported tools, and qualification limits before choosing a workflow.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "get capabilities",
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "mutating": false,
+    "offline": false
+  },
+  {
+    "name": "openpnp_get_status",
+    "description": "Observe machine and job state without enabling, moving, feeding, or probing the machine. Use view:progress for repeated polls and full for selected detailed snapshots. Native timestamps and unknown observations remain unchanged; progress does not archive full snapshots.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "view": {
+          "enum": [
+            "full",
+            "progress"
+          ],
+          "default": "full",
+          "description": "Use progress for repeated polls: bounded native state, IDs, counters, faults and supplied freshness, without retaining a full snapshot. Full (default) returns complete details with exact retained pagination when large. Read full once at pause/terminal for evidence; that read is a new observation."
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "get status",
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "mutating": false,
+    "offline": false
+  },
+  {
+    "name": "openpnp_get_configuration",
+    "description": "Read a native configuration snapshot and its revision; this does not save or modify configuration.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "get configuration",
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "mutating": false,
+    "offline": false
+  },
+  {
+    "name": "openpnp_request_control_session",
+    "description": "Acquire a bounded native ownership lease. Automatic grant is limited to the native simulator; physical control requires the bridge local grant workflow.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "ttl_seconds": {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 600
+        }
+      },
+      "required": [
+        "request_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "request control session",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_get_control_session",
+    "description": "Read the native ownership lease and epoch without acquiring control.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "get control session",
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "mutating": false,
+    "offline": false
+  },
+  {
+    "name": "openpnp_get_request_status",
+    "description": "Reconcile a request by its original request ID after a lost response. Never generate a new ID to retry an unknown action. Use view:progress while polling, then full once when paused or terminal to retain complete evidence.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "view": {
+          "enum": [
+            "full",
+            "progress"
+          ],
+          "default": "full",
+          "description": "Use progress for repeated polls: bounded native state, IDs, counters, faults and supplied freshness, without retaining a full snapshot. Full (default) returns complete details with exact retained pagination when large. Read full once at pause/terminal for evidence; that read is a new observation."
+        }
+      },
+      "required": [
+        "request_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "get request status",
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "mutating": false,
+    "offline": false
+  },
+  {
+    "name": "openpnp_renew_control_session",
+    "description": "Renew the existing native ownership lease.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "ttl_seconds": {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 600
+        }
+      },
+      "required": [
+        "session_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "renew control session",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_release_control_session",
+    "description": "Release the existing native ownership lease.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      },
+      "required": [
+        "session_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "release control session",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_set_machine_enabled",
+    "description": "Request machine enable or disable under native ownership. Disabling is not a hardware emergency stop.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        },
+        "enabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id",
+        "enabled"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "set machine enabled",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_home_machine",
+    "description": "Run the qualified native homing sequence, which can move axes. Returns an operation to observe.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "home machine",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_plan_motion",
+    "description": "Validate and preview an absolute pose in the native machine frame under an existing session. Does not move. Execution rechecks state and ownership.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        },
+        "tool_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "x": {
+          "type": "number"
+        },
+        "y": {
+          "type": "number"
+        },
+        "z": {
+          "type": "number"
+        },
+        "rotation": {
+          "type": "number"
+        },
+        "units": {
+          "const": "mm"
+        },
+        "speed": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 1
+        }
+      },
+      "required": [
+        "session_id",
+        "x",
+        "y",
+        "z",
+        "units"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "plan motion",
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "mutating": false,
+    "offline": false
+  },
+  {
+    "name": "openpnp_execute_motion",
+    "description": "Execute a native validated motion plan using its plan ID. Never reconstruct or retry a lost physical action.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        },
+        "plan_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id",
+        "plan_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "execute motion",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_capture_camera",
+    "description": "Capture a native raw or settled camera frame with camera and capture provenance through the native executor. Returns an operation and artifact.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        },
+        "camera_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "mode": {
+          "enum": [
+            "raw",
+            "settled"
+          ],
+          "default": "raw"
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "capture camera",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_get_operation",
+    "description": "Observe an admitted operation through completion, failure, or outcome-unknown. Use view:progress for polling, then full once when paused or terminal for complete evidence. While running, an earlier result can remain from a prior pause; get_status.job_progress provides separately timestamped counts. Client cancellation does not stop physical motion.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "operation_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "view": {
+          "enum": [
+            "full",
+            "progress"
+          ],
+          "default": "full",
+          "description": "Use progress for repeated polls: bounded native state, IDs, counters, faults and supplied freshness, without retaining a full snapshot. Full (default) returns complete details with exact retained pagination when large. Read full once at pause/terminal for evidence; that read is a new observation."
+        }
+      },
+      "required": [
+        "operation_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "get operation",
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "mutating": false,
+    "offline": false
+  },
+  {
+    "name": "openpnp_get_events",
+    "description": "Read sequenced native events. On resync_required, reread authoritative snapshots instead of inferring missing state.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "after_sequence": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 500
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "get events",
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "mutating": false,
+    "offline": false
+  },
+  {
+    "name": "openpnp_prepare_job",
+    "description": "Prepare a native OpenPnP job from the bundled pnp-test fixture or a previously imported canonical artifact. Native validation requires compatible packages, tooling, and feeders. This does not start production.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        },
+        "sample": {
+          "const": "pnp-test"
+        },
+        "artifact_id": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id"
+      ],
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "properties": {
+            "sample": {
+              "const": "pnp-test"
+            }
+          },
+          "required": [
+            "sample"
+          ]
+        },
+        {
+          "properties": {
+            "artifact_id": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "artifact_id"
+          ]
+        }
+      ]
+    },
+    "annotations": {
+      "title": "prepare job",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_validate_job",
+    "description": "Check the currently loaded native job model and return an operation with prerequisites. The native processor performs its own preflight when the job starts; model validation does not prove placement quality.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "validate job",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_save_job",
+    "description": "Save the current job and its referenced native board/panel definitions as a hash-verified document bundle. Preserves placed history and static transforms. This does not create a portable machine backup.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "save job",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_load_job",
+    "description": "Reload a native document bundle saved in this installation’s owned document store, including after a bridge restart. Verifies its private receipt and component dependencies, preserves recorded placement history, and requires fresh job validation and alignment. Accepts an artifact ID, never a path or arbitrary XML.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        },
+        "artifact_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id",
+        "artifact_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "load job",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_get_board_loads",
+    "description": "Read native root and descendant board-load identities, job and load revisions, facing sides, retained history, and required presence confirmations. Simulator records do not verify a physical board or underside clearance.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {},
+      "required": [],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "get board loads",
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "mutating": false,
+    "offline": false
+  },
+  {
+    "name": "openpnp_register_board_load",
+    "description": "Record an explicit simulator board replacement, flip, or same-load confirmation for an exact current native root. Requires the current load revision and, for any existing binding or flip/same-load, its expected_load_id. Returns an operation; invalidates registration and production validation. This records operator intent without verifying physical presence, clearance, or undoing placed material.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        },
+        "expected_board_load_revision": {
+          "type": "string",
+          "pattern": "^load-[0-9]+$",
+          "maxLength": 64
+        },
+        "job_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "root_instance_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128,
+          "pattern": "^[^⇒\\u0000]+$"
+        },
+        "action": {
+          "enum": [
+            "replace",
+            "flip",
+            "same-load"
+          ]
+        },
+        "side": {
+          "enum": [
+            "top",
+            "bottom"
+          ]
+        },
+        "expected_load_id": {
+          "type": "string",
+          "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id",
+        "expected_config_revision",
+        "expected_board_load_revision",
+        "job_id",
+        "root_instance_id",
+        "action",
+        "side"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "flip",
+                  "same-load"
+                ]
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "then": {
+            "properties": {
+              "expected_load_id": {
+                "type": "string",
+                "pattern": "^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$"
+              }
+            },
+            "required": [
+              "expected_load_id"
+            ]
+          }
+        }
+      ]
+    },
+    "annotations": {
+      "title": "register board load",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_inspect_job",
+    "description": "Read a native executor-owned page of all real and derived placement records, including disabled holders, opposite sides, panel fiducials, X-outs and placed history. Returns an operation with exact native IDs and holder-local mm/degrees. Use current job/configuration/load revisions and the first page’s source_fingerprint as expected_source_fingerprint on later pages. Derived pseudo records are read-only. Does not change native job fields, move, or feed; the request receipt is retained.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        },
+        "job_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_job_revision": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "expected_board_load_revision": {
+          "type": "string",
+          "pattern": "^load-[0-9]+$",
+          "maxLength": 64
+        },
+        "expected_source_fingerprint": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "offset": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10000,
+          "default": 0
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 200,
+          "default": 100
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id",
+        "expected_config_revision",
+        "job_id",
+        "expected_job_revision",
+        "expected_board_load_revision"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "inspect job",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_plan_placement_edits",
+    "description": "Admit an executor-owned preview of typed edits to existing native placements. Returns an operation whose completed result contains plan_id and every affected instance. Bind exact current job/configuration/load revisions. job_instance affects one expanded holder; job_shared_definition affects its shared definition within this job. Coordinates are explicit local holder mm/in and degrees. No placement fields, machine position, feeds, or files change during planning; the request and plan receipt are retained.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        },
+        "job_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_job_revision": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "expected_board_load_revision": {
+          "type": "string",
+          "pattern": "^load-[0-9]+$",
+          "maxLength": 64
+        },
+        "changes": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1000,
+          "items": {
+            "type": "object",
+            "properties": {
+              "scope": {
+                "enum": [
+                  "job_instance",
+                  "job_shared_definition"
+                ]
+              },
+              "holder_instance_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 2048,
+                "pattern": "^[^\\u0000]+$"
+              },
+              "placement_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128,
+                "pattern": "^[^⇒\\u0000]+$"
+              },
+              "set": {
+                "type": "object",
+                "properties": {
+                  "location": {
+                    "oneOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "frame": {
+                            "const": "holder"
+                          },
+                          "units": {
+                            "const": "mm"
+                          },
+                          "x": {
+                            "type": "number",
+                            "minimum": -10000,
+                            "maximum": 10000
+                          },
+                          "y": {
+                            "type": "number",
+                            "minimum": -10000,
+                            "maximum": 10000
+                          },
+                          "z": {
+                            "type": "number",
+                            "minimum": -1000,
+                            "maximum": 1000
+                          },
+                          "rotation": {
+                            "type": "number",
+                            "minimum": -360,
+                            "maximum": 360
+                          }
+                        },
+                        "required": [
+                          "frame",
+                          "units",
+                          "x",
+                          "y",
+                          "z",
+                          "rotation"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "frame": {
+                            "const": "holder"
+                          },
+                          "units": {
+                            "const": "in"
+                          },
+                          "x": {
+                            "type": "number",
+                            "minimum": -393.7007874015748,
+                            "maximum": 393.7007874015748
+                          },
+                          "y": {
+                            "type": "number",
+                            "minimum": -393.7007874015748,
+                            "maximum": 393.7007874015748
+                          },
+                          "z": {
+                            "type": "number",
+                            "minimum": -39.37007874015748,
+                            "maximum": 39.37007874015748
+                          },
+                          "rotation": {
+                            "type": "number",
+                            "minimum": -360,
+                            "maximum": 360
+                          }
+                        },
+                        "required": [
+                          "frame",
+                          "units",
+                          "x",
+                          "y",
+                          "z",
+                          "rotation"
+                        ],
+                        "additionalProperties": false
+                      }
+                    ]
+                  },
+                  "side": {
+                    "enum": [
+                      "Top",
+                      "Bottom"
+                    ]
+                  },
+                  "type": {
+                    "enum": [
+                      "Placement",
+                      "Fiducial"
+                    ]
+                  },
+                  "part_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128,
+                    "pattern": "^[^\\u0000]+$"
+                  },
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "error_handling": {
+                    "enum": [
+                      "Default",
+                      "Alert",
+                      "Defer"
+                    ]
+                  },
+                  "comments": {
+                    "type": "string",
+                    "maxLength": 2048,
+                    "pattern": "^[^\\u0000]*$"
+                  },
+                  "rank": {
+                    "type": "integer",
+                    "minimum": -100000,
+                    "maximum": 100000
+                  }
+                },
+                "required": [],
+                "additionalProperties": false,
+                "minProperties": 1
+              }
+            },
+            "required": [
+              "scope",
+              "holder_instance_id",
+              "placement_id",
+              "set"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id",
+        "expected_config_revision",
+        "job_id",
+        "expected_job_revision",
+        "expected_board_load_revision",
+        "changes"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "plan placement edits",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_apply_placement_edits",
+    "description": "Apply a reviewed native placement plan once under the same job, configuration, load revision and owner. Returns an operation. Changed placed records are rejected; unchanged history is preserved. Copies required shared definitions within this job, invalidates registration/validation and board-load bindings, and requires explicit load confirmation or replacement before production. Save the document separately. Does not move or feed the machine.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        },
+        "job_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_job_revision": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "expected_board_load_revision": {
+          "type": "string",
+          "pattern": "^load-[0-9]+$",
+          "maxLength": 64
+        },
+        "plan_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id",
+        "expected_config_revision",
+        "job_id",
+        "expected_job_revision",
+        "expected_board_load_revision",
+        "plan_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "apply placement edits",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_plan_placement_structure",
+    "description": "Preview adding or removing real placements/fiducials on existing boards in a trusted unused simulator job. Returns an operation whose completed result binds a plan, exact lineage/revision and every affected instance. Requires disabled machine, empty nozzles, complete empty current/retired native history and no prior processor admission. New records require every placement field and an existing part/package. Native coordinates are local holder mm/in and degrees. Pseudo-dependent removal, panel structural edits, renaming and reused logical IDs are refused. Planning retains a receipt without publishing placements.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        },
+        "job_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_job_revision": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "expected_board_load_revision": {
+          "type": "string",
+          "pattern": "^load-[0-9]+$",
+          "maxLength": 64
+        },
+        "changes": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 100,
+          "items": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "action": {
+                    "const": "add"
+                  },
+                  "scope": {
+                    "enum": [
+                      "job_instance",
+                      "job_shared_definition"
+                    ]
+                  },
+                  "holder_instance_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 2048,
+                    "pattern": "^[^\\u0000]+$"
+                  },
+                  "placement_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128,
+                    "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,127}$"
+                  },
+                  "placement": {
+                    "type": "object",
+                    "properties": {
+                      "location": {
+                        "oneOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "frame": {
+                                "const": "holder"
+                              },
+                              "units": {
+                                "const": "mm"
+                              },
+                              "x": {
+                                "type": "number",
+                                "minimum": -10000,
+                                "maximum": 10000
+                              },
+                              "y": {
+                                "type": "number",
+                                "minimum": -10000,
+                                "maximum": 10000
+                              },
+                              "z": {
+                                "type": "number",
+                                "minimum": -1000,
+                                "maximum": 1000
+                              },
+                              "rotation": {
+                                "type": "number",
+                                "minimum": -360,
+                                "maximum": 360
+                              }
+                            },
+                            "required": [
+                              "frame",
+                              "units",
+                              "x",
+                              "y",
+                              "z",
+                              "rotation"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "frame": {
+                                "const": "holder"
+                              },
+                              "units": {
+                                "const": "in"
+                              },
+                              "x": {
+                                "type": "number",
+                                "minimum": -393.7007874015748,
+                                "maximum": 393.7007874015748
+                              },
+                              "y": {
+                                "type": "number",
+                                "minimum": -393.7007874015748,
+                                "maximum": 393.7007874015748
+                              },
+                              "z": {
+                                "type": "number",
+                                "minimum": -39.37007874015748,
+                                "maximum": 39.37007874015748
+                              },
+                              "rotation": {
+                                "type": "number",
+                                "minimum": -360,
+                                "maximum": 360
+                              }
+                            },
+                            "required": [
+                              "frame",
+                              "units",
+                              "x",
+                              "y",
+                              "z",
+                              "rotation"
+                            ],
+                            "additionalProperties": false
+                          }
+                        ]
+                      },
+                      "side": {
+                        "enum": [
+                          "Top",
+                          "Bottom"
+                        ]
+                      },
+                      "type": {
+                        "enum": [
+                          "Placement",
+                          "Fiducial"
+                        ]
+                      },
+                      "part_id": {
+                        "type": "string",
+                        "minLength": 1,
+                        "maxLength": 128,
+                        "pattern": "^[^\\u0000]+$"
+                      },
+                      "enabled": {
+                        "type": "boolean"
+                      },
+                      "error_handling": {
+                        "enum": [
+                          "Default",
+                          "Alert",
+                          "Defer"
+                        ]
+                      },
+                      "comments": {
+                        "type": "string",
+                        "maxLength": 2048,
+                        "pattern": "^[^\\u0000]*$"
+                      },
+                      "rank": {
+                        "type": "integer",
+                        "minimum": -100000,
+                        "maximum": 100000
+                      }
+                    },
+                    "required": [
+                      "location",
+                      "side",
+                      "type",
+                      "part_id",
+                      "enabled",
+                      "error_handling",
+                      "comments",
+                      "rank"
+                    ],
+                    "additionalProperties": false,
+                    "minProperties": 1
+                  }
+                },
+                "required": [
+                  "action",
+                  "scope",
+                  "holder_instance_id",
+                  "placement_id",
+                  "placement"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "action": {
+                    "const": "remove"
+                  },
+                  "scope": {
+                    "enum": [
+                      "job_instance",
+                      "job_shared_definition"
+                    ]
+                  },
+                  "holder_instance_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 2048,
+                    "pattern": "^[^\\u0000]+$"
+                  },
+                  "placement_id": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128,
+                    "pattern": "^[^⇒\\u0000]+$"
+                  }
+                },
+                "required": [
+                  "action",
+                  "scope",
+                  "holder_instance_id",
+                  "placement_id"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id",
+        "expected_config_revision",
+        "job_id",
+        "expected_job_revision",
+        "expected_board_load_revision",
+        "changes"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "plan placement structure",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_apply_placement_structure",
+    "description": "Apply a reviewed structure plan once under the same native job/configuration/load/lineage and owner. Durably reserves touched logical IDs before publishing a detached job tree; invalidates job validation, cached plans, registration and load bindings. Pending or uncertain publication retains its reservation and cannot be retried. Save separately and explicitly rebind loads before revalidation. Does not move, feed, reset placed history or qualify hardware. Old documents and jobs without trusted unused lineage are refused.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        },
+        "job_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_job_revision": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "expected_board_load_revision": {
+          "type": "string",
+          "pattern": "^load-[0-9]+$",
+          "maxLength": 64
+        },
+        "plan_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id",
+        "expected_config_revision",
+        "job_id",
+        "expected_job_revision",
+        "expected_board_load_revision",
+        "plan_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "apply placement structure",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_start_job",
+    "description": "Start the selected validated native job under the existing control lease, returning an operation ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        },
+        "job_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id",
+        "job_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "start job",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_step_job",
+    "description": "Advance exactly one native processor next() call in the simulator, then wait for native standstill and return a paused or completed operation. A native step can include multiple motions/actions or no placement. Supply job_id to begin a validated job, or operation_id to advance its paused operation; choose exactly one and bind the current configuration revision. Reuse the original operation throughout the job. Repeated request IDs return its receipt without advancing again. Unknown outcomes require reconciliation.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        },
+        "job_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "operation_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id",
+        "expected_config_revision"
+      ],
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "properties": {
+            "job_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            }
+          },
+          "required": [
+            "job_id"
+          ]
+        },
+        {
+          "properties": {
+            "operation_id": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 128
+            }
+          },
+          "required": [
+            "operation_id"
+          ]
+        }
+      ]
+    },
+    "annotations": {
+      "title": "step job",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_pause_job",
+    "description": "pause the native job at its supported cooperative boundary; observe the returned state.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        },
+        "operation_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id",
+        "operation_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "pause job",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_resume_job",
+    "description": "resume the native job at its supported cooperative boundary; observe the returned state.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        },
+        "operation_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id",
+        "operation_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "resume job",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_abort_job",
+    "description": "Abort the native job; cleanup can move axes and discard parts. This is not an emergency stop.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        },
+        "operation_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id",
+        "operation_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "abort job",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_plan_configuration",
+    "description": "Stage a revision-bound patch of supported native settings and shared-reference effects. Changes use explicit mm/degrees and replace the named setting group. Vision settings require a separate vision-only patch. Mapped-axis geometry requires a separate plan containing exactly one change; supported existing native links and transformed limits are revalidated before application. Native validation checks the whole patch before applying anything. No settings are applied by planning.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        },
+        "changes": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 50,
+          "items": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "set_part_height"
+                  },
+                  "part_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "height_mm": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 50
+                  }
+                },
+                "required": [
+                  "type",
+                  "part_id",
+                  "height_mm"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "assign_feeder"
+                  },
+                  "feeder_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "part_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  }
+                },
+                "required": [
+                  "type",
+                  "feeder_id",
+                  "part_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "set_feeder_enabled"
+                  },
+                  "feeder_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "enabled": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "type",
+                  "feeder_id",
+                  "enabled"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "set_machine_speed"
+                  },
+                  "speed": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 1
+                  }
+                },
+                "required": [
+                  "type",
+                  "speed"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "create_package"
+                  },
+                  "package_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "description": {
+                    "type": "string",
+                    "maxLength": 1024,
+                    "pattern": "^[^\\u0000-\\u001f\\u007f]*$"
+                  },
+                  "body_width_mm": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 100
+                  },
+                  "body_height_mm": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 100
+                  },
+                  "pads": {
+                    "type": "array",
+                    "maxItems": 256,
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                        },
+                        "x_mm": {
+                          "type": "number",
+                          "minimum": -100,
+                          "maximum": 100
+                        },
+                        "y_mm": {
+                          "type": "number",
+                          "minimum": -100,
+                          "maximum": 100
+                        },
+                        "width_mm": {
+                          "type": "number",
+                          "minimum": 0.001,
+                          "maximum": 100
+                        },
+                        "height_mm": {
+                          "type": "number",
+                          "minimum": 0.001,
+                          "maximum": 100
+                        },
+                        "rotation_deg": {
+                          "type": "number",
+                          "minimum": -360,
+                          "maximum": 360
+                        },
+                        "roundness": {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 100
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "x_mm",
+                        "y_mm",
+                        "width_mm",
+                        "height_mm",
+                        "rotation_deg",
+                        "roundness"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": [
+                  "type",
+                  "package_id",
+                  "description",
+                  "body_width_mm",
+                  "body_height_mm",
+                  "pads"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "set_package_footprint"
+                  },
+                  "package_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "description": {
+                    "type": "string",
+                    "maxLength": 1024,
+                    "pattern": "^[^\\u0000-\\u001f\\u007f]*$"
+                  },
+                  "body_width_mm": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 100
+                  },
+                  "body_height_mm": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 100
+                  },
+                  "pads": {
+                    "type": "array",
+                    "maxItems": 256,
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                        },
+                        "x_mm": {
+                          "type": "number",
+                          "minimum": -100,
+                          "maximum": 100
+                        },
+                        "y_mm": {
+                          "type": "number",
+                          "minimum": -100,
+                          "maximum": 100
+                        },
+                        "width_mm": {
+                          "type": "number",
+                          "minimum": 0.001,
+                          "maximum": 100
+                        },
+                        "height_mm": {
+                          "type": "number",
+                          "minimum": 0.001,
+                          "maximum": 100
+                        },
+                        "rotation_deg": {
+                          "type": "number",
+                          "minimum": -360,
+                          "maximum": 360
+                        },
+                        "roundness": {
+                          "type": "number",
+                          "minimum": 0,
+                          "maximum": 100
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "x_mm",
+                        "y_mm",
+                        "width_mm",
+                        "height_mm",
+                        "rotation_deg",
+                        "roundness"
+                      ],
+                      "additionalProperties": false
+                    }
+                  }
+                },
+                "required": [
+                  "type",
+                  "package_id",
+                  "description",
+                  "body_width_mm",
+                  "body_height_mm",
+                  "pads"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "create_part"
+                  },
+                  "part_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "package_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "name": {
+                    "type": "string",
+                    "maxLength": 1024,
+                    "pattern": "^[^\\u0000-\\u001f\\u007f]*$"
+                  },
+                  "height_mm": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 50
+                  },
+                  "speed": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 1
+                  }
+                },
+                "required": [
+                  "type",
+                  "part_id",
+                  "package_id",
+                  "name",
+                  "height_mm",
+                  "speed"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "set_part_properties"
+                  },
+                  "part_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "package_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "name": {
+                    "type": "string",
+                    "maxLength": 1024,
+                    "pattern": "^[^\\u0000-\\u001f\\u007f]*$"
+                  },
+                  "height_mm": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 50
+                  },
+                  "speed": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 1
+                  }
+                },
+                "required": [
+                  "type",
+                  "part_id",
+                  "package_id",
+                  "name",
+                  "height_mm",
+                  "speed"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "set_package_compatibility"
+                  },
+                  "package_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "nozzle_tip_ids": {
+                    "type": "array",
+                    "maxItems": 64,
+                    "uniqueItems": true,
+                    "items": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                    }
+                  }
+                },
+                "required": [
+                  "type",
+                  "package_id",
+                  "nozzle_tip_ids"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "set_tray_feeder_geometry"
+                  },
+                  "feeder_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "location": {
+                    "type": "object",
+                    "properties": {
+                      "x_mm": {
+                        "type": "number",
+                        "minimum": -1000,
+                        "maximum": 1000
+                      },
+                      "y_mm": {
+                        "type": "number",
+                        "minimum": -1000,
+                        "maximum": 1000
+                      },
+                      "z_mm": {
+                        "type": "number",
+                        "minimum": -100,
+                        "maximum": 100
+                      },
+                      "rotation_deg": {
+                        "type": "number",
+                        "minimum": -360,
+                        "maximum": 360
+                      }
+                    },
+                    "required": [
+                      "x_mm",
+                      "y_mm",
+                      "z_mm",
+                      "rotation_deg"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "count_x": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100
+                  },
+                  "count_y": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100
+                  },
+                  "pitch_x_mm": {
+                    "type": "number",
+                    "minimum": -100,
+                    "maximum": 100
+                  },
+                  "pitch_y_mm": {
+                    "type": "number",
+                    "minimum": -100,
+                    "maximum": 100
+                  },
+                  "feed_count": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 10000
+                  }
+                },
+                "required": [
+                  "type",
+                  "feeder_id",
+                  "location",
+                  "count_x",
+                  "count_y",
+                  "pitch_x_mm",
+                  "pitch_y_mm",
+                  "feed_count"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "set_strip_feeder_geometry"
+                  },
+                  "feeder_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "location": {
+                    "type": "object",
+                    "properties": {
+                      "x_mm": {
+                        "type": "number",
+                        "minimum": -1000,
+                        "maximum": 1000
+                      },
+                      "y_mm": {
+                        "type": "number",
+                        "minimum": -1000,
+                        "maximum": 1000
+                      },
+                      "z_mm": {
+                        "type": "number",
+                        "minimum": -100,
+                        "maximum": 100
+                      },
+                      "rotation_deg": {
+                        "type": "number",
+                        "minimum": -360,
+                        "maximum": 360
+                      }
+                    },
+                    "required": [
+                      "x_mm",
+                      "y_mm",
+                      "z_mm",
+                      "rotation_deg"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "reference_hole": {
+                    "type": "object",
+                    "properties": {
+                      "x_mm": {
+                        "type": "number",
+                        "minimum": -1000,
+                        "maximum": 1000
+                      },
+                      "y_mm": {
+                        "type": "number",
+                        "minimum": -1000,
+                        "maximum": 1000
+                      },
+                      "z_mm": {
+                        "type": "number",
+                        "minimum": -100,
+                        "maximum": 100
+                      },
+                      "rotation_deg": {
+                        "type": "number",
+                        "minimum": -360,
+                        "maximum": 360
+                      }
+                    },
+                    "required": [
+                      "x_mm",
+                      "y_mm",
+                      "z_mm",
+                      "rotation_deg"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "last_hole": {
+                    "type": "object",
+                    "properties": {
+                      "x_mm": {
+                        "type": "number",
+                        "minimum": -1000,
+                        "maximum": 1000
+                      },
+                      "y_mm": {
+                        "type": "number",
+                        "minimum": -1000,
+                        "maximum": 1000
+                      },
+                      "z_mm": {
+                        "type": "number",
+                        "minimum": -100,
+                        "maximum": 100
+                      },
+                      "rotation_deg": {
+                        "type": "number",
+                        "minimum": -360,
+                        "maximum": 360
+                      }
+                    },
+                    "required": [
+                      "x_mm",
+                      "y_mm",
+                      "z_mm",
+                      "rotation_deg"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "part_pitch_mm": {
+                    "type": "number",
+                    "minimum": 0.1,
+                    "maximum": 100
+                  },
+                  "hole_pitch_mm": {
+                    "type": "number",
+                    "minimum": 0.1,
+                    "maximum": 100
+                  },
+                  "tape_width_mm": {
+                    "type": "number",
+                    "minimum": 2,
+                    "maximum": 100
+                  },
+                  "hole_diameter_mm": {
+                    "type": "number",
+                    "minimum": 0.1,
+                    "maximum": 20
+                  },
+                  "reference_hole_to_part_mm": {
+                    "type": "number",
+                    "minimum": -100,
+                    "maximum": 100
+                  },
+                  "feed_count": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 1000000
+                  },
+                  "max_feed_count": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 1000000
+                  }
+                },
+                "required": [
+                  "type",
+                  "feeder_id",
+                  "location",
+                  "reference_hole",
+                  "last_hole",
+                  "part_pitch_mm",
+                  "hole_pitch_mm",
+                  "tape_width_mm",
+                  "hole_diameter_mm",
+                  "reference_hole_to_part_mm",
+                  "feed_count",
+                  "max_feed_count"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "set_camera_geometry"
+                  },
+                  "camera_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "units_per_pixel_x_mm": {
+                    "type": "number",
+                    "minimum": 0.000001,
+                    "maximum": 10
+                  },
+                  "units_per_pixel_y_mm": {
+                    "type": "number",
+                    "minimum": 0.000001,
+                    "maximum": 10
+                  },
+                  "working_plane_z_mm": {
+                    "type": "number",
+                    "minimum": -100,
+                    "maximum": 100
+                  },
+                  "head_offsets": {
+                    "type": "object",
+                    "properties": {
+                      "x_mm": {
+                        "type": "number",
+                        "minimum": -1000,
+                        "maximum": 1000
+                      },
+                      "y_mm": {
+                        "type": "number",
+                        "minimum": -1000,
+                        "maximum": 1000
+                      },
+                      "z_mm": {
+                        "type": "number",
+                        "minimum": -100,
+                        "maximum": 100
+                      },
+                      "rotation_deg": {
+                        "type": "number",
+                        "minimum": -360,
+                        "maximum": 360
+                      }
+                    },
+                    "required": [
+                      "x_mm",
+                      "y_mm",
+                      "z_mm",
+                      "rotation_deg"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "type",
+                  "camera_id",
+                  "units_per_pixel_x_mm",
+                  "units_per_pixel_y_mm",
+                  "working_plane_z_mm",
+                  "head_offsets"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "set_camera_settling"
+                  },
+                  "camera_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "settle_time_ms": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 10000
+                  }
+                },
+                "required": [
+                  "type",
+                  "camera_id",
+                  "settle_time_ms"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "set_camera_dynamic_settling"
+                  },
+                  "camera_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "method": {
+                    "type": "string",
+                    "enum": [
+                      "Maximum",
+                      "Mean",
+                      "Euclidean",
+                      "Square"
+                    ]
+                  },
+                  "timeout_ms": {
+                    "type": "integer",
+                    "minimum": 20,
+                    "maximum": 5000
+                  },
+                  "debounce": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 10
+                  },
+                  "threshold_percent": {
+                    "type": "number",
+                    "exclusiveMinimum": 0,
+                    "maximum": 100
+                  },
+                  "full_color": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "type",
+                  "camera_id",
+                  "method",
+                  "timeout_ms",
+                  "debounce",
+                  "threshold_percent",
+                  "full_color"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "set_nozzle_settings"
+                  },
+                  "nozzle_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "pick_dwell_ms": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 10000
+                  },
+                  "place_dwell_ms": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 10000
+                  },
+                  "nozzle_tip_ids": {
+                    "type": "array",
+                    "maxItems": 64,
+                    "uniqueItems": true,
+                    "items": {
+                      "type": "string",
+                      "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                    }
+                  }
+                },
+                "required": [
+                  "type",
+                  "nozzle_id",
+                  "pick_dwell_ms",
+                  "place_dwell_ms",
+                  "nozzle_tip_ids"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "set_nozzle_tip_settings"
+                  },
+                  "nozzle_tip_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "pick_dwell_ms": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 10000
+                  },
+                  "place_dwell_ms": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 10000
+                  }
+                },
+                "required": [
+                  "type",
+                  "nozzle_tip_id",
+                  "pick_dwell_ms",
+                  "place_dwell_ms"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "set_axis_motion_limits"
+                  },
+                  "axis_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "soft_limit_low_mm": {
+                    "type": "number",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "soft_limit_high_mm": {
+                    "type": "number",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "feedrate_mm_per_s": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 1000
+                  },
+                  "acceleration_mm_per_s2": {
+                    "type": "number",
+                    "minimum": 0.001,
+                    "maximum": 10000
+                  },
+                  "jerk_mm_per_s3": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 1000000
+                  }
+                },
+                "required": [
+                  "type",
+                  "axis_id",
+                  "soft_limit_low_mm",
+                  "soft_limit_high_mm",
+                  "feedrate_mm_per_s",
+                  "acceleration_mm_per_s2",
+                  "jerk_mm_per_s3"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "set_mapped_axis_geometry"
+                  },
+                  "axis_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "input_axis_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "input_0_mm": {
+                    "type": "number",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "output_0_mm": {
+                    "type": "number",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "input_1_mm": {
+                    "type": "number",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "output_1_mm": {
+                    "type": "number",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  }
+                },
+                "required": [
+                  "type",
+                  "axis_id",
+                  "input_axis_id",
+                  "input_0_mm",
+                  "output_0_mm",
+                  "input_1_mm",
+                  "output_1_mm"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "set_job_planner_settings"
+                  },
+                  "job_order": {
+                    "type": "string",
+                    "enum": [
+                      "Part",
+                      "PartHeight",
+                      "PartBoard",
+                      "HeightPartBoard",
+                      "BoardPart",
+                      "PickLocation",
+                      "PickPlaceLocation",
+                      "NozzleTips",
+                      "NozzleTipsByFlexibility",
+                      "Unsorted"
+                    ]
+                  },
+                  "strategy": {
+                    "type": "string",
+                    "enum": [
+                      "Minimize",
+                      "StartAsPlanned",
+                      "FullyAsPlanned"
+                    ]
+                  },
+                  "optimize_multiple_nozzles": {
+                    "type": "boolean"
+                  },
+                  "pre_rotate_all_nozzles": {
+                    "type": "boolean"
+                  },
+                  "stepping_to_next_motion": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "type",
+                  "job_order",
+                  "strategy",
+                  "optimize_multiple_nozzles",
+                  "pre_rotate_all_nozzles",
+                  "stepping_to_next_motion"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "set_job_retry_settings"
+                  },
+                  "vision_attempts": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 10
+                  },
+                  "placement_attempts": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 10
+                  },
+                  "feeder_fault_limit": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100
+                  },
+                  "feeder_fault_window": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 100
+                  }
+                },
+                "required": [
+                  "type",
+                  "vision_attempts",
+                  "placement_attempts",
+                  "feeder_fault_limit",
+                  "feeder_fault_window"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "set_part_retry_settings"
+                  },
+                  "part_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "pick_retries": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 5
+                  }
+                },
+                "required": [
+                  "type",
+                  "part_id",
+                  "pick_retries"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "set_feeder_retry_settings"
+                  },
+                  "feeder_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "feed_retries": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 5
+                  },
+                  "pick_retries": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 5
+                  }
+                },
+                "required": [
+                  "type",
+                  "feeder_id",
+                  "feed_retries",
+                  "pick_retries"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "set_head_park_location"
+                  },
+                  "head_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "x_mm": {
+                    "type": "number",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  },
+                  "y_mm": {
+                    "type": "number",
+                    "minimum": -1000,
+                    "maximum": 1000
+                  }
+                },
+                "required": [
+                  "type",
+                  "head_id",
+                  "x_mm",
+                  "y_mm"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "set_machine_discard_location"
+                  },
+                  "location": {
+                    "type": "object",
+                    "properties": {
+                      "x_mm": {
+                        "type": "number",
+                        "minimum": -1000,
+                        "maximum": 1000
+                      },
+                      "y_mm": {
+                        "type": "number",
+                        "minimum": -1000,
+                        "maximum": 1000
+                      },
+                      "z_mm": {
+                        "type": "number",
+                        "minimum": -100,
+                        "maximum": 100
+                      },
+                      "rotation_deg": {
+                        "type": "number",
+                        "minimum": -360,
+                        "maximum": 360
+                      }
+                    },
+                    "required": [
+                      "x_mm",
+                      "y_mm",
+                      "z_mm",
+                      "rotation_deg"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "type",
+                  "location"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "clone_vision_settings"
+                  },
+                  "source_vision_settings_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "vision_settings_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z][A-Za-z0-9_-]{0,127}$"
+                  },
+                  "name": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 128,
+                    "pattern": "^[^\\u0000-\\u001f\\u007f]*$"
+                  }
+                },
+                "required": [
+                  "type",
+                  "source_vision_settings_id",
+                  "vision_settings_id",
+                  "name"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "set_bottom_vision_settings"
+                  },
+                  "vision_settings_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "pre_rotate_usage": {
+                    "type": "string",
+                    "enum": [
+                      "Default",
+                      "AlwaysOn",
+                      "AlwaysOff"
+                    ]
+                  },
+                  "part_size_check": {
+                    "type": "string",
+                    "enum": [
+                      "Disabled",
+                      "BodySize",
+                      "PadExtents"
+                    ]
+                  },
+                  "size_tolerance_percent": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 100
+                  },
+                  "max_rotation": {
+                    "type": "string",
+                    "enum": [
+                      "Adjust",
+                      "Full"
+                    ]
+                  },
+                  "asymmetric": {
+                    "type": "boolean"
+                  },
+                  "offset_x_mm": {
+                    "type": "number",
+                    "minimum": -50,
+                    "maximum": 50
+                  },
+                  "offset_y_mm": {
+                    "type": "number",
+                    "minimum": -50,
+                    "maximum": 50
+                  }
+                },
+                "required": [
+                  "type",
+                  "vision_settings_id",
+                  "enabled",
+                  "pre_rotate_usage",
+                  "part_size_check",
+                  "size_tolerance_percent",
+                  "max_rotation",
+                  "asymmetric",
+                  "offset_x_mm",
+                  "offset_y_mm"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "set_fiducial_vision_settings"
+                  },
+                  "vision_settings_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "enabled": {
+                    "type": "boolean"
+                  },
+                  "max_vision_passes": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 10
+                  },
+                  "max_linear_offset_mm": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 20
+                  },
+                  "parallax_diameter_mm": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 50
+                  },
+                  "parallax_angle_deg": {
+                    "type": "number",
+                    "minimum": -180,
+                    "maximum": 180
+                  }
+                },
+                "required": [
+                  "type",
+                  "vision_settings_id",
+                  "enabled",
+                  "max_vision_passes",
+                  "max_linear_offset_mm",
+                  "parallax_diameter_mm",
+                  "parallax_angle_deg"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "assign_vision_settings"
+                  },
+                  "holder": {
+                    "type": "string",
+                    "maxLength": 140,
+                    "pattern": "^(machine:(bottom|fiducial)|(part|package):[A-Za-z0-9_.:+-]{1,128})$"
+                  },
+                  "kind": {
+                    "type": "string",
+                    "enum": [
+                      "bottom",
+                      "fiducial"
+                    ]
+                  },
+                  "vision_settings_id": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "type",
+                  "holder",
+                  "kind",
+                  "vision_settings_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "remove_vision_settings"
+                  },
+                  "vision_settings_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  }
+                },
+                "required": [
+                  "type",
+                  "vision_settings_id"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "set_vision_pipeline_stage"
+                  },
+                  "vision_settings_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "stage_name": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "stage_type": {
+                    "const": "gaussian"
+                  },
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "kernel_size": {
+                        "type": "integer",
+                        "minimum": 3,
+                        "maximum": 99
+                      }
+                    },
+                    "required": [
+                      "kernel_size"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "type",
+                  "vision_settings_id",
+                  "stage_name",
+                  "stage_type",
+                  "parameters"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "set_vision_pipeline_stage"
+                  },
+                  "vision_settings_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "stage_name": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "stage_type": {
+                    "const": "threshold"
+                  },
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "threshold": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255
+                      },
+                      "auto": {
+                        "type": "boolean"
+                      },
+                      "invert": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "threshold",
+                      "auto",
+                      "invert"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "type",
+                  "vision_settings_id",
+                  "stage_name",
+                  "stage_type",
+                  "parameters"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "set_vision_pipeline_stage"
+                  },
+                  "vision_settings_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "stage_name": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "stage_type": {
+                    "const": "hsv"
+                  },
+                  "parameters": {
+                    "type": "object",
+                    "properties": {
+                      "hue_min": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255
+                      },
+                      "hue_max": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255
+                      },
+                      "saturation_min": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255
+                      },
+                      "saturation_max": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255
+                      },
+                      "value_min": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255
+                      },
+                      "value_max": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255
+                      },
+                      "invert": {
+                        "type": "boolean"
+                      }
+                    },
+                    "required": [
+                      "hue_min",
+                      "hue_max",
+                      "saturation_min",
+                      "saturation_max",
+                      "value_min",
+                      "value_max",
+                      "invert"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "type",
+                  "vision_settings_id",
+                  "stage_name",
+                  "stage_type",
+                  "parameters"
+                ],
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "type": {
+                    "const": "set_vision_parameter"
+                  },
+                  "vision_settings_id": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "parameter_name": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9_.:+-]{1,128}$"
+                  },
+                  "value": {
+                    "anyOf": [
+                      {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 255
+                      },
+                      {
+                        "type": "boolean"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  }
+                },
+                "required": [
+                  "type",
+                  "vision_settings_id",
+                  "parameter_name",
+                  "value"
+                ],
+                "additionalProperties": false
+              }
+            ]
+          }
+        }
+      },
+      "required": [
+        "session_id",
+        "changes"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "plan configuration",
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "mutating": false,
+    "offline": false
+  },
+  {
+    "name": "openpnp_apply_configuration",
+    "description": "Apply and persist the selected typed native configuration plan under its current revision and lease.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        },
+        "plan_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id",
+        "plan_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "apply configuration",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_test_feeder",
+    "description": "Advance one native feeder using the selected nozzle. A feed can consume material; this operation is not a passive check.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        },
+        "feeder_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "nozzle_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id",
+        "feeder_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "test feeder",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_control_actuator",
+    "description": "Command one allowlisted native actuator. Returned command state is not independent physical feedback.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        },
+        "actuator_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "enabled": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id",
+        "actuator_id",
+        "enabled"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "control actuator",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_change_nozzle_tip",
+    "description": "Use the native nozzle-tip change sequence. Omit nozzle_tip_id to unload. This can move axes.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        },
+        "nozzle_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "nozzle_tip_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id",
+        "nozzle_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "change nozzle tip",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_backup_configuration",
+    "description": "Save and snapshot the supported native configuration files into a bridge artifact. The result declares whether it is a complete portable backup.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "backup configuration",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_export_portable_configuration",
+    "description": "Export the disabled, idle supported native simulator configuration as a portable ZIP artifact for fresh-instance adoption. Preserves seven native XML documents and inventoried images; scripts are quarantined. Empty board/panel libraries only. Transfers no operational history, physical authority or calibration qualification.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id",
+        "expected_config_revision"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "export portable configuration",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_export_run_report",
+    "description": "Export a native run report with operation provenance and stated inspection limits through the native executor.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "export run report",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_get_native_artifact",
+    "description": "Read a camera frame, backup, or report artifact from the connected native bridge by its native artifact ID.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "artifact_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      },
+      "required": [
+        "artifact_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "get native artifact",
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "mutating": false,
+    "offline": false
+  },
+  {
+    "name": "openpnp_run_calibration",
+    "description": "Run the supported native nozzle-tip runout routine under a control lease. This moves the simulator. Fitted offsets describe the native model; they are not independent residual measurements or hardware qualification.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        },
+        "recipe_id": {
+          "const": "nozzle-tip-runout"
+        },
+        "nozzle_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "enable": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id",
+        "recipe_id",
+        "nozzle_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "run calibration",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_validate_calibration",
+    "description": "Read the native nozzle-tip calibration model through the executor. Report validity and fitted offsets with their limits; this does not independently qualify hardware.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        },
+        "nozzle_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id",
+        "nozzle_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "validate calibration",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_locate_fiducials",
+    "description": "Use OpenPnP native vision to locate fiducials for the current job and update board alignment. This may move the camera and change job coordinates.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "locate fiducials",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_list_issues",
+    "description": "Run a fresh native Issues & Solutions scan through the executor. Scanning updates native issue bookkeeping; returned issues are advisory and unsupported solutions cannot be auto-applied.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "list issues",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_restore_configuration",
+    "description": "Restore the supported typed setting subset from a native backup made by this bridge instance. The result declares the restore scope; this does not restore physical position, material, or placement history.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        },
+        "artifact_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id",
+        "artifact_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "restore configuration",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_reconcile_operation",
+    "description": "Explicitly abandon an unknown operation from a prior native simulator instance after a fresh simulator reset. Retains the unknown historical outcome and never replays it.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "request_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "session_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "expected_config_revision": {
+          "type": "string",
+          "pattern": "^cfg-[0-9]+$",
+          "maxLength": 64
+        },
+        "operation_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "disposition": {
+          "const": "abandon-after-simulator-reset"
+        }
+      },
+      "required": [
+        "request_id",
+        "session_id",
+        "operation_id",
+        "disposition"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "reconcile operation",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": false
+  },
+  {
+    "name": "openpnp_import_job",
+    "description": "Parse supplied KiCad position, reference CSV, or canonical JSON content into a deterministic local job artifact. Reports source rows, units, and unresolved data; does not touch the machine.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "format": {
+          "enum": [
+            "kicad-pos",
+            "reference-csv",
+            "canonical-json"
+          ]
+        },
+        "content": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4194304
+        },
+        "bomContent": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4194304
+        },
+        "units": {
+          "enum": [
+            "mm",
+            "in",
+            "mil"
+          ]
+        },
+        "mapping": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 128
+          },
+          "maxProperties": 30
+        },
+        "boardId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "jobId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "widthMm": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "heightMm": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "variant": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "kicadBottomConvention": {
+          "enum": [
+            "negated-x",
+            "top-view"
+          ]
+        }
+      },
+      "required": [
+        "format",
+        "content"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "import job",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": true
+  },
+  {
+    "name": "openpnp_validate_imported_job",
+    "description": "Validate a local canonical job artifact and report unresolved heights, identities, side transforms, and placement requirements. No physical qualification is implied.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "artifact_id": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "mode": {
+          "enum": [
+            "offline",
+            "production"
+          ],
+          "default": "offline"
+        }
+      },
+      "required": [
+        "artifact_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "validate imported job",
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "mutating": false,
+    "offline": true
+  },
+  {
+    "name": "openpnp_get_artifact",
+    "description": "Read an immutable local imported job artifact by SHA-256 identifier.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "artifact_id": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      },
+      "required": [
+        "artifact_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "get artifact",
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "mutating": false,
+    "offline": true
+  },
+  {
+    "name": "openpnp_read_response_page",
+    "description": "Read a page from an exact locally retained large MCP response, without contacting the machine. JSON mode pages array items or object entries; bytes mode returns serialized JSON bytes (exact retained bytes at pointer \"\"); decoded-base64 mode returns original binary bytes from a selected base64 string. Follow count, next_offset and eof; oversized JSON items require child pointers or bytes mode. No arbitrary paths or prototype access.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "response_id": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "pointer": {
+          "type": "string",
+          "maxLength": 4096
+        },
+        "offset": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 9007199254740991
+        },
+        "limit": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 16384,
+          "description": "At most 500 values in JSON mode or 16384 bytes in either byte mode. The inline byte budget may return fewer JSON values."
+        },
+        "format": {
+          "enum": [
+            "json",
+            "bytes",
+            "decoded-base64"
+          ]
+        }
+      },
+      "required": [
+        "response_id"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "read response page",
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "mutating": false,
+    "offline": true
+  },
+  {
+    "name": "openpnp_record_inspection",
+    "description": "Evaluate explicitly supplied independent inspection measurements against supplied tolerances and persist an immutable receipt. Do not invent measurements or evidence. External evidence references are recorded, not independently authenticated; this tool never grants production or hardware qualification.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "job_artifact_id": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "configuration_revision": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "board_load_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "placement_key": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1024
+        },
+        "method": {
+          "enum": [
+            "operator-metrology",
+            "calibrated-vision",
+            "external-metrology"
+          ]
+        },
+        "actor": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "observed_at": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d\\d-\\d\\dT\\d\\d:\\d\\d:\\d\\d(?:\\.\\d{3})?Z$"
+        },
+        "presence": {
+          "enum": [
+            "present",
+            "missing",
+            "unknown"
+          ]
+        },
+        "polarity": {
+          "enum": [
+            "correct",
+            "incorrect",
+            "not-applicable",
+            "unknown"
+          ]
+        },
+        "measurements": {
+          "type": "object",
+          "properties": {
+            "dxMm": {
+              "type": "number"
+            },
+            "dyMm": {
+              "type": "number"
+            },
+            "rotationErrorDeg": {
+              "type": "number"
+            },
+            "uncertaintyMm": {
+              "type": "number",
+              "minimum": 0
+            },
+            "uncertaintyDeg": {
+              "type": "number",
+              "minimum": 0
+            }
+          },
+          "required": [
+            "dxMm",
+            "dyMm",
+            "rotationErrorDeg",
+            "uncertaintyMm",
+            "uncertaintyDeg"
+          ],
+          "additionalProperties": false
+        },
+        "tolerances": {
+          "type": "object",
+          "properties": {
+            "xyMm": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "rotationDeg": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            }
+          },
+          "required": [
+            "xyMm",
+            "rotationDeg"
+          ],
+          "additionalProperties": false
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 32,
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 128
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              "kind": {
+                "enum": [
+                  "image",
+                  "measurement-file",
+                  "operator-note"
+                ]
+              }
+            },
+            "required": [
+              "id",
+              "sha256",
+              "kind"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "job_artifact_id",
+        "configuration_revision",
+        "board_load_id",
+        "placement_key",
+        "method",
+        "actor",
+        "observed_at",
+        "presence",
+        "polarity",
+        "measurements",
+        "tolerances",
+        "evidence"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "record inspection",
+      "readOnlyHint": false,
+      "destructiveHint": true,
+      "idempotentHint": false,
+      "openWorldHint": false
+    },
+    "mutating": true,
+    "offline": true
+  },
+  {
+    "name": "openpnp_assess_inspection_coverage",
+    "description": "Check passing inspection coverage for the exact canonical job revision, supplied configuration revision, and physical board-load identity. Missing, stale, or uncertain evidence blocks coverage; coverage is distinct from native production authorization.",
+    "inputSchema": {
+      "type": "object",
+      "properties": {
+        "job_artifact_id": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "configuration_revision": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "board_load_id": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "inspection_artifact_ids": {
+          "type": "array",
+          "maxItems": 10000,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      },
+      "required": [
+        "job_artifact_id",
+        "configuration_revision",
+        "board_load_id",
+        "inspection_artifact_ids"
+      ],
+      "additionalProperties": false
+    },
+    "annotations": {
+      "title": "assess inspection coverage",
+      "readOnlyHint": true,
+      "destructiveHint": false,
+      "idempotentHint": true,
+      "openWorldHint": false
+    },
+    "mutating": false,
+    "offline": true
+  }
+]

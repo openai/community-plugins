@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-11T08:24:32.207886+00:00",
+  "passed": true,
+  "scope": "Five actual official MCP SDK workflows through packaged49tool server and fresh installed pinned native OpenPnP simulators on macOS ARM64.",
+  "bridge_sha256": "1a1fa425eb220bfed84a6e4c43bdd8fb98c5962f6c8d296ffa67062d134263ee",
+  "server_sha256": "0aa6f30ff338c3787c552d09bb5ca9f357d17c18409ffb4e4b3e592bca18aa08",
+  "tool_inputs_sha256": "cae2abd62a638304b9a28ba8df0b13a7c34f295e64b46bc61999404459ffc3df",
+  "upstream_commit": "5bd404cfc70f34103a3ca0fbb6b50c2b465f407c",
+  "runtime_manifest_sha256": "f09a24910958b030e692d737eae11a53f35dc9ccd4b5dc978de5ceb6d935a024",
+  "suites": [
+    {
+      "suite": "core",
+      "passed": true,
+      "native_placements": 33,
+      "independently_inspected": 0,
+      "duration_seconds": 24.06405445805285,
+      "evidence_path": "tests/openpnp/evidence/native-mcp49-portable/mcp-native-e2e.json",
+      "sha256": "2b78f16d550e364c0f6a25a93bb002d6051b477d76c9e84ced017c9dccd007ba",
+      "owned_process_groups_gone": true,
+      "forced_cleanup": false
+    },
+    {
+      "suite": "vision",
+      "passed": true,
+      "native_placements": 1,
+      "independently_inspected": 0,
+      "duration_seconds": 4.531973542063497,
+      "evidence_path": "tests/openpnp/evidence/native-mcp49-portable/mcp-native-vision.json",
+      "sha256": "3496dd5dbe899931beb1c3a24acfb2e3e5741f5c7680b3994161ded1a3786782",
+      "owned_process_groups_gone": true,
+      "forced_cleanup": false
+    },
+    {
+      "suite": "placement",
+      "passed": true,
+      "native_placements": 2,
+      "independently_inspected": 0,
+      "duration_seconds": 8.748705916921608,
+      "evidence_path": "tests/openpnp/evidence/native-mcp49-portable/mcp-placement-loads.json",
+      "sha256": "78b842969df1add46a70c284f928b82458f346f0f2f72f41b5d60da645ab90ce",
+      "owned_process_groups_gone": true,
+      "forced_cleanup": false
+    },
+    {
+      "suite": "recovery",
+      "passed": true,
+      "native_placements": 200,
+      "independently_inspected": 0,
+      "duration_seconds": 52.15558120899368,
+      "evidence_path": "tests/openpnp/evidence/native-mcp49-portable/mcp-native-reconnect.json",
+      "sha256": "c2c2538431a5b34a36d04770ee89530e88bea97218ba01c05c62666967c72f68",
+      "owned_process_groups_gone": true,
+      "forced_cleanup": false
+    },
+    {
+      "suite": "portable",
+      "passed": true,
+      "native_placements": 2,
+      "independently_inspected": 0,
+      "duration_seconds": 11.710666375001892,
+      "evidence_path": "tests/openpnp/evidence/native-mcp49-portable/mcp-native-portable.json",
+      "sha256": "97e6d8c21e22fa6eaf583d98315f29812e19b620ee55ce3162b1f57ec976b73e",
+      "owned_process_groups_gone": true,
+      "forced_cleanup": false
+    }
+  ],
+  "native_placements": 238,
+  "independently_inspected": 0,
+  "input_files": 4030,
+  "inputs_unchanged": true,
+  "runner_report": "validation/native-mcp-combined-49-01/report.json",
+  "runner_report_sha256": "838700316a825cf7a6e40f58dbad236954aa407c5604b00f71cc424c6c02d6cb",
+  "recovery": {
+    "original_operation_id": "31db170b-0397-406c-9e94-0b34e4f4ec2c",
+    "bridge_instance_id": "30a7d0b5-3986-48cc-89d4-4111f4415471",
+    "same_native_instance_after_reconnect": true,
+    "placed_at_pause": 42,
+    "final_placed": 200,
+    "mutation_replays": 0,
+    "progress_polls": 330,
+    "full_operation_reads": 7,
+    "retained_response_files": 11,
+    "retained_response_bytes": 525453
+  },
+  "limitations": [
+    "Simulator evidence is not independent placement inspection or physical qualification.",
+    "Portable adoption covers first launch of a new supported configuration; no in-place restore or spent-activation restart.",
+    "Recovery workflow injects MCP disconnect/lease expiry, not JVM/controller/power loss.",
+    "Functional tests shared the host with other qualification work and are not throughput benchmarks.",
+    "Eight-hour6f9endurance is a separate unchanged earlier build."
+  ],
+  "hardware_qualified": false
+}

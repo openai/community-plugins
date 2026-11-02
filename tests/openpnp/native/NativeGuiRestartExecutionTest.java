@@ -1,0 +1,71 @@
+/* SPDX-License-Identifier: GPL-3.0-or-later */
+package org.openpnp.codex;
+import static org.openpnp.codex.NativeFaultedSensingReplacementContinuationBridgeTest.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.lang.reflect.Field;
+import java.net.URL;
+import java.net.URLClassLoader;
+import java.nio.file.*;
+import java.nio.file.attribute.PosixFilePermissions;
+import java.util.*;
+import java.util.List;
+import java.util.concurrent.*;
+import java.util.function.BooleanSupplier;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import org.openpnp.gui.MainFrame;
+import org.openpnp.model.*;
+import org.openpnp.machine.reference.driver.NullDriver;
+
+/** Actual MainFrame, GuiBootstrap and controller forms drive a fresh restart after Runtime.halt.
+ * Swing doClick/dispose are programmatic test gestures, not desktop-user interaction evidence. */
+public final class NativeGuiRestartExecutionTest {
+    static MainFrame frame;static GuiSimulatorController controller;static URLClassLoader loader;
+    static final List<String> gestures=new ArrayList<>();static int welcomeClosed;
+    static Object field(Object object,String name)throws Exception {Field f=object.getClass().getDeclaredField(name);f.setAccessible(true);return f.get(object);}
+    static void waitFor(String label,Callable<Boolean> condition)throws Exception {long until=System.nanoTime()+TimeUnit.SECONDS.toNanos(55);while(System.nanoTime()<until){if(condition.call()){check(true,label);return;}Thread.sleep(20);}throw new AssertionError("Timed out: "+label+(controller==null?"":JSON.toJson(controller.snapshot())));}
+    static Component find(Component c,String name,String text){if(c instanceof JButton&&(name!=null&&name.equals(c.getName())||text!=null&&text.equals(((JButton)c).getText())))return c;if(c instanceof Container)for(Component x:((Container)c).getComponents()){Component got=find(x,name,text);if(got!=null)return got;}return null;}
+    static JButton button(String name,String text)throws Exception {return edt(()->{for(Window window:Window.getWindows())if(window.isVisible()){Component got=find(window,name,text);if(got instanceof JButton)return (JButton)got;}return null;});}
+    static void click(String name,String text)throws Exception {waitFor("Visible enabled local button: "+(name==null?text:name),()->{JButton b=button(name,text);return b!=null&&edt(b::isEnabled);});JButton b=button(name,text);edt(()->{gestures.add("EDT doClick: "+b.getText());b.doClick();return null;});}
+    static void render(Window window,String filename)throws Exception {edt(()->{BufferedImage image=new BufferedImage(window.getWidth(),window.getHeight(),BufferedImage.TYPE_INT_ARGB);Graphics2D g=image.createGraphics();window.paintAll(g);g.dispose();ImageIO.write(image,"png",state.resolve(filename).toFile());return null;});}
+    static Map<String,Object> awaitReconciliation(String taskId,String expected)throws Exception {final Map<String,Object>[] last=new Map[]{null};waitFor("Local GUI task reaches "+expected,()->{last[0]=read("get_sensing_reconciliation","task_id",taskId);String status=(String)last[0].get("state");if(Set.of("reconciliation_unknown","cancelled","expired").contains(status))throw new AssertionError("Local GUI task failed: "+JSON.toJson(last[0]));return expected.equals(status)&&!config.getMachine().isBusy();});return last[0];}
+    static void setup(String samples)throws Exception {
+        Configuration.initialize(state.resolve("config").toFile());config=Configuration.get();
+        // Dismiss only the native informational welcome dialog through its actual Swing lifecycle.
+        javax.swing.Timer welcome=new javax.swing.Timer(30,e->{for(Window w:Window.getWindows())if(w.isVisible()&&w.getClass().getSimpleName().equals("Welcome2_0Dialog")){welcomeClosed++;w.dispose();}});welcome.start();
+        try{frame=edt(()->{MainFrame f=new MainFrame(config);f.setVisible(true);return f;});}finally{welcome.stop();}
+        check(((NullDriver)config.getMachine().getDrivers().get(0)).getControlledVacuumSource()==null,"Actual fresh MainFrame has no inherited source");
+        Path bootstrap=config.getScripting().getScriptsDirectory().toPath().toAbsolutePath().resolve("codex-restart-test.js");Files.writeString(bootstrap,"// Packaged GuiBootstrap entry is invoked directly by this native integration test.\n",StandardOpenOption.CREATE_NEW);
+        Path token=state.resolve("bridge.token");Files.copy(state.resolve("token"),token);Files.setPosixFilePermissions(token,PosixFilePermissions.fromString("rw-------"));Files.setPosixFilePermissions(state,PosixFilePermissions.fromString("rwx------"));
+        System.setProperty("openpnp.codex.stateDir",state.toString());System.setProperty("openpnp.codex.sampleRoot",Path.of(samples).toAbsolutePath().toString());System.setProperty("openpnp.codex.bootstrapPath",bootstrap.toString());System.setProperty("openpnp.codex.bootstrapSha256",sha(Files.readAllBytes(bootstrap)));System.setProperty("openpnp.codex.bridgeSha256",sha(Files.readAllBytes(GuiBootstrap.codeJar(GuiBootstrap.class))));System.setProperty("openpnp.codex.sensingStartup","restart");System.setProperty("openpnp.codex.sensingManifest",state.resolve("prepared-gui-fixture.json").toString());System.setProperty("openpnp.codex.sensingManifestSha256",sha(Files.readAllBytes(state.resolve("prepared-gui-fixture.json"))));System.setProperty("openpnp.codex.sensingScenario","lost-before-place");
+        loader=new URLClassLoader(new URL[]{GuiBootstrap.codeJar(GuiBootstrap.class).toUri().toURL()},GuiBootstrap.class.getClassLoader());check(GuiBootstrap.attach(loader),"Actual packaged GuiBootstrap attaches controller after verifying native runtime manifest");controller=edt(()->(GuiSimulatorController)frame.getRootPane().getClientProperty(GuiBootstrap.KEY));bridge=(Bridge)field(controller,"bridge");
+        render(frame,"gui-before-restart.png");check("absent".equals(read("get_status").get("job_state")),"GUI startup restores no Bridge job");click(null,"Allow Codex control");waitFor("Actual native GUI grant admits remote session",()->Boolean.TRUE.equals(controller.snapshot().get("local_grant")));
+        session=(String)read("request_control_session","request_id",UUID.randomUUID().toString(),"ttl_seconds",300).get("session_id");
+    }
+    static void exercise(String samples,Map<String,Object> proof)throws Exception {
+        Map<String,Object> marker=NativeJournalJson.parseObject(Files.readString(state.resolve("crash-boundary.json")));String attempt=(String)map(marker.get("intent")).get("replacement_attempt_id"),oldRecovery=(String)map(marker.get("intent")).get("recovery_operation_id");byte[] prefix=Files.readAllBytes(state.resolve("journal/operations.jsonl"));same(marker.get("journal_sha256"),sha(prefix),"GUI reader starts with exact crashed Bridge journal prefix");check(((Number)marker.get("pid")).longValue()!=ProcessHandle.current().pid(),"GUI restart runs in a fresh JVM after actual producer halt");
+        setup(samples);refused(()->bridge.drainLocalGuiTakeover(),"RECOVERY_REQUIRED","Initial crashed history cannot release GUI ownership before fresh recovery");Map<String,Object> old=read("get_operation","operation_id",oldRecovery);check("outcome_unknown".equals(old.get("state"))&&!(old.get("native_completion") instanceof Map),"GUI Bridge preserves interrupted callback unknown without wrapper fiction");long actions=count("native_action_intent"),placements=count("native_placement_checkpoint");
+        Map<String,Object> request=run("request_sensing_reconciliation",command("recovery_kind",NativeSensingReconciliation.RESTART_KIND,"replacement_attempt_id",attempt));String taskId=(String)result(request).get("task_id");
+        waitFor("Actual restart form is visible",()->button("sensing_reconciliation.submit",null)!=null);JButton restartButton=button("sensing_reconciliation.submit",null);check(restartButton.getText().equals("Reattach inactive replacement and observe restart state"),"GUI labels the inactive restart action explicitly");render(edt(()->SwingUtilities.getWindowAncestor(restartButton)),"gui-restart-form.png");click("sensing_reconciliation.submit",null);
+        Map<String,Object> observed=awaitReconciliation(taskId,"restart_observations_completed");write("restart-observations-completed.json",Bridge.map("reconciliation",observed));
+        Job original=edt(()->frame.getJobTab().getJob());check(original==field(bridge,"job")&&original.getBoardAndPanelLocations().size()>1,"Actual MainFrame publishes exact reconstructed inactive original Job");List<?> oldGraph=new ArrayList<>(original.getBoardAndPanelLocations());Map<String,Boolean> oldHistory=new TreeMap<>(original.getPlacedStatusSnapshot());Map<String,Object> oldModels=NativeBoardLoads.replacementModel(original);
+        check(count("native_action_intent")==actions&&count("native_placement_checkpoint")==placements&&!config.getMachine().isEnabled(),"GUI observation phase performs no native feed or placement");same(old,read("get_operation","operation_id",oldRecovery),"GUI observation preserves original callback record");render(frame,"gui-inactive-original.png");
+        Map<String,Object> continuation=run("request_sensing_reconciliation",command("recovery_kind",NativeSensingReconciliation.CONTINUATION_KIND,"replacement_attempt_id",attempt));String nextId=(String)result(continuation).get("task_id");click("sensing_reconciliation.submit",null);Map<String,Object> completed=awaitReconciliation(nextId,"resolved_for_current_scope");write("restart-continuation-completed.json",Bridge.map("reconciliation",completed));
+        Job fresh=edt(()->frame.getJobTab().getJob());check(fresh!=original&&fresh==field(bridge,"job"),"Actual GuiSimulatorController publishes exact fresh replacement through owned JobPanel setter");check(oldGraph.equals(original.getBoardAndPanelLocations())&&oldHistory.equals(original.getPlacedStatusSnapshot())&&oldModels.equals(NativeBoardLoads.replacementModel(original)),"Original graph and complete native history survive actual GUI replacement publication");render(frame,"gui-published-replacement.png");
+        run("set_machine_enabled",command("enabled",true));run("home_machine",command());Map<String,Object> refusedStart=call("start_job",command("job_id",attempt));check("failed".equals(refusedStart.get("state"))&&"JOB_NOT_VALIDATED".equals(result(refusedStart).get("code")),"Restarted GUI candidate requires fresh validation");run("locate_fiducials",command("job_id",attempt));check(Boolean.TRUE.equals(result(run("validate_job",command("job_id",attempt))).get("valid")),"GUI published candidate passes fresh registration and validation");Map<String,Object> placed=run("start_job",command("job_id",attempt));check(((Number)result(placed).get("placed")).intValue()==1,"Actual GUI-attached OpenPnP completes one fresh native placement");run("set_machine_enabled",command("enabled",false));write("restart-completed-job.json",placed);
+        check(oldGraph.equals(original.getBoardAndPanelLocations())&&oldHistory.equals(original.getPlacedStatusSnapshot()),"Native replacement execution preserves retained original graph/history");same(old,read("get_operation","operation_id",oldRecovery),"GUI execution preserves unknown old recovery outcome");byte[] after=Files.readAllBytes(state.resolve("journal/operations.jsonl"));check(Arrays.equals(prefix,Arrays.copyOf(after,prefix.length)),"Full original crash journal prefix remains byte-identical");render(frame,"gui-completed-placement.png");
+        proof.putAll(Bridge.map("passed",true,"original_process_id",marker.get("pid"),"replacement_attempt_id",attempt,"post_restart_placements",1,"original_unknown_preserved",true,"original_prefix_unchanged",true,"original_native_graph_preserved",true,"actual_mainframe",true,"actual_gui_controller",true,"actual_gui_bootstrap",true,"programmatic_swing_gestures",gestures,"desktop_gestures_qualified",false,"physical_machine_qualified",false,"packaged_plugin_qualified",false));
+    }
+    static void history(String samples,Map<String,Object> proof)throws Exception {
+        NativeRestartExecutionBridgeTest.history(samples,proof);
+        byte[] before=Files.readAllBytes(state.resolve("journal/operations.jsonl"));
+        refused(()->bridge.drainLocalGuiTakeover(),"RECOVERY_REQUIRED","Historical disposition replay cannot release ownership of old unknown operations");
+        check(Arrays.equals(before,Files.readAllBytes(state.resolve("journal/operations.jsonl"))),"Refused historical handoff appends no journal record");
+        proof.put("historical_unknown_handoff_refused",true);
+    }
+    public static void main(String[] args)throws Exception {if(args.length<2||args.length>3||args.length==3&&!args[2].equals("history"))throw new IllegalArgumentException("sample directory, original state, optional history");boolean historical=args.length==3;state=Path.of(args[1]).toAbsolutePath();phase=historical?"gui-restart-history":"gui-restart";scenario="lost-before-place";int exit=0;Map<String,Object> proof=new LinkedHashMap<>();try{if(historical)history(args[0],proof);else exercise(args[0],proof);}catch(Throwable t){t.printStackTrace();proof.put("passed",false);proof.put("failure",t.toString());exit=1;}finally{
+        try{if(controller!=null){click(null,"Disconnect bridge");waitFor("GUI controller closes after native standstill",()->Files.exists(state.resolve("gui-lifecycle.json")));proof.put("controller_closed",true);}else if(bridge!=null)bridge.close();}catch(Throwable t){t.printStackTrace();proof.put("cleanup_failure",t.toString());exit=1;if(controller!=null)controller.closeAfterFailedStart();}
+        try{if(config!=null)config.getMachine().close();proof.put("machine_closed",true);}catch(Throwable t){proof.put("machine_close_failure",t.toString());exit=1;}
+        if(frame!=null)edt(()->{for(Window w:Window.getWindows())w.dispose();return null;});if(exit!=0)proof.put("passed",false);proof.putAll(Bridge.map("assertions",checks.size(),"checks",checks,"public_calls",calls,"process_id",ProcessHandle.current().pid(),"welcome_dialogs_dismissed",welcomeClosed));write(historical?"restart-history-proof.json":"restart-execution-proof.json",proof);System.out.println("NATIVE_GUI_RESTART_EXECUTION_RESULT "+JSON.toJson(proof));}System.exit(exit);}
+}

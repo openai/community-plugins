@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "milestone": "inspection75-qualification",
+  "passed": true,
+  "scope": "Bounded simulator qualification with explicit retained test failures and versioned fixture snapshots.",
+  "artifacts": {
+    "bridge_sha256": "970e4635953f3bdc33499088ad560d6f6190d01e2285c152f6a56a109a7caf45",
+    "mcp_sha256": "38b2b47c0095be1cccdea2edc00b359c5a721838eb4a95f593344bcb9257dd2d",
+    "native_jar_sha256": "810773c1defa9a0200cce437d3f426d4c08419fb3f471d693f9e5c5f38f78f0b",
+    "runtime_manifest_sha256": "fb9459433a7475515a9f4340d401232e4fd284697db416f4fa89ba86abd8c84d",
+    "catalog_sha256": "4c2978602abef5402a6598ba7338244153c173a2575b8ab63dc9f42397fde242"
+  },
+  "build05_manifest_sha256": "fb076be541b30552cd0058e48546d751a1a467ab819238d6dbada7d55350072a",
+  "native": {
+    "macos_mains": 82,
+    "linux_arm64_mains": 82,
+    "production_source_pairs": 52,
+    "bridge_classes": 183,
+    "test_sources": 102,
+    "test_classes_per_build": 209,
+    "final_test_classes_identical_to_headless_snapshot": 207,
+    "final_gui_changed_classes": [
+      "org/openpnp/codex/NativeGuiBoardInspectionTest$WrapperGate.class",
+      "org/openpnp/codex/NativeGuiBoardInspectionTest.class"
+    ],
+    "linux_gui_qualified": false
+  },
+  "mcp": {
+    "workflow_coverage_passed": 16,
+    "single_full16_run_passed": false,
+    "original_passed": 15,
+    "original_fixture_failures": 1,
+    "corrected_material_passed": true,
+    "unique_native_complete_hooks": 327,
+    "native_action_pairs": 1308,
+    "feed_pairs": 327,
+    "pick_pairs": 327,
+    "align_pairs": 327,
+    "release_pairs": 327,
+    "native_png_artifact_records": 27,
+    "distinct_png_content_hashes": 10,
+    "camera_scale_recipe_observations": 8,
+    "retrieved_recipe_pngs_are_copies": true,
+    "camera_capture_operations": 19,
+    "latest_succeeded_operations": 353,
+    "expected_failed_operations": 33,
+    "deliberate_aborted_operations": 1,
+    "unresolved_operations": 0,
+    "unmatched_native_action_intents": 0,
+    "new_inspection_tools": "Additionally exercised in the separate native GUI journey"
+  },
+  "gui": {
+    "cases_passed": 7,
+    "native_complete_placements": 80,
+    "count_basis": "32 normal +32 topology +8 panel membership +8 inspection; separate from MCP matrix and focused runs",
+    "deliberate_unknown_feed": 1,
+    "inspection_assertions": 235,
+    "inspection_mcp_checks": 16,
+    "desktop_gestures": false
+  },
+  "node": [
+    {
+      "node_major": "22",
+      "total": 400,
+      "passed": 384,
+      "failed": 0,
+      "live_skipped": 16,
+      "report": "node22.json"
+    },
+    {
+      "node_major": "24",
+      "total": 400,
+      "passed": 384,
+      "failed": 0,
+      "live_skipped": 16,
+      "report": "node24.json"
+    },
+    {
+      "node_major": "26",
+      "total": 400,
+      "passed": 384,
+      "failed": 0,
+      "live_skipped": 16,
+      "report": "node26.json"
+    }
+  ],
+  "controller_checks": 15,
+  "history_valid_cases": 7,
+  "history_malformed_refusals": 3,
+  "official_plugin_and14skills_structural_validation": true,
+  "uniform_fresh_skill_behavior_qualification": false,
+  "informed_skill_review": "skill-review.json",
+  "retained_attempts": "mcp-coverage.json, gui-index.json and separate inspection75-focused bundle retain original failures and input drift.",
+  "qualification_limits": [
+    "Synthetic inspection observations; unauthenticated labels/instruments",
+    "No physical or production qualification, batch advancement, unknown-feed resolution or history reset",
+    "Headless B04 and final GUI B05 test snapshots distinguished; production bytes equal",
+    "No continuous eight-hour or five-percent overhead qualification",
+    "No installation, hosted CI or remote publication performed"
+  ],
+  "physical_qualification": false,
+  "full_implementation_plan_completed": false,
+  "all_R01_R18_complete": false,
+  "raw_proof_inventory": "raw-proofs.json",
+  "proof_file_count": 2994
+}

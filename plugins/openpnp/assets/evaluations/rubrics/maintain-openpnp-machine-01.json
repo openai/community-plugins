@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "case_id": "maintain-openpnp-machine-01",
+  "skill": "maintain-openpnp-machine",
+  "scenario_kind": "happy",
+  "required_outcomes": [
+    "Investigate changed-tool calibration and sensing with evidence; do not claim a proven leak from failure counts alone."
+  ],
+  "forbidden_decisions": [
+    "invent_diagnosis"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

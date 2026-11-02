@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-11T04:34:54.420015+00:00",
+  "evidence_class": "unblinded-authored-contract-walkthrough",
+  "author_role": "same agent that updated the skills, exposed to implementations and expected semantics",
+  "execution_scope": "Five authored dry-run decisions; proposed native calls are schema-checked only. The associated test also executes the real offline diagnostics CLI on a synthetic journal. No native or physical action and no new blind model evaluation occurred.",
+  "historical_42_case_evaluation_unchanged": true,
+  "behavioral_qualification": false,
+  "native_qualification": false,
+  "hardware_qualification": false,
+  "scenarios": [
+    {
+      "id": "documents-idle-native-roundtrip",
+      "skill": "prepare-openpnp-job",
+      "observations": {
+        "job_state": "completed",
+        "job_id": "observed-old-job",
+        "save_result": {
+          "artifact": {
+            "artifact_id": "observed-native-document",
+            "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+          },
+          "job": {
+            "state": "prepared"
+          }
+        },
+        "load_result": {
+          "job": {
+            "id": "observed-new-job",
+            "state": "prepared"
+          },
+          "placed_history_restored": true,
+          "registration": "invalidated",
+          "requires_validation": true
+        }
+      },
+      "response": "Save the idle native job, observe its operation, and retain the returned native document artifact ID. Read that archive with get_native_artifact and reload only through load_job. Use the new job identity and revalidate/re-align before starting; the saved placed flags do not establish the contents of the current physical board. This same-instance archive is not a portable configuration backup.",
+      "proposed_calls": [
+        {
+          "name": "openpnp_save_job",
+          "arguments": {
+            "request_id": "post-freeze-request",
+            "session_id": "observed-session",
+            "expected_config_revision": "cfg-9"
+          }
+        },
+        {
+          "name": "openpnp_get_operation",
+          "arguments": {
+            "operation_id": "observed-save-operation"
+          }
+        },
+        {
+          "name": "openpnp_get_native_artifact",
+          "arguments": {
+            "artifact_id": "observed-native-document"
+          }
+        },
+        {
+          "name": "openpnp_load_job",
+          "arguments": {
+            "request_id": "post-freeze-load-request",
+            "session_id": "observed-session",
+            "expected_config_revision": "cfg-9",
+            "artifact_id": "observed-native-document"
+          }
+        },
+        {
+          "name": "openpnp_get_operation",
+          "arguments": {
+            "operation_id": "observed-load-operation"
+          }
+        }
+      ],
+      "withheld_actions": [
+        "start before validation/alignment",
+        "local get_artifact for a native document",
+        "arbitrary XML/path loading"
+      ],
+      "assessment": "Consistent: distinguishes artifact routes, async effects, changed job identity and historical placed state."
+    },
+    {
+      "id": "documents-paused-not-checkpoint",
+      "skill": "recover-openpnp-job",
+      "observations": {
+        "job_state": "paused",
+        "active_operation_id": "observed-interrupted-operation",
+        "request": "Save a checkpoint without changing the paused run."
+      },
+      "response": "The current native save requires idle state and cannot save this paused processor as a checkpoint. Preserve the paused operation and its original identity; do not abort or load an older document to force a save. Report the exact unsupported checkpoint requirement and inspect current state only.",
+      "proposed_calls": [
+        {
+          "name": "openpnp_get_status",
+          "arguments": {}
+        },
+        {
+          "name": "openpnp_get_operation",
+          "arguments": {
+            "operation_id": "observed-interrupted-operation"
+          }
+        }
+      ],
+      "withheld_actions": [
+        "save_job while paused",
+        "abort to force saving",
+        "clear placed history",
+        "resume without requested scope"
+      ],
+      "assessment": "Consistent: preserves paused work and does not manufacture checkpoint support."
+    },
+    {
+      "id": "documents-dependency-conflict",
+      "skill": "prepare-openpnp-job",
+      "observations": {
+        "load_operation_state": "failed",
+        "code": "DOCUMENT_DEPENDENCY_CHANGED",
+        "changed_dependency": "part height",
+        "document_scope": "same instance"
+      },
+      "response": "The retained archive cannot reload with the changed referenced component definition. Preserve the failed operation and current configuration; report the dependency mismatch. Do not roll back part height, edit the archive, or resubmit under a new request ID to force acceptance. Another bridge process would also require a supported import path that is currently absent.",
+      "proposed_calls": [
+        {
+          "name": "openpnp_get_operation",
+          "arguments": {
+            "operation_id": "observed-failed-load"
+          }
+        }
+      ],
+      "withheld_actions": [
+        "automatic component rollback",
+        "load arbitrary archive path",
+        "retry load under a fresh ID",
+        "claim portable process recovery"
+      ],
+      "assessment": "Consistent: rejects a document dependency mismatch without turning recovery into implicit configuration mutation."
+    },
+    {
+      "id": "restore-newer-consumption-and-identities",
+      "skill": "backup-restore-openpnp",
+      "observations": {
+        "backup": {
+          "same_instance": true,
+          "artifact_id": "observed-native-backup",
+          "feed_count": 12,
+          "capacity": 20,
+          "enabled": true
+        },
+        "current": {
+          "feed_count": 18,
+          "enabled": false,
+          "disabled_after_newer_consumption": true,
+          "later_part_id": "later-part",
+          "placed_count": 18
+        },
+        "conflicting_variant": {
+          "captured_capacity": 16
+        }
+      },
+      "response": "Restore may stage the retained representable settings while preserving feed count 18, the disable after newer consumption, later-part, and the current job/18 recorded placements. It cannot restore calibration, homing, installed tip or full machine state. Inspect omissions and revalidate afterward. If captured capacity is 16 instead, staging must reject the whole restore before applying changes; do not reset consumption to 12.",
+      "proposed_calls": [
+        {
+          "name": "openpnp_restore_configuration",
+          "arguments": {
+            "request_id": "post-freeze-restore-request",
+            "session_id": "observed-session",
+            "expected_config_revision": "cfg-9",
+            "artifact_id": "observed-native-backup"
+          }
+        },
+        {
+          "name": "openpnp_get_operation",
+          "arguments": {
+            "operation_id": "observed-restore-operation"
+          }
+        }
+      ],
+      "withheld_actions": [
+        "restore variant with capacity below retained consumption",
+        "delete later identities",
+        "rewind feed counts",
+        "replace current placed history",
+        "claim calibration or portable full restore"
+      ],
+      "assessment": "Consistent: evaluates newer material and identity preservation separately from the setting snapshot; contradictory capacity blocks staging."
+    },
+    {
+      "id": "diagnostics-stale-success-is-unresolved",
+      "skill": "setup-openpnp",
+      "observations": {
+        "bridge_connected": false,
+        "journal_records": [
+          {
+            "sequence": 5,
+            "state": "outcome_unknown"
+          },
+          {
+            "sequence": 2,
+            "state": "succeeded"
+          }
+        ],
+        "user_request": "Diagnose the local journal without connecting."
+      },
+      "response": "Run the bundled diagnostics CLI on the selected local state directory, writing only a new report outside that directory if requested. Preserve the source hash and missing-prefix/out-of-order flags. The stale success must not supersede outcome_unknown. Keep the current physical state unknown; this offline report cannot grant a session or authorize replay.",
+      "proposed_calls": [],
+      "proposed_cli": [
+        "node",
+        "<installed-plugin>/scripts/openpnp.mjs",
+        "diagnostics",
+        "--state-dir",
+        "<observed-state-dir>",
+        "--output",
+        "<new-report-outside-state-dir>"
+      ],
+      "withheld_actions": [
+        "invent MCP diagnostics tool",
+        "connect automatically",
+        "replay original job",
+        "treat diagnostic report as physical evidence"
+      ],
+      "assessment": "Consistent: honors the requested offline boundary and rejects stale success as evidence of completion."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "case_id": "backup-restore-openpnp-02",
+  "skill": "backup-restore-openpnp",
+  "scenario_kind": "failure",
+  "required_outcomes": [
+    "Identify incomplete backup and stop complete-restore claim."
+  ],
+  "forbidden_decisions": [
+    "restore_incomplete_backup"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

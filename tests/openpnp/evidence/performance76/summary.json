@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "scope": "Additional current75 macOS ARM64 performance measurements; no production plugin change or full-plan completion.",
+  "bridge_sha256": "970e4635953f3bdc33499088ad560d6f6190d01e2285c152f6a56a109a7caf45",
+  "native_sha256": "810773c1defa9a0200cce437d3f426d4c08419fb3f471d693f9e5c5f38f78f0b",
+  "baseline": {
+    "receipt": "baseline-receipt.json",
+    "measured_pairs": [
+      {
+        "pair_index": 1,
+        "direct_seconds": 4.0325165,
+        "bridge_seconds": 22.568076042,
+        "overhead_seconds": 18.535559542,
+        "overhead_percent": 459.65241659891535,
+        "added_ms_per_placement": 185.35559542000001
+      },
+      {
+        "pair_index": 2,
+        "direct_seconds": 4.040054958,
+        "bridge_seconds": 22.781749834,
+        "overhead_seconds": 18.741694876,
+        "overhead_percent": 463.89702790770804,
+        "added_ms_per_placement": 187.41694876000003
+      },
+      {
+        "pair_index": 3,
+        "direct_seconds": 4.051903542,
+        "bridge_seconds": 22.90276075,
+        "overhead_seconds": 18.850857208,
+        "overhead_percent": 465.2345993087315,
+        "added_ms_per_placement": 188.50857208000002
+      }
+    ],
+    "median_direct_seconds_per_100": 4.040054958,
+    "median_bridge_seconds_per_100": 22.781749834,
+    "median_paired_overhead_percent": 463.89702790770804,
+    "median_added_ms_per_placement": 187.41694876000003,
+    "target_5_percent_met": false,
+    "placements": {
+      "measured": 600,
+      "warmup": 120,
+      "bridge_measured": 300,
+      "bridge_warmup": 60
+    },
+    "measured_steps_per_trial": 2004,
+    "bridge_measured_native_completions": 300,
+    "bridge_measured_matched_actions": 1200
+  },
+  "diagnostic": {
+    "receipt": "diagnostic-receipt.json",
+    "private_overlay": true,
+    "same_workload": true,
+    "placements": {
+      "measured": 600,
+      "warmup": 120
+    },
+    "measured_force_count": 15333,
+    "measured_force_seconds": 54.409475661,
+    "force_mean_ms": 3.5485212066131875,
+    "force_fraction_of_instrumented_job_elapsed": 0.7658915193934144,
+    "force_fraction_of_instrumented_journal_elapsed": 0.9827427639251445,
+    "measured_job_seconds": 71.040707833,
+    "measured_journal_seconds": 55.364921176,
+    "claim": "Elapsed time inside force(true), not CPU time. Native-next includes ledger events; totals overlap. Sequential campaigns cannot isolate profiler overhead from host drift. Histograms report upper bounds, not exact quantiles."
+  },
+  "acceptance": "Placement, exact ledger identity/order, immutable inputs and normal cleanup checks pass. Five-percent target fails. No sustained, physical, HTTP/MCP or universal performance claim.",
+  "retained_failure": {
+    "path": "retained-failed-attempt.json",
+    "sha256": "8daec45a6ef14284b385231b6c8cc8d8b88d761da4b39a23cb9deeeadd904070",
+    "cause": "Harness retained a stale configuration revision after home; native prepare refused before Bridge placement. One direct100+20 trial completed; excluded from the corrected campaign."
+  },
+  "journal_audit": "journal-audit.json",
+  "predecessor_endurance_review": "endurance57-closed-review.json",
+  "reproduction": "../../../../scripts/openpnp-benchmark-packaged.py",
+  "limitations": [
+    "Three pairs on one macOS ARM64 host with uncontrolled other load.",
+    "Accelerated Unsorted native simulator, zero dwell/settle and finite zero-pitch trays; physical throughput is unqualified.",
+    "Uninstrumented exact packaged Bridge is the timing baseline; private timing overlay is not distributed.",
+    "All native barriers retained. No optimization is inferred from historical different fixtures/builds.",
+    "END57 uses its original predecessor artifacts and does not qualify75 or continuous eight hours."
+  ],
+  "physical_qualification": false,
+  "full_plan_complete": false,
+  "benchmark_delivery": {
+    "runner": "scripts/openpnp-benchmark-packaged.py",
+    "runner_sha256": "442415db2973b511cf3df2c6aabadb38b1158ffe358ffa7c44d75b1f413d9a6b",
+    "harness": "tests/openpnp/native/NativePlacementBenchmark76.java",
+    "harness_sha256": "99aaaf0e7bc7fdf8032a5e142cad23e76de5fc2808b387646a378abf2117e566",
+    "compile_receipt": "runner-compile.json",
+    "lifecycle_receipt": "runner-lifecycle.json",
+    "lifecycle_assertions": 64,
+    "scope": "Final runner cleanup/acceptance logic tested with harmless owned Python children and compile-only checks. Java harness class matches the completed campaigns. Held campaign runner precedes these lifecycle-only changes. No current-build native cancellation or forced-SIGKILL timing claim."
+  }
+}

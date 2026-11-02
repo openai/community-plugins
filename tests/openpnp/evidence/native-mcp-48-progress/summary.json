@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "scope": "Actual installed packaged MCP and pinned native OpenPnP simulator, fresh isolated instance for each of four suites.",
+  "passed": true,
+  "completed_at": "2026-09-11T07:34:57.079904+00:00",
+  "bridge_sha256": "2ebc3b8f8d0fcc7d26a98622f3da1e4965458a7173f7f69acc36b5274f31f545",
+  "server_sha256": "cd760f07285eab0df587738170a0582874d4af96e7df9b08159df8c5dadb6367",
+  "report_path": "validation/native-mcp-combined-03/report.json",
+  "report_sha256": "6e73d522cf8d4c9d318ca07cdd1c98fad8d63168c6ad92a4dbbafda1c9c41060",
+  "input_count": 4016,
+  "inputs_unchanged": true,
+  "simulation_only": true,
+  "hardware_qualified": false,
+  "independently_inspected": 0,
+  "performance_benchmark": false,
+  "suites": [
+    {
+      "name": "core",
+      "passed": true,
+      "native_placements": 33,
+      "duration_seconds": 16.458690125029534,
+      "cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      },
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "evidence_file": "mcp-native-e2e.json",
+      "evidence_sha256": "88ee99b207dc8971e047321e75c4d8309d3d959005bd5743d4818bab2cee906a",
+      "process_cleanup": {
+        "install.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        },
+        "test.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        },
+        "doctor.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        }
+      }
+    },
+    {
+      "name": "vision",
+      "passed": true,
+      "native_placements": 1,
+      "duration_seconds": 3.7902381249004975,
+      "cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      },
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "evidence_file": "mcp-native-vision.json",
+      "evidence_sha256": "8e2e4512fb1edfee342b6318debfc29f50bbcdedc47d2cd3f8f308de702f9556",
+      "process_cleanup": {
+        "install.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        },
+        "test.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        },
+        "doctor.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        }
+      }
+    },
+    {
+      "name": "placement",
+      "passed": true,
+      "native_placements": 2,
+      "duration_seconds": 7.92424512503203,
+      "cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      },
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "evidence_file": "mcp-placement-loads.json",
+      "evidence_sha256": "5ec7408f0d4acc44e85bc0414972c3ee1833fe47dfeb74be56d0b8a972aae6b2",
+      "process_cleanup": {
+        "install.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        },
+        "test.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        },
+        "doctor.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        }
+      }
+    },
+    {
+      "name": "recovery",
+      "passed": true,
+      "native_placements": 200,
+      "duration_seconds": 52.511129040969536,
+      "cleanup": {
+        "parent_exit_code": 0,
+        "forced_kill": false,
+        "group_gone": true,
+        "errors": []
+      },
+      "test_counts": {
+        "tests": 1,
+        "pass": 1,
+        "fail": 0,
+        "skipped": 0,
+        "todo": 0
+      },
+      "evidence_file": "mcp-native-reconnect.json",
+      "evidence_sha256": "3c646608b6aab0cf329a71415d1830eb960ca14e473746b9161f4aae606b04f2",
+      "process_cleanup": {
+        "install.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        },
+        "test.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        },
+        "doctor.process.json": {
+          "parent_exit_code": 0,
+          "forced_kill": false,
+          "group_gone": true,
+          "errors": []
+        }
+      }
+    }
+  ],
+  "native_placements_total": 236
+}

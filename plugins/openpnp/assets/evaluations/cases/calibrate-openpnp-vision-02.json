@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "case_id": "calibrate-openpnp-vision-02",
+  "skill": "calibrate-openpnp-vision",
+  "request": "Use this resized screenshot to set the nozzle X offset.",
+  "execution_boundary": "offline decision exercise; no hardware, external writes, or actual tool invocation",
+  "observations": {
+    "image_dimensions": [
+      640,
+      360
+    ],
+    "original_dimensions": [
+      1280,
+      720
+    ],
+    "crop_transform": null,
+    "camera_calibration_revision": null,
+    "estimated_offset_pixels": 12
+  },
+  "tool_inventory": {
+    "source": "normalized evaluation snapshot, not a live MCP result",
+    "candidate_tools": [
+      "openpnp_get_capabilities",
+      "openpnp_get_configuration",
+      "openpnp_capture_camera",
+      "openpnp_plan_configuration",
+      "openpnp_apply_configuration",
+      "openpnp_run_calibration",
+      "openpnp_validate_calibration"
+    ]
+  }
+}

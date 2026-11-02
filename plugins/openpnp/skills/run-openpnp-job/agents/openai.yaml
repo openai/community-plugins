@@ -1,0 +1,4 @@
+interface:
+  display_name: "Run an OpenPnP Job"
+  short_description: "Run and supervise a validated placement batch"
+  default_prompt: "Use $run-openpnp-job to help with this OpenPnP workflow."

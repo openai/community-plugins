@@ -1,0 +1,464 @@
+{
+  "finished_at": "2026-09-11T09:35:14.398824+00:00",
+  "passed": true,
+  "cases": 4,
+  "halt_processes": 4,
+  "fresh_recovery_jvms": 8,
+  "offline_oracle_assertions": 75,
+  "recovery_native_assertions": 188,
+  "elapsed_seconds": 13.910943208029494,
+  "bridge_sha256": "3a490050f0210973981d689f15edd6827e4f272b2184ac537de0d773b4f1612f",
+  "source_sha256": "0fd43afcead66b966a8ec3b5421de5460df48cd46da64239e7416f6480ef39fc",
+  "test_class_sha256": {
+    "org/openpnp/codex/NativeBridgeAdmissionHaltTest$1.class": "6f046b619740ff905486f553ce2a6d197b1dfda3cd07e6070bd0be0f146e7ed6",
+    "org/openpnp/codex/NativeBridgeAdmissionHaltTest$ObservingChannel.class": "7c27ac4880ae331cbdf2093a3207a3c114b92c66e368d5262ee057c161c17f8b",
+    "org/openpnp/codex/NativeBridgeAdmissionHaltTest.class": "e62b26382a5c5576b28204127c1b690e19ffa82b940172df5ca81df7ab74ad8f"
+  },
+  "runner_sha256": "18109347c3dd0a44151d399c3b4db9a52691ad82489fd1c567224a03e87edadf",
+  "oracle_sha256": "9e4fae15deefecf0ee7c5022100db24c848ff051be8fe5672aa53744c0a8fb30",
+  "raw_report_sha256": "d507643e4815ca022614bedb57282526be3900261d7f03b34f20d278f7a835be",
+  "source_runtime_and_package_unchanged": true,
+  "rows": [
+    {
+      "scenario": "initial-admission-forced",
+      "initial_admission_binding_fields": {
+        "job_id": {
+          "present": false
+        },
+        "job_revision": {
+          "present": false
+        },
+        "board_load_id": {
+          "present": false
+        },
+        "board_load_revision": {
+          "present": false
+        },
+        "lineage_id": {
+          "present": false
+        },
+        "lineage_revision": {
+          "present": false
+        },
+        "config_revision": {
+          "present": true,
+          "value": "cfg-2"
+        }
+      },
+      "observed_dispatch_action_scope": {},
+      "target_request_field_names": [
+        "expected_config_revision",
+        "job_id",
+        "request_id",
+        "session_id"
+      ],
+      "halt_exit": 74,
+      "seam": "after-real-force-return",
+      "native_steps_before_halt": 0,
+      "native_feeds_before_halt": 0,
+      "held_part_before_halt": false,
+      "native_placements_before_halt": 0,
+      "target_event_type": "operation",
+      "target_event_state": "accepted",
+      "target_call_returned": false,
+      "final_target_command_receipt_state": null,
+      "durable_initial_job_id_present": false,
+      "durable_initial_job_revision_present": false,
+      "full_per_job_lineage_proof": false,
+      "recoveries": [
+        {
+          "phase": "recover1",
+          "assertions": 23,
+          "report_sha256": "5c12e3119c43874532fb1ff3137a5cb3e5f929cd84f9eb95d0190f5c2726a221",
+          "operation_state": "outcome_unknown",
+          "native_action_recovery": {
+            "automatic_replay": false,
+            "events_committed": 0,
+            "native_hook_outcomes": 0,
+            "operation_id": "ce9f810f-d8a3-4cf0-a36f-ffed8f531fc1",
+            "physical_effect_verification": false,
+            "requires_reconciliation": false,
+            "safety_gaps": [],
+            "unresolved_actions": []
+          }
+        },
+        {
+          "phase": "recover2",
+          "assertions": 24,
+          "report_sha256": "7c33c95252b45b1dbf1ce36f2647efcf79bb03857b2d1d236cf7ef1b1583e02d",
+          "operation_state": "outcome_unknown",
+          "native_action_recovery": {
+            "automatic_replay": false,
+            "events_committed": 0,
+            "native_hook_outcomes": 0,
+            "operation_id": "ce9f810f-d8a3-4cf0-a36f-ffed8f531fc1",
+            "physical_effect_verification": false,
+            "requires_reconciliation": false,
+            "safety_gaps": [],
+            "unresolved_actions": []
+          }
+        }
+      ],
+      "forced_prefix_sha256": "8737df0924f8893d24c2d7a11143a022f5c467dfbad9fe8639d3ff5ec466a7c3",
+      "halt_observation_sha256": "f5d0ab9895498fc3f63e25c655e7728b371f19b37f042936c1f67f5b8fb88057"
+    },
+    {
+      "scenario": "continuation-receipt-forced",
+      "initial_admission_binding_fields": {
+        "job_id": {
+          "present": false
+        },
+        "job_revision": {
+          "present": false
+        },
+        "board_load_id": {
+          "present": false
+        },
+        "board_load_revision": {
+          "present": false
+        },
+        "lineage_id": {
+          "present": false
+        },
+        "lineage_revision": {
+          "present": false
+        },
+        "config_revision": {
+          "present": true,
+          "value": "cfg-2"
+        }
+      },
+      "observed_dispatch_action_scope": {
+        "job_id": "65431d0c-7187-4432-b04e-2051a911b923",
+        "job_revision": "a5d6baaadde7d81d189d61f35b4d2c75332356e3500cdee60c4caef025aaaf02",
+        "board_load_id": "a1de77d9332e55bdfbede6fe33d7713b2f6573dcb720c5eace34381e6ae277c4",
+        "board_load_revision": "load-1",
+        "config_revision": "cfg-2"
+      },
+      "target_request_field_names": [
+        "expected_config_revision",
+        "operation_id",
+        "request_id",
+        "session_id"
+      ],
+      "halt_exit": 74,
+      "seam": "after-real-force-return",
+      "native_steps_before_halt": 10,
+      "native_feeds_before_halt": 1,
+      "held_part_before_halt": true,
+      "native_placements_before_halt": 0,
+      "target_event_type": "command_receipt",
+      "target_event_state": "accepted",
+      "target_call_returned": false,
+      "final_target_command_receipt_state": "outcome_unknown",
+      "durable_initial_job_id_present": false,
+      "durable_initial_job_revision_present": false,
+      "full_per_job_lineage_proof": false,
+      "recoveries": [
+        {
+          "phase": "recover1",
+          "assertions": 23,
+          "report_sha256": "17bbb140ccbe1defb8aa8839cad080caba1b2ca96d0dc36c26cdd2b586a6c788",
+          "operation_state": "outcome_unknown",
+          "native_action_recovery": {
+            "automatic_replay": false,
+            "events_committed": 5,
+            "native_hook_outcomes": 2,
+            "operation_id": "809ea195-afb8-458c-bfbf-b6a857e67e17",
+            "physical_effect_verification": false,
+            "requires_reconciliation": false,
+            "safety_gaps": [],
+            "unresolved_actions": []
+          }
+        },
+        {
+          "phase": "recover2",
+          "assertions": 24,
+          "report_sha256": "566a2ba69a11b550eb7a078dda7528f3d014d3623c527f93c82f7a7976b827bd",
+          "operation_state": "outcome_unknown",
+          "native_action_recovery": {
+            "automatic_replay": false,
+            "events_committed": 5,
+            "native_hook_outcomes": 2,
+            "operation_id": "809ea195-afb8-458c-bfbf-b6a857e67e17",
+            "physical_effect_verification": false,
+            "requires_reconciliation": false,
+            "safety_gaps": [],
+            "unresolved_actions": []
+          }
+        }
+      ],
+      "forced_prefix_sha256": "ebe556c27b3b61bfc3b0dc9e573156ac91bd0b92e0a56accd1aff4a71fcbd20b",
+      "halt_observation_sha256": "996ba0b0c8e6cef548256fc2acfd1f3abfeff74c545cd109aea69105882798ff"
+    },
+    {
+      "scenario": "continuation-queued",
+      "initial_admission_binding_fields": {
+        "job_id": {
+          "present": false
+        },
+        "job_revision": {
+          "present": false
+        },
+        "board_load_id": {
+          "present": false
+        },
+        "board_load_revision": {
+          "present": false
+        },
+        "lineage_id": {
+          "present": false
+        },
+        "lineage_revision": {
+          "present": false
+        },
+        "config_revision": {
+          "present": true,
+          "value": "cfg-2"
+        }
+      },
+      "observed_dispatch_action_scope": {
+        "job_id": "ecd347e2-97ef-42b0-ac0d-6e550ab5fe71",
+        "job_revision": "a5d6baaadde7d81d189d61f35b4d2c75332356e3500cdee60c4caef025aaaf02",
+        "board_load_id": "c4b0ada8f9ed4d361cdfd7a1927cfe060408e220f1de2aeea1b5618dcff6a1ba",
+        "board_load_revision": "load-1",
+        "config_revision": "cfg-2"
+      },
+      "target_request_field_names": [
+        "expected_config_revision",
+        "operation_id",
+        "request_id",
+        "session_id"
+      ],
+      "halt_exit": 74,
+      "seam": "continuation-queued",
+      "native_steps_before_halt": 10,
+      "native_feeds_before_halt": 1,
+      "held_part_before_halt": true,
+      "native_placements_before_halt": 0,
+      "target_event_type": "command_receipt",
+      "target_event_state": "succeeded",
+      "target_call_returned": true,
+      "final_target_command_receipt_state": "succeeded",
+      "durable_initial_job_id_present": false,
+      "durable_initial_job_revision_present": false,
+      "full_per_job_lineage_proof": false,
+      "recoveries": [
+        {
+          "phase": "recover1",
+          "assertions": 23,
+          "report_sha256": "9206c345d2455d872b4a226839853be4874c247dfc5ff8d4169952e7e1986192",
+          "operation_state": "outcome_unknown",
+          "native_action_recovery": {
+            "automatic_replay": false,
+            "events_committed": 5,
+            "native_hook_outcomes": 2,
+            "operation_id": "90c42cb3-0ffd-4dcb-860e-1e4ed13b4397",
+            "physical_effect_verification": false,
+            "requires_reconciliation": false,
+            "safety_gaps": [],
+            "unresolved_actions": []
+          }
+        },
+        {
+          "phase": "recover2",
+          "assertions": 24,
+          "report_sha256": "ccbb4928d302d07d5cf72ea61090f4eef599b83b702a32726defe7850949e328",
+          "operation_state": "outcome_unknown",
+          "native_action_recovery": {
+            "automatic_replay": false,
+            "events_committed": 5,
+            "native_hook_outcomes": 2,
+            "operation_id": "90c42cb3-0ffd-4dcb-860e-1e4ed13b4397",
+            "physical_effect_verification": false,
+            "requires_reconciliation": false,
+            "safety_gaps": [],
+            "unresolved_actions": []
+          }
+        }
+      ],
+      "forced_prefix_sha256": "9d4ab62b6235fa3eb2698f9a23a988fad10f19b3633c6731c308e447d3100b94",
+      "halt_observation_sha256": "7fbde596f1651e8605e9092229c0741cdbcd1d2b296f7d82b38897772f427a30"
+    },
+    {
+      "scenario": "held-pause-forced",
+      "initial_admission_binding_fields": {
+        "job_id": {
+          "present": false
+        },
+        "job_revision": {
+          "present": false
+        },
+        "board_load_id": {
+          "present": false
+        },
+        "board_load_revision": {
+          "present": false
+        },
+        "lineage_id": {
+          "present": false
+        },
+        "lineage_revision": {
+          "present": false
+        },
+        "config_revision": {
+          "present": true,
+          "value": "cfg-2"
+        }
+      },
+      "observed_dispatch_action_scope": {
+        "job_id": "7fc5fa31-7f2e-4659-8ac5-90cb088b3964",
+        "job_revision": "a5d6baaadde7d81d189d61f35b4d2c75332356e3500cdee60c4caef025aaaf02",
+        "board_load_id": "3a7922b227f007be1ada6e8f38873971750e6d037ce9f0ac7d9a7064391a811b",
+        "board_load_revision": "load-1",
+        "config_revision": "cfg-2"
+      },
+      "target_request_field_names": [
+        "expected_config_revision",
+        "operation_id",
+        "request_id",
+        "session_id"
+      ],
+      "halt_exit": 74,
+      "seam": "after-real-force-return",
+      "native_steps_before_halt": 10,
+      "native_feeds_before_halt": 1,
+      "held_part_before_halt": true,
+      "native_placements_before_halt": 0,
+      "target_event_type": "operation",
+      "target_event_state": "paused",
+      "target_call_returned": true,
+      "final_target_command_receipt_state": "succeeded",
+      "durable_initial_job_id_present": false,
+      "durable_initial_job_revision_present": false,
+      "full_per_job_lineage_proof": false,
+      "recoveries": [
+        {
+          "phase": "recover1",
+          "assertions": 23,
+          "report_sha256": "c4fef8d0686cd928b6dfe9955f03e8773e36847e39414426d406c8b125a697d6",
+          "operation_state": "outcome_unknown",
+          "native_action_recovery": {
+            "automatic_replay": false,
+            "events_committed": 5,
+            "native_hook_outcomes": 2,
+            "operation_id": "58a63342-26d9-4eaa-a1d9-2505e33325e4",
+            "physical_effect_verification": false,
+            "requires_reconciliation": false,
+            "safety_gaps": [],
+            "unresolved_actions": []
+          }
+        },
+        {
+          "phase": "recover2",
+          "assertions": 24,
+          "report_sha256": "fb0dc443cd3ad89b521cf88c762867e1c337ee6cc86cf63f660a1e3e10e3cae4",
+          "operation_state": "outcome_unknown",
+          "native_action_recovery": {
+            "automatic_replay": false,
+            "events_committed": 5,
+            "native_hook_outcomes": 2,
+            "operation_id": "58a63342-26d9-4eaa-a1d9-2505e33325e4",
+            "physical_effect_verification": false,
+            "requires_reconciliation": false,
+            "safety_gaps": [],
+            "unresolved_actions": []
+          }
+        }
+      ],
+      "forced_prefix_sha256": "e0e5cd57c7c3992e9dd88532eed2da54613aa4c6f2b577f2e421bad6f02d03fc",
+      "halt_observation_sha256": "83808fee7da1e7f40b68315e3a67e1bed73ba8dac19661e52d70dcc0370cfe63"
+    }
+  ],
+  "oracle_checks": [
+    "four halts and eight recoveries completed with expected exit codes",
+    "initial-admission-forced: exact forced prefix and last target event retained",
+    "initial-admission-forced: complete sequential real journal after both recoveries",
+    "initial-admission-forced: no extra native step/action/feed/cleanup/checkpoint envelope during recovery",
+    "initial-admission-forced: original actual admission identity and method preserved",
+    "initial-admission-forced: missing initial durable job lineage is explicit, not inferred from reset fixture",
+    "initial-admission-forced: digest oracle uses exact observed string-only request shape",
+    "initial-admission-forced: independent canonical request digest binds actual target admission",
+    "initial-admission-forced: exact native effect oracle",
+    "initial-admission-forced: initial force precedes native dispatch/caller return",
+    "initial-admission-forced/recover1: same operation remains unknown without continuation/reconciliation",
+    "initial-admission-forced/recover1: zero recovery effects; reset material count explicitly not authority",
+    "initial-admission-forced/recover1: recovery journal itself remains an exact later prefix",
+    "initial-admission-forced/recover2: same operation remains unknown without continuation/reconciliation",
+    "initial-admission-forced/recover2: zero recovery effects; reset material count explicitly not authority",
+    "initial-admission-forced/recover2: recovery journal itself remains an exact later prefix",
+    "initial-admission-forced: original request identity/digest is unchanged in final operation",
+    "initial-admission-forced: observed initial configuration revision matches request",
+    "continuation-receipt-forced: exact forced prefix and last target event retained",
+    "continuation-receipt-forced: complete sequential real journal after both recoveries",
+    "continuation-receipt-forced: no extra native step/action/feed/cleanup/checkpoint envelope during recovery",
+    "continuation-receipt-forced: original actual admission identity and method preserved",
+    "continuation-receipt-forced: missing initial durable job lineage is explicit, not inferred from reset fixture",
+    "continuation-receipt-forced: digest oracle uses exact observed string-only request shape",
+    "continuation-receipt-forced: independent canonical request digest binds actual target admission",
+    "continuation-receipt-forced: exact native effect oracle",
+    "continuation-receipt-forced: durable continuation receipt precedes additional native work",
+    "continuation-receipt-forced/recover1: same operation remains unknown without continuation/reconciliation",
+    "continuation-receipt-forced/recover1: zero recovery effects; reset material count explicitly not authority",
+    "continuation-receipt-forced/recover1: recovery journal itself remains an exact later prefix",
+    "continuation-receipt-forced/recover2: same operation remains unknown without continuation/reconciliation",
+    "continuation-receipt-forced/recover2: zero recovery effects; reset material count explicitly not authority",
+    "continuation-receipt-forced/recover2: recovery journal itself remains an exact later prefix",
+    "continuation-receipt-forced: original request identity/digest is unchanged in final operation",
+    "continuation-receipt-forced: command receipt identity/digest survives both recoveries",
+    "continuation-receipt-forced: observed initial configuration revision matches request",
+    "continuation-receipt-forced: later native action scope retains exact job/config/load bindings without inferring missing initial bindings",
+    "continuation-queued: exact forced prefix and last target event retained",
+    "continuation-queued: complete sequential real journal after both recoveries",
+    "continuation-queued: no extra native step/action/feed/cleanup/checkpoint envelope during recovery",
+    "continuation-queued: original actual admission identity and method preserved",
+    "continuation-queued: missing initial durable job lineage is explicit, not inferred from reset fixture",
+    "continuation-queued: digest oracle uses exact observed string-only request shape",
+    "continuation-queued: independent canonical request digest binds actual target admission",
+    "continuation-queued: exact native effect oracle",
+    "continuation-queued: returned queued admission has no extra native next call",
+    "continuation-queued/recover1: same operation remains unknown without continuation/reconciliation",
+    "continuation-queued/recover1: zero recovery effects; reset material count explicitly not authority",
+    "continuation-queued/recover1: recovery journal itself remains an exact later prefix",
+    "continuation-queued/recover2: same operation remains unknown without continuation/reconciliation",
+    "continuation-queued/recover2: zero recovery effects; reset material count explicitly not authority",
+    "continuation-queued/recover2: recovery journal itself remains an exact later prefix",
+    "continuation-queued: original request identity/digest is unchanged in final operation",
+    "continuation-queued: command receipt identity/digest survives both recoveries",
+    "continuation-queued: observed initial configuration revision matches request",
+    "continuation-queued: later native action scope retains exact job/config/load bindings without inferring missing initial bindings",
+    "held-pause-forced: exact forced prefix and last target event retained",
+    "held-pause-forced: complete sequential real journal after both recoveries",
+    "held-pause-forced: no extra native step/action/feed/cleanup/checkpoint envelope during recovery",
+    "held-pause-forced: original actual admission identity and method preserved",
+    "held-pause-forced: missing initial durable job lineage is explicit, not inferred from reset fixture",
+    "held-pause-forced: digest oracle uses exact observed string-only request shape",
+    "held-pause-forced: independent canonical request digest binds actual target admission",
+    "held-pause-forced: exact native effect oracle",
+    "held-pause-forced: paused publication follows actual completed native step/barrier",
+    "held-pause-forced/recover1: same operation remains unknown without continuation/reconciliation",
+    "held-pause-forced/recover1: zero recovery effects; reset material count explicitly not authority",
+    "held-pause-forced/recover1: recovery journal itself remains an exact later prefix",
+    "held-pause-forced/recover2: same operation remains unknown without continuation/reconciliation",
+    "held-pause-forced/recover2: zero recovery effects; reset material count explicitly not authority",
+    "held-pause-forced/recover2: recovery journal itself remains an exact later prefix",
+    "held-pause-forced: original request identity/digest is unchanged in final operation",
+    "held-pause-forced: command receipt identity/digest survives both recoveries",
+    "held-pause-forced: observed initial configuration revision matches request",
+    "held-pause-forced: later native action scope retains exact job/config/load bindings without inferring missing initial bindings"
+  ],
+  "scope": {
+    "full_bridge_admission": true,
+    "actual_native_processor_and_force": true,
+    "test_only_channel_observer_and_executor_latch": true,
+    "bridge_callback_inside_observer": false,
+    "stale_paused_authority_restored": false,
+    "effect_replay": false,
+    "reconcile_or_resume_after_restart": false,
+    "physical_verification": false,
+    "host_power_loss": false,
+    "material_counter_recovery": false,
+    "durable_complete_per_job_lineage": false,
+    "claim_limit": "Succeeded continuation command receipt records admitted command handling only; recovered job operation remains outcome_unknown. Initial admission omits job_id/job_revision, so no complete per-job lineage is inferred."
+  }
+}

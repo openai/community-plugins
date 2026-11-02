@@ -1,0 +1,660 @@
+{
+  "kind": "native52-linux-arm64-qualification",
+  "recorded_at": "2026-09-11T10:15:46.809927+00:00",
+  "passed": true,
+  "tool_catalog_context": 52,
+  "standard_native_mains_per_run": 46,
+  "runs": {
+    "canonical": {
+      "tests_run": 46,
+      "all_tests_pass": true,
+      "bridge_sha256": "ae29c4ab45bd8f6a13a7618e2ce35ac9fbbc2345675089cc0f0ae455d78887fb",
+      "runtime_manifest_sha256": "57cb2f6f2420095f6cf0436c93ccbbbcccf66804260c74f67fba57ac29b377ec",
+      "receipt_sha256": "330235704813453e3e8b7667bf1b80da4f11e5709730cbed814f0ff6329cd27b",
+      "tests": [
+        {
+          "main": "NativeActionLedgerTest",
+          "exit_code": 0,
+          "source_sha256": "ba6f8d0085399990e926313e92036da2bcedc0bf48aa4d844a20bc5d8c53d7a4",
+          "log_sha256": "9d70cf92d03cc0483798ef45d46197e54dd18aec24048cd28ce72fb8caf68fae"
+        },
+        {
+          "main": "NativeBridgeDocumentRestartTest",
+          "exit_code": 0,
+          "source_sha256": "69db6b1b02c2fc152d52f9749b479d085f7e0dc58e38e826d7aeead048f13d2b",
+          "log_sha256": "c6830590f354501688d60b55407b7dd1ac6a4714fa2af92ab6bc2389285f4cb0"
+        },
+        {
+          "main": "NativeExecutorOwnershipTest",
+          "exit_code": 0,
+          "source_sha256": "609e16a7afc10d518059b425749498945f7e5770fcf1cb229547c53a5e01ee32",
+          "log_sha256": "982edb49b45d0f667d9592a49c69c3078397fddfc878d318b5dbb700cff82b3e"
+        },
+        {
+          "main": "NativeLedgerRecoveryTest",
+          "exit_code": 0,
+          "source_sha256": "c11015c0b94bb1f1bedd089829d4d07b27d94fe3f904108ad64005a8b8f28272",
+          "log_sha256": "676cc4b39442c58d7d8b8afc4a31453a46ada63d6c80a8d8ed307892d9d184b3"
+        },
+        {
+          "main": "NativeJournalInputBoundaryTest",
+          "exit_code": 0,
+          "source_sha256": "ec2657799a72f7e533c298c1a05b79348bb4072de0f9198d00a185c0bd136bd1",
+          "log_sha256": "82bfbd63d7152d05e6ed5ae7042fc3050c8f37a0f55b7b58d99e46223407ee5e"
+        },
+        {
+          "main": "NativeEffectBoundaryTest",
+          "exit_code": 0,
+          "source_sha256": "df1e3dfd495999aa6680517732abead327f8ecb56e1cde23ca65fad88f8fd4fe",
+          "log_sha256": "13335d5be22132249d3f8f1b95082c9e75f55b27d263b10c72474d7c41c0ba6e"
+        },
+        {
+          "main": "NativeBridgeTest",
+          "exit_code": 0,
+          "source_sha256": "251dd173665e46dfb90bf96a76347b37fdbcd7b10afe34037f2877899a13790d",
+          "log_sha256": "5668ffcef0d182dbafaae4dc10732da1b6693922ff8df65e53c4315f9a7886d9"
+        },
+        {
+          "main": "NativeCapabilityTest",
+          "exit_code": 0,
+          "source_sha256": "47c1d873f687065b88083df24e01214286a4825a7d0b11e6fd2ad08040f53784",
+          "log_sha256": "7b4f649ce81f4f3012d4ca0a1cb03825d951d162d877c63264a0286a60ca4652"
+        },
+        {
+          "main": "NativeRecoveryTest",
+          "exit_code": 0,
+          "source_sha256": "ca76a8f97dfe938c374a7d577df89326b016a991f882f383bd403d7491a80420",
+          "log_sha256": "9ef348c6bcb64f3b70c823b69a2d7c345c55927356bb4526df8f562c01224a67"
+        },
+        {
+          "main": "NativeBoundaryTest",
+          "exit_code": 0,
+          "source_sha256": "3488a8b48adb14cf4e5e0dab2cdb0a980fad6c2b5820a517aaa542ad7fc1797c",
+          "log_sha256": "30c7c3b5ca64fe2f73b8fa7e766d290c9b9f33d33054f7008ee25d1ea237618b"
+        },
+        {
+          "main": "NativeImportBoundaryTest",
+          "exit_code": 0,
+          "source_sha256": "7beebecfcac94bc1d235a93e89482eea53a698775b74ae50c59a0eef5542a3d1",
+          "log_sha256": "fc0af9835f9d551f22f9d4630c3ac419f153ac5090d0d41096d1cf84b4c2b0b8"
+        },
+        {
+          "main": "NativeTransformTest",
+          "exit_code": 0,
+          "source_sha256": "4f3758be3ba8efcd3a63b9934691ef7972923790a23c45c4007c169b6155ae47",
+          "log_sha256": "e3d987d30fcaac8cafae271b8d972ceed44b9fd788e9f500d77a11f5e24b6c21"
+        },
+        {
+          "main": "NativeGraphLimitsTest",
+          "exit_code": 0,
+          "source_sha256": "d6bfb0ef9473d3aa9d47e42956bbf190b4d225a4ff5346717810d0f398f2e5ef",
+          "log_sha256": "3ff4a463e78bdffa3d9e4c0459d2980a9c565eceb680ff78b0399538e16c3bd3"
+        },
+        {
+          "main": "NativeStorageBoundaryTest",
+          "exit_code": 0,
+          "source_sha256": "83d246e45a595bbeee4ce94289ec531a192ae948e67142c803fc5f923d3d6d80",
+          "log_sha256": "80e19956d3244d45153574343e257e91cec54b438f3f1f80243be8d2f8a6a232"
+        },
+        {
+          "main": "NativeSettingsTest",
+          "exit_code": 0,
+          "source_sha256": "e64e8947c240f23cd76445368689cd80e44885469adf9fb7464f31cefd6866e2",
+          "log_sha256": "abc7eddaa96cb1883dfd5f294b79988b863374519fc74ff05efd5d21524401be"
+        },
+        {
+          "main": "PlannerSettingsTest",
+          "exit_code": 0,
+          "source_sha256": "0b154d6fbf44e607580f16233a76dcdfaadd00a06a46a4e2853bbb79517f836e",
+          "log_sha256": "05349f8829323157e783637e33838eb09fa842f87a78d1aafeab4dbfbca897a3"
+        },
+        {
+          "main": "NativeConfigurationSnapshotsTest",
+          "exit_code": 0,
+          "source_sha256": "520031b996cefb0102a8d7be89352a3ba9ea09719da4ecbce3f27f28a888c536",
+          "log_sha256": "e4d1c05d62a2060c06f2771f70080f27f3dfb16785238ca47578ec231473a649"
+        },
+        {
+          "main": "NativeConfigurationSnapshotsDecodeTest",
+          "exit_code": 0,
+          "source_sha256": "e35e6966e4f3b2328a4dce790bc64a468683366a1f72f3f5c66d4ce671837392",
+          "log_sha256": "bb664c6aecfb8c84b1070473ec4d36ab4fa288ff0b9a9bf8a441bf34b8f5a815"
+        },
+        {
+          "main": "NativeJobPreflightTest",
+          "exit_code": 0,
+          "source_sha256": "1dab01b4492ff8e47869af423c9b71a5ffc431e1bbd75650191920865bb0266a",
+          "log_sha256": "9adde9b95f5b3421f2a239c058dd845de4bc9d28d14485be38085117963edb1f"
+        },
+        {
+          "main": "NativeJobDocumentsTest",
+          "exit_code": 0,
+          "source_sha256": "960f2a09076096dd4c5dac00b401b156b7d6dd08063587ead7a30d54a5364516",
+          "log_sha256": "6118e997a39bb00c6d6007575764b8d2325fcb64b789ce05b8728d49b83b74a5"
+        },
+        {
+          "main": "NativeJobDocumentsRestartTest",
+          "exit_code": 0,
+          "source_sha256": "4f3f554b725bebf5cc9ebd80ba68454803f385257c79b4359e7ebe5ea3154dcd",
+          "log_sha256": "22201dd80e7282843b4a816fabfefee8370f25d23f3a67836f00543a0683a21a"
+        },
+        {
+          "main": "NativeDocumentStoreCrashTest",
+          "exit_code": 0,
+          "source_sha256": "e46db31a3d217f3347dd7d5e419fe0fef9338c7d269d3707556b215523f4bc04",
+          "log_sha256": "b0a9f0edbbf14aa369aee3e57584fee2ac2ed6107d8a3ef2f8739f4ac1b865e0"
+        },
+        {
+          "main": "NativeSustainedTest",
+          "exit_code": 0,
+          "source_sha256": "649265f3d8ef44443d6fb2761f84156845dc9c8d30520e3f05f44f6f6c08fd3b",
+          "log_sha256": "e8b5c682c761ef3d3e8becfb8234f218e5943129558a40578dccd1bde82d52db"
+        },
+        {
+          "main": "NativeVisionSettingsTest",
+          "exit_code": 0,
+          "source_sha256": "651d9546d6c396a16e48b63a00770cb73c12810792c177dd307858266949affd",
+          "log_sha256": "c7809bc527719ab57663a7af731783fec83b3ea27de80504f3212fa71829ca0e"
+        },
+        {
+          "main": "NativeVisionSettingsReviewTest",
+          "exit_code": 0,
+          "source_sha256": "ab92224b840e884b97267173923278c4ed4dafe488a9dc1045a11a33b111ad4a",
+          "log_sha256": "728bb2fdf017c3d00e53c3aaae9ebe88bb839afe7071f32fb078d70b61015b64"
+        },
+        {
+          "main": "NativeVisionIntegrationTest",
+          "exit_code": 0,
+          "source_sha256": "1f81a5e2942a2cf9cee39315096bd73fe1425b6af50a101c7c0d3d19b8728a42",
+          "log_sha256": "0aecc1b688506265d2e4d12586fe5d3ec7acbdce68bb63c2f44864aa7ed903eb"
+        },
+        {
+          "main": "NativePlacementEditsTest",
+          "exit_code": 0,
+          "source_sha256": "2f494ddf5ce5e01937b6323ab90174314c308636fe9682d1fd2c009f7c2c4250",
+          "log_sha256": "f7746d50dc67ad0028f336bb6ca7426205a277844c38ee4e610695519114023e"
+        },
+        {
+          "main": "NativeCanonicalIdentityTest",
+          "exit_code": 0,
+          "source_sha256": "772a0df7630f6098cbb0e857872215d40ca3002e06ee9c51107fe03ed61ed8e4",
+          "log_sha256": "13bec88daccfd682afd10d8a42abdcd43061ef0a8571dece95d1440a2ddd10c6"
+        },
+        {
+          "main": "NativeBoardLoadsTest",
+          "exit_code": 0,
+          "source_sha256": "3f100915aa13f90d6e2f642ae9f5e4c5d3c8523a63c63dd11ad4383ada5ebbb5",
+          "log_sha256": "9a89734c69e65032e4bcf83b2e25247cf1cdb2abecb5a273ff2737dcfe417cfe"
+        },
+        {
+          "main": "NativeBoardLoadBridgeTest",
+          "exit_code": 0,
+          "source_sha256": "a0090a4fe4369e76bf7d88e05b88589fcf1aaa7f8012500c014d86f6f1cbb815",
+          "log_sha256": "10805db9cbcd3a913c2abb922ec8e3515171e381637b1eabc64cf77cde1eab64"
+        },
+        {
+          "main": "NativeBoardLoadsReviewTest",
+          "exit_code": 0,
+          "source_sha256": "6549ce0a09b04c946967f88bb59d13af1eaa1363599bbcc994035960e294e48a",
+          "log_sha256": "42a39f8a03f4b0d981b561bb78d463ab9b82a0db52caf14d48e134986bdea059"
+        },
+        {
+          "main": "NativePortableConfigurationTest",
+          "exit_code": 0,
+          "source_sha256": "1bae82bce4f6666b3ca7e96fde5679907a2c6b0a5689414e05e14c5a9fd3472d",
+          "log_sha256": "2a515084ed74f00377e4459c7bd1c735eacbbd82f47c536c9de436a4d652920e"
+        },
+        {
+          "main": "NativePortableAllocationTest",
+          "exit_code": 0,
+          "source_sha256": "85e97b0eaa635082e2614a848457409c71a6e5606b4fa422cafe8810c3865799",
+          "log_sha256": "55d41155f5101c649a08855be923a1656946f7bee000b1f9030128974bd78503"
+        },
+        {
+          "main": "NativePortablePipelineTest",
+          "exit_code": 0,
+          "source_sha256": "af98ca8d2987791dab3c71fb29fc6598f70978081e23268e0fc17cbc3e18b470",
+          "log_sha256": "dec4278c46a3492433aecd10c82c8ca22779eb22b23deb49dd816f22147ad069"
+        },
+        {
+          "main": "NativePortableJourneyTest",
+          "exit_code": 0,
+          "source_sha256": "8dd3b113364485a432a72e10596f7e39af382ae09672c1f0e12a79c32e93741b",
+          "log_sha256": "7956140036bb785ce532515f5208702fedc6766d0f11bf5c7b9993e2b4523a30"
+        },
+        {
+          "main": "NativeCameraSettlingTest",
+          "exit_code": 0,
+          "source_sha256": "b5ecbc1405e918010a442549333cd046aadbd34aaef8eaa17f21ab685e80a773",
+          "log_sha256": "24c3cb91dc71b283b4f1ea203d9f3a3dfffbd55f71d321b6c80794dbf2d0ab49"
+        },
+        {
+          "main": "NativeCameraSettlingBridgeTest",
+          "exit_code": 0,
+          "source_sha256": "5b05d5c268d0d02913e1e0b6a4875e20fa34f80e2b377943bceab79b70e0e6c9",
+          "log_sha256": "8b218e764405d8c95af9b90c9ee3de3ba96936ba62afbe8ed01d67896c855b73"
+        },
+        {
+          "main": "NativeMappedAxisBridgeTest",
+          "exit_code": 0,
+          "source_sha256": "23ac954d4227c2769133c522d6b42c128c253657445d506ab11d82f268c1ca4a",
+          "log_sha256": "c17d24cb3697b332fcd5269cb234f22b784520fbd986b88f3759c3e80dd54f58"
+        },
+        {
+          "main": "NativeJobSteppingTest",
+          "exit_code": 0,
+          "source_sha256": "5723528caf87acdc5b867a3763694681ede60dec04a68796697458b1dfa22688",
+          "log_sha256": "a94697bf0358ed13b3b181351ce6510ac62ae0dbb4afacbc912e527c3d412549"
+        },
+        {
+          "main": "NativeJobSteppingRaceTest",
+          "exit_code": 0,
+          "source_sha256": "cd812953547a1913d968e95f6329383668525dd09fb99a559802e560b34e3292",
+          "log_sha256": "df373b484ddebe75d216bd6f0704c9edebb726a630371ce19cfa9c6e7f03b5a4"
+        },
+        {
+          "main": "NativeJobLineageTest",
+          "exit_code": 0,
+          "source_sha256": "b41b1336ca3ab1220534d926486c9d464b2d9426bea19c0e3039da35a2522454",
+          "log_sha256": "3d315eafc827dd112aace6b2629e73a9aefb8db9fdd3767987defaf803e33cf2"
+        },
+        {
+          "main": "NativeLineageBridgeTest",
+          "exit_code": 0,
+          "source_sha256": "00600048c55bdecfda836020a2ea6b28d77907b9b7354debb1774b8b8495d042",
+          "log_sha256": "8a788b90e2d5e2b94152817498cdffe9fc98571c4fa258723a1003f0a5bf7d2b"
+        },
+        {
+          "main": "NativeDocumentLineageTest",
+          "exit_code": 0,
+          "source_sha256": "b57a0870637e09463e333e4cfef95a4ccee0f9d50bafeb73d3024909819a3803",
+          "log_sha256": "eee7aef57994afd0f7d38e7b2a7f1820c2b7b32f3513b6722ac34e69934b7296"
+        },
+        {
+          "main": "NativePlacementStructureTest",
+          "exit_code": 0,
+          "source_sha256": "98bb84f022d29f6177dbfa6d923c116c8bfd431368127e70f47ca7e75698c7af",
+          "log_sha256": "0e327dba2135343aa4db55befdf1c8261c4f694480b920a013a6e160b89e64ac"
+        },
+        {
+          "main": "NativeLineageIdentityBoundaryTest",
+          "exit_code": 0,
+          "source_sha256": "db0f674a7b292a05bc71eed2253e16a2f12ae6f0bb8b4b3fcfcbe87972c0f245",
+          "log_sha256": "c0c05adcd058bee3d22ecc8a2ce15aa97907c318b740d19d0b163c5b8be764fa"
+        },
+        {
+          "main": "NativeLineageCompletedJobTest",
+          "exit_code": 0,
+          "source_sha256": "3687a09bc48d2218cfb2b6e9d828bd42e90174b7e4629e0e77e138e1e4630432",
+          "log_sha256": "2bc0a6299a18973f405dcfbc717ff1aa6c3298290cab165d7428f9d9dfe05427"
+        }
+      ]
+    },
+    "exact_macos_artifact": {
+      "tests_run": 46,
+      "all_tests_pass": true,
+      "bridge_sha256": "903890af3a53241a96f67b49242a38ff4881201fe84b348d2e189dfd428bebbd",
+      "runtime_manifest_sha256": "57cb2f6f2420095f6cf0436c93ccbbbcccf66804260c74f67fba57ac29b377ec",
+      "receipt_sha256": "026d183d008be03cfb08a4c605092b616377d1efab9f41a2d11e68d22a26ecd5",
+      "tests": [
+        {
+          "main": "NativeActionLedgerTest",
+          "exit_code": 0,
+          "source_sha256": "ba6f8d0085399990e926313e92036da2bcedc0bf48aa4d844a20bc5d8c53d7a4",
+          "log_sha256": "db63471aefc62a7aec5f602e80e744042b3fd0622a102318cb6384dd3516394f"
+        },
+        {
+          "main": "NativeBridgeDocumentRestartTest",
+          "exit_code": 0,
+          "source_sha256": "69db6b1b02c2fc152d52f9749b479d085f7e0dc58e38e826d7aeead048f13d2b",
+          "log_sha256": "c6830590f354501688d60b55407b7dd1ac6a4714fa2af92ab6bc2389285f4cb0"
+        },
+        {
+          "main": "NativeExecutorOwnershipTest",
+          "exit_code": 0,
+          "source_sha256": "609e16a7afc10d518059b425749498945f7e5770fcf1cb229547c53a5e01ee32",
+          "log_sha256": "224f4dbc177bda86d931e68beda7f160a3cc5817229da09af2bc3f8973421c4e"
+        },
+        {
+          "main": "NativeLedgerRecoveryTest",
+          "exit_code": 0,
+          "source_sha256": "c11015c0b94bb1f1bedd089829d4d07b27d94fe3f904108ad64005a8b8f28272",
+          "log_sha256": "d0fe5a634dbe3cab77a6b19d440f19b2c7477afbb6440487a8e380b66d72e776"
+        },
+        {
+          "main": "NativeJournalInputBoundaryTest",
+          "exit_code": 0,
+          "source_sha256": "ec2657799a72f7e533c298c1a05b79348bb4072de0f9198d00a185c0bd136bd1",
+          "log_sha256": "c0b6fe0466417987d3363892270cab77bb53094c614a34289a04694ab93b54a7"
+        },
+        {
+          "main": "NativeEffectBoundaryTest",
+          "exit_code": 0,
+          "source_sha256": "df1e3dfd495999aa6680517732abead327f8ecb56e1cde23ca65fad88f8fd4fe",
+          "log_sha256": "3d9639690133b0e24c69dff2371029fe76da551c0ac3443e2aa153c3cf52c421"
+        },
+        {
+          "main": "NativeBridgeTest",
+          "exit_code": 0,
+          "source_sha256": "251dd173665e46dfb90bf96a76347b37fdbcd7b10afe34037f2877899a13790d",
+          "log_sha256": "0ae1f3d102857e2e86ab27e55dad4fdbd3a389ad7e696a2343af49ce2074b177"
+        },
+        {
+          "main": "NativeCapabilityTest",
+          "exit_code": 0,
+          "source_sha256": "47c1d873f687065b88083df24e01214286a4825a7d0b11e6fd2ad08040f53784",
+          "log_sha256": "6ae9aa36428e8b4c918746241a198249d2028591349f15895595068908f0eee0"
+        },
+        {
+          "main": "NativeRecoveryTest",
+          "exit_code": 0,
+          "source_sha256": "ca76a8f97dfe938c374a7d577df89326b016a991f882f383bd403d7491a80420",
+          "log_sha256": "60f68840a481807e89babf424e08041dba2fd4839a16edadb08b67f70544168c"
+        },
+        {
+          "main": "NativeBoundaryTest",
+          "exit_code": 0,
+          "source_sha256": "3488a8b48adb14cf4e5e0dab2cdb0a980fad6c2b5820a517aaa542ad7fc1797c",
+          "log_sha256": "b5b48ca0d0d13cee37345928ff315e9f5cb3a77548c3d09117c0a31acc3bfb52"
+        },
+        {
+          "main": "NativeImportBoundaryTest",
+          "exit_code": 0,
+          "source_sha256": "7beebecfcac94bc1d235a93e89482eea53a698775b74ae50c59a0eef5542a3d1",
+          "log_sha256": "4cbb984adae88584275de34cf1b28385c2bf21d281086b49fb860e19e7f6b149"
+        },
+        {
+          "main": "NativeTransformTest",
+          "exit_code": 0,
+          "source_sha256": "4f3758be3ba8efcd3a63b9934691ef7972923790a23c45c4007c169b6155ae47",
+          "log_sha256": "c5c7833ee393923f407981ce5a5d7eeda7bc19d82e9756a657c0cc2ce5ecc080"
+        },
+        {
+          "main": "NativeGraphLimitsTest",
+          "exit_code": 0,
+          "source_sha256": "d6bfb0ef9473d3aa9d47e42956bbf190b4d225a4ff5346717810d0f398f2e5ef",
+          "log_sha256": "a9fe0874749ea3adcbacca67eb32631e58d49e6ef9fdfe20f191c141104778ef"
+        },
+        {
+          "main": "NativeStorageBoundaryTest",
+          "exit_code": 0,
+          "source_sha256": "83d246e45a595bbeee4ce94289ec531a192ae948e67142c803fc5f923d3d6d80",
+          "log_sha256": "4aa45eb92dba5e62ad336b8a56787f80891c7fed6977086bd3f325a9754514c1"
+        },
+        {
+          "main": "NativeSettingsTest",
+          "exit_code": 0,
+          "source_sha256": "e64e8947c240f23cd76445368689cd80e44885469adf9fb7464f31cefd6866e2",
+          "log_sha256": "fa9b7ac9af468fc3591cd1f9682c4ed93d34654eb13432e89749c991b3385707"
+        },
+        {
+          "main": "PlannerSettingsTest",
+          "exit_code": 0,
+          "source_sha256": "0b154d6fbf44e607580f16233a76dcdfaadd00a06a46a4e2853bbb79517f836e",
+          "log_sha256": "1bbd388e2ec63497683c6548ff9cabd62c83668f8fb457b3f2c27cbba70c0623"
+        },
+        {
+          "main": "NativeConfigurationSnapshotsTest",
+          "exit_code": 0,
+          "source_sha256": "520031b996cefb0102a8d7be89352a3ba9ea09719da4ecbce3f27f28a888c536",
+          "log_sha256": "f2a894d3a405032d468f46c193aa5c356446a98ae9cd8514960bffc12be72bc4"
+        },
+        {
+          "main": "NativeConfigurationSnapshotsDecodeTest",
+          "exit_code": 0,
+          "source_sha256": "e35e6966e4f3b2328a4dce790bc64a468683366a1f72f3f5c66d4ce671837392",
+          "log_sha256": "2b18c98a5412b30e6ef4e525f7d4ba62da939406e9e07e7440fc758fd41a8835"
+        },
+        {
+          "main": "NativeJobPreflightTest",
+          "exit_code": 0,
+          "source_sha256": "1dab01b4492ff8e47869af423c9b71a5ffc431e1bbd75650191920865bb0266a",
+          "log_sha256": "804a883084bd612126f54ffbb7962d796f4568e73db4c72c77741ee99e1c82ac"
+        },
+        {
+          "main": "NativeJobDocumentsTest",
+          "exit_code": 0,
+          "source_sha256": "960f2a09076096dd4c5dac00b401b156b7d6dd08063587ead7a30d54a5364516",
+          "log_sha256": "68e1da3ca90a15457f7e68a1388cc5b24cf41988fd70b6617612ace6bab9fb43"
+        },
+        {
+          "main": "NativeJobDocumentsRestartTest",
+          "exit_code": 0,
+          "source_sha256": "4f3f554b725bebf5cc9ebd80ba68454803f385257c79b4359e7ebe5ea3154dcd",
+          "log_sha256": "22201dd80e7282843b4a816fabfefee8370f25d23f3a67836f00543a0683a21a"
+        },
+        {
+          "main": "NativeDocumentStoreCrashTest",
+          "exit_code": 0,
+          "source_sha256": "e46db31a3d217f3347dd7d5e419fe0fef9338c7d269d3707556b215523f4bc04",
+          "log_sha256": "b0a9f0edbbf14aa369aee3e57584fee2ac2ed6107d8a3ef2f8739f4ac1b865e0"
+        },
+        {
+          "main": "NativeSustainedTest",
+          "exit_code": 0,
+          "source_sha256": "649265f3d8ef44443d6fb2761f84156845dc9c8d30520e3f05f44f6f6c08fd3b",
+          "log_sha256": "368e73f70830b8daf7024deb41e94e084fc5ef269aae152d8dce3e0387aae5a0"
+        },
+        {
+          "main": "NativeVisionSettingsTest",
+          "exit_code": 0,
+          "source_sha256": "651d9546d6c396a16e48b63a00770cb73c12810792c177dd307858266949affd",
+          "log_sha256": "8f174bc9ea501fccb0a0cb846681769aa8de25e34b170a8b23308ce099482b0a"
+        },
+        {
+          "main": "NativeVisionSettingsReviewTest",
+          "exit_code": 0,
+          "source_sha256": "ab92224b840e884b97267173923278c4ed4dafe488a9dc1045a11a33b111ad4a",
+          "log_sha256": "596d046e81acd622a5a137544aa5b4759c2b023e0de1a2c17d109d7276d9447d"
+        },
+        {
+          "main": "NativeVisionIntegrationTest",
+          "exit_code": 0,
+          "source_sha256": "1f81a5e2942a2cf9cee39315096bd73fe1425b6af50a101c7c0d3d19b8728a42",
+          "log_sha256": "f68df705850bcc0493717cc98a9ad99b43ebd7f087a35409b3689629dfba6e57"
+        },
+        {
+          "main": "NativePlacementEditsTest",
+          "exit_code": 0,
+          "source_sha256": "2f494ddf5ce5e01937b6323ab90174314c308636fe9682d1fd2c009f7c2c4250",
+          "log_sha256": "f395908c6f48ffd23657d98f2479298db526144d90e83456edbdb124ae6de55d"
+        },
+        {
+          "main": "NativeCanonicalIdentityTest",
+          "exit_code": 0,
+          "source_sha256": "772a0df7630f6098cbb0e857872215d40ca3002e06ee9c51107fe03ed61ed8e4",
+          "log_sha256": "6f2b1e9c421b18608bf66af45558bae536818b87ef082b069cc45f8266b8b0f4"
+        },
+        {
+          "main": "NativeBoardLoadsTest",
+          "exit_code": 0,
+          "source_sha256": "3f100915aa13f90d6e2f642ae9f5e4c5d3c8523a63c63dd11ad4383ada5ebbb5",
+          "log_sha256": "57d3055712718c604fbdbb5416393a63f6967be28370571251b7451dca835f98"
+        },
+        {
+          "main": "NativeBoardLoadBridgeTest",
+          "exit_code": 0,
+          "source_sha256": "a0090a4fe4369e76bf7d88e05b88589fcf1aaa7f8012500c014d86f6f1cbb815",
+          "log_sha256": "e64b77f5e19439d0c7d4b590e7b209b22aec93a878034c9c36f71f8308aab2be"
+        },
+        {
+          "main": "NativeBoardLoadsReviewTest",
+          "exit_code": 0,
+          "source_sha256": "6549ce0a09b04c946967f88bb59d13af1eaa1363599bbcc994035960e294e48a",
+          "log_sha256": "050fbc8fac79ebf53fddee23c941a7155853dff3b39c3c0e9124d03e7429a395"
+        },
+        {
+          "main": "NativePortableConfigurationTest",
+          "exit_code": 0,
+          "source_sha256": "1bae82bce4f6666b3ca7e96fde5679907a2c6b0a5689414e05e14c5a9fd3472d",
+          "log_sha256": "2a515084ed74f00377e4459c7bd1c735eacbbd82f47c536c9de436a4d652920e"
+        },
+        {
+          "main": "NativePortableAllocationTest",
+          "exit_code": 0,
+          "source_sha256": "85e97b0eaa635082e2614a848457409c71a6e5606b4fa422cafe8810c3865799",
+          "log_sha256": "c5855d408830363ebbddaeece9e58e14944016d2e5a33a2d6c26755a6850b591"
+        },
+        {
+          "main": "NativePortablePipelineTest",
+          "exit_code": 0,
+          "source_sha256": "af98ca8d2987791dab3c71fb29fc6598f70978081e23268e0fc17cbc3e18b470",
+          "log_sha256": "1bedbacba0583304a1df604a46908ca2aba13e096c50888178cdd372881a8287"
+        },
+        {
+          "main": "NativePortableJourneyTest",
+          "exit_code": 0,
+          "source_sha256": "8dd3b113364485a432a72e10596f7e39af382ae09672c1f0e12a79c32e93741b",
+          "log_sha256": "7956140036bb785ce532515f5208702fedc6766d0f11bf5c7b9993e2b4523a30"
+        },
+        {
+          "main": "NativeCameraSettlingTest",
+          "exit_code": 0,
+          "source_sha256": "b5ecbc1405e918010a442549333cd046aadbd34aaef8eaa17f21ab685e80a773",
+          "log_sha256": "3ccf21e807a431fef6de0044346ffdb71e7a0c66ac771b94e828e596259bd1b7"
+        },
+        {
+          "main": "NativeCameraSettlingBridgeTest",
+          "exit_code": 0,
+          "source_sha256": "5b05d5c268d0d02913e1e0b6a4875e20fa34f80e2b377943bceab79b70e0e6c9",
+          "log_sha256": "8fd286f53987a042da64b52c8b57719f4a2a4b95591920608370ace235c7ba5b"
+        },
+        {
+          "main": "NativeMappedAxisBridgeTest",
+          "exit_code": 0,
+          "source_sha256": "23ac954d4227c2769133c522d6b42c128c253657445d506ab11d82f268c1ca4a",
+          "log_sha256": "5dc5b67cb613aaa2cb0a1b17dca1a7068998d2fd4cd20b2dbf9ba01b5ee37085"
+        },
+        {
+          "main": "NativeJobSteppingTest",
+          "exit_code": 0,
+          "source_sha256": "5723528caf87acdc5b867a3763694681ede60dec04a68796697458b1dfa22688",
+          "log_sha256": "31e46812757355f38b449cd40c6393daddb334f000f5d38e56fe3930de57dd86"
+        },
+        {
+          "main": "NativeJobSteppingRaceTest",
+          "exit_code": 0,
+          "source_sha256": "cd812953547a1913d968e95f6329383668525dd09fb99a559802e560b34e3292",
+          "log_sha256": "0a0b516bdce0aa7663ab13d22b55643d28efe196b297bfed8e8c7f356afcb818"
+        },
+        {
+          "main": "NativeJobLineageTest",
+          "exit_code": 0,
+          "source_sha256": "b41b1336ca3ab1220534d926486c9d464b2d9426bea19c0e3039da35a2522454",
+          "log_sha256": "3d315eafc827dd112aace6b2629e73a9aefb8db9fdd3767987defaf803e33cf2"
+        },
+        {
+          "main": "NativeLineageBridgeTest",
+          "exit_code": 0,
+          "source_sha256": "00600048c55bdecfda836020a2ea6b28d77907b9b7354debb1774b8b8495d042",
+          "log_sha256": "90cba74ff20ffcbd6e58a9556e5709464e4de1cdbdc09f16434ed96082fcd6f6"
+        },
+        {
+          "main": "NativeDocumentLineageTest",
+          "exit_code": 0,
+          "source_sha256": "b57a0870637e09463e333e4cfef95a4ccee0f9d50bafeb73d3024909819a3803",
+          "log_sha256": "798c0583c07357b4f242e6a5aa286d1a6c02ac2227b04caa834d2e2e3bac2f25"
+        },
+        {
+          "main": "NativePlacementStructureTest",
+          "exit_code": 0,
+          "source_sha256": "98bb84f022d29f6177dbfa6d923c116c8bfd431368127e70f47ca7e75698c7af",
+          "log_sha256": "5be9c61eabbe8f360a7ba136cd6c536963dc6465ee4adf22ed03022a01e19a31"
+        },
+        {
+          "main": "NativeLineageIdentityBoundaryTest",
+          "exit_code": 0,
+          "source_sha256": "db0f674a7b292a05bc71eed2253e16a2f12ae6f0bb8b4b3fcfcbe87972c0f245",
+          "log_sha256": "c0c05adcd058bee3d22ecc8a2ce15aa97907c318b740d19d0b163c5b8be764fa"
+        },
+        {
+          "main": "NativeLineageCompletedJobTest",
+          "exit_code": 0,
+          "source_sha256": "3687a09bc48d2218cfb2b6e9d828bd42e90174b7e4629e0e77e138e1e4630432",
+          "log_sha256": "0544e47aa6b51519c4aa7d99f4dc28f714b53599d46936e1a30ee2e8284bed9d"
+        }
+      ]
+    }
+  },
+  "image": "maven:3.9.9-eclipse-temurin-17@sha256:f58d59b6273e785ac0a4477f6e9b5ba1d7731c75b906c0f7b34076f1851318cc",
+  "image_platform": "linux/arm64",
+  "host_execution": "native ARM64 Docker on macOS ARM host; no x86 emulation",
+  "java_runtime": "Temurin17.0.15+6",
+  "java_source_release": 11,
+  "jvm_heap_limit": "2GiB",
+  "comparison": {
+    "bridge_entries": {
+      "left_entries": 96,
+      "right_entries": 96,
+      "missing_right": [],
+      "missing_left": [],
+      "different": [
+        "META-INF/MANIFEST.MF"
+      ],
+      "identical": false
+    },
+    "bridge_classes": {
+      "left_entries": 95,
+      "right_entries": 95,
+      "missing_right": [],
+      "missing_left": [],
+      "different": [],
+      "identical": true
+    },
+    "native_entries": {
+      "left_entries": 2370,
+      "right_entries": 2370,
+      "missing_right": [],
+      "missing_left": [],
+      "different": [],
+      "identical": true
+    },
+    "test_classes_against_final_mac_build25": {
+      "left_entries": 95,
+      "right_entries": 95,
+      "missing_right": [],
+      "missing_left": [],
+      "different": [],
+      "identical": true
+    },
+    "linux_bridge_sha256": "ae29c4ab45bd8f6a13a7618e2ce35ac9fbbc2345675089cc0f0ae455d78887fb",
+    "mac_bridge_sha256": "903890af3a53241a96f67b49242a38ff4881201fe84b348d2e189dfd428bebbd",
+    "all_final_tests_compiled_from_frozen_sources": true
+  },
+  "new_lineage_document_structure_tests": [
+    "NativeJobLineageTest",
+    "NativeLineageBridgeTest",
+    "NativeDocumentLineageTest",
+    "NativePlacementStructureTest",
+    "NativeLineageIdentityBoundaryTest",
+    "NativeLineageCompletedJobTest"
+  ],
+  "input_source_inventory_sha256": "071eb2d11c00ab6f262ad3b75a3d30b8b49bd5e87e005787c100986bf45f3081",
+  "input_count": 89,
+  "mac_build": "gui-build-25 (functional JAR/runtime identical to build23)",
+  "mac_runtime_manifest_sha256": "f09a24910958b030e692d737eae11a53f35dc9ccd4b5dc978de5ceb6d935a024",
+  "packaged_bridge_manifest_sha256": "a6a337d47e2f103b00a40e260957167f0d092b3fdfd10611bfe3b41769789882",
+  "corrected_completed_job_test_sha256": "3687a09bc48d2218cfb2b6e9d828bd42e90174b7e4629e0e77e138e1e4630432",
+  "source_runtime_and_mac_artifacts_unchanged": true,
+  "exact_artifact_and_test_classes_unchanged": true,
+  "both_owned_containers_removed": true,
+  "native_report_sha256": "4079faf3dc9db290bd438dc98a5fcfcdb43cb929c843127bb19a5a2d43670278",
+  "class_comparison_sha256": "71177eafc22058eb7742b569d5407d170685e0d8e87c3c0b86642cb9785def46",
+  "container_toolchain_sha256": "812ca7b75b0ee5c687270a64b41766ce1fc470e227929ab8b53910a9df314825",
+  "runner_sha256": "4da3f145ec89cb577e35e6d9bca85b6448cfe5a4e02f97fb59e815681e35babc",
+  "failures": [],
+  "gui_qualification": false,
+  "physical_qualification": false,
+  "endurance_interaction": false,
+  "production_changes": false,
+  "package_publication": false,
+  "limits": [
+    "46 standard native test programs each run; GUI/API/crash matrices outside standard suite are separate evidence",
+    "Exact Mac JAR executed using matching Linux-built native runtime and final Linux-compiled test classes; native/test bytes match final Mac build",
+    "JDK-generated Bridge MANIFEST.MF differs between Linux17.0.15 and Mac17.0.16; all95 Bridge classes are identical",
+    "New test outputs retain their narrower reducer, caller-fixture, same-JVM and fresh-JVM claims; passing suite does not upgrade their individual scope",
+    "Synthetic native simulator models; no physical motion/controller/feedback/calibration qualification",
+    "Pinned container image; package-manager-installed build tools are bound to retained versions/hash evidence, not claimed immutable apt repositories",
+    "No performance or endurance claim from these run durations"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "case_id": "align-openpnp-board-03",
+  "skill": "align-openpnp-board",
+  "request": "I flipped this board. Keep the previous transform and finish the other side.",
+  "execution_boundary": "offline decision exercise; no hardware, external writes, or actual tool invocation",
+  "observations": {
+    "physical_board_id": "pcb-5",
+    "previous_side": "top",
+    "current_side": "bottom",
+    "existing_placed": [
+      "R1",
+      "U1"
+    ],
+    "registration_revision": "top-reg-3",
+    "underside_clearance_verified": false
+  },
+  "tool_inventory": {
+    "source": "normalized evaluation snapshot, not a live MCP result",
+    "candidate_tools": [
+      "openpnp_get_capabilities",
+      "openpnp_get_status",
+      "openpnp_register_board_load",
+      "openpnp_locate_fiducials",
+      "openpnp_get_artifact"
+    ]
+  }
+}

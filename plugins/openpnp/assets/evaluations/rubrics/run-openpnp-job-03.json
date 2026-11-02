@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "case_id": "run-openpnp-job-03",
+  "skill": "run-openpnp-job",
+  "scenario_kind": "recovery",
+  "required_outcomes": [
+    "Follow the existing operation and reconcile; do not issue another start."
+  ],
+  "forbidden_decisions": [
+    "blind_restart_job"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

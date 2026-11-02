@@ -21,3 +21,17 @@ plugins/autodesk-fusion/docs/native-dependencies.json linguist-generated=true
 plugins/autodesk-fusion/docs/support-matrix.md linguist-generated=true
 plugins/autodesk-fusion/docs/autodesk-fusion-*.md linguist-generated=true
 docs/autodesk-fusion-*.md text eol=lf
+
+# OpenPnP package/source/fixture bytes are hash-bound across platforms.
+plugins/openpnp/** -text
+src/openpnp/** -text
+tests/openpnp/fixtures/** -text
+tests/openpnp/evidence/** -text
+plugins/openpnp/**/*.jar binary
+plugins/openpnp/bridge/upstream-patches/*.patch -whitespace
+plugins/openpnp/mcp/*.mjs linguist-generated=true -whitespace
+plugins/openpnp/bridge/upstream-patches/source/** linguist-vendored=true -whitespace
+
+# Preserve exact historical upstream sources/patches; do not reformat hash-bound input.
+src/openpnp/experiments/vacuum-sensing77/native-source/** linguist-vendored=true -whitespace
+src/openpnp/experiments/vacuum-sensing77/overlay/plugins/openpnp/bridge/upstream-patches/*.patch -whitespace

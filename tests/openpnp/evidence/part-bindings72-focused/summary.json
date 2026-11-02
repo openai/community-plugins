@@ -1,0 +1,62 @@
+{
+  "scope": "Focused simulator-only part-bindings72 qualification; broader native75/MCP14 matrix remains separate.",
+  "focused_qualification_passed": true,
+  "full_matrix_qualification_claimed": false,
+  "full_implementation_plan_completed": false,
+  "all_requirement_statuses": "partial",
+  "identities": {
+    "bridge_sha256": "0efe366a040bb8f826d0ba0d47c82022532048679d555253a5a412f708b97bfe",
+    "mcp_sha256": "00b352ed2e86a07cf9f3858bb2283c33fff6fbbff3cb5b1ad3f47cda89901472",
+    "native_jar_sha256": "7a9983a5916cbeb3c0c16052492b1fdd24a8fcb6edda9aba715f5c8c88e273d8",
+    "runtime_manifest_sha256": "a04e4fd34f3aa57deede07bb56a6b3a9860705e3592a377ced9aac7a73009e1c"
+  },
+  "production_source_pairs": 47,
+  "compiled_bridge_classes": 153,
+  "model_prototype": {
+    "bridge": "prior4a84 with explicit helper/importer class overrides",
+    "assertions": 835,
+    "refusals": 38,
+    "additional_legacy_programs": 2,
+    "machine_actions": 0
+  },
+  "current_native_bridge": {
+    "phases": 21,
+    "assertions": 936,
+    "outer_intents": 9,
+    "matched_completed_outer_outcomes": 1,
+    "unknown_cases_after_restart": 8,
+    "virtual_board_load_outcomes": 30,
+    "machine_actions": 0
+  },
+  "packaged_mcp": {
+    "workflows": 1,
+    "jobs": 2,
+    "placements": 6,
+    "native_actions": 24,
+    "matched_action_outcomes": 24,
+    "native_next_pairs": 128,
+    "request_refusals": 11,
+    "pending_actions": 0
+  },
+  "library_scope": "Import/refusal phases preserve exact parts/packages; after processing parts.xml remains exact but packages.xml gains two pinned native lazy vision-compositing defaults. No whole-library unchanged-through-jobs claim.",
+  "blind_skill": {
+    "schema_valid_proposed_reads": 11,
+    "executed_tool_calls": 0,
+    "uniform_qualification": false
+  },
+  "physical_qualification": false,
+  "electrical_equivalence_verified": false,
+  "endurance_qualification": false,
+  "hosted_CI_qualification": false,
+  "no_replay_or_restored_job_authority_claimed": true,
+  "receipts": [
+    "artifact-provenance.json",
+    "model-prototype.json",
+    "native-bridge.json",
+    "packaged-mcp.json",
+    "skill-and-review.json",
+    "independent-review.json",
+    "retained-failures.json",
+    "source-proofs.json"
+  ]
+}

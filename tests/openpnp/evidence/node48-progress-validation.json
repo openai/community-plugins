@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-09-11T07:37:20.920943+00:00",
+  "passed": true,
+  "scope": "Final candidate48-tool MCP progress-view package; complete Node22/24/26 offline suites and reproducibility checks, structural plugin/skill validators, with separately executed actual native MCP core/vision/placement/recovery evidence linked. No physical hardware qualification.",
+  "node_runs": [
+    {
+      "node": "22.19.0",
+      "mode": "suite",
+      "passed": true,
+      "counts": {
+        "cancelled": 0,
+        "fail": 0,
+        "pass": 159,
+        "skipped": 4,
+        "suites": 0,
+        "tests": 163,
+        "todo": 0
+      },
+      "elapsed_seconds": 19.549541749991477,
+      "report": "validation/consolidation/node-matrix48-progress-attempt-01/node-22.19.0-suite.json",
+      "report_sha256": "3bd2b8f323fa507ba0edf7f96ca90d50f9fa31ec4d2644faeaeff86eecfe33c7",
+      "log_sha256": "7dbc85bbddd93c53e382ca8fdbd02ba85ea0ad105b8e702fff4777e7d081215d",
+      "input_inventory_sha256": "2a1cdbe45087c645f9348fceb8365e03f405a29e46090fee5106891ed4999bd6",
+      "dependency_inventory_sha256": "6dd080d4c1e7b4612e9ec3e20dda1281d9839bebbcf412967e0a69c79cf3fae3",
+      "native_runtime_inventory_sha256": "453917e19d3f798e733480990d7b8f9f1d0f6d449224832be0a91de1d1f110e8"
+    },
+    {
+      "node": "22.19.0",
+      "mode": "verify",
+      "passed": true,
+      "counts": {},
+      "elapsed_seconds": 2.1710687919985503,
+      "report": "validation/consolidation/node-matrix48-progress-attempt-01/node-22.19.0-verify.json",
+      "report_sha256": "a566e9a1ca58b1f62713aa169a18b775fe59df2734cabd2239a14e4c704dec71",
+      "log_sha256": "2e2f94b6e1861550502d7789a8876563c944fc13250a4eba8247c9d40614bcec",
+      "input_inventory_sha256": "2a1cdbe45087c645f9348fceb8365e03f405a29e46090fee5106891ed4999bd6",
+      "dependency_inventory_sha256": "6dd080d4c1e7b4612e9ec3e20dda1281d9839bebbcf412967e0a69c79cf3fae3",
+      "native_runtime_inventory_sha256": "453917e19d3f798e733480990d7b8f9f1d0f6d449224832be0a91de1d1f110e8"
+    },
+    {
+      "node": "24.20.0",
+      "mode": "suite",
+      "passed": true,
+      "counts": {
+        "cancelled": 0,
+        "fail": 0,
+        "pass": 159,
+        "skipped": 4,
+        "suites": 0,
+        "tests": 163,
+        "todo": 0
+      },
+      "elapsed_seconds": 18.54818412498571,
+      "report": "validation/consolidation/node-matrix48-progress-attempt-01/node-24.20.0-suite.json",
+      "report_sha256": "de1b175d5fce012e832f0d55cb33fa8dc210061455cafafa34e020790de9957e",
+      "log_sha256": "6b2ba0ffb09e4de782d595a919638513260736f8a0c3d78fdb42cf60d8c672ce",
+      "input_inventory_sha256": "2a1cdbe45087c645f9348fceb8365e03f405a29e46090fee5106891ed4999bd6",
+      "dependency_inventory_sha256": "6dd080d4c1e7b4612e9ec3e20dda1281d9839bebbcf412967e0a69c79cf3fae3",
+      "native_runtime_inventory_sha256": "453917e19d3f798e733480990d7b8f9f1d0f6d449224832be0a91de1d1f110e8"
+    },
+    {
+      "node": "24.20.0",
+      "mode": "verify",
+      "passed": true,
+      "counts": {},
+      "elapsed_seconds": 1.832833708031103,
+      "report": "validation/consolidation/node-matrix48-progress-attempt-01/node-24.20.0-verify.json",
+      "report_sha256": "6f4a246f9c5314b2f4a548f4f373bc37d6883c2049d09e2c7d0d9f8e0b5833bd",
+      "log_sha256": "feb612573a67816c6d464e5b0fc2e01d9bdeddf77ae5d2873bf1db793e3087a5",
+      "input_inventory_sha256": "2a1cdbe45087c645f9348fceb8365e03f405a29e46090fee5106891ed4999bd6",
+      "dependency_inventory_sha256": "6dd080d4c1e7b4612e9ec3e20dda1281d9839bebbcf412967e0a69c79cf3fae3",
+      "native_runtime_inventory_sha256": "453917e19d3f798e733480990d7b8f9f1d0f6d449224832be0a91de1d1f110e8"
+    },
+    {
+      "node": "26.0.0",
+      "mode": "suite",
+      "passed": true,
+      "counts": {
+        "cancelled": 0,
+        "fail": 0,
+        "pass": 159,
+        "skipped": 4,
+        "suites": 0,
+        "tests": 163,
+        "todo": 0
+      },
+      "elapsed_seconds": 20.062102084048092,
+      "report": "validation/consolidation/node-matrix48-progress-attempt-01/node-26.0.0-suite.json",
+      "report_sha256": "0c2817432563ab3eb396c610a676246ee6d09fbedb46b6ae6d9871659f814a52",
+      "log_sha256": "5a06a8111c953ae5e53a745fb280263451353df7b7f581e8287ae607a46ee1ab",
+      "input_inventory_sha256": "2a1cdbe45087c645f9348fceb8365e03f405a29e46090fee5106891ed4999bd6",
+      "dependency_inventory_sha256": "6dd080d4c1e7b4612e9ec3e20dda1281d9839bebbcf412967e0a69c79cf3fae3",
+      "native_runtime_inventory_sha256": "453917e19d3f798e733480990d7b8f9f1d0f6d449224832be0a91de1d1f110e8"
+    },
+    {
+      "node": "26.0.0",
+      "mode": "verify",
+      "passed": true,
+      "counts": {},
+      "elapsed_seconds": 1.714839290943928,
+      "report": "validation/consolidation/node-matrix48-progress-attempt-01/node-26.0.0-verify.json",
+      "report_sha256": "9e0fb5d6f47fc4483b644c1f9694827ec34f8ec0df813af45a26c052910c7360",
+      "log_sha256": "483db5fd73071504fd864f446cb9306f83ccbb8b4e13f754bf7d90ea5f6b553b",
+      "input_inventory_sha256": "2a1cdbe45087c645f9348fceb8365e03f405a29e46090fee5106891ed4999bd6",
+      "dependency_inventory_sha256": "6dd080d4c1e7b4612e9ec3e20dda1281d9839bebbcf412967e0a69c79cf3fae3",
+      "native_runtime_inventory_sha256": "453917e19d3f798e733480990d7b8f9f1d0f6d449224832be0a91de1d1f110e8"
+    }
+  ],
+  "tests_per_node": 163,
+  "passed_per_node": 159,
+  "intentional_live_skips_per_node": 4,
+  "failures_per_node": 0,
+  "tools": 48,
+  "bundled_dependencies": 8,
+  "input_files": 323,
+  "dependency_entries": 3640,
+  "native_runtime_files": 111,
+  "all_matrix_inputs_identical_and_unchanged": true,
+  "structural_validators": {
+    "plugin_passed": 1,
+    "skills_passed": 14,
+    "report": "validation/consolidation/node-matrix48-progress-validators/report.json",
+    "sha256": "c5da626e8b1a02d47d001c4e69f93f8cd31734bf0e646375747783277b6ea390"
+  },
+  "source_and_package_sha256": {
+    "src/openpnp/node/progress.mjs": "26e977926d584564437e344a2f9e9cadf7f6fa3a0b8979ff14274c5e6e8a8c19",
+    "src/openpnp/node/runtime.mjs": "8d65e1382394e07c3bc8fa5013c399e6027a34ba67acf8e7652aa18f5c373085",
+    "src/openpnp/node/contracts.mjs": "cb9fa6fdd836b9e9de8ec14d1e0ea95654af0e38da651898384b12900a602efb",
+    "tests/openpnp/progress.test.mjs": "b15043eccdb4cd5edab4fc5bb36747fd3bf2962ee1d3e1bd8851c03525c0e666",
+    "tests/openpnp/reconnect-live.test.mjs": "96cecadb9481c74eda3562212c8840be7700e2efc4e96702861b988d6207fbef",
+    "plugins/openpnp/mcp/server.mjs": "cd760f07285eab0df587738170a0582874d4af96e7df9b08159df8c5dadb6367",
+    "plugins/openpnp/mcp/tool-inputs.json": "435b6b29129ec6de96e30ef627898467cf483dcafe148e2b7b0351e79eb2ce60",
+    "plugins/openpnp/THIRD_PARTY_NOTICES.md": "93c4d8f7b237889ae80be75f745ac69bb9ade35e5de39d343dba005c6e000a0d",
+    "plugins/openpnp/bridge/openpnp-codex-bridge.jar": "2ebc3b8f8d0fcc7d26a98622f3da1e4965458a7173f7f69acc36b5274f31f545",
+    "validation/gui-build-14/runtime/codex-build-manifest.json": "f09a24910958b030e692d737eae11a53f35dc9ccd4b5dc978de5ceb6d935a024"
+  },
+  "actual_native_mcp": {
+    "report": "validation/native-mcp-combined-03/report.json",
+    "report_sha256": "6e73d522cf8d4c9d318ca07cdd1c98fad8d63168c6ad92a4dbbafda1c9c41060",
+    "all_four_suites_passed": true,
+    "recovery_report": "validation/native-mcp-combined-03/recovery/evidence/mcp-native-reconnect.json",
+    "recovery_report_sha256": "3c646608b6aab0cf329a71415d1830eb960ca14e473746b9161f4aae606b04f2",
+    "recovery": {
+      "final_placed": 200,
+      "placed_at_pause": 38,
+      "progress_polls": 340,
+      "full_operation_reads": 7,
+      "retained_response_files": 11,
+      "retained_response_bytes": 509968,
+      "mutation_replays": 0
+    }
+  },
+  "historical_evidence": {
+    "pre_fix_matrix": "validation/consolidation/final-node48-validation-prefixed.json",
+    "pre_fix_matrix_sha256": "d12347183d1688b57c6e8b1258517c8eabfbe2ac01cf78997bf299f89c0ae0b7",
+    "pre_fix_package_source_snapshot": "validation/package-history/ce2e2bf6-pre-progress/snapshot.json",
+    "actual_recovery_failure": "validation/native-mcp-recovery-01/results/report.json",
+    "failure_limit": "Original temporary MCP store was deleted by prior test cleanup; exact original storage error was not retained. Controlled response-store reproduction proves the128-slot failure mechanism but does not retroactively establish that deleted observation."
+  },
+  "limitations": [
+    "Four opt-in live tests skip intentionally in each Node suite; actual live execution is linked separately.",
+    "Progress is an explicitly selected live projection, not an archived full response. Its later full read is a new observation. Native operation IDs/state and supplied freshness remain unchanged.",
+    "Native JAR, native full responses, journal durability, workload200 and response-retention limits are unchanged.",
+    "Structural validators and authored fixture tests do not qualify new skill behavior or physical hardware."
+  ],
+  "hardware_qualified": false
+}

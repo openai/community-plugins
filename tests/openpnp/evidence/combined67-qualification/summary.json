@@ -1,0 +1,106 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-09-11T16:59:43.005694+00:00",
+  "success_boundary": "Bounded simulator/package qualification on the exact named artifacts and declared test scopes.",
+  "bounded_simulator_package_qualification_passed": true,
+  "full_implementation_plan_completed": false,
+  "requirement_statuses": {
+    "R01": "partial",
+    "R02": "partial",
+    "R03": "partial",
+    "R04": "partial",
+    "R05": "partial",
+    "R06": "partial",
+    "R07": "partial",
+    "R08": "partial",
+    "R09": "partial",
+    "R10": "partial",
+    "R11": "partial",
+    "R12": "partial",
+    "R13": "partial",
+    "R14": "partial",
+    "R15": "partial",
+    "R16": "partial",
+    "R17": "partial",
+    "R18": "partial"
+  },
+  "promotion_performed": false,
+  "artifacts": {
+    "bridge_sha256": "90dcd7515bb5787e56f30a4c4777cd0f9a789978ab41d2fad3a4fe2f6930043f",
+    "mcp_sha256": "a24b35e71cd225f2be4dec66e228c1e0bc2ca72aba3450147c757af14a5bf2c5",
+    "mac_runtime_manifest_sha256": "cafc2d929bbbbe356256ee0b11296c94194da49b09f774bcdc9375bc2d9a76c3",
+    "patched_native_jar_sha256": "4e440ab03a17b6697c58dcc185b3d8b29138c0495d821d5ea9599c0889a0f882",
+    "stock_native_jar_sha256": "518491253ff3b6767362d4a163c932989fa6d71b76fc1bb0e5f35da5cb7a4e43",
+    "production_source_pairs": 43,
+    "Bridge_class_count": 138,
+    "runtime_files": 110,
+    "runtime_patch_count": 4,
+    "full_patched_native_source_files": 10,
+    "tools": 55,
+    "typed_changes": 33,
+    "skills": 14,
+    "history_helper_sha256": "8ad8c257013db2180ca89f6e2c72ba77689e666bbda01169e23e3e3bc4f98d51",
+    "history_helper_source_archive_sha256": "d0f44d3e2b18ef693e62e4d1a42af32c62ad452ba930b7e57b6e8e0332646a50",
+    "timing_guard_sha256": "4ca0f91b20fd085fdfcee4d8ce840fc701d1c60bed12750a0466dac68668db49",
+    "stock_built_in_this_output": false
+  },
+  "counts": {
+    "macOS_native_mains": 67,
+    "Linux_native_mains": 67,
+    "actual_MCP_workflows": 12,
+    "MCP_native_complete_hooks": 311,
+    "MCP_PNG_capture_records": 17,
+    "MCP_distinct_PNG_content_hashes": 3,
+    "controller_checks": 15,
+    "history_checks": 72,
+    "Node_pass_each_version": 345,
+    "Node_live_skips_each_version": 12,
+    "Node_total_each_version": 357,
+    "Node_versions": [
+      22,
+      24,
+      26
+    ],
+    "official_plugin_checks": 1,
+    "official_skill_checks": 14,
+    "controlled_Python_MCP_runner_tests": 12,
+    "controlled_Python_crash_runner_tests": 9,
+    "controlled_Python_stock_GUI_builder_tests": 6,
+    "reused_GUI_native_complete_hooks": 64,
+    "GUI_unknown_actual_feed_count": 1
+  },
+  "scope_limits": {
+    "physical_qualification": false,
+    "eight_hour_endurance_qualified": false,
+    "full_A11_qualified": false,
+    "independent_placement_quality_inspection": false,
+    "continuous_CPU_execution_proved": false,
+    "performance_target_proved": false,
+    "uniform_skill_qualification": false,
+    "native_workloads_executed_by_bundler": false
+  },
+  "history_policy": "Preserve original63 GUI hold/failures, timing guard false positives and corrections, and initial67 setup/Node failures. The separate tooling trial partial adoption result and unresolved native action are preserved; structural/simulator passes do not imply a uniform skill pass.",
+  "separate_tooling_trial": {
+    "core_task_demonstrated": true,
+    "source_completed": 32,
+    "adopted_completed": 16,
+    "adopted_requested": 32,
+    "adopted_state": "outcome_unknown",
+    "owned_processes_exited": true,
+    "uniform_skill_qualification": false
+  },
+  "source_transition": {
+    "original_frozen_inputs": 668,
+    "corrected_Node_overlay_inputs": 668,
+    "one_test_only_delta": [
+      {
+        "path": "tests/openpnp/skills.fixtures.test.mjs",
+        "before_sha256": "f00f3890337f64af603301ee165cf5f77848de81f646a46abaf64e6589a5b18e",
+        "after_sha256": "b5d22d768c513fd98835f10b5d090065c1dbe33175f1f1574413c2b2c5ef2560"
+      }
+    ],
+    "production_changed": false,
+    "original_freeze_pending_review_note_preserved": true,
+    "timing_review_resolved_by_separate_final_receipt": true
+  }
+}

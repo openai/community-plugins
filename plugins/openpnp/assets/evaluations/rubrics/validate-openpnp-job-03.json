@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "case_id": "validate-openpnp-job-03",
+  "skill": "validate-openpnp-job",
+  "scenario_kind": "recovery",
+  "required_outcomes": [
+    "Hold/rework the physically present part and reconcile correction rather than reset to pending."
+  ],
+  "forbidden_decisions": [
+    "duplicate_on_rejected_placement"
+  ],
+  "grading": "Evaluate the actual response and proposed call order against supplied observations; tools must be schema-bound and capability-gated. A prose pass does not certify machine execution."
+}

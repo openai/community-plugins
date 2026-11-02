@@ -1,0 +1,4 @@
+interface:
+  display_name: "Configure OpenPnP Tooling"
+  short_description: "Set up nozzles, tips, and vacuum sensing"
+  default_prompt: "Use $configure-openpnp-tooling to help with this OpenPnP workflow."
