@@ -1,0 +1,45 @@
+name: Robot Skill Hub
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: robot-skill-hub-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  robot-skill-hub:
+    name: Robot Skill Hub package and MCP contracts
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      RSH_PLUGIN_LIVE_MCP: "0"
+      RSH_TELEMETRY: "off"
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22.19.0"
+          package-manager-cache: false
+      - name: Complete dependency-free package, integration and security master / Node 22.19
+        run: npm run test:robot-skill-hub
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "24"
+          package-manager-cache: false
+      - name: Complete master / Node 24
+        run: npm run test:robot-skill-hub
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "26"
+          package-manager-cache: false
+      - name: Complete master / Node 26
+        run: npm run test:robot-skill-hub
