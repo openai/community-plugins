@@ -39,8 +39,8 @@
   "outputs": {
     "edited": {
       "filename": "grafana-incident-workflows.mp4",
-      "bytes": 14449390,
-      "sha256": "771bf71e73ab4e13662851f4fe56120c010cef51a5f32920902a51d7099f227a",
+      "bytes": 15235625,
+      "sha256": "7bb6fb9e49f1016724ec4b2c7c7322feec86087837d9fe0be459b19790686675",
       "durationSeconds": 105.1,
       "width": 1920,
       "height": 1080,
@@ -63,154 +63,209 @@
     },
     "poster": {
       "filename": "grafana-incident-workflows.png",
-      "source": "ACTUAL_BROWSER_SCREENSHOT",
-      "capturedAt": "2026-10-31T19:47:28.035Z",
-      "bytes": 390256,
-      "sha256": "395933173ceb0c4971b214bc268062313c22a2006d5bf99b92bb0dedcb3e79ce"
+      "source": "EDITORIAL_SUMMARY_CARD",
+      "caption": "Error rate and p95 latency doubled.",
+      "origin": "SIMULATED",
+      "evidenceSha256": "b4cc61d744d8097c67b58d79b3e9f0d074b40f55d831df64cbd8ab6a7661399e",
+      "bytes": 582195,
+      "sha256": "94d3acbe55959bf6915771dd21c67a971628ffe0b527210087603fb8095ab41b"
     }
   },
   "editing": {
-    "disclosure": "Waiting and selected reading intervals are cut. Recorded footage stays at normal speed; the full uncut recording is also available.",
+    "disclosure": "Waiting and selected reading intervals are cut. Editorial cards summarize the synthetic evidence. Close-ups crop and enlarge the actual output pane. Moving footage stays at normal speed; the final captured frame is held for 14.5 seconds for reading. The original full recording remains uncut.",
     "sourceSpeed": 1,
-    "sourceFullFrame": true,
+    "sourceFullFrame": false,
     "sourceResultsReplayed": false,
     "modelResultsInjected": false,
-    "sourceOverlays": false,
+    "sourceOverlays": true,
     "narration": false,
     "music": false,
     "timeline": [
       {
-        "type": "editorial_card",
-        "kind": "intro",
         "outputStart": 0,
         "outputEnd": 4,
-        "caption": "Grafana incident workflows"
-      },
-      {
         "type": "editorial_card",
-        "kind": "chapter",
-        "outputStart": 4,
-        "outputEnd": 6.5,
-        "caption": "Connect the synthetic provider"
+        "kind": "intro",
+        "caption": "Evidence to incident review."
       },
       {
+        "outputStart": 4,
+        "outputEnd": 7.1,
         "type": "actual_source_footage",
-        "outputStart": 6.5,
-        "outputEnd": 13.1,
         "sourceStart": 0.4,
-        "sourceEnd": 7,
+        "sourceEnd": 3.5,
         "speed": 1,
         "fullFrame": true,
         "crop": false,
-        "overlays": false,
-        "caption": "Connect the synthetic provider"
+        "overlays": false
       },
       {
+        "outputStart": 7.1,
+        "outputEnd": 14.4,
         "type": "actual_source_footage",
-        "outputStart": 13.1,
-        "outputEnd": 20.4,
         "sourceStart": 11.5,
         "sourceEnd": 18.8,
         "speed": 1,
         "fullFrame": true,
         "crop": false,
-        "overlays": false,
-        "caption": null
+        "overlays": false
       },
       {
-        "type": "editorial_card",
-        "kind": "chapter",
-        "outputStart": 20.4,
-        "outputEnd": 22.9,
-        "caption": "Collect and inspect the evidence"
-      },
-      {
+        "outputStart": 14.4,
+        "outputEnd": 28.5,
         "type": "actual_source_footage",
-        "outputStart": 22.9,
-        "outputEnd": 37,
         "sourceStart": 36.9,
         "sourceEnd": 51,
         "speed": 1,
         "fullFrame": true,
         "crop": false,
-        "overlays": false,
-        "caption": "Collect and inspect the evidence"
+        "overlays": false
       },
       {
+        "outputStart": 28.5,
+        "outputEnd": 37.5,
         "type": "editorial_card",
-        "kind": "chapter",
-        "outputStart": 37,
-        "outputEnd": 39.5,
-        "caption": "$coordinate-grafana-incident"
+        "kind": "metrics",
+        "caption": "Error rate and p95 latency doubled."
       },
       {
+        "outputStart": 37.5,
+        "outputEnd": 44.8,
         "type": "actual_source_footage",
-        "outputStart": 39.5,
-        "outputEnd": 46.8,
         "sourceStart": 79.2,
         "sourceEnd": 86.5,
         "speed": 1,
-        "fullFrame": true,
-        "crop": false,
-        "overlays": false,
-        "caption": "$coordinate-grafana-incident"
+        "fullFrame": false,
+        "crop": {
+          "x": 52,
+          "y": 496,
+          "width": 1374,
+          "height": 520
+        },
+        "destination": {
+          "x": 64,
+          "y": 284,
+          "width": 1792,
+          "height": 678
+        },
+        "overlays": true,
+        "editorialFraming": "Build the incident handoff",
+        "sourcePixelsReplaced": false
       },
       {
-        "type": "editorial_card",
-        "kind": "chapter",
-        "outputStart": 46.8,
-        "outputEnd": 49.3,
-        "caption": "$review-grafana-incident"
-      },
-      {
+        "outputStart": 44.8,
+        "outputEnd": 52.5,
         "type": "actual_source_footage",
-        "outputStart": 49.3,
-        "outputEnd": 61,
-        "sourceStart": 91.3,
+        "sourceStart": 95.3,
         "sourceEnd": 103,
         "speed": 1,
         "fullFrame": true,
         "crop": false,
-        "overlays": false,
-        "caption": "$review-grafana-incident"
+        "overlays": false
       },
       {
-        "type": "editorial_card",
-        "kind": "chapter",
-        "outputStart": 61,
-        "outputEnd": 63.5,
-        "caption": "Read the handoff and review"
-      },
-      {
+        "outputStart": 52.5,
+        "outputEnd": 67.1,
         "type": "actual_source_footage",
-        "outputStart": 63.5,
-        "outputEnd": 78.1,
         "sourceStart": 129.3,
         "sourceEnd": 143.9,
         "speed": 1,
-        "fullFrame": true,
-        "crop": false,
-        "overlays": false,
-        "caption": "Read the handoff and review"
+        "fullFrame": false,
+        "crop": {
+          "x": 52,
+          "y": 496,
+          "width": 1374,
+          "height": 520
+        },
+        "destination": {
+          "x": 64,
+          "y": 284,
+          "width": 1792,
+          "height": 678
+        },
+        "overlays": true,
+        "editorialFraming": "Read the completed drafts",
+        "sourcePixelsReplaced": false
       },
       {
+        "outputStart": 67.1,
+        "outputEnd": 75.8,
         "type": "actual_source_footage",
-        "outputStart": 78.1,
-        "outputEnd": 102.1,
         "sourceStart": 144.3,
+        "sourceEnd": 153,
+        "speed": 1,
+        "fullFrame": false,
+        "crop": {
+          "x": 52,
+          "y": 496,
+          "width": 1374,
+          "height": 520
+        },
+        "destination": {
+          "x": 64,
+          "y": 284,
+          "width": 1792,
+          "height": 678
+        },
+        "overlays": true,
+        "editorialFraming": "Review the claims against the evidence",
+        "sourcePixelsReplaced": false
+      },
+      {
+        "outputStart": 75.8,
+        "outputEnd": 83.6,
+        "type": "actual_source_footage",
+        "sourceStart": 160.5,
         "sourceEnd": 168.3,
         "speed": 1,
-        "fullFrame": true,
-        "crop": false,
-        "overlays": false,
-        "caption": null
+        "fullFrame": false,
+        "crop": {
+          "x": 52,
+          "y": 496,
+          "width": 1374,
+          "height": 520
+        },
+        "destination": {
+          "x": 64,
+          "y": 284,
+          "width": 1792,
+          "height": 678
+        },
+        "overlays": true,
+        "editorialFraming": "Keep the limits visible",
+        "sourcePixelsReplaced": false
       },
       {
+        "outputStart": 83.6,
+        "outputEnd": 98.1,
+        "type": "source_frame_hold",
+        "holdSeconds": 14.5,
+        "fullFrame": false,
+        "crop": {
+          "x": 52,
+          "y": 496,
+          "width": 1374,
+          "height": 520
+        },
+        "destination": {
+          "x": 64,
+          "y": 284,
+          "width": 1792,
+          "height": 678
+        },
+        "overlays": true,
+        "editorialFraming": "Keep the limits visible",
+        "sourcePixelsReplaced": false,
+        "sourceSeekSeconds": 168.3,
+        "sourceFrameTimestampSeconds": 168.32,
+        "sourceFrameSha256": "0445645176f28e70f449d79fa2652000e5de7a108056feb17d3d82c83ca3d2fd"
+      },
+      {
+        "outputStart": 98.1,
+        "outputEnd": 105.1,
         "type": "editorial_card",
         "kind": "outro",
-        "outputStart": 102.1,
-        "outputEnd": 105.1,
-        "caption": "Incident brief. Evidence review."
+        "caption": "Observed regression. Cause still open."
       }
     ],
     "omitted": [
@@ -221,49 +276,63 @@
         "reason": "Initial browser paint"
       },
       {
-        "sourceStart": 7,
+        "sourceStart": 3.5,
         "sourceEnd": 11.5,
-        "duration": 4.5,
-        "reason": "Initial model thinking"
+        "duration": 8,
+        "reason": "Startup wait"
       },
       {
         "sourceStart": 18.8,
         "sourceEnd": 36.9,
         "duration": 18.1,
-        "reason": "Waiting for the explicit user approval to be relayed"
+        "reason": "Waiting for explicit approval to be relayed"
       },
       {
         "sourceStart": 51,
         "sourceEnd": 79.2,
         "duration": 28.2,
-        "reason": "Model drafting; the completed original is shown next"
+        "reason": "Model drafting"
       },
       {
         "sourceStart": 86.5,
-        "sourceEnd": 91.3,
-        "duration": 4.8,
-        "reason": "Additional reading time on the incident brief"
+        "sourceEnd": 95.3,
+        "duration": 8.8,
+        "reason": "Additional reading and review startup"
       },
       {
         "sourceStart": 103,
         "sourceEnd": 129.3,
         "duration": 26.3,
-        "reason": "Review drafting and repeated display of the brief's opening paragraphs"
+        "reason": "Review drafting and repeated handoff introduction"
       },
       {
         "sourceStart": 143.9,
         "sourceEnd": 144.3,
         "duration": 0.4,
-        "reason": "Brief tab-transition interval"
+        "reason": "Brief tab transition"
+      },
+      {
+        "sourceStart": 153,
+        "sourceEnd": 160.5,
+        "duration": 7.5,
+        "reason": "Reference-heavy reading interval"
       },
       {
         "sourceStart": 168.3,
         "sourceEnd": 168.48,
         "duration": 0.18,
-        "reason": "Recording tail outside the explicit edit-decision ranges"
+        "reason": "Tail omitted from moving footage; the frame at 168.32 seconds is held separately for reading"
       }
     ],
-    "editDecisionsSha256": "d4e94b283fcfa69b8a23a3b6c48fefbe2948a12834449ec2f0155eb00f46922d"
+    "editDecisionsSha256": "ee25d54388a452e75e30176a0f06b348c5636f31a7794c346dd9f17a11a72834",
+    "sourceSpeedAppliesTo": "Moving source footage only; source_frame_hold is explicitly stationary.",
+    "sourceOverlayDescription": "Editorial headings, skill names, context, and persistent synthetic labels outside the enlarged source pane; recorded text and measurements are not replaced.",
+    "polishedAt": "2026-11-01T22:41:49.761Z",
+    "previousEditedSha256": "771bf71e73ab4e13662851f4fe56120c010cef51a5f32920902a51d7099f227a",
+    "previousEditedRevision": "a8d1aec01c85b39a5f1d023dad8cc877e3c30b06",
+    "includedMovingSourceSeconds": 70.6,
+    "editorialCardSeconds": 20,
+    "heldSourceFrameSeconds": 14.5
   },
   "drafts": [
     {
@@ -305,8 +374,8 @@
     ],
     "visualResult": "PASS",
     "knownCosmeticIssue": "Recording console restarts the second ordered-list item at 1; the preserved source draft is correctly numbered.",
-    "visualCoverage": "All seven editorial cards and seven encoded-footage keyframes, plus actual captured poster; both videos fully decoded. Sampled visual inspection, not uninterrupted real-time playback.",
-    "visualReviewer": "Independent agent plus parent assistant; corrected collection-approval caption verified by parent"
+    "visualCoverage": "Independent review inspected 36 start/midpoint/end frames covering all 12 segments. The corrected transition was inspected again at its start, midpoint, and end; the other 11 encoded segments match the reviewed render byte-for-byte. Final encode fully decoded. Uncut recording hash verified. Sampled visual inspection, not uninterrupted real-time playback.",
+    "visualReviewer": "Independent agent plus parent assistant; all 12 segments sampled and corrected transition rechecked"
   },
   "boundaries": {
     "origin": "SIMULATED",

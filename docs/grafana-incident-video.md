@@ -6,7 +6,7 @@
 
 This recording shows real Codex model turns using the two new Grafana incident skills and the packaged MCP server against the signed synthetic onboarding provider. The browser is a purpose-built recording console, not the Codex or Grafana product interface. Its tool activity, measurements, and drafts come from the actual run.
 
-The recorded source revision is [337528f](https://github.com/openai/community-plugins/tree/337528fa1e79f44e7bb7d4d232351c4988c0c2c9). Later PR review clarified setup and missing-field guidance; the MCP runtime and recorded media remain unchanged. The [evaluation guide](grafana-incident-evaluations.md) documents qualification of the final package.
+The recorded source revision is [337528f](https://github.com/openai/community-plugins/tree/337528fa1e79f44e7bb7d4d232351c4988c0c2c9). Later PR review clarified setup and missing-field guidance. The MCP runtime and original recording remain unchanged; the edited walkthrough was polished for readability. The [evaluation guide](grafana-incident-evaluations.md) documents qualification of the final package.
 
 ## What happens
 
@@ -20,7 +20,7 @@ The successful take used Codex CLI **0.144.3** with `gpt-5.6-sol`: **two model t
 
 ## Recording and qualification boundaries
 
-The walkthrough cuts waiting and selected reading intervals and adds chapter cards. Footage stays at normal speed; measurements and model outputs are not replaced. The full recording preserves the complete successful run at normal speed. Both videos are silent, 1920 × 1080 H.264 MP4s.
+The walkthrough cuts waiting and selected reading intervals, adds editorial summary cards, and enlarges portions of the recorded output pane. It holds a captured final frame for 14.5 seconds for reading. Moving footage plays at normal speed. The close-ups and synthetic labels are editorial framing; recorded measurements and model text remain unchanged. The poster summarizes the same synthetic measurements. The full recording preserves the complete successful run, uncut at normal speed. Both videos are silent, 1920 × 1080 H.264 MP4s.
 
 The runner loads exact copies of the checkout's packaged skills through native Codex skill discovery and uses the actual packaged MCP process. It does not install the plugin into the user's global configuration. This demonstrates the two model-driven workflows on synthetic telemetry; installed-package qualification and real-provider integration remain separate checks described in the [onboarding guide](grafana-synthetic-onboarding.md) and [behavioral evaluation guide](grafana-incident-evaluations.md).
 
