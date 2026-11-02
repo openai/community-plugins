@@ -1,0 +1,9 @@
+/node_modules/
+/dist/*
+!/dist/app/
+!/dist/server/
+!/dist/THIRD_PARTY_NOTICES.txt
+/dist/app/*
+!/dist/app/index.html
+/dist/server/*
+!/dist/server/index.js
