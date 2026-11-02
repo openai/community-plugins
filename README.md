@@ -104,6 +104,7 @@ are picked up.
 | [ReviewOps Auditor + Benchmark](plugins/reviewops-auditor-benchmark/README.md) | Normalize sanitized review-run exports, audit evaluation validity, benchmark lanes, and emit shadow-only guidance offline. | [Guide](plugins/reviewops-auditor-benchmark/README.md)                                                                    |
 | [React Native to SwiftUI](plugins/react-native-to-swiftui/README.md)           | Plan a bounded React Native/Expo feature migration, then port one explicitly approved slice with deterministic SwiftUI parity checks. | [Guide](plugins/react-native-to-swiftui/README.md) |
 | [Autodesk Fusion](plugins/autodesk-fusion/README.md) | Connect typed CAD/CAM operations, scoped Autodesk data, reviewed cloud recipes and engineering evidence; live qualification required. | [Guide](plugins/autodesk-fusion/README.md) |
+| [Clean Development](plugins/clean-development/README.md) | Explicitly inspect and route supported local development caches and build output into managed storage. | [Guide](plugins/clean-development/README.md) |
 
 Grafana Observability requires Codex and Node.js 22.19 or newer. Its manifest
 declares both `Read` and `Write`. `Write` is limited to
@@ -146,6 +147,15 @@ independent qualification; installation grants none of these.
 
 ```text
 Use $setup-autodesk-fusion to check the synthetic fixture and explain the available connection modes. Do not connect to Autodesk or change a real model.
+```
+
+Clean Development requires Node.js 20.12 or newer and local command access.
+It declares `Read` and `Write`: inspection is read-only; setup, cache routing,
+project settings and pruning require explicit authorization. It has no account,
+MCP server, network service or runtime dependencies. Start with:
+
+```text
+Use $clean-development to inspect this project and report storage status and doctor findings. Do not change settings or prepare storage.
 ```
 
 ## Copy-paste Codex prompts
