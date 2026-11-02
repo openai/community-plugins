@@ -1,0 +1,7 @@
+{
+  "status": "FAIL",
+  "errors": [
+    "A frozen-record response cannot claim executed actions"
+  ],
+  "semanticReview": "REQUIRED"
+}

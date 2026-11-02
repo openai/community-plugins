@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "missing-connector",
+  "origin": "SIMULATED",
+  "capturedAt": "2026-10-31T01:07:03.955Z",
+  "interpretation": "Frozen repository-generated evidence. Tool outputs are unchanged; they describe their collection time, not current monitoring. The model receives no connected Grafana tools. Authored context below is not tool evidence.",
+  "toolOutputs": [],
+  "transport": null,
+  "authoredContext": [
+    {
+      "kind": "SCENARIO_CONSTRAINT",
+      "text": "No connected tools, profile, active packs, reports, metrics, logs or traces are available in this scenario."
+    }
+  ]
+}

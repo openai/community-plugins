@@ -1,0 +1,36 @@
+{
+  "source": "DIRECT_CODEX_EXEC",
+  "code": 0,
+  "clientVersion": "codex-cli 0.144.3",
+  "requestedModel": "gpt-5.6-sol",
+  "startedAt": "2026-10-31T00:10:14.434Z",
+  "observedFinishedAt": "2026-10-31T01:02:00.929Z",
+  "capture": "Complete merged CLI event/diagnostic output consumed; only sanitized trace retained.",
+  "reportedModel": null,
+  "trace": {
+    "eventCounts": {
+      "thread.started": 1,
+      "turn.started": 1,
+      "item.completed": 1,
+      "turn.completed": 1
+    },
+    "itemTypeCounts": {
+      "agent_message": 1
+    },
+    "toolAttempts": [],
+    "invalidJsonLines": 0,
+    "completedTurns": 1,
+    "usage": {
+      "input_tokens": 30853,
+      "cached_input_tokens": 0,
+      "output_tokens": 3157,
+      "reasoning_output_tokens": 746
+    },
+    "reportedModel": null,
+    "diagnostics": [
+      "UNSUPPORTED_CONFIG:features.key"
+    ],
+    "failureCategories": [],
+    "criticalConfigurationErrors": []
+  }
+}

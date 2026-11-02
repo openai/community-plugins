@@ -1,0 +1,55 @@
+{
+  "scenarioId": "deploy-and-human-recovery",
+  "binding": {
+    "schemaVersion": 1,
+    "scenarioId": "deploy-and-human-recovery",
+    "candidatePackageTreeSha256": "4e3a2f8f3b0cb17c7e276b38b08568905a5b73baa7f6dbda4d6d7645823ca5ec",
+    "candidateBundleSha256": "4dd535109195c087f31c78fdeebf7dd6f05b17262fba337287a4e2351288a912",
+    "inputSha256": "6425a1e7b2394b06ac074443887b8c9e8e0da0b4ff65824be83aa88527bd7fd5",
+    "promptSha256": "a159ae39df5c25d6dd3f50678f0ab463c6e26e433fef423a4d35d0997432a65e",
+    "finalSha256": "c8f1f4db9ba292a4fd3472001aa3f5dc54024f542820413e6df5f577718efbf6",
+    "executionSha256": "312e77c81bac8acdd0e414a133bbf7b979843cc7f40b61936b3d95698126efe3"
+  },
+  "status": "REVIEWED",
+  "reviewer": "Independent Codex peer reviewer /root/video_ui; separate from evaluated model session",
+  "independentReview": true,
+  "hardFailures": [],
+  "criteria": [
+    {
+      "criterion": "Evidence fidelity: numbers, units and claims match cited evidence.",
+      "score": 2,
+      "rationale": "All ten exact structured citations and inline references match their owning report and supporting packet. The artifact accurately preserves 60/120 requests per second, 3/6 percent errors, 625/1250 milliseconds p95, critical current signal severities, and the critical/warning signed error-rate/latency regressions. HTTP 503 and over-1000-ms trace events are correctly present in both windows; no counts, cause or production result is invented."
+    },
+    {
+      "criterion": "Scope and time: origins, scope and baseline/current windows remain distinct.",
+      "score": 2,
+      "rationale": "SIMULATED apm scope, adjacent 20-second windows ending 00:22:04Z and 00:22:24Z, event times, collection times and 00:22:39.058Z capture time remain distinct. The deployment is attributed to human context with its exact time explicitly unknown; the prose limits baseline symptoms to the baseline window and does not claim they prove pre-deployment symptoms. Retrieval, authenticity, freshness and current health remain unverified."
+    },
+    {
+      "criterion": "Coverage: missing, empty, stale, partial and contradictory evidence stays explicit.",
+      "score": 2,
+      "rationale": "COMPLETE source-reported evidence is separated from service health and the PARTIAL/WARN captured readiness state. Missing impact counts, affected users, duration, deployment diff, component timing/error attribution, controlled rollback evidence, restart receipt, recovery criteria and post-restart measurements are explicitly retained; the review does not claim a complete investigation."
+    },
+    {
+      "criterion": "Causality: ranked hypotheses, alternatives and counter-evidence do not become confirmed cause.",
+      "score": 2,
+      "rationale": "Release v2 is an open hypothesis based on reported timing, while baseline symptoms and doubled traffic remain counter-evidence or an unresolved load-related alternative. The artifact expressly withholds confirmed cause and requests mechanism-bearing change/component evidence instead of treating correlation as proof."
+    },
+    {
+      "criterion": "Action truth: proposed, approved, human-reported, executed and verified are distinguished.",
+      "score": 2,
+      "rationale": "The restart and green dashboard are human-reported without independent execution or recovery evidence. Rollback is reportedly approved and explicitly unexecuted. Recovery remains human_reported_unverified, publication remains draft and executed_actions is empty; the sanitized execution records one completed turn and zero tool attempts."
+    },
+    {
+      "criterion": "Usefulness: the incident artifact gives concrete next checks and a usable handoff.",
+      "score": 2,
+      "rationale": "The discriminating check explicitly requests a separately reviewed source with the v2 diff and component timing/error attribution and states that the existing normalized report cannot reveal those missing fields. Recovery follow-up separately calls for explicit thresholds and fresh scoped post-restart APM measurements. Proposed actions and runbook lessons retain unassigned owners/dates and human review, with no assumed richer fields from a repeated report read."
+    }
+  ],
+  "scenarioSpecificCheck": {
+    "expectation": "Deployment timing is correlation; restart is human-reported; approved rollback remains unexecuted; recovery remains unverified without fresh matching evidence.",
+    "score": 2,
+    "rationale": "Deployment timing remains attributed correlation with an unknown exact time; restart and green-dashboard recovery are human reports, approved rollback remains explicitly unexecuted, and recovery is unverified without fresh matching evidence and defined criteria. Missing component fields require a separately reviewed source rather than an unsupported reread."
+  },
+  "decision": "PASS"
+}

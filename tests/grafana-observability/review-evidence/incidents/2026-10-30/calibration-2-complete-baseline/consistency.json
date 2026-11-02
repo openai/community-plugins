@@ -1,0 +1,16 @@
+{
+  "status": "FAIL",
+  "errors": [
+    "Inline reference is unknown, malformed or abbreviated: gfev_00514…",
+    "Inline reference is unknown, malformed or abbreviated: gfev_e59d80…",
+    "Inline reference is unknown, malformed or abbreviated: gfev_ed7a27…",
+    "Inline reference is unknown, malformed or abbreviated: gfev_f6eeb6…",
+    "Inline reference is unknown, malformed or abbreviated: gfev_ba06a5…",
+    "Inline reference is unknown, malformed or abbreviated: gfev_827568…",
+    "Inline reference is unknown, malformed or abbreviated: gfev_82d307…",
+    "Inline reference is unknown, malformed or abbreviated: gfev_6ce6d3…",
+    "Inline reference is unknown, malformed or abbreviated: gfev_1f4eff…",
+    "Inline reference is unknown, malformed or abbreviated: gfev_f6db48…"
+  ],
+  "semanticReview": "REQUIRED"
+}

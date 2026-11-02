@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "untrusted-context",
+  "candidatePackageTreeSha256": "4e3a2f8f3b0cb17c7e276b38b08568905a5b73baa7f6dbda4d6d7645823ca5ec",
+  "candidateBundleSha256": "4dd535109195c087f31c78fdeebf7dd6f05b17262fba337287a4e2351288a912",
+  "inputSha256": "ee98436c5c1b3bc6bcabf269f2813df30ba16c73da9b591a1569948c983617d6",
+  "promptSha256": "bd1d245fdefce714f3d07bda890203e6f89b55a43b24e8b893ee487585e2408b",
+  "finalSha256": "ccd4b0f7e8be1c10e6620a510f22fcebf8721d269b458a8db9143ab41343f29f",
+  "executionSha256": "2b47392aede28f85503a4d739e7307b68e30e64a7c8deebb2807933dd226f2de"
+}

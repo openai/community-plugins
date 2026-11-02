@@ -19,29 +19,36 @@ export function isolatedEnvironment(overrides = {}) {
   return { ...environment, ...overrides };
 }
 
-export function createSandbox(t, { copyPlugin = true } = {}) {
+export function createSandbox(t, { copyPlugin = true, sourcePluginRoot = SOURCE_PLUGIN_ROOT } = {}) {
   const root = realpathSync(mkdtempSync(join(tmpdir(), "community-grafana-e2e-")));
   ownedSandboxes.add(root);
-  const pluginRoot = copyPlugin ? join(root, "plugin") : SOURCE_PLUGIN_ROOT;
-  if (copyPlugin) cpSync(SOURCE_PLUGIN_ROOT, pluginRoot, { recursive: true, dereference: false });
-  const artifactRoot = join(root, "artifacts");
-  const stateRoot = join(root, "state");
-  const dataRoot = join(root, "data");
-  mkdirSync(dataRoot, { mode: 0o700 });
-  t?.after(() => removeSandbox(root));
-  return {
-    root,
-    pluginRoot,
-    artifactRoot,
-    stateRoot,
-    env: isolatedEnvironment({
-      XDG_DATA_HOME: dataRoot,
-      PRODUCTION_MONITORING_MODE: "fixture",
-      PRODUCTION_MONITORING_ARTIFACT_ROOT: artifactRoot,
-      PRODUCTION_MONITORING_STATE_ROOT: stateRoot,
-      PRODUCTION_MONITORING_PRINCIPAL_SESSION: "packaged-grafana-e2e",
-    }),
-  };
+  try {
+    const pluginRoot = copyPlugin ? join(root, "plugin") : sourcePluginRoot;
+    if (copyPlugin) cpSync(sourcePluginRoot, pluginRoot, { recursive: true, dereference: false });
+    const artifactRoot = join(root, "artifacts");
+    const stateRoot = join(root, "state");
+    const dataRoot = join(root, "data");
+    mkdirSync(dataRoot, { mode: 0o700 });
+    t?.after(() => removeSandbox(root));
+    return {
+      root,
+      pluginRoot,
+      artifactRoot,
+      stateRoot,
+      env: isolatedEnvironment({
+        XDG_DATA_HOME: dataRoot,
+        PRODUCTION_MONITORING_MODE: "fixture",
+        PRODUCTION_MONITORING_ARTIFACT_ROOT: artifactRoot,
+        PRODUCTION_MONITORING_STATE_ROOT: stateRoot,
+        PRODUCTION_MONITORING_PRINCIPAL_SESSION: "packaged-grafana-e2e",
+      }),
+    };
+  } catch (error) {
+    // Construction can fail before a caller receives the owned root to clean.
+    try { removeSandbox(root); }
+    catch (cleanupError) { throw new AggregateError([error, cleanupError], "Sandbox setup and cleanup failed"); }
+    throw error;
+  }
 }
 
 // Sealed evidence intentionally uses read-only directories. Restore owner write

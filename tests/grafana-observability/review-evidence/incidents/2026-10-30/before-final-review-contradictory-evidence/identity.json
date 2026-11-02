@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "contradictory-evidence",
+  "candidatePackageTreeSha256": "932ef62694f4d30d342504cbb17a80cbdc2d542fdf0bae1efd48449aa1bda6c4",
+  "candidateBundleSha256": "3edf3f4596d20afba6e3e4dc22bc39177f34c920c05233da2ce442321d70907f",
+  "inputSha256": "dad4abebb309f569740f454789e7b538bfbd114c4ab67d05591f559f38e5acee",
+  "promptSha256": "ced893fd42ceb8384eca06ba9dfa208e66e409e23cf3fb8f74c8ea15c66ea07a",
+  "finalSha256": "cd77ba7c8563dee968d114b5af602ba451d6d9a8b696fb84dff4407478e0ca86",
+  "executionSha256": "c7a4d0fdc051320af79408218252cee7cd9c6328bcf1407fcd4ef89ec34e91dc"
+}

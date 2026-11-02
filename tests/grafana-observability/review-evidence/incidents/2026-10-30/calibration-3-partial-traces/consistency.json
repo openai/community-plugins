@@ -1,0 +1,19 @@
+{
+  "status": "FAIL",
+  "errors": [
+    "Report assessments must cover every supplied report once",
+    "Unknown or duplicated report assessment",
+    "Unknown or duplicated report assessment",
+    "Inline reference is unknown, malformed or abbreviated: gfev_a21dd1…",
+    "Inline reference is unknown, malformed or abbreviated: gfev_1ad8c9…",
+    "Inline reference is unknown, malformed or abbreviated: gfev_72783d…",
+    "Inline reference is unknown, malformed or abbreviated: gfev_cd7bfc…",
+    "Inline reference is unknown, malformed or abbreviated: gfev_49e379…",
+    "Inline reference is unknown, malformed or abbreviated: gfev_0d934a…",
+    "Inline reference is unknown, malformed or abbreviated: gfev_7f369c…",
+    "Inline reference is unknown, malformed or abbreviated: gfev_09900a…",
+    "Inline reference is unknown, malformed or abbreviated: gfev_79fded…",
+    "Inline reference is unknown, malformed or abbreviated: gfev_3a9db0…"
+  ],
+  "semanticReview": "REQUIRED"
+}

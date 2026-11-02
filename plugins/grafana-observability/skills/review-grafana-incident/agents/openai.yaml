@@ -1,0 +1,7 @@
+interface:
+  display_name: "Review a Grafana Incident"
+  short_description: "Draft postmortems and reviewed-learning proposals"
+  brand_color: "#7058E8"
+  default_prompt: "Use $review-grafana-incident to prepare a source-backed postmortem, preserve unresolved questions, and propose a runbook improvement."
+policy:
+  allow_implicit_invocation: false

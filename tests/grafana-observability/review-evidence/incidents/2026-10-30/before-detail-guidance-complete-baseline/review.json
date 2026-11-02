@@ -1,0 +1,55 @@
+{
+  "scenarioId": "complete-baseline",
+  "binding": {
+    "schemaVersion": 1,
+    "scenarioId": "complete-baseline",
+    "candidatePackageTreeSha256": "a61d69efa8c5745b455375007e1a042affe740bf64fd96e8748189cd5a1deb64",
+    "candidateBundleSha256": "186873823c95db511ac271734cee150ffc5cdda2a505cef1abc740d6263fad8c",
+    "inputSha256": "1706ce025e763e65376c6baf8245da5d95c1e0e87bcc3536ef29cf14fc8f21a7",
+    "promptSha256": "27e5613379d43b43862e4459207d9d61441c7eaa19332db96ebce4f3e8a63acc",
+    "finalSha256": "1046009767e9e3783b51d1f5d1eb9f36ba3e1fe010b390f2db7c9f438839aeb9",
+    "executionSha256": "e78577ca9204146e6c6dd2b8db4e872bfe906f8cb5b3f31bfeb28c51ec5b5007"
+  },
+  "status": "REVIEWED",
+  "reviewer": "Independent Codex peer reviewer /root/public_sevbot; separate from evaluated model session",
+  "independentReview": true,
+  "hardFailures": [],
+  "criteria": [
+    {
+      "criterion": "Evidence fidelity: numbers, units and claims match cited evidence.",
+      "score": 2,
+      "rationale": "The artifact and structured citations correctly preserve 60 to 120 requests/second, 3 to 6 percent (+3 percentage points), and 625 to 1250 milliseconds, including the correct baseline/current evidence ownership. HTTP 503 and over-1000-ms trace observations are present in both windows. Current CRITICAL latency signal severity is correctly distinguished from WARNING signed-regression severity."
+    },
+    {
+      "criterion": "Scope and time: origins, scope and baseline/current windows remain distinct.",
+      "score": 2,
+      "rationale": "It retains SIMULATED apm scope and the adjacent 20-second windows ending 23:37:42Z and 23:38:02Z, labels the capture frozen/imported, gives its capture and collection times, and explicitly withholds independently verified freshness or current health."
+    },
+    {
+      "criterion": "Coverage: missing, empty, stale, partial and contradictory evidence stays explicit.",
+      "score": 2,
+      "rationale": "COMPLETE report coverage remains separate from PARTIAL/WARN anonymous profile readiness. It preserves the evidence-only analysis gap and explicitly leaves population impact, request counts, incident duration, infrastructure detail, and span attribution unknown."
+    },
+    {
+      "criterion": "Causality: ranked hypotheses, alternatives and counter-evidence do not become confirmed cause.",
+      "score": 2,
+      "rationale": "Load-related contention, worsening pre-existing failures, and independent dependency degradation are ranked as open hypotheses. Baseline symptoms, FLAT returned directions, and absent component evidence are counter-evidence or limits; signed regressions are not promoted into a confirmed mechanism."
+    },
+    {
+      "criterion": "Action truth: proposed, approved, human-reported, executed and verified are distinguished.",
+      "score": 2,
+      "rationale": "The action table records proposals with authorization/execution/effect not established, structured executed_actions is empty, publication is draft, and no mitigation, message delivery, closure, or measured recovery is claimed. The execution receipt records no tool attempts."
+    },
+    {
+      "criterion": "Usefulness: the incident artifact gives concrete next checks and a usable handoff.",
+      "score": 1,
+      "rationale": "The handoff and quantified brief are useful, but their main discriminating check assumes additional span-level detail can be obtained by inspecting the same report-owned trace references. The supplied complete evidence details for gfev_e001caa969f268a8658be73421bc9cb06faffa20ef40905a59a862b3647625de and gfev_4b5312fbc7c2a1329084ec5e229caa539a2033b3702d6aab308086c5bf191630 already contain only one EVENT summary each. Re-reading those immutable records cannot reveal the proposed longest child span, per-operation duration change, or error status. The next step should explicitly request an approved source that actually supplies those missing fields rather than make the same read the primary discriminator."
+    }
+  ],
+  "scenarioSpecificCheck": {
+    "expectation": "Quantify the regression with the actual current/baseline values and preserve SIMULATED origin; no confirmed root cause.",
+    "score": 2,
+    "rationale": "The current/baseline regression is correctly quantified, remains SIMULATED and historical, and does not establish root cause or recovery. The incomplete next-check design is recorded separately under Usefulness."
+  },
+  "decision": "FAIL"
+}

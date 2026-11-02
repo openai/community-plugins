@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "empty-evidence",
+  "candidatePackageTreeSha256": "a61d69efa8c5745b455375007e1a042affe740bf64fd96e8748189cd5a1deb64",
+  "candidateBundleSha256": "186873823c95db511ac271734cee150ffc5cdda2a505cef1abc740d6263fad8c",
+  "inputSha256": "8189efa6e8525881c20be27bbb38f032d6d0852374482d849ce4156af2884adf",
+  "promptSha256": "0c6407129a15402a48aac4e2e536e96d410ab7fff2d3fdea08e3291b96f039ec",
+  "finalSha256": "f3fe52d5aef8c0e7f937cd4cae02b989d0268e393e890a5bdcb5f0243b8ba60d",
+  "executionSha256": "0fd26a74a9e0c53b0b08d0009ee6ae01644c3ce0fcc5ec60eef948d431e9b740"
+}

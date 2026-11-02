@@ -23,6 +23,8 @@
     "test:react-native-to-swiftui": "npm run validate:react-native-to-swiftui && node --test --test-concurrency=1 tests/react-native-to-swiftui/unit/*.test.mjs tests/react-native-to-swiftui/integration/*.test.mjs tests/react-native-to-swiftui/security/*.test.mjs",
     "test:grafana-observability": "npm run test:grafana",
     "test:grafana": "node --test --test-concurrency=1 tests/grafana-observability/*.test.mjs",
+    "demo:grafana:synthetic": "node scripts/demo-grafana-synthetic.mjs",
+    "test:grafana:behavior": "node scripts/evaluate-grafana-incidents.mjs",
     "test:grafana:live": "GRAFANA_E2E_DOCKER=1 node --test tests/grafana-observability/live.test.mjs",
     "test:grafana:auth": "GRAFANA_E2E_AUTH=1 node --test tests/grafana-observability/authenticated.test.mjs",
     "test:grafana:installed": "GRAFANA_E2E_INSTALLED_CLIENT=1 node --test tests/grafana-observability/installed-client.test.mjs",

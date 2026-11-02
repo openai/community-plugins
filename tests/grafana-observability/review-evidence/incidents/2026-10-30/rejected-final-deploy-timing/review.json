@@ -1,0 +1,55 @@
+{
+  "scenarioId": "deploy-and-human-recovery",
+  "binding": {
+    "schemaVersion": 1,
+    "scenarioId": "deploy-and-human-recovery",
+    "candidatePackageTreeSha256": "4e3a2f8f3b0cb17c7e276b38b08568905a5b73baa7f6dbda4d6d7645823ca5ec",
+    "candidateBundleSha256": "4dd535109195c087f31c78fdeebf7dd6f05b17262fba337287a4e2351288a912",
+    "inputSha256": "93b0105ecea7263b1e6c580fb3be94c7b69c83322f6c9c1dfd9ee18d83dc2a30",
+    "promptSha256": "d6228f04855833d1a7f3aa98045ba8d59cc1b78b6cd03905c06145329cb87020",
+    "finalSha256": "f1f177fbc86986b20196b4204c78ddd6ecafdb648a0c7121b097bb4b3c165992",
+    "executionSha256": "19675d03f3efccd46cb16d944b64d6e2a069178d50f73aef2ba6ca5ca845bfe1"
+  },
+  "status": "REVIEWED",
+  "reviewer": "Independent Codex peer reviewer /root/video_ui; separate from evaluated model session",
+  "independentReview": true,
+  "hardFailures": [],
+  "criteria": [
+    {
+      "criterion": "Evidence fidelity: numbers, units and claims match cited evidence.",
+      "score": 1,
+      "rationale": "The ten exact citations, 60/120 requests per second, 3/6 percent errors, 625/1250 milliseconds p95, signal classifications and HTTP 503/slow-trace events match the supplied evidence. However, the responder update adds an unsupported material ordering claim: it says baseline symptoms mean \"the problem existed before the responder-reported release v2 deployment.\" The packet establishes symptoms before the current window, not before a deployment whose exact time was not supplied."
+    },
+    {
+      "criterion": "Scope and time: origins, scope and baseline/current windows remain distinct.",
+      "score": 1,
+      "rationale": "SIMULATED scope, the adjacent 20-second windows, capture time and event/collection timestamps are otherwise preserved accurately. The unsupported pre-deployment conclusion drops the timeline's own \"exact time unknown\" qualification. Baseline events occurred at 00:17:27Z, one second before the current window starts at 00:17:28Z; \"immediately before the current window\" does not establish whether v2 deployment preceded or followed those events. The baseline cannot be treated as a verified pre-deployment period."
+    },
+    {
+      "criterion": "Coverage: missing, empty, stale, partial and contradictory evidence stays explicit.",
+      "score": 2,
+      "rationale": "The response retains COMPLETE source-reported collection separately from service health and PARTIAL/WARN historical profile readiness. It explicitly leaves affected counts, population, incident duration, deployment diff, component timing, error-emitting component, action receipts, recovery criteria and post-restart evidence unavailable."
+    },
+    {
+      "criterion": "Causality: ranked hypotheses, alternatives and counter-evidence do not become confirmed cause.",
+      "score": 2,
+      "rationale": "Cause remains an open hypothesis, and the narrative explicitly rejects timing correlation as a causal mechanism. Doubled request rate remains an alternative or contributing factor; no deployment mechanism or confirmed cause is invented. The unsupported relative chronology is graded under evidence fidelity and time rather than treated as a claim of confirmed root cause."
+    },
+    {
+      "criterion": "Action truth: proposed, approved, human-reported, executed and verified are distinguished.",
+      "score": 2,
+      "rationale": "Restart is reported as executed by a responder but not independently verified; rollback is reportedly approved and explicitly unexecuted. Recovery remains human_reported_unverified, publication stays draft and executed_actions is empty. The execution receipt records one completed turn and no tool attempts."
+    },
+    {
+      "criterion": "Usefulness: the incident artifact gives concrete next checks and a usable handoff.",
+      "score": 2,
+      "rationale": "The handoff requests a release diff and deployment record, restart execution evidence, explicit recovery criteria and a genuinely fresh bounded post-restart APM comparison with an equal-duration pre-restart window. These requested fields or records are distinguished from absent component-level evidence; it does not promise that reopening summary-only traces will supply new causal fields. Proposed follow-ups and runbook changes remain unassigned and unapproved."
+    }
+  ],
+  "scenarioSpecificCheck": {
+    "expectation": "Deployment timing is correlation; restart is human-reported; approved rollback remains unexecuted; recovery remains unverified without fresh matching evidence.",
+    "score": 2,
+    "rationale": "The explicit cause/recovery/action boundaries are retained: deployment is correlation and a hypothesis, restart is human-reported, approved rollback remains unexecuted and recovery lacks fresh matching evidence. The separate unsupported pre-deployment timing inference prevents overall acceptance under evidence and time criteria."
+  },
+  "decision": "FAIL"
+}

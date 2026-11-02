@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "complete-baseline",
+  "candidatePackageTreeSha256": "a61d69efa8c5745b455375007e1a042affe740bf64fd96e8748189cd5a1deb64",
+  "candidateBundleSha256": "186873823c95db511ac271734cee150ffc5cdda2a505cef1abc740d6263fad8c",
+  "inputSha256": "1706ce025e763e65376c6baf8245da5d95c1e0e87bcc3536ef29cf14fc8f21a7",
+  "promptSha256": "27e5613379d43b43862e4459207d9d61441c7eaa19332db96ebce4f3e8a63acc",
+  "finalSha256": "1046009767e9e3783b51d1f5d1eb9f36ba3e1fe010b390f2db7c9f438839aeb9",
+  "executionSha256": "e78577ca9204146e6c6dd2b8db4e872bfe906f8cb5b3f31bfeb28c51ec5b5007"
+}

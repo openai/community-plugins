@@ -1,0 +1,55 @@
+{
+  "scenarioId": "empty-evidence",
+  "binding": {
+    "schemaVersion": 1,
+    "scenarioId": "empty-evidence",
+    "candidatePackageTreeSha256": "932ef62694f4d30d342504cbb17a80cbdc2d542fdf0bae1efd48449aa1bda6c4",
+    "candidateBundleSha256": "3edf3f4596d20afba6e3e4dc22bc39177f34c920c05233da2ce442321d70907f",
+    "inputSha256": "8e7969295af5d1f057e5f4202bea63d9fc4b71d64e7c486d7f474f358f801385",
+    "promptSha256": "790eb27f2e51ad428614d1d29a1f98aebce9ae6953244f240e802f4366a3bdce",
+    "finalSha256": "ce0fc372ef64264c5881d2cfe40069d60771603c1898b72bf56eeff0b1f5dd44",
+    "executionSha256": "5960ea4ccccff56b19032b2129a21baa678a11559872bffccd0ca7c74c3a8d0b"
+  },
+  "status": "REVIEWED",
+  "reviewer": "Independent Codex root reviewer; separate from evaluated model session",
+  "independentReview": true,
+  "hardFailures": [],
+  "criteria": [
+    {
+      "criterion": "Evidence fidelity: numbers, units and claims match cited evidence.",
+      "score": 2,
+      "rationale": "The artifact correctly reports ten EMPTY results, zero recorded collection failures and no signals; it supplies no fabricated numeric service measurements."
+    },
+    {
+      "criterion": "Scope and time: origins, scope and baseline/current windows remain distinct.",
+      "score": 2,
+      "rationale": "It preserves the two 20-second windows, SIMULATED apm origin/scope, source capture time and unverified current retrieval."
+    },
+    {
+      "criterion": "Coverage: missing, empty, stale, partial and contradictory evidence stays explicit.",
+      "score": 2,
+      "rationale": "It explicitly distinguishes EMPTY from zero traffic/errors, healthy service or recovery and identifies profile PARTIAL/WARN as separate historical readiness."
+    },
+    {
+      "criterion": "Causality: ranked hypotheses, alternatives and counter-evidence do not become confirmed cause.",
+      "score": 2,
+      "rationale": "Authorization/scope limitations and no matching activity are alternative explanations for the evidence gap, not asserted service causes; zero collection failures is counter-evidence to a settled failure explanation."
+    },
+    {
+      "criterion": "Action truth: proposed, approved, human-reported, executed and verified are distinguished.",
+      "score": 2,
+      "rationale": "No execution or mitigation effect is invented; authorization remains unestablished, actions empty, publication draft and recovery unknown."
+    },
+    {
+      "criterion": "Usefulness: the incident artifact gives concrete next checks and a usable handoff.",
+      "score": 2,
+      "rationale": "It asks whether the goal is historical gap-filling or current health, verifies exact profile/scope first, then proposes new-key authorized collection with appropriate windows."
+    }
+  ],
+  "scenarioSpecificCheck": {
+    "expectation": "An empty collection is unknown, not zero requests/errors, healthy service or recovery.",
+    "score": 2,
+    "rationale": "The response treats absent telemetry as unknown and offers a bounded next step without inventing values, impact or cause."
+  },
+  "decision": "PASS"
+}

@@ -3,14 +3,11 @@ import { readFileSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import test from "node:test";
 
-import { CAPABILITY_PACKS, createLiveAuthority } from "./helpers/live-authority.mjs";
-import { assertNoAncestorDependencies, createSandbox, McpClient, removeSandbox, toolData } from "./helpers/mcp-client.mjs";
+import { CAPABILITY_PACKS } from "./helpers/live-authority.mjs";
+import { startSyntheticSession } from "./helpers/synthetic-session.mjs";
 import {
-  createSyntheticCatalog,
   PACK_CASES,
-  startSyntheticGrafana,
   SYNTHETIC_ERROR_CANARY,
-  SYNTHETIC_SCOPES,
   SYNTHETIC_TEXT_CANARY,
 } from "./support/synthetic-grafana.mjs";
 
@@ -56,49 +53,9 @@ function readEvidenceArtifacts(root) {
 }
 
 async function startFixture(t, { conflictingClaims = false } = {}) {
-  const sandbox = createSandbox();
-  const catalog = createSyntheticCatalog({ conflictingClaims });
-  const outputs = [];
-  let provider;
-  let client;
-  t.after(async () => {
-    try {
-      if (client) {
-        await client.close();
-        assert.equal(client.stderr, "", "Packaged MCP server wrote unexpected diagnostics");
-      }
-      assert.deepEqual(provider?.unexpectedRequests ?? [], [], "Unexpected provider requests were rejected");
-      const serialized = JSON.stringify(outputs);
-      for (const token of catalog.leakageTokens) {
-        assert.equal(serialized.includes(token), false, "Provider-native fixture material leaked into MCP output");
-      }
-      assert.doesNotMatch(serialized, /datasourceUid|sourceIdentitySha256|providerValue|rawSql|executedQueryString|private_synthetic_/u);
-    } finally {
-      try { if (provider) await provider.close(); }
-      finally { removeSandbox(sandbox.root); }
-    }
-  });
-  assertNoAncestorDependencies(sandbox.pluginRoot);
-  provider = await startSyntheticGrafana(catalog);
-  const authority = createLiveAuthority(sandbox.root, {
-    pluginRoot: sandbox.pluginRoot,
-    origin: provider.origin,
-    entries: catalog.entries,
-    scopes: SYNTHETIC_SCOPES,
-  });
-  client = await McpClient.start(sandbox.pluginRoot, { env: { ...sandbox.env, ...authority.env } });
-  const rawCall = async (name, args) => {
-    const result = await client.callTool(name, args);
-    outputs.push(result);
-    return result;
-  };
-  const call = async (name, args) => toolData(await rawCall(name, args));
-  const input = (packId, scopeAlias, key, window = timeWindow(), extra = {}) => {
-    provider.allowWindow(window);
-    if (extra.baselineWindow) provider.allowWindow(extra.baselineWindow);
-    return { idempotencyKey: key, profileAlias: authority.profileAlias, packId, scopeAlias, origin: "SIMULATED", window, ...extra };
-  };
-  return { sandbox, catalog, provider, authority, client, rawCall, call, input };
+  const session = await startSyntheticSession({ conflictingClaims });
+  t.after(() => session.close());
+  return session;
 }
 
 test("synthetic HTTP: copied package runs all five signed packs through real MCP stdio and worker transport", { timeout: 120_000 }, async (t) => {

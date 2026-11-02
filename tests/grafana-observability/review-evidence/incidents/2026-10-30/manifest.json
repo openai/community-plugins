@@ -1,0 +1,335 @@
+{
+  "kind": "SOURCE_SKILL_FROZEN_PACKET_EVALUATION",
+  "candidatePackageVersion": "0.2.0",
+  "candidatePackageTreeSha256": "4e3a2f8f3b0cb17c7e276b38b08568905a5b73baa7f6dbda4d6d7645823ca5ec",
+  "candidateBundleSha256": "4dd535109195c087f31c78fdeebf7dd6f05b17262fba337287a4e2351288a912",
+  "promptRevision": "exact-reports-v3",
+  "clientVersion": "codex-cli 0.144.3",
+  "requestedModel": "gpt-5.6-sol",
+  "cases": [
+    "complete-baseline",
+    "partial-traces",
+    "stale-evidence",
+    "empty-evidence",
+    "contradictory-evidence",
+    "mixed-origin",
+    "deploy-and-human-recovery",
+    "missing-connector",
+    "untrusted-context"
+  ],
+  "acceptedModelTurns": 9,
+  "calibrationModelTurns": 5,
+  "historicalModelTurns": 28,
+  "rejectedModelTurns": 4,
+  "totalModelTurns": 46,
+  "calibrations": [
+    {
+      "caseId": "complete-baseline",
+      "directory": "calibration-1-complete-baseline",
+      "promptRevision": "executed-actions-v1",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Preserved output-protocol calibration. Earlier prompts ambiguously scoped executed actions or report assessments and permitted inconsistent inline reference formatting; no calibration is an acceptance pass."
+    },
+    {
+      "caseId": "complete-baseline",
+      "directory": "calibration-2-complete-baseline",
+      "promptRevision": "external-actions-v2",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Preserved output-protocol calibration. Earlier prompts ambiguously scoped executed actions or report assessments and permitted inconsistent inline reference formatting; no calibration is an acceptance pass."
+    },
+    {
+      "caseId": "partial-traces",
+      "directory": "calibration-3-partial-traces",
+      "promptRevision": "external-actions-v2",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Preserved output-protocol calibration. Earlier prompts ambiguously scoped executed actions or report assessments and permitted inconsistent inline reference formatting; no calibration is an acceptance pass."
+    },
+    {
+      "caseId": "stale-evidence",
+      "directory": "calibration-4-stale-evidence",
+      "promptRevision": "external-actions-v2",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Preserved output-protocol calibration. Earlier prompts ambiguously scoped executed actions or report assessments and permitted inconsistent inline reference formatting; no calibration is an acceptance pass."
+    },
+    {
+      "caseId": "empty-evidence",
+      "directory": "calibration-5-empty-evidence",
+      "promptRevision": "external-actions-v2",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Preserved output-protocol calibration. Earlier prompts ambiguously scoped executed actions or report assessments and permitted inconsistent inline reference formatting; no calibration is an acceptance pass."
+    }
+  ],
+  "historicalRuns": [
+    {
+      "caseId": "complete-baseline",
+      "directory": "before-retry-fix-complete-baseline",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Candidate before clarification that identical-key retries replay saved reports. The partial-traces recommendation failed semantic usefulness; all nine submitted outputs are retained."
+    },
+    {
+      "caseId": "partial-traces",
+      "directory": "before-retry-fix-partial-traces",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Candidate before clarification that identical-key retries replay saved reports. The partial-traces recommendation failed semantic usefulness; all nine submitted outputs are retained."
+    },
+    {
+      "caseId": "stale-evidence",
+      "directory": "before-retry-fix-stale-evidence",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Candidate before clarification that identical-key retries replay saved reports. The partial-traces recommendation failed semantic usefulness; all nine submitted outputs are retained."
+    },
+    {
+      "caseId": "empty-evidence",
+      "directory": "before-retry-fix-empty-evidence",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Candidate before clarification that identical-key retries replay saved reports. The partial-traces recommendation failed semantic usefulness; all nine submitted outputs are retained."
+    },
+    {
+      "caseId": "contradictory-evidence",
+      "directory": "before-retry-fix-contradictory-evidence",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Candidate before clarification that identical-key retries replay saved reports. The partial-traces recommendation failed semantic usefulness; all nine submitted outputs are retained."
+    },
+    {
+      "caseId": "mixed-origin",
+      "directory": "before-retry-fix-mixed-origin",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Candidate before clarification that identical-key retries replay saved reports. The partial-traces recommendation failed semantic usefulness; all nine submitted outputs are retained."
+    },
+    {
+      "caseId": "deploy-and-human-recovery",
+      "directory": "before-retry-fix-deploy-and-human-recovery",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Candidate before clarification that identical-key retries replay saved reports. The partial-traces recommendation failed semantic usefulness; all nine submitted outputs are retained."
+    },
+    {
+      "caseId": "missing-connector",
+      "directory": "before-retry-fix-missing-connector",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Candidate before clarification that identical-key retries replay saved reports. The partial-traces recommendation failed semantic usefulness; all nine submitted outputs are retained."
+    },
+    {
+      "caseId": "untrusted-context",
+      "directory": "before-retry-fix-untrusted-context",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-retry-fix.json",
+      "excludedFromAcceptance": true,
+      "reason": "Candidate before clarification that identical-key retries replay saved reports. The partial-traces recommendation failed semantic usefulness; all nine submitted outputs are retained."
+    },
+    {
+      "caseId": "complete-baseline",
+      "directory": "before-final-review-complete-baseline",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-final-review.json",
+      "excludedFromAcceptance": true,
+      "reason": "Previously accepted candidate before final setup, demo-discovery, and evidence-field guidance changes. Original passing review and exact output remain historical, not current acceptance."
+    },
+    {
+      "caseId": "complete-baseline",
+      "directory": "before-detail-guidance-complete-baseline",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-detail-guidance.json",
+      "excludedFromAcceptance": true,
+      "reason": "Final-review candidate before clarifying that saved normalized evidence cannot supply absent span fields. All nine outcomes and independent PASS/FAIL grades are retained."
+    },
+    {
+      "caseId": "partial-traces",
+      "directory": "before-final-review-partial-traces",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-final-review.json",
+      "excludedFromAcceptance": true,
+      "reason": "Previously accepted candidate before final setup, demo-discovery, and evidence-field guidance changes. Original passing review and exact output remain historical, not current acceptance."
+    },
+    {
+      "caseId": "partial-traces",
+      "directory": "before-detail-guidance-partial-traces",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-detail-guidance.json",
+      "excludedFromAcceptance": true,
+      "reason": "Final-review candidate before clarifying that saved normalized evidence cannot supply absent span fields. All nine outcomes and independent PASS/FAIL grades are retained."
+    },
+    {
+      "caseId": "stale-evidence",
+      "directory": "before-final-review-stale-evidence",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-final-review.json",
+      "excludedFromAcceptance": true,
+      "reason": "Previously accepted candidate before final setup, demo-discovery, and evidence-field guidance changes. Original passing review and exact output remain historical, not current acceptance."
+    },
+    {
+      "caseId": "stale-evidence",
+      "directory": "before-detail-guidance-stale-evidence",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-detail-guidance.json",
+      "excludedFromAcceptance": true,
+      "reason": "Final-review candidate before clarifying that saved normalized evidence cannot supply absent span fields. All nine outcomes and independent PASS/FAIL grades are retained."
+    },
+    {
+      "caseId": "empty-evidence",
+      "directory": "before-final-review-empty-evidence",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-final-review.json",
+      "excludedFromAcceptance": true,
+      "reason": "Previously accepted candidate before final setup, demo-discovery, and evidence-field guidance changes. Original passing review and exact output remain historical, not current acceptance."
+    },
+    {
+      "caseId": "empty-evidence",
+      "directory": "before-detail-guidance-empty-evidence",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-detail-guidance.json",
+      "excludedFromAcceptance": true,
+      "reason": "Final-review candidate before clarifying that saved normalized evidence cannot supply absent span fields. All nine outcomes and independent PASS/FAIL grades are retained."
+    },
+    {
+      "caseId": "contradictory-evidence",
+      "directory": "before-final-review-contradictory-evidence",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-final-review.json",
+      "excludedFromAcceptance": true,
+      "reason": "Previously accepted candidate before final setup, demo-discovery, and evidence-field guidance changes. Original passing review and exact output remain historical, not current acceptance."
+    },
+    {
+      "caseId": "contradictory-evidence",
+      "directory": "before-detail-guidance-contradictory-evidence",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-detail-guidance.json",
+      "excludedFromAcceptance": true,
+      "reason": "Final-review candidate before clarifying that saved normalized evidence cannot supply absent span fields. All nine outcomes and independent PASS/FAIL grades are retained."
+    },
+    {
+      "caseId": "mixed-origin",
+      "directory": "before-final-review-mixed-origin",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-final-review.json",
+      "excludedFromAcceptance": true,
+      "reason": "Previously accepted candidate before final setup, demo-discovery, and evidence-field guidance changes. Original passing review and exact output remain historical, not current acceptance."
+    },
+    {
+      "caseId": "mixed-origin",
+      "directory": "before-detail-guidance-mixed-origin",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-detail-guidance.json",
+      "excludedFromAcceptance": true,
+      "reason": "Final-review candidate before clarifying that saved normalized evidence cannot supply absent span fields. All nine outcomes and independent PASS/FAIL grades are retained."
+    },
+    {
+      "caseId": "deploy-and-human-recovery",
+      "directory": "before-final-review-deploy-and-human-recovery",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-final-review.json",
+      "excludedFromAcceptance": true,
+      "reason": "Previously accepted candidate before final setup, demo-discovery, and evidence-field guidance changes. Original passing review and exact output remain historical, not current acceptance."
+    },
+    {
+      "caseId": "deploy-and-human-recovery",
+      "directory": "before-detail-guidance-deploy-and-human-recovery",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-detail-guidance.json",
+      "excludedFromAcceptance": true,
+      "reason": "Final-review candidate before clarifying that saved normalized evidence cannot supply absent span fields. All nine outcomes and independent PASS/FAIL grades are retained."
+    },
+    {
+      "caseId": "missing-connector",
+      "directory": "before-final-review-missing-connector",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-final-review.json",
+      "excludedFromAcceptance": true,
+      "reason": "Previously accepted candidate before final setup, demo-discovery, and evidence-field guidance changes. Original passing review and exact output remain historical, not current acceptance."
+    },
+    {
+      "caseId": "missing-connector",
+      "directory": "before-detail-guidance-missing-connector",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-detail-guidance.json",
+      "excludedFromAcceptance": true,
+      "reason": "Final-review candidate before clarifying that saved normalized evidence cannot supply absent span fields. All nine outcomes and independent PASS/FAIL grades are retained."
+    },
+    {
+      "caseId": "untrusted-context",
+      "directory": "before-final-review-untrusted-context",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-final-review.json",
+      "excludedFromAcceptance": true,
+      "reason": "Previously accepted candidate before final setup, demo-discovery, and evidence-field guidance changes. Original passing review and exact output remain historical, not current acceptance."
+    },
+    {
+      "caseId": "untrusted-context",
+      "directory": "before-detail-guidance-untrusted-context",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-detail-guidance.json",
+      "excludedFromAcceptance": true,
+      "reason": "Final-review candidate before clarifying that saved normalized evidence cannot supply absent span fields. All nine outcomes and independent PASS/FAIL grades are retained."
+    },
+    {
+      "caseId": "complete-baseline",
+      "directory": "before-detail-repeat-complete-baseline",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-detail-guidance.json",
+      "excludedFromAcceptance": true,
+      "reason": "Additional pre-guidance evaluation retained with its actual independent failing usefulness grade; it cannot replace any primary historical case.",
+      "repetition": true
+    }
+  ],
+  "rejectedRuns": [
+    {
+      "caseId": "deploy-and-human-recovery",
+      "directory": "rejected-final-deploy-reference",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate-before-final-review.json",
+      "excludedFromAcceptance": true,
+      "reason": "An earlier qualified candidate output mistyped an inline evidence ID. Its exact failed output and review remain; a separate same-case repeat passed on that candidate."
+    },
+    {
+      "caseId": "complete-baseline",
+      "directory": "rejected-final-request-regression",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate.json",
+      "excludedFromAcceptance": true,
+      "reason": "Independent semantic review rejected this exact final-candidate draft; its bound review explains the unsupported status, recovery-criteria, or timing claim. A separate same-case evaluation supplies the accepted result."
+    },
+    {
+      "caseId": "mixed-origin",
+      "directory": "rejected-final-recovery-criteria",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate.json",
+      "excludedFromAcceptance": true,
+      "reason": "Independent semantic review rejected this exact final-candidate draft; its bound review explains the unsupported status, recovery-criteria, or timing claim. A separate same-case evaluation supplies the accepted result."
+    },
+    {
+      "caseId": "deploy-and-human-recovery",
+      "directory": "rejected-final-deploy-timing",
+      "promptRevision": "exact-reports-v3",
+      "candidateFile": "candidate.json",
+      "excludedFromAcceptance": true,
+      "reason": "Independent semantic review rejected this exact final-candidate draft; its bound review explains the unsupported status, recovery-criteria, or timing claim. A separate same-case evaluation supplies the accepted result."
+    }
+  ],
+  "limitations": [
+    "Source-skill reasoning over frozen synthetic evidence; no installed-plugin model turn or model-driven MCP collection.",
+    "Nine scenarios have independently reviewed passing final-candidate outputs; three other final-candidate outputs were rejected. This small selected set is not a reliability-rate estimate.",
+    "All earlier candidate, calibration, repeated, and rejected outcomes are preserved and excluded from current acceptance. Startup failures without completed model turns are outside these counts.",
+    "New current acceptance requires finalOutputBinding:MATCHED against emitted agent output. Original historical receipts are immutable and lack that later check.",
+    "No live provider, production monitoring, remediation, communication, scheduling or measured recovery was tested."
+  ]
+}

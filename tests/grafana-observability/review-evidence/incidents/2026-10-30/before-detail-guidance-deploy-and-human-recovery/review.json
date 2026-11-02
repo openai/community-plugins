@@ -1,0 +1,55 @@
+{
+  "scenarioId": "deploy-and-human-recovery",
+  "binding": {
+    "schemaVersion": 1,
+    "scenarioId": "deploy-and-human-recovery",
+    "candidatePackageTreeSha256": "a61d69efa8c5745b455375007e1a042affe740bf64fd96e8748189cd5a1deb64",
+    "candidateBundleSha256": "186873823c95db511ac271734cee150ffc5cdda2a505cef1abc740d6263fad8c",
+    "inputSha256": "ccee9dc345a72e0aa7213f6279ad1a83462dbcf07c81ac00c76a823ba5e538b7",
+    "promptSha256": "f3ebdfb3b8787a8d7cb6c740bf77f649bf840863f5feb9e2239bcf63eedd7292",
+    "finalSha256": "31f4e34892c44b2bd7e3d5205bd84df802401f1c504b59696754716391561f1d",
+    "executionSha256": "7c6271009646437e0dffe6c4f561ada7ef169658c6fdf418d9d08f3de06c47d0"
+  },
+  "status": "REVIEWED",
+  "reviewer": "Independent Codex peer reviewer /root/video_ui; separate from evaluated model session",
+  "independentReview": true,
+  "hardFailures": [],
+  "criteria": [
+    {
+      "criterion": "Evidence fidelity: numbers, units and claims match cited evidence.",
+      "score": 2,
+      "rationale": "All ten structured citations and inline references resolve to the supplied report-owned evidence. The artifact preserves baseline/current endpoint values of 60/120 requests per second, 3/6 percent error rate and 625/1250 milliseconds p95, plus HTTP 503 and over-1000-ms trace events in both windows; event and collection timestamps match the packet."
+    },
+    {
+      "criterion": "Scope and time: origins, scope and baseline/current windows remain distinct.",
+      "score": 2,
+      "rationale": "It keeps SIMULATED apm scope and the two adjacent 20-second windows ending 23:40:31Z and 23:40:51Z distinct. It explicitly labels the imported frozen capture, uses 23:40:57.914Z only as capture time, and withholds current retrieval, freshness, health and readiness claims."
+    },
+    {
+      "criterion": "Coverage: missing, empty, stale, partial and contradictory evidence stays explicit.",
+      "score": 2,
+      "rationale": "The artifact retains source-reported COMPLETE and the separate PARTIAL/WARN profile readiness. It identifies missing impact denominators, deployment diff/receipt, restart receipt, trace-level causal detail, recovery criteria and post-restart measurements, without turning complete collection into a complete investigation."
+    },
+    {
+      "criterion": "Causality: ranked hypotheses, alternatives and counter-evidence do not become confirmed cause.",
+      "score": 2,
+      "rationale": "Release v2 is an open hypothesis grounded only in attributed timing. The artifact preserves pre-existing baseline HTTP 503/slow-trace symptoms and doubled traffic as counter-evidence, an alternative or contributor, and explicitly says timing does not establish mechanism or confirmed cause."
+    },
+    {
+      "criterion": "Action truth: proposed, approved, human-reported, executed and verified are distinguished.",
+      "score": 2,
+      "rationale": "Restart and green-dashboard observations remain human-reported; rollback is reportedly approved and explicitly unexecuted. Recovery stays human_reported_unverified, publication stays draft, executed_actions is empty, and the execution receipt records no tool attempts."
+    },
+    {
+      "criterion": "Usefulness: the incident artifact gives concrete next checks and a usable handoff.",
+      "score": 2,
+      "rationale": "The handoff proposes obtaining missing deployment timestamps/diff and restart execution evidence, then defining recovery criteria and collecting a fresh bounded post-restart APM window. It does not claim repeated reads of existing summary-only trace evidence will reveal absent spans. Owners and dates remain unassigned, and the runbook lesson includes applicability, invalidation and verification while remaining PROPOSED."
+    }
+  ],
+  "scenarioSpecificCheck": {
+    "expectation": "Deployment timing is correlation; restart is human-reported; approved rollback remains unexecuted; recovery remains unverified without fresh matching evidence.",
+    "score": 2,
+    "rationale": "Deployment timing remains correlation, the restart and green dashboard are attributed human reports, approved rollback is explicitly unexecuted, and recovery is unverified until fresh matching post-action evidence is measured against defined criteria."
+  },
+  "decision": "PASS"
+}
