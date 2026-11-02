@@ -20,7 +20,7 @@ function manyDirectories(count, prefix = "z") {
   return files;
 }
 
-test("the walk stops as soon as the file limit is reached", () => {
+test("the walk stops before another instruction file exceeds the file limit", () => {
   withTempRepo({ "AGENTS.md": "# Root\n", "a/AGENTS.md": "# A\n", ...manyDirectories(50) }, (tmp) => {
     const { report } = auditJson(tmp, ["--max-files", "1"]);
     assert.deepEqual(ids(report), ["discovery-limit@.:0"]);
@@ -161,4 +161,29 @@ test("cd targets outside the root are not followed", () => {
       assert.deepEqual(ids(report), []);
     },
   );
+});
+
+
+test("the depth limit skips deeper descendants but keeps permitted siblings", () => {
+  withTempRepo({
+    "AGENTS.md": "# Root\n",
+    "a/deeper/AGENTS.md": "# Excluded descendant\n",
+    "z/AGENTS.md": "# Permitted sibling\n",
+  }, (tmp) => {
+    const result = discoverInstructionFiles(tmp, { maxDepth: 1 });
+    assert.deepEqual(result.files.map((file) => path.relative(tmp, file).split(path.sep).join("/")), ["AGENTS.md", "z/AGENTS.md"]);
+    assert.equal(result.limit, "depth");
+    assert.equal(result.truncated, true);
+    assert.equal(result.directories, 3);
+  });
+});
+
+test("finding exactly the file cap does not imply truncated discovery", () => {
+  withTempRepo({ "AGENTS.md": "# Root\n", ...manyDirectories(3) }, (tmp) => {
+    const result = discoverInstructionFiles(tmp, { maxFiles: 1 });
+    assert.deepEqual(result.files.map((file) => path.relative(tmp, file)), ["AGENTS.md"]);
+    assert.equal(result.limit, null);
+    assert.equal(result.truncated, false);
+    assert.equal(result.directories, 4);
+  });
 });

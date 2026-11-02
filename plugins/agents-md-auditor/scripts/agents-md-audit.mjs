@@ -92,7 +92,7 @@ export const RULES = {
   },
   "discovery-limit": {
     severity: "warning",
-    summary: "Discovery stopped at a file, directory, depth, or entry limit; some instruction files may not have been audited.",
+    summary: "Discovery encountered a file, directory, depth, or entry limit; some instruction files may not have been audited.",
   },
 };
 
@@ -280,8 +280,9 @@ function readTextLimited(filePath) {
 }
 
 // Discovery is bounded four ways: instruction files collected, directories
-// listed, directory depth, and directory entries examined. The walk stops as
-// soon as any limit is reached and reports which one.
+// listed, directory depth, and directory entries examined. Collection stops
+// before exceeding the file cap. Depth skips deeper descent while permitted
+// siblings continue; directory/entry limits stop the walk.
 export function discoverInstructionFiles(rootDir, limits = {}) {
   const maxFiles = limits.maxFiles ?? DEFAULT_MAX_FILES;
   const maxDirectories = limits.maxDirectories ?? DEFAULT_MAX_DIRECTORIES;

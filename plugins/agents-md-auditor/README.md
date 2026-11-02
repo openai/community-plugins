@@ -107,8 +107,10 @@ plugin has no app, MCP server, account, or credential.
 
 ## Discovery limits
 
-Discovery is a single bounded walk. It stops as soon as any limit is reached
-and reports a `discovery-limit` warning naming the limit:
+Discovery is a single bounded walk. Collection stops when another instruction
+file would exceed the file limit. Directory and entry limits stop the walk;
+the depth limit prevents deeper descent while other permitted branches continue.
+An encountered limit produces a `discovery-limit` warning:
 
 | Limit | Default | Override |
 | --- | --- | --- |
@@ -116,6 +118,9 @@ and reports a `discovery-limit` warning naming the limit:
 | Directories listed | 10,000 | `--max-dirs N` |
 | Directory depth below the root | 32 | none; set `--root` deeper |
 | Directory entries examined | 200,000 | none; narrow `--root` |
+
+Finding exactly the maximum number of instruction files does not itself truncate
+discovery: remaining directories may be checked until another bound is reached.
 
 Generated directories (`node_modules`, `.git`, `dist`, `build`, virtual
 environments, and similar) and symlinks are never entered and do not count
