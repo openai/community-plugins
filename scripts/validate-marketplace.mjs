@@ -30,7 +30,12 @@ function fail(message) {
 
 function readJson(filePath, label) {
   try {
-    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+    const value = JSON.parse(fs.readFileSync(filePath, "utf8"));
+    if (!isObject(value)) {
+      fail(`${label} must be a JSON object`);
+      return null;
+    }
+    return value;
   } catch (error) {
     fail(`${label} is not valid JSON: ${error.message}`);
     return null;
