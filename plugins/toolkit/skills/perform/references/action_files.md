@@ -151,7 +151,7 @@ Action names match `^[a-z0-9][a-z0-9._-]*$`. Language names match `^[a-z0-9][a-z
 
 The action name `help` is reserved for immutable built-in help. Action files cannot define, override, or ignore it.
 
-Root-level errors discard one file but do not make otherwise knowable precedence incomplete. An action file that was discovered but cannot be read is catalog-fatal. Invalid ignores are nonfatal. Invalid action or variant definitions are skipped; independent valid content and unaffected lower-precedence definitions can remain usable.
+Root-level errors make configured-action precedence incomplete and block configured action inspection, rendering, catalogue generation, and launch preparation until the file is fixed; immutable built-in help remains available. An action file that was discovered but cannot be read has the same blocking effect. Invalid ignores are nonfatal. An identifiable invalid action or variant definition blocks its strict selector and ambiguous selection of its action name instead of falling back to a lower-precedence definition. Unrelated valid actions and explicitly selected valid sibling variants remain usable.
 
 ## Action fields
 
