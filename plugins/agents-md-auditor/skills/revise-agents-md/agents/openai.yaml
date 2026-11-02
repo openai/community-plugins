@@ -1,0 +1,6 @@
+interface:
+  display_name: "Revise AGENTS.md"
+  short_description: "Apply approved fixes to AGENTS files only"
+  default_prompt: "Use $revise-agents-md to propose fixes for the approved audit findings as a diff, and apply them only after I approve."
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,7 @@
+{
+  "name": "synthetic-api",
+  "private": true,
+  "scripts": {
+    "dev": "node src/server.js"
+  }
+}

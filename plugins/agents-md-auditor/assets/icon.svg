@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title description">
+  <title id="title">AGENTS.md Auditor</title>
+  <desc id="description">A document with text lines and a check mark inside a magnifying glass.</desc>
+  <rect width="256" height="256" rx="54" fill="#12352E"/>
+  <path d="M64 40h88l40 40v136a12 12 0 0 1-12 12H64a12 12 0 0 1-12-12V52a12 12 0 0 1 12-12z" fill="#F4FBF8"/>
+  <path d="M152 40v28a12 12 0 0 0 12 12h28" fill="#BFE6D8"/>
+  <path d="M76 98h72M76 122h56M76 146h40" stroke="#1F8A70" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="160" cy="172" r="34" fill="#12352E" stroke="#37C29A" stroke-width="10"/>
+  <path d="m145 172 11 11 20-22" fill="none" stroke="#F4FBF8" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="m186 198 22 22" stroke="#37C29A" stroke-width="14" stroke-linecap="round"/>
+</svg>
