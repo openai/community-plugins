@@ -50683,29 +50683,22 @@ async function treeWithChangedPaths(rootPath, changedFiles) {
   const existingPaths = new Set(tree.map((entry) => entry.path));
   const changedPaths = /* @__PURE__ */ new Set();
   for (const file3 of changedFiles) {
-    if (file3.oldPath) changedPaths.add(file3.oldPath);
-    if (file3.newPath) changedPaths.add(file3.newPath);
-    if (file3.oldPath && !existingPaths.has(file3.oldPath) && (file3.status === "deleted" || file3.status === "renamed")) {
-      let parentPath = path.posix.dirname(file3.oldPath);
+    const paths = new Set([file3.oldPath, file3.newPath].filter((value) => value !== null));
+    for (const filePath of paths) {
+      changedPaths.add(filePath);
+      if (existingPaths.has(filePath)) continue;
+      let parentPath = path.posix.dirname(filePath);
       const missingParents = [];
       while (parentPath !== "." && !existingPaths.has(parentPath)) {
         missingParents.push(parentPath);
         parentPath = path.posix.dirname(parentPath);
       }
       for (const missingParent of missingParents.reverse()) {
-        tree.push({
-          path: missingParent,
-          kind: "directory",
-          changed: true
-        });
+        tree.push({ path: missingParent, kind: "directory", changed: true });
         existingPaths.add(missingParent);
       }
-      tree.push({
-        path: file3.oldPath,
-        kind: "file",
-        changed: true
-      });
-      existingPaths.add(file3.oldPath);
+      tree.push({ path: filePath, kind: "file", changed: true });
+      existingPaths.add(filePath);
     }
   }
   const changedDirectories = /* @__PURE__ */ new Set();

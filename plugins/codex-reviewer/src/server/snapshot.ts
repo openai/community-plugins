@@ -100,30 +100,25 @@ async function treeWithChangedPaths(rootPath: string, changedFiles: ChangedFile[
   const changedPaths = new Set<string>();
 
   for (const file of changedFiles) {
-    if (file.oldPath) changedPaths.add(file.oldPath);
-    if (file.newPath) changedPaths.add(file.newPath);
+    // A branch snapshot reads captured Git revisions, so its selectable paths
+    // must not depend on whether those files still exist in the local tree.
+    const paths = new Set([file.oldPath, file.newPath].filter((value): value is string => value !== null));
+    for (const filePath of paths) {
+      changedPaths.add(filePath);
+      if (existingPaths.has(filePath)) continue;
 
-    if (file.oldPath && !existingPaths.has(file.oldPath) && (file.status === "deleted" || file.status === "renamed")) {
-      let parentPath = path.posix.dirname(file.oldPath);
+      let parentPath = path.posix.dirname(filePath);
       const missingParents: string[] = [];
       while (parentPath !== "." && !existingPaths.has(parentPath)) {
         missingParents.push(parentPath);
         parentPath = path.posix.dirname(parentPath);
       }
       for (const missingParent of missingParents.reverse()) {
-        tree.push({
-          path: missingParent,
-          kind: "directory",
-          changed: true,
-        });
+        tree.push({ path: missingParent, kind: "directory", changed: true });
         existingPaths.add(missingParent);
       }
-      tree.push({
-        path: file.oldPath,
-        kind: "file",
-        changed: true,
-      });
-      existingPaths.add(file.oldPath);
+      tree.push({ path: filePath, kind: "file", changed: true });
+      existingPaths.add(filePath);
     }
   }
 

@@ -79,3 +79,32 @@ test("packaged MCP resolves the selected linked worktree and compares its commit
     assert.equal(diff.structuredContent.newText, "linked branch\n");
   } finally { await client.close(); }
 });
+
+
+test("packaged branch review selects committed files missing from the local tree", async (t) => {
+  const fixture = await createFixtureRepository();
+  t.after(fixture.cleanup);
+  fixture.git("switch", "-c", "missing-local-branch");
+  await fixture.write("README.md", "captured modified version\n");
+  await fixture.write("missing/nested/added.txt", "captured added version\n");
+  fixture.commit("commit files before local removal");
+  await rm(path.join(fixture.rootPath, "README.md"));
+  await rm(path.join(fixture.rootPath, "missing"), { recursive: true });
+  const client = await connect(pluginRoot);
+  try {
+    const result = await client.call("code-review.getReview", { rootPath: fixture.rootPath, scope: { kind: "branch", baseRef: "refs/heads/main" } });
+    assert.notEqual(result.isError, true);
+    const snapshot = result.structuredContent;
+    for (const directory of ["missing", "missing/nested"]) {
+      assert.ok(snapshot.tree.some((entry) => entry.path === directory && entry.kind === "directory" && entry.changed));
+    }
+    for (const [filePath, expected] of [["README.md", "captured modified version\n"], ["missing/nested/added.txt", "captured added version\n"]]) {
+      assert.ok(snapshot.tree.some((entry) => entry.path === filePath && entry.kind === "file" && entry.changed));
+      const view = await client.call("code-review.getFile", { snapshotId: snapshot.snapshotId, path: filePath });
+      assert.notEqual(view.isError, true);
+      assert.equal(view.structuredContent.mode, "diff");
+      assert.equal(view.structuredContent.fileDiff.supported, true);
+      assert.equal(view.structuredContent.fileDiff.newText, expected);
+    }
+  } finally { await client.close(); }
+});

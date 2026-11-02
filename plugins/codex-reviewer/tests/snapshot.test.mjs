@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { readFile, rm, stat, utimes, writeFile } from "node:fs/promises";
 import path from "node:path";
 import test from "node:test";
-import { getReview, isReviewStale } from "../src/server/snapshot.ts";
+import { getFileView, getReview, isReviewStale } from "../src/server/snapshot.ts";
 import { createFixtureRepository } from "./fixtures/git-repo.mjs";
 import { getFileDiff } from "../src/server/diff.ts";
 
@@ -175,3 +175,36 @@ test("does not write Git index data while capturing a review", async (t) => {
 
   assert.deepEqual(await readFile(indexPath), before);
 });
+
+
+for (const status of ["added", "modified"]) {
+  test(`branch tree keeps a committed ${status} file after its local directory is removed`, async (t) => {
+    const fixture = await createFixtureRepository();
+    t.after(fixture.cleanup);
+    const filePath = "missing/nested/change.txt";
+    if (status === "modified") {
+      await fixture.write(filePath, "base version\n");
+      fixture.commit("baseline nested file");
+    }
+    fixture.git("branch", "comparison-base");
+    fixture.git("switch", "-c", "feature");
+    await fixture.write(filePath, "captured feature version\n");
+    const headRevision = fixture.commit("feature nested file");
+    await rm(path.join(fixture.rootPath, "missing"), { recursive: true });
+
+    const snapshot = await getReview(fixture.rootPath, { kind: "branch", baseRef: "refs/heads/comparison-base" });
+    assert.equal(snapshot.headRevision, headRevision);
+    assert.equal(snapshot.changedFiles.length, 1);
+    assert.equal(snapshot.changedFiles[0].status, status);
+    for (const directory of ["missing", "missing/nested"]) {
+      assert.ok(snapshot.tree.some((entry) => entry.path === directory && entry.kind === "directory" && entry.changed));
+    }
+    assert.ok(snapshot.tree.some((entry) => entry.path === filePath && entry.kind === "file" && entry.changed));
+    const selected = await getFileView(snapshot.snapshotId, filePath);
+    assert.equal(selected.mode, "diff");
+    assert.equal(selected.fileDiff.supported, true);
+    assert.equal(selected.fileDiff.oldText, status === "modified" ? "base version\n" : null);
+    assert.equal(selected.fileDiff.newText, "captured feature version\n");
+    assert.equal(await isReviewStale(snapshot.snapshotId), false);
+  });
+}
