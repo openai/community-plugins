@@ -5,7 +5,7 @@
   "description": "Public Codex plugins and their reproducible validation suites.",
   "type": "module",
   "scripts": {
-    "validate": "npm run validate:marketplace && node scripts/validate-grafana.mjs && npm run validate:reviewops-auditor-benchmark && npm run validate:react-native-to-swiftui && npm run validate:autodesk-fusion",
+    "validate": "npm run validate:marketplace && node scripts/validate-grafana.mjs && npm run validate:reviewops-auditor-benchmark && npm run validate:react-native-to-swiftui && npm run validate:autodesk-fusion && npm run test:masters-nudge",
     "validate:marketplace": "node scripts/validate-marketplace.mjs",
     "validate:grafana": "node scripts/validate-grafana.mjs",
     "validate:reviewops-auditor-benchmark": "node scripts/validate-reviewops-auditor-benchmark.mjs",
@@ -33,7 +33,8 @@
     "validate:autodesk-fusion": "node scripts/validate-autodesk-fusion.mjs",
     "test:autodesk-fusion": "npm run validate:autodesk-fusion && npm run test:autodesk-fusion:package && npm --prefix plugins/autodesk-fusion run verify && npm run validate:autodesk-fusion",
     "test:autodesk-fusion:package": "node --test --test-concurrency=1 tests/autodesk-fusion/unit/*.test.mjs tests/autodesk-fusion/integration/*.test.mjs tests/autodesk-fusion/security/*.test.mjs",
-    "build:autodesk-fusion": "npm --prefix plugins/autodesk-fusion run build"
+    "build:autodesk-fusion": "npm --prefix plugins/autodesk-fusion run build",
+    "test:masters-nudge": "python tests/masters-nudge/run.py"
   },
   "engines": {
     "node": ">=22.19.0"

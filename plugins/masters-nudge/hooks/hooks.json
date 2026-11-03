@@ -1,0 +1,53 @@
+{
+  "description": "Masters’ Nudge lifecycle hooks for Codex.",
+  "hooks": {
+    "Interrupt": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"${PLUGIN_ROOT}/launch.py\" hook --host codex_cli",
+            "commandWindows": "python \"$env:PLUGIN_ROOT\\launch.py\" hook --host codex_cli",
+            "timeout": 3
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "^apply_patch$",
+        "hooks": [
+          {
+            "type": "mcp_tool",
+            "server": "masters_nudge",
+            "tool": "review_patch",
+            "input": {
+              "hook_event_name": "PostToolUse",
+              "session_id": "${session_id}",
+              "turn_id": "${turn_id}",
+              "cwd": "${cwd}",
+              "transcript_path": "${transcript_path}",
+              "tool_name": "${tool_name}",
+              "tool_use_id": "${tool_use_id}",
+              "tool_input": "${tool_input}",
+              "tool_response": "${tool_response}"
+            },
+            "timeout": 1320
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python \"${PLUGIN_ROOT}/launch.py\" hook --host codex_cli",
+            "commandWindows": "python \"$env:PLUGIN_ROOT\\launch.py\" hook --host codex_cli",
+            "timeout": 120
+          }
+        ]
+      }
+    ]
+  }
+}

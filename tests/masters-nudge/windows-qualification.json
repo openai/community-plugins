@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-13",
+  "plugin_version": "0.6.3+codex.20261013",
+  "supported_installed_platform": "Windows 11 x64",
+  "windows_build": "10.0.26300",
+  "python": "3.12.10",
+  "actor_and_provider_cli": "0.162.0-alpha.17.2",
+  "windows_sandbox": "mxc",
+  "model": "gpt-6.1-sol",
+  "actor_and_provider_effort": "medium",
+  "normal": {
+    "turn_status": "completed",
+    "behavior_verification": "pass",
+    "delivered_feedback": 1,
+    "elapsed_seconds": 48.688
+  },
+  "interruption": {
+    "turn_status": "interrupted",
+    "provider_processes_remaining": 0,
+    "outcomes": [
+      {
+        "outcome": "fault",
+        "delivered": false,
+        "fault": {
+          "kind": "interrupted",
+          "detail": "User interrupted turn"
+        }
+      }
+    ],
+    "completed_hooks": [
+      "userPromptSubmit",
+      "interrupt"
+    ],
+    "elapsed_seconds": 16.406
+  },
+  "tested_runtime_sha256": {
+    ".codex-plugin/plugin.json": "408de749c2f0a78eaf5738501a4d650239364b772a03e53cea17a11729589a87",
+    ".mcp.json": "32098128a64e66e6a5e6f65ff7e89a663b2528eb5c0431769ced71a61ef8ec20",
+    "LICENSE": "e47f465cb04d113ef607aa7653f27d435eedd541b5f0bdfe9d8e7bd9ec967c61",
+    "buddy-prompt.txt": "6c058c7110caac5cf86f96a457821d60feb481ef8fbf25ca52b39e7b6e6109a3",
+    "hook_entry.py": "8ba6735af4d3004fbdd5cf009646d040b47fd94adcadf1d56716d5c1cebb1ee3",
+    "hooks/hooks.json": "892a34396af80f9f6d6cbf87e78ef159b022c6a09893446b4490502ab451f5d3",
+    "launch.py": "a3a0ca6b90f5691002f4be984bc2b13dbe5adce3f3c61c9ef49d2203ec3158b0",
+    "masters_nudge/__init__.py": "0baf124d1551a8c96c40950d10f06beeeb07d56b77097d65377d14570eccf413",
+    "masters_nudge/codex_adapter.py": "3b7f89df4cbf59f8aff3b709994cdfb4ba6ae849c6d893bdb16ba73005305fe0",
+    "masters_nudge/contracts.py": "a0f6fa5ca0d977ae211dc79c0211db3b3211496892212a048237e71841b14f8c",
+    "masters_nudge/core.py": "86aeb0f8c2da2b82b9f1d7622626c1f4ce1c9bccc07c834f5207124245547a1d",
+    "masters_nudge/evidence.py": "b16cc1222616c5d1871c9654dfade263b74bb115713f7eaf11097abdf3725ebb",
+    "masters_nudge/management.py": "5c7b95181a8d270731d4d6492fdb050292ff53f2898d46fa414dff27e2b13e0a",
+    "masters_nudge/plugin_inventory.py": "d19f1a6d535707a2a4a9feff1c77b7355d4b99d418ab299bc26964284c2ed141",
+    "masters_nudge/prompting.py": "0075b234602db26ec467231678a4ce7c1a216920f487b2ed1c53d0b13be9e1ae",
+    "masters_nudge/provider_contract.py": "ee797b2cce604adaae1855b4890ac36cc10a45a1adafc20e8033031a19a9e12e",
+    "masters_nudge/providers.py": "626dd0061ad36f99bb2cd15899281786c633adbedd1677969e1f89412ede0fee",
+    "masters_nudge/read_only_repo_mcp.py": "8808046fe72f07c643069962dea21620a06587ca0c521188966f3673b41b2ab1",
+    "masters_nudge/runtime.py": "b5a082ab75c734a8cda302cbbaf7c3dab5ea3934d12dee32df77ac8f185ef4cd",
+    "masters_nudge/settings.py": "b4904c5eab5d4a5e7d9e3bfa4a3992af675635fbdf4932e49861d07774481729",
+    "masters_nudge/storage.py": "50b31fe22148cc51aef77efbcd1254de663bb40c7c4809d6988aa8b08d57a0fc",
+    "masters_nudge/windows_process.py": "9a208b268e189a9d24694ef056cb04e08d6b1052771f891b23acfe292a07c509",
+    "masters_nudge_cli.py": "64bd8ed0d7e16be5e70f8b1ace583751c2044bb95c756c0f801457c6c4261e69",
+    "mcp_entry.py": "23e91d05a69e30fa08e40a38ebac22118c1a4397cdbbff766a30f169af731a53",
+    "nudge-schema.json": "ce3c0e0a74fd63dd5b01bf0d88c798c223f27bb9110dc7b34137f7cb1ddac0e0"
+  },
+  "offline_lifecycle_cases": "tests/spec/test_lifecycle.py",
+  "private_materials": "Raw transcripts, process IDs, settings, and authentication are excluded."
+}

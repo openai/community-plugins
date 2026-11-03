@@ -1,0 +1,40 @@
+{
+  "name": "masters-nudge",
+  "version": "0.6.5",
+  "description": "Optional read-only structural second opinions after Codex code edits.",
+  "author": {
+    "name": "shihchengwei-lab",
+    "url": "https://github.com/shihchengwei-lab"
+  },
+  "homepage": "https://github.com/shihchengwei-lab/masters-nudge#readme",
+  "repository": "https://github.com/shihchengwei-lab/masters-nudge",
+  "license": "MIT",
+  "keywords": [
+    "engineering-taste",
+    "second-opinion",
+    "coding-agent",
+    "hooks",
+    "long-running-agents"
+  ],
+  "mcpServers": "./.mcp.json",
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Masters’ Nudge",
+    "shortDescription": "Structural second opinions for code changes",
+    "longDescription": "After a product-code edit, a read-only Codex Provider suggests one structural alternative. The coding model decides whether to adopt it. Reviews consume additional OpenAI usage and wait time; improvements are not guaranteed.",
+    "developerName": "shihchengwei-lab",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/shihchengwei-lab/masters-nudge",
+    "privacyPolicyURL": "https://github.com/shihchengwei-lab/masters-nudge#privacy",
+    "defaultPrompt": [
+      "Check whether Masters’ Nudge is ready.",
+      "Let me choose a Masters’ Nudge provider.",
+      "Show my recent Masters’ Nudge findings."
+    ],
+    "brandColor": "#665B8E"
+  }
+}
