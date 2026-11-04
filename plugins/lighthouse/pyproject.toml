@@ -1,0 +1,137 @@
+[project]
+name = "lighthouse-plugin-dev"
+version = "0.1.0"
+description = "Development checks for the Lighthouse skills plugin"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Lighthouse contributors" }]
+dependencies = []
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Typing :: Typed",
+]
+
+[tool.uv]
+package = false
+required-version = "==0.11.33"
+
+[[tool.uv.index]]
+url = "https://pypi.org/simple"
+default = true
+
+[tool.pytest.ini_options]
+testpaths = ["skills"]
+addopts = ["-ra", "--strict-config", "--strict-markers", "--import-mode=importlib"]
+filterwarnings = ["error"]
+
+[dependency-groups]
+dev = [
+    "ruff==0.16.5",
+    "ty==0.0.77",
+    "pytest>=9,<10",
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+extend-exclude = ["build", "dist", "examples", "vendor"]
+unsafe-fixes = false
+
+[tool.ruff.format]
+preview = false
+docstring-code-format = true
+
+[tool.ruff.lint]
+preview = false
+explicit-preview-rules = true
+select = [
+    "F",      # Pyflakes
+    "E",      # pycodestyle errors
+    "W",      # pycodestyle warnings
+    "I",      # isort
+    "C90",    # McCabe complexity
+    "N",      # pep8-naming
+    "UP",     # pyupgrade
+    "YTT",    # flake8-2020
+    "ANN",    # flake8-annotations
+    "ASYNC",  # flake8-async
+    "S",      # flake8-bandit
+    "BLE",    # flake8-blind-except
+    "B",      # flake8-bugbear
+    "A",      # flake8-builtins
+    "COM",    # flake8-commas
+    "C4",     # flake8-comprehensions
+    "DTZ",    # flake8-datetimez
+    "T10",    # flake8-debugger
+    "EM",     # flake8-errmsg
+    "EXE",    # flake8-executable
+    "ISC",    # flake8-implicit-str-concat
+    "ICN",    # flake8-import-conventions
+    "G",      # flake8-logging-format
+    "INP",    # flake8-no-pep420
+    "PIE",    # flake8-pie
+    "T20",    # flake8-print
+    "PYI",    # flake8-pyi
+    "PT",     # flake8-pytest-style
+    "RET",    # flake8-return
+    "SLF",    # flake8-self
+    "SLOT",   # flake8-slots
+    "SIM",    # flake8-simplify
+    "TID",    # flake8-tidy-imports
+    "TC",     # flake8-type-checking
+    "INT",    # flake8-gettext
+    "ARG",    # flake8-unused-arguments
+    "PTH",    # flake8-use-pathlib
+    "D",      # pydocstyle; Google convention below
+    "ERA",    # eradicate
+    "PGH",    # pygrep-hooks; includes blanket-suppression checks
+    "PL",     # Pylint rules implemented by Ruff
+    "TRY",    # tryceratops
+    "FLY",    # flynt
+    "PERF",   # Perflint
+    "FURB",   # refurb
+    "LOG",    # flake8-logging
+    "RUF",    # Ruff-specific rules, including unused noqa checks
+]
+ignore = [
+    "E111", "E114", "E117", "W191",  # Formatter owns indentation.
+    "D203", "D206", "D300",          # Formatter/docstring compatibility.
+    "COM812", "COM819",              # Formatter owns trailing commas.
+    "E501",                          # Formatter is best-effort at line wrapping.
+]
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
+
+[tool.ruff.lint.pylint]
+max-args = 5
+max-branches = 12
+max-returns = 6
+max-statements = 50
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"skills/*/scripts/*.py" = ["INP001"]  # Standalone helpers are copied into benchmark repositories.
+"**/tests/**" = [
+    "D",        # Descriptive test names/assertions replace API docstrings.
+    "S101",     # pytest assertions are intentional.
+    "PLR2004",  # Literal expected values are useful in tests.
+]
+
+[tool.ty.environment]
+python-version = "3.12"
+
+[tool.ty.src]
+include = ["scripts", "skills"]
+
+[tool.ty.rules]
+all = "error"
+
+[tool.ty.terminal]
+error-on-warning = true

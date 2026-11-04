@@ -1,0 +1,28 @@
+{
+  "name": "@lighthouse/benchmark-explorer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "browser": "node dist/browser.cjs",
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test src/*.test.ts src/**/*.test.ts scripts/*.test.mjs",
+    "check": "npm run typecheck && npm run build && npm test"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/ext-apps": "2.0.0",
+    "@modelcontextprotocol/sdk": "1.32.1",
+    "smol-toml": "1.9.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.0",
+    "esbuild": "0.28.2",
+    "linkedom": "0.18.13",
+    "typescript": "7.0.2"
+  }
+}

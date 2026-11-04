@@ -1,0 +1,31 @@
+[judge]
+# The cascade explicitly selects Sol first, then Astra only for a Sol failure.
+judge = "openai/gpt-6-sol"
+files = ["/review/packet.md"]
+mode = "batched"
+timeout = 120
+reasoning_effort = "medium"
+prompt_template = "prompt.md"
+
+[scoring]
+aggregation = "weighted-mean"
+
+[[criterion]]
+name = "readability"
+type = "binary"
+description = "Are changed names, comments and control flow readable without a material obstacle to understanding a relevant decision?"
+
+[[criterion]]
+name = "maintainability"
+type = "binary"
+description = "Does the change avoid material duplicated policy, hidden mutable state, brittle coupling or needless indirection that would make a plausible maintenance change or diagnosis harder?"
+
+[[criterion]]
+name = "scope"
+type = "binary"
+description = "Is the changed scope justified by the request or repository contract, without independently unrelated work, speculative behavior, dependencies or interfaces? Redundant or excessive regression tests are graded under tests."
+
+[[criterion]]
+name = "tests"
+type = "binary"
+description = "Is regression protection proportionate: important changed behavior is covered where needed, and added assertions, fixtures, snapshots or mocks do not create significant upkeep without protecting distinct risks? Existing coverage may justify no new tests."

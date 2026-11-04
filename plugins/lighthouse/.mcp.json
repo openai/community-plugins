@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "lighthouse": {
+      "command": "node",
+      "args": ["./explorer/dist/server.cjs"],
+      "cwd": "."
+    }
+  }
+}
