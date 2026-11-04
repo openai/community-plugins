@@ -1,0 +1,28 @@
+{
+  "name": "lighthouse",
+  "version": "0.1.0",
+  "description": "Create repository benchmarks with focused skills and native Harbor tasks.",
+  "author": {
+    "name": "Lighthouse contributors"
+  },
+  "skills": "./skills/",
+  "repository": "https://github.com/openai/community-plugins",
+  "license": "MIT",
+  "interface": {
+    "displayName": "Lighthouse",
+    "shortDescription": "Build and run benchmarks for your repository.",
+    "longDescription": "Find useful tasks, build and challenge their evaluations, and compare agent results using Harbor.",
+    "developerName": "Lighthouse contributors",
+    "category": "Developer Tools",
+    "composerIcon": "./assets/lighthouse-icon.svg",
+    "logo": "./assets/lighthouse-icon.svg",
+    "logoDark": "./assets/lighthouse-icon-dark.svg",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Use $lh to build a benchmark for this repository."
+    ]
+  }
+}

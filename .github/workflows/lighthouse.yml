@@ -1,0 +1,41 @@
+name: Lighthouse
+
+on:
+  pull_request:
+    paths:
+      - 'plugins/lighthouse/**'
+      - 'tests/lighthouse/**'
+      - '.github/workflows/lighthouse.yml'
+      - 'package.json'
+  push:
+    branches: [main]
+    paths:
+      - 'plugins/lighthouse/**'
+      - 'tests/lighthouse/**'
+      - '.github/workflows/lighthouse.yml'
+      - 'package.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lighthouse:
+    name: Lighthouse master suite
+    runs-on: macos-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22.19.0"
+          package-manager-cache: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: "3.12"
+      - name: Install pinned development tools
+        run: |
+          python -m pip install uv==0.11.33
+      - run: npm run test:lighthouse

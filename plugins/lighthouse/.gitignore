@@ -1,0 +1,28 @@
+.venv/
+.venv-*/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.hypothesis/
+.coverage
+.coverage.*
+htmlcov/
+build/
+dist/
+!explorer/dist/
+!explorer/dist/server.cjs
+!explorer/dist/browser.cjs
+!explorer/dist/explorer.html
+.env
+.env.*
+!.env.example
+.lighthouse/
+.local/
+node_modules/
+# Generated acceptance logs belong in local project storage or CI artifacts.
+/docs/lighthouse/evidence/
+# Review and acceptance reports stay local; summarize validation in the PR.
+/docs/lighthouse/reviews/
+.DS_Store
