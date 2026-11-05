@@ -375,12 +375,15 @@ def subtitles(events, timeline):
     readable = []
     for start, text in cues:
         if readable and start - readable[-1][0] < 1:
-            previous_start, previous_text = readable.pop()
-            readable.append((start, (previous_text + " " + text)[-300:]))
+            previous_start, previous_texts = readable.pop()
+            readable.append((start, [*previous_texts, text]))
         else:
-            readable.append((start, text))
+            readable.append((start, [text]))
     output = []
-    for index, (start, text) in enumerate(readable):
+    for index, (start, texts) in enumerate(readable):
+        text = " ".join(texts)
+        if len(text) > 300:
+            text = f"{len(texts)} recorded events. {texts[-1]} Full sequence in transcript."
         end = min(timeline.duration, start + 6, readable[index+1][0] if index+1 < len(readable) else timeline.duration)
         if end <= start:
             continue
@@ -516,6 +519,7 @@ def main():
                           "Retained intervals are uniformly compressed only if needed; source time is never stretched or padded.",
                           "The complete piecewise timing map aligns source events, captions, chapters, artifacts and the displayed capture clock.",
                           "At a successful phase exit, the latest actual Codex response stays visible; cleanup warnings remain in the transcript.",
+                          "Rapid caption batches over 300 characters show their actual event count and latest complete caption; the transcript keeps every event.",
                           "No synthetic events, results, narration, or artifacts are inserted. Event captions accompany both videos."],
                 "chapters": chapters,
                 "artifacts": [{**e, "teaching_seconds": cut_timeline.video_at(e["t"])}

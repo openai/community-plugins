@@ -93,6 +93,14 @@ class ReplayTimelineTests(unittest.TestCase):
         events[-1]["returncode"] = 1
         self.assertEqual(states(events)[-1][1]["body"], "Fixture cleanup warning")
 
+    def test_rapid_artifact_captions_use_complete_words_and_real_count(self):
+        events = [event(1 + index/100, "artifact_observed", scene="B", label=f"Fixture artifact {index}: exact recorded label")
+                  for index in range(7)]
+        result = subtitles(events, ReplayTimeline([(0, 10)], 10))
+        self.assertIn("7 recorded events.", result)
+        self.assertIn("Observed artifact: Fixture artifact 6: exact recorded label.", result)
+        self.assertIn("Full sequence in transcript.", result)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -117,6 +117,8 @@ screen time without inventing holds.
 While a successful phase's artifacts are being reviewed, the replay keeps its
 latest actual Codex response visible. Cleanup warnings remain in the complete
 transcript and event journal. Failed phase exits retain their latest CLI output.
+Oversized rapid caption batches show the real event count and latest complete
+caption; the transcript preserves every event and artifact label.
 Run the timing tests from the repository root with
 `python3 tests/physical-engineering/support/test_replay_timeline.py`.
 
