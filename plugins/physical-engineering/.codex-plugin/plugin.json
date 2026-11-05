@@ -1,0 +1,41 @@
+{
+  "name": "physical-engineering",
+  "version": "0.1.0-preview.1",
+  "description": "Build and measure a synthetic drone battery tray and electronics bridge, revise requirements, and reproduce a consistent CAD handoff.",
+  "author": {
+    "name": "Tony Loehr",
+    "url": "https://github.com/tonyloehr"
+  },
+  "homepage": "https://github.com/openai/community-plugins/tree/main/plugins/physical-engineering",
+  "repository": "https://github.com/openai/community-plugins",
+  "license": "Apache-2.0",
+  "keywords": [
+    "cad",
+    "engineering",
+    "build123d",
+    "text-to-cad",
+    "drone",
+    "requirements"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Physical Engineering",
+    "shortDescription": "Measure an engineering change from brief to CAD handoff.",
+    "longDescription": "A bounded physical-engineering workflow for a synthetic civilian drone battery tray and removable electronics bridge. Preserve requirements, measure exported geometry, demonstrate a wider-battery fit failure, revise the design, and regenerate reproducible fabrication files through separately installed Text-to-CAD.",
+    "developerName": "Tony Loehr",
+    "category": "Developer Tools",
+    "websiteURL": "https://github.com/openai/community-plugins",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "brandColor": "#147D92",
+    "logo": "./assets/icon.svg",
+    "composerIcon": "./assets/icon.svg",
+    "defaultPrompt": [
+      "Use $engineer-subsystem to start a drone-module study in an empty directory and show its requirements.",
+      "Use $verify-engineering-design to measure my drone module and report failed or unknown requirements.",
+      "Use $prepare-engineering-handoff to regenerate verified CAD, drawings, BOM and the reproduction package."
+    ]
+  }
+}

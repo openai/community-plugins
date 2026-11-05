@@ -59,6 +59,13 @@ To fetch only Autodesk Fusion interoperability, use:
 plugins/autodesk-fusion
 ```
 
+To fetch the Physical Engineering candidate, use:
+
+```text
+.agents/plugins
+plugins/physical-engineering
+```
+
 Adding a marketplace makes its catalog available to browse. It does **not**
 install, enable, or authenticate every plugin. After adding it, install only
 the plugin you want.
@@ -83,6 +90,9 @@ codex plugin add react-native-to-swiftui@community-plugins
 
 # Or install the Fusion interoperability preview (starts in synthetic fixture mode).
 codex plugin add autodesk-fusion@community-plugins
+
+# Or install the synthetic drone-module engineering workflow.
+codex plugin add physical-engineering@community-plugins
 ```
 
 If you want a full checkout instead of a sparse one:
@@ -104,6 +114,7 @@ are picked up.
 | [ReviewOps Auditor + Benchmark](plugins/reviewops-auditor-benchmark/README.md) | Normalize sanitized review-run exports, audit evaluation validity, benchmark lanes, and emit shadow-only guidance offline. | [Guide](plugins/reviewops-auditor-benchmark/README.md)                                                                    |
 | [React Native to SwiftUI](plugins/react-native-to-swiftui/README.md)           | Plan a bounded React Native/Expo feature migration, then port one explicitly approved slice with deterministic SwiftUI parity checks. | [Guide](plugins/react-native-to-swiftui/README.md) |
 | [Autodesk Fusion](plugins/autodesk-fusion/README.md) | Connect typed CAD/CAM operations, scoped Autodesk data, reviewed cloud recipes and engineering evidence; live qualification required. | [Guide](plugins/autodesk-fusion/README.md) |
+| [Physical Engineering](plugins/physical-engineering/README.md) | Measure a drone-module fit failure, revise the battery tray and electronics bridge, and reproduce a consistent CAD handoff. Implementation candidate. | [Guide](plugins/physical-engineering/README.md) · [Session runbook](docs/physical-engineering-demo-runbook.md) |
 
 Grafana Observability requires Codex and Node.js 22.19 or newer. Its manifest
 declares both `Read` and `Write`. `Write` is limited to
@@ -146,6 +157,16 @@ independent qualification; installation grants none of these.
 
 ```text
 Use $setup-autodesk-fusion to check the synthetic fixture and explain the available connection modes. Do not connect to Autodesk or change a real model.
+```
+
+Physical Engineering targets macOS arm64 with Python 3.14 and separately
+installed Text-to-CAD 0.10.3. It declares `Read` and `Write` for the selected
+local study, runtime and handoff. The synthetic fixture needs no CAD account;
+setup downloads public dependencies, and Codex uses the user's configured
+model provider. Digital geometry checks do not qualify fabrication or flight.
+
+```text
+Use $engineer-subsystem to start a new study for the bundled synthetic drone-module fixture in an empty directory. Show the requirements and setup status, then build and measure the baseline.
 ```
 
 ## Copy-paste Codex prompts
