@@ -2,8 +2,9 @@
 """Render a completed real CLI event capture, with an explicit replay label.
 
 No synthetic results, narration, generated CAD views, or inserted source events.
-The full replay preserves recorded wall time; the teaching cut scales that same
-timeline. Both sample visual state once per second and link the complete transcript.
+The full replay preserves recorded wall time. The teaching cut trims idle time
+with an explicit map back to retained source intervals. Both link the complete
+transcript and sample visual state once per video second.
 """
 from __future__ import annotations
 
@@ -15,8 +16,6 @@ import math
 from pathlib import Path
 import shutil
 import subprocess
-
-from PIL import Image, ImageDraw, ImageFont
 
 from record_cli import SCENES, sha
 
@@ -41,6 +40,8 @@ def timestamp(seconds):
 
 
 def font(size, mono=False):
+    from PIL import ImageFont
+
     candidates = (["/System/Library/Fonts/Menlo.ttc", "/usr/share/fonts/truetype/dejavu/DejaVuSansMono.ttf"]
                   if mono else ["/System/Library/Fonts/SFNS.ttf", "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"])
     for path in candidates:
@@ -146,11 +147,13 @@ def states(events):
     state = {"scene": None, "status": "Capture started", "heading": "RECORDED CLI WORKFLOW",
              "body": "Waiting for the first operator prompt.", "image": None, "measurements": None}
     result = []
+    latest_response = None
     for event_number, event in enumerate(events, 1):
         state = dict(state)
         state["event_number"] = event_number
         kind = event["kind"]
         if kind == "phase_started":
+            latest_response = None
             state.update(scene=event["scene"], status="Codex CLI phase running")
         elif kind == "phase_finished":
             state["status"] = f"Observed CLI exit {event['returncode']}"
@@ -168,19 +171,122 @@ def states(events):
         shown = message(event)
         if shown:
             state["heading"], state["body"] = shown
+            if shown[0] == "CODEX":
+                latest_response = shown[1]
+        if kind == "phase_finished" and event["returncode"] == 0 and latest_response is not None:
+            # Show the actual phase response while reviewing its artifacts.
+            # Cleanup warnings remain in the complete transcript and journal.
+            state["heading"], state["body"] = "CODEX · LATEST PHASE RESPONSE", latest_response
         result.append((event["t"], state))
     return result
+
+
+class ReplayTimeline:
+    """An ordered, non-stretched selection of actual source intervals."""
+
+    def __init__(self, intervals, source_duration, scale=1.0, omitted=None, active_hold_cap=None):
+        if not 0 < scale <= 1:
+            raise ValueError("A replay may compress source time but must not pad or stretch it")
+        self.source_duration = source_duration
+        self.scale = scale
+        self.omitted = omitted or []
+        self.active_hold_cap = active_hold_cap
+        self.segments = []
+        cursor = 0.0
+        for start, end in intervals:
+            if end <= start:
+                continue
+            next_cursor = cursor + (end-start)*scale
+            self.segments.append({"source_start_seconds": start, "source_end_seconds": end,
+                                  "video_start_seconds": cursor, "video_end_seconds": next_cursor})
+            cursor = next_cursor
+        if not self.segments:
+            raise ValueError("Replay has no retained source interval")
+        self.duration = cursor
+        self.source_starts = [row["source_start_seconds"] for row in self.segments]
+        self.video_starts = [row["video_start_seconds"] for row in self.segments]
+
+    def source_at(self, video_seconds):
+        index = max(0, bisect_right(self.video_starts, video_seconds)-1)
+        row = self.segments[index]
+        return min(row["source_end_seconds"], row["source_start_seconds"] +
+                   max(0, video_seconds-row["video_start_seconds"])/self.scale)
+
+    def video_at(self, source_seconds):
+        index = max(0, bisect_right(self.source_starts, source_seconds)-1)
+        row = self.segments[index]
+        retained = max(0, min(source_seconds, row["source_end_seconds"])-row["source_start_seconds"])
+        return row["video_start_seconds"] + retained*self.scale
+
+    def metadata(self):
+        return {"duration_seconds": self.duration, "source_seconds_per_retained_video_second": 1/self.scale,
+                "active_unchanged_state_cap_seconds": self.active_hold_cap,
+                "inactive_unchanged_state_cap_seconds": 8 if self.active_hold_cap is not None else None,
+                "retained_source_intervals": self.segments, "omitted_source_intervals": self.omitted}
+
+
+def teaching_timeline(events, duration, target=420):
+    first = next((event["t"] for event in events if event["kind"] == "phase_started"), None)
+    if first is None:
+        raise ValueError("A teaching replay requires an actual recorded CLI phase")
+    boundaries = []
+    previous = None
+    active = False
+    for event, (_, state) in zip(events, states(events)):
+        if event["kind"] == "phase_started":
+            active = True
+        elif event["kind"] in {"phase_finished", "phase_interrupted", "phase_launch_failed"}:
+            active = False
+        semantic = {key: value for key, value in state.items() if key != "event_number"}
+        # Every captioned action and artifact observation is a boundary even
+        # when it leaves the visible image/text unchanged. Only unchanging
+        # interval tails can be omitted; actions are never invented or moved.
+        if event["t"] >= first and (semantic != previous or caption(event)):
+            if boundaries and event["t"] == boundaries[-1][0]:
+                boundaries[-1] = (event["t"], active)
+            else:
+                boundaries.append((event["t"], active))
+        previous = semantic
+
+    def select(active_cap):
+        kept = []
+        omitted = ([{"source_start_seconds": 0.0, "source_end_seconds": first,
+                     "reason": "Idle before the first recorded CLI phase"}] if first else [])
+        for index, (start, is_active) in enumerate(boundaries):
+            end = boundaries[index+1][0] if index+1 < len(boundaries) else duration
+            if end <= start:
+                continue
+            stop = min(end, start + (active_cap if is_active else 8))
+            kept.append((start, stop))
+            if stop < end:
+                omitted.append({"source_start_seconds": stop, "source_end_seconds": end,
+                                "reason": "Unchanged visible state during CLI execution" if is_active else
+                                          "Unchanged visible state between recorded actions"})
+        return kept, omitted
+
+    # Prefer short holds. If that would leave less than six minutes, retain
+    # more of real in-process waits (at most 30 seconds each); never extend a
+    # source interval or retain long operator setup gaps just to fill a target.
+    for cap in (10, 15, 20, 30):
+        kept, omitted = select(cap)
+        retained = sum(end-start for start, end in kept)
+        if retained >= 360:
+            break
+    scale = min(1.0, target/retained)
+    return ReplayTimeline(kept, duration, scale, omitted, cap)
 
 
 IMAGE_CACHE = {}
 
 
 def render_frame(take, state, source_seconds, video_seconds, duration, compressed):
+    from PIL import Image, ImageDraw
+
     image = Image.new("RGB", (WIDTH, HEIGHT), BACKGROUND)
     draw = ImageDraw.Draw(image)
     draw.text((48, 28), "Codex  /  Physical engineering", font=ft(39), fill=TEXT)
     draw.text((48, 88), "Recorded Codex CLI event replay", font=ft(30), fill=BLUE)
-    disclosure = ("TEACHING CUT · compressed recorded timeline" if compressed else
+    disclosure = ("TEACHING CUT · idle trimmed / waits shortened" if compressed else
                   "FULL REPLAY · original elapsed time and waits")
     draw.text((1080, 38), disclosure, font=ft(25), fill=GOLD if compressed else GREEN)
     draw.text((1080, 86), f"Capture elapsed {clock(source_seconds)}  |  Video {clock(video_seconds)}",
@@ -262,8 +368,8 @@ def caption(event):
     return None
 
 
-def subtitles(events, duration, scale):
-    cues = [(event["t"] * scale, caption(event)) for event in events if caption(event)]
+def subtitles(events, timeline):
+    cues = [(timeline.video_at(event["t"]), caption(event)) for event in events if caption(event)]
     # Prompts follow phase-start by milliseconds: keep the latest of cues that
     # occur within one second, rather than inventing time for unreadable flashes.
     readable = []
@@ -275,15 +381,15 @@ def subtitles(events, duration, scale):
             readable.append((start, text))
     output = []
     for index, (start, text) in enumerate(readable):
-        end = min(duration * scale, start + 6, readable[index+1][0] if index+1 < len(readable) else duration * scale)
+        end = min(timeline.duration, start + 6, readable[index+1][0] if index+1 < len(readable) else timeline.duration)
         if end <= start:
             continue
         output.append(f"{len(output)+1}\n{timestamp(start)} --> {timestamp(end)}\n{text}\n")
     return "\n".join(output)
 
 
-def encode(take, output, events, duration, scale, ffmpeg):
-    length = duration * scale
+def encode(take, output, events, timeline, ffmpeg, teaching=False):
+    length = timeline.duration
     snapshots = states(events)
     times = [row[0] for row in snapshots]
     command = [ffmpeg, "-hide_banner", "-loglevel", "error", "-nostdin", "-n",
@@ -296,10 +402,10 @@ def encode(take, output, events, duration, scale, ffmpeg):
         process = subprocess.Popen(command, stdin=subprocess.PIPE, stderr=errors)
         try:
             for second in range(math.ceil(length)):
-                source_second = min(duration, second / scale)
+                source_second = timeline.source_at(second)
                 index = max(0, bisect_right(times, source_second) - 1)
                 state = snapshots[index][1]
-                image = render_frame(take, state, source_second, second, duration, scale < 1)
+                image = render_frame(take, state, source_second, second, timeline.source_duration, teaching)
                 process.stdin.write(image.tobytes())
             process.stdin.close()
             code = process.wait()
@@ -346,14 +452,17 @@ def main():
     seen = {row["scene"] for row in chapters}
     if seen != set(SCENES):
         raise RuntimeError(f"Full reusable run requires real phases A–E; captured {sorted(seen)}")
-    scale = min(1.0, args.teaching_seconds / duration)
-    for name, factor in (("full", 1.0), ("teaching-cut", scale)):
+    full_timeline = ReplayTimeline([(0.0, duration)], duration)
+    cut_timeline = teaching_timeline(events, duration, args.teaching_seconds)
+    for chapter in chapters:
+        chapter["teaching_seconds"] = cut_timeline.video_at(chapter["source_seconds"])
+    for name, timeline in (("full", full_timeline), ("teaching-cut", cut_timeline)):
         video = output / f"physical-engineering-{name}.mp4"
-        print(f"Encoding {name}: {duration * factor:.1f} seconds", flush=True)
-        encode(take, video, events, duration, factor, args.ffmpeg)
-        (output / f"physical-engineering-{name}.srt").write_text(subtitles(events, duration, factor))
+        print(f"Encoding {name}: {timeline.duration:.1f} seconds", flush=True)
+        encode(take, video, events, timeline, args.ffmpeg, teaching=name == "teaching-cut")
+        (output / f"physical-engineering-{name}.srt").write_text(subtitles(events, timeline))
         (output / f"chapters-{name}.txt").write_text("\n".join(
-            f"{clock(row['source_seconds'] * factor)} {row['scene']} — {row['title']}" for row in chapters) + "\n")
+            f"{clock(timeline.video_at(row['source_seconds']))} {row['scene']} — {row['title']}" for row in chapters) + "\n")
         subprocess.run([args.ffmpeg, "-nostdin", "-v", "error", "-i", str(video), "-f", "null", "-"], check=True)
         probed = subprocess.run([args.ffprobe, "-v", "error", "-show_format", "-show_streams", "-of", "json", str(video)],
                                 check=True, capture_output=True, text=True)
@@ -370,7 +479,8 @@ def main():
         shutil.copyfile(take / relative, destination)
     (output / "prompts").mkdir()
     chapter_links = ["# Chapter guide", "",
-                     "These links point into the actual event replay. The teaching cut compresses the same timeline.", "",
+                     "These links point into the actual event replay. The teaching cut trims idle intervals and shortens waits.",
+                     "Its precise retained/omitted source intervals and chapter timing map are in media-manifest.json.", "",
                      "| Scene | Full replay | Teaching cut | Recorded operator prompt |",
                      "|---|---|---|---|"]
     for index, chapter in enumerate(chapters):
@@ -384,8 +494,9 @@ def main():
         else:
             raise RuntimeError(f"Scene {scene} has no captured operator input")
         start = chapter["source_seconds"]
+        cut_start = cut_timeline.video_at(start)
         chapter_links.append(f"| {scene} · {chapter['title']} | [Play {clock(start)}](physical-engineering-full.mp4#t={start:.3f}) | "
-                             f"[Play {clock(start*scale)}](physical-engineering-teaching-cut.mp4#t={start*scale:.3f}) | "
+                             f"[Play {clock(cut_start)}](physical-engineering-teaching-cut.mp4#t={cut_start:.3f}) | "
                              f"[Prompt]({prompt_name}) |")
     chapter_links += ["", "## Observed chapter artifacts", ""]
     for event in events:
@@ -395,19 +506,24 @@ def main():
     (output / "chapters.md").write_text("\n".join(chapter_links) + "\n")
     manifest = {"schema_version": 1, "recording_method": "Recorded Codex CLI event replay",
                 "native_desktop_capture": False, "source_capture": complete,
-                "source_duration_seconds": duration, "teaching_duration_seconds": duration*scale,
-                "teaching_target_seconds": args.teaching_seconds, "teaching_target_met": 360 <= duration*scale <= 480,
-                "teaching_source_time_multiplier": 1/scale,
+                "source_duration_seconds": duration, "teaching_duration_seconds": cut_timeline.duration,
+                "teaching_target_seconds": args.teaching_seconds, "teaching_target_met": 360 <= cut_timeline.duration <= 480,
+                "teaching_timeline": cut_timeline.metadata(),
                 "edits": ["Deterministic 1920x1080 replay layout; CLI content is excerpted on screen and complete in transcript.",
                           "Full version preserves elapsed source time and waits; visual state sampled at one-second intervals.",
-                          "Teaching cut applies the disclosed uniform time compression to the same recorded timeline.",
+                          "Teaching cut removes idle before the first phase and tails of unchanged visible-state holds.",
+                          "Real in-process holds are capped at the recorded 10/15/20/30-second choice; inactive holds at eight seconds.",
+                          "Retained intervals are uniformly compressed only if needed; source time is never stretched or padded.",
+                          "The complete piecewise timing map aligns source events, captions, chapters, artifacts and the displayed capture clock.",
+                          "At a successful phase exit, the latest actual Codex response stays visible; cleanup warnings remain in the transcript.",
                           "No synthetic events, results, narration, or artifacts are inserted. Event captions accompany both videos."],
                 "chapters": chapters,
-                "artifacts": [e for e in events if e["kind"] == "artifact_observed"],
+                "artifacts": [{**e, "teaching_seconds": cut_timeline.video_at(e["t"])}
+                              for e in events if e["kind"] == "artifact_observed"],
                 "files": {str(path.relative_to(output)): sha(path) for path in sorted(output.rglob("*")) if path.is_file()}}
     (output / "media-manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
     print(json.dumps({"output": str(output), "full_seconds": duration,
-                      "teaching_seconds": duration*scale, "teaching_target_met": manifest["teaching_target_met"]}))
+                      "teaching_seconds": cut_timeline.duration, "teaching_target_met": manifest["teaching_target_met"]}))
 
 
 if __name__ == "__main__":

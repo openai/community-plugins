@@ -3,7 +3,8 @@
 These operator tools record actual `codex exec --json` processes and render an
 explicitly labeled event replay with the CAD files observed during that take.
 They do not capture or imitate a native Codex desktop screen. The full replay
-keeps elapsed time and waits; the teaching cut compresses that same timeline.
+keeps elapsed time and waits. The teaching cut trims idle setup and shortens long
+unchanged holds, with a precise map back to the original recorded timeline.
 
 Use the qualified CAD Python runtime for rendering (Pillow is already pinned),
 plus `ffmpeg`/`ffprobe`. Run the recorder with Python 3.14 or an available Python
@@ -95,10 +96,29 @@ the operator invokes `phase`.
 
 Outputs include a 1920×1080 full MP4, teaching MP4, event captions (SRT), searchable
 transcript, chapter timestamps, actual observed artifacts and a hash manifest.
-The default teaching target is seven minutes. If the real take is shorter than
-six minutes, the tool preserves its duration and reports the target unmet; it
-does not pad the capture with invented activity. Visual replay state is sampled
-once per second; the original event timestamps remain available in the journal.
+The default teaching target is seven minutes. The cut begins at the first real
+CLI phase. It initially retains up to ten seconds of each unchanged visible
+state during CLI execution and eight seconds between actions. If that retains
+less than six minutes, it may keep up to 15, 20 or 30 seconds of real in-process
+waits. Long operator setup gaps remain capped at eight seconds. Every visible
+state change, captioned action and artifact observation remains a boundary.
+If retained activity exceeds the target it is compressed uniformly; if fewer
+than six minutes remain, the tool reports the target unmet. It never stretches
+source intervals or pads the capture to reach a duration.
+
+The media manifest records each retained and omitted source interval, the
+selected hold cap and the source/video mapping. Captions, chapters and the
+on-screen source clock use that same map. The full replay's timing is unchanged.
+Visual state is sampled once per video second; complete events remain in the
+transcript. Review each observed image/report for several real seconds during
+capture: observations submitted milliseconds apart cannot all have readable
+screen time without inventing holds.
+
+While a successful phase's artifacts are being reviewed, the replay keeps its
+latest actual Codex response visible. Cleanup warnings remain in the complete
+transcript and event journal. Failed phase exits retain their latest CLI output.
+Run the timing tests from the repository root with
+`python3 tests/physical-engineering/support/test_replay_timeline.py`.
 
 Keep the take's **`private/` folder private**. It holds raw prompts, CLI output,
 local paths and potentially credential-bearing viewer URLs. Publish only the
