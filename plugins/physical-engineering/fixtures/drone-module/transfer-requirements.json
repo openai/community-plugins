@@ -1,0 +1,146 @@
+{
+  "schema_version": 1,
+  "fixture_id": "drone-module-v1",
+  "units": "mm",
+  "coordinate_system": {
+    "up": "+Z",
+    "origin": "frame-plane center",
+    "frame_plane_z_mm": 0
+  },
+  "printable_parts": [
+    "tray",
+    "bridge"
+  ],
+  "envelope_max_mm": [
+    140,
+    90,
+    60
+  ],
+  "frame": {
+    "pitch_mm": [
+      110,
+      60
+    ],
+    "hole_diameter_mm": 3.2,
+    "hole_axis": [
+      0,
+      0,
+      1
+    ]
+  },
+  "battery": {
+    "selected": "B",
+    "envelopes_mm": {
+      "A": [
+        100,
+        35,
+        25
+      ],
+      "B": [
+        100,
+        40,
+        25
+      ]
+    },
+    "seated_center_mm": [
+      0,
+      0,
+      15.5
+    ],
+    "support_z_mm": 3,
+    "lateral_clearance_per_side_mm": [
+      0.5,
+      1.0
+    ],
+    "insertion_translation_mm": [
+      -156,
+      0,
+      0
+    ],
+    "service_state": "retention strap removed; bridge installed",
+    "required_support_area_mm2": 3000
+  },
+  "board": {
+    "envelope_mm": [
+      40,
+      40,
+      2
+    ],
+    "center_mm": [
+      0,
+      0,
+      34
+    ],
+    "mount_pitch_mm": [
+      30,
+      30
+    ],
+    "hole_diameter_mm": 3.2,
+    "support_z_mm": 33,
+    "required_support_area_mm2": 1200,
+    "component_keepout_mm": [
+      40,
+      40,
+      12
+    ],
+    "component_keepout_center_mm": [
+      0,
+      0,
+      41
+    ]
+  },
+  "bridge_attachment": {
+    "hole_centers_xy_mm": [
+      [
+        -18,
+        -28
+      ],
+      [
+        -18,
+        28
+      ],
+      [
+        18,
+        -28
+      ],
+      [
+        18,
+        28
+      ]
+    ],
+    "hole_diameter_mm": 3.2,
+    "tray_contact_z_mm": 3,
+    "minimum_total_contact_area_mm2": 200
+  },
+  "manufacturing": {
+    "process": "FDM",
+    "nozzle_mm": 0.4,
+    "layer_mm": 0.2,
+    "minimum_declared_planar_wall_mm": 2,
+    "density_g_per_cm3": 1.25,
+    "polymer_mass_max_g": 100,
+    "wall_check_scope": [
+      "tray_floor",
+      "tray_left_rail",
+      "tray_right_rail",
+      "tray_backstop",
+      "bridge_deck"
+    ],
+    "material_estimate": "solid uniform-density model; excludes infill, purchased hardware and surrogates"
+  },
+  "tolerances": {
+    "interface_mm": 0.05,
+    "dimension_mm": 0.01,
+    "angular_deg": 0.01,
+    "positive_overlap_mm3": 1e-05,
+    "mesh_linear_mm": 0.02,
+    "mesh_volume_relative": 0.005
+  },
+  "transfer_variant": {
+    "frame_pitch_mm": [
+      110,
+      60
+    ],
+    "battery": "B"
+  }
+}

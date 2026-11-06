@@ -1,0 +1,6 @@
+interface:
+  display_name: "Verify an Engineering Design"
+  short_description: "Measure CAD geometry against saved requirements"
+  default_prompt: "Use $verify-engineering-design to measure my CAD exports against saved requirements and retain failed or unknown checks."
+policy:
+  allow_implicit_invocation: true
