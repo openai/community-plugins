@@ -98,6 +98,8 @@ try {
   }
   console.log(`Physical Engineering package checks passed (${files.length} files, 3 skills).`);
 
+  run(process.execPath, ["--test", path.join(suite, "unit/showcase.test.mjs")], { stdio: "inherit" });
+
   let probe;
   try {
     probe = run(python, ["-c", [

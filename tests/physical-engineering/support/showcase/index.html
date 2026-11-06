@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>A bigger battery. The same interfaces.</title>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "/vendor/build/three.module.js",
+          "three/addons/": "/vendor/examples/jsm/"
+        }
+      }
+    </script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #07111e;
+        color: #f2f6fc;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      #stage {
+        position: absolute;
+        width: 1920px;
+        height: 1080px;
+        transform-origin: top left;
+        background: radial-gradient(
+          ellipse at 70% 48%,
+          #172c49 0%,
+          #0b1728 46%,
+          #060f1b 82%
+        );
+      }
+      canvas {
+        position: absolute;
+        inset: 0;
+        width: 1920px;
+        height: 1080px;
+      }
+      #wash {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        background: linear-gradient(
+          90deg,
+          rgba(5, 14, 26, 0.85),
+          transparent 47%
+        );
+      }
+      #top {
+        position: absolute;
+        left: 80px;
+        right: 80px;
+        top: 48px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .brand {
+        font-size: 23px;
+        letter-spacing: 3px;
+        font-weight: 650;
+        display: flex;
+        gap: 16px;
+        align-items: center;
+      }
+      .brand i {
+        width: 13px;
+        height: 13px;
+        background: #69b9ff;
+        border-radius: 3px;
+        box-shadow: 0 0 30px #4da2ff;
+      }
+      .edition {
+        font-size: 20px;
+        color: #97abc4;
+        letter-spacing: 1px;
+      }
+      #copy {
+        position: absolute;
+        left: 80px;
+        top: 218px;
+        width: 655px;
+      }
+      .eyebrow {
+        color: #7ebaff;
+        font-size: 20px;
+        font-weight: 650;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 24px;
+      }
+      h1 {
+        font-size: 76px;
+        line-height: 1.055;
+        letter-spacing: -3.7px;
+        font-weight: 580;
+        margin: 0 0 28px;
+        text-wrap: balance;
+      }
+      h1 em {
+        font-style: normal;
+        color: #7cbbff;
+      }
+      .sub {
+        font-size: 28px;
+        line-height: 1.48;
+        color: #b6c8df;
+        max-width: 570px;
+        margin: 0;
+      }
+      .pills {
+        display: flex;
+        gap: 12px;
+        margin-top: 34px;
+        flex-wrap: wrap;
+      }
+      .pill {
+        padding: 12px 18px;
+        border: 1px solid #385272;
+        border-radius: 9px;
+        font-size: 19px;
+        letter-spacing: 0.4px;
+        background: #102039;
+        color: #d2e2f4;
+      }
+      .pill.ok {
+        color: #84edc4;
+        border-color: #306f63;
+      }
+      .pill.bad {
+        color: #ffa1b7;
+        border-color: #944059;
+      }
+      .stats {
+        display: flex;
+        gap: 42px;
+        margin-top: 44px;
+      }
+      .stat label {
+        display: block;
+        font-size: 17px;
+        color: #a4bad3;
+        margin-bottom: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1.4px;
+      }
+      .stat strong {
+        font-size: 53px;
+        font-weight: 520;
+        letter-spacing: -2px;
+      }
+      .stat small {
+        font-size: 21px;
+        font-weight: 400;
+        margin-left: 7px;
+        color: #9eb7d0;
+      }
+      .stat.bad strong {
+        color: #ff87a6;
+      }
+      .stat.ok strong {
+        color: #81e5bd;
+      }
+      #note {
+        position: absolute;
+        left: 80px;
+        bottom: 124px;
+        max-width: 650px;
+        font-size: 20px;
+        color: #8ea7c3;
+        line-height: 1.4;
+      }
+      #labels {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+      #labels text {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+      #bottom {
+        position: absolute;
+        left: 80px;
+        right: 80px;
+        bottom: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: #8fa6c1;
+        font-size: 18px;
+      }
+      .chapters {
+        display: flex;
+        gap: 32px;
+      }
+      .chapter {
+        display: flex;
+        gap: 9px;
+        align-items: center;
+        opacity: 0.45;
+      }
+      .chapter.active {
+        opacity: 1;
+        color: #e8f3ff;
+      }
+      .chapter.done {
+        opacity: 0.75;
+      }
+      .chapter i {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: currentColor;
+      }
+      .chapter.active i {
+        background: #69baff;
+        box-shadow: 0 0 12px #69baff;
+      }
+      #progress {
+        height: 2px;
+        background: #5eb1ff;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        box-shadow: 0 0 12px #6bc0ff;
+      }
+      #caption {
+        position: absolute;
+        left: 140px;
+        right: 140px;
+        bottom: 82px;
+        text-align: center;
+        pointer-events: none;
+        font-size: 26px;
+        line-height: 1.4;
+        text-shadow: 0 2px 8px #000;
+        display: none;
+      }
+      #caption span {
+        background: #07111ee8;
+        padding: 8px 18px;
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+      }
+      #controls {
+        position: fixed;
+        left: 50%;
+        bottom: 14px;
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        background: #17253ce8;
+        border: 1px solid #52749b;
+        border-radius: 14px;
+        padding: 10px 18px;
+        z-index: 10;
+        font:
+          14px -apple-system,
+          sans-serif;
+        color: #dae8fa;
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+      body:hover #controls,
+      body:focus-within #controls {
+        opacity: 1;
+      }
+      #controls button {
+        background: #8bc7ff;
+        border: 0;
+        border-radius: 6px;
+        padding: 7px 12px;
+        color: #0a1726;
+        font-weight: 600;
+        cursor: pointer;
+      }
+      #controls input {
+        width: 330px;
+        accent-color: #6db9ff;
+      }
+      #controls label {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+      }
+      #controls input[type="checkbox"] {
+        width: auto;
+      }
+      .recording #controls {
+        display: none !important;
+      }
+      #error {
+        position: absolute;
+        inset: 30%;
+        background: #531f2b;
+        padding: 40px;
+        display: none;
+        font-size: 25px;
+      }
+    </style>
+  </head>
+  <body>
+    <main id="stage">
+      <div id="wash"></div>
+      <div id="top">
+        <div class="brand">
+          <i></i>CODEX
+          <span style="font-weight: 350; color: #a5bad3"
+            >/ PHYSICAL ENGINEERING</span
+          >
+        </div>
+        <div class="edition">ENGINEERING CHANGE · DRONE SUBSYSTEM</div>
+      </div>
+      <section id="copy"></section>
+      <svg id="labels" width="1920" height="1080" viewBox="0 0 1920 1080"></svg>
+      <div id="note"></div>
+      <div id="caption"></div>
+      <div id="bottom">
+        <div class="chapters">
+          <span class="chapter">01<i></i>Understand</span
+          ><span class="chapter">02<i></i>Change</span
+          ><span class="chapter">03<i></i>Detect</span
+          ><span class="chapter">04<i></i>Revise</span
+          ><span class="chapter">05<i></i>Deliver</span>
+        </div>
+        <div id="provenance">Measured geometry · verified CAD handoff</div>
+      </div>
+      <div id="progress"></div>
+      <div id="error"></div>
+    </main>
+    <div id="controls">
+      <button id="play">Play</button
+      ><input
+        aria-label="Video position"
+        id="seek"
+        type="range"
+        min="0"
+        max="120"
+        step=".1"
+        value="0"
+      /><span id="time">0:00 / 2:00</span
+      ><label><input id="cc" type="checkbox" />Captions</label
+      ><button id="restart">Restart</button>
+    </div>
+    <audio id="audio" src="/narration.wav" preload="auto"></audio>
+    <script type="module" src="/showcase.mjs"></script>
+  </body>
+</html>

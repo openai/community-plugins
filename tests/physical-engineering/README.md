@@ -10,8 +10,8 @@ npm run test:physical-engineering
 ```
 
 The master validates the installed package layout, metadata, local references and
-absence of generated/private files, launches a cold copy's CLI, then runs all
-Python `test_*.py` cases. It requires Python 3.14 and the actual Text-to-CAD CAD
+absence of generated/private files, runs the Node showcase checks, launches a
+cold copy's CLI, then runs all Python `test_*.py` cases. It requires Python 3.14 and the actual Text-to-CAD CAD
 kernel dependencies; a missing runtime is an error with setup guidance.
 
 The copied-package check runs `--help`; it verifies that the package can start
@@ -51,6 +51,15 @@ line, leader or label is legible and correctly placed.
 The marketplace dispatcher invokes the same root command. The plugin workflow
 uses one master job and sequential Node versions; the shared marketplace suite
 prepares a compatible Python runtime too.
+
+The Node checks under `unit/showcase.test.mjs` exercise the presentation's source
+and measurement contract, unsafe paths, changed files, stale claims, failed-fit
+evidence, actual rebuilt meshes, section provenance and offline HTML embedding.
+They use deliberately small test fixtures and require no browser, CAD kernel or
+presentation dependencies. They run through the same master command; they do
+not establish that a video was rendered or visually reviewed. The optional
+[showcase build](support/showcase/README.md) has separate executed render,
+offline playback, media decode and visual review receipts.
 
 Separate acceptance gates:
 
