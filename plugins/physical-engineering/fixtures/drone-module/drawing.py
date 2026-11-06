@@ -4,11 +4,81 @@ No model module or design constants are imported. Hole callouts and dimension
 anchors come from verify_geometry.py's readback of the delivered STEP.
 """
 from pathlib import Path
+from io import BytesIO
 import json
 import sys
 
 from cad import read_step
 from cad.eng_drawing import Sheet, eng_drawing
+
+
+def measured_dimension_block(pdf_path: Path, report: dict, revision: str):
+    """Add visible, selectable readback callouts in the reserved lower-left area.
+
+    The upstream drawing renderer outlines its lettering. This separate visible
+    block lets the delivered PDF be checked as text without pretending to OCR
+    the dimension-line artwork. Its inputs are the independent STEP readback.
+    """
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    from matplotlib.backends.backend_pdf import PdfPages
+    from pypdf import PdfReader, PdfWriter
+
+    measurements = report["measurements"]
+    measured_checks = {item["id"]: item["actual"] for item in report["checks"]}
+    overlay = BytesIO()
+    with matplotlib.rc_context({"pdf.fonttype": 42, "font.family": "DejaVu Sans"}):
+        with PdfPages(overlay, metadata={"CreationDate": None}) as pages:
+            for name, interface in (("tray", "frame"), ("bridge", "board")):
+                part = measurements["parts"][name]
+                primary = measured_checks[f"{interface}_interface"]
+                attachments = measured_checks[f"{name}_attachment_interface"]
+                lines = [
+                    "MEASURED STEP READBACK",
+                    f"PART: {name.upper()}   REVISION: {revision}   UNITS: MM",
+                    "OVERALL XYZ: " + " X ".join(f"{v:.3f}" for v in part["bounds_mm"]) + " MM",
+                    f"{interface.upper()} PITCH XY: " + " X ".join(f"{v:.3f}" for v in measurements[f"{interface}_pitch_mm"]) + " MM",
+                    f"{interface.upper()} HOLES: {len(primary)} X DIA {primary[0]['diameter_mm']:.3f} MM THRU",
+                    f"BRIDGE ATTACHMENT HOLES: {len(attachments)} X DIA {attachments[0]['diameter_mm']:.3f} MM THRU",
+                ]
+                walls = measurements["wall_thickness_mm"]
+                if name == "tray":
+                    lines += [f"CAVITY WIDTH: {measurements['cavity_width_mm']:.3f} MM",
+                              "DECLARED WALLS: " + " / ".join(
+                                  f"{label} {walls[key]:.3f}" for label, key in
+                                  (("FLOOR", "tray_floor"), ("LEFT", "tray_left_rail"),
+                                   ("RIGHT", "tray_right_rail"), ("BACK", "tray_backstop"))) + " MM"]
+                else:
+                    lines += [f"DECK THICKNESS: {walls['bridge_deck']:.3f} MM"]
+                figure = plt.figure(figsize=(420 / 25.4, 297 / 25.4))
+                figure.patch.set_alpha(0)
+                axis = figure.add_axes([0, 0, 1, 1])
+                axis.set(xlim=(0, 420), ylim=(0, 297), aspect="equal")
+                axis.axis("off")
+                # A3 title block begins at x=230mm; notes stay above y=50mm.
+                axis.add_patch(plt.Rectangle((13, 11.5), 205, 37, facecolor="white",
+                                             edgecolor="#606060", linewidth=.45))
+                for row, line in enumerate(lines):
+                    axis.text(16, 44 - row * 4.3, line, fontsize=8 if row == 0 else 7.5,
+                              weight="bold" if row == 0 else "normal", color="black",
+                              ha="left", va="baseline")
+                pages.savefig(figure, transparent=True)
+                plt.close(figure)
+    base, additions = PdfReader(pdf_path, strict=True), PdfReader(overlay, strict=True)
+    if len(base.pages) != 2 or len(additions.pages) != 2:
+        raise ValueError("Expected two A3 part drawings before adding measured callouts")
+    writer = PdfWriter()
+    for page, addition in zip(base.pages, additions.pages):
+        writer.add_page(page)
+        writer.pages[-1].merge_page(addition)
+    temporary = pdf_path.with_name(".module-drawing-checked.pdf")
+    try:
+        with temporary.open("wb") as output:
+            writer.write(output)
+        temporary.replace(pdf_path)
+    finally:
+        temporary.unlink(missing_ok=True)
 
 
 def main(output: Path, measurements_path: Path, requirements_path: Path):
@@ -43,17 +113,11 @@ def main(output: Path, measurements_path: Path, requirements_path: Path):
                 left, right_y = measurements["cavity_inside_y_mm"]
                 floor = measurements["wall_thickness_mm"]["tray_floor"]
                 right.dim((0, left, floor), (0, right_y, floor), orientation="h")
-            holes = measured["holes"]
-            # The declared fixture has only vertical through bores. Identify the
-            # frame bores by their measured outer X positions and board bores by
-            # their measured short finite spans at the top of the bridge.
-            if name == "tray":
-                outer_x = max(abs(h["x_mm"]) for h in holes)
-                primary = [h for h in holes if abs(abs(h["x_mm"]) - outer_x) < 0.01]
-                secondary = [h for h in holes if h not in primary]
-            else:
-                primary = [h for h in holes if h["z_max_mm"] - h["z_min_mm"] < 5]
-                secondary = [h for h in holes if h not in primary]
+            # Interface groups come from independent readback. Rounded exterior
+            # surfaces and lightening features are not mounting-bore callouts.
+            check_values = {item["id"]: item["actual"] for item in report["checks"]}
+            primary = check_values["frame_interface" if name == "tray" else "board_interface"]
+            secondary = check_values[f"{name}_attachment_interface"]
             if len(primary) != 4 or len(secondary) != 4:
                 raise ValueError(f"Expected four primary and four attachment bores in {name}")
             xs = sorted({round(h["x_mm"], 8) for h in primary})
@@ -84,6 +148,7 @@ def main(output: Path, measurements_path: Path, requirements_path: Path):
         return sheets
 
     drawings()
+    measured_dimension_block(output / "module-drawing.pdf", report, revision)
 
 
 if __name__ == "__main__":

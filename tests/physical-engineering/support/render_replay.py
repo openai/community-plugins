@@ -346,6 +346,64 @@ def render_frame(take, state, source_seconds, video_seconds, duration, compresse
     return image
 
 
+def render_cad_frame(take, state, source_seconds, video_seconds, duration, compressed):
+    """Give actual CAD views most of the frame without changing capture evidence."""
+    from PIL import Image, ImageDraw
+
+    canvas = Image.new("RGB", (WIDTH, HEIGHT), BACKGROUND)
+    draw = ImageDraw.Draw(canvas)
+    scene = state.get("scene")
+    title = f"{scene}  /  {SCENES[scene]}" if scene else "Preflight"
+    draw.text((48, 30), "Physical engineering  /  " + title, font=ft(42), fill=TEXT)
+    draw.text((48, 92), "Recorded Codex CLI workflow · actual CAD exports", font=ft(24), fill=BLUE)
+    mode = "Teaching cut · waits shortened" if compressed else "Full replay · original elapsed time"
+    draw.text((1340, 37), mode, font=ft(23), fill=GOLD if compressed else GREEN)
+    draw.text((1340, 86), f"Source {clock(source_seconds)}  /  Video {clock(video_seconds)}",
+              font=ft(21, True), fill=MUTED)
+    draw.rounded_rectangle((48, 154, 1308, 908), radius=16, fill="#EFF2F6")
+    observed = state.get("image")
+    if observed:
+        key = (observed["artifact"], "cad-first")
+        if key not in IMAGE_CACHE:
+            with Image.open(take / observed["artifact"]) as source:
+                picture = source.convert("RGB")
+                picture.thumbnail((1220, 686), Image.Resampling.LANCZOS)
+                IMAGE_CACHE[key] = picture.copy()
+        picture = IMAGE_CACHE[key]
+        canvas.paste(picture, (68 + (1220-picture.width)//2, 166 + (686-picture.height)//2))
+        draw.text((72, 867), observed["label"], font=ft(23), fill="#182D3D")
+    else:
+        draw.text((116, 424), "Establish the requirements.", font=ft(48), fill="#182D3D")
+        draw.text((116, 493), "CAD views appear when they are captured in this take.",
+                  font=ft(29), fill="#506679")
+    draw.rounded_rectangle((1340, 154, 1872, 908), radius=16, fill=PANEL)
+    draw.text((1368, 180), "RECORDED CLI EXCERPT", font=ft(23), fill=BLUE)
+    for number, line in enumerate(lines_for(state["body"], 23, 476)[:18]):
+        draw.text((1368, 227 + number*32), line, font=ft(23), fill=TEXT)
+    draw.text((1368, 831), state["status"], font=ft(22), fill=MUTED)
+    draw.text((1368, 868), "Complete commands and output in transcript", font=ft(19), fill=MUTED)
+    measured = state.get("measurements")
+    if measured:
+        values = measured["measurement_summary"]
+        status = str(values.get("status", "unknown")).upper()
+        gap = values.get("lateral_clearance_mm")
+        entries = [("MEASURED CHECKS", status, GREEN if status == "PASS" else GOLD),
+                   ("LATERAL CLEARANCE", f"{gap[0]:.2f} / {gap[1]:.2f} mm" if isinstance(gap, list) and len(gap) == 2 else "Not measured", TEXT),
+                   ("MODELED POLYMER", f"{values['polymer_mass_g']:.2f} g" if isinstance(values.get("polymer_mass_g"), (int, float)) else "Not measured", TEXT)]
+        for index, (label, value, color) in enumerate(entries):
+            x = 48 + index*428
+            draw.text((x, 932), label, font=ft(18), fill=MUTED)
+            draw.text((x, 960), value, font=ft(30), fill=color)
+        draw.text((1340, 939), f"Checks observed {clock(measured['t'])}", font=ft(20), fill=MUTED)
+    if observed:
+        draw.text((1340, 973), f"View SHA256 {observed['sha256'][:16]}", font=ft(18, True), fill=MUTED)
+    draw.rectangle((48, 1016, 1872, 1021), fill="#354858")
+    draw.rectangle((48, 1016, 48 + int(1824 * min(1, source_seconds / duration)), 1021), fill=BLUE)
+    draw.text((48, 1037), f"Source event {state.get('event_number', 0)} · synthetic subsystem · actual CLI event replay; no native desktop footage · physical qualification pending",
+              font=ft(21), fill=MUTED)
+    return canvas
+
+
 def caption(event):
     kind = event["kind"]
     if kind == "phase_started":
@@ -391,7 +449,7 @@ def subtitles(events, timeline):
     return "\n".join(output)
 
 
-def encode(take, output, events, timeline, ffmpeg, teaching=False):
+def encode(take, output, events, timeline, ffmpeg, teaching=False, layout="proof"):
     length = timeline.duration
     snapshots = states(events)
     times = [row[0] for row in snapshots]
@@ -408,7 +466,8 @@ def encode(take, output, events, timeline, ffmpeg, teaching=False):
                 source_second = timeline.source_at(second)
                 index = max(0, bisect_right(times, source_second) - 1)
                 state = snapshots[index][1]
-                image = render_frame(take, state, source_second, second, timeline.source_duration, teaching)
+                renderer = render_cad_frame if layout == "cad-first" else render_frame
+                image = renderer(take, state, source_second, second, timeline.source_duration, teaching)
                 process.stdin.write(image.tobytes())
             process.stdin.close()
             code = process.wait()
@@ -427,6 +486,7 @@ def main():
     parser.add_argument("--ffmpeg", default=shutil.which("ffmpeg"))
     parser.add_argument("--ffprobe", default=shutil.which("ffprobe"))
     parser.add_argument("--teaching-seconds", type=float, default=420)
+    parser.add_argument("--layout", choices=("proof", "cad-first"), default="proof")
     parser.add_argument("--check-only", action="store_true")
     args = parser.parse_args()
     take = args.take.resolve(strict=True)
@@ -462,7 +522,7 @@ def main():
     for name, timeline in (("full", full_timeline), ("teaching-cut", cut_timeline)):
         video = output / f"physical-engineering-{name}.mp4"
         print(f"Encoding {name}: {timeline.duration:.1f} seconds", flush=True)
-        encode(take, video, events, timeline, args.ffmpeg, teaching=name == "teaching-cut")
+        encode(take, video, events, timeline, args.ffmpeg, teaching=name == "teaching-cut", layout=args.layout)
         (output / f"physical-engineering-{name}.srt").write_text(subtitles(events, timeline))
         (output / f"chapters-{name}.txt").write_text("\n".join(
             f"{clock(timeline.video_at(row['source_seconds']))} {row['scene']} — {row['title']}" for row in chapters) + "\n")
@@ -508,6 +568,7 @@ def main():
                                  f"— source SHA-256 `{event['sha256']}`.")
     (output / "chapters.md").write_text("\n".join(chapter_links) + "\n")
     manifest = {"schema_version": 1, "recording_method": "Recorded Codex CLI event replay",
+                "layout": args.layout,
                 "native_desktop_capture": False, "source_capture": complete,
                 "source_duration_seconds": duration, "teaching_duration_seconds": cut_timeline.duration,
                 "teaching_target_seconds": args.teaching_seconds, "teaching_target_met": 360 <= cut_timeline.duration <= 480,

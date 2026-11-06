@@ -104,7 +104,7 @@ try {
       "import sys, importlib.metadata as m",
       "assert sys.version_info >= (3,14), 'Python 3.14 or newer is required'",
       "assert m.version('cad') == m.version('cad-server') == '0.10.3', 'Text-to-CAD 0.10.3 is required'",
-      "import build123d, OCP, cad.eng_drawing",
+      "import build123d, OCP, cad.eng_drawing, pypdf",
       "print('Runtime:', sys.version.split()[0], 'cad', m.version('cad'), 'build123d', m.version('build123d'))",
     ].join("\n")]);
   } catch (error) {
@@ -117,6 +117,11 @@ try {
     const copied = path.join(cold, "plugin");
     fs.cpSync(plugin, copied, { recursive: true });
     run(python, [path.join(copied, "scripts/engineering.py"), "--help"], { cwd: cold });
+    run(python, ["-I", "-S", "-c",
+      "import runpy, sys; sys.path.insert(0, sys.argv[1]); runpy.run_path(sys.argv[1] + '/engineering.py'); import cad_backend",
+      path.join(copied, "scripts")], { cwd: cold });
+    assert(!fs.existsSync(path.join(copied, "scripts/__pycache__")),
+      "Normal wrapper imports must not write bytecode into the installed package");
     console.log("Cold copied package CLI startup passed.");
   } finally {
     fs.rmSync(cold, { recursive: true, force: true });

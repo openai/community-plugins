@@ -1,6 +1,6 @@
 {
   "name": "physical-engineering",
-  "version": "0.1.0-preview.1",
+  "version": "0.1.0-preview.2",
   "description": "Build and measure a synthetic drone battery tray and electronics bridge, revise requirements, and reproduce a consistent CAD handoff.",
   "author": {
     "name": "Tony Loehr",

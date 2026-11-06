@@ -125,6 +125,13 @@ def _unknown(report, name, exc):
 
 
 def _cylinders(part):
+    """Read complete inward cylindrical bores, excluding bosses and edge rounds.
+
+    A cylindrical surface is not necessarily a hole. Rounded mounting pads have
+    convex cylinders and internal edge fillets have only a partial revolution.
+    Required bores still need their exact position, diameter and through span;
+    a missing or interrupted bore cannot satisfy the interface matcher.
+    """
     from OCP.BRepAdaptor import BRepAdaptor_Surface
     from OCP.GeomAbs import GeomAbs_Cylinder
     holes = []
@@ -141,6 +148,9 @@ def _cylinders(part):
         radial=probe-_kernel().Vector(point.X(),point.Y(),point.Z())
         radial=radial-direction_vector*radial.dot(direction_vector)
         inward=face.normal_at(.5,.5).dot(radial.normalized())<-.999999
+        angular_span=surface.LastUParameter()-surface.FirstUParameter()
+        if not inward or abs(angular_span-2*math.pi)>1e-5:
+            continue
         holes.append({"x_mm": point.X(), "y_mm": point.Y(),
                       "diameter_mm": 2*cylinder.Radius(),
                       "axis": [direction.X(), direction.Y(), direction.Z()],

@@ -44,6 +44,7 @@ pure-eval==0.2.4
 pygltflib==1.16.5
 pygments==2.21.0
 pyparsing==3.3.3
+pypdf==6.21.4
 python-dateutil==4.0.0
 requests==2.34.2
 scikit-learn==1.9.1

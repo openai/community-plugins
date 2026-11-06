@@ -2,9 +2,21 @@
 
 **A wider battery breaks the fit. Measure the failure, revise the parts, and rebuild the handoff.**
 
-This implementation candidate provides three Codex skills for a synthetic civilian drone subsystem: a printable battery tray and removable electronics bridge. Text-to-CAD creates and views the models. Independent geometry checks connect requirements to the selected STEP, print files, drawing and BOM.
+This implementation candidate provides three Codex skills for a synthetic civilian drone subsystem: a candidate FDM battery tray and removable electronics bridge. It preserves requirements, measures a failed fit, revises the two parts, and reproduces a consistent handoff. Text-to-CAD creates and views the models; a separate checker reads the actual exported geometry.
 
-The supported fixture is deliberately small. It demonstrates digital geometry and an engineering change. Physical printability, structural strength, electrical performance and flight are separate qualification work.
+The implemented workflow supports one parameterized fixture. It is useful for learning and reviewing requirement-preserving CAD changes; it does not synthesize arbitrary subsystems from a new engineering brief. Physical printability, structural strength, electrical performance and flight remain unqualified.
+
+## How the packages fit together
+
+| Package | Responsibility |
+| --- | --- |
+| Physical Engineering | This fixture's requirements, study history, geometry acceptance, failed-run evidence, drawing/BOM consistency and reproducible handoff |
+| Text-to-CAD | Separately installed CAD authoring, kernel operations, export and viewing; this package uses its pinned Python/CLI path |
+| Autodesk Fusion | The repository's separate licensed Autodesk desktop/cloud/CAM integration; this fixture does not connect to Fusion |
+
+Physical Engineering is a skills package with local executable helpers. It adds no MCP server or CAD account. See [the CAD design rationale](references/design-rationale.md) for the two-part architecture, measured interfaces and unresolved hardware choices.
+
+The tray uses rounded mounting pads, tapered arms, external gussets, floor relief and two strap-guide stations. The removable bridge has a rounded deck, circular posts and peripheral openings. These details make the mounting and service intent visible while keeping the fixture's interfaces; they do not establish strength, printability or strap retention.
 
 ## Install and prerequisites
 
@@ -74,11 +86,20 @@ Each study uses `study.json` as its authoritative record, `context.md` as a gene
 
 ## Requirements and measurement limits
 
-The [brief template](references/brief-template.md) records the supported fixture. Frame mounts start at 100 × 60 mm; the board mounts are 30 × 30 mm. Battery A is 100 × 35 × 25 mm and B is 100 × 40 × 25 mm. Lateral clearance is 0.5–1.0 mm per side. The modeled-polymer target is 100 g using the illustrative 1.25 g/cm³ density. Units are millimetres.
+The [brief template](references/brief-template.md) records the supported fixture. The CLI accepts exactly these requirement changes, each with a recorded reason:
+
+| Input | Supported values | What stays fixed |
+| --- | --- | --- |
+| Battery selection | A: 100 × 35 × 25 mm; B: 100 × 40 × 25 mm | Seating plane, insertion direction and 0.5–1.0 mm lateral clearance per side |
+| Frame X pitch | 100 or 110 mm | 60 mm Y pitch, four 3.2 mm mounting holes and attachment axes |
+
+The teaching sequence is A/100 → B/100 → B/110. A/110 is also supported; the geometry suite includes all four combinations, and its executed results establish their status. Board mounts remain 30 × 30 mm, maximum occupied envelope 140 × 90 × 60 mm, and modeled polymer at most 100 g using the illustrative 1.25 g/cm³ density. Units are millimetres. Other requirement edits are refused; a new geometry class requires a new fixture and an appropriate checker.
 
 Checks cover the declared interfaces, planar walls, support/contact and straight insertion path in the declared service state. They are not a universal CAD feature recognizer or a manufacturing certificate. Unresolved labels, invalid solids, kernel failures or incomplete measurements cannot pass. Mesh measurements and BRep measurements have different tolerances; neither silently substitutes for the other.
 
 Mass is a solid-material estimate, not a slicer prediction or measured printed mass. Purchased hardware and the retention strap are reported separately. No FEA, CFD, firmware, whole-aircraft design or flight claim is included.
+
+The mounting holes establish nominal interfaces, not a complete fastener specification. Screw lengths, engagement, washers, nut retention, tool access and installed hardware clearances need a physical assembly review. The battery insertion check assumes the retention strap is removed; it does not test a closed strap, retention force, abrasion or battery swelling. Slicing, fabrication and inert-surrogate bench checks are required before use. The [design rationale](references/design-rationale.md) lists these remaining checks and the reason for each.
 
 ## Data flow and permissions
 

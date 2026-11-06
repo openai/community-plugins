@@ -88,8 +88,10 @@ class StudyIntegrity(unittest.TestCase):
             (run / 'checks.json').write_text(json.dumps({'status': 'pass'}))
             return {'returncode': 124, 'stderr': 'timed out'}
         with mock.patch.dict('sys.modules', {'cad_backend': types.SimpleNamespace(run_cad=timeout)}):
+            stages = []
             with self.assertRaises(engineering.Refused):
-                engineering.run_checks(Path('/unused'), self.root / '.cad', run)
+                engineering.run_checks(Path('/unused'), self.root / '.cad', run, stages)
+            self.assertEqual(stages, [{'returncode': 124, 'stderr': 'timed out'}])
         with mock.patch.dict('sys.modules', {'cad_backend': types.SimpleNamespace(run_cad=mock.Mock())}):
             with self.assertRaises(engineering.Refused):
                 engineering.run_checks(Path('/unused'), self.root / '.cad', run)

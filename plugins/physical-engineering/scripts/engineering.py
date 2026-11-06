@@ -17,6 +17,10 @@ import sys
 import time
 import uuid
 
+# The installed package is immutable input. Local helper imports must not leave
+# interpreter-specific files there, even when the caller did not pass -B.
+sys.dont_write_bytecode = True
+
 PACKAGE = Path(__file__).resolve().parents[1]
 FIXTURE = PACKAGE / 'fixtures' / 'drone-module'
 SCHEMA = 1
@@ -237,7 +241,7 @@ def check_source(root, run):
         raise Refused('Editable source changed after its export; build again before verify or handoff')
 
 
-def run_checks(runtime, state_root, run):
+def run_checks(runtime, state_root, run, stages=None):
     from cad_backend import run_cad
     output = relative(run, 'checks.json')
     if output.exists():
@@ -245,6 +249,10 @@ def run_checks(runtime, state_root, run):
     args = ['run', str(PACKAGE / 'scripts' / 'verify_geometry.py'), str(run / 'exports' / 'assembly.step'),
             str(run / 'requirements.json'), '--out', str(run / 'checks.json'), '--print-dir', str(run / 'exports')]
     result = run_cad(runtime, state_root, args, run)
+    # Preserve diagnostics even if the process times out, crashes, or returns an
+    # incomplete report. A failed invocation is still part of the run evidence.
+    if stages is not None:
+        stages.append(result)
     if result['returncode'] not in (0, 1, 2):
         raise Refused('Geometry checker process failed: ' + str(result['returncode']))
     if not output.is_file() or output.is_symlink():
@@ -270,9 +278,18 @@ def run_checks(runtime, state_root, run):
     return checks, result
 
 
-def check_drawing(run, revision, checks):
+def check_drawing(run, revision, checks, runtime=None, stages=None):
+    """Check actual selectable PDF callouts plus the independent JSON readback.
+
+    Text-to-CAD outlines its dimension-line lettering. The drawing adds a visible
+    measured block for this machine check; the outlined views still need visual
+    review. Parsing text is not a general proof of legibility or graphic fidelity.
+    """
     pdf = relative(run, 'exports/module-drawing.pdf')
-    if not pdf.is_file() or not pdf.read_bytes().startswith(b'%PDF-'):
+    if not pdf.is_file() or not 100 <= pdf.stat().st_size <= 25_000_000:
+        raise Refused('Dimensioned PDF is missing or invalid')
+    data = pdf.read_bytes()
+    if not data.startswith(b'%PDF-') or not data.rstrip().endswith(b'%%EOF'):
         raise Refused('Dimensioned PDF is missing or invalid')
     drawing = read_json(relative(run, 'exports/drawing-dimensions.json'))
     if drawing.get('revision') != revision or drawing.get('units') != 'mm':
@@ -289,6 +306,100 @@ def check_drawing(run, revision, checks):
                 raise Refused(f'Drawing {label} {key} disagrees with geometry')
         if compare_values(measured[pitch], part.get('primary_pitch_mm')):
             raise Refused(f'Drawing {label} interface disagrees with geometry')
+    check_values = {item['id']: item.get('actual') for item in checks['checks']}
+    hole_diameters = {}
+    for label, interface in (('tray', 'frame'), ('bridge', 'board')):
+        hole_diameters[label] = []
+        for field, group in (('primary_hole_diameter_mm', f'{interface}_interface'),
+                             ('attachment_hole_diameter_mm', f'{label}_attachment_interface')):
+            holes = check_values.get(group)
+            if not isinstance(holes, list) or len(holes) != 4:
+                raise Refused(f'Drawing {label} lacks four measured interface bores')
+            diameter = holes[0]['diameter_mm']
+            if any(compare_values(diameter, hole['diameter_mm']) for hole in holes):
+                raise Refused(f'Drawing {label} hole group has inconsistent diameters')
+            if compare_values(diameter, drawing['parts'][label].get(field)):
+                raise Refused(f'Drawing {label} {field} disagrees with geometry')
+            hole_diameters[label].append(diameter)
+    # The CLI wrapper remains stdlib-only. Parse with the same isolated, pinned
+    # runtime that built the CAD, never with a global pypdf installation.
+    from cad_backend import executable, sanitize
+    command = [str(executable(Path(runtime or sys.prefix), 'python')), '-I', '-B',
+               str(PACKAGE / 'scripts/pdf_readback.py'), str(pdf)]
+    started = time.monotonic()
+    try:
+        process = subprocess.run(command, cwd=run, capture_output=True, text=True,
+                                 timeout=30, check=False)
+        code, stdout, stderr = process.returncode, process.stdout, process.stderr
+    except subprocess.TimeoutExpired as error:
+        code, stdout, stderr = 124, error.stdout or '', error.stderr or ''
+        if isinstance(stdout, bytes):
+            stdout = stdout.decode(errors='replace')
+        if isinstance(stderr, bytes):
+            stderr = stderr.decode(errors='replace')
+        stderr += '\nPDF readback timed out.'
+    except OSError as error:
+        code, stdout, stderr = 127, '', str(error)
+    record = {'stage': 'pdf_readback', 'command': [sanitize(arg) for arg in command],
+              'returncode': code, 'stdout': sanitize(stdout), 'stderr': sanitize(stderr),
+              'elapsed_seconds': round(time.monotonic() - started, 3)}
+    if stages is not None:
+        stages.append(record)
+    if code != 0:
+        raise Refused('Dimensioned PDF cannot be parsed or its callouts cannot be read; see pdf_readback stage')
+    try:
+        document = json.loads(stdout)
+        if document.get('schema') != 1 or document.get('status') != 'pass':
+            raise ValueError('Invalid PDF readback result')
+        if document['encrypted'] or document['page_count'] != 2 or len(document['pages']) != 2:
+            raise Refused('Drawing must contain two unencrypted A3 part pages')
+        pages = []
+        for page in document['pages']:
+            if (abs(page['width_pt'] - 420 * 72 / 25.4) > .1 or
+                abs(page['height_pt'] - 297 * 72 / 25.4) > .1):
+                raise Refused('Drawing pages must remain A3 landscape')
+            if not page['has_contents']:
+                raise Refused('Drawing page has no content')
+            if not isinstance(page['text'], str):
+                raise ValueError('Invalid PDF text readback')
+            pages.append(page['text'])
+    except Refused:
+        raise
+    except (ValueError, KeyError, TypeError) as error:
+        raise Refused('Dimensioned PDF readback result is invalid') from error
+    number = r'([-+]?(?:\d+(?:\.\d*)?|\.\d+))'
+    for text, label, interface in zip(pages, ('tray', 'bridge'), ('frame', 'board')):
+        if text.count('MEASURED STEP READBACK') != 1:
+            raise Refused(f'Drawing {label} lacks one readable measured-dimension block')
+        identities = re.findall(r'PART: ([A-Z]+) REVISION: (R[0-9]+) UNITS: ([A-Z]+)', text)
+        if identities != [(label.upper(), revision, 'MM')]:
+            raise Refused(f'Drawing PDF {label} identity, revision or units disagree with selected geometry')
+
+        def dimension(pattern, values, description):
+            matches = re.findall(pattern, text)
+            if len(matches) != 1:
+                raise Refused(f'Drawing PDF {label} is missing or repeats {description}')
+            found = matches[0] if isinstance(matches[0], tuple) else (matches[0],)
+            if compare_values([float(value) for value in found], list(values)):
+                raise Refused(f'Drawing PDF {label} {description} disagrees with geometry')
+
+        dimension(r'OVERALL XYZ: ' + number + r' X ' + number + r' X ' + number + r' MM',
+                  measured['parts'][label]['bounds_mm'], 'overall dimensions')
+        dimension(interface.upper() + r' PITCH XY: ' + number + r' X ' + number + r' MM',
+                  measured[f'{interface}_pitch_mm'], 'mounting pitch')
+        dimension(interface.upper() + r' HOLES: (\d+) X DIA ' + number + r' MM THRU',
+                  [4, hole_diameters[label][0]], 'primary hole callout')
+        dimension(r'BRIDGE ATTACHMENT HOLES: (\d+) X DIA ' + number + r' MM THRU',
+                  [4, hole_diameters[label][1]], 'attachment hole callout')
+        walls = measured['wall_thickness_mm']
+        if label == 'tray':
+            dimension(r'CAVITY WIDTH: ' + number + r' MM', [measured['cavity_width_mm']], 'cavity width')
+            dimension(r'DECLARED WALLS: FLOOR ' + number + r' / LEFT ' + number +
+                      r' / RIGHT ' + number + r' / BACK ' + number + r' MM',
+                      [walls[name] for name in ('tray_floor', 'tray_left_rail', 'tray_right_rail', 'tray_backstop')],
+                      'declared wall thicknesses')
+        else:
+            dimension(r'DECK THICKNESS: ' + number + r' MM', [walls['bridge_deck']], 'deck thickness')
 
 
 def report(run, revision, checks):
@@ -314,7 +425,7 @@ def make_bom(run, revision, checks):
         for label in ('tray', 'bridge'):
             volume = parts.get(label, {}).get('volume_mm3')
             out.writerow([revision, label, 1, f'exports/{label}.stl', '' if volume is None else round(volume*density/1000, 5), 'Print orientation reviewed separately'])
-        for label, quantity, notes in [('M3 frame fastener set', 4, 'Length selected to suit host frame; frame not part of fixture'), ('M3 bridge fastener set', 4, 'Through 30 mm bridge and 3 mm tray; check hardware engagement'), ('M3 board fastener set', 4, 'Through 2 mm board and 3 mm deck; check hardware engagement'), ('Retention strap', 1, 'Around tray near x=-30 mm; released for insertion')]:
+        for label, quantity, notes in [('M3 frame fastener set', 4, 'Length selected to suit host frame; frame not part of fixture'), ('M3 bridge fastener set', 4, 'Through 30 mm bridge and 3 mm tray; check hardware engagement'), ('M3 board fastener set', 4, 'Through 2 mm board and 3 mm deck; check hardware engagement'), ('12 mm retention strap', 2, 'At x=-34 and +34 mm through 13 x 3.5 mm guide slots; verify webbing thickness, routing and closure physically; released for insertion')]:
             out.writerow([revision, label, quantity, 'purchased', '', notes])
 
 
@@ -350,8 +461,7 @@ def execute_run(root, runtime, mode='build', refresh_design=True):
         else:
             (run / 'exports').mkdir()
             copy_tree(previous / 'exports', run / 'exports')
-        checks, stage = run_checks(runtime, relative(root, '.cad'), run)
-        stages.append(stage)
+        checks, _ = run_checks(runtime, relative(root, '.cad'), run, stages)
         verify_hashes(run, frozen_inputs)
         if hashes(run / 'src') != {name[4:]: value for name, value in frozen_inputs.items() if name.startswith('src/')}:
             raise Refused('Frozen source file set changed during the run')
@@ -360,7 +470,7 @@ def execute_run(root, runtime, mode='build', refresh_design=True):
             raise Refused('Checker or reference fixture changed during the run')
         if checks['status'] in ('pass', 'fail') and checks.get('measurements', {}).get('parts'):
             check_drawing(run, old_manifest['requirement_revision'] if mode == 'verify' else req['id'],
-                          read_json(previous / 'checks.json') if mode == 'verify' else checks)
+                          read_json(previous / 'checks.json') if mode == 'verify' else checks, runtime, stages)
         report(run, req['id'], checks)
         make_bom(run, req['id'], checks)
     except Exception as exc:
@@ -433,7 +543,7 @@ def handoff(root, runtime):
     for name in ('LICENSE', 'THIRD_PARTY_NOTICES.md'):
         if (PACKAGE / name).is_file():
             shutil.copy2(PACKAGE / name, destination / 'runtime' / name)
-    (destination / 'assembly-notes.md').write_text('# Assembly and service notes\n\nSynthetic civilian drone subsystem. Fabricate and bench-test before use.\n\n1. Review the tray and bridge drawing, print orientation, supports and fit allowances. The bridge is exported in assembly coordinates; place its deck on the build plate in the slicer.\n2. Fit the tray to the declared frame pattern with four M3 fastener sets. Select hardware for the actual frame.\n3. Attach the bridge at its four support pillars, then attach the inert board surrogate.\n4. Release the strap near x=-30 mm and slide the inert battery surrogate in along +X. Close retention after seating.\n5. Check retention, clearances, mass and service access physically. No load, thermal, electrical or flight qualification is provided.\n\nPurchased hardware mass and fastener engagement remain physical checks.\n')
+    (destination / 'assembly-notes.md').write_text('# Assembly and service notes\n\nSynthetic civilian drone subsystem. Fabricate and bench-test before use.\n\n1. Review the tray and bridge drawing, print orientation, supports and fit allowances. The bridge is exported in assembly coordinates; place its deck on the build plate in the slicer.\n2. Fit the tray to the declared frame pattern with four M3 fastener sets. Select hardware for the actual frame.\n3. Attach the bridge at its four support pillars, then attach the inert board surrogate.\n4. Release both straps at x=-34 and +34 mm and slide the inert battery surrogate in along +X. Route nominal 12 mm webbing through the paired 13 x 3.5 mm guide slots and close retention after seating. Check the actual strap thickness, bend clearance, closure and frame underside access; the strap is not a modeled qualified component.\n5. Check retention, clearances, mass and service access physically. No load, thermal, electrical or flight qualification is provided.\n\nPurchased hardware mass and fastener engagement remain physical checks.\n')
     (destination / 'reproduce.sh').write_text('#!/bin/sh\nset -eu\nPE_BUNDLE=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)\n: "${PE_RUNTIME:?Set PE_RUNTIME to a dedicated pinned Text-to-CAD venv}"\n: "${1:?Pass a new empty destination study directory}"\nexec "$PE_RUNTIME/bin/python" "$PE_BUNDLE/runtime/scripts/engineering.py" reproduce "$PE_BUNDLE" "$1" --runtime "$PE_RUNTIME"\n')
     receipt = {'schema': SCHEMA, 'selected_run': run.name, 'requirement_revision': manifest['requirement_revision'],
                'units': 'mm', 'tool_versions': manifest['tool_versions'], 'package_hashes': manifest['package_hashes'],

@@ -5,7 +5,7 @@ receipt for a completed recording, installed session, independent review or rele
 
 | Component | Candidate |
 | --- | --- |
-| Physical Engineering | 0.1.0-preview.1 |
+| Physical Engineering | 0.1.0-preview.2 |
 | CAD dependency | Text-to-CAD `cad` and `cad-server` 0.10.3 |
 | Inspected upstream source | `4d42cb0bd9a61b46254bc8cf9bd9ae1f45c3295b` |
 | Python | 3.14 |

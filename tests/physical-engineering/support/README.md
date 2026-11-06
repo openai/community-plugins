@@ -91,8 +91,13 @@ the operator invokes `phase`.
    ```bash
    python3 record_cli.py finish --take "$PE_TAKE"
    "$PE_RUNTIME/bin/python" render_replay.py --take "$PE_TAKE" \
-     --output "$PE_MEDIA"
+     --output "$PE_MEDIA" --layout cad-first
    ```
+
+The optional `--layout cad-first` gives the captured CAD image most of the frame,
+with a smaller actual CLI excerpt and measured-result strip. The default `proof`
+layout remains available. Layout changes do not alter events, timing or source
+artifacts.
 
 Outputs include a 1920×1080 full MP4, teaching MP4, event captions (SRT), searchable
 transcript, chapter timestamps, actual observed artifacts and a hash manifest.
