@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
 import { spawn } from "node:child_process";
 import { validateEvidence } from "./evidence.mjs";
+import { validateConstruction } from "./construction.mjs";
 const here = path.dirname(fileURLToPath(import.meta.url));
 const opts = { mode: "preview", fps: "24" };
 for (let i = 2; i < process.argv.length; i += 2) {
@@ -23,6 +24,7 @@ fs.mkdirSync(output, { recursive: true });
 const sha = (b) => crypto.createHash("sha256").update(b).digest("hex");
 const evidence = validateEvidence(assets);
 const manifest = evidence.manifest;
+const construction = validateConstruction(assets, manifest);
 const manifestBytes = fs.readFileSync(path.join(assets, "manifest.json"));
 const mime = {
   ".html": "text/html",
@@ -104,7 +106,9 @@ if (opts.mode === "serve") {
       fps = Number(opts.fps);
     if (!Number.isFinite(fps) || fps < 1 || fps > 60)
       throw Error("Invalid fps");
-    const previewTimes = [0.8, 6, 17, 30, 42, 56, 70, 76, 87, 101, 115];
+    const previewTimes = [
+      0.8, 6, 12, 14, 17, 20, 22, 25, 29, 34, 42, 54, 65, 76, 84, 94, 103, 115,
+    ];
     const states = [];
     for (const t of previewTimes) {
       const state = await page.evaluate((t) => window.seekShowcase(t), t);
@@ -187,6 +191,7 @@ if (opts.mode === "serve") {
             width: 1920,
             height: 1080,
             manifest_sha256: sha(manifestBytes),
+            construction_manifest_sha256: construction.manifestSha256,
             video_sha256: sha(fs.readFileSync(movie)),
             source_sha256: Object.fromEntries(
               ["index.html", "showcase.mjs", "render.mjs"].map((f) => [

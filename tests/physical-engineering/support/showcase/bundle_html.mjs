@@ -15,6 +15,6 @@ export function buildOfflineHtml(template, data, javascript) {
     )
     .replace(
       "</head>",
-      '<meta name="description" content="Physical Engineering: from a battery change to a verified CAD handoff."></head>',
+      '<meta name="description" content="Physical Engineering: from the brief to a checked CAD handoff."></head>',
     );
 }

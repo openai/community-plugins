@@ -98,7 +98,11 @@ try {
   }
   console.log(`Physical Engineering package checks passed (${files.length} files, 3 skills).`);
 
-  run(process.execPath, ["--test", path.join(suite, "unit/showcase.test.mjs")], { stdio: "inherit" });
+  const nodeTests = fs.readdirSync(path.join(suite, "unit"))
+    .filter((name) => name.endsWith(".test.mjs")).sort()
+    .map((name) => path.join(suite, "unit", name));
+  assert(nodeTests.length > 0, "No presentation tests discovered");
+  run(process.execPath, ["--test", ...nodeTests], { stdio: "inherit" });
 
   let probe;
   try {

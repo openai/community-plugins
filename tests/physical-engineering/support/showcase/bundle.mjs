@@ -5,6 +5,7 @@ import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
 import { build } from "esbuild";
 import { validateEvidence } from "./evidence.mjs";
+import { validateConstruction } from "./construction.mjs";
 import { buildOfflineHtml } from "./bundle_html.mjs";
 const here = path.dirname(fileURLToPath(import.meta.url));
 const args = {};
@@ -13,10 +14,15 @@ for (let i = 2; i < process.argv.length; i += 2)
 if (!args.assets || !args.audio || !args.captions || !args.output)
   throw Error("Use --assets DIR --audio WAV --captions JSON --output HTML");
 const { manifest, manifestSha256 } = validateEvidence(args.assets);
+const construction = validateConstruction(args.assets, manifest);
 const data = {
   manifest,
+  construction: construction.manifest,
   meshes: Object.fromEntries(
-    Object.values(manifest.meshes).map((m) => [
+    [
+      ...Object.values(manifest.meshes),
+      ...Object.values(construction.manifest.stages),
+    ].map((m) => [
       m.path,
       fs.readFileSync(path.join(args.assets, m.path)).toString("base64"),
     ]),
@@ -46,6 +52,7 @@ console.log(
     bytes: Buffer.byteLength(html),
     sha256: createHash("sha256").update(html).digest("hex"),
     manifest_sha256: manifestSha256,
+    construction_manifest_sha256: construction.manifestSha256,
     offline: true,
   }),
 );

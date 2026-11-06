@@ -1,14 +1,15 @@
-# Animated engineering-change showcase
+# CAD construction and engineering-change showcase
 
-This repository companion presents the drone fixture's engineering change in
-two minutes: understand the parts, change the battery, expose the failed fit,
-revise the tray, and deliver a verified CAD handoff. Codex preserves the
-requirements and failed run; a separate checker measures the delivered exports.
+This two-minute repository companion follows brief → build → check → adapt →
+deliver. Start with the battery, board and mounting requirements, build the tray
+and bridge through actual source operations, then check the assembled fit. A
+wider battery exposes a failed fit; the revised tray preserves the mounting
+interfaces and leads to a verified CAD handoff. Codex preserves the requirements
+and failed run; a separate checker measures the delivered exports.
 
-The earlier CLI replay contains the real work, including setup and waits. Its
-long opening and sparse visual explanation make the cause of the fit failure
-hard to follow. This presentation gives that causal story a deliberate camera,
-readable section views and one measurement at a time. Use it before the live
+The earlier CLI replay contains the observed work, including setup and waits.
+This presentation explains the construction and fit change with a deliberate
+camera, readable section views and one measurement at a time. Use it before the live
 exercise in the [demo runbook](../../../../docs/physical-engineering-demo-runbook.md).
 The closing introduces that next live exercise: change the battery requirement,
 inspect the failed fit and generate the revised handoff. Keep the spoken story
@@ -16,8 +17,10 @@ and on-screen copy focused on that progression. Provenance, runtime details and
 physical qualification belong in this companion material and the release
 receipts. The primer has no LIVE indicator or claim of real-time execution.
 
-The animation is a later explanation of existing evidence. It is not a new CLI
-recording, a new CAD qualification, or proof of physical performance. The
+The animation is a later explanation of qualified source and saved workflow
+evidence. Its construction stages are newly derived from that original source;
+any fresh original-CLI cross-check has separate receipts. It is not a continuous
+CLI recording, a new CAD qualification, or proof of physical performance. The
 qualified plugin and frozen run files remain unchanged. The implemented plugin
 supports one parameterized fixture; a different geometry class needs its own
 model and checker.
@@ -32,6 +35,7 @@ versions, mesh bounds, volume comparisons and display transforms.
 
 | Visible element | Source and meaning |
 | --- | --- |
+| Tray and bridge construction | Real intermediate solids captured after original model operations; final solids are compared with baseline STEP, while intermediate parts remain incomplete explanations |
 | A and B tray/bridge | Exact manufacturing STL bytes copied from their frozen runs; bounds and volume are compared with the corresponding STEP |
 | Battery and board | Synthetic envelope solids from the requirement snapshot; no purchased component or electronics detail is implied |
 | Pink seated interference | Actual Boolean intersection of the unchanged assembly STEP with battery B's seated envelope; its volume must agree with the recorded failed check |
@@ -107,6 +111,58 @@ showcase uses the actual reproduced meshes and therefore needs that evidence.
 Inspect the generated `manifest.json` and `qa.json` before rendering. A passing
 asset receipt establishes the stated numeric/provenance checks, not visual
 clarity or a new execution of the engineering workflow.
+
+## Derive genuine construction stages
+
+After preparing the main assets, run the construction helper against the same
+explicit baseline. It needs the existing `manifest.json` but refuses any
+existing construction mesh or `construction-manifest.json`, so use a fresh
+asset directory for another attempt.
+
+```sh
+"$PE_RUNTIME/bin/python" "$PE_SHOWCASE/prepare_construction.py" \
+  --study "$PE_STUDY" \
+  --baseline-run "$PE_BASELINE_RUN" \
+  --assets "$PE_ASSETS"
+```
+
+The default repository is the helper's repository; pass `--repo` explicitly
+when needed. The helper checks the selected run's hashes and compares its
+`src/model.py` with the qualified Git commit. Its checkpoint map supports the
+qualified model with SHA256
+`ab5d870b60273b86452621fa128ac4714578a2f42429a853f0c7be7543ba6628`.
+It fails on a different source layout rather than guessing where to insert
+construction checkpoints.
+
+The helper removes only the `@model` document decorators and their import from
+an in-memory AST copy, then inserts snapshot callbacks after existing top-level
+operations. It executes the original tray and bridge bodies with the frozen
+design snapshot. It does not reimplement the shapes, launch a CAD server or
+change the installable plugin. The ordered output is:
+
+| Part | Construction meshes, in order |
+| --- | --- |
+| Tray | `tray-01-base.stl`, `tray-02-mounts-seats.stl`, `tray-03-strap-guides.stl`, `tray-04-rails-gussets.stl`, `tray-05-final.stl` |
+| Bridge | `bridge-01-deck.stl`, `bridge-02-posts.stl`, `bridge-03-final.stl` |
+
+`construction-manifest.json` augments the unchanged main manifest. It binds to
+the main manifest SHA, baseline run, qualified commit and model/design/STEP
+hashes. Each stage records its original source-line span, operation hash,
+mesh hash, actual CAD volume/bounds, tessellation readback and identity pose.
+Final raw solids must match the baseline STEP within 0.001 mm³ for volume and
+Boolean symmetric difference, and 0.00001 mm for bounds. Intermediate solids
+are valid construction checkpoints, not parts that passed every fixture check.
+
+The renderer and bundler call
+`validateConstruction(assetsDirectory, baselineManifest)` from
+`construction.mjs`, after the main `validateEvidence` check. The result is
+`{ manifest, manifestSha256, stageCount, assetHashes }`. This checks byte
+integrity, source linkage, exact checkpoint order, poses, finite metrics and
+fixed comparison limits. It does not rerun CAD or authenticate unsigned JSON.
+Native Boolean results come from the executed helper receipt. Construction
+timings describe that derivation, not a live-screen recording or the duration
+of a Codex session. Preserve a separate init/build/verify receipt when running
+a fresh original-CLI cross-check, and distinguish it from recorded Codex work.
 
 ## Preview, serve and render
 

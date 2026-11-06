@@ -10,7 +10,7 @@ npm run test:physical-engineering
 ```
 
 The master validates the installed package layout, metadata, local references and
-absence of generated/private files, runs the Node showcase checks, launches a
+absence of generated/private files, runs every Node `unit/*.test.mjs` file, launches a
 cold copy's CLI, then runs all Python `test_*.py` cases. It requires Python 3.14 and the actual Text-to-CAD CAD
 kernel dependencies; a missing runtime is an error with setup guidance.
 
@@ -60,6 +60,16 @@ presentation dependencies. They run through the same master command; they do
 not establish that a video was rendered or visually reviewed. The optional
 [showcase build](support/showcase/README.md) has separate executed render,
 offline playback, media decode and visual review receipts.
+
+`unit/construction.test.mjs` covers the separate construction evidence contract:
+binding to the original baseline manifest and model/design/STEP hashes, exact
+source checkpoints, mesh hashes and safe paths, identity poses, finite geometry
+metadata, monotonic derivation times, and final source-to-STEP comparison limits.
+Negative fixtures reject changed bytes, symlinks, stale source links, missing
+stages and weakened tolerances. These are pure Node consistency tests with
+synthetic bytes; they do not execute CAD. The optional construction helper's
+actual AST execution and native Boolean comparison require their own retained
+receipt, and intermediate solids are not acceptance-qualified fixture parts.
 
 Separate acceptance gates:
 

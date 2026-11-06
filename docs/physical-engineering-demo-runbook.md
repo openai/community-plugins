@@ -1,11 +1,11 @@
 # Physical Engineering: showcase, live exercise and evidence
 
-**The battery changed. Update the design without losing the requirements.**
+**Start with a brief. Build, check and revise the design in Codex.**
 
-Start with the **two-minute narrated CAD explanation**, then run the bounded
-fixture exercise live. Keep the full recorded CLI replay and evidence available
-for inspection. The short explanation makes the causal change visible before
-the audience encounters setup, waits or detailed logs.
+Start with the **two-minute narrated CAD explanation**, then build the bounded
+fixture live from a new study. The story begins with the brief, creates the
+tray and bridge, checks the fit, then introduces a wider battery. Keep the full
+recorded CLI replay and evidence available for inspection.
 
 This runbook accompanies the [implementation candidate](../plugins/physical-engineering/README.md).
 It defines presentation and session acceptance; executed receipts establish
@@ -18,11 +18,11 @@ battery A or B and a 100 or 110 mm frame X pitch. Teach the broader method of
 preserving interfaces, measuring a failure and rebuilding a traceable handoff;
 another geometry class requires its own model and acceptance checks.
 
-## Present the two-minute engineering change
+## Present the two-minute build and revision
 
 Use the reviewed narrated animation as the opening explanation. Its large CAD
-views, sections and annotations answer one question at a time: what changed,
-why does the old design fail, and what did Codex preserve while revising it?
+views, sections and annotations answer one question at a time: what should be
+built, does it meet the brief, and what changes when the battery gets wider?
 The [showcase build guide](../tests/physical-engineering/support/showcase/README.md)
 describes the renderer, asset provenance and release checks. Select the actual
 reviewed media from the delivery index; generated video is not bundled with the
@@ -30,26 +30,30 @@ plugin or this runbook.
 
 | Time | Explain and show |
 | --- | --- |
-| 0–9 s | Hook: a battery grows 5 mm wider while the mounting interfaces must hold |
-| 9–23 s | Explode the two printed parts; identify the battery, board, tray and electronics bridge |
-| 23–36 s | Keep the 100 × 60 mm frame and 30 × 30 mm board patterns in view |
-| 36–49 s | Change the battery requirement from A: 35 mm to B: 40 mm; retain the old tray |
-| 49–64 s | Show its actual interference and −1.75 mm clearance per side; preserve the failed run |
-| 64–80 s | Switch to the revised tray: 41.5 mm cavity and +0.75 mm clearance per side, with fixed mounts |
-| 80–93 s | Explain the declared insertion state and checks on delivered STEP/STL/drawing outputs |
-| 93–109 s | Show the verified CAD handoff: editable source, STEP/STL, drawings and bill of materials |
-| 109–120 s | Introduce the next live exercise: change the battery requirement, inspect the failed fit and generate the revised handoff |
+| 0–10 s | Start with an empty study and a brief: battery tray, removable electronics bridge and fixed mounts |
+| 10–23 s | Build the tray, showing actual construction geometry and its battery, mounting and strap features |
+| 23–36 s | Add the bridge and assemble both parts; retain the 100 × 60 mm frame and 30 × 30 mm board patterns |
+| 36–48 s | Check battery A against the completed baseline: 36.5 mm cavity and +0.75 mm clearance per side |
+| 48–59 s | Change the battery width from 35 to 40 mm; check the unchanged tray first |
+| 59–72 s | Show the interference and −1.75 mm clearance per side; preserve the failed check |
+| 72–88 s | Widen the cavity to 41.5 mm, restoring +0.75 mm clearance while keeping the mounts fixed |
+| 88–109 s | Check the insertion path and exports; deliver the source, CAD, drawing and BOM; show the source rebuild matching measured geometry |
+| 109–120 s | Introduce the live exercise: build in Codex from the brief to the checked handoff |
 
 These numbers describe the selected reference fixture. Read a future run's
 measurements before using the same callouts. Make Codex's role explicit: it
-preserves requirements and failure evidence, rebuilds the model, runs a separate
-export checker, and packages the editable design and its checked deliverables.
+creates the study from the brief, builds the model, measures its exports,
+preserves the changed requirement and failed check, and packages the revised
+design with its checked deliverables. Keep one headline and one supporting
+measurement per scene; use narration to explain cause and result.
 
-The animation is a later explanation built from frozen CAD exports. Its sections
-come from actual CAD intersections; battery/board solids are requirement
-envelopes. It leaves the qualified plugin and original run bytes unchanged and
-does not constitute new footage or new CAD qualification. Keep that provenance
-and the runtime/physical qualification details in the companion material and
+The animation explains recorded CAD work. A construction reveal must use the
+actual model operations or actual intermediate geometry, with the new study and
+build identified in the release receipt. Its sections come from actual CAD
+intersections; battery/board solids are requirement envelopes. Preserve earlier
+qualified plugin and run bytes. The animation itself is not new live footage
+or evidence of CAD qualification. Keep provenance and runtime/physical
+qualification details in the companion material and
 receipts. The spoken and on-screen story leads to the next live exercise;
 the primer has no LIVE badge or real-time execution claim. The build guide
 records world coordinates, identity mesh transforms and every derived asset's
@@ -60,7 +64,7 @@ source, including the actual separate rebuild supporting the verified handoff.
 | Format | Material | Participant outcome |
 | --- | --- | --- |
 | 10-minute introduction | Two-minute explanation, actual failed/corrected checkpoint, discussion | Explain the fit failure and trace the correction to a measurement |
-| 30-minute guided session | Explanation, labeled baseline checkpoint, live scenes C–D and handoff inspection | Diagnose the failure, rebuild and inspect the actual delivered files |
+| 30–45 minute guided session | Explanation, empty study, live brief/build/check/change/revision and handoff | Build from the brief, diagnose the failure and inspect the checked deliverables |
 | 60–90 minute hands-on lab | Explanation, empty study, live scenes A–E and transfer exercise | Run and explain the complete bounded engineering-change workflow |
 
 These are facilitation budgets. Adjust after rehearsal. A resumed checkpoint
@@ -74,11 +78,14 @@ videos stay outside the installed package.
 
 ## Run the bounded fixture live
 
-Preflight the runtime before the audience arrives. In a short session, identify
-the saved baseline checkpoint and resume it visibly. Change only the battery
-requirement, verify the unchanged tray, then rebuild and verify the correction.
-Show the failure and two measured clearances alongside the actual CAD. Inspect
-the regenerated drawing and one handoff file before opening detailed logs.
+Preflight the runtime before the audience arrives, then start the live exercise
+in a new study. Use an unused path such as
+`work/physical-engineering/live-from-brief`; rehearse in a different directory.
+Show the brief, build the tray and bridge, and measure the exported baseline.
+Then change only the battery width, check the unchanged tray, and revise it
+without relaxing the requirements. Show the failed and corrected clearances
+alongside the CAD, then inspect the delivered drawing and source rebuild.
+Runtime installation may be prepared; the live design is built during the exercise.
 
 The supported transfer changes the frame X pitch to 110 mm. It does not ask the
 plugin to invent a different drone, arbitrary hardware or a new subsystem. Use
@@ -115,10 +122,11 @@ the official take. Keep exact recorded assets immutable and maintain the separat
 Use engineer-subsystem to start a drone-module study in
 [EMPTY_STUDY_DIRECTORY].
 
-Verify the installed plugin/ref and Text-to-CAD version. Use the bundled
-synthetic fixture and battery A. Show the frame/board interfaces, battery
-envelope, lateral clearance, insertion state/path, planar-wall requirements,
-material assumption and mass target.
+Verify that the study is new and confirm the installed plugin/ref and
+Text-to-CAD version. Use the drone-module fixture with battery A:
+100 × 35 × 25 mm. Keep the frame pattern at 100 × 60 mm, the board pattern
+at 30 × 30 mm and clearance at 0.5–1.0 mm per side. Preserve the fixture's
+other acceptance requirements. Show a compact requirements table.
 
 Write study.json and the generated context.md. Preserve fixture values.
 Record missing capabilities or conflicting requirements before proceeding.
@@ -175,7 +183,7 @@ geometry against the new requirements.
 
 Use prepare-engineering-handoff to regenerate assembly STEP, individual
 print files, dimensioned PDF, BOM and assembly notes. Show original versus
-revised fit and mass measurements and the drawing/BOM changes.
+revised clearance, unchanged mounts and the drawing/BOM changes.
 
 Re-read delivered geometry and inspect the PDF. Confirm every artifact
 belongs to the selected run. Package editable source, frozen requirements,
