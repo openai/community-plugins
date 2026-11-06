@@ -1,52 +1,57 @@
 ---
 name: engineer-subsystem
-description: Create or resume the bundled synthetic drone-module study, preserve its requirements, and build or revise the battery tray and electronics bridge through Text-to-CAD.
+description: Turn a mechanical design brief into a saved CAD study, author or revise its model, and preserve requirements and failed measurements through Text-to-CAD.
 ---
 
 # Engineer a subsystem
 
-Use this skill for the supported drone-module fixture and its battery or frame-pitch
-changes. Read [the brief](../../references/brief-template.md) and
-[compatibility](../../references/compatibility.md). Runtime assets resolve from
-this installed plugin, not the repository working directory.
+Use this workflow for a new mechanical part or the bundled drone assembly.
+Read [the brief](../../references/brief-template.md) and
+[compatibility](../../references/compatibility.md). Resolve the plugin root two
+directories above this skill; assets must work from the installed package.
 
-## Start or resume
+## Establish the study
 
-1. Resolve the plugin root two directories above this skill directory. Use its
-   `scripts/engineering.py` CLI. Inspect `--help` when command details differ.
-2. Use the user's selected study directory. For a new study, require an empty
-   directory; for an existing study, use `resume STUDY` and read `study.json`.
-   `context.md` is a generated aid, never a replacement source of truth.
-3. Check Python 3.14 and the selected `PE_RUNTIME`. If necessary, use
-   `setup --runtime DIR` to prepare a separate pinned runtime in the authorized
-   location. Explain downloads before invoking setup. Preserve existing CAD
-   installations and respect host permissions; never weaken policy to start it.
-4. For a new study, run `init STUDY`. Show fixed interfaces, battery dimensions,
-   clearance, service state, wall profile, density and mass limit before building.
+1. Resolve the user's goal, interfaces, material assumptions and acceptance
+   limits. Record unresolved requirements. Choose `mechanical-part` for a custom
+   single-solid part with supported measurements, or `drone-module` only for the
+   two-part example. Do not force a new project into the drone dimensions.
+2. Use `scripts/engineering.py`. Inspect `--help` as needed. New studies need an
+   empty directory. Resume existing studies with `resume STUDY`; `study.json`
+   is authoritative and `context.md` is a generated summary.
+3. Check Python 3.14 and `PE_RUNTIME`. If needed, explain the dependency download
+   and use `setup --runtime DIR` in an authorized location. Preserve existing CAD
+   installations and respect host permissions.
+4. For a custom part, follow the [model and requirements contract](../../references/custom-part.md),
+   then run `init STUDY --profile mechanical-part --requirements FILE`. Omitting
+   the file provides a sensor plate starter. Save the functional brief and
+   unresolved requirements in `src/brief.md` so handoffs retain them. Use `init STUDY --profile drone-module`
+   for the [drone brief](../../references/drone-brief.md).
 
-## Build or change
+## Author and revise
 
-Run `build STUDY`, then use `verify-engineering-design`. Model scripts execute
-code; inspect imported or externally supplied source before running it. Use only
-this study's selected files and actual returned document IDs.
+Implement the accepted brief in the study's `src/model.py` and export source.
+The generic starter constructs a plate; replace it for another shape. Keep its
+export contract. Use the separately installed Text-to-CAD authoring/viewing
+capabilities for CAD work. Inspect externally supplied Python before execution.
 
-A requirement change is explicit: `change STUDY --battery B --reason TEXT` or
-`change STUDY --frame-pitch-x 110 --reason TEXT`. Preserve prior requirements
-and decisions. Do not edit the verifier or relax requirements to obtain a pass.
+Run `build STUDY`, then use `verify-engineering-design`. Model declarations and
+rendered appearance are not acceptance measurements. A property unsupported by
+the checker needs a separate measurement method; retain it as unresolved.
 
-For the battery-change exercise, keep the existing geometry first, run
-`verify STUDY`, and show its genuine failed fit. Only then build the revised
-geometry and verify again. An unexpected pass is a diagnostic issue, not
-permission to invent a failed measurement.
+For a custom part, save revised requirements and run
+`change STUDY --requirements FILE --reason TEXT`. For the drone example, use
+`--battery B` or `--frame-pitch-x 110`. Never edit the installed checker or weaken
+acceptance limits to make geometry pass. A changed requirement does not update
+old geometry: verify it first, retain the actual result, then revise and build.
 
-Retain failed runs. If requirements conflict, state the conflict and obtain a
-decision about the requirements before changing them. Routine repairs within the
-accepted brief do not need another approval. Record real interventions/retries;
-unknown cost or usage stays unknown.
+Keep failed runs. Routine repairs within the brief need no further approval;
+conflicting requirements need an explicit decision before alteration. Record
+real interventions; unknown usage or cost stays unknown.
 
 ## Return
 
-Summarize the selected run, requirement revision, measured results and next
-action. Show the actual upstream CAD view when available. A build is not an
-export refresh; use `prepare-engineering-handoff` to regenerate deliveries.
-Do not claim physical, structural, electrical or flight qualification.
+Summarize the selected profile/run, requirement revision, measured results and
+next action. Show the actual CAD view when available. Use
+`prepare-engineering-handoff` to regenerate deliveries. Distinguish the measured
+geometry from unresolved manufacturing, structural and other physical checks.

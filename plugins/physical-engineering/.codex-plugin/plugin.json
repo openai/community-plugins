@@ -1,7 +1,7 @@
 {
   "name": "physical-engineering",
-  "version": "0.1.0-preview.2",
-  "description": "Build and measure a synthetic drone battery tray and electronics bridge, revise requirements, and reproduce a consistent CAD handoff.",
+  "version": "0.2.0-preview.1",
+  "description": "Build mechanical CAD from a brief, measure exported geometry against saved requirements, preserve revisions, and deliver a repeatable handoff.",
   "author": {
     "name": "Tony Loehr",
     "url": "https://github.com/tonyloehr"
@@ -14,14 +14,14 @@
     "engineering",
     "build123d",
     "text-to-cad",
-    "drone",
+    "mechanical-design",
     "requirements"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Physical Engineering",
-    "shortDescription": "Measure an engineering change from brief to CAD handoff.",
-    "longDescription": "A bounded physical-engineering workflow for a synthetic civilian drone battery tray and removable electronics bridge. Preserve requirements, measure exported geometry, demonstrate a wider-battery fit failure, revise the design, and regenerate reproducible fabrication files through separately installed Text-to-CAD.",
+    "shortDescription": "From brief to checked CAD",
+    "longDescription": "Create mechanical CAD studies through separately installed Text-to-CAD. Preserve requirements and failed runs, measure STEP and STL exports with an independent checker, revise the design, and rebuild a source-based handoff. The mechanical-part profile accepts custom single-solid models and declared dimensional, bore, keepout and mass requirements. A sensor plate is a starter; the drone battery tray and bridge are an optional assembly example with specialized checks. Digital geometry checks do not establish strength, manufacture or hardware qualification.",
     "developerName": "Tony Loehr",
     "category": "Developer Tools",
     "websiteURL": "https://github.com/openai/community-plugins",
@@ -33,9 +33,9 @@
     "logo": "./assets/icon.svg",
     "composerIcon": "./assets/icon.svg",
     "defaultPrompt": [
-      "Use $engineer-subsystem to start a drone-module study in an empty directory and show its requirements.",
-      "Use $verify-engineering-design to measure my drone module and report failed or unknown requirements.",
-      "Use $prepare-engineering-handoff to regenerate verified CAD, drawings, BOM and the reproduction package."
+      "Use $engineer-subsystem to turn my mechanical part brief into a new CAD study with measurable requirements.",
+      "Use $verify-engineering-design to measure my CAD exports and report failed or unknown requirements.",
+      "Use $prepare-engineering-handoff to regenerate the checked CAD, source, BOM and rebuild instructions."
     ]
   }
 }

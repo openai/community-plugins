@@ -1,14 +1,13 @@
-# Reusable engineering-change session
+# Drone example session
 
-The lesson is to preserve interfaces while a component changes: brief → measured
-baseline → failed fit → revision → reproduced handoff. The drone is the worked
-example; explain the same method with an enclosure, robot mount or equipment
-fixture, without implying that this fixture's verifier supports those geometries.
+This optional demo teaches preserving interfaces while a component changes: brief → measured
+baseline → failed fit → revision → reproduced handoff. For another single-solid part, use the [custom-part workflow](custom-part.md)
+with its own requirements. This assembly example has a specialized checker.
 
 | Format | Material | Outcome |
 | --- | --- | --- |
-| 10-minute introduction | Qualified 6–8 minute cut plus discussion | Trace a changed requirement to a measurement |
-| 30-minute guided demo | Qualified baseline checkpoint and scenes C–D | Diagnose the fit failure and inspect the revised handoff |
+| 10-minute introduction | Two-minute construction primer plus discussion | Trace a changed requirement to a measurement |
+| 30-minute guided demo | Empty study, build, then scenes C–D | Diagnose the fit failure and inspect the revised handoff |
 | 60–90 minute lab | Empty study, scenes A–E, transfer exercise | Run and explain the complete workflow |
 
 Use a new study directory for every session. A checkpoint is a labeled recovery
@@ -16,7 +15,7 @@ point; a resumed checkpoint is not a new end-to-end recording.
 
 ## A. Brief
 
-Use `engineer-subsystem` to initialize the bundled fixture in an empty study.
+Use `engineer-subsystem` to initialize `--profile drone-module` in an empty study.
 Show the fixed frame/board interfaces, battery A, clearance, insertion state,
 walls, density and mass target. Save the authoritative study and generated resume
 summary. Show the exact installed package and CAD versions.

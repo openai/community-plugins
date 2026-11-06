@@ -92,6 +92,17 @@ licensed acceptance scenarios and independent engineering/security review need
 their own evidence. Do not enable real-provider managed writes or the disabled
 Automation recipe just to make a setup or test result appear complete.
 
+## Physical Engineering verification
+
+Run `npm run test:physical-engineering` with the pinned Python runtime. The
+single master covers the standalone package, both study profiles, real CAD
+readback, source rebuilds, security failures and companion presentation tests.
+The [release review](physical-engineering-release.md) describes the custom-part
+contract, optional drone demo and qualification boundaries. Review the committed
+[media and provenance](media/physical-engineering/README.md) separately from the
+new profile's automated evidence. A facilitator recording is not a prerequisite
+for using the plugin on another project.
+
 ## Publish checklist
 
 1. Review the complete diff, source receipts, media, and test results.

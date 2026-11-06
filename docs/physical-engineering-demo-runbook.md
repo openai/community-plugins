@@ -23,10 +23,12 @@ another geometry class requires its own model and acceptance checks.
 Use the reviewed narrated animation as the opening explanation. Its large CAD
 views, sections and annotations answer one question at a time: what should be
 built, does it meet the brief, and what changes when the battery gets wider?
-The [showcase build guide](../tests/physical-engineering/support/showcase/README.md)
-describes the renderer, asset provenance and release checks. Select the actual
-reviewed media from the delivery index; generated video is not bundled with the
-plugin or this runbook.
+Play the [reviewed two-minute video](media/physical-engineering/physical-engineering-from-brief.mp4).
+Its [media index](media/physical-engineering/README.md) includes captions,
+the poster, file hashes and review coverage. The
+[showcase build guide](../tests/physical-engineering/support/showcase/README.md)
+describes the renderer, asset provenance and release checks. These repository
+companion files are separate from the installed plugin.
 
 | Time | Explain and show |
 | --- | --- |

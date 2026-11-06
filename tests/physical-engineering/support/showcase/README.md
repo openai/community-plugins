@@ -11,8 +11,8 @@ The earlier CLI replay contains the observed work, including setup and waits.
 This presentation explains the construction and fit change with a deliberate
 camera, readable section views and one measurement at a time. Use it before the live
 exercise in the [demo runbook](../../../../docs/physical-engineering-demo-runbook.md).
-The closing introduces that next live exercise: change the battery requirement,
-inspect the failed fit and generate the revised handoff. Keep the spoken story
+The closing introduces that next live exercise: build from the brief, then change
+the battery requirement, inspect the failed fit and generate the revised handoff. Keep the spoken story
 and on-screen copy focused on that progression. Provenance, runtime details and
 physical qualification belong in this companion material and the release
 receipts. The primer has no LIVE indicator or claim of real-time execution.
@@ -21,9 +21,10 @@ The animation is a later explanation of qualified source and saved workflow
 evidence. Its construction stages are newly derived from that original source;
 any fresh original-CLI cross-check has separate receipts. It is not a continuous
 CLI recording, a new CAD qualification, or proof of physical performance. The
-qualified plugin and frozen run files remain unchanged. The implemented plugin
-supports one parameterized fixture; a different geometry class needs its own
-model and checker.
+recorded 0.1.0-preview.2 source and frozen run files remain unchanged. That
+version supports the drone fixture. The current plugin also has a separate
+[custom-part profile](../../../../plugins/physical-engineering/references/custom-part.md);
+this video does not claim to demonstrate or qualify that newer behavior.
 
 ## Source and display provenance
 

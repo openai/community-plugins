@@ -64,7 +64,8 @@ try {
   for (const required of [
     "README.md", "LICENSE", "THIRD_PARTY_NOTICES.md", "assets/icon.svg",
     "scripts/engineering.py", "scripts/requirements.txt",
-    "fixtures/drone-module/requirements.json",
+    "fixtures/drone-module/requirements.json", "fixtures/sensor-plate/requirements.json",
+    "scripts/verify_mechanical.py", "scripts/compare_geometry.py", "references/custom-part.md", "references/drone-brief.md",
     "references/brief-template.md", "references/compatibility.md", "references/session-guide.md",
   ]) assert(fs.statSync(path.join(plugin, required)).isFile(), `Missing ${required}`);
   const skills = fs.readdirSync(path.join(plugin, "skills")).sort();

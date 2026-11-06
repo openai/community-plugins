@@ -97,6 +97,26 @@ class GeometryTests(unittest.TestCase):
         result=verifier.verify_shape(bd.Compound(children=[blind,self.models["A"][1]["bridge"]]),self.fixture)
         self.assertEqual(self.check_by_id(result,"frame_interface")["status"],"fail")
 
+    def test_thin_membranes_fail_every_drone_attachment_interface(self):
+        # Each cap is thinner than the 0.05 mm surface/span tolerance and was
+        # accepted by the old matcher. Through-path openness is a separate test.
+        cases = (("tray", "frame_interface", (50,30,.01), (0,3)),
+                 ("bridge", "board_interface", (15,15,30.01), (30,33)),
+                 ("tray", "tray_attachment_interface", (18,28,.01), (0,3)),
+                 ("bridge", "bridge_attachment_interface", (18,28,3.01), (3,33)))
+        for label, ident, center, span in cases:
+            with self.subTest(interface=ident):
+                parts = dict(self.models["A"][1])
+                part = parts[label] + bd.Pos(*center) * bd.Cylinder(1.6,.02)
+                part.label = label
+                parts[label] = part
+                matched,_ = verifier._hole_match(verifier._cylinders(part), [center[:2]], 3.2, span, .05)
+                self.assertTrue(matched, "Regression must meet the old surface/span tolerance")
+                report = verifier.verify_shape(bd.Compound(children=list(parts.values())), self.fixture)
+                result = self.check_by_id(report, ident)
+                self.assertEqual(result["status"], "fail", report)
+                self.assertGreater(max(probe["overlap_mm3"] for probe in result["interior_probes"]), .1)
+
     def test_retention_guides_are_open_with_connected_end_material(self):
         for name in ("A","B","A110","transfer"):
             req,parts=self.models[name]

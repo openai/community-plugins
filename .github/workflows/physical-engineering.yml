@@ -17,7 +17,7 @@ jobs:
   physical-engineering-e2e:
     name: Physical Engineering E2E
     runs-on: macos-latest
-    timeout-minutes: 45
+    timeout-minutes: 90
     env:
       PYTHONDONTWRITEBYTECODE: "1"
       CAD_TELEMETRY: "0"
@@ -57,6 +57,11 @@ jobs:
         run: npm run test:physical-engineering
       - name: Verify tracked package remains unchanged
         run: git diff --exit-code -- plugins/physical-engineering
+      - name: Audit pinned CAD and demo dependencies
+        run: |
+          uvx --from pip-audit==2.10.1 pip-audit --strict --no-deps --disable-pip --requirement plugins/physical-engineering/scripts/requirements.txt --format json --output "$RUNNER_TEMP/physical-engineering-audit.json"
+          uvx --from pip-audit==2.10.1 pip-audit --strict --no-deps --disable-pip --requirement tests/physical-engineering/support/showcase/narration/requirements.lock --format json --output "$RUNNER_TEMP/physical-engineering-narration-audit.json"
+          npm --prefix tests/physical-engineering/support/showcase audit --package-lock-only --audit-level=low --registry=https://registry.npmjs.org
 
 # One plugin workflow, one master job. Geometry checks do not establish installed
 # Codex behavior, graphical recording or independent facilitator acceptance.

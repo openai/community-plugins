@@ -137,7 +137,9 @@ print(json.dumps({'python':platform.python_version(),'platform':platform.platfor
 
 
 def build_from_source(runtime: Path, state_root: Path, source_dir: Path,
-                      output_dir: Path, requirements_path: Path | None = None) -> dict:
+                      output_dir: Path, requirements_path: Path | None = None, profile: str = 'drone-module') -> dict:
+    if profile not in ('drone-module', 'mechanical-part'):
+        raise ValueError('Unsupported CAD verification profile')
     source_dir, output_dir = Path(source_dir).resolve(), Path(output_dir).resolve()
     requirements_path = Path(requirements_path or source_dir.parent / "requirements.json").resolve()
     output_dir.mkdir(parents=True, exist_ok=True)
@@ -177,7 +179,7 @@ def build_from_source(runtime: Path, state_root: Path, source_dir: Path,
             result["error"] = "Invalid document ID map: " + sanitize(str(error))
             return result
 
-    verifier = Path(__file__).resolve().with_name("verify_geometry.py")
+    verifier = Path(__file__).resolve().with_name("verify_geometry.py" if profile == "drone-module" else "verify_mechanical.py")
     measured = stage("measure", ["run", str(verifier), str(output_dir / "assembly.step"),
                                  str(requirements_path), "--out", result["measurements_file"],
                                  "--print-dir", str(output_dir)])
@@ -188,6 +190,10 @@ def build_from_source(runtime: Path, state_root: Path, source_dir: Path,
         result["measurements"] = json.loads(Path(result["measurements_file"]).read_text())
     except (OSError, ValueError) as error:
         result["error"] = "Missing geometry measurements: " + str(error)
+        return result
+    if profile == "mechanical-part":
+        result["status"] = result["measurements"].get("status", "unknown")
+        result["artifacts"] = sorted(p.name for p in output_dir.iterdir() if p.is_file())
         return result
     drawn = stage("drawing", ["run", str(source_dir / "drawing.py"), str(output_dir),
                                result["measurements_file"], str(requirements_path)])

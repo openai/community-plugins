@@ -1,36 +1,35 @@
 ---
 name: prepare-engineering-handoff
-description: Regenerate and check the selected drone-module source, STEP, print files, drawing, BOM and notes, then execute a clean reproduction with independent CAD state.
+description: Regenerate a study's checked CAD, source, measurements and BOM, then rebuild the delivered package in a separate destination and compare the results.
 ---
 
 # Prepare an engineering handoff
 
 Use the installed plugin's `scripts/engineering.py` and the selected study.
-Read [the reusable session guide](../../references/session-guide.md).
+Read [compatibility](../../references/compatibility.md) for the profile's scope.
 
-1. Resume the study and confirm its active requirements and selected run.
-2. Verify the selected geometry. Required failed/unknown checks block a passing
-   handoff; retain their evidence and repair the design in a new run.
-3. Run `handoff STUDY`. Explicitly regenerate assembly STEP, individual print
-   files, dimensioned PDF, BOM and assembly notes from the same selection.
-4. Re-read delivered geometry and inspect the PDF. Trace the changed requirement
-   to its measurement and exact output file. A successful build does not update
-   a previously exported file.
-5. Include editable source, frozen requirements, checker/version, dependencies,
-   run manifest and reproduction command. Report the solid-material mass
-   estimate separately from purchased parts.
-6. Execute the delivered command on the selected clean destination with
-   independent CAD state. The CLI also accepts `reproduce HANDOFF DEST`.
-   For cold-runtime qualification, prepare a separate runtime as well.
-   Preserve original studies and do not stop unrelated CAD servers.
-7. Compare geometric measurements within their recorded tolerances; STEP bytes
-   may differ because of metadata. Preserve the new reproduction result.
+1. Resume and confirm active requirements and the selected run. Retain failed
+   evidence; failed/unknown required checks block handoff.
+2. Run `handoff STUDY`. It rebuilds source and rechecks actual STEP/STL exports
+   before packaging requirements, measurements, BOM and rebuild instructions.
+   The drone profile also generates and checks its dimensioned PDF and assembly
+   notes. The generic profile does not promise an engineering drawing.
+3. Inspect the delivered geometry and any PDF. Trace each changed requirement to
+   its measurement and exact file. Report solid-density mass separately from
+   purchased components and unresolved physical requirements.
+4. Execute `sh HANDOFF/reproduce.sh NEW_DESTINATION` with `PE_RUNTIME` set, or
+   use `reproduce HANDOFF DEST`. Use a separate runtime too when qualifying a
+   cold installation. Inspect received executable source before running it;
+   hashes detect changed files but do not establish trust in the author.
+5. Compare the new measurements within recorded tolerances and retain the
+   receipt. Report what ran and any differences. Preserve original studies;
+   never stop another study's CAD server.
 
-State what actually ran. Missing clean reproduction, installed-Codex evidence,
-independent facilitator acceptance or recording remains pending; do not replace
-it with an earlier receipt.
+State missing validation honestly. An automated rebuild does not establish a
+physical assembly or a successful installed-Codex session. Demo recording and
+facilitator exercises are optional companion activities, not prerequisites for
+using this plugin on another project.
 
-Before a public evidence/media handoff, inspect for private input, credentials,
-personal paths and token-bearing CAD viewer URLs. Do not publish or send files
-unless the user authorized that action. Release approval is separate from
-producing a local fabrication package.
+Before sharing evidence, inspect for private inputs, personal paths, credentials
+and token-bearing viewer URLs. Publish or send only within the user's authorized
+scope. A local engineering handoff and a plugin release are separate actions.

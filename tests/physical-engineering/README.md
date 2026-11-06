@@ -26,7 +26,17 @@ Python tests under `unit/`, `integration/` and `security/` need package
 test connected to this master command. Tests use disposable study/CAD state,
 preserve meaningful failure receipts, and never stop an unrelated CAD engine.
 
-Coverage must include nominal geometry, battery B against old geometry, corrected
+Both profiles must work from the copied package without demo files. The generic
+mechanical profile covers user-authored geometry and validated requirement files;
+its cold-copy lifecycle changes a sensor plate mount pitch, checks the unchanged
+geometry failure, rebuilds, hands off and executes the delivered source. Separate
+geometry tests use another shape and label, including bore, dimensions, placement,
+keepout, volume, invalid-solid and export-consistency failures. Thin end caps and
+interior obstructions must fail through-bore probes even inside dimensional or
+placement tolerances. Rebuild identity uses actual BRep differences; equal volume
+and bounds cannot conceal a shifted feature.
+
+Drone coverage must include nominal geometry, battery B against old geometry, corrected
 geometry, shifted mounting hole, accumulated assembly placements, stale export,
 wrong units and attempted path escape. Include delivered-handoff reproduction and
 the 110 × 60 mm transfer variant. The current test output is the authority for
@@ -75,9 +85,14 @@ Separate acceptance gates:
 
 - Sparse public installation and a real installed-Codex run.
 - Fresh-session recovery of the saved requirements.
-- Independent operator reproduction and facilitator transfer exercise.
-- Actual viewer/PDF visual review, continuous recording and complete playback.
+- Actual viewer/PDF visual review where those outputs are claimed.
+- Optional demo: independent facilitator exercise, recording and playback review.
 - Required maintainer review, CLA and release checks.
 
 Do not treat a skip, subprocess mock, cached receipt or geometry-only test as
 proof of these gates.
+
+The plugin CI job audits the fully pinned CAD and optional narration requirement
+files with pip-audit 2.10.1 and the presentation lockfile with npm audit. Audit
+network errors fail the job. These scans report known vulnerabilities; they do
+not establish absence of defects. Node versions remain sequential in one job.

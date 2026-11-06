@@ -251,6 +251,35 @@ def _hole_match(holes, expected, diameter, span, tolerance):
     return True, chosen
 
 
+def _through_hole_match(part, holes, expected, diameter, span, tolerance):
+    """Match bore surfaces and independently prove the whole bore is open.
+
+    A nearly full-height cylinder can still be a blind pocket: a thin end
+    membrane may be smaller than the dimensional tolerance. Probe the actual
+    bore's interior over the entire required span, using only a numerical
+    radial inset. Extend through the actual part's Z bounds as well as the
+    required span: accepted position/height tolerances must not hide an end cap
+    just beyond the nominal span. Acceptance tolerances never excuse material.
+    """
+    matched, selected = _hole_match(holes, expected, diameter, span, tolerance)
+    probes = []
+    if not matched:
+        return False, selected, probes
+    bd = _kernel()
+    bounds = part.bounding_box()
+    bottom, top = min(span[0], bounds.min.Z), max(span[1], bounds.max.Z)
+    for hole in selected:
+        radius = hole["diameter_mm"] / 2
+        inset = min(1e-5, radius / 1000)
+        probe = bd.Pos(hole["x_mm"], hole["y_mm"], (bottom+top)/2) * bd.Cylinder(radius-inset, top-bottom)
+        overlap = _overlap(part, probe)
+        maximum = min(1e-5, probe.volume * 1e-6)
+        probes.append({"x_mm": hole["x_mm"], "y_mm": hole["y_mm"], "radius_inset_mm": inset,
+                       "z_span_mm": [bottom, top], "overlap_mm3": overlap, "maximum_overlap_mm3": maximum})
+        matched = matched and math.isfinite(overlap) and 0 <= overlap <= maximum
+    return matched, selected, probes
+
+
 def _pitch(holes):
     if len(holes)!=4:
         return None
@@ -311,18 +340,21 @@ def _verify_parts(parts, req, report):
     fxy=[(sx*frame["pitch_mm"][0]/2,sy*frame["pitch_mm"][1]/2) for sx in (-1,1) for sy in (-1,1)]
     tray_holes=measurements["parts"]["tray"]["holes"]
     bridge_holes=measurements["parts"]["bridge"]["holes"]
-    match,chosen=_hole_match(tray_holes,fxy,frame["hole_diameter_mm"],(0,3),itol)
+    match,chosen,probes=_through_hole_match(tray,tray_holes,fxy,frame["hole_diameter_mm"],(0,3),itol)
     _check(report,"frame_interface",match,chosen,{"centers_xy_mm":fxy,"diameter_mm":frame["hole_diameter_mm"]})
+    report["checks"][-1]["interior_probes"]=probes
     measurements["frame_pitch_mm"]=_pitch(chosen)
     board=req["board"]
     bxy=[(sx*board["mount_pitch_mm"][0]/2,sy*board["mount_pitch_mm"][1]/2) for sx in (-1,1) for sy in (-1,1)]
-    match,chosen=_hole_match(bridge_holes,bxy,board["hole_diameter_mm"],(30,33),itol)
+    match,chosen,probes=_through_hole_match(bridge,bridge_holes,bxy,board["hole_diameter_mm"],(30,33),itol)
     _check(report,"board_interface",match,chosen,{"centers_xy_mm":bxy,"diameter_mm":board["hole_diameter_mm"]})
+    report["checks"][-1]["interior_probes"]=probes
     measurements["board_pitch_mm"]=_pitch(chosen)
     attach=req["bridge_attachment"]
     for label,holes,span in (("tray",tray_holes,(0,3)),("bridge",bridge_holes,(3,33))):
-        match,chosen=_hole_match(holes,attach["hole_centers_xy_mm"],attach["hole_diameter_mm"],span,itol)
+        match,chosen,probes=_through_hole_match(parts[label],holes,attach["hole_centers_xy_mm"],attach["hole_diameter_mm"],span,itol)
         _check(report,f"{label}_attachment_interface",match,chosen,attach["hole_centers_xy_mm"])
+        report["checks"][-1]["interior_probes"]=probes
     _check(report,"hole_feature_count",len(tray_holes)==8 and len(bridge_holes)==8,[len(tray_holes),len(bridge_holes)],[8,8])
 
     # The declared rail faces cover the battery length and rail height. Mounted

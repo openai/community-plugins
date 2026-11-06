@@ -1,6 +1,6 @@
 # Third-party notices
 
-Original Physical Engineering scripts, fixture, skills, icon and documentation
+Original Physical Engineering scripts, fixtures, skills, icon and documentation
 are licensed under Apache-2.0; see LICENSE.
 
 ## Text-to-CAD
@@ -10,7 +10,7 @@ https://github.com/earthtojake/text-to-cad
 
 The assembly-placement traversal follows the public inspection example in
 `skills/cad/references/inspection-and-validation.md` at upstream commit
-`4d42cb0bd9a61b46254bc8cf9bd9ae1f45c3295b`. Adaptations serve this fixture's
+`4d42cb0bd9a61b46254bc8cf9bd9ae1f45c3295b`. Adaptations serve the plugin's
 independent geometry verifier. Upstream is not represented as the author or
 maintainer of this plugin. Its packages are not embedded in the plugin.
 
