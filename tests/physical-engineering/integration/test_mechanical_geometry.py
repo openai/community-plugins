@@ -303,6 +303,38 @@ class MechanicalGeometryTests(unittest.TestCase):
         self.assertEqual(surface["status"], "fail", report)
         self.assertGreater(surface["actual"]["bore_coverage"]["intruding_triangles"], 0)
 
+    def test_coarse_cli_tessellation_passes_the_same_surface_coverage(self):
+        # The CAD CLI has a coarser angular tessellation than build123d's
+        # default export. Exercise its actual writer against the fine checker
+        # reference mesh, without weakening either linear tolerance.
+        from cad.engine.export import translate
+        path = self.output / "coarse-cli.stl"
+        translate(self.output / "assembly.step", None, path, tolerance=.02)
+        report = verifier.geometry.verify_print(path, bd.import_step(self.output / "assembly.step"))
+        self.assertEqual(report["status"], "pass", report)
+        reverse = self.check(report, "mesh_surface")["actual"]["reverse_coverage"]
+        self.assertEqual(reverse["checked_points"], reverse["total_points"])
+        self.assertGreater(reverse["candidate_triangle_queries"], 0)
+
+    def test_candidate_triangle_distances_cover_faces_edges_and_degeneracy(self):
+        import numpy as np
+        triangle = [[0, 0, 0], [1, 0, 0], [0, 1, 0]]
+        points = np.array([[.2, .2, 1], [.5, -1, 1], [1, 1, 0], [-1, -1, 0], [.5, 1, 1]], dtype=float)
+        triangles = np.array([[triangle]]*4 + [[[[0, 0, 0], [1, 0, 0], [2, 0, 0]]]], dtype=float)
+        actual = verifier.geometry._candidate_triangle_distances_squared(points, triangles)
+        np.testing.assert_allclose(actual[:, 0], [1, 2, .5, 2, 2], rtol=0, atol=1e-12)
+
+    def test_nearby_centroids_cannot_replace_complete_triangle_search(self):
+        # Eight nearby centroids hide the large triangle containing the point.
+        # Candidate rejection must fall through to the complete AABB search.
+        point = (0., 0., 0.)
+        triangle = ((-100., -1., 0.), (100., -1., 0.), (0., 100., 0.))
+        distractors = [((-.1, -.1, z), (.1, -.1, z), (0., .1, z))
+                       for z in range(1, 9)]
+        triangles = [triangle, *distractors]
+        self.assertFalse(verifier.geometry._nearby_triangle_witnesses([point], triangles, .02)[0])
+        self.assertTrue(verifier.geometry._mesh_covers(point, verifier.geometry._triangle_tree(triangles), .02**2))
+
 
 if __name__ == "__main__":
     unittest.main()

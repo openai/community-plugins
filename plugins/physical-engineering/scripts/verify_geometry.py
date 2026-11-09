@@ -486,6 +486,58 @@ def _mesh_covers(point, tree, tolerance_squared):
     return any(_point_triangle_distance_squared(point, triangle) <= tolerance_squared for triangle in triangles)
 
 
+def _candidate_triangle_distances_squared(points, triangles):
+    """Exact distances for points[N,3] and candidate triangles[N,K,3,3].
+
+    Interior projections use plane distance; otherwise the closest point lies
+    on one of the three closed edges. Degenerate triangles use those edges too.
+    This batches the same geometric calculation as the scalar fallback.
+    """
+    import numpy as np
+    a, b, c = (triangles[:, :, index, :] for index in range(3))
+    points = points[:, None, :]
+    normal = np.cross(b-a, c-a)
+    normal_squared = np.sum(normal*normal, axis=-1)
+    inside = normal_squared > 0
+    best = np.full(normal_squared.shape, np.inf)
+    for start, end in ((a, b), (b, c), (c, a)):
+        edge, delta = end-start, points-start
+        inside &= np.sum(np.cross(edge, delta)*normal, axis=-1) >= 0
+        length_squared = np.sum(edge*edge, axis=-1)
+        parameter = np.zeros(length_squared.shape)
+        np.divide(np.sum(delta*edge, axis=-1), length_squared,
+                  out=parameter, where=length_squared > 0)
+        parameter = np.clip(parameter, 0., 1.)
+        offset = delta-parameter[:, :, None]*edge
+        best = np.minimum(best, np.sum(offset*offset, axis=-1))
+    plane_distance = np.full(normal_squared.shape, np.inf)
+    projection = np.sum((points-a)*normal, axis=-1)
+    np.divide(projection*projection, normal_squared, out=plane_distance, where=inside)
+    return np.minimum(best, plane_distance)
+
+
+def _nearby_triangle_witnesses(points, triangles, tolerance):
+    """Positive-only fast path: a close candidate proves surface coverage.
+
+    A nearest centroid need not belong to the nearest triangle. Failure to find
+    a witness among these candidates therefore never rejects a point: callers
+    must search the complete mesh. Batches bound candidate-array memory.
+    """
+    import numpy as np
+    from scipy.spatial import cKDTree
+    points = np.asarray(points, dtype=float)
+    triangles = np.asarray(triangles, dtype=float)
+    centers = cKDTree(np.mean(triangles, axis=1))
+    ranks = list(range(1, min(8, len(triangles))+1))
+    covered = np.zeros(len(points), dtype=bool)
+    for start in range(0, len(points), 1024):
+        batch = points[start:start+1024]
+        _, candidates = centers.query(batch, k=ranks)
+        distances = _candidate_triangle_distances_squared(batch, triangles[candidates])
+        covered[start:start+len(batch)] = np.any(distances <= tolerance*tolerance, axis=1)
+    return covered
+
+
 def _reverse_mesh_coverage(reference_part, triangles, linear_tolerance):
     """Sample every reference face, so an absent mesh feature cannot disappear.
 
@@ -495,6 +547,7 @@ def _reverse_mesh_coverage(reference_part, triangles, linear_tolerance):
     Complete empty bores additionally get the triangle-intersection check below.
     """
     from OCP.BRepMesh import BRepMesh_IncrementalMesh
+    import numpy as np
     from scipy.spatial import cKDTree
     deflection = linear_tolerance/4
     # build123d.mesh uses relative deflection. Establish an absolute mm mesh
@@ -516,13 +569,17 @@ def _reverse_mesh_coverage(reference_part, triangles, linear_tolerance):
     witnesses.update(tuple(sum(point[axis] for point in triangle)/3 for axis in range(3))
                      for triangle in triangles)
     distances, _ = cKDTree(list(witnesses)).query(points, distance_upper_bound=tolerance)
+    covered = np.isfinite(distances)
+    unmatched = np.flatnonzero(~covered)
+    if len(unmatched):
+        covered[unmatched] = _nearby_triangle_witnesses([points[index] for index in unmatched], triangles, tolerance)
     tree = None
     result = {"checked_points": 0, "total_points": len(points), "uncovered_point_mm": None,
               "reference_deflection_mm": deflection, "maximum_distance_mm": tolerance,
-              "triangle_queries": 0}
-    for point, distance in zip(points, distances):
+              "candidate_triangle_queries": len(unmatched), "triangle_queries": 0}
+    for point, has_witness in zip(points, covered):
         result["checked_points"] += 1
-        if math.isfinite(distance):
+        if has_witness:
             continue
         if tree is None:
             tree = _triangle_tree(triangles)
