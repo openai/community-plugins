@@ -1,6 +1,6 @@
 {
   "repository": "https://github.com/shihchengwei-lab/masters-nudge",
-  "commit": "113e08f9a5801d887bbb1748b4fae32deba2a881",
+  "commit": "0d24287b41ccb61f4bdc615ef53e195f526f2f64",
   "method": "Exact committed plugin/test blobs; no private data or model calls.",
   "files": {
     "plugins/masters-nudge/LICENSE": {
@@ -133,7 +133,7 @@
     },
     "tests/masters-nudge/support/upstream-tests/spec/test_lifecycle.py": {
       "source": "tests/spec/test_lifecycle.py",
-      "sha256": "d9b42795956fbaab1b84580ad762261ee66aa7fb8632d3a11eb083304ad6894a"
+      "sha256": "a4ba67b2d7538bd7983d6a3d1e8e20b72ff16c93b389c227d5bc617f48dc76c9"
     },
     "tests/masters-nudge/support/upstream-tests/spec/test_materials.py": {
       "source": "tests/spec/test_materials.py",

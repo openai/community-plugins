@@ -366,7 +366,7 @@ class WindowsLifecycleTests(unittest.TestCase):
                                            environment=dict(os.environ), timeout_sec=2)
         self.assertFalse(self.record.exists())
 
-    def test_mcp_cancel_disconnect_and_interrupt_hook_stop_live_provider_and_journal_fault(self):
+    def test_mcp_cancel_disconnect_and_interrupt_hook_stop_live_provider_and_close_round(self):
         for mode in ('cancel', 'disconnect', 'interrupt_hook'):
             with self.subTest(mode=mode):
                 data = Path(self.temp.name) / mode
@@ -408,7 +408,9 @@ class WindowsLifecycleTests(unittest.TestCase):
                         server.stdin.close()
                         server.stdin = None
                         output, error = server.communicate(timeout=3)
-                        raise AssertionError(f"Provider did not start: {output} {error} journal={Journal(data).recent()}")
+                        raise AssertionError(f"Provider did not start: {output} {error} work={journal.unresolved()}")
+                    active, = journal.unresolved()
+                    self.assertEqual(active['state'], 'running')
                     if mode == 'cancel':
                         server.stdin.write(json.dumps({'method':'notifications/cancelled',
                             'params':{'requestId':7,'reason':'user interrupted'}})+'\n')
@@ -431,9 +433,6 @@ class WindowsLifecycleTests(unittest.TestCase):
                         reader.join(3)
                         self.assertFalse(reader.is_alive(), 'Interrupt hook left the MCP request unfinished')
                         self.assertIsNone(server.poll())
-                        rows = Journal(data).recent()
-                        self.assertEqual(rows[0]['reason'], 'interrupted')
-                        self.assertEqual(Journal(data).unresolved(), [])
                     server.stdin.close()
                     server.stdin = None
                     output, error = server.communicate(timeout=8)
@@ -445,12 +444,16 @@ class WindowsLifecycleTests(unittest.TestCase):
                     else:
                         self.assertEqual(reply['error']['code'], -32800)
                     self.assert_tree_ended()
-                    rows = Journal(data).recent()
-                    self.assertEqual(len(rows), 1)
-                    self.assertEqual(rows[0]['outcome'], 'fault')
-                    self.assertEqual(rows[0]['reason'], 'interrupted')
-                    self.assertEqual(rows[0]['delivered'], 0)
-                    self.assertEqual(Journal(data).unresolved(), [])
+                    with journal.connect() as db:
+                        round_state = db.execute(
+                            "SELECT turn,fault FROM work_rounds WHERE session=? AND round_id=?",
+                            ('s', active['round_id']),
+                        ).fetchone()
+                        self.assertIsNotNone(round_state)
+                        self.assertEqual(tuple(round_state), ('t', 'interrupted'))
+                        self.assertIsNone(db.execute(
+                            "SELECT id FROM work_reviews WHERE round_id=?", (active['round_id'],),
+                        ).fetchone())
                 finally:
                     if server.poll() is None:
                         server.kill()
