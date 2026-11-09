@@ -25,7 +25,7 @@ class SettingsPackageTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as raw:
             root = Path(raw)
             for strict in (False, True):
-                settings = RuntimeSettings("openai", "model", RuntimePaths(ROOT, root, root, root / "error.log"), strict=strict)
+                settings = RuntimeSettings("openai", "model", RuntimePaths(ROOT, root, root), strict=strict)
                 core = Mock()
                 core.journal.delivered.side_effect = sqlite3.OperationalError("disk I/O error")
                 response = {"hookSpecificOutput": {
@@ -34,12 +34,13 @@ class SettingsPackageTests(unittest.TestCase):
                             },
                              "_masters_nudge": "attempt-1"}
                 output = io.StringIO()
+                errors = io.StringIO()
                 with patch.object(sys, "argv", ["hook_entry.py"]), \
                      patch.object(sys, "stdin", Mock(buffer=io.BytesIO(b"{}"))), \
                      patch.object(hook_entry, "active_guard", return_value=False), \
                      patch.object(hook_entry.RuntimeSettings, "from_env", return_value=settings), \
                      patch.object(hook_entry, "NudgeCore", return_value=core), \
-                     patch.object(hook_entry.CodexAdapter, "process", return_value=response), redirect_stdout(output):
+                     patch.object(hook_entry.CodexAdapter, "process", return_value=response), redirect_stdout(output), redirect_stderr(errors):
                     code = hook_entry.main()
                 self.assertEqual(code, int(strict))
                 self.assertEqual(len(output.getvalue().splitlines()), 1)
@@ -48,7 +49,7 @@ class SettingsPackageTests(unittest.TestCase):
                     "feedback",
                 )
                 self.assertNotIn("systemMessage", json.loads(output.getvalue()))
-                self.assertIn("disk I/O error", settings.paths.error_log.read_text(encoding="utf-8"))
+                self.assertIn("disk I/O error", errors.getvalue())
 
     def test_unwritable_journal_still_returns_fault_status(self):
         with tempfile.TemporaryDirectory() as raw:

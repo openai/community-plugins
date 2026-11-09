@@ -17,7 +17,6 @@ class RuntimePaths:
     runtime_dir: Path
     data_dir: Path
     settings_dir: Path
-    error_log: Path
 
     @classmethod
     def resolve(cls, runtime_dir=None, *, environ=None):
@@ -26,7 +25,7 @@ class RuntimePaths:
         settings = Path(env["MASTERS_NUDGE_DATA_DIR"]) if env.get("MASTERS_NUDGE_DATA_DIR") else user_dir / ".masters-nudge"
         data = settings if env.get("MASTERS_NUDGE_DATA_DIR") else settings / "data"
         runtime = Path(env.get("MASTERS_NUDGE_RUNTIME_DIR") or runtime_dir or user_dir / ".masters-nudge" / "runtime")
-        return cls(runtime.resolve(), data, settings, data / "error.log")
+        return cls(runtime.resolve(), data, settings)
 
 
 @dataclass(frozen=True)

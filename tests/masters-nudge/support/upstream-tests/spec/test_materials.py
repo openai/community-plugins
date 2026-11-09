@@ -96,7 +96,7 @@ class ContractTests(unittest.TestCase):
             packet = build_packet(SessionRef("s", "t", raw), {"goal": "g", "request": "r"},
                                   (ToolCompleted("edit", "apply_patch", patch, "Success"),))
         self.assertEqual(json.loads(packet.categories()["file_origin"][0]["lines"][0]), {
-            "existed_at_task_start": None, "baseline_turn_id": None,
+            "existed_at_baseline": None, "baseline_turn_id": None,
         })
 
     def test_small_changed_file_is_carried_as_current_structure(self):
@@ -281,6 +281,15 @@ class RepositoryTests(unittest.TestCase):
             result = self.tools.call("search_repo", {"query": "missing_identifier"})
         self.assertFalse(result["isError"])
         self.assertLessEqual(git.call_count, 2)
+
+    def test_empty_or_invalid_reads_cannot_grow_the_trace_without_bound(self):
+        from masters_nudge.read_only_repo_mcp import AUDIT_MAX_BYTES, READ_LIMIT, read_audit
+        for _ in range(READ_LIMIT + 5):
+            response = self.tools.call("read_file", {"path": "x" * 5000, "start_line": 0})
+        result = json.loads(response["content"][0]["text"])
+        self.assertTrue(result["exhausted"])
+        self.assertEqual(len(read_audit(self.tools.audit)), READ_LIMIT)
+        self.assertLessEqual(self.tools.audit.stat().st_size, AUDIT_MAX_BYTES)
 
     def test_search_and_read_exclude_tracked_ignored_files(self):
         subprocess.run(["git", "-C", str(self.repo), "add", "-f", "--", "secret.txt"], check=True)

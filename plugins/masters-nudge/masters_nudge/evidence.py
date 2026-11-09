@@ -9,6 +9,8 @@ from .contracts import (
     find_git_root, json_text, material_lines, patch_operations,
 )
 
+BASELINE_MAX_BYTES = 256 * 1024
+
 
 def capture_file_baseline(session: SessionRef) -> dict:
     """Record file existence before Actor edits, including nonignored untracked files."""
@@ -21,7 +23,7 @@ def capture_file_baseline(session: SessionRef) -> dict:
             ["git", "-C", str(root), "ls-files", "-z", "--cached", "--others", "--exclude-standard"],
             stdin=subprocess.DEVNULL, capture_output=True, timeout=15,
         )
-        if result.returncode == 0:
+        if result.returncode == 0 and len(result.stdout) <= BASELINE_MAX_BYTES:
             baseline["files"] = sorted({
                 os.path.normcase(name).replace("\\", "/")
                 for name in result.stdout.decode("utf-8").split("\0")
@@ -51,7 +53,7 @@ def file_origin_material(session: SessionRef, task: dict, events: tuple[ToolComp
                 continue
             seen.add(normalized)
             yield material_lines("file_origin", relative, json_text({
-                "existed_at_task_start": normalized in files if known else None,
+                "existed_at_baseline": normalized in files if known else None,
                 "baseline_turn_id": baseline.get("turn_id") if known else None,
             }))
 

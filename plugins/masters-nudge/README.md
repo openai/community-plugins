@@ -44,7 +44,7 @@ For a first real trial, use a **disposable Git project with synthetic code**, gi
 
 ## Permissions, authentication, and data
 
-The package declares **Read** and **Write**: it reads the active Git workspace and writes its own settings, SQLite review journal, and error log. Its reviewer cannot modify the coding model's product files. It starts Python for hooks/MCP and a Codex CLI subprocess for the Provider, using the existing CLI login. No hosted Masters’ Nudge service or separate account is required.
+The package declares **Read** and **Write**: it reads the active Git workspace and writes its own settings, bounded SQLite working state, and recent review summaries. Its reviewer cannot modify the coding model's product files. It starts Python for hooks/MCP and a Codex CLI subprocess for the Provider, using the existing CLI login. No hosted Masters’ Nudge service or separate account is required.
 
 The Provider may read non-ignored files within the Git workspace. Task text, edits, tool results, changed files that fit the shared material allowance, and file-origin facts are sent to **OpenAI through Codex**. The complete task-start file list stays local. Enable it only for repositories you are permitted to send to OpenAI. See the [privacy description](https://github.com/shihchengwei-lab/masters-nudge#privacy).
 
@@ -58,7 +58,7 @@ Missing identity/context, non-Git workspaces, unsupported settings, malformed ou
 
 Cancellation, a new user round, expiry and review faults close unfinished reviews through the same journal lifecycle. Windows Provider processes belong to a Job Object at creation, so terminating their caller also reclaims descendants. Queue and execution deadlines survive restart; startup and subsequent work finalize expired reviews without replaying the Provider. Late results cannot overwrite terminal records or enter a new round.
 
-The MCP accepts at most 64 unfinished requests and 1 Mi characters per message; cancellation remains available when the queue is full. The journal stops accepting reviews at 96 MiB and has a 128 MiB database-page limit, reserving space for finalization. Rollback files and the separate error log are outside that limit. History is retained: when capacity is reached, stop all processes using the data directory, back up and archive the database offline, then restart with a new journal.
+The MCP accepts at most 64 unfinished requests per process and 1 Mi characters per message. The shared SQLite store caps active sessions and unfinished reviews, reuses idle work space, and keeps up to 128 recent summaries. Summaries can expire without interrupting review. Before upgrading from the previous journal format, stop Codex processes using the store and back up the database if you need the old history. The first write replaces the old tables. Submit a new prompt after upgrading.
 
 Codex hook lifecycle reporting is tracked separately in the [host issue](https://github.com/openai/codex/issues/46765). Disable Masters’ Nudge in the plugin browser to stop future reviews.
 

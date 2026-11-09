@@ -61,7 +61,7 @@ class HostMcpTests(unittest.TestCase):
             writer.flush()
         def call(request_id):
             return {'jsonrpc': '2.0', 'id': request_id, 'method': 'tools/call',
-                    'params': {'name': 'review_patch', 'arguments': {}}}
+                    'params': {'name': 'review_patch', 'arguments': {'hook_event_name': 'PostToolUse'}}}
         with patch.object(mcp_entry, 'MAX_PENDING_REQUESTS', 2):
             worker = threading.Thread(target=serve, daemon=True)
             worker.start()
@@ -153,6 +153,18 @@ class HostMcpTests(unittest.TestCase):
         replies = [json.loads(line) for line in output.getvalue().splitlines()]
         self.assertEqual(replies[0]["result"]["serverInfo"]["name"], "masters-nudge")
         self.assertEqual([tool["name"] for tool in replies[1]["result"]["tools"]], ["review_patch"])
+
+    def test_review_tool_cannot_dispatch_lifecycle_events(self):
+        for event in ("UserPromptSubmit", "Interrupt"):
+            with self.subTest(event=event):
+                output = FlushingOutput()
+                adapter = Mock()
+                request = {"jsonrpc": "2.0", "id": 1, "method": "tools/call",
+                           "params": {"name": "review_patch", "arguments": {"hook_event_name": event}}}
+                mcp_entry.serve(Mock(), adapter, input_stream=RequestStream(json.dumps(request) + "\n", output),
+                                output_stream=output)
+                adapter.process.assert_not_called()
+                self.assertIn("本輪反饋未執行", output.getvalue())
 
 
 if __name__ == "__main__":

@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import os
 import shutil
+import sqlite3
 import subprocess
 import sys
 from pathlib import Path
@@ -49,7 +50,7 @@ def recent_nudges(limit=20, *, environ=None) -> dict:
     paths = RuntimePaths.resolve(environ=environ)
     try:
         return {"nudges": read_recent(paths.data_dir, limit=limit), "limit": limit, "error": ""}
-    except (OSError, ValueError) as exc:
+    except (OSError, ValueError, sqlite3.Error) as exc:
         return {"nudges": [], "limit": limit, "error": str(exc)}
 
 

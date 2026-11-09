@@ -32,7 +32,7 @@ class JournalLifecycleTests(unittest.TestCase):
         for interruption in (KeyboardInterrupt(), SystemExit(130)):
             with self.subTest(interruption=type(interruption).__name__):
                 data = self.root / type(interruption).__name__
-                paths = RuntimePaths(ROOT, data, data, data / 'error.log')
+                paths = RuntimePaths(ROOT, data, data)
                 dispatch = mock.Mock(return_value=ProviderRun('{"feedback":null}'))
                 core = NudgeCore(RuntimeSettings('openai', 'model', paths), dispatch=dispatch)
                 core.start_round(self.session, 'keep behavior')
@@ -45,7 +45,7 @@ class JournalLifecycleTests(unittest.TestCase):
                 journal = Journal(data)
                 self.assertEqual(sorted(row['outcome'] for row in journal.recent()), ['fault', 'silence'])
                 fault = next(row for row in journal.recent() if row['outcome'] == 'fault')
-                self.assertEqual(fault['detail']['fault']['kind'], 'interrupted')
+                self.assertEqual(fault['reason'], 'interrupted')
                 self.assertEqual(fault['delivered'], 0)
                 self.assertEqual(journal.unresolved(), [])
                 with self.assertRaises(ToolFault):
@@ -63,7 +63,7 @@ class JournalLifecycleTests(unittest.TestCase):
             'from masters_nudge.contracts import SessionRef; '
             'root=pathlib.Path(sys.argv[1]); j=Journal(root); '
             "s=SessionRef('s','t',str(root)); j.start_round(s,'task'); "
-            "j.begin(s,[{'tool_use_id':'original'}]); "
+            "j.begin(s); "
             "(root/'ready').write_text('ready'); time.sleep(30)"
         )
         child = subprocess.Popen([sys.executable, '-c', script, str(self.root)], cwd=ROOT)
@@ -79,17 +79,17 @@ class JournalLifecycleTests(unittest.TestCase):
             self.assertEqual(len(journal.unresolved()), 1)
             # Advance the recorded deadline, without waiting 20 minutes in a test.
             with journal.connect() as db:
-                db.execute("UPDATE judgment_events SET happened=0,payload='{}' WHERE kind='started'")
+                db.execute("UPDATE work_reviews SET deadline=0 WHERE state='running'")
             with self.assertRaises(ToolFault):
-                journal.begin(self.session, [{'tool_use_id': 'next'}])
+                journal.begin(self.session)
             self.assertEqual(journal.unresolved(), [])
             self.assertEqual(journal.recent()[0]['outcome'], 'fault')
             with journal.connect() as db:
                 self.assertEqual(db.execute('PRAGMA integrity_check').fetchone()[0], 'ok')
-                self.assertEqual(db.execute("SELECT COUNT(*) FROM judgment_events WHERE kind='started'").fetchone()[0], 1)
+                self.assertEqual(db.execute("SELECT COUNT(*) FROM work_reviews").fetchone()[0], 0)
             journal.start_round(self.session, 'new turn')
-            attempt, task = journal.begin(self.session, [])
-            self.assertTrue(journal.finish(self.session, attempt, task, 'silence', {}))
+            attempt, task = journal.begin(self.session)
+            self.assertTrue(journal.finish(self.session, attempt, task, 'silence'))
             self.assertEqual(len(Journal(self.root).recent()), 2)
         finally:
             if child.poll() is None:
@@ -99,32 +99,32 @@ class JournalLifecycleTests(unittest.TestCase):
     def test_interrupt_is_turn_scoped_and_rejects_late_feedback(self):
         journal = Journal(self.root)
         journal.start_round(self.session, 'task')
-        attempt, task = journal.begin(self.session, [])
+        attempt, task = journal.begin(self.session)
         journal.interrupt(SessionRef('s', 'wrong-turn', str(self.root)))
         self.assertFalse(journal.cancelled(attempt))
         journal.interrupt(self.session)
         journal.interrupt(self.session)
         self.assertTrue(journal.cancelled(attempt))
-        self.assertFalse(journal.finish(self.session, attempt, task, 'feedback', {'raw_output':'late'}))
+        self.assertFalse(journal.finish(self.session, attempt, task, 'feedback', feedback={'required': 'late'}))
         self.assertEqual(len(journal.recent()), 1)
         self.assertEqual(journal.recent()[0]['delivered'], 0)
         self.assertEqual(journal.unresolved(), [])
         journal.start_round(self.session, 'new request')
-        next_attempt, next_task = journal.begin(self.session, [])
+        next_attempt, next_task = journal.begin(self.session)
         self.assertFalse(journal.cancelled(next_attempt))
-        self.assertTrue(journal.finish(self.session, next_attempt, next_task, 'silence', {}))
+        self.assertTrue(journal.finish(self.session, next_attempt, next_task, 'silence'))
 
     def test_competing_finalizers_write_one_terminal_fact(self):
         journal = Journal(self.root)
         journal.start_round(self.session, 'task')
-        attempt, task = journal.begin(self.session, [])
+        attempt, task = journal.begin(self.session)
         barrier = threading.Barrier(2)
         outcomes, errors = [], []
         def finish(outcome):
             try:
                 other = Journal(self.root)
                 barrier.wait(timeout=3)
-                outcomes.append(other.finish(self.session, attempt, task, outcome, {'original': outcome}))
+                outcomes.append((outcome, other.finish(self.session, attempt, task, outcome, reason='internal')))
             except Exception as exc:
                 errors.append(exc)
         workers = [threading.Thread(target=finish, args=(outcome,)) for outcome in ('silence', 'fault')]
@@ -134,26 +134,30 @@ class JournalLifecycleTests(unittest.TestCase):
             worker.join(5)
         self.assertFalse(any(worker.is_alive() for worker in workers))
         self.assertEqual(errors, [])
-        self.assertEqual(sorted(outcomes), [False, True])
-        self.assertEqual(len(Journal(self.root).recent()), 1)
+        self.assertEqual(sorted(success for _, success in outcomes), [False, True])
+        winner, = [outcome for outcome, success in outcomes if success]
         self.assertEqual(journal.unresolved(), [])
         with journal.connect() as db:
-            self.assertEqual(db.execute("SELECT COUNT(*) FROM judgment_events WHERE kind='finished'").fetchone()[0], 1)
+            self.assertEqual(db.execute("SELECT COUNT(*) FROM work_reviews").fetchone()[0], 0)
+            row = db.execute("SELECT silence_count,fault FROM work_rounds").fetchone()
+            self.assertEqual(tuple(row), (1, None) if winner == 'silence' else (0, 'internal'))
+        # A concurrent writer can make the optional summary unavailable.
+        self.assertTrue(all(row['outcome'] == winner for row in journal.recent()))
 
     def test_storage_failure_rolls_back_and_corruption_is_not_silence(self):
         journal = Journal(self.root)
         journal.start_round(self.session, 'original')
         with self.assertRaises(sqlite3.OperationalError):
             with journal.connect() as db:
-                db.execute("UPDATE rounds SET request='partial'")
+                db.execute("UPDATE work_rounds SET request='partial'")
                 db.execute('INSERT INTO missing_table VALUES(1)')
         with journal.connect() as db:
-            self.assertEqual(db.execute('SELECT request FROM rounds').fetchone()[0], 'original')
+            self.assertEqual(db.execute('SELECT request FROM work_rounds').fetchone()[0], 'original')
         corrupt = self.root / 'corrupt'
         corrupt.mkdir()
         (corrupt / 'feedback.sqlite3').write_bytes(b'not a database')
         dispatch = mock.Mock()
-        paths = RuntimePaths(ROOT, corrupt, corrupt, corrupt / 'error.log')
+        paths = RuntimePaths(ROOT, corrupt, corrupt)
         with self.assertRaises(sqlite3.DatabaseError):
             NudgeCore(RuntimeSettings('openai', 'model', paths), dispatch=dispatch)
         dispatch.assert_not_called()
@@ -162,25 +166,24 @@ class JournalLifecycleTests(unittest.TestCase):
         journal = Journal(self.root)
         journal.start_round(self.session, 'task')
         with journal.connect() as db:
-            round_id = db.execute('SELECT round_id FROM rounds').fetchone()[0]
-            journal._append_event(db, session='s', turn='t', round_id=round_id,
-                kind='queued', attempt='abandoned', batch_id='batch', payload={'deadline': 0})
+            round_id = db.execute('SELECT round_id FROM work_rounds').fetchone()[0]
+            db.execute("INSERT INTO work_reviews VALUES('abandoned',?,0,0,'queued',zeroblob(1024),'model')", (round_id,))
         recovered = Journal(self.root)
-        self.assertEqual(recovered.recent()[0]['detail']['fault']['kind'], 'timeout')
+        self.assertEqual(recovered.recent()[0]['reason'], 'timeout')
         with recovered.connect() as db:
-            self.assertEqual(db.execute("SELECT COUNT(*) FROM judgment_events WHERE kind='finished'").fetchone()[0], 1)
+            self.assertEqual(db.execute("SELECT COUNT(*) FROM work_reviews").fetchone()[0], 0)
         self.assertFalse(recovered.finish(self.session, 'abandoned',
-            {'round_id': round_id, 'batch_id': 'batch'}, 'feedback', {}))
+            {'round_id': round_id}, 'feedback', feedback={'required': 'late'}))
 
     def test_cancel_while_waiting_releases_followers_and_rejects_active_result(self):
         journal = Journal(self.root)
         journal.start_round(self.session, 'task')
-        attempt, task = journal.begin(self.session, [])
+        attempt, task = journal.begin(self.session)
         cancel = threading.Event()
         outcomes = []
         def wait_for_review():
             try:
-                journal.begin(self.session, [], cancel_event=cancel)
+                journal.begin(self.session, cancel_event=cancel)
             except ToolFault as exc:
                 outcomes.append(exc.kind)
         worker = threading.Thread(target=wait_for_review, daemon=True)
@@ -195,51 +198,65 @@ class JournalLifecycleTests(unittest.TestCase):
         self.assertEqual(outcomes, ['interrupted'])
         self.assertEqual(journal.unresolved(), [])
         self.assertTrue(journal.cancelled(attempt))
-        self.assertFalse(journal.finish(self.session, attempt, task, 'feedback', {}))
+        self.assertFalse(journal.finish(self.session, attempt, task, 'feedback', feedback={'required': 'late'}))
 
     def test_persisted_deadline_survives_restart_with_different_defaults(self):
         journal = Journal(self.root)
         journal.start_round(self.session, 'task')
-        attempt, task = journal.begin(self.session, [])
+        attempt, task = journal.begin(self.session)
         restarted = Journal(self.root, provider_timeout_sec=-9999)
         self.assertFalse(restarted.cancelled(attempt))
         with restarted.connect() as db:
-            db.execute("UPDATE judgment_events SET payload=? WHERE kind='started'",
-                       (json.dumps({'deadline': 0}),))
+            db.execute("UPDATE work_reviews SET deadline=0 WHERE state='running'")
         recovered = Journal(self.root)
         self.assertTrue(recovered.cancelled(attempt))
-        self.assertFalse(recovered.finish(self.session, attempt, task, 'silence', {}))
+        self.assertFalse(recovered.finish(self.session, attempt, task, 'silence'))
 
     def test_interrupt_before_first_patch_closes_round_and_new_round_reopens(self):
         journal = Journal(self.root)
         journal.start_round(self.session, 'task')
         journal.interrupt(self.session)
         with self.assertRaises(ToolFault):
-            journal.begin(self.session, [])
+            journal.begin(self.session)
         self.assertEqual(journal.unresolved(), [])
         journal.start_round(self.session, 'new request')
-        attempt, task = journal.begin(self.session, [])
-        self.assertTrue(journal.finish(self.session, attempt, task, 'silence', {}))
+        attempt, task = journal.begin(self.session)
+        self.assertTrue(journal.finish(self.session, attempt, task, 'silence'))
 
-    def test_capacity_stops_admission_but_keeps_finalization_and_history(self):
+    def test_global_work_capacity_keeps_space_for_cancel_and_completion(self):
+        with mock.patch('masters_nudge.storage.WORK_LIMIT', 1):
+            journal = Journal(self.root)
+            other = Journal(self.root)
+            second = SessionRef('second', 't', str(self.root))
+            journal.start_round(self.session, 'task')
+            other.start_round(second, 'second')
+            attempt, task = journal.begin(self.session)
+            with self.assertRaises(ToolFault) as rejected:
+                other.begin(second)
+            self.assertEqual(rejected.exception.kind, 'busy')
+            self.assertTrue(journal.finish(self.session, attempt, task, 'silence'))
+            attempt, task = other.begin(second)
+            journal.interrupt(second)
+            self.assertTrue(other.cancelled(attempt))
+            self.assertFalse(other.finish(second, attempt, task, 'silence'))
+
+    def test_interrupt_and_delivery_have_one_order_across_connections(self):
         journal = Journal(self.root)
-        journal.start_round(self.session, 'task')
-        attempt, task = journal.begin(self.session, [])
-        with journal.connect() as db:
-            used = db.execute('PRAGMA page_count').fetchone()[0] * db.execute('PRAGMA page_size').fetchone()[0]
-        with mock.patch('masters_nudge.storage.JOURNAL_ADMISSION_BYTES', used), \
-             mock.patch('masters_nudge.storage.JOURNAL_MAX_BYTES', used + 32768):
-            with self.assertRaises(ToolFault) as caught:
-                journal.begin(self.session, [])
-            self.assertEqual(caught.exception.kind, 'storage')
-            self.assertTrue(journal.finish(self.session, attempt, task, 'silence', {'proof': 'retained'}))
-            with self.assertRaises(sqlite3.DatabaseError):
-                with journal.connect() as db:
-                    db.execute("UPDATE attempts SET detail=? WHERE id=?", ('x' * 131072, attempt))
-            self.assertEqual(journal.recent()[0]['detail']['proof'], 'retained')
-            with journal.connect() as db:
-                self.assertEqual(db.execute('PRAGMA integrity_check').fetchone()[0], 'ok')
-
+        other = Journal(self.root)
+        for interrupt_first in (True, False):
+            journal.start_round(self.session, 'task')
+            attempt, task = journal.begin(self.session)
+            self.assertTrue(journal.finish(self.session, attempt, task, 'feedback', feedback={'required': 'fix'}))
+            if interrupt_first:
+                other.interrupt(self.session)
+                self.assertFalse(journal.authorize_delivery(attempt))
+                self.assertIsNone(journal.recent()[0]['delivered'])
+            else:
+                self.assertTrue(journal.authorize_delivery(attempt))
+                other.interrupt(self.session)
+                self.assertFalse(other.authorize_delivery(attempt))
+                journal.delivered(attempt)
+                self.assertEqual(journal.recent()[0]['delivered'], 1)
 
 @unittest.skipUnless(os.name == 'nt', 'Windows installed-platform lifecycle')
 class WindowsLifecycleTests(unittest.TestCase):
@@ -366,7 +383,7 @@ class WindowsLifecycleTests(unittest.TestCase):
                     'from masters_nudge.providers import _run_cli_process; '
                     'from masters_nudge.contracts import ProviderRun; '
                     f'data=pathlib.Path({str(data)!r}); '
-                    'settings=RuntimeSettings("openai","model",RuntimePaths(pathlib.Path.cwd(),data,data,data/"error.log")); '
+                    'settings=RuntimeSettings("openai","model",RuntimePaths(pathlib.Path.cwd(),data,data)); '
                     f'dispatch=lambda **kw: (_run_cli_process([sys.executable,"-c",{self.tree_script()!r}],'
                     'input_text="",environment=dict(os.environ),timeout_sec=30,cancel_event=kw["cancel_event"]),'
                     "ProviderRun('{\"feedback\":null}'))[1]; "
@@ -415,7 +432,7 @@ class WindowsLifecycleTests(unittest.TestCase):
                         self.assertFalse(reader.is_alive(), 'Interrupt hook left the MCP request unfinished')
                         self.assertIsNone(server.poll())
                         rows = Journal(data).recent()
-                        self.assertEqual(rows[0]['detail']['fault']['kind'], 'interrupted')
+                        self.assertEqual(rows[0]['reason'], 'interrupted')
                         self.assertEqual(Journal(data).unresolved(), [])
                     server.stdin.close()
                     server.stdin = None
@@ -431,7 +448,7 @@ class WindowsLifecycleTests(unittest.TestCase):
                     rows = Journal(data).recent()
                     self.assertEqual(len(rows), 1)
                     self.assertEqual(rows[0]['outcome'], 'fault')
-                    self.assertEqual(rows[0]['detail']['fault']['kind'], 'interrupted')
+                    self.assertEqual(rows[0]['reason'], 'interrupted')
                     self.assertEqual(rows[0]['delivered'], 0)
                     self.assertEqual(Journal(data).unresolved(), [])
                 finally:

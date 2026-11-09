@@ -25,7 +25,7 @@ class PipelineTests(unittest.TestCase):
         subprocess.run(["git", "init", "-q", str(self.repo)], check=True)
         self.calls = []
         self.reply = {"feedback": None}
-        paths = RuntimePaths(ROOT, self.root / "data", self.root / "settings", self.root / "error.log")
+        paths = RuntimePaths(ROOT, self.root / "data", self.root / "settings")
         self.settings = RuntimeSettings("openai", "gpt-5.6-sol", paths)
         self.adapter = CodexAdapter(NudgeCore(self.settings, dispatch=self.dispatch))
 
@@ -219,9 +219,8 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(self.adapter.core.journal.recent(), [])
         self.assertEqual(self.adapter.core.journal.unresolved(), [])
         with self.adapter.core.journal.connect() as db:
-            row = db.execute("SELECT skipped_test_patches FROM rounds").fetchone()
-            self.assertEqual(row["skipped_test_patches"], len(changes))
-            self.assertEqual(db.execute("SELECT COUNT(*) FROM batches").fetchone()[0], len(changes))
+            row = db.execute("SELECT COUNT(*) FROM work_reviews").fetchone()
+            self.assertEqual(row[0], 0)
         for i in range(4):
             self.batch(call=f"product-{i}")
         self.assertEqual(len(self.calls), 3)
@@ -272,10 +271,10 @@ class PipelineTests(unittest.TestCase):
         packet = json.loads(self.calls[-1]["nudge_input"])
         origins = {row["path"]: json.loads(row["lines"][0]) for row in packet["file_origin"]}
         self.assertEqual(origins["tests/new.spec.ts"], {
-            "existed_at_task_start": False, "baseline_turn_id": "turn-1",
+            "existed_at_baseline": False, "baseline_turn_id": "turn-1",
         })
         self.assertEqual(origins["tests/existing.spec.ts"], {
-            "existed_at_task_start": True, "baseline_turn_id": "turn-1",
+            "existed_at_baseline": True, "baseline_turn_id": "turn-1",
         })
         self.assertEqual(len(self.calls), 1)  # Pure test patches still do not call Provider.
         self.assertNotIn("judgment_scope", packet)
@@ -288,7 +287,7 @@ class PipelineTests(unittest.TestCase):
                    turn="turn-2")
         origins = json.loads(self.calls[-1]["nudge_input"])["file_origin"]
         self.assertEqual(json.loads(origins[0]["lines"][0]), {
-            "existed_at_task_start": True, "baseline_turn_id": "turn-2",
+            "existed_at_baseline": True, "baseline_turn_id": "turn-2",
         })
 
     def _session(self, turn):
@@ -327,6 +326,7 @@ class PipelineTests(unittest.TestCase):
         for _ in range(5):
             result = self.batch()
             if result:
+                self.assertTrue(self.adapter.core.journal.authorize_delivery(result["_masters_nudge"]))
                 self.adapter.core.journal.delivered(result["_masters_nudge"])
         self.assertEqual(len(self.calls), 3)
         history = json.loads(self.calls[-1]["nudge_input"])["previous_nudges"]
@@ -337,6 +337,7 @@ class PipelineTests(unittest.TestCase):
         self.feedback()
         first = json.loads(json.dumps(self.reply["feedback"]))
         result = self.batch(call="first-feedback")
+        self.assertTrue(self.adapter.core.journal.authorize_delivery(result["_masters_nudge"]))
         self.adapter.core.journal.delivered(result["_masters_nudge"])
         self.reply = {"feedback": None}
         self.batch(call="silence")
@@ -344,6 +345,7 @@ class PipelineTests(unittest.TestCase):
         self.reply["feedback"]["structure"] = "render <- job.status"
         second = json.loads(json.dumps(self.reply["feedback"]))
         result = self.batch(call="second-feedback")
+        self.assertTrue(self.adapter.core.journal.authorize_delivery(result["_masters_nudge"]))
         self.adapter.core.journal.delivered(result["_masters_nudge"])
         self.batch(call="third-feedback")
         self.batch(call="over-limit")
@@ -355,6 +357,7 @@ class PipelineTests(unittest.TestCase):
         self.feedback()
         self.batch(call="not-delivered")
         result = self.batch(call="delivered")
+        self.assertTrue(self.adapter.core.journal.authorize_delivery(result["_masters_nudge"]))
         self.adapter.core.journal.delivered(result["_masters_nudge"])
         self.prompt("新一輪要求")
         self.batch(call="new-round")
@@ -375,7 +378,7 @@ class PipelineTests(unittest.TestCase):
                 self.assertIsNone(self.batch())
                 recent = self.adapter.core.journal.recent()[0]
                 self.assertEqual(recent["outcome"], "fault")
-                self.assertEqual(recent["detail"]["fault"]["kind"], "superseded")
+                self.assertEqual(recent["reason"], "superseded")
                 self.assertEqual(recent["delivered"], 0)
 
     def test_observed_location_is_not_a_literal_runtime_gate(self):
@@ -429,7 +432,7 @@ class PipelineTests(unittest.TestCase):
                     fault = self.adapter.core.journal.recent()[0]
                     self.assertEqual(fault["outcome"], "fault")
                     self.assertEqual(fault["delivered"], 0)
-                    self.assertEqual(fault["detail"]["trace"][-1]["fault"], "read denied")
+                    self.assertEqual(fault["reason"], "mcp_read")
                     self.assertIn("mcp_read", self.batch(call="blocked")["systemMessage"])
                     self.assertEqual(run.call_count, 1)
                     self.assertEqual(self.adapter.core.journal.unresolved(), [])

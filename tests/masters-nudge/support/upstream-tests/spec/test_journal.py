@@ -1,11 +1,11 @@
-import json
 from pathlib import Path
 import sqlite3
 import tempfile
 import unittest
+from unittest import mock
 
 from masters_nudge.contracts import SessionRef, ToolFault
-from masters_nudge.storage import Journal
+from masters_nudge.storage import AUDIT_LIMIT, JOURNAL_MAX_BYTES, Journal, recent_nudges
 
 
 class JournalTests(unittest.TestCase):
@@ -15,111 +15,83 @@ class JournalTests(unittest.TestCase):
         self.root = Path(self.temp.name)
         self.session = SessionRef("s", "host-turn", str(self.root))
 
-    def test_attempt_exists_only_after_a_terminal_result(self):
+    def test_summary_failure_does_not_undo_the_result_or_its_quota(self):
         journal = Journal(self.root)
-        journal.start_round(self.session, "first")
-        first, task = journal.begin(self.session, [{"tool_use_id": "patch-1"}])
-
+        journal.start_round(self.session, "task")
+        with mock.patch.object(journal, "_record", side_effect=sqlite3.OperationalError("audit unavailable")):
+            for _ in range(2):
+                attempt, task = journal.begin(self.session)
+                self.assertTrue(journal.finish(self.session, attempt, task, "silence"))
+            self.assertIsNone(journal.begin(self.session))
         self.assertEqual(journal.recent(), [])
-        self.assertEqual([row["id"] for row in journal.unresolved()], [task["batch_id"]])
-        self.assertTrue(journal.finish(self.session, first, task, "silence", {"raw_output": "done"}))
-        self.assertEqual(journal.recent()[0]["outcome"], "silence")
-        self.assertEqual(journal.unresolved(), [])
+        journal.start_round(self.session, "next prompt")
+        self.assertIsNotNone(journal.begin(self.session))
 
-    def test_new_user_round_can_start_while_old_result_becomes_historical(self):
+    def test_summary_overwrite_and_expiry_keep_storage_bounded(self):
         journal = Journal(self.root)
-        journal.start_round(self.session, "first")
-        first, first_task = journal.begin(self.session, [{"tool_use_id": "patch-1"}])
-        self.assertIsNotNone(first)
+        recorded = []
+        sizes = []
+        for index in range(AUDIT_LIMIT * 3):
+            session = SessionRef(str(index), "t", str(self.root))
+            with mock.patch("masters_nudge.storage.ROUND_IDLE_SEC", 10):
+                with mock.patch("masters_nudge.storage.time.time", return_value=index * 11):
+                    journal.start_round(session, "task")
+                    attempt, task = journal.begin(session)
+                    self.assertTrue(journal.finish(session, attempt, task, "silence"))
+                    recorded.append(attempt)
+            if (index + 1) % AUDIT_LIMIT == 0:
+                sizes.append(journal.path.stat().st_size)
+        self.assertEqual([item["id"] for item in journal.recent(AUDIT_LIMIT)], recorded[-AUDIT_LIMIT:][::-1])
+        self.assertLessEqual(sizes[-1] - sizes[-2], 4096)
+        with journal.connect() as db:
+            self.assertEqual(db.execute("SELECT COUNT(*) FROM work_rounds").fetchone()[0], 1)
+            self.assertEqual(db.execute("SELECT COUNT(*) FROM work_reviews").fetchone()[0], 0)
 
-        journal.start_round(self.session, "latest")
-        second, task = Journal(self.root).begin(self.session, [{"tool_use_id": "patch-3"}])
-        self.assertNotEqual(first, second)
-        self.assertEqual(task["request"], "latest")
-        self.assertFalse(journal.finish(self.session, first, first_task, "feedback", {"raw_output": "old"}))
-        self.assertTrue(journal.finish(self.session, second, task, "silence", {"raw_output": "new"}))
-        old = next(row for row in journal.recent() if row["id"] == first)
-        self.assertEqual(old["outcome"], "fault")
-        self.assertEqual(old["detail"]["fault"]["kind"], "superseded")
-        self.assertEqual(old["delivered"], 0)
-        self.assertFalse(journal.finish(self.session, second, task, "feedback", {"raw_output": "duplicate"}))
-
-    def test_expired_judgment_is_a_durable_fault(self):
-        journal = Journal(self.root, provider_timeout_sec=-20)
-        journal.start_round(self.session, "first")
-        first, _ = journal.begin(self.session, [{"tool_use_id": "patch-1"}])
-
-        with self.assertRaisesRegex(ToolFault, "未在期限內留下結果"):
-            Journal(self.root, provider_timeout_sec=-20).begin(
-                self.session, [{"tool_use_id": "patch-2"}],
-            )
-
-        result = next(row for row in journal.recent() if row["id"] == first)
-        self.assertEqual(result["outcome"], "fault")
-        self.assertEqual(journal.unresolved(), [])
-        with self.assertRaisesRegex(ToolFault, "未在期限內留下結果"):
-            journal.begin(self.session, [{"tool_use_id": "patch-3"}])
-        self.assertEqual(journal.unresolved(), [])
-
-    def test_exhausted_hook_budget_is_a_durable_fault(self):
+    def test_round_pressure_preserves_live_state_and_expired_turn_is_rejected(self):
         journal = Journal(self.root)
-        journal.start_round(self.session, "first")
-        first, task = journal.begin(self.session, [{"tool_use_id": "patch-1"}])
-        self.assertTrue(journal.finish(self.session, first, task, "silence", {}))
+        other = SessionRef("other", "new", str(self.root))
+        with mock.patch("masters_nudge.storage.ROUND_LIMIT", 1), \
+             mock.patch("masters_nudge.storage.ROUND_IDLE_SEC", 10):
+            with mock.patch("masters_nudge.storage.time.time", return_value=100):
+                journal.start_round(self.session, "task")
+                attempt, task = journal.begin(self.session)
+                with self.assertRaisesRegex(ToolFault, "已滿"):
+                    journal.start_round(other, "other")
+                self.assertTrue(journal.finish(self.session, attempt, task, "silence"))
+            with mock.patch("masters_nudge.storage.time.time", return_value=111):
+                journal.start_round(other, "other")
+                with self.assertRaisesRegex(ToolFault, "找不到"):
+                    journal.begin(self.session)
+                self.assertIsNotNone(journal.begin(other))
 
-        with self.assertRaisesRegex(ToolFault, "已無執行時間"):
-            Journal(self.root, hook_timeout_sec=0).begin(
-                self.session, [{"tool_use_id": "patch-2"}],
-            )
-
-        self.assertEqual(journal.unresolved(), [])
-        self.assertEqual(journal.recent()[0]["outcome"], "fault")
-
-    def test_upgrade_keeps_old_evidence_and_current_quota(self):
-        with sqlite3.connect(self.root / "feedback.sqlite3") as db:
-            db.executescript("""
-                CREATE TABLE rounds(session TEXT PRIMARY KEY,turn TEXT,goal TEXT,request TEXT);
-                CREATE TABLE attempts(id TEXT PRIMARY KEY,session TEXT,turn TEXT,started REAL,
-                    finished REAL,outcome TEXT,delivered INTEGER NOT NULL DEFAULT 0,
-                    detail TEXT NOT NULL DEFAULT '{}');
-                INSERT INTO rounds VALUES('s','host-turn','goal','old request');
-            """)
-            for n in range(2):
-                db.execute("INSERT INTO attempts VALUES(?,?,?,?,?,?,?,?)",
-                           (str(n), "s", "host-turn", n, n+0.1, "silence", 0, json.dumps({"original": n})))
+    def test_full_legacy_database_cutover_rolls_back_then_can_review(self):
+        path = self.root / "feedback.sqlite3"
+        db = sqlite3.connect(path)
+        self.addCleanup(db.close)
+        with db:
+            max_pages = JOURNAL_MAX_BYTES // 4096
+            db.execute("PRAGMA page_size=4096")
+            db.execute(f"PRAGMA max_page_count={max_pages}")
+            db.execute("CREATE TABLE attempts(payload BLOB)")
+            db.execute("INSERT INTO attempts VALUES(zeroblob(?))", (120 * 1024 * 1024,))
+            while db.execute("PRAGMA page_count").fetchone()[0] < max_pages:
+                db.execute("INSERT INTO attempts VALUES(zeroblob(4050))")
+            self.assertEqual(db.execute("PRAGMA freelist_count").fetchone()[0], 0)
+        self.assertEqual(path.stat().st_size, JOURNAL_MAX_BYTES)
+        self.assertEqual(recent_nudges(self.root), [])
+        with mock.patch("masters_nudge.storage.SCHEMA", ("invalid SQL",)):
+            with self.assertRaises(sqlite3.Error):
+                Journal(self.root)
+        self.assertGreater(db.execute("SELECT COUNT(*) FROM attempts").fetchone()[0], 0)
+        self.assertEqual(db.execute("PRAGMA user_version").fetchone()[0], 0)
         db.close()
-        journal = Journal(self.root)
-        with journal.connect() as db:
-            self.assertEqual(db.execute("SELECT file_baseline FROM rounds").fetchone()[0], "{}")
-        self.assertIsNone(journal.begin(self.session, [{"tool_use_id": "limited"}]))
-        self.assertEqual({row["detail"]["original"] for row in journal.recent()}, {0, 1})
-        journal.start_round(self.session, "new request")
-        attempt, task = journal.begin(self.session, [{"tool_use_id": "new"}])
-        self.assertEqual(task["file_baseline"], "{}")
-        self.assertTrue(journal.finish(self.session, attempt, task, "silence", {}))
-        self.assertEqual(len(Journal(self.root).recent()), 3)
 
-    def test_upgrade_preserves_skipped_test_count(self):
         journal = Journal(self.root)
-        journal.start_round(self.session, "first")
+        journal.start_round(self.session, "new prompt")
+        attempt, task = journal.begin(self.session)
+        self.assertTrue(journal.finish(self.session, attempt, task, "silence"))
         with journal.connect() as db:
-            db.execute("UPDATE rounds SET skipped_test_patches=7")
-            db.execute("ALTER TABLE rounds RENAME COLUMN skipped_test_patches TO skipped_new_test_patches")
-        upgraded = Journal(self.root)
-        with upgraded.connect() as db:
-            row = db.execute("SELECT skipped_test_patches,request FROM rounds").fetchone()
-        self.assertEqual(row["skipped_test_patches"], 7)
-        self.assertEqual(row["request"], "first")
-
-    def test_legacy_test_silences_leave_product_quota_unchanged(self):
-        journal = Journal(self.root)
-        journal.start_round(self.session, "first")
-        for i in range(2):
-            attempt, task = journal.begin(self.session, [{"tool_use_id": f"legacy-test-{i}"}])
-            journal.finish(self.session, attempt, task, "silence", {"judgment_scope": "task_contract"})
-        upgraded = Journal(self.root)
-        for i in range(2):
-            attempt, task = upgraded.begin(self.session, [{"tool_use_id": f"product-{i}"}])
-            upgraded.finish(self.session, attempt, task, "silence", {})
-        self.assertIsNone(upgraded.begin(self.session, [{"tool_use_id": "limited"}]))
-        self.assertEqual(len(upgraded.recent()), 4)
+            self.assertEqual(db.execute("PRAGMA quick_check").fetchone()[0], "ok")
+            self.assertGreater(db.execute("PRAGMA freelist_count").fetchone()[0], 0)
+        self.assertEqual(journal.recent()[0]["outcome"], "silence")
+        self.assertEqual(path.stat().st_size, JOURNAL_MAX_BYTES)

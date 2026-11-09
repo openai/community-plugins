@@ -172,19 +172,41 @@ class TransportTests(unittest.TestCase):
 
     @unittest.skipUnless(os.name == "nt", "Windows inherited-handle behavior")
     def test_exited_provider_does_not_wait_for_a_descendant_holding_its_output(self):
-        child = "import time; time.sleep(3)"
-        provider = (
-            "import subprocess,sys; "
-            f"subprocess.Popen([sys.executable,'-c',{child!r}],stdout=sys.stdout,stderr=sys.stderr)"
-        )
-        probe = (
-            "import os,sys,time; from masters_nudge.providers import _run_cli_process; "
-            "started=time.monotonic(); "
-            f"_run_cli_process([sys.executable,'-c',{provider!r}],environment=dict(os.environ),timeout_sec=1); "
-            "raise SystemExit(0 if time.monotonic()-started < 1.5 else 1)"
-        )
-        result = subprocess.run([sys.executable, "-c", probe], cwd=ROOT, timeout=5)
-        self.assertEqual(result.returncode, 0)
+        with tempfile.TemporaryDirectory() as raw:
+            ready = Path(raw) / "child-ready"
+            child = (
+                "import pathlib,sys,time; "
+                "print('child stdout',flush=True); "
+                "print('child stderr',file=sys.stderr,flush=True); "
+                f"pathlib.Path({str(ready)!r}).write_text('ready'); "
+                "time.sleep(30)"
+            )
+            provider = (
+                "import pathlib,subprocess,sys,time\n"
+                f"child=subprocess.Popen([sys.executable,'-c',{child!r}],stdout=sys.stdout,stderr=sys.stderr)\n"
+                f"while not pathlib.Path({str(ready)!r}).exists():\n"
+                "    if child.poll() is not None: raise RuntimeError('Child exited before readiness')\n"
+                "    time.sleep(0.01)\n"
+                "if child.poll() is not None: raise RuntimeError('Child did not keep output open')\n"
+                "print('provider stdout',flush=True)\n"
+                "print('provider stderr',file=sys.stderr,flush=True)\n"
+            )
+            probe = (
+                "import json,os,sys,time; from masters_nudge.providers import _run_cli_process; "
+                "started=time.monotonic(); "
+                f"result=_run_cli_process([sys.executable,'-c',{provider!r}],environment=dict(os.environ),timeout_sec=5); "
+                "print(json.dumps({'returncode':result.returncode,'stdout':result.stdout,"
+                "'stderr':result.stderr,'elapsed':time.monotonic()-started}))"
+            )
+            result = subprocess.run([sys.executable, "-c", probe], cwd=ROOT, timeout=10,
+                                    capture_output=True, text=True, encoding="utf-8")
+            self.assertEqual(result.returncode, 0, result.stderr)
+            self.assertTrue(ready.is_file(), "Child never confirmed its inherited output streams")
+            outcome = json.loads(result.stdout)
+            self.assertEqual(outcome["returncode"], 0, outcome["stderr"])
+            self.assertEqual(outcome["stdout"].splitlines(), ["child stdout", "provider stdout"])
+            self.assertEqual(outcome["stderr"].splitlines(), ["child stderr", "provider stderr"])
+            self.assertLess(outcome["elapsed"], 5, "Output collection waited for the sleeping child")
 
     @unittest.skipUnless(os.name == "nt", "Windows pipe behavior")
     def test_timeout_still_applies_when_child_never_reads_large_stdin(self):

@@ -8,7 +8,6 @@ import threading
 import sys
 from pathlib import Path
 
-from masters_nudge import storage
 from masters_nudge.codex_adapter import AUDIT_MARKER_KEY, CodexAdapter
 from masters_nudge.contracts import ToolFault, json_text
 from masters_nudge.core import NudgeCore
@@ -133,10 +132,13 @@ def serve(core: NudgeCore, adapter: CodexAdapter, *, input_stream=sys.stdin, out
         elif method == "tools/call" and params.get("name") == "review_patch":
             try:
                 arguments = params.get("arguments")
-                if not isinstance(arguments, dict):
-                    raise ToolFault("input", "MCP 事件必須是 JSON 物件")
+                if not isinstance(arguments, dict) or arguments.get("hook_event_name") != "PostToolUse":
+                    raise ToolFault("input", "review_patch 只接受 PostToolUse 事件")
                 result, attempt = _reply(adapter.process(dict(arguments), cancel_event=cancel_event))
+                if attempt and not cancel_event.is_set() and not core.journal.authorize_delivery(attempt):
+                    result, attempt = _reply(None)
             except Exception as exc:
+                attempt = None
                 core.log_error(str(exc))
                 fault = {"systemMessage": "本輪反饋未執行"}
                 if core.settings.strict:
@@ -173,10 +175,7 @@ def main() -> int:
     settings = RuntimeSettings.from_env(Path(__file__).resolve().parent, host="codex_cli")
 
     def log_error(message):
-        try:
-            storage.append_error(settings.paths.error_log, "codex-mcp", message)
-        except OSError as exc:
-            print(f"Masters' Nudge: {message}; error log unavailable: {exc}", file=sys.stderr, flush=True)
+        print(f"Masters' Nudge: {message[:500]}", file=sys.stderr, flush=True)
 
     core = NudgeCore(settings, log_error=log_error)
     serve(core, CodexAdapter(core))

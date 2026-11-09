@@ -4,7 +4,6 @@ import argparse
 import json
 import sys
 from pathlib import Path
-from masters_nudge import storage
 from masters_nudge.codex_adapter import AUDIT_MARKER_KEY, CodexAdapter
 from masters_nudge.contracts import ToolFault
 from masters_nudge.core import NudgeCore
@@ -19,11 +18,7 @@ def main() -> int:
         return 0
     settings = RuntimeSettings.from_env(Path(__file__).resolve().parent, host=args.host)
     def log_error(message):
-        try:
-            storage.append_error(settings.paths.error_log, "codex-hook", message)
-        except OSError as exc:
-            # A broken journal must not prevent the host from receiving fault status.
-            print(f"Masters' Nudge: {message}; error log unavailable: {exc}", file=sys.stderr)
+        print(f"Masters' Nudge: {message[:500]}", file=sys.stderr)
     try:
         raw = sys.stdin.buffer.read(1024 * 1024 + 1)
         if len(raw) > 1024 * 1024:
@@ -35,6 +30,8 @@ def main() -> int:
         output = CodexAdapter(core).process(payload)
         if output is not None:
             attempt = output.pop(AUDIT_MARKER_KEY, None)
+            if attempt and not core.journal.authorize_delivery(attempt):
+                return 0
             sys.stdout.write(json.dumps(output, ensure_ascii=True) + "\n")
             sys.stdout.flush()
             if attempt:

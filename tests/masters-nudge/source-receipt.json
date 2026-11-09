@@ -1,6 +1,6 @@
 {
   "repository": "https://github.com/shihchengwei-lab/masters-nudge",
-  "commit": "99f88378f843c04a99abfda1575cdfad378108ff",
+  "commit": "113e08f9a5801d887bbb1748b4fae32deba2a881",
   "method": "Exact committed plugin/test blobs; no private data or model calls.",
   "files": {
     "plugins/masters-nudge/LICENSE": {
@@ -17,11 +17,11 @@
     },
     "plugins/masters-nudge/hook_entry.py": {
       "source": "plugins/masters-nudge/hook_entry.py",
-      "sha256": "8ba6735af4d3004fbdd5cf009646d040b47fd94adcadf1d56716d5c1cebb1ee3"
+      "sha256": "3b9bce5793baeccdabdbb9deeeef9a4fb8018d70437eea821dc547ba3e7e4e93"
     },
     "plugins/masters-nudge/mcp_entry.py": {
       "source": "plugins/masters-nudge/mcp_entry.py",
-      "sha256": "3d70dbe215d8e2e2eae4c341678bb82fee2c0a2147ecac1bd2142b99d14054a6"
+      "sha256": "8534d42e2b8e2e21ee958e408df794c04be6c73673778c1249cb5b22eb4a747f"
     },
     "plugins/masters-nudge/masters_nudge_cli.py": {
       "source": "plugins/masters-nudge/masters_nudge_cli.py",
@@ -45,15 +45,15 @@
     },
     "plugins/masters-nudge/masters_nudge/core.py": {
       "source": "plugins/masters-nudge/masters_nudge/core.py",
-      "sha256": "9eb03d552b2ca22e383a9176e69031ed2fe0aafe3596d28fc38de47f2c73f793"
+      "sha256": "a2d2abf48e7388b345d0d31e4f02cfaf72793deb3bfea59e4848a438903bb365"
     },
     "plugins/masters-nudge/masters_nudge/evidence.py": {
       "source": "plugins/masters-nudge/masters_nudge/evidence.py",
-      "sha256": "3031711639a2eb000b661d3bdc1bf96f2e7a116a42b3bc7ce17cccba5e2cf683"
+      "sha256": "2133acf1149fe830e682912a01a188cee4e15062188156016c51e8f387552744"
     },
     "plugins/masters-nudge/masters_nudge/management.py": {
       "source": "plugins/masters-nudge/masters_nudge/management.py",
-      "sha256": "2f8be38bbe8f8b0d8654526cf53ad6647010c80a8af41200d299dd3e0b887f9f"
+      "sha256": "216e922fdf4e882d330db01c4a0140713ed39a110c4aaed0157d6ac23d9bddb5"
     },
     "plugins/masters-nudge/masters_nudge/plugin_inventory.py": {
       "source": "plugins/masters-nudge/masters_nudge/plugin_inventory.py",
@@ -73,11 +73,11 @@
     },
     "plugins/masters-nudge/masters_nudge/read_only_repo_mcp.py": {
       "source": "plugins/masters-nudge/masters_nudge/read_only_repo_mcp.py",
-      "sha256": "5e2b95804e5e1c0c916120e3b5dd29a626ac9f34c5250df162277b6719bfbcae"
+      "sha256": "fd5add9c536127f64f0afd205010a3bab7d3827e9467c4232c93496270f213f6"
     },
     "plugins/masters-nudge/masters_nudge/runtime.py": {
       "source": "plugins/masters-nudge/masters_nudge/runtime.py",
-      "sha256": "bf405cf2c571682a28ea75b6ac899a23288c0c1e6d688f59cc46b4ab31bae212"
+      "sha256": "a1bd595314566e9137dd4e50a67602a291a9e1ded24a306548316410b433329e"
     },
     "plugins/masters-nudge/masters_nudge/settings.py": {
       "source": "plugins/masters-nudge/masters_nudge/settings.py",
@@ -85,7 +85,7 @@
     },
     "plugins/masters-nudge/masters_nudge/storage.py": {
       "source": "plugins/masters-nudge/masters_nudge/storage.py",
-      "sha256": "32040bc554013fd575c83d16ef531da6b16234890033342f1c9014d3a39578d2"
+      "sha256": "5d15e40344f8b017ac16dd85698a779a3563d1339fa34e2f6dc4b6c23cceb223"
     },
     "plugins/masters-nudge/masters_nudge/windows_process.py": {
       "source": "plugins/masters-nudge/masters_nudge/windows_process.py",
@@ -93,11 +93,11 @@
     },
     "plugins/masters-nudge/README.md": {
       "source": "plugins/masters-nudge/README.md",
-      "sha256": "33b6239c7bd9a24bc7c1971cbc64a52878285e76bffa700f4232fcede0da8b06"
+      "sha256": "05d1ba1ec719a87ad933e491623f8b5288350aa233e653426afb3f9f359f4452"
     },
     "plugins/masters-nudge/.codex-plugin/plugin.json": {
       "source": "plugins/masters-nudge/.codex-plugin/plugin.json",
-      "sha256": "e4450d91bcc992e231f798f1d4c4a2d92c49804da5e8680c772b1d738fc6afe2"
+      "sha256": "5b0dcb52594d77252936b9f1429b4cb2cb3f7fedfe0c16d6562aa8257b25e327"
     },
     "plugins/masters-nudge/.mcp.json": {
       "source": "plugins/masters-nudge/.mcp.json",
@@ -117,7 +117,7 @@
     },
     "plugins/masters-nudge/skills/recent-nudges/SKILL.md": {
       "source": "plugins/masters-nudge/skills/recent-nudges/SKILL.md",
-      "sha256": "3f968bb5cca49257c5fc6477c4ec4a345bd9ff4cef26be0c7fccc5ed82221a5d"
+      "sha256": "19e4b7a15c67b54ea1bc35d74a3b342ea833129414b03212673138a3a8fdd253"
     },
     "tests/masters-nudge/support/upstream-tests/spec/__init__.py": {
       "source": "tests/spec/__init__.py",
@@ -125,31 +125,31 @@
     },
     "tests/masters-nudge/support/upstream-tests/spec/test_host_mcp.py": {
       "source": "tests/spec/test_host_mcp.py",
-      "sha256": "b625f96e090062b7b006874e43868071fd2ac0381b55d5de1baba73320d5a3e4"
+      "sha256": "df004d7a870d9858cbdb4a1d267b3beb5171699f6a52850c1c57bb7c24ab9197"
     },
     "tests/masters-nudge/support/upstream-tests/spec/test_journal.py": {
       "source": "tests/spec/test_journal.py",
-      "sha256": "0bb47dacafc8b7de7fe45d02a571181af1a79dbe8b3f69185948cb6e1ea616b7"
+      "sha256": "5c6ddce01a54fc53f95e8d4f0f205f996ece5aa8fa340eb313bdb6a428f3123d"
     },
     "tests/masters-nudge/support/upstream-tests/spec/test_lifecycle.py": {
       "source": "tests/spec/test_lifecycle.py",
-      "sha256": "66710954515bb67ab75d988d2f6f58c8adc5c84a3382f2f3701c0a26def0b2a4"
+      "sha256": "d9b42795956fbaab1b84580ad762261ee66aa7fb8632d3a11eb083304ad6894a"
     },
     "tests/masters-nudge/support/upstream-tests/spec/test_materials.py": {
       "source": "tests/spec/test_materials.py",
-      "sha256": "33ac893c952aebabfc0dc47df1e796bb627fd6ab853702e23af40f97dd7d4556"
+      "sha256": "a48273e4fc05919a8fccfcafbfb93f4f4d1d8d620de44cce997dc23448a76c83"
     },
     "tests/masters-nudge/support/upstream-tests/spec/test_pipeline.py": {
       "source": "tests/spec/test_pipeline.py",
-      "sha256": "eca1f62d473995638b194d906b46827abc7d97a1a75f51b989eb78069e52f9d9"
+      "sha256": "1c1730cb9e7440c916d467072cff95dfe5d076c6a6c309204da6e7ac37594a37"
     },
     "tests/masters-nudge/support/upstream-tests/spec/test_settings_package.py": {
       "source": "tests/spec/test_settings_package.py",
-      "sha256": "be6e13178224457db3b5b93f079496a5c49001cad624af36be19e30084e99b2d"
+      "sha256": "7e9339a90b76ef29a0751f36d14239e4fcfb8ae78c2bd39080823322d24ddacf"
     },
     "tests/masters-nudge/support/upstream-tests/spec/test_transport.py": {
       "source": "tests/spec/test_transport.py",
-      "sha256": "1afdbd53a2030298a9ea0ac23bbc0f6e69036d4c47a3f6369613d694697bf51c"
+      "sha256": "6c5026a552c324d3980381d691ae4073dca890500e1b040f7ba6346357655a20"
     }
   }
 }

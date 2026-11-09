@@ -2,7 +2,6 @@
 """Read-only repository tools with one durable, shared output budget."""
 from __future__ import annotations
 import argparse
-from dataclasses import asdict
 import json
 from pathlib import Path
 import subprocess
@@ -11,6 +10,9 @@ import sys
 if __package__ in (None, ""):
     sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from masters_nudge.contracts import MaterialLine, ToolFault, find_git_root, json_text
+
+READ_LIMIT = 64
+AUDIT_MAX_BYTES = 512 * 1024
 
 TOOLS = [
     {"name": "search_repo", "description": "Search literal text in the Git workspace. Each current_structure segment has a path, start line, and consecutive text lines. exhausted=true means the shared evidence budget is finished and no later repository call can return more evidence.",
@@ -32,7 +34,11 @@ def read_audit(path: Path) -> list[dict]:
     if not path.exists():
         return []
     try:
-        return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines()]
+        with path.open("rb") as stream:
+            content = stream.read(AUDIT_MAX_BYTES + 1)
+        if len(content) > AUDIT_MAX_BYTES:
+            raise ValueError("oversized audit")
+        return [json.loads(line) for line in content.splitlines()]
     except (OSError, ValueError) as exc:
         raise ToolFault("mcp_audit", "材料讀取紀錄損壞") from exc
 
@@ -140,6 +146,8 @@ class RepositoryTools:
 
     def call(self, name: str, args: dict) -> dict:
         history = read_audit(self.audit)
+        if len(history) >= READ_LIMIT or self._audit_size() >= AUDIT_MAX_BYTES:
+            return self._exhausted()
         remaining = self.budget - sum(len(entry["text"]) for entry in history)
         lines = []
         fault = ""
@@ -166,20 +174,37 @@ class RepositoryTools:
                     text = ""
                     exhausted = True
         except (ToolFault, OSError, UnicodeError, subprocess.SubprocessError) as exc:
-            fault = str(exc)
+            fault = str(exc)[:500]
             text = json_text({"error": fault})
             if len(text) > remaining:
                 text = ""
-        record = {"name": name, "arguments": args, "text": text, "fault": fault,
-                  "exhausted": exhausted, "lines": [asdict(line) for line in lines]}
-        with self.audit.open("a", encoding="utf-8") as stream:
-            stream.write(json_text(record) + "\n")
+        safe_args = args if len(json_text(args).encode("utf-8", errors="replace")) <= 4096 else None
+        record = {"name": name if name in ("search_repo", "read_file") else "invalid", "arguments": safe_args,
+                  "text": text, "fault": fault, "exhausted": exhausted}
+        if not self._append(record):
+            return self._exhausted()
         response = {"segments": compact_lines(lines), "truncated": truncated,
                     "exhausted": exhausted}
         if fault:
             response["error"] = fault
         return {"content": [{"type": "text", "text": json_text(response)}],
                 "isError": bool(fault)}
+
+    def _audit_size(self):
+        return self.audit.stat().st_size if self.audit.exists() else 0
+
+    def _append(self, record):
+        encoded = (json_text(record) + "\n").encode("utf-8", errors="backslashreplace")
+        if self._audit_size() + len(encoded) > AUDIT_MAX_BYTES:
+            return False
+        with self.audit.open("ab") as stream:
+            stream.write(encoded)
+        return True
+
+    @staticmethod
+    def _exhausted():
+        return {"content": [{"type": "text", "text": json_text(
+            {"segments": [], "truncated": True, "exhausted": True})}], "isError": False}
 
 
 def serve(tools: RepositoryTools):
@@ -189,9 +214,8 @@ def serve(tools: RepositoryTools):
             continue
         method, params = request.get("method"), request.get("params") or {}
         if method == "initialize":
-            with tools.audit.open("a", encoding="utf-8") as stream:
-                stream.write(json_text({"name": "initialize", "arguments": params, "text": "", "fault": "",
-                                        "exhausted": False, "lines": []}) + "\n")
+            if not any(entry["name"] == "initialize" for entry in read_audit(tools.audit)):
+                tools._append({"name": "initialize", "text": "", "fault": "", "exhausted": False})
             result = {"protocolVersion": params.get("protocolVersion", "2025-06-18"),
                       "capabilities": {"tools": {}}, "serverInfo": {"name": "masters-nudge-readrepo", "version": "1.0"}}
         elif method == "tools/list":

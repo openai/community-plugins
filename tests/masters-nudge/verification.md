@@ -1,5 +1,13 @@
 # Verification
 
+## 0.6.6 capacity update
+
+The Nudge master suite passed on Windows against the submitted package and source receipt. It covers summary overwrite, storage pressure, interruption and delivery ordering, and a 128 MiB legacy database that rolls back a failed upgrade and can review again after retrying.
+
+The installed 0.6.6 package matches the submission byte for byte. Fresh processes loaded its prompt hook and MCP against a disposable database. The storage suite also passed with modules loaded directly from the installed package, including the full-database upgrade. These checks used synthetic data and did not call the model service.
+
+## Earlier installed qualification
+
 Supported installed platform: **Windows 11 x64**. Local host: Windows 11 x64, Node 24.14.0, Python 3.12.10.
 
 | Command / check | Result |

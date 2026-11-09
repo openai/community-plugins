@@ -1,420 +1,363 @@
-"""Durable terminal facts for rounds, eligible patches and Provider results."""
+"""Bounded SQLite handoff between Codex hooks and the review worker."""
 from __future__ import annotations
 
 import json
 import sqlite3
 import time
 import uuid
-from contextlib import contextmanager
+from contextlib import closing, contextmanager
 from pathlib import Path
 
 from .contracts import FEEDBACK_LIMIT, SILENCE_LIMIT, SessionRef, ToolFault, json_text
-from .evidence import capture_file_baseline
+from .evidence import BASELINE_MAX_BYTES, capture_file_baseline
 from .runtime import HOOK_TIMEOUT_SEC, PROVIDER_TIMEOUT_SEC
 
 FINALIZATION_RESERVE_SEC = 20
 JOURNAL_MAX_BYTES = 128 * 1024 * 1024
-JOURNAL_ADMISSION_BYTES = 96 * 1024 * 1024
+ROUND_LIMIT = 64
+WORK_LIMIT = 64
+ROUND_IDLE_SEC = 24 * 60 * 60
+TASK_MAX_BYTES = 64 * 1024
+ID_MAX_BYTES = 128
+AUDIT_LIMIT = 128
+FEEDBACK_SLOT_BYTES = 1024
+SCHEMA_VERSION = 1
+LEGACY_TABLES = ("rounds", "attempts", "batches", "judgment_events")
+FAULT_KINDS = frozenset({
+    "configuration", "input", "internal", "interrupted", "mcp_audit", "mcp_budget",
+    "mcp_git", "mcp_input", "mcp_path", "mcp_read", "mcp_startup", "output", "provider",
+    "storage", "superseded", "timeout", "workspace",
+})
+
+SCHEMA = (
+    """CREATE TABLE work_rounds(
+        session TEXT PRIMARY KEY, turn TEXT NOT NULL, round_id TEXT NOT NULL UNIQUE,
+        goal TEXT NOT NULL, request TEXT NOT NULL, file_baseline TEXT NOT NULL,
+        expires REAL NOT NULL, fault TEXT,
+        feedback_count INTEGER NOT NULL DEFAULT 0, silence_count INTEGER NOT NULL DEFAULT 0)""",
+    f"""CREATE TABLE work_reviews(
+        id TEXT PRIMARY KEY, round_id TEXT NOT NULL REFERENCES work_rounds(round_id) ON DELETE CASCADE,
+        started REAL NOT NULL, deadline REAL NOT NULL,
+        state TEXT NOT NULL CHECK(state IN ('queued','running','ready','sending','sent')),
+        feedback BLOB NOT NULL CHECK(length(feedback)={FEEDBACK_SLOT_BYTES}), model TEXT NOT NULL)""",
+    "CREATE INDEX work_reviews_round ON work_reviews(round_id)",
+    f"""CREATE TABLE recent_reviews(
+        ordinal INTEGER PRIMARY KEY,
+        slot INTEGER NOT NULL UNIQUE CHECK(slot >= 0 AND slot < {AUDIT_LIMIT}),
+        id TEXT NOT NULL, round_id TEXT NOT NULL, started REAL NOT NULL, finished REAL NOT NULL,
+        outcome TEXT NOT NULL, reason TEXT, delivered INTEGER, model TEXT NOT NULL)""",
+)
 
 
 class Journal:
     def __init__(self, directory: Path, *, hook_timeout_sec: float = HOOK_TIMEOUT_SEC,
-                 provider_timeout_sec: float = PROVIDER_TIMEOUT_SEC, poll_interval: float = 0.05):
+                 provider_timeout_sec: float = PROVIDER_TIMEOUT_SEC, poll_interval: float = 0.05,
+                 model: str = ""):
         directory.mkdir(parents=True, exist_ok=True)
         self.path = directory / "feedback.sqlite3"
         self.hook_timeout_sec = hook_timeout_sec
         self.provider_timeout_sec = provider_timeout_sec
         self.poll_interval = poll_interval
+        self.model = model[:80]
         with self.connect() as db:
-            db.executescript("""
-                CREATE TABLE IF NOT EXISTS rounds(
-                    session TEXT PRIMARY KEY, turn TEXT NOT NULL, goal TEXT NOT NULL, request TEXT NOT NULL,
-                    round_id TEXT NOT NULL,
-                    skipped_test_patches INTEGER NOT NULL DEFAULT 0);
-                CREATE TABLE IF NOT EXISTS attempts(
-                    id TEXT PRIMARY KEY, session TEXT NOT NULL, turn TEXT NOT NULL,
-                    started REAL NOT NULL, finished REAL, outcome TEXT, delivered INTEGER NOT NULL DEFAULT 0,
-                    detail TEXT NOT NULL DEFAULT '{}', round_id TEXT NOT NULL,
-                    batch_id TEXT);
-                CREATE TABLE IF NOT EXISTS batches(
-                    id TEXT PRIMARY KEY, session TEXT NOT NULL, turn TEXT NOT NULL,
-                    received REAL NOT NULL, payload TEXT NOT NULL, round_id TEXT NOT NULL);
-                CREATE TABLE IF NOT EXISTS judgment_events(
-                    seq INTEGER PRIMARY KEY AUTOINCREMENT,
-                    session TEXT NOT NULL, turn TEXT NOT NULL, round_id TEXT NOT NULL,
-                    happened REAL NOT NULL, kind TEXT NOT NULL,
-                    attempt TEXT NOT NULL, batch_id TEXT NOT NULL, payload TEXT NOT NULL);
-                CREATE INDEX IF NOT EXISTS judgment_events_round_seq
-                    ON judgment_events(round_id, seq);
-                CREATE INDEX IF NOT EXISTS judgment_events_attempt_seq
-                    ON judgment_events(attempt, seq);
-            """)
-            db.execute("BEGIN IMMEDIATE")
-            for table in ("rounds", "attempts"):
-                columns = {row["name"] for row in db.execute(f"PRAGMA table_info({table})")}
-                if "round_id" not in columns:
-                    db.execute(f"ALTER TABLE {table} ADD COLUMN round_id TEXT NOT NULL DEFAULT ''")
-                if table == "rounds":
-                    if "closed" not in columns:
-                        db.execute("ALTER TABLE rounds ADD COLUMN closed INTEGER NOT NULL DEFAULT 0")
-                    if "file_baseline" not in columns:
-                        db.execute("ALTER TABLE rounds ADD COLUMN file_baseline TEXT NOT NULL DEFAULT '{}'")
-                    if "skipped_test_patches" not in columns:
-                        if "skipped_new_test_patches" in columns:
-                            db.execute("ALTER TABLE rounds RENAME COLUMN skipped_new_test_patches TO skipped_test_patches")
-                        else:
-                            db.execute("ALTER TABLE rounds ADD COLUMN skipped_test_patches INTEGER NOT NULL DEFAULT 0")
-            attempt_columns = {row["name"] for row in db.execute("PRAGMA table_info(attempts)")}
-            if "batch_id" not in attempt_columns:
-                db.execute("ALTER TABLE attempts ADD COLUMN batch_id TEXT")
-            batch_columns = {row["name"] for row in db.execute("PRAGMA table_info(batches)")}
-            if "id" not in batch_columns:
-                db.execute("ALTER TABLE batches ADD COLUMN id TEXT")
-            if "round_id" not in batch_columns:
-                db.execute("ALTER TABLE batches ADD COLUMN round_id TEXT NOT NULL DEFAULT ''")
-            db.execute(
-                "CREATE UNIQUE INDEX IF NOT EXISTS attempts_batch_id "
-                "ON attempts(batch_id) WHERE batch_id IS NOT NULL"
-            )
-            for row in db.execute("SELECT session,turn FROM rounds WHERE round_id=''").fetchall():
-                round_id = uuid.uuid4().hex
-                db.execute("UPDATE rounds SET round_id=? WHERE session=?", (round_id, row["session"]))
-                db.execute("UPDATE attempts SET round_id=? WHERE session=? AND turn=? AND round_id=''",
-                           (round_id, row["session"], row["turn"]))
-            for row in db.execute("SELECT rowid FROM batches WHERE id IS NULL OR id=''").fetchall():
-                db.execute("UPDATE batches SET id=? WHERE rowid=?", (uuid.uuid4().hex, row["rowid"]))
-            self._migrate_judgment_events(db)
-            self._recover_expired(db)
+            if db.execute("PRAGMA user_version").fetchone()[0] != SCHEMA_VERSION:
+                self._initialize(db)
+        with self.transaction() as (db, audit):
+            self._recover(db, audit)
+
+    @staticmethod
+    def _initialize(db):
+        # The legacy journal can already be at its page cap. Free its pages
+        # before creating the new tables, all in one recoverable transaction.
+        db.execute("BEGIN IMMEDIATE")
+        version = db.execute("PRAGMA user_version").fetchone()[0]
+        if version == SCHEMA_VERSION:
+            return
+        if version != 0:
+            raise ToolFault("storage", "不支援的工作庫版本")
+        tables = {row[0] for row in db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+        if tables - {*LEGACY_TABLES, "sqlite_sequence"}:
+            raise ToolFault("storage", "工作庫包含無法識別的資料表")
+        for table in LEGACY_TABLES:
+            db.execute(f"DROP TABLE IF EXISTS {table}")
+        for statement in SCHEMA:
+            db.execute(statement)
+        db.execute(f"PRAGMA user_version={SCHEMA_VERSION}")
 
     @contextmanager
-    def connect(self):
-        db = sqlite3.connect(self.path, timeout=5)
-        db.row_factory = sqlite3.Row
-        try:
+    def connect(self, *, timeout=5):
+        with closing(sqlite3.connect(self.path, timeout=timeout)) as db:
+            db.row_factory = sqlite3.Row
+            db.execute("PRAGMA foreign_keys=ON")
+            db.execute("PRAGMA secure_delete=ON")
             page_size = db.execute("PRAGMA page_size").fetchone()[0]
-            if db.execute("PRAGMA page_count").fetchone()[0] > JOURNAL_MAX_BYTES // page_size:
-                raise ToolFault("storage", "Journal 已超過 128 MiB；請先備份並離線封存歷史資料")
-            db.execute(f"PRAGMA max_page_count={JOURNAL_MAX_BYTES // page_size}")
-            yield db
-            db.commit()
-        except BaseException:
-            db.rollback()
-            raise
-        finally:
-            db.close()
+            max_pages = JOURNAL_MAX_BYTES // page_size
+            if db.execute(f"PRAGMA max_page_count={max_pages}").fetchone()[0] > max_pages:
+                raise ToolFault("storage", "工作庫超過 SQLite 頁數上限")
+            with db:
+                yield db
+
+    @contextmanager
+    def transaction(self):
+        audit = []
+        with self.connect() as db:
+            db.execute("BEGIN IMMEDIATE")
+            yield db, audit
+        if audit:
+            try:
+                self._record(audit)
+            except sqlite3.Error:
+                # Summary is observational and never gates a state transition.
+                pass
+
+    def _record(self, records):
+        with self.connect(timeout=0) as db:
+            db.execute("BEGIN IMMEDIATE")
+            for item, outcome, reason, finished in records:
+                # Derive the next slot from the latest entry; the ring's
+                # timestamps can repeat or go backwards, so use an ordinal.
+                ordinal = db.execute("SELECT COALESCE(MAX(rowid),0)+1 FROM recent_reviews").fetchone()[0]
+                db.execute("DELETE FROM recent_reviews WHERE slot=?", ((ordinal - 1) % AUDIT_LIMIT,))
+                db.execute(
+                    "INSERT INTO recent_reviews(ordinal,slot,id,round_id,started,finished,outcome,reason,delivered,model) "
+                    "VALUES(?,?,?,?,?,?,?,?,?,?)",
+                    (ordinal, (ordinal - 1) % AUDIT_LIMIT, item["id"], item["round_id"],
+                     item["started"], finished, outcome, reason, None if outcome == "feedback" else 0, item["model"]),
+                )
+
+    @staticmethod
+    def _close(db, audit, round_id, reason, now):
+        for item in db.execute(
+            "SELECT id,round_id,started,model FROM work_reviews WHERE round_id=? AND state IN ('queued','running')",
+            (round_id,),
+        ):
+            audit.append((item, "fault", reason, now))
+        db.execute("DELETE FROM work_reviews WHERE round_id=?", (round_id,))
+        db.execute("UPDATE work_rounds SET fault=? WHERE round_id=?", (reason, round_id))
+
+    def _recover(self, db, audit):
+        now = time.time()
+        expired = db.execute(
+            "SELECT DISTINCT round_id FROM work_reviews WHERE deadline<=? AND state IN ('queued','running')", (now,),
+        ).fetchall()
+        for row in expired:
+            self._close(db, audit, row["round_id"], "timeout", now)
+        db.execute("DELETE FROM work_reviews WHERE deadline<=? AND state IN ('ready','sending')", (now,))
+        db.execute(
+            "DELETE FROM work_rounds WHERE expires<=? AND NOT EXISTS("
+            "SELECT 1 FROM work_reviews WHERE round_id=work_rounds.round_id AND state<>'sent')", (now,),
+        )
+
+    @staticmethod
+    def _check_size(value, limit):
+        try:
+            if isinstance(value, str) and len(value.encode("utf-8")) <= limit:
+                return
+        except UnicodeError:
+            pass
+        raise ToolFault("input_size", "回合識別碼或任務文字超出儲存上限")
 
     def start_round(self, session: SessionRef, request: str, goal: str = ""):
+        for value, limit in ((session.session_id, ID_MAX_BYTES), (session.turn_id, ID_MAX_BYTES),
+                             (request, TASK_MAX_BYTES), (goal, TASK_MAX_BYTES)):
+            self._check_size(value, limit)
+        # Git runs outside the writer transaction. Recheck the observed round
+        # before using the captured baseline to supersede it.
         with self.connect() as db:
-            db.execute("BEGIN IMMEDIATE")
-            old = db.execute("SELECT * FROM rounds WHERE session=?", (session.session_id,)).fetchone()
-            if old:
-                self._terminate_round(db, old["round_id"], "superseded", "A new user round replaced this review")
-            original = goal or (old["goal"] if old else request)
-            baseline = (old["file_baseline"] if old and old["goal"] == original
-                        else json_text(capture_file_baseline(session)))
-            db.execute(
-                "INSERT OR REPLACE INTO rounds(session,turn,goal,request,round_id,file_baseline) VALUES(?,?,?,?,?,?)",
-                (session.session_id, session.turn_id, original, request, uuid.uuid4().hex, baseline),
-            )
+            observed = self._current(db, session)
+        original = goal or (observed["goal"] if observed else request)
+        baseline = (observed["file_baseline"] if observed and observed["goal"] == original
+                    else json_text(capture_file_baseline(session)))
+        if len(baseline.encode("utf-8")) > BASELINE_MAX_BYTES:
+            baseline = "{}"
 
-    @staticmethod
-    def _append_event(db, *, session: str, turn: str, round_id: str, kind: str,
-                      attempt: str, batch_id: str, payload: object = None,
-                      happened: float | None = None):
-        db.execute(
-            "INSERT INTO judgment_events(session,turn,round_id,happened,kind,attempt,batch_id,payload) "
-            "VALUES(?,?,?,?,?,?,?,?)",
-            (session, turn, round_id, time.time() if happened is None else happened,
-             kind, attempt, batch_id, json_text({} if payload is None else payload)),
-        )
-
-    def _migrate_judgment_events(self, db):
-        if db.execute("SELECT 1 FROM judgment_events LIMIT 1").fetchone():
-            return
-        for row in db.execute("SELECT * FROM attempts ORDER BY started,id").fetchall():
-            batch_id = row["batch_id"] or f"legacy-{row['id']}"
-            self._append_event(
-                db, session=row["session"], turn=row["turn"], round_id=row["round_id"],
-                kind="started", attempt=row["id"], batch_id=batch_id, happened=row["started"],
-            )
-            if row["outcome"] is not None:
-                self._append_event(
-                    db, session=row["session"], turn=row["turn"], round_id=row["round_id"],
-                    kind="finished", attempt=row["id"], batch_id=batch_id,
-                    happened=row["finished"] or row["started"],
-                    payload={"outcome": row["outcome"], "detail": json.loads(row["detail"])},
+        fault = None
+        with self.transaction() as (db, audit):
+            self._recover(db, audit)
+            current = self._current(db, session)
+            if current and (not observed or current["round_id"] != observed["round_id"]):
+                fault = ToolFault("busy", "另一個提示已更新此會話")
+            elif not current and db.execute("SELECT COUNT(*) FROM work_rounds").fetchone()[0] >= ROUND_LIMIT:
+                fault = ToolFault("busy", "Nudge 的會話工作空間已滿")
+            else:
+                if current:
+                    self._close(db, audit, current["round_id"], "superseded", time.time())
+                    db.execute("DELETE FROM work_rounds WHERE session=?", (session.session_id,))
+                elif observed:
+                    # Recovery reclaimed the old task while we were preparing.
+                    if observed["goal"] == original:
+                        baseline = "{}"
+                db.execute(
+                    "INSERT INTO work_rounds(session,turn,round_id,goal,request,file_baseline,expires) "
+                    "VALUES(?,?,?,?,?,?,?)",
+                    (session.session_id, session.turn_id, uuid.uuid4().hex, original, request,
+                     baseline, time.time() + ROUND_IDLE_SEC),
                 )
+        if fault:
+            raise fault
 
     @staticmethod
-    def _fold_events(rows) -> list[dict]:
-        attempts = {}
-        for row in rows:
-            item = attempts.setdefault(row["attempt"], {
-                "id": row["attempt"], "batch_id": row["batch_id"],
-                "session": row["session"], "turn": row["turn"], "round_id": row["round_id"],
-                "queued": None, "started": None, "finished": None, "outcome": None, "detail": {},
-            })
-            if row["kind"] == "queued":
-                item["queued"] = row["happened"]
-            elif row["kind"] == "started":
-                item["started"] = row["happened"]
-            elif row["kind"] == "finished":
-                value = json.loads(row["payload"])
-                item.update(finished=row["happened"], outcome=value.get("outcome"),
-                            detail=value.get("detail") if isinstance(value.get("detail"), dict) else {})
-            elif row["kind"] == "skipped":
-                item.update(finished=row["happened"], outcome="skipped")
-        return list(attempts.values())
-
-    def _round_events(self, db, round_id: str) -> list[dict]:
-        return self._fold_events(db.execute(
-            "SELECT * FROM judgment_events WHERE round_id=? ORDER BY seq", (round_id,),
-        ))
-
-    def _finish_event(self, db, item: dict, outcome: str, detail: dict):
-        finished = time.time()
-        self._append_event(
-            db, session=item["session"], turn=item["turn"], round_id=item["round_id"],
-            kind="finished", attempt=item["id"], batch_id=item["batch_id"],
-            happened=finished, payload={"outcome": outcome, "detail": detail},
-        )
-        db.execute(
-            "INSERT OR IGNORE INTO attempts("
-            "id,session,turn,started,finished,outcome,delivered,detail,round_id,batch_id"
-            ") VALUES(?,?,?,?,?,?,?,?,?,?)",
-            (item["id"], item["session"], item["turn"], item["started"] or item["queued"],
-             finished, outcome, 0, json_text(detail), item["round_id"], item["batch_id"]),
-        )
-
-    def _terminate_round(self, db, round_id: str, kind: str, message: str):
-        for item in self._round_events(db, round_id):
-            if item["finished"] is None:
-                self._finish_event(db, item, "fault", {"fault": {"kind": kind, "detail": message}})
-        db.execute("UPDATE rounds SET closed=1 WHERE round_id=?", (round_id,))
-
-    def _recover_expired(self, db, round_id: str | None = None):
-        """Recover durable leases, including abandoned queues and historical rounds."""
-        now = time.time()
-        rows = db.execute(
-            "SELECT q.* FROM judgment_events q WHERE q.kind IN ('queued','started') "
-            + ("AND q.round_id=? " if round_id is not None else "") +
-            "AND NOT EXISTS(SELECT 1 FROM judgment_events f WHERE f.attempt=q.attempt "
-            "AND f.kind IN ('finished','skipped')) ORDER BY q.seq",
-            (round_id,) if round_id is not None else (),
-        ).fetchall()
-        leases = {}
-        for row in rows:
-            payload = json.loads(row["payload"])
-            duration = self.provider_timeout_sec if row["kind"] == "started" else self.hook_timeout_sec
-            leases[row["attempt"]] = (row["round_id"], payload.get(
-                "deadline", row["happened"] + duration + FINALIZATION_RESERVE_SEC))
-        expired = {round_id for round_id, deadline in leases.values() if deadline <= now}
-        for round_id in expired:
-            self._terminate_round(db, round_id, "timeout", "前一個 Provider 判斷未在期限內留下結果")
+    def _current(db, session):
+        return db.execute("SELECT * FROM work_rounds WHERE session=?", (session.session_id,)).fetchone()
 
     @staticmethod
-    def _fault(items: list[dict]) -> dict | None:
-        return next((item for item in items if item["outcome"] == "fault"), None)
+    def _budget_exhausted(row):
+        return row["feedback_count"] >= FEEDBACK_LIMIT or row["silence_count"] >= SILENCE_LIMIT
 
-    @staticmethod
-    def _tool_fault(item: dict) -> ToolFault:
-        fault = item["detail"].get("fault", {})
-        return ToolFault(fault.get("kind", "interrupted"),
-                         fault.get("detail", "前一個 Provider 判斷失敗"))
-
-    @staticmethod
-    def _budget_exhausted(db, round_id: str) -> bool:
-        # Preserve the accounting of test-only silences recorded by older versions.
-        counts = {item["outcome"]: item["n"] for item in db.execute(
-            "SELECT outcome, COUNT(*) n FROM attempts WHERE round_id=? "
-            "AND (outcome='feedback' OR (outcome='silence' "
-            "AND COALESCE(json_extract(detail,'$.judgment_scope'),'implementation')<>'task_contract')) "
-            "GROUP BY outcome", (round_id,),
-        )}
-        return counts.get("feedback", 0) >= FEEDBACK_LIMIT or counts.get("silence", 0) >= SILENCE_LIMIT
-
-    def begin(self, session: SessionRef, payload: object, *,
-              skip_provider: bool = False, cancel_event=None) -> tuple[str, dict] | None:
-        """Queue one patch and claim it only after every earlier judgment is terminal."""
+    def begin(self, session: SessionRef, *, skip_provider=False, cancel_event=None):
+        attempt = uuid.uuid4().hex
+        started = time.time()
         wait_started = time.monotonic()
-        with self.connect() as db:
-            db.execute("BEGIN IMMEDIATE")
-            self._recover_expired(db)
-        with self.connect() as db:
-            db.execute("BEGIN IMMEDIATE")
-            row = db.execute("SELECT * FROM rounds WHERE session=?", (session.session_id,)).fetchone()
+        fault = None
+        with self.transaction() as (db, audit):
+            self._recover(db, audit)
+            row = self._current(db, session)
             if row is None:
-                raise ToolFault("input", "缺少本輪使用者要求事件")
-            if row["turn"] != session.turn_id:
+                fault = ToolFault("input", "找不到本輪任務交接，請重新提交提示")
+            elif row["turn"] != session.turn_id:
                 return None
-            fault = self._fault(self._round_events(db, row["round_id"]))
-            if fault is not None:
-                raise self._tool_fault(fault)
-            if row["closed"]:
-                raise ToolFault("interrupted", "This user round has ended")
-            if not skip_provider and self._budget_exhausted(db, row["round_id"]):
+            elif row["fault"]:
+                fault = ToolFault(row["fault"], "這個回合已結束")
+            elif skip_provider or self._budget_exhausted(row):
                 return None
-            used = db.execute("PRAGMA page_count").fetchone()[0] * db.execute("PRAGMA page_size").fetchone()[0]
-            if used >= JOURNAL_ADMISSION_BYTES:
-                raise ToolFault("storage", "Journal 已達 96 MiB；保留收尾空間，請備份並離線封存歷史資料")
-            batch_id = uuid.uuid4().hex
-            attempt = uuid.uuid4().hex
-            started = time.time()
-            db.execute(
-                "INSERT INTO batches(id,session,turn,received,payload,round_id) VALUES(?,?,?,?,?,?)",
-                (batch_id, session.session_id, session.turn_id, started, json_text(payload), row["round_id"]),
-            )
-            if skip_provider:
-                db.execute("UPDATE rounds SET skipped_test_patches=skipped_test_patches+1 "
-                           "WHERE session=?", (session.session_id,))
-                self._append_event(
-                    db, session=session.session_id, turn=session.turn_id, round_id=row["round_id"],
-                    kind="skipped", attempt=attempt, batch_id=batch_id,
-                    payload={"reason": "verification_tool"}, happened=started,
+            elif db.execute("SELECT COUNT(*) FROM work_reviews WHERE state<>'sent'").fetchone()[0] >= WORK_LIMIT:
+                fault = ToolFault("busy", "Nudge 的審查工作空間已滿")
+            else:
+                db.execute(
+                    "INSERT INTO work_reviews VALUES(?,?,?,?, 'queued',zeroblob(?),?)",
+                    (attempt, row["round_id"], started, started + self.hook_timeout_sec, FEEDBACK_SLOT_BYTES, self.model),
                 )
-                return None
-            self._append_event(
-                db, session=session.session_id, turn=session.turn_id, round_id=row["round_id"],
-                kind="queued", attempt=attempt, batch_id=batch_id, happened=started,
-                payload={"deadline": started + max(1, self.hook_timeout_sec)},
-            )
+                self._touch(db, row["round_id"])
+        if fault:
+            raise fault
 
         while True:
-            should_wait = False
-            fault_to_raise = None
-            with self.connect() as db:
-                db.execute("BEGIN IMMEDIATE")
-                self._recover_expired(db, row["round_id"])
-                current = db.execute("SELECT * FROM rounds WHERE session=?", (session.session_id,)).fetchone()
-                if current is None or current["round_id"] != row["round_id"]:
+            fault = None
+            with self.transaction() as (db, audit):
+                self._recover(db, audit)
+                current = self._current(db, session)
+                if not current or current["round_id"] != row["round_id"]:
                     return None
-                if cancel_event is not None and cancel_event.is_set():
-                    self._terminate_round(db, current["round_id"], "interrupted", "Provider review cancelled")
-                items = self._round_events(db, current["round_id"])
-                fault = self._fault(items)
-                if fault is not None:
-                    fault_to_raise = self._tool_fault(fault)
+                if cancel_event is not None and cancel_event.is_set() and not current["fault"]:
+                    self._close(db, audit, row["round_id"], "interrupted", time.time())
+                    fault = ToolFault("interrupted", "審查已取消")
+                elif current["fault"]:
+                    fault = ToolFault(current["fault"], "這個回合已結束")
                 else:
-                    active = next((item for item in items if item["started"] is not None
-                                   and item["finished"] is None), None)
-                    if active is not None:
-                        should_wait = True
-                    else:
-                        queued = [item for item in items if item["queued"] is not None
-                                  and item["started"] is None and item["finished"] is None]
-                        queued.sort(key=lambda item: item["queued"])
-                        own = next(item for item in items if item["id"] == attempt)
-                        if queued and queued[0]["id"] == attempt:
-                            if self._budget_exhausted(db, current["round_id"]):
-                                self._append_event(
-                                    db, session=own["session"], turn=own["turn"], round_id=own["round_id"],
-                                    kind="skipped", attempt=attempt, batch_id=batch_id,
-                                )
-                                return None
-                            elapsed = time.monotonic() - wait_started
-                            remaining = self.hook_timeout_sec - elapsed - FINALIZATION_RESERVE_SEC
-                            if remaining <= 0:
-                                detail = {"fault": {"kind": "timeout",
-                                                   "detail": "等待前一個 Provider 判斷後已無執行時間"}}
-                                self._terminate_round(db, current["round_id"], "timeout", detail["fault"]["detail"])
-                                fault_to_raise = ToolFault("timeout", detail["fault"]["detail"])
-                            else:
-                                claim_time = time.time()
-                                self._append_event(
-                                    db, session=own["session"], turn=own["turn"],
-                                    round_id=own["round_id"], kind="started", attempt=attempt,
-                                    batch_id=batch_id, happened=claim_time,
-                                    payload={"deadline": claim_time + min(self.provider_timeout_sec, remaining) + FINALIZATION_RESERVE_SEC},
-                                )
-                                previous_nudges = [json.loads(row["raw_output"])["feedback"]
-                                    for row in db.execute(
-                                        "SELECT json_extract(detail,'$.raw_output') AS raw_output "
-                                        "FROM attempts WHERE round_id=? AND outcome='feedback' AND delivered=1 "
-                                        "ORDER BY started,id", (current["round_id"],),
-                                    )]
-                                return attempt, {**dict(current), "batch_id": batch_id,
-                                                 "previous_nudges": previous_nudges,
-                                                 "started": claim_time,
-                                                 "provider_timeout_sec": min(self.provider_timeout_sec, remaining)}
-                        should_wait = True
-            if fault_to_raise is not None:
-                raise fault_to_raise
-            if should_wait:
-                time.sleep(self.poll_interval)
+                    head = db.execute(
+                        "SELECT id,state FROM work_reviews WHERE round_id=? AND state IN ('queued','running') "
+                        "ORDER BY state='running' DESC,rowid LIMIT 1", (row["round_id"],),
+                    ).fetchone()
+                    if not head or head["id"] == attempt:
+                        if not head or self._budget_exhausted(current):
+                            db.execute("DELETE FROM work_reviews WHERE id=?", (attempt,))
+                            return None
+                        remaining = self.hook_timeout_sec - (time.monotonic() - wait_started) - FINALIZATION_RESERVE_SEC
+                        if remaining <= 0:
+                            self._close(db, audit, row["round_id"], "timeout", time.time())
+                            fault = ToolFault("timeout", "排隊後已無審查時間")
+                        else:
+                            return self._claim(db, current, attempt, min(self.provider_timeout_sec, remaining))
+            if fault:
+                raise fault
+            time.sleep(self.poll_interval)
 
-    def finish(
-        self, session: SessionRef, attempt: str, task: dict, outcome: str, detail: dict,
-    ) -> bool:
-        """Atomically add one terminal Provider fact for the batch that caused it."""
-        batch_id = task.get("batch_id")
-        round_id = task.get("round_id")
-        if not isinstance(batch_id, str) or not isinstance(round_id, str):
-            return False
-        with self.connect() as db:
-            db.execute("BEGIN IMMEDIATE")
-            items = self._round_events(db, round_id)
-            item = next((value for value in items if value["id"] == attempt
-                         and value["batch_id"] == batch_id), None)
-            if item is None or item["started"] is None or item["finished"] is not None:
+    @staticmethod
+    def _claim(db, row, attempt, timeout):
+        db.execute("UPDATE work_reviews SET state='running',deadline=? WHERE id=?",
+                   (time.time() + timeout + FINALIZATION_RESERVE_SEC, attempt))
+        previous = [json.loads(item["feedback"].rstrip(b" ")) for item in db.execute(
+            "SELECT feedback FROM work_reviews WHERE round_id=? AND state='sent' ORDER BY rowid", (row["round_id"],),
+        )]
+        return attempt, {**dict(row), "previous_nudges": previous, "provider_timeout_sec": timeout}
+
+    @staticmethod
+    def _touch(db, round_id):
+        db.execute("UPDATE work_rounds SET expires=? WHERE round_id=?", (time.time() + ROUND_IDLE_SEC, round_id))
+
+    def finish(self, session: SessionRef, attempt: str, task: dict, outcome: str, *, feedback=None, reason=None):
+        if outcome not in ("feedback", "silence", "fault") or (outcome == "feedback") != (feedback is not None):
+            raise ValueError("invalid review result")
+        body = json_text(feedback).encode("utf-8") if feedback is not None else b""
+        if len(body) > FEEDBACK_SLOT_BYTES:
+            raise ValueError("feedback exceeds reserved bytes")
+        reason = (reason if reason in FAULT_KINDS else "internal") if outcome == "fault" else None
+        now = time.time()
+        with self.transaction() as (db, audit):
+            self._recover(db, audit)
+            current = self._current(db, session)
+            item = db.execute("SELECT * FROM work_reviews WHERE id=? AND state='running'", (attempt,)).fetchone()
+            if not current or not item or current["round_id"] != item["round_id"] or item["round_id"] != task["round_id"]:
                 return False
-            self._finish_event(db, item, outcome, detail)
+            round_id = item["round_id"]
+            audit.append((item, outcome, reason, now))
+            self._touch(db, round_id)
             if outcome == "fault":
-                fault = detail.get("fault", {})
-                self._terminate_round(db, round_id, fault.get("kind", "internal"),
-                                      fault.get("detail", "Provider review failed"))
-            current = db.execute(
-                "SELECT round_id FROM rounds WHERE session=?",
-                (session.session_id,),
-            ).fetchone()
-            return bool(current and current["round_id"] == round_id)
+                db.execute("DELETE FROM work_reviews WHERE id=?", (attempt,))
+                self._close(db, audit, round_id, reason, now)
+            elif outcome == "silence":
+                db.execute("DELETE FROM work_reviews WHERE id=?", (attempt,))
+                db.execute("UPDATE work_rounds SET silence_count=silence_count+1 WHERE round_id=?", (round_id,))
+            else:
+                db.execute("UPDATE work_reviews SET state='ready',feedback=?,deadline=? WHERE id=?",
+                           (body.ljust(FEEDBACK_SLOT_BYTES), now + FINALIZATION_RESERVE_SEC, attempt))
+                db.execute("UPDATE work_rounds SET feedback_count=feedback_count+1 WHERE round_id=?", (round_id,))
+            return True
+
+    def authorize_delivery(self, attempt: str) -> bool:
+        # This commit orders delivery against an Interrupt or a replacement
+        # prompt. Never hold a database lock while writing to the host.
+        with self.connect() as db:
+            return db.execute(
+                "UPDATE work_reviews SET state='sending',deadline=? WHERE id=? AND state='ready' AND deadline>?",
+                (time.time() + FINALIZATION_RESERVE_SEC, attempt, time.time()),
+            ).rowcount == 1
 
     def delivered(self, attempt: str):
         with self.connect() as db:
-            db.execute("UPDATE attempts SET delivered=1 WHERE id=? AND outcome='feedback'", (attempt,))
+            db.execute("UPDATE work_reviews SET state='sent' WHERE id=? AND state='sending'", (attempt,))
+        try:
+            with self.connect(timeout=0) as db:
+                db.execute("UPDATE recent_reviews SET delivered=1 WHERE id=? AND outcome='feedback'", (attempt,))
+        except sqlite3.Error:
+            pass
 
     def interrupt(self, session: SessionRef):
-        """Make the current turn's unfinished reviews terminal before stopping them."""
-        with self.connect() as db:
-            db.execute("BEGIN IMMEDIATE")
-            row = db.execute("SELECT turn,round_id FROM rounds WHERE session=?", (session.session_id,)).fetchone()
-            if row is None or row["turn"] != session.turn_id:
-                return
-            self._terminate_round(db, row["round_id"], "interrupted", "User interrupted turn")
+        with self.transaction() as (db, audit):
+            row = self._current(db, session)
+            if row and row["turn"] == session.turn_id and not row["fault"]:
+                self._close(db, audit, row["round_id"], "interrupted", time.time())
 
     def is_current_round(self, session: SessionRef, round_id: str) -> bool:
         with self.connect() as db:
-            row = db.execute("SELECT round_id FROM rounds WHERE session=?", (session.session_id,)).fetchone()
+            row = self._current(db, session)
             return bool(row and row["round_id"] == round_id)
 
     def cancelled(self, attempt: str) -> bool:
         with self.connect() as db:
-            row = db.execute("SELECT outcome,detail FROM attempts WHERE id=?", (attempt,)).fetchone()
-            return bool(row and row["outcome"] == "fault")
+            return db.execute(
+                "SELECT 1 FROM work_reviews WHERE id=? AND state='running' AND deadline>?", (attempt, time.time()),
+            ).fetchone() is None
 
     def unresolved(self) -> list[dict]:
         with self.connect() as db:
             return [dict(row) for row in db.execute(
-                "SELECT b.* FROM batches b WHERE b.round_id<>'' AND EXISTS("
-                "SELECT 1 FROM judgment_events q WHERE q.batch_id=b.id AND q.kind IN ('queued','started')"
-                ") AND NOT EXISTS(SELECT 1 FROM judgment_events f WHERE f.batch_id=b.id "
-                "AND f.kind IN ('finished','skipped')) ORDER BY b.received"
+                "SELECT id,round_id,started,state FROM work_reviews WHERE state IN ('queued','running') ORDER BY rowid",
             )]
 
     def recent(self, limit: int = 20) -> list[dict]:
-        with self.connect() as db:
-            return [dict(row) | {"detail": json.loads(row["detail"])} for row in db.execute(
-                "SELECT * FROM attempts ORDER BY started DESC LIMIT ?",
-                (max(0, min(limit, 200)),),
-            )]
-
-
-def append_error(path: Path, component: str, message: str):
-    path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("a", encoding="utf-8") as stream:
-        stream.write(json_text({"time": time.time(), "component": component, "message": message}) + "\n")
+        return recent_nudges(self.path.parent, limit=limit)
 
 
 def recent_nudges(data_dir: Path, *, limit: int = 20) -> list[dict]:
-    if not (data_dir / "feedback.sqlite3").exists():
+    path = data_dir / "feedback.sqlite3"
+    if not path.is_file():
         return []
-    return Journal(data_dir).recent(limit)
+    with closing(sqlite3.connect(path.resolve().as_uri() + "?mode=ro", uri=True)) as db:
+        if db.execute("PRAGMA user_version").fetchone()[0] != SCHEMA_VERSION:
+            return []
+        db.row_factory = sqlite3.Row
+        return [dict(row) for row in db.execute(
+            "SELECT id,round_id,started,finished,outcome,reason,delivered,model "
+            "FROM recent_reviews ORDER BY rowid DESC LIMIT ?", (max(0, min(limit, AUDIT_LIMIT)),),
+        )]
