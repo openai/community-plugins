@@ -67,8 +67,11 @@ an interface check.
 The checker also requires one valid positive-volume solid, checks mass and
 envelope, and compares the actual STL topology, bounds, volume and surface
 against STEP. Individual STEP must match assembly STEP. Mesh tolerance is 0.02 mm
-and the mesh-volume relative tolerance is 0.005; those numerical comparisons do
-not establish fabrication tolerances.
+and the mesh-volume relative tolerance is 0.005. Surface samples are checked in
+both directions; reference sampling adds its recorded tessellation deflection
+to the distance allowance. Whole mesh triangles are also checked against empty
+complete bore interiors. Bounded sampling is not exact shape equivalence, and
+these numerical comparisons do not establish fabrication tolerances.
 
 ## Source and export contract
 

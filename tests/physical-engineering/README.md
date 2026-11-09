@@ -10,8 +10,9 @@ npm run test:physical-engineering
 ```
 
 The master validates the installed package layout, metadata, local references and
-absence of generated/private files, runs every Node `unit/*.test.mjs` file, launches a
-cold copy's CLI, then runs all Python `test_*.py` cases. It requires Python 3.14 and the actual Text-to-CAD CAD
+absence of generated/private files, runs every Node `*.test.mjs` file under
+`unit/`, `integration/` and `security/`, launches a cold copy's CLI, then runs all
+Python `test_*.py` cases. It requires Python 3.14 and the actual Text-to-CAD CAD
 kernel dependencies; a missing runtime is an error with setup guidance.
 
 The copied-package check runs `--help`; it verifies that the package can start
@@ -35,6 +36,13 @@ keepout, volume, invalid-solid and export-consistency failures. Thin end caps an
 interior obstructions must fail through-bore probes even inside dimensional or
 placement tolerances. Rebuild identity uses actual BRep differences; equal volume
 and bounds cannot conceal a shifted feature.
+
+STL readback compares sampled surfaces in both directions and checks whole
+triangles against empty reference bore interiors. Missing individual bores,
+thin end/interior caps, off-axis webs and a missing small non-bore feature must
+fail even when bounds and volume pass. Curved, rotated and blind-pocket controls
+preserve support for unrelated custom geometry. Surface sampling remains bounded;
+it is not an exact certificate of equivalence for arbitrary shapes.
 
 Drone coverage must include nominal geometry, battery B against old geometry, corrected
 geometry, shifted mounting hole, accumulated assembly placements, stale export,
@@ -70,6 +78,14 @@ presentation dependencies. They run through the same master command; they do
 not establish that a video was rendered or visually reviewed. The optional
 [showcase build](support/showcase/README.md) has separate executed render,
 offline playback, media decode and visual review receipts.
+
+`security/presentation.test.mjs` exercises the actual loopback server with normal
+assets, nested vendor modules, optional narration, symlinks and alternate paths.
+It also checks literal caption rendering with a DOM contract fixture. Browser
+execution and offline playback need separate executed receipts.
+`security/test_replay_paths.py` covers canonical artifact reads and publication,
+source/destination containment, sealed journals and changed bytes. Its publication
+tests stub encoding; they verify file handling, not video output.
 
 `unit/construction.test.mjs` covers the separate construction evidence contract:
 binding to the original baseline manifest and model/design/STEP hashes, exact

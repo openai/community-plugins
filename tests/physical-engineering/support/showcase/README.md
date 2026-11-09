@@ -191,6 +191,9 @@ node "$PE_SHOWCASE/render.mjs" --mode video \
 `preview` writes the chapter PNGs and `preview-index.json`. `serve` prints a
 loopback URL for the interactive player; stop it with Control-C. It serves the
 source HTML and selected assets rather than producing a standalone HTML bundle.
+The preview serves only declared assets, the player modules and files beneath
+the selected vendor root; descendant symlinks are refused. Optional caption text
+is displayed literally in both the preview and standalone player.
 `video` produces the silent visual master `showcase-silent.mp4` and a render
 receipt with source, asset-manifest and video hashes. The default is 1920 × 1080
 at 24 fps; `--fps` can select another rate. All generated assets, audio, videos,

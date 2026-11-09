@@ -435,6 +435,199 @@ def _verify_parts(parts, req, report):
     return _finish(report)
 
 
+def _dot(a, b):
+    return sum(x*y for x, y in zip(a, b))
+
+
+def _sub(a, b):
+    return tuple(x-y for x, y in zip(a, b))
+
+
+def _cross(a, b):
+    return (a[1]*b[2]-a[2]*b[1], a[2]*b[0]-a[0]*b[2], a[0]*b[1]-a[1]*b[0])
+
+
+def _point_triangle_distance_squared(point, triangle):
+    """Exact point-to-triangle distance, including edges and degenerate faces."""
+    a, b, c = triangle
+    ab, ac, ap = _sub(b, a), _sub(c, a), _sub(point, a)
+    normal = _cross(ab, ac)
+    normal_squared = _dot(normal, normal)
+    if normal_squared and all(_dot(_cross(_sub(end, start), _sub(point, start)), normal) >= 0
+                              for start, end in ((a, b), (b, c), (c, a))):
+        return _dot(ap, normal)**2 / normal_squared
+    best = math.inf
+    for start, end in ((a, b), (b, c), (c, a)):
+        edge, delta = _sub(end, start), _sub(point, start)
+        length_squared = _dot(edge, edge)
+        t = min(1., max(0., _dot(delta, edge)/length_squared)) if length_squared else 0.
+        best = min(best, sum((delta[i]-t*edge[i])**2 for i in range(3)))
+    return best
+
+
+def _triangle_tree(triangles):
+    """AABB hierarchy keeps reverse readback local, without extra dependencies."""
+    low = tuple(min(point[i] for triangle in triangles for point in triangle) for i in range(3))
+    high = tuple(max(point[i] for triangle in triangles for point in triangle) for i in range(3))
+    if len(triangles) <= 12:
+        return low, high, triangles, ()
+    axis = max(range(3), key=lambda i: high[i]-low[i])
+    ordered = sorted(triangles, key=lambda triangle: sum(point[axis] for point in triangle))
+    middle = len(ordered)//2
+    return low, high, (), (_triangle_tree(ordered[:middle]), _triangle_tree(ordered[middle:]))
+
+
+def _mesh_covers(point, tree, tolerance_squared):
+    low, high, triangles, children = tree
+    if sum(max(low[i]-point[i], 0., point[i]-high[i])**2 for i in range(3)) > tolerance_squared:
+        return False
+    if children:
+        return any(_mesh_covers(point, child, tolerance_squared) for child in children)
+    return any(_point_triangle_distance_squared(point, triangle) <= tolerance_squared for triangle in triangles)
+
+
+def _reverse_mesh_coverage(reference_part, triangles, linear_tolerance):
+    """Sample every reference face, so an absent mesh feature cannot disappear.
+
+    This is bounded surface sampling, not an exact Hausdorff certificate. The
+    independent reference tessellation is four times finer than the allowance;
+    its deflection is added explicitly when comparing to the delivered mesh.
+    Complete empty bores additionally get the triangle-intersection check below.
+    """
+    from OCP.BRepMesh import BRepMesh_IncrementalMesh
+    from scipy.spatial import cKDTree
+    deflection = linear_tolerance/4
+    # build123d.mesh uses relative deflection. Establish an absolute mm mesh
+    # first; tessellate then reads that triangulation without rescaling it.
+    BRepMesh_IncrementalMesh(reference_part.wrapped, deflection, False, .1, True)
+    vertices, indices = reference_part.tessellate(deflection)
+    if not indices or len(indices) > 1_000_000:
+        raise ValueError("reference tessellation is empty or exceeds the triangle limit")
+    points = {tuple(point) for point in vertices}
+    points.update(tuple(sum(tuple(vertices[index])[axis] for index in triangle)/3 for axis in range(3))
+                  for triangle in indices)
+    points = sorted(points)
+    tolerance = linear_tolerance + deflection + 1e-5
+    # Most independently tessellated curved-face samples already coincide with
+    # a delivered vertex or centroid. These are valid surface witnesses, so a
+    # batched nearest-point fast path avoids repeated triangle traversal. SciPy
+    # is already pinned in the CAD runtime; no additional package is needed.
+    witnesses = {point for triangle in triangles for point in triangle}
+    witnesses.update(tuple(sum(point[axis] for point in triangle)/3 for axis in range(3))
+                     for triangle in triangles)
+    distances, _ = cKDTree(list(witnesses)).query(points, distance_upper_bound=tolerance)
+    tree = None
+    result = {"checked_points": 0, "total_points": len(points), "uncovered_point_mm": None,
+              "reference_deflection_mm": deflection, "maximum_distance_mm": tolerance,
+              "triangle_queries": 0}
+    for point, distance in zip(points, distances):
+        result["checked_points"] += 1
+        if math.isfinite(distance):
+            continue
+        if tree is None:
+            tree = _triangle_tree(triangles)
+        result["triangle_queries"] += 1
+        if not _mesh_covers(point, tree, tolerance*tolerance):
+            result["uncovered_point_mm"] = list(point)
+            break
+    return result
+
+
+def _clip_axial(polygon, coordinate, keep_above):
+    """Clip a triangle/polygon to one closed axial half-space."""
+    clipped = []
+    for start, end in zip(polygon, polygon[1:]+polygon[:1]):
+        a, b = start[2]-coordinate, end[2]-coordinate
+        inside_a = a >= 0 if keep_above else a <= 0
+        inside_b = b >= 0 if keep_above else b <= 0
+        if inside_a:
+            clipped.append(start)
+        if inside_a != inside_b:
+            t = a/(a-b)
+            clipped.append(tuple(start[i]+t*(end[i]-start[i]) for i in range(3)))
+    return clipped
+
+
+def _radial_distance_squared(polygon):
+    """Minimum distance from a convex polygon's XY projection to the axis.
+
+    Projected vertices alone are insufficient: a cap can surround the axis,
+    and a narrow off-axis web can cross the cylinder between its vertices.
+    """
+    crosses = []
+    best = math.inf
+    for a, b in zip(polygon, polygon[1:]+polygon[:1]):
+        crosses.append(a[0]*b[1]-a[1]*b[0])
+        dx, dy = b[0]-a[0], b[1]-a[1]
+        length_squared = dx*dx+dy*dy
+        t = min(1., max(0., -(a[0]*dx+a[1]*dy)/length_squared)) if length_squared else 0.
+        best = min(best, (a[0]+t*dx)**2+(a[1]+t*dy)**2)
+    if abs(sum(crosses)) > 1e-16 and (all(value >= 0 for value in crosses) or all(value <= 0 for value in crosses)):
+        return 0.
+    return best
+
+
+def _mesh_bore_coverage(reference_part, triangles, linear_tolerance):
+    """Reject any triangle entering a proven-empty reference bore interior.
+
+    Axial clipping tests the whole triangle, including arbitrarily thin caps
+    and off-axis webs, rather than selected rays or heights. The radial inset
+    permits chordal tessellation of the cylindrical wall. Extending the span
+    catches end caps just outside the reference surface within export tolerance.
+    A BRep volume probe must first prove that entire inset cylinder is empty;
+    blind pockets or other occupied spans are left to surface consistency.
+    """
+    from OCP.BRepAdaptor import BRepAdaptor_Surface
+    from OCP.GeomAbs import GeomAbs_Cylinder
+    bd = _kernel()
+    result = {"checked_bores": 0, "skipped_nonempty_spans": 0, "intruding_triangles": 0,
+              "first_intrusion": None}
+    for face in reference_part.faces():
+        surface = BRepAdaptor_Surface(face.wrapped, True)
+        if surface.GetType() != GeomAbs_Cylinder or abs(surface.LastUParameter()-surface.FirstUParameter()-2*math.pi) > 1e-5:
+            continue
+        cylinder = surface.Cylinder()
+        location = cylinder.Location()
+        direction = cylinder.Axis().Direction()
+        origin = (location.X(), location.Y(), location.Z())
+        axis = (direction.X(), direction.Y(), direction.Z())
+        radial = _sub(tuple(face.position_at(.5, .5)), origin)
+        radial = _sub(radial, tuple(value*_dot(radial, axis) for value in axis))
+        if _dot(tuple(face.normal_at(.5, .5)), radial) >= 0:
+            continue
+        radius = cylinder.Radius()
+        inset = min(linear_tolerance+1e-5, radius/4)
+        bottom = surface.FirstVParameter()-linear_tolerance
+        top = surface.LastVParameter()+linear_tolerance
+        center = tuple(origin[i]+axis[i]*(bottom+top)/2 for i in range(3))
+        probe = bd.Plane(origin=center, z_dir=axis) * bd.Cylinder(radius-inset, top-bottom)
+        overlap = _overlap(reference_part, probe)
+        if not math.isfinite(overlap) or overlap < 0:
+            raise ValueError("invalid reference bore overlap")
+        if overlap > min(1e-5, probe.volume*1e-6):
+            result["skipped_nonempty_spans"] += 1
+            continue
+        result["checked_bores"] += 1
+        direction_x = cylinder.Position().XDirection()
+        direction_y = cylinder.Position().YDirection()
+        x_axis = (direction_x.X(), direction_x.Y(), direction_x.Z())
+        y_axis = (direction_y.X(), direction_y.Y(), direction_y.Z())
+        for index, triangle in enumerate(triangles):
+            local = []
+            for point in triangle:
+                delta = _sub(point, origin)
+                local.append((_dot(delta, x_axis), _dot(delta, y_axis), _dot(delta, axis)))
+            if min(p[2] for p in local) > top or max(p[2] for p in local) < bottom:
+                continue
+            polygon = _clip_axial(_clip_axial(local, bottom, True), top, False)
+            if polygon and _radial_distance_squared(polygon) < (radius-inset)**2:
+                result["intruding_triangles"] += 1
+                result["first_intrusion"] = {"triangle_index": index, "axis_origin_mm": list(origin),
+                    "axis_direction": list(axis), "axial_span_mm": [bottom, top], "radial_inset_mm": inset}
+                return result
+    return result
+
+
 def verify_print(stl_path, reference_part, linear_tolerance=.02, volume_tolerance=.005):
     """Read an exact binary STL; topology, orientation and BRep consistency checks."""
     report=_report()
@@ -446,6 +639,7 @@ def verify_print(stl_path, reference_part, linear_tolerance=.02, volume_toleranc
         if not count or len(data)!=84+50*count or count>1_000_000:
             raise ValueError("binary STL triangle count/size mismatch")
         vertices=[]
+        triangles=[]
         centroids=[]
         edges=defaultdict(list)
         neighbors=defaultdict(set)
@@ -461,6 +655,7 @@ def verify_print(stl_path, reference_part, linear_tolerance=.02, volume_toleranc
                 raise ValueError("nonfinite STL coordinate or normal")
             a,b,c=(tuple(values[j:j+3]) for j in (3,6,9))
             vertices.extend((a,b,c))
+            triangles.append((a,b,c))
             centroids.append(tuple((a[j]+b[j]+c[j])/3 for j in range(3)))
             ab=[b[j]-a[j] for j in range(3)];ac=[c[j]-a[j] for j in range(3)]
             cross=[ab[1]*ac[2]-ab[2]*ac[1],ab[2]*ac[0]-ab[0]*ac[2],ab[0]*ac[1]-ab[1]*ac[0]]
@@ -498,18 +693,29 @@ def verify_print(stl_path, reference_part, linear_tolerance=.02, volume_toleranc
         shells=reference_part.shells()
         if len(shells)!=1:
             raise ValueError("one reference boundary shell required")
-        surface_error=0.
+        reverse = _reverse_mesh_coverage(reference_part, triangles, linear_tolerance)
+        bores = _mesh_bore_coverage(reference_part, triangles, linear_tolerance)
+        covered = reverse["uncovered_point_mm"] is None and not bores["intruding_triangles"]
+        surface_error=None
         checked=0
         points=set(vertices)
         points.update(centroids)
-        for point in points:
-            surface_error=max(surface_error,shells[0].distance_to(bd.Vertex(*point)))
-            checked+=1
-            if surface_error>linear_tolerance+1e-5:
-                break
-        _check(report,"mesh_surface",surface_error<=linear_tolerance+1e-5,
-               {"maximum_observed_distance_mm":surface_error,"checked_points":checked,"total_points":len(points)},
-               {"maximum_distance_mm":linear_tolerance,"sampling":"every vertex and triangle centroid; fail stops early"})
+        # A known coverage failure needs no further BRep point-distance calls.
+        # Preserve that distinction in the receipt instead of reporting zero.
+        if covered:
+            surface_error=0.
+            for point in points:
+                surface_error=max(surface_error,shells[0].distance_to(bd.Vertex(*point)))
+                checked+=1
+                if surface_error>linear_tolerance+1e-5:
+                    break
+        _check(report,"mesh_surface",covered and surface_error<=linear_tolerance+1e-5,
+               {"maximum_observed_distance_mm":surface_error,"checked_points":checked,"total_points":len(points),
+                "forward_skipped_after_coverage_failure":not covered,
+                "reverse_coverage":reverse,"bore_coverage":bores},
+               {"maximum_distance_mm":linear_tolerance,
+                "sampling":"bidirectional vertices and triangle centroids; each direction stops at first failure",
+                "bores":"no triangle may enter a proven-empty inset cylinder; closed axial clipping includes end caps"})
         report["measurements"]={"triangles":count,"volume_mm3":volume,"bounds_min_mm":minimum,"bounds_max_mm":maximum,"units":"mm by declared export contract; STL has no unit field"}
         return _finish(report)
     except Exception as exc:

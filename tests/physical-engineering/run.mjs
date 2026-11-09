@@ -99,9 +99,10 @@ try {
   }
   console.log(`Physical Engineering package checks passed (${files.length} files, 3 skills).`);
 
-  const nodeTests = fs.readdirSync(path.join(suite, "unit"))
-    .filter((name) => name.endsWith(".test.mjs")).sort()
-    .map((name) => path.join(suite, "unit", name));
+  const nodeTests = ["unit", "integration", "security"].flatMap((directory) =>
+    fs.readdirSync(path.join(suite, directory))
+      .filter((name) => name.endsWith(".test.mjs")).sort()
+      .map((name) => path.join(suite, directory, name)));
   assert(nodeTests.length > 0, "No presentation tests discovered");
   run(process.execPath, ["--test", ...nodeTests], { stdio: "inherit" });
 

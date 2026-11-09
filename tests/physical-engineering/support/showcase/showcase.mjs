@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { STLLoader } from "three/addons/loaders/STLLoader.js";
 import { toCreasedNormals } from "three/addons/utils/BufferGeometryUtils.js";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+import { renderCaption } from "./captions.mjs";
 const W = 1920,
   H = 1080,
   DURATION = 120;
@@ -656,9 +657,7 @@ function update(t) {
     `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2, "0")} / 2:00`;
   if (window.captions) {
     const cue = window.captions.find((c) => c.start <= t && t < c.end);
-    document.querySelector("#caption").innerHTML = cue
-      ? `<span>${cue.text}</span>`
-      : "";
+    renderCaption(document.querySelector("#caption"), cue);
   }
   return {
     time: t,

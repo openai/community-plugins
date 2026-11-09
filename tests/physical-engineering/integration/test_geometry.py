@@ -204,6 +204,22 @@ class GeometryTests(unittest.TestCase):
         self.assertEqual(self.check_by_id(report,"mesh_volume")["status"],"pass")
         self.assertEqual(self.check_by_id(report,"mesh_surface")["status"],"fail")
 
+    def test_mesh_caps_fail_every_drone_attachment_interface(self):
+        cases = (("tray", (50, 30, .0005)), ("bridge", (15, 15, 30.0005)),
+                 ("tray", (18, 28, 2.9995)), ("bridge", (18, 28, 17.137)))
+        references = verifier.read_parts(self.directory / "A/assembly.step")
+        for label, center in cases:
+            with self.subTest(part=label, center=center):
+                capped = self.models["A"][1][label] + bd.Pos(*center) * bd.Cylinder(1.6, .001)
+                path = self.directory / "capped.stl"
+                bd.export_stl(capped, path, tolerance=.01)
+                report = verifier.verify_print(path, references[label])
+                for ident in ("mesh_topology", "mesh_bounds", "mesh_volume"):
+                    self.assertEqual(self.check_by_id(report, ident)["status"], "pass", report)
+                surface = self.check_by_id(report, "mesh_surface")
+                self.assertEqual(surface["status"], "fail", report)
+                self.assertGreater(surface["actual"]["bore_coverage"]["intruding_triangles"], 0)
+
     def test_corrupt_mesh_does_not_pass(self):
         file=self.directory/"corrupt.stl"
         file.write_bytes((self.directory/"A/tray.stl").read_bytes()[:-50])

@@ -52,7 +52,10 @@ against unchanged geometry, failed measurements, a corrected build, handoff and
 delivered-source rebuild in separate CAD state. Security checks exercise stale
 artifacts, path escapes, preserved requirement revisions, incomplete PASS reports
 and interrupted handoff publication. Geometry checks include changed features
-with equal summary measurements and obstructed bores.
+with equal summary measurements, missing mesh features and obstructed bores.
+Companion checks cover literal captions, preview file boundaries and replay
+artifact publication. They run through the same master command; browser and
+video qualification remain separate executed checks.
 
 A handoff is fully staged and hash-checked before promotion. Failed preparation
 keeps the prior handoff; a failed rename attempts restoration. A process or host

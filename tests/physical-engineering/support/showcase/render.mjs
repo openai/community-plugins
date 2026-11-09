@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 import fs from "node:fs";
 import path from "node:path";
-import http from "node:http";
 import crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
 import { spawn } from "node:child_process";
 import { validateEvidence } from "./evidence.mjs";
 import { validateConstruction } from "./construction.mjs";
+import { createPreviewServer } from "./preview_server.mjs";
 const here = path.dirname(fileURLToPath(import.meta.url));
 const opts = { mode: "preview", fps: "24" };
 for (let i = 2; i < process.argv.length; i += 2) {
@@ -26,49 +26,9 @@ const evidence = validateEvidence(assets);
 const manifest = evidence.manifest;
 const construction = validateConstruction(assets, manifest);
 const manifestBytes = fs.readFileSync(path.join(assets, "manifest.json"));
-const mime = {
-  ".html": "text/html",
-  ".mjs": "text/javascript",
-  ".js": "text/javascript",
-  ".stl": "application/octet-stream",
-  ".json": "application/json",
-  ".wav": "audio/wav",
-};
-const server = http.createServer((req, res) => {
-  try {
-    let url = decodeURIComponent(new URL(req.url, "http://localhost").pathname);
-    let root, rel;
-    if (url.startsWith("/assets/")) {
-      root = assets;
-      rel = url.slice(8);
-    } else if (url.startsWith("/vendor/")) {
-      root = vendor;
-      rel = url.slice(8);
-    } else if (["/narration.wav", "/captions.json"].includes(url)) {
-      root = path.dirname(assets);
-      rel = url.slice(1);
-    } else {
-      root = here;
-      rel = url === "/" ? "index.html" : url.slice(1);
-    }
-    const file = path.resolve(root, rel);
-    if (
-      !file.startsWith(root + path.sep) ||
-      !fs.existsSync(file) ||
-      !fs.statSync(file).isFile()
-    ) {
-      res.writeHead(404).end();
-      return;
-    }
-    res.setHeader(
-      "Content-Type",
-      mime[path.extname(file)] || "application/octet-stream",
-    );
-    res.setHeader("Cache-Control", "no-store");
-    fs.createReadStream(file).pipe(res);
-  } catch {
-    res.writeHead(400).end();
-  }
+const server = createPreviewServer({
+  assets, vendor, player: here,
+  assetPaths: [...Object.keys(evidence.assetHashes), ...Object.keys(construction.assetHashes)],
 });
 await new Promise((r) => server.listen(0, "127.0.0.1", r));
 const url = `http://127.0.0.1:${server.address().port}/`;
@@ -194,7 +154,7 @@ if (opts.mode === "serve") {
             construction_manifest_sha256: construction.manifestSha256,
             video_sha256: sha(fs.readFileSync(movie)),
             source_sha256: Object.fromEntries(
-              ["index.html", "showcase.mjs", "render.mjs"].map((f) => [
+              ["index.html", "showcase.mjs", "captions.mjs", "render.mjs", "preview_server.mjs"].map((f) => [
                 f,
                 sha(fs.readFileSync(path.join(here, f))),
               ]),

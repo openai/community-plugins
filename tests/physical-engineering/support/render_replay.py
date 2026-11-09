@@ -15,6 +15,7 @@ import json
 import math
 from pathlib import Path
 import shutil
+import stat
 import subprocess
 
 from record_cli import SCENES, sha
@@ -120,6 +121,41 @@ def message(event, complete=False):
     return None
 
 
+def artifact_path(root, relative, *, must_exist=True):
+    """Resolve one portable artifact name without following descendant symlinks.
+
+    The recorder owns the artifacts/ namespace. Keep the same relative name for
+    source reads and publication, rather than normalizing a different spelling
+    that could escape when reused under another root.
+    """
+    if (not isinstance(relative, str) or not relative.startswith("artifacts/")
+            or any(character in relative for character in ("\\", "\0", ":"))):
+        raise RuntimeError("Observed artifact path must be relative to artifacts/")
+    segments = relative.split("/")
+    if any(segment in ("", ".", "..") for segment in segments):
+        raise RuntimeError("Observed artifact path must use canonical relative components")
+    root = root.resolve(strict=True)
+    current = root
+    for index, segment in enumerate(segments):
+        current = current / segment
+        try:
+            mode = current.lstat().st_mode
+        except FileNotFoundError:
+            if must_exist:
+                raise RuntimeError("Observed artifact path is missing") from None
+            continue
+        except OSError as error:
+            raise RuntimeError("Observed artifact path is invalid") from error
+        if stat.S_ISLNK(mode):
+            raise RuntimeError("Observed artifact path contains a symlink")
+        if not (stat.S_ISREG(mode) if index == len(segments) - 1 else stat.S_ISDIR(mode)):
+            raise RuntimeError("Observed artifact path is not a regular file below directories")
+    resolved = current.resolve(strict=must_exist)
+    if not resolved.is_relative_to(root):
+        raise RuntimeError("Observed artifact path escaped its root")
+    return resolved
+
+
 def load_take(take):
     complete = json.loads((take / "capture-complete.json").read_text())
     if sha(take / "events.jsonl") != complete["events_sha256"]:
@@ -135,9 +171,7 @@ def load_take(take):
     for event in events:
         if event["kind"] != "artifact_observed":
             continue
-        artifact = (take / event["artifact"]).resolve()
-        if not artifact.is_relative_to(take) or not artifact.is_file():
-            raise RuntimeError("Observed artifact path escaped or is missing")
+        artifact = artifact_path(take, event["artifact"])
         if sha(artifact) != event.get("published_sha256", event["sha256"]):
             raise RuntimeError("Observed artifact bytes changed after capture")
     return complete, events
@@ -309,7 +343,7 @@ def render_frame(take, state, source_seconds, video_seconds, duration, compresse
     if observed:
         key = observed["artifact"]
         if key not in IMAGE_CACHE:
-            with Image.open(take / key) as source:
+            with Image.open(artifact_path(take, key)) as source:
                 picture = source.convert("RGB")
                 picture.thumbnail((736, 435), Image.Resampling.LANCZOS)
                 IMAGE_CACHE[key] = picture.copy()
@@ -365,7 +399,7 @@ def render_cad_frame(take, state, source_seconds, video_seconds, duration, compr
     if observed:
         key = (observed["artifact"], "cad-first")
         if key not in IMAGE_CACHE:
-            with Image.open(take / observed["artifact"]) as source:
+            with Image.open(artifact_path(take, observed["artifact"])) as source:
                 picture = source.convert("RGB")
                 picture.thumbnail((1220, 686), Image.Resampling.LANCZOS)
                 IMAGE_CACHE[key] = picture.copy()
@@ -537,9 +571,10 @@ def main():
     # A refused/interrupted observation can leave an unjournaled staging file.
     # Publish only the artifacts whose observed bytes load_take validated.
     for relative in sorted({event["artifact"] for event in events if event["kind"] == "artifact_observed"}):
-        destination = output / relative
+        source = artifact_path(take, relative)
+        destination = artifact_path(output, relative, must_exist=False)
         destination.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(take / relative, destination)
+        shutil.copyfile(source, artifact_path(output, relative, must_exist=False))
     (output / "prompts").mkdir()
     chapter_links = ["# Chapter guide", "",
                      "These links point into the actual event replay. The teaching cut trims idle intervals and shortens waits.",

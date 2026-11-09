@@ -48,6 +48,9 @@ class MechanicalGeometryTests(unittest.TestCase):
         self.assertEqual(mesh["status"], "pass", mesh)
         self.assertEqual({item["id"] for item in mesh["checks"]},
                          {f"sensor_plate_{suffix}" for suffix in verifier.PRINT_SUFFIXES})
+        surface = self.check(mesh, "sensor_plate_mesh_surface")["actual"]
+        self.assertEqual(surface["reverse_coverage"]["checked_points"], surface["reverse_coverage"]["total_points"])
+        self.assertEqual(surface["bore_coverage"]["checked_bores"], 4)
 
     def test_changed_pitch_fails_old_part_and_passes_revised_part(self):
         old = verifier.verify(self.output / "assembly.step", self.changed)
@@ -221,6 +224,84 @@ class MechanicalGeometryTests(unittest.TestCase):
             self.assertEqual(report["status"], "fail", report)
             self.assertEqual(self.check(report, "sensor_plate_step_consistency")["status"], "fail")
             self.assertEqual(self.check(report, "sensor_plate_mesh_surface")["status"], "fail")
+
+    def test_each_filled_bore_stl_fails_even_when_step_and_volume_match(self):
+        reference = bd.import_step(self.output / "assembly.step")
+        for x, y in self.requirements["checks"][1]["centers_xy_mm"]:
+            with self.subTest(center=(x, y)):
+                filled = self.plate + bd.Pos(x, y, 2) * bd.Cylinder(1.6, 4)
+                path = self.output / "filled-bore.stl"
+                bd.export_stl(filled, path, tolerance=.01)
+                report = verifier.geometry.verify_print(path, reference)
+                for ident in ("mesh_topology", "mesh_bounds", "mesh_volume"):
+                    self.assertEqual(self.check(report, ident)["status"], "pass", report)
+                self.assertEqual(self.check(report, "mesh_surface")["status"], "fail", report)
+
+    def test_mesh_caps_and_partial_webs_are_not_excused_by_tessellation_tolerance(self):
+        reference = bd.import_step(self.output / "assembly.step")
+        obstructions = [(self.plate, bd.Pos(30, 15, z) * bd.Cylinder(1.6, .001))
+                        for z in (.0005, 2.137, 3.9995)]
+        # Shift the solid within export tolerance so an end cap just beyond
+        # the reference span remains attached to a closed manifold solid.
+        obstructions.append((self.plate.moved(bd.Pos(0, 0, .001)),
+                             bd.Pos(30, 15, 4.0005) * bd.Cylinder(1.6, .001)))
+        # A narrow web does not cover the bore centerline. Sampling only the
+        # axis, bore wall or a few Z slices cannot establish an open bore.
+        obstructions.append((self.plate, bd.Pos(30, 16, 2.137) * bd.Box(3.2, .15, .001)))
+        for index, (base, obstruction) in enumerate(obstructions):
+            with self.subTest(obstruction=index):
+                path = self.output / "obstructed-bore.stl"
+                bd.export_stl(base + obstruction, path, tolerance=.01)
+                report = verifier.geometry.verify_print(path, reference)
+                for ident in ("mesh_topology", "mesh_bounds", "mesh_volume"):
+                    self.assertEqual(self.check(report, ident)["status"], "pass", report)
+                surface = self.check(report, "mesh_surface")
+                self.assertEqual(surface["status"], "fail", report)
+                self.assertGreater(surface["actual"]["bore_coverage"]["intruding_triangles"], 0)
+
+    def test_missing_small_non_bore_feature_fails_reverse_coverage(self):
+        base = bd.Box(80, 50, 4) + bd.Pos(0, 0, 2.5) * bd.Box(2, 2, 1)
+        reference = base + bd.Pos(20, 0, 2.25) * bd.Box(.3, .3, .5)
+        path = self.output / "missing-small-feature.stl"
+        bd.export_stl(base, path, tolerance=.01)
+        report = verifier.geometry.verify_print(path, reference)
+        for ident in ("mesh_topology", "mesh_bounds", "mesh_volume"):
+            self.assertEqual(self.check(report, ident)["status"], "pass", report)
+        surface = self.check(report, "mesh_surface")
+        self.assertEqual(surface["status"], "fail", report)
+        self.assertIsNotNone(surface["actual"]["reverse_coverage"]["uncovered_point_mm"])
+
+    def test_curved_rotated_ring_and_blind_pocket_meshes_pass(self):
+        ring = bd.Cylinder(15, 8) - bd.Cylinder(5, 10)
+        ring = ring.fillet(.4, ring.edges())
+        blind = bd.Box(20, 20, 8) - bd.Pos(0, 0, 3) * bd.Cylinder(3, 6)
+        for name, original in (("rounded-ring", ring), ("blind-pocket", blind)):
+            with self.subTest(shape=name):
+                part = original.moved(bd.Pos(19, -8, 3) * bd.Rot(21, 33, 17))
+                path = self.output / f"{name}.stl"
+                step = self.output / f"{name}.step"
+                bd.export_step(part, step)
+                bd.export_stl(part, path, tolerance=.01)
+                report = verifier.geometry.verify_print(path, bd.import_step(step))
+                self.assertEqual(report["status"], "pass", report)
+                bores = self.check(report, "mesh_surface")["actual"]["bore_coverage"]
+                if name == "rounded-ring":
+                    self.assertEqual(bores["checked_bores"], 1)
+                else:
+                    self.assertEqual(bores["skipped_nonempty_spans"], 1)
+
+    def test_rotated_ring_mesh_obstruction_fails(self):
+        ring = bd.Cylinder(15, 8) - bd.Cylinder(5, 10)
+        transform = bd.Pos(19, -8, 3) * bd.Rot(21, 33, 17)
+        blocked = ring + bd.Pos(0, 0, .137) * bd.Cylinder(5, .001)
+        path = self.output / "blocked-rotated-ring.stl"
+        bd.export_stl(blocked.moved(transform), path, tolerance=.01)
+        report = verifier.geometry.verify_print(path, ring.moved(transform))
+        for ident in ("mesh_topology", "mesh_bounds", "mesh_volume"):
+            self.assertEqual(self.check(report, ident)["status"], "pass", report)
+        surface = self.check(report, "mesh_surface")
+        self.assertEqual(surface["status"], "fail", report)
+        self.assertGreater(surface["actual"]["bore_coverage"]["intruding_triangles"], 0)
 
 
 if __name__ == "__main__":
