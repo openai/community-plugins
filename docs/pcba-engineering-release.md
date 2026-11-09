@@ -59,6 +59,16 @@ regenerates all three datasets from pinned public source bytes. One workflow
 runs the same master sequentially on Node 22.19, 24 and 26. The repository's
 marketplace dispatcher invokes that same command.
 
+## Installed candidate verification
+
+The [0.1.3 qualification receipt](pcba-engineering-qualification.json) binds all
+22 installed files to the source package. A fresh Codex run executed 17 real
+CLI calls outside the checkout: BMS import, check, two-reference preview/apply,
+recheck, export, independent verification and resume, followed by a separate
+training-board handoff. Parent-side readback independently reverified both
+11-artifact packets, all 145 unchanged placements and unchanged non-placement
+input. This is separate from the earlier movie recording.
+
 ## Demonstration and qualification boundaries
 
 The movie records an actual installed **0.1.2** run: a Libre Solar BMS v0.2 BOM
