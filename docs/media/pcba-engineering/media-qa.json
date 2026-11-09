@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "status": "technical_checks_passed",
+  "movie": "pcba-engineering-drone-bms-2m27s.mp4",
+  "movieSha256": "b60541258238f317571720a82a8d26730249e96eb0991e6b2c44f5d381447b70",
+  "bytes": 8805159,
+  "durationSeconds": 147,
+  "width": 1920,
+  "height": 1080,
+  "framesPerSecond": 30,
+  "framesDecoded": 4410,
+  "fullDecodePassed": true,
+  "codecs": [
+    "h264",
+    "aac",
+    "mov_text"
+  ],
+  "nativeFootageSeconds": 84,
+  "narrationWords": 72,
+  "captionCues": 6,
+  "captionTimingPassed": true,
+  "audio": {
+    "encodedAacSha256": "7f747f346e06c1ebcb7cec670d7525d0ca0e914dbfb2b095a27a64cc55905389",
+    "unchangedFromOriginal": true,
+    "integratedLufs": -18.16,
+    "truePeakDbtp": -2.02,
+    "measurement": "Original mix measurements apply because the encoded AAC stream is unchanged."
+  },
+  "privacyReview": {
+    "method": "Contrast-enhanced Tesseract OCR of the native pane at 5 fps across the complete movie, plus visual inspection of identified path/chrome intervals.",
+    "sampledFrames": 735,
+    "samplingFramesPerSecond": 5,
+    "crop": [
+      64,
+      152,
+      720,
+      854
+    ],
+    "sensitiveTextMatchesAfterMasking": 0,
+    "visualReviewSeconds": [
+      17,
+      42.2,
+      65,
+      87
+    ],
+    "scope": "Personal filesystem paths and unrelated model-picker chrome. Sampling is not an exhaustive review of every frame."
+  },
+  "recordedHandoff": {
+    "pluginVersion": "0.1.2",
+    "verifier": "recorded-verifier-0.1.2.zip",
+    "verifierSha256": "e1e76914cce5215de63b515ebd8e9a00ba6a16ea5bba787ecec75c136461cf35",
+    "filesChecked": 11,
+    "all12FilesEqualRecordedOriginal": true,
+    "valid": true,
+    "revision": "r2-a1cafa6fc57a"
+  },
+  "nativeSvgPreview": "Failed in recorded take; no success claim.",
+  "exportedHtmlGuide": "Passed separately in Codex in-app browser over loopback HTTP.",
+  "humanListeningApproval": "not_claimed",
+  "humanEngineeringApproval": "not_claimed"
+}

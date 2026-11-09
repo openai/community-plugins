@@ -1,0 +1,11 @@
+A drone's battery starts with a trustworthy assembly package.
+
+The bill of materials is revision point two. The placement export is older.
+
+Codex finds two missing diode placements, and locates both in the source board.
+
+The plugin previews the exact correction. Two additions. Every existing placement stays the same.
+
+The same checks now pass: one hundred forty-seven placements.
+
+Codex reopens the exported files and verifies the complete handoff. Ready for engineering review.
