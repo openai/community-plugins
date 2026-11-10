@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "plugin": "pcba-engineering",
+  "pluginVersion": "0.1.2",
+  "revision": "r2-a1cafa6fc57a",
+  "inputSha256": "a1cafa6fc57af437a2ef186d07a77fe0bb49bbe789623bf3fc0c90844bb775b4",
+  "files": [
+    {
+      "path": "input.json",
+      "sha256": "a73412732a4045cfc0f67645e7b050e7400672ad8368ed1f99948e2f7ddd600c",
+      "bytes": 505752
+    },
+    {
+      "path": "brief.json",
+      "sha256": "29ae3bea650c91baf124f88004fc0f6ed273a52c98e308a41e1bf3a236d5b118",
+      "bytes": 380
+    },
+    {
+      "path": "source-manifest.json",
+      "sha256": "e2bf29f4d588401b676282f6f4050322c28d1b9d09c82b28d8ddec9d310ede68",
+      "bytes": 4512
+    },
+    {
+      "path": "population.csv",
+      "sha256": "62053acb15ae64814c9bd4c9a33c7a0e5a3a454733a5dbc5f11cdeb8ed9c3d83",
+      "bytes": 11961
+    },
+    {
+      "path": "placements.csv",
+      "sha256": "ad143127fc52f800aecd1f2fd8eb6bd07ed61c005cfd84af4a159f41a0ef6581",
+      "bytes": 6453
+    },
+    {
+      "path": "assembly-view.svg",
+      "sha256": "1f2b73428378715021d0caa3d17de9d7a9461c471c578a8a70521c158ed05eb1",
+      "bytes": 303842
+    },
+    {
+      "path": "assembly-guide.html",
+      "sha256": "d9ca5a8ddec107aa2e4e492926c9da0244d7a60ea552baf606ec4ce268160b05",
+      "bytes": 393085
+    },
+    {
+      "path": "readiness.json",
+      "sha256": "58e3f19e73de4ac3bf8c2081d8e4639d9a770786193877747fcaf7adba9b926b",
+      "bytes": 1631
+    },
+    {
+      "path": "change-record.json",
+      "sha256": "6af51f7cca820ae3974a6b2e8938a676e82d97f8903d602a6c7cce7e055585e9",
+      "bytes": 12878
+    },
+    {
+      "path": "inspection-plan.md",
+      "sha256": "877308980e99575dde825b47415a2bd40aaeeeb07fd3550dc8128182f8658835",
+      "bytes": 805
+    },
+    {
+      "path": "handoff.md",
+      "sha256": "0a9e0d5e38183a9a617759347043432871d1fa9cf381507bde37aa52ab9761dc",
+      "bytes": 551
+    }
+  ]
+}

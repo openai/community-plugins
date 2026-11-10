@@ -1,0 +1,217 @@
+{
+  "schemaVersion": 1,
+  "plugin": "pcba-engineering",
+  "version": "0.1.3",
+  "sourceCommit": "2795019edc916fc11dc0e5aad03b5c4484f3a8f5",
+  "host": {
+    "platform": "darwin",
+    "architecture": "arm64",
+    "node": "v26.0.0"
+  },
+  "qualification": "Actual installed Codex exec workflow in a fresh directory outside the repository, followed by separate deterministic artifact readback.",
+  "startedAt": "2026-11-09T05:53:47.224Z",
+  "endedAt": "2026-11-09T06:19:30.284Z",
+  "installedEqualsSource": true,
+  "packageFiles": {
+    ".codex-plugin/plugin.json": "3b87ca7c12687ea93e1bf6ccaaed993bb40f6a10c775ddacbd9b67be56875084",
+    "LICENSE": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+    "README.md": "42960d67122792eb624742a40f90ffeb5d49cf7b34979aca3d78497bc4058bbe",
+    "assets/icon.svg": "a01f9ac3882765c9a4cfe4d45120758387cbd1e8ea22dc8566c7f128d9180b8b",
+    "lib/csv.mjs": "ebf8adf41d8bdbcb5a12a0c074b36b54d41dbfc404d3fad93d8e3ef8180878b9",
+    "lib/domain.mjs": "7dc36bb06eb65063329f089d65fd993b713d6f200d062373d0e09be91f03c038",
+    "lib/kicad.mjs": "1039bfe6b051faa981db30d4b98ec491d14a87e4cd8c6fece8f99f202edfdc88",
+    "lib/project.mjs": "0f9b4da0ef52cd693b2ae960622513bf4d086643d9f65a62c670d503b8c82961",
+    "lib/render.mjs": "12b4412e21f798f639ff6d3fd2cf38ff7118d8c7985d7c9bb3a2c00066a45a36",
+    "lib/version.mjs": "98366771915e419b02008de140f55eff9812b9d24a60f1d4006a5e5aa53c7cba",
+    "plugin.json": "6fd0ae8385d60a2959f43e6d2f494b9a8c7d8d914b9ec33eb6ec385071e281df",
+    "references/dataset-sources.md": "a8daa2e5f936a328efa526e9e63533d17c741f40b691856e94d628183360fbaf",
+    "references/workflow.md": "5b97dfda0446f7fda25af0fabaa3fff01bda711c7637610602ead6b19c4ae9f2",
+    "schemas/check-report.v1.json": "9f29826ec56ad174f8a4be83da1802366e9cb79d77b2aafbd5da72880163e8bc",
+    "schemas/package.v1.json": "8f704db43a02ff6caae9e7893905e75c3bc8a9810924483b5df27ded0f2d39fd",
+    "scripts/pcba.mjs": "1552024fef1105858417e48fa29b86e0de1d25eed7d4d29d34aa1195700585f2",
+    "skills/prepare-pcba-handoff/SKILL.md": "95afe5854765b601f292eae40eb029d9a39c92d20b52c8787f421de380d8b356",
+    "skills/prepare-pcba-handoff/agents/openai.yaml": "b8a528612907c1c6417a74cf5a2c06480c392536972a45581f32010784d8521b",
+    "skills/review-pcba-package/SKILL.md": "fe274f0b9ad4d9cffa333721c3ddf1366475a09821547dbd6cd7609bf1a39706",
+    "skills/review-pcba-package/agents/openai.yaml": "2f2e3e7572a2355c618a5950be843f96b69426325dc4d3fde647251e7114bd01",
+    "skills/revise-pcba-assembly/SKILL.md": "c25b3b1d0d400906e84cb3c94e31617306fdcf064eff0bc04271be8260ba6d9a",
+    "skills/revise-pcba-assembly/agents/openai.yaml": "5f788f5a0f18dd56e7eca2eb830c39218fb3c5bd9ea984eda9b50a42b132fdca"
+  },
+  "commandCount": 17,
+  "commands": [
+    {
+      "command": "/bin/zsh -lc \"sed -n '1,320p' ${INSTALLED_PLUGIN}/references/workflow.md; node ${INSTALLED_PLUGIN}/scripts/pcba.mjs --help\"",
+      "exitCode": 0,
+      "originalOutputSha256": "30d33f2ffa1fe77ee73c9d7f564fb3f8be2209a98237b3dce2fd0a8235e30f13"
+    },
+    {
+      "command": "/bin/zsh -lc 'node ${INSTALLED_PLUGIN}/scripts/pcba.mjs doctor'",
+      "exitCode": 0,
+      "originalOutputSha256": "6325b8d14bd65689de46d4d3b12b8df3a55f04663fc46b85b21a53fb1abfd789"
+    },
+    {
+      "command": "/bin/zsh -lc 'node ${INSTALLED_PLUGIN}/scripts/pcba.mjs import --project bms-project --brief inputs/brief.json --bom inputs/bom-v0.2.csv --placements inputs/placements-v0.1.1.csv --units mm --bottom-view top-view --mapping inputs/columns.json --authoritative inputs/source-placements-v0.2.csv'",
+      "exitCode": 0,
+      "originalOutputSha256": "30323b5dc0653484b5b977a39b07ce21a6b865174539bfeea052f80d9199c14d"
+    },
+    {
+      "command": "/bin/zsh -lc 'node ${INSTALLED_PLUGIN}/scripts/pcba.mjs check --project bms-project'",
+      "exitCode": 2,
+      "originalOutputSha256": "616fc192257f116375a17f3d9c2fb4cbb64228df1d67610185f95a3893880f41"
+    },
+    {
+      "command": "/bin/zsh -lc 'node ${INSTALLED_PLUGIN}/scripts/pcba.mjs status --project bms-project'",
+      "exitCode": 0,
+      "originalOutputSha256": "164de5ace13602e5efc09f5a1208396e1d2b0ca996762b585f247c208534171d"
+    },
+    {
+      "command": "/bin/zsh -lc 'node ${INSTALLED_PLUGIN}/scripts/pcba.mjs plan-change --project bms-project --use-authoritative --reason \"Restore only D11 and D12 missing from the older placement export using the reviewed authoritative v0.2 placement snapshot.\"'",
+      "exitCode": 0,
+      "originalOutputSha256": "b7d6c074ab165e501e855ec2a93673aba7c1a126c0757241ffab1359e6e8549e"
+    },
+    {
+      "command": "/bin/zsh -lc 'node ${INSTALLED_PLUGIN}/scripts/pcba.mjs apply-change --project bms-project --plan bms-project/plans/1ed290d89161c8e9f6231a7a2dade975523869168a13f43bdf4483061f7409bb.json'",
+      "exitCode": 0,
+      "originalOutputSha256": "0c816818609025f8af3e6d9ed068d2daefd1e5eb73b5fe212cd67215bc8566e8"
+    },
+    {
+      "command": "/bin/zsh -lc 'node ${INSTALLED_PLUGIN}/scripts/pcba.mjs status --project bms-project'",
+      "exitCode": 0,
+      "originalOutputSha256": "3bb32a2da976973c92167536d9f146bee0214937ebe477a9ec8c8fc347b03f3b"
+    },
+    {
+      "command": "/bin/zsh -lc 'node ${INSTALLED_PLUGIN}/scripts/pcba.mjs check --project bms-project --expect r2-a1cafa6fc57a'",
+      "exitCode": 0,
+      "originalOutputSha256": "ec810a90240b540259874c7e425c5cf2b7455b8e8cd4b78dc69630a7a3ce2887"
+    },
+    {
+      "command": "/bin/zsh -lc 'node ${INSTALLED_PLUGIN}/scripts/pcba.mjs export --project bms-project --output bms-delivery'",
+      "exitCode": 0,
+      "originalOutputSha256": "d25edd4b6dafb71ea45be8161762724f9ef87af9428e5b192dfb28439431f284"
+    },
+    {
+      "command": "/bin/zsh -lc 'node ${INSTALLED_PLUGIN}/scripts/pcba.mjs verify-handoff --directory bms-delivery'",
+      "exitCode": 0,
+      "originalOutputSha256": "ed2da14abb5255f2fcf24bc7d7da8811bfab75da2a1498833b15a6652dfae9dd"
+    },
+    {
+      "command": "/bin/zsh -lc 'node ${INSTALLED_PLUGIN}/scripts/pcba.mjs resume --project bms-project'",
+      "exitCode": 0,
+      "originalOutputSha256": "ed54f5dd3790af92cf0172816ee6516dc8c621df04d224abbf50f632dff0f024"
+    },
+    {
+      "command": "/bin/zsh -lc 'node ${INSTALLED_PLUGIN}/scripts/pcba.mjs import --input training.json --project training-project'",
+      "exitCode": 0,
+      "originalOutputSha256": "22f7858f4eacef89d903195c247a3a8c8fda474c99036d46a2071b7c789198dd"
+    },
+    {
+      "command": "/bin/zsh -lc 'node ${INSTALLED_PLUGIN}/scripts/pcba.mjs status --project training-project'",
+      "exitCode": 0,
+      "originalOutputSha256": "e8ea5a98e1e7f9985d2231bccd4e2436f35ce6b44ba60cdcdd919bdc3d908082"
+    },
+    {
+      "command": "/bin/zsh -lc 'node ${INSTALLED_PLUGIN}/scripts/pcba.mjs check --project training-project --expect r1-32b3dc89f674'",
+      "exitCode": 0,
+      "originalOutputSha256": "04170b45d795ab7e0493ab6c2a833c4079562c4064d1620141f1b248cccbfa29"
+    },
+    {
+      "command": "/bin/zsh -lc 'node ${INSTALLED_PLUGIN}/scripts/pcba.mjs export --project training-project --output training-delivery'",
+      "exitCode": 0,
+      "originalOutputSha256": "ff1195169b4d09242cfdb17bb8d9dfc1df4bedac240845a8e2e3cf22e20cfdcb"
+    },
+    {
+      "command": "/bin/zsh -lc 'node ${INSTALLED_PLUGIN}/scripts/pcba.mjs verify-handoff --directory training-delivery'",
+      "exitCode": 0,
+      "originalOutputSha256": "58b0dd7aea6e2a601d9b3c22ea099235198aa5d250f59fb083fc06fe56a24e50"
+    }
+  ],
+  "acceptance": {
+    "onlyAddedReferences": [
+      "D11",
+      "D12"
+    ],
+    "unchangedExistingPlacements": 145,
+    "nonPlacementInputUnchanged": true,
+    "sourceWarningsPreserved": true,
+    "bmsResumeObserved": true,
+    "deliveries": {
+      "bms": {
+        "ok": true,
+        "command": "verify-handoff",
+        "schemaVersion": 1,
+        "valid": true,
+        "directory": "${WORKSPACE}/bms-delivery",
+        "revision": "r2-a1cafa6fc57a",
+        "filesChecked": 11,
+        "inputSha256": "a1cafa6fc57af437a2ef186d07a77fe0bb49bbe789623bf3fc0c90844bb775b4",
+        "checks": [
+          "all-artifact-hashes",
+          "complete-manifest",
+          "independent-csv-readback",
+          "population-and-placement-equality",
+          "fresh-document-consistency",
+          "brief-identity",
+          "source-and-history-identity",
+          "visual-artifact-consistency"
+        ],
+        "scope": {
+          "documentConsistency": "pass",
+          "materialReadiness": "unknown",
+          "electricalQualification": "not_assessed",
+          "manufacturingAuthorization": "not_assessed",
+          "geometryVerification": "supplied-authoritative-comparison",
+          "geometryProvenance": "supplied-source-not-authenticated"
+        }
+      },
+      "training": {
+        "ok": true,
+        "command": "verify-handoff",
+        "schemaVersion": 1,
+        "valid": true,
+        "directory": "${WORKSPACE}/training-delivery",
+        "revision": "r1-32b3dc89f674",
+        "filesChecked": 11,
+        "inputSha256": "32b3dc89f6741e4649ec464301519977f529bf5b5aaebcfc30b94c11c14c82df",
+        "checks": [
+          "all-artifact-hashes",
+          "complete-manifest",
+          "independent-csv-readback",
+          "population-and-placement-equality",
+          "fresh-document-consistency",
+          "brief-identity",
+          "source-and-history-identity",
+          "visual-artifact-consistency"
+        ],
+        "scope": {
+          "documentConsistency": "pass",
+          "materialReadiness": "unknown",
+          "electricalQualification": "not_assessed",
+          "manufacturingAuthorization": "not_assessed",
+          "geometryVerification": "supplied-authoritative-comparison",
+          "geometryProvenance": "supplied-source-not-authenticated"
+        }
+      }
+    }
+  },
+  "limits": [
+    "The movie records the earlier 0.1.2 package; this is separate 0.1.3 installed-Codex evidence.",
+    "No native KiCad, electrical, material-readiness, manufacturing or flight qualification.",
+    "Raw private chat logs and account paths are not published; command output hashes identify the retained originals."
+  ],
+  "archiveQualification": {
+    "status": "passed",
+    "archive": {
+      "file": "pcba-engineering-0.1.3.zip",
+      "sha256": "1d0b5b8d313e0dbfa7310f8138291de91c3244d2c1a413638aa54397030b70a4",
+      "bytes": 53895,
+      "fileCount": 22,
+      "singleRoot": "pcba-engineering/",
+      "deterministicRebuildEqual": true,
+      "linksAllowed": false,
+      "symbolicLinkRejectionObserved": true
+    },
+    "commandsPassed": 8,
+    "networkAttempts": 0,
+    "sourceAndExtractedPackageUnchanged": true,
+    "extractedEqualsSourceAndInstalled": true
+  }
+}

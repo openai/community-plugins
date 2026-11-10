@@ -9,3 +9,7 @@ node_modules/
 coverage/
 __pycache__/
 /work/physical-engineering/
+*.py[cod]
+
+# Local PCBA recordings, installed-client evidence and working data
+work/pcba-engineering/

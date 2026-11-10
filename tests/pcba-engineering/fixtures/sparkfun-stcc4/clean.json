@@ -1,0 +1,2948 @@
+{
+  "schemaVersion": 1,
+  "board": {
+    "id": "sparkfun-stcc4",
+    "name": "Qwiic CO₂ environmental sensor assembly",
+    "revision": "v10",
+    "widthMm": 25.4,
+    "heightMm": 25.4
+  },
+  "variant": "standard",
+  "quantity": 10,
+  "conventions": {
+    "units": "mm",
+    "coordinateFrame": "board-bottom-left",
+    "rotation": "ccw",
+    "bottomView": "top"
+  },
+  "bom": [
+    {
+      "ref": "C10",
+      "partId": "SparkFun-Capacitor:C_0402_1005Metric:0.1uF",
+      "value": "0.1uF",
+      "package": "SparkFun-Capacitor:C_0402_1005Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "C11",
+      "partId": "SparkFun-Capacitor:C_0402_1005Metric:0.1uF",
+      "value": "0.1uF",
+      "package": "SparkFun-Capacitor:C_0402_1005Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "D1",
+      "partId": "SparkFun-LED:LED_0603_1608Metric_Red:Red",
+      "value": "Red",
+      "package": "SparkFun-LED:LED_0603_1608Metric_Red",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "FID1",
+      "partId": "SparkFun-Aesthetic:Fiducial_0.5mm_Mask1mm:Fiducial_0.5mm",
+      "value": "Fiducial_0.5mm",
+      "package": "SparkFun-Aesthetic:Fiducial_0.5mm_Mask1mm",
+      "category": "fiducial",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "FID2",
+      "partId": "SparkFun-Aesthetic:Fiducial_0.5mm_Mask1mm:Fiducial_0.5mm",
+      "value": "Fiducial_0.5mm",
+      "package": "SparkFun-Aesthetic:Fiducial_0.5mm_Mask1mm",
+      "category": "fiducial",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "FID3",
+      "partId": "SparkFun-Aesthetic:Fiducial_0.5mm_Mask1mm:Fiducial_0.5mm",
+      "value": "Fiducial_0.5mm",
+      "package": "SparkFun-Aesthetic:Fiducial_0.5mm_Mask1mm",
+      "category": "fiducial",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "FID4",
+      "partId": "SparkFun-Aesthetic:Fiducial_0.5mm_Mask1mm:Fiducial_0.5mm",
+      "value": "Fiducial_0.5mm",
+      "package": "SparkFun-Aesthetic:Fiducial_0.5mm_Mask1mm",
+      "category": "fiducial",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "J1",
+      "partId": "SparkFun-Connector:JST_1x04_P1.0mm_Horizontal_SMD:Qwiic_RA",
+      "value": "Qwiic_RA",
+      "package": "SparkFun-Connector:JST_1x04_P1.0mm_Horizontal_SMD",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "J2",
+      "partId": "SparkFun-Connector:JST_1x04_P1.0mm_Horizontal_SMD:Qwiic_RA",
+      "value": "Qwiic_RA",
+      "package": "SparkFun-Connector:JST_1x04_P1.0mm_Horizontal_SMD",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "J3",
+      "partId": "SparkFun-Connector:1x04_P2.54mm:Conn_01x06",
+      "value": "Conn_01x06",
+      "package": "SparkFun-Connector:1x04_P2.54mm",
+      "category": "tht",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R3",
+      "partId": "SparkFun-Resistor:R_0603_1608Metric:4.7k",
+      "value": "4.7k",
+      "package": "SparkFun-Resistor:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R4",
+      "partId": "SparkFun-Resistor:R_0603_1608Metric:2.2k",
+      "value": "2.2k",
+      "package": "SparkFun-Resistor:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R5",
+      "partId": "SparkFun-Resistor:R_0603_1608Metric:2.2k",
+      "value": "2.2k",
+      "package": "SparkFun-Resistor:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R6",
+      "partId": "SparkFun-Resistor:R_0603_1608Metric:4.7k",
+      "value": "4.7k",
+      "package": "SparkFun-Resistor:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "ST1",
+      "partId": "SparkFun-Hardware:Standoff:Standoff",
+      "value": "Standoff",
+      "package": "SparkFun-Hardware:Standoff",
+      "category": "mechanical",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "ST2",
+      "partId": "SparkFun-Hardware:Standoff:Standoff",
+      "value": "Standoff",
+      "package": "SparkFun-Hardware:Standoff",
+      "category": "mechanical",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "ST3",
+      "partId": "SparkFun-Hardware:Standoff:Standoff",
+      "value": "Standoff",
+      "package": "SparkFun-Hardware:Standoff",
+      "category": "mechanical",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "ST4",
+      "partId": "SparkFun-Hardware:Standoff:Standoff",
+      "value": "Standoff",
+      "package": "SparkFun-Hardware:Standoff",
+      "category": "mechanical",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "U2",
+      "partId": "SparkFun-Sensor:STCC4:STCC4",
+      "value": "STCC4",
+      "package": "SparkFun-Sensor:STCC4",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "U3",
+      "partId": "SparkFun-Sensor:Sensirion_DFN-4_1.5x1.5mm_P0.8mm_SHT4x_NoCentralPad:SHT40",
+      "value": "SHT40",
+      "package": "SparkFun-Sensor:Sensirion_DFN-4_1.5x1.5mm_P0.8mm_SHT4x_NoCentralPad",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    }
+  ],
+  "placements": [
+    {
+      "ref": "C10",
+      "xMm": 14.605,
+      "yMm": 16.8275,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "SparkFun-Capacitor:C_0402_1005Metric"
+    },
+    {
+      "ref": "C11",
+      "xMm": 14.9225,
+      "yMm": 13.6525,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "SparkFun-Capacitor:C_0402_1005Metric"
+    },
+    {
+      "ref": "D1",
+      "xMm": 2.8575,
+      "yMm": 7.9375,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "SparkFun-LED:LED_0603_1608Metric_Red"
+    },
+    {
+      "ref": "FID1",
+      "xMm": 24.765,
+      "yMm": 0.635,
+      "rotationDeg": 180.0,
+      "side": "bottom",
+      "package": "SparkFun-Aesthetic:Fiducial_0.5mm_Mask1mm"
+    },
+    {
+      "ref": "FID2",
+      "xMm": 0.635,
+      "yMm": 24.765,
+      "rotationDeg": 180.0,
+      "side": "bottom",
+      "package": "SparkFun-Aesthetic:Fiducial_0.5mm_Mask1mm"
+    },
+    {
+      "ref": "FID3",
+      "xMm": 0.635,
+      "yMm": 24.765,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "SparkFun-Aesthetic:Fiducial_0.5mm_Mask1mm"
+    },
+    {
+      "ref": "FID4",
+      "xMm": 24.765,
+      "yMm": 0.635,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "SparkFun-Aesthetic:Fiducial_0.5mm_Mask1mm"
+    },
+    {
+      "ref": "J1",
+      "xMm": 20.6375,
+      "yMm": 12.7,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "SparkFun-Connector:JST_1x04_P1.0mm_Horizontal_SMD"
+    },
+    {
+      "ref": "J2",
+      "xMm": 4.7625,
+      "yMm": 12.7,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "SparkFun-Connector:JST_1x04_P1.0mm_Horizontal_SMD"
+    },
+    {
+      "ref": "J3",
+      "xMm": 8.89,
+      "yMm": 1.27,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "SparkFun-Connector:1x04_P2.54mm"
+    },
+    {
+      "ref": "R3",
+      "xMm": 2.8575,
+      "yMm": 6.35,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "SparkFun-Resistor:R_0603_1608Metric"
+    },
+    {
+      "ref": "R4",
+      "xMm": 14.605,
+      "yMm": 6.985,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "SparkFun-Resistor:R_0603_1608Metric"
+    },
+    {
+      "ref": "R5",
+      "xMm": 10.795,
+      "yMm": 6.985,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "SparkFun-Resistor:R_0603_1608Metric"
+    },
+    {
+      "ref": "R6",
+      "xMm": 12.7,
+      "yMm": 20.6375,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "SparkFun-Resistor:R_0603_1608Metric"
+    },
+    {
+      "ref": "ST1",
+      "xMm": 2.54,
+      "yMm": 22.86,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "SparkFun-Hardware:Standoff"
+    },
+    {
+      "ref": "ST2",
+      "xMm": 22.86,
+      "yMm": 22.86,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "SparkFun-Hardware:Standoff"
+    },
+    {
+      "ref": "ST3",
+      "xMm": 22.86,
+      "yMm": 2.54,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "SparkFun-Hardware:Standoff"
+    },
+    {
+      "ref": "ST4",
+      "xMm": 2.54,
+      "yMm": 2.54,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "SparkFun-Hardware:Standoff"
+    },
+    {
+      "ref": "U2",
+      "xMm": 12.7,
+      "yMm": 12.7,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "SparkFun-Sensor:STCC4"
+    },
+    {
+      "ref": "U3",
+      "xMm": 12.7,
+      "yMm": 16.8275,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "SparkFun-Sensor:Sensirion_DFN-4_1.5x1.5mm_P0.8mm_SHT4x_NoCentralPad"
+    }
+  ],
+  "authoritativePlacements": [
+    {
+      "ref": "C10",
+      "xMm": 14.605,
+      "yMm": 16.8275,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "SparkFun-Capacitor:C_0402_1005Metric"
+    },
+    {
+      "ref": "C11",
+      "xMm": 14.9225,
+      "yMm": 13.6525,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "SparkFun-Capacitor:C_0402_1005Metric"
+    },
+    {
+      "ref": "D1",
+      "xMm": 2.8575,
+      "yMm": 7.9375,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "SparkFun-LED:LED_0603_1608Metric_Red"
+    },
+    {
+      "ref": "FID1",
+      "xMm": 24.765,
+      "yMm": 0.635,
+      "rotationDeg": 180.0,
+      "side": "bottom",
+      "package": "SparkFun-Aesthetic:Fiducial_0.5mm_Mask1mm"
+    },
+    {
+      "ref": "FID2",
+      "xMm": 0.635,
+      "yMm": 24.765,
+      "rotationDeg": 180.0,
+      "side": "bottom",
+      "package": "SparkFun-Aesthetic:Fiducial_0.5mm_Mask1mm"
+    },
+    {
+      "ref": "FID3",
+      "xMm": 0.635,
+      "yMm": 24.765,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "SparkFun-Aesthetic:Fiducial_0.5mm_Mask1mm"
+    },
+    {
+      "ref": "FID4",
+      "xMm": 24.765,
+      "yMm": 0.635,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "SparkFun-Aesthetic:Fiducial_0.5mm_Mask1mm"
+    },
+    {
+      "ref": "J1",
+      "xMm": 20.6375,
+      "yMm": 12.7,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "SparkFun-Connector:JST_1x04_P1.0mm_Horizontal_SMD"
+    },
+    {
+      "ref": "J2",
+      "xMm": 4.7625,
+      "yMm": 12.7,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "SparkFun-Connector:JST_1x04_P1.0mm_Horizontal_SMD"
+    },
+    {
+      "ref": "J3",
+      "xMm": 8.89,
+      "yMm": 1.27,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "SparkFun-Connector:1x04_P2.54mm"
+    },
+    {
+      "ref": "R3",
+      "xMm": 2.8575,
+      "yMm": 6.35,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "SparkFun-Resistor:R_0603_1608Metric"
+    },
+    {
+      "ref": "R4",
+      "xMm": 14.605,
+      "yMm": 6.985,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "SparkFun-Resistor:R_0603_1608Metric"
+    },
+    {
+      "ref": "R5",
+      "xMm": 10.795,
+      "yMm": 6.985,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "SparkFun-Resistor:R_0603_1608Metric"
+    },
+    {
+      "ref": "R6",
+      "xMm": 12.7,
+      "yMm": 20.6375,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "SparkFun-Resistor:R_0603_1608Metric"
+    },
+    {
+      "ref": "ST1",
+      "xMm": 2.54,
+      "yMm": 22.86,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "SparkFun-Hardware:Standoff"
+    },
+    {
+      "ref": "ST2",
+      "xMm": 22.86,
+      "yMm": 22.86,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "SparkFun-Hardware:Standoff"
+    },
+    {
+      "ref": "ST3",
+      "xMm": 22.86,
+      "yMm": 2.54,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "SparkFun-Hardware:Standoff"
+    },
+    {
+      "ref": "ST4",
+      "xMm": 2.54,
+      "yMm": 2.54,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "SparkFun-Hardware:Standoff"
+    },
+    {
+      "ref": "U2",
+      "xMm": 12.7,
+      "yMm": 12.7,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "SparkFun-Sensor:STCC4"
+    },
+    {
+      "ref": "U3",
+      "xMm": 12.7,
+      "yMm": 16.8275,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "SparkFun-Sensor:Sensirion_DFN-4_1.5x1.5mm_P0.8mm_SHT4x_NoCentralPad"
+    }
+  ],
+  "source": {
+    "repo": "https://github.com/sparkfun/SparkFun_CO2_Sensor_STCC4_SHT40_Qwiic",
+    "commit": "836b63c8f684d57779cf0e699144ac056e0808ba",
+    "license": "CC-BY-SA-4.0 (hardware); MIT (software)",
+    "files": [
+      {
+        "path": "source/LICENSE.md",
+        "sha256": "60ff0c64f197db99b0f4fe6fbcd2de308117cdd791d99a86edfcaa5c10a82bc6",
+        "url": "https://raw.githubusercontent.com/sparkfun/SparkFun_CO2_Sensor_STCC4_SHT40_Qwiic/836b63c8f684d57779cf0e699144ac056e0808ba/LICENSE.md",
+        "bytes": 2887
+      },
+      {
+        "path": "source/README.md",
+        "sha256": "f1dd97631293667d4b803b949bc8399bc6e197dac87977da2e3a17a57c0dae12",
+        "url": "https://raw.githubusercontent.com/sparkfun/SparkFun_CO2_Sensor_STCC4_SHT40_Qwiic/836b63c8f684d57779cf0e699144ac056e0808ba/README.md",
+        "bytes": 2252
+      },
+      {
+        "path": "source/Hardware/SparkFun_Qwiic_CO2_Sensor_STCC4.kicad_pcb",
+        "sha256": "3e7230678d1a17356e258abfd5c03f2f24b84ddb84884a7a0f519bdbdcf1f206",
+        "url": "https://raw.githubusercontent.com/sparkfun/SparkFun_CO2_Sensor_STCC4_SHT40_Qwiic/836b63c8f684d57779cf0e699144ac056e0808ba/Hardware/SparkFun_Qwiic_CO2_Sensor_STCC4.kicad_pcb",
+        "bytes": 472335
+      },
+      {
+        "path": "source/Hardware/SparkFun_Qwiic_CO2_Sensor_STCC4.kicad_sch",
+        "sha256": "bda1cbb5b58394e6892bed6d227e5792dc779a67a681ec4b83b4e0f62447d953",
+        "url": "https://raw.githubusercontent.com/sparkfun/SparkFun_CO2_Sensor_STCC4_SHT40_Qwiic/836b63c8f684d57779cf0e699144ac056e0808ba/Hardware/SparkFun_Qwiic_CO2_Sensor_STCC4.kicad_sch",
+        "bytes": 208492
+      }
+    ],
+    "omittedFiles": [
+      {
+        "path": "Hardware/SparkFun_Qwiic_CO2_Sensor_STCC4.kicad_pro",
+        "reason": "Machine-local project settings are not needed for the assembly-data fixture. The unmodified project remains available at the pinned upstream revision.",
+        "url": "https://raw.githubusercontent.com/sparkfun/SparkFun_CO2_Sensor_STCC4_SHT40_Qwiic/836b63c8f684d57779cf0e699144ac056e0808ba/Hardware/SparkFun_Qwiic_CO2_Sensor_STCC4.kicad_pro"
+      }
+    ],
+    "exportMethod": "Pinned KiCad source parsed by dataset-normalize.py; CLI qualification recorded separately; not an ERC/DRC result",
+    "sourceCoordinateTransform": {
+      "xOffsetMm": 123.266,
+      "yOriginMm": 110.806,
+      "formula": "x=sourceX-xOffsetMm; y=yOriginMm-sourceY; rotation=sourceAngle mod 360"
+    },
+    "excludedFeatures": [
+      {
+        "ref": "kibuzzard-689A642E",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "kibuzzard-689A642E"
+      },
+      {
+        "ref": "Ref**",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "SparkFun-Aesthetic:OSHW_Logo_4mm"
+      },
+      {
+        "ref": "kibuzzard-689A66EE",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "kibuzzard-689A66EE"
+      },
+      {
+        "ref": "G4",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "SparkFun-Aesthetic:Creative_Commons_License"
+      },
+      {
+        "ref": "kibuzzard-689A66E9",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "kibuzzard-689A66E9"
+      },
+      {
+        "ref": "kibuzzard-689A66F4",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "kibuzzard-689A66F4"
+      },
+      {
+        "ref": "kibuzzard-689A66E2",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "kibuzzard-689A66E2"
+      },
+      {
+        "ref": "kibuzzard-6A079B3E",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "kibuzzard-6A079B3E"
+      },
+      {
+        "ref": "G***",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "SparkFun-Aesthetic:qwiic_5.5mm"
+      },
+      {
+        "ref": "kibuzzard-6A079B36",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "kibuzzard-6A079B36"
+      },
+      {
+        "ref": "G***",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "SparkFun-Aesthetic:SparkFun_Logo_NoFlame_9mm"
+      },
+      {
+        "ref": "kibuzzard-6A079B3E",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "kibuzzard-6A079B3E"
+      },
+      {
+        "ref": "kibuzzard-6A079B36",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "kibuzzard-6A079B36"
+      },
+      {
+        "ref": "G***",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "SparkFun-Aesthetic:SparkFun_Flame_5mm"
+      },
+      {
+        "ref": "JP1",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "SparkFun-Jumper:Jumper_2_NC_Trace"
+      },
+      {
+        "ref": "kibuzzard-689A6711",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "kibuzzard-689A6711"
+      },
+      {
+        "ref": "JP2",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "SparkFun-Jumper:Jumper_3_NC-2_Trace"
+      },
+      {
+        "ref": "kibuzzard-689A6728",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "kibuzzard-689A6728"
+      },
+      {
+        "ref": "kibuzzard-689A6796",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "kibuzzard-689A6796"
+      },
+      {
+        "ref": "kibuzzard-689A6718",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "kibuzzard-689A6718"
+      },
+      {
+        "ref": "kibuzzard-6A063CE8",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "kibuzzard-6A063CE8"
+      },
+      {
+        "ref": "kibuzzard-6A0B3970",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "kibuzzard-6A0B3970"
+      },
+      {
+        "ref": "kibuzzard-689A6721",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "kibuzzard-689A6721"
+      },
+      {
+        "ref": "kibuzzard-6A07969C",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "kibuzzard-6A07969C"
+      },
+      {
+        "ref": "kibuzzard-6A0B3951",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "kibuzzard-6A0B3951"
+      },
+      {
+        "ref": "JP3",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "SparkFun-Jumper:Jumper_2_NC_Trace"
+      }
+    ]
+  },
+  "sourceFindings": [
+    {
+      "id": "UPSTREAM-SENSOR-NAME",
+      "severity": "warning",
+      "message": "README identifies SHT41 while the pinned schematic and PCB identify SHT40. Identity remains unresolved; this demo does not approve a substitution.",
+      "refs": [
+        "U3"
+      ]
+    },
+    {
+      "id": "UPSTREAM-PART-ID",
+      "severity": "warning",
+      "message": "U3 has placeholder PROD_ID IC-...; U2 differs between schematic IC-28635 and PCB IC-.... Procurement MPNs remain unknown.",
+      "refs": [
+        "U2",
+        "U3"
+      ]
+    },
+    {
+      "id": "UPSTREAM-HEADER-VALUE",
+      "severity": "warning",
+      "message": "J3's Conn_01x06 value conflicts with its four-pin symbol/footprint. The source is preserved, not silently corrected.",
+      "refs": [
+        "J3"
+      ]
+    },
+    {
+      "id": "SCOPE-DIGITAL",
+      "severity": "warning",
+      "message": "Package consistency only. No electrical function, fabrication, solder quality, EMC, thermal or production qualification is claimed.",
+      "refs": []
+    }
+  ],
+  "visual": {
+    "outline": [
+      [
+        0,
+        0
+      ],
+      [
+        25.4,
+        0
+      ],
+      [
+        25.4,
+        25.4
+      ],
+      [
+        0,
+        25.4
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "cutouts": [
+      [
+        [
+          8.255,
+          8.255
+        ],
+        [
+          8.255,
+          11.7475
+        ],
+        [
+          9.525,
+          11.7475
+        ],
+        [
+          9.525,
+          9.525
+        ],
+        [
+          15.875,
+          9.525
+        ],
+        [
+          15.875,
+          11.7475
+        ],
+        [
+          17.145,
+          11.7475
+        ],
+        [
+          17.145,
+          8.255
+        ],
+        [
+          8.255,
+          8.255
+        ]
+      ],
+      [
+        [
+          17.135485,
+          19.685
+        ],
+        [
+          17.135485,
+          15.875
+        ],
+        [
+          15.865485,
+          15.875
+        ],
+        [
+          15.865485,
+          18.415
+        ],
+        [
+          9.515485,
+          18.415
+        ],
+        [
+          9.515485,
+          15.875
+        ],
+        [
+          8.245485,
+          15.875
+        ],
+        [
+          8.245485,
+          19.685
+        ],
+        [
+          17.135485,
+          19.685
+        ]
+      ]
+    ],
+    "tracks": [
+      {
+        "x1": 10.795,
+        "y1": 12.7,
+        "x2": 10.16,
+        "y2": 13.335,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 11.675,
+        "y1": 12.7,
+        "x2": 10.795,
+        "y2": 12.7,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 10.16,
+        "y1": 13.335,
+        "x2": 10.16,
+        "y2": 16.51,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 10.8775,
+        "y1": 17.2275,
+        "x2": 12.0,
+        "y2": 17.2275,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 10.16,
+        "y1": 16.51,
+        "x2": 10.8775,
+        "y2": 17.2275,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 11.43,
+        "y1": 15.5575,
+        "x2": 11.1125,
+        "y2": 15.875,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 12.7,
+        "y1": 14.225,
+        "x2": 12.7,
+        "y2": 15.24,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 11.1125,
+        "y1": 15.875,
+        "x2": 11.1125,
+        "y2": 16.1925,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 12.7,
+        "y1": 15.24,
+        "x2": 12.3825,
+        "y2": 15.5575,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 12.3825,
+        "y1": 15.5575,
+        "x2": 11.43,
+        "y2": 15.5575,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 11.3475,
+        "y1": 16.4275,
+        "x2": 12.0,
+        "y2": 16.4275,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 11.1125,
+        "y1": 16.1925,
+        "x2": 11.3475,
+        "y2": 16.4275,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 13.725,
+        "y1": 13.85,
+        "x2": 13.725,
+        "y2": 12.7,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 6.1675,
+        "y1": 13.2,
+        "x2": 4.7625,
+        "y2": 13.2,
+        "width": 0.4064,
+        "side": "top"
+      },
+      {
+        "x1": 3.175,
+        "y1": 10.4775,
+        "x2": 3.175,
+        "y2": 12.7,
+        "width": 0.4064,
+        "side": "top"
+      },
+      {
+        "x1": 18.0975,
+        "y1": 13.97,
+        "x2": 18.0975,
+        "y2": 13.096875,
+        "width": 0.4064,
+        "side": "top"
+      },
+      {
+        "x1": 11.43,
+        "y1": 1.27,
+        "x2": 11.43,
+        "y2": 2.2225,
+        "width": 0.4064,
+        "side": "top"
+      },
+      {
+        "x1": 3.675,
+        "y1": 13.2,
+        "x2": 4.7625,
+        "y2": 13.2,
+        "width": 0.4064,
+        "side": "top"
+      },
+      {
+        "x1": 14.605,
+        "y1": 15.5575,
+        "x2": 14.605,
+        "y2": 16.3475,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 11.43,
+        "y1": 2.2225,
+        "x2": 3.175,
+        "y2": 10.4775,
+        "width": 0.4064,
+        "side": "top"
+      },
+      {
+        "x1": 14.2875,
+        "y1": 20.955,
+        "x2": 13.97,
+        "y2": 20.6375,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 18.0975,
+        "y1": 13.096875,
+        "x2": 18.994375,
+        "y2": 12.2,
+        "width": 0.4064,
+        "side": "top"
+      },
+      {
+        "x1": 17.935,
+        "y1": 14.1325,
+        "x2": 18.0975,
+        "y2": 13.97,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 19.3802,
+        "y1": 12.2,
+        "x2": 20.6375,
+        "y2": 12.2,
+        "width": 0.4064,
+        "side": "top"
+      },
+      {
+        "x1": 14.605,
+        "y1": 16.3475,
+        "x2": 14.525,
+        "y2": 16.4275,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 18.994375,
+        "y1": 12.2,
+        "x2": 19.3802,
+        "y2": 12.2,
+        "width": 0.4064,
+        "side": "top"
+      },
+      {
+        "x1": 14.525,
+        "y1": 16.4275,
+        "x2": 13.4,
+        "y2": 16.4275,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 14.9225,
+        "y1": 15.24,
+        "x2": 14.605,
+        "y2": 15.5575,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 13.725,
+        "y1": 13.85,
+        "x2": 14.0075,
+        "y2": 14.1325,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 6.32625,
+        "y1": 13.35875,
+        "x2": 6.1675,
+        "y2": 13.2,
+        "width": 0.4064,
+        "side": "top"
+      },
+      {
+        "x1": 14.9225,
+        "y1": 14.1325,
+        "x2": 14.9225,
+        "y2": 15.24,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 3.175,
+        "y1": 12.7,
+        "x2": 3.675,
+        "y2": 13.2,
+        "width": 0.4064,
+        "side": "top"
+      },
+      {
+        "x1": 14.0075,
+        "y1": 14.1325,
+        "x2": 17.935,
+        "y2": 14.1325,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 13.97,
+        "y1": 20.6375,
+        "x2": 13.21,
+        "y2": 20.6375,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 13.725,
+        "y1": 13.85,
+        "x2": 13.725,
+        "y2": 14.0425,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 18.0975,
+        "y1": 19.3669,
+        "x2": 18.0975,
+        "y2": 13.97,
+        "width": 0.4064,
+        "side": "top"
+      },
+      {
+        "x1": 19.685,
+        "y1": 6.985,
+        "x2": 19.685,
+        "y2": 9.2075,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 7.9375,
+        "y1": 20.6375,
+        "x2": 7.3025,
+        "y2": 20.0025,
+        "width": 0.4064,
+        "side": "bottom"
+      },
+      {
+        "x1": 7.3025,
+        "y1": 14.335,
+        "x2": 6.32625,
+        "y2": 13.35875,
+        "width": 0.4064,
+        "side": "bottom"
+      },
+      {
+        "x1": 18.7325,
+        "y1": 10.16,
+        "x2": 18.7325,
+        "y2": 11.43,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 11.43,
+        "y1": 1.27,
+        "x2": 11.43,
+        "y2": 2.2225,
+        "width": 0.4064,
+        "side": "bottom"
+      },
+      {
+        "x1": 13.97,
+        "y1": 20.6375,
+        "x2": 7.9375,
+        "y2": 20.6375,
+        "width": 0.4064,
+        "side": "bottom"
+      },
+      {
+        "x1": 14.605,
+        "y1": 20.6375,
+        "x2": 17.4613,
+        "y2": 20.6375,
+        "width": 0.4064,
+        "side": "bottom"
+      },
+      {
+        "x1": 14.2875,
+        "y1": 20.955,
+        "x2": 13.97,
+        "y2": 20.6375,
+        "width": 0.4064,
+        "side": "bottom"
+      },
+      {
+        "x1": 14.2875,
+        "y1": 20.955,
+        "x2": 14.605,
+        "y2": 20.6375,
+        "width": 0.4064,
+        "side": "bottom"
+      },
+      {
+        "x1": 7.3025,
+        "y1": 20.0025,
+        "x2": 7.3025,
+        "y2": 14.335,
+        "width": 0.4064,
+        "side": "bottom"
+      },
+      {
+        "x1": 17.4613,
+        "y1": 20.6375,
+        "x2": 18.0975,
+        "y2": 20.0013,
+        "width": 0.4064,
+        "side": "bottom"
+      },
+      {
+        "x1": 6.985,
+        "y1": 6.6675,
+        "x2": 6.985,
+        "y2": 6.8707,
+        "width": 0.4064,
+        "side": "bottom"
+      },
+      {
+        "x1": 19.3802,
+        "y1": 12.0777,
+        "x2": 19.3802,
+        "y2": 12.2,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 18.7325,
+        "y1": 11.43,
+        "x2": 19.3802,
+        "y2": 12.0777,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 6.985,
+        "y1": 6.8707,
+        "x2": 6.8707,
+        "y2": 6.985,
+        "width": 0.4064,
+        "side": "bottom"
+      },
+      {
+        "x1": 11.43,
+        "y1": 2.2225,
+        "x2": 6.985,
+        "y2": 6.6675,
+        "width": 0.4064,
+        "side": "bottom"
+      },
+      {
+        "x1": 18.0975,
+        "y1": 20.0013,
+        "x2": 18.0975,
+        "y2": 19.3669,
+        "width": 0.4064,
+        "side": "bottom"
+      },
+      {
+        "x1": 19.685,
+        "y1": 9.2075,
+        "x2": 18.7325,
+        "y2": 10.16,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 2.07,
+        "y1": 7.9375,
+        "x2": 0.9525,
+        "y2": 7.9375,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 12.7,
+        "y1": 11.175,
+        "x2": 12.7,
+        "y2": 10.16,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 0.9525,
+        "y1": 7.9375,
+        "x2": 0.635,
+        "y2": 8.255,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 14.525,
+        "y1": 17.2275,
+        "x2": 14.605,
+        "y2": 17.3075,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 3.58,
+        "y1": 14.2,
+        "x2": 3.4925,
+        "y2": 14.2875,
+        "width": 0.4064,
+        "side": "top"
+      },
+      {
+        "x1": 13.4,
+        "y1": 17.2275,
+        "x2": 14.525,
+        "y2": 17.2275,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 19.455,
+        "y1": 11.2,
+        "x2": 20.6375,
+        "y2": 11.2,
+        "width": 0.4064,
+        "side": "top"
+      },
+      {
+        "x1": 4.7625,
+        "y1": 14.2,
+        "x2": 3.58,
+        "y2": 14.2,
+        "width": 0.4064,
+        "side": "top"
+      },
+      {
+        "x1": 2.0575,
+        "y1": 6.35,
+        "x2": 3.645,
+        "y2": 7.9375,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 2.0325,
+        "y1": 6.35,
+        "x2": 2.0575,
+        "y2": 6.35,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 13.725,
+        "y1": 11.55,
+        "x2": 13.845,
+        "y2": 11.43,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 13.725,
+        "y1": 11.3575,
+        "x2": 13.725,
+        "y2": 11.55,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 13.6525,
+        "y1": 11.285,
+        "x2": 13.725,
+        "y2": 11.3575,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 4.6943,
+        "y1": 12.2682,
+        "x2": 4.0132,
+        "y2": 12.2682,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 13.6525,
+        "y1": 10.4775,
+        "x2": 13.6525,
+        "y2": 11.285,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 19.3675,
+        "y1": 13.335,
+        "x2": 19.5025,
+        "y2": 13.2,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 3.6068,
+        "y1": 11.8618,
+        "x2": 3.6068,
+        "y2": 10.83945,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 10.63625,
+        "y1": 3.81,
+        "x2": 12.7,
+        "y2": 3.81,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 19.5025,
+        "y1": 13.2,
+        "x2": 20.6375,
+        "y2": 13.2,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 6.6501,
+        "y1": 12.2,
+        "x2": 4.7625,
+        "y2": 12.2,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 13.97,
+        "y1": 2.54,
+        "x2": 13.97,
+        "y2": 1.27,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 12.7,
+        "y1": 6.985,
+        "x2": 11.57,
+        "y2": 6.985,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 19.05,
+        "y1": 13.335,
+        "x2": 19.3675,
+        "y2": 13.335,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 4.0132,
+        "y1": 12.2682,
+        "x2": 3.6068,
+        "y2": 11.8618,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 3.6068,
+        "y1": 10.83945,
+        "x2": 10.63625,
+        "y2": 3.81,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 12.7,
+        "y1": 3.81,
+        "x2": 13.97,
+        "y2": 2.54,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 4.7625,
+        "y1": 12.2,
+        "x2": 4.6943,
+        "y2": 12.2682,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 13.6525,
+        "y1": 10.4775,
+        "x2": 13.6525,
+        "y2": 11.7475,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 19.05,
+        "y1": 13.335,
+        "x2": 15.24,
+        "y2": 13.335,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 15.24,
+        "y1": 13.335,
+        "x2": 13.6525,
+        "y2": 11.7475,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 6.6501,
+        "y1": 12.2,
+        "x2": 6.9289,
+        "y2": 12.2,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 13.97,
+        "y1": 2.54,
+        "x2": 12.7,
+        "y2": 3.81,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 10.16,
+        "y1": 11.7475,
+        "x2": 13.6525,
+        "y2": 11.7475,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 6.9289,
+        "y1": 12.2,
+        "x2": 6.9463,
+        "y2": 12.2174,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 6.9463,
+        "y1": 12.2174,
+        "x2": 9.6901,
+        "y2": 12.2174,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 9.6901,
+        "y1": 12.2174,
+        "x2": 10.16,
+        "y2": 11.7475,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 13.97,
+        "y1": 1.27,
+        "x2": 13.97,
+        "y2": 2.54,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 12.7,
+        "y1": 3.81,
+        "x2": 12.7,
+        "y2": 6.985,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 10.6686,
+        "y1": 13.97,
+        "x2": 11.43,
+        "y2": 13.97,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 7.3025,
+        "y1": 12.7,
+        "x2": 7.3025,
+        "y2": 11.1125,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 7.3025,
+        "y1": 11.1125,
+        "x2": 7.3025,
+        "y2": 7.62,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 11.43,
+        "y1": 13.97,
+        "x2": 11.55,
+        "y2": 13.85,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 4.85,
+        "y1": 11.1125,
+        "x2": 4.7625,
+        "y2": 11.2,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 13.97,
+        "y1": 6.845,
+        "x2": 13.83,
+        "y2": 6.985,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 12.7,
+        "y1": 13.335,
+        "x2": 12.19,
+        "y2": 13.335,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 11.55,
+        "y1": 13.85,
+        "x2": 11.675,
+        "y2": 13.85,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 16.1925,
+        "y1": 1.27,
+        "x2": 16.51,
+        "y2": 1.27,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 7.3025,
+        "y1": 7.62,
+        "x2": 10.795,
+        "y2": 4.1275,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 12.7,
+        "y1": 12.7,
+        "x2": 12.7,
+        "y2": 13.335,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 19.3675,
+        "y1": 14.2875,
+        "x2": 19.455,
+        "y2": 14.2,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 8.41375,
+        "y1": 13.81125,
+        "x2": 7.3025,
+        "y2": 12.7,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 12.19,
+        "y1": 13.335,
+        "x2": 11.675,
+        "y2": 13.85,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 7.3025,
+        "y1": 11.1125,
+        "x2": 4.85,
+        "y2": 11.1125,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 13.97,
+        "y1": 4.1275,
+        "x2": 15.5575,
+        "y2": 4.1275,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 13.97,
+        "y1": 4.1275,
+        "x2": 10.795,
+        "y2": 4.1275,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 19.455,
+        "y1": 14.2,
+        "x2": 20.6375,
+        "y2": 14.2,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 13.97,
+        "y1": 4.1275,
+        "x2": 13.97,
+        "y2": 6.845,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 15.5575,
+        "y1": 4.1275,
+        "x2": 16.51,
+        "y2": 3.175,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 16.51,
+        "y1": 3.175,
+        "x2": 16.51,
+        "y2": 1.27,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 8.5725,
+        "y1": 13.97,
+        "x2": 10.6686,
+        "y2": 13.97,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 15.113748,
+        "y1": 13.6398,
+        "x2": 14.808948,
+        "y2": 13.335,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 8.41375,
+        "y1": 13.81125,
+        "x2": 8.5725,
+        "y2": 13.97,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 14.808948,
+        "y1": 13.335,
+        "x2": 12.7,
+        "y2": 13.335,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 18.0848,
+        "y1": 13.6398,
+        "x2": 15.113748,
+        "y2": 13.6398,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 18.645,
+        "y1": 14.2,
+        "x2": 18.0848,
+        "y2": 13.6398,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 19.3675,
+        "y1": 14.2875,
+        "x2": 19.28,
+        "y2": 14.2,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 19.28,
+        "y1": 14.2,
+        "x2": 18.645,
+        "y2": 14.2,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 12.7,
+        "y1": 13.335,
+        "x2": 12.7,
+        "y2": 12.7,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 9.8425,
+        "y1": 14.605,
+        "x2": 9.8425,
+        "y2": 12.7,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 10.9925,
+        "y1": 11.55,
+        "x2": 11.675,
+        "y2": 11.55,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 8.255,
+        "y1": 20.6375,
+        "x2": 7.62,
+        "y2": 20.0025,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 12.7,
+        "y1": 22.5425,
+        "x2": 11.875,
+        "y2": 21.7175,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 7.62,
+        "y1": 20.0025,
+        "x2": 7.62,
+        "y2": 15.5575,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 9.8425,
+        "y1": 12.7,
+        "x2": 10.9925,
+        "y2": 11.55,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 14.2875,
+        "y1": 22.5425,
+        "x2": 12.7,
+        "y2": 22.5425,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 9.525,
+        "y1": 14.9225,
+        "x2": 9.8425,
+        "y2": 14.605,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 8.255,
+        "y1": 14.9225,
+        "x2": 9.525,
+        "y2": 14.9225,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 7.62,
+        "y1": 15.5575,
+        "x2": 8.255,
+        "y2": 14.9225,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 11.8725,
+        "y1": 20.6375,
+        "x2": 8.255,
+        "y2": 20.6375,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 11.875,
+        "y1": 21.7175,
+        "x2": 11.875,
+        "y2": 20.6375,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 13.7668,
+        "y1": 22.0218,
+        "x2": 14.2875,
+        "y2": 22.5425,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 12.7,
+        "y1": 22.0218,
+        "x2": 13.7668,
+        "y2": 22.0218,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 8.89,
+        "y1": 6.985,
+        "x2": 10.02,
+        "y2": 6.985,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 20.0025,
+        "y1": 5.3975,
+        "x2": 20.7264,
+        "y2": 6.1214,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 8.89,
+        "y1": 6.985,
+        "x2": 9.8425,
+        "y2": 7.9375,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 20.7264,
+        "y1": 6.1214,
+        "x2": 20.7264,
+        "y2": 6.985,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 9.8425,
+        "y1": 7.9375,
+        "x2": 13.6525,
+        "y2": 7.9375,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 13.6525,
+        "y1": 7.9375,
+        "x2": 16.1925,
+        "y2": 5.3975,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 16.1925,
+        "y1": 5.3975,
+        "x2": 20.0025,
+        "y2": 5.3975,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 4.445,
+        "y1": 6.35,
+        "x2": 3.6825,
+        "y2": 6.35,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 4.7625,
+        "y1": 6.0325,
+        "x2": 4.445,
+        "y2": 6.35,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 5.08,
+        "y1": 6.35,
+        "x2": 5.3975,
+        "y2": 6.35,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 4.7625,
+        "y1": 6.0325,
+        "x2": 5.08,
+        "y2": 6.35,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 5.3975,
+        "y1": 6.35,
+        "x2": 5.8293,
+        "y2": 6.7818,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 5.8293,
+        "y1": 6.7818,
+        "x2": 5.8293,
+        "y2": 6.985,
+        "width": 0.1524,
+        "side": "bottom"
+      },
+      {
+        "x1": 15.38,
+        "y1": 6.985,
+        "x2": 16.51,
+        "y2": 6.985,
+        "width": 0.1524,
+        "side": "top"
+      },
+      {
+        "x1": 16.51,
+        "y1": 6.985,
+        "x2": 18.6436,
+        "y2": 6.985,
+        "width": 0.1524,
+        "side": "bottom"
+      }
+    ],
+    "pads": [
+      {
+        "ref": "U3",
+        "pad": "1",
+        "xMm": 12.0,
+        "yMm": 17.2275,
+        "widthMm": 0.5,
+        "heightMm": 0.3,
+        "rotationDeg": 0.0,
+        "shape": "rect",
+        "side": "top"
+      },
+      {
+        "ref": "U3",
+        "pad": "2",
+        "xMm": 12.0,
+        "yMm": 16.4275,
+        "widthMm": 0.5,
+        "heightMm": 0.3,
+        "rotationDeg": 0.0,
+        "shape": "rect",
+        "side": "top"
+      },
+      {
+        "ref": "U3",
+        "pad": "3",
+        "xMm": 13.4,
+        "yMm": 16.4275,
+        "widthMm": 0.5,
+        "heightMm": 0.3,
+        "rotationDeg": 0.0,
+        "shape": "rect",
+        "side": "top"
+      },
+      {
+        "ref": "U3",
+        "pad": "4",
+        "xMm": 13.4,
+        "yMm": 17.2275,
+        "widthMm": 0.5,
+        "heightMm": 0.3,
+        "rotationDeg": 0.0,
+        "shape": "rect",
+        "side": "top"
+      },
+      {
+        "ref": "D1",
+        "pad": "1",
+        "xMm": 2.07,
+        "yMm": 7.9375,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D1",
+        "pad": "2",
+        "xMm": 3.645,
+        "yMm": 7.9375,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "FID3",
+        "pad": "",
+        "xMm": 0.635,
+        "yMm": 24.765,
+        "widthMm": 0.5,
+        "heightMm": 0.5,
+        "rotationDeg": 0.0,
+        "shape": "circle",
+        "side": "top"
+      },
+      {
+        "ref": "J3",
+        "pad": "1",
+        "xMm": 8.89,
+        "yMm": 1.27,
+        "widthMm": 1.8796,
+        "heightMm": 1.8796,
+        "rotationDeg": 90.0,
+        "shape": "circle",
+        "side": "top"
+      },
+      {
+        "ref": "J3",
+        "pad": "2",
+        "xMm": 11.43,
+        "yMm": 1.27,
+        "widthMm": 1.8796,
+        "heightMm": 1.8796,
+        "rotationDeg": 90.0,
+        "shape": "circle",
+        "side": "top"
+      },
+      {
+        "ref": "J3",
+        "pad": "3",
+        "xMm": 13.97,
+        "yMm": 1.27,
+        "widthMm": 1.8796,
+        "heightMm": 1.8796,
+        "rotationDeg": 90.0,
+        "shape": "circle",
+        "side": "top"
+      },
+      {
+        "ref": "J3",
+        "pad": "4",
+        "xMm": 16.51,
+        "yMm": 1.27,
+        "widthMm": 1.8796,
+        "heightMm": 1.8796,
+        "rotationDeg": 90.0,
+        "shape": "circle",
+        "side": "top"
+      },
+      {
+        "ref": "U2",
+        "pad": "1",
+        "xMm": 11.675,
+        "yMm": 13.85,
+        "widthMm": 0.85,
+        "heightMm": 0.85,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "U2",
+        "pad": "2",
+        "xMm": 11.675,
+        "yMm": 12.7,
+        "widthMm": 0.85,
+        "heightMm": 0.85,
+        "rotationDeg": 0.0,
+        "shape": "rect",
+        "side": "top"
+      },
+      {
+        "ref": "U2",
+        "pad": "3",
+        "xMm": 11.675,
+        "yMm": 11.55,
+        "widthMm": 0.85,
+        "heightMm": 0.85,
+        "rotationDeg": 0.0,
+        "shape": "rect",
+        "side": "top"
+      },
+      {
+        "ref": "U2",
+        "pad": "4",
+        "xMm": 12.7,
+        "yMm": 11.175,
+        "widthMm": 0.85,
+        "heightMm": 0.85,
+        "rotationDeg": 0.0,
+        "shape": "rect",
+        "side": "top"
+      },
+      {
+        "ref": "U2",
+        "pad": "5",
+        "xMm": 13.725,
+        "yMm": 11.55,
+        "widthMm": 0.85,
+        "heightMm": 0.85,
+        "rotationDeg": 0.0,
+        "shape": "rect",
+        "side": "top"
+      },
+      {
+        "ref": "U2",
+        "pad": "6",
+        "xMm": 13.725,
+        "yMm": 12.7,
+        "widthMm": 0.85,
+        "heightMm": 0.85,
+        "rotationDeg": 0.0,
+        "shape": "rect",
+        "side": "top"
+      },
+      {
+        "ref": "U2",
+        "pad": "7",
+        "xMm": 13.725,
+        "yMm": 13.85,
+        "widthMm": 0.85,
+        "heightMm": 0.85,
+        "rotationDeg": 0.0,
+        "shape": "rect",
+        "side": "top"
+      },
+      {
+        "ref": "U2",
+        "pad": "8",
+        "xMm": 12.7,
+        "yMm": 14.225,
+        "widthMm": 0.85,
+        "heightMm": 0.85,
+        "rotationDeg": 0.0,
+        "shape": "rect",
+        "side": "top"
+      },
+      {
+        "ref": "J1",
+        "pad": "1",
+        "xMm": 20.6375,
+        "yMm": 11.2,
+        "widthMm": 0.6,
+        "heightMm": 1.35,
+        "rotationDeg": 90.0,
+        "shape": "rect",
+        "side": "top"
+      },
+      {
+        "ref": "J1",
+        "pad": "2",
+        "xMm": 20.6375,
+        "yMm": 12.2,
+        "widthMm": 0.6,
+        "heightMm": 1.35,
+        "rotationDeg": 90.0,
+        "shape": "rect",
+        "side": "top"
+      },
+      {
+        "ref": "J1",
+        "pad": "3",
+        "xMm": 20.6375,
+        "yMm": 13.2,
+        "widthMm": 0.6,
+        "heightMm": 1.35,
+        "rotationDeg": 90.0,
+        "shape": "rect",
+        "side": "top"
+      },
+      {
+        "ref": "J1",
+        "pad": "4",
+        "xMm": 20.6375,
+        "yMm": 14.2,
+        "widthMm": 0.6,
+        "heightMm": 1.35,
+        "rotationDeg": 90.0,
+        "shape": "rect",
+        "side": "top"
+      },
+      {
+        "ref": "J1",
+        "pad": "NC1",
+        "xMm": 24.3125,
+        "yMm": 15.5,
+        "widthMm": 1.2,
+        "heightMm": 2.0,
+        "rotationDeg": 90.0,
+        "shape": "rect",
+        "side": "top"
+      },
+      {
+        "ref": "J1",
+        "pad": "NC2",
+        "xMm": 24.3125,
+        "yMm": 9.9,
+        "widthMm": 1.2,
+        "heightMm": 2.0,
+        "rotationDeg": 90.0,
+        "shape": "rect",
+        "side": "top"
+      },
+      {
+        "ref": "ST3",
+        "pad": "",
+        "xMm": 22.86,
+        "yMm": 2.54,
+        "widthMm": 3.1,
+        "heightMm": 3.1,
+        "rotationDeg": 0.0,
+        "shape": "circle",
+        "side": "top"
+      },
+      {
+        "ref": "FID4",
+        "pad": "",
+        "xMm": 24.765,
+        "yMm": 0.635,
+        "widthMm": 0.5,
+        "heightMm": 0.5,
+        "rotationDeg": 0.0,
+        "shape": "circle",
+        "side": "top"
+      },
+      {
+        "ref": "J2",
+        "pad": "1",
+        "xMm": 4.7625,
+        "yMm": 14.2,
+        "widthMm": 0.6,
+        "heightMm": 1.35,
+        "rotationDeg": 270.0,
+        "shape": "rect",
+        "side": "top"
+      },
+      {
+        "ref": "J2",
+        "pad": "2",
+        "xMm": 4.7625,
+        "yMm": 13.2,
+        "widthMm": 0.6,
+        "heightMm": 1.35,
+        "rotationDeg": 270.0,
+        "shape": "rect",
+        "side": "top"
+      },
+      {
+        "ref": "J2",
+        "pad": "3",
+        "xMm": 4.7625,
+        "yMm": 12.2,
+        "widthMm": 0.6,
+        "heightMm": 1.35,
+        "rotationDeg": 270.0,
+        "shape": "rect",
+        "side": "top"
+      },
+      {
+        "ref": "J2",
+        "pad": "4",
+        "xMm": 4.7625,
+        "yMm": 11.2,
+        "widthMm": 0.6,
+        "heightMm": 1.35,
+        "rotationDeg": 270.0,
+        "shape": "rect",
+        "side": "top"
+      },
+      {
+        "ref": "J2",
+        "pad": "NC1",
+        "xMm": 1.0875,
+        "yMm": 9.9,
+        "widthMm": 1.2,
+        "heightMm": 2.0,
+        "rotationDeg": 270.0,
+        "shape": "rect",
+        "side": "top"
+      },
+      {
+        "ref": "J2",
+        "pad": "NC2",
+        "xMm": 1.0875,
+        "yMm": 15.5,
+        "widthMm": 1.2,
+        "heightMm": 2.0,
+        "rotationDeg": 270.0,
+        "shape": "rect",
+        "side": "top"
+      },
+      {
+        "ref": "R5",
+        "pad": "1",
+        "xMm": 9.97,
+        "yMm": 6.985,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R5",
+        "pad": "2",
+        "xMm": 11.62,
+        "yMm": 6.985,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "C11",
+        "pad": "1",
+        "xMm": 14.9225,
+        "yMm": 14.1325,
+        "widthMm": 0.56,
+        "heightMm": 0.62,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "C11",
+        "pad": "2",
+        "xMm": 14.9225,
+        "yMm": 13.1725,
+        "widthMm": 0.56,
+        "heightMm": 0.62,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R3",
+        "pad": "1",
+        "xMm": 2.0325,
+        "yMm": 6.35,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R3",
+        "pad": "2",
+        "xMm": 3.6825,
+        "yMm": 6.35,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R4",
+        "pad": "1",
+        "xMm": 15.43,
+        "yMm": 6.985,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R4",
+        "pad": "2",
+        "xMm": 13.78,
+        "yMm": 6.985,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "C10",
+        "pad": "1",
+        "xMm": 14.605,
+        "yMm": 16.3475,
+        "widthMm": 0.56,
+        "heightMm": 0.62,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "C10",
+        "pad": "2",
+        "xMm": 14.605,
+        "yMm": 17.3075,
+        "widthMm": 0.56,
+        "heightMm": 0.62,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "ST2",
+        "pad": "",
+        "xMm": 22.86,
+        "yMm": 22.86,
+        "widthMm": 3.1,
+        "heightMm": 3.1,
+        "rotationDeg": 0.0,
+        "shape": "circle",
+        "side": "top"
+      },
+      {
+        "ref": "ST1",
+        "pad": "",
+        "xMm": 2.54,
+        "yMm": 22.86,
+        "widthMm": 3.1,
+        "heightMm": 3.1,
+        "rotationDeg": 0.0,
+        "shape": "circle",
+        "side": "top"
+      },
+      {
+        "ref": "R6",
+        "pad": "1",
+        "xMm": 11.875,
+        "yMm": 20.6375,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R6",
+        "pad": "2",
+        "xMm": 13.525,
+        "yMm": 20.6375,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "ST4",
+        "pad": "",
+        "xMm": 2.54,
+        "yMm": 2.54,
+        "widthMm": 3.1,
+        "heightMm": 3.1,
+        "rotationDeg": 0.0,
+        "shape": "circle",
+        "side": "top"
+      },
+      {
+        "ref": "JP1",
+        "pad": "1",
+        "xMm": 5.8293,
+        "yMm": 6.985,
+        "widthMm": 0.6604,
+        "heightMm": 1.27,
+        "rotationDeg": 0.0,
+        "shape": "rect",
+        "side": "bottom"
+      },
+      {
+        "ref": "JP1",
+        "pad": "2",
+        "xMm": 6.8707,
+        "yMm": 6.985,
+        "widthMm": 0.6604,
+        "heightMm": 1.27,
+        "rotationDeg": 0.0,
+        "shape": "rect",
+        "side": "bottom"
+      },
+      {
+        "ref": "JP2",
+        "pad": "1",
+        "xMm": 20.7264,
+        "yMm": 6.985,
+        "widthMm": 0.6604,
+        "heightMm": 1.27,
+        "rotationDeg": 180.0,
+        "shape": "rect",
+        "side": "bottom"
+      },
+      {
+        "ref": "JP2",
+        "pad": "2",
+        "xMm": 19.685,
+        "yMm": 6.985,
+        "widthMm": 0.6604,
+        "heightMm": 1.27,
+        "rotationDeg": 180.0,
+        "shape": "rect",
+        "side": "bottom"
+      },
+      {
+        "ref": "JP2",
+        "pad": "3",
+        "xMm": 18.6436,
+        "yMm": 6.985,
+        "widthMm": 0.6604,
+        "heightMm": 1.27,
+        "rotationDeg": 180.0,
+        "shape": "rect",
+        "side": "bottom"
+      },
+      {
+        "ref": "FID2",
+        "pad": "",
+        "xMm": 0.635,
+        "yMm": 24.765,
+        "widthMm": 0.5,
+        "heightMm": 0.5,
+        "rotationDeg": 180.0,
+        "shape": "circle",
+        "side": "bottom"
+      },
+      {
+        "ref": "FID1",
+        "pad": "",
+        "xMm": 24.765,
+        "yMm": 0.635,
+        "widthMm": 0.5,
+        "heightMm": 0.5,
+        "rotationDeg": 180.0,
+        "shape": "circle",
+        "side": "bottom"
+      },
+      {
+        "ref": "JP3",
+        "pad": "1",
+        "xMm": 12.7,
+        "yMm": 23.0632,
+        "widthMm": 0.6604,
+        "heightMm": 1.27,
+        "rotationDeg": 270.0,
+        "shape": "rect",
+        "side": "bottom"
+      },
+      {
+        "ref": "JP3",
+        "pad": "2",
+        "xMm": 12.7,
+        "yMm": 22.0218,
+        "widthMm": 0.6604,
+        "heightMm": 1.27,
+        "rotationDeg": 270.0,
+        "shape": "rect",
+        "side": "bottom"
+      }
+    ],
+    "footprints": [
+      {
+        "ref": "U3",
+        "xMm": 12.7,
+        "yMm": 16.8275,
+        "widthMm": 2.4,
+        "heightMm": 2.0,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D1",
+        "xMm": 2.8575,
+        "yMm": 7.9375,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "FID3",
+        "xMm": 0.635,
+        "yMm": 24.765,
+        "widthMm": 0.5,
+        "heightMm": 0.5,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "pad-bounds"
+      },
+      {
+        "ref": "J3",
+        "xMm": 12.7,
+        "yMm": 1.27,
+        "widthMm": 10.16,
+        "heightMm": 2.54,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "U2",
+        "xMm": 12.7,
+        "yMm": 12.7,
+        "widthMm": 3.4,
+        "heightMm": 4.4,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "J1",
+        "xMm": 22.7125,
+        "yMm": 12.7,
+        "widthMm": 7.1,
+        "heightMm": 5.75,
+        "rotationDeg": 90.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "ST3",
+        "xMm": 22.86,
+        "yMm": 2.54,
+        "widthMm": 3.1,
+        "heightMm": 3.1,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "pad-bounds"
+      },
+      {
+        "ref": "FID4",
+        "xMm": 24.765,
+        "yMm": 0.635,
+        "widthMm": 0.5,
+        "heightMm": 0.5,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "pad-bounds"
+      },
+      {
+        "ref": "J2",
+        "xMm": 2.6875,
+        "yMm": 12.7,
+        "widthMm": 7.1,
+        "heightMm": 5.75,
+        "rotationDeg": 270.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R5",
+        "xMm": 10.795,
+        "yMm": 6.985,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "C11",
+        "xMm": 14.9225,
+        "yMm": 13.6525,
+        "widthMm": 1.82,
+        "heightMm": 0.92,
+        "rotationDeg": 270.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R3",
+        "xMm": 2.8575,
+        "yMm": 6.35,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R4",
+        "xMm": 14.605,
+        "yMm": 6.985,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 180.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "C10",
+        "xMm": 14.605,
+        "yMm": 16.8275,
+        "widthMm": 1.82,
+        "heightMm": 0.92,
+        "rotationDeg": 90.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "ST2",
+        "xMm": 22.86,
+        "yMm": 22.86,
+        "widthMm": 3.1,
+        "heightMm": 3.1,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "pad-bounds"
+      },
+      {
+        "ref": "ST1",
+        "xMm": 2.54,
+        "yMm": 22.86,
+        "widthMm": 3.1,
+        "heightMm": 3.1,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "pad-bounds"
+      },
+      {
+        "ref": "R6",
+        "xMm": 12.7,
+        "yMm": 20.6375,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "ST4",
+        "xMm": 2.54,
+        "yMm": 2.54,
+        "widthMm": 3.1,
+        "heightMm": 3.1,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "pad-bounds"
+      },
+      {
+        "ref": "JP1",
+        "xMm": 6.35,
+        "yMm": 6.985,
+        "widthMm": 2.2,
+        "heightMm": 1.8,
+        "rotationDeg": 0.0,
+        "side": "bottom",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "JP2",
+        "xMm": 19.685,
+        "yMm": 6.985,
+        "widthMm": 3.2,
+        "heightMm": 1.8,
+        "rotationDeg": 180.0,
+        "side": "bottom",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "FID2",
+        "xMm": 0.635,
+        "yMm": 24.765,
+        "widthMm": 0.5,
+        "heightMm": 0.5,
+        "rotationDeg": 180.0,
+        "side": "bottom",
+        "envelopeSource": "pad-bounds"
+      },
+      {
+        "ref": "FID1",
+        "xMm": 24.765,
+        "yMm": 0.635,
+        "widthMm": 0.5,
+        "heightMm": 0.5,
+        "rotationDeg": 180.0,
+        "side": "bottom",
+        "envelopeSource": "pad-bounds"
+      },
+      {
+        "ref": "JP3",
+        "xMm": 12.7,
+        "yMm": 22.5425,
+        "widthMm": 2.2,
+        "heightMm": 1.8,
+        "rotationDeg": 270.0,
+        "side": "bottom",
+        "envelopeSource": "courtyard"
+      }
+    ],
+    "holes": [
+      {
+        "xMm": 8.89,
+        "yMm": 1.27,
+        "diameterMm": 1.016
+      },
+      {
+        "xMm": 11.43,
+        "yMm": 1.27,
+        "diameterMm": 1.016
+      },
+      {
+        "xMm": 13.97,
+        "yMm": 1.27,
+        "diameterMm": 1.016
+      },
+      {
+        "xMm": 16.51,
+        "yMm": 1.27,
+        "diameterMm": 1.016
+      },
+      {
+        "xMm": 22.86,
+        "yMm": 2.54,
+        "diameterMm": 3.1
+      },
+      {
+        "xMm": 22.86,
+        "yMm": 22.86,
+        "diameterMm": 3.1
+      },
+      {
+        "xMm": 2.54,
+        "yMm": 22.86,
+        "diameterMm": 3.1
+      },
+      {
+        "xMm": 2.54,
+        "yMm": 2.54,
+        "diameterMm": 3.1
+      }
+    ]
+  }
+}

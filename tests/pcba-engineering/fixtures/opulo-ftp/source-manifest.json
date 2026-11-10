@@ -1,0 +1,44 @@
+{
+  "repo": "https://github.com/opulo-inc/lumenpnp",
+  "commit": "93f8124f24e04245a856cc3c9731e8de32d38726",
+  "license": "CERN-OHL-W-2.0 (hardware); see upstream notice for separate libraries and branding",
+  "files": [
+    {
+      "path": "source/LICENSE",
+      "sha256": "b087b62f28eecb55905425d3b7fe0ea65ba73ecfe7cb23b859bebb01e5ca9e96",
+      "url": "https://raw.githubusercontent.com/opulo-inc/lumenpnp/93f8124f24e04245a856cc3c9731e8de32d38726/LICENSE",
+      "bytes": 1242
+    },
+    {
+      "path": "source/pnp/pcb/ftp/ftp.kicad_pcb",
+      "sha256": "77818159f9508bcbf09c5d3d45fbc654585f26679af353f9308027d3e344e453",
+      "url": "https://raw.githubusercontent.com/opulo-inc/lumenpnp/93f8124f24e04245a856cc3c9731e8de32d38726/pnp/pcb/ftp/ftp.kicad_pcb",
+      "bytes": 816950
+    },
+    {
+      "path": "source/pnp/pcb/ftp/ftp.kicad_sch",
+      "sha256": "cbea383026863107a2518d383411623946e0c549daedf17d644ad41dd670f23d",
+      "url": "https://raw.githubusercontent.com/opulo-inc/lumenpnp/93f8124f24e04245a856cc3c9731e8de32d38726/pnp/pcb/ftp/ftp.kicad_sch",
+      "bytes": 163344
+    },
+    {
+      "path": "source/pnp/pcb/ftp/ftp.kicad_pro",
+      "sha256": "35cf47340d5f9724fb524e485b12f4c034f67ae51d3c9dd60bd86b0d7501aafd",
+      "url": "https://raw.githubusercontent.com/opulo-inc/lumenpnp/93f8124f24e04245a856cc3c9731e8de32d38726/pnp/pcb/ftp/ftp.kicad_pro",
+      "bytes": 11751
+    },
+    {
+      "path": "source/ftp-top.pos",
+      "sha256": "c29c029135504daf48049968e47645fbe69a907b93791d59ef29ecbadf65314f",
+      "url": "https://github.com/opulo-inc/lumenpnp/releases/download/v4.1.0/ftp-top.pos",
+      "bytes": 6806
+    }
+  ],
+  "omittedFiles": [
+    {
+      "path": "pnp/pcb/ftp/fp-lib-table",
+      "reason": "Machine-local footprint-library paths are not needed for the assembly-data fixture. The unmodified table remains available at the pinned upstream revision.",
+      "url": "https://raw.githubusercontent.com/opulo-inc/lumenpnp/93f8124f24e04245a856cc3c9731e8de32d38726/pnp/pcb/ftp/fp-lib-table"
+    }
+  ]
+}

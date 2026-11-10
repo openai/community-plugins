@@ -1,0 +1,585 @@
+{
+  "schemaVersion": 1,
+  "currentRevision": "r2-a1cafa6fc57a",
+  "history": [
+    {
+      "id": "r1-f9cd329bc615",
+      "number": 1,
+      "inputSha256": "f9cd329bc6150507e8143c4cab5c8773a882e3c440a5ff88c862a20f752a8de2",
+      "parent": null,
+      "createdAt": "2026-11-09T04:09:16.900Z",
+      "change": {
+        "kind": "import",
+        "reason": "Import supplied engineering data without editing sources.",
+        "sourceFiles": [
+          {
+            "name": "brief.json",
+            "sha256": "9d76a58a811692b210f6e9ba2ae159f91c61afbb519b741078c3edc38fabc52a",
+            "bytes": 417365
+          },
+          {
+            "name": "bom-v0.2.csv",
+            "sha256": "579c855cbec3a988c7d90ea1f47893ccb7aca411c79f4a9b238b7a229b34a501",
+            "bytes": 11801
+          },
+          {
+            "name": "placements-v0.1.1.csv",
+            "sha256": "b8ff7376d9020196d16f2eaa83ef576f9ee756ed2290ca2dbdc6ac1c86e7a81e",
+            "bytes": 6605
+          },
+          {
+            "name": "source-placements-v0.2.csv",
+            "sha256": "f2544876b4662569ef7c2c7e2eeb21c254e1ba89f06006a26986d7b2dc0e751e",
+            "bytes": 6691
+          },
+          {
+            "name": "columns.json",
+            "sha256": "d76134122636c8957387878cdbd445f3f921618b2160adbd36480049e72c47ee",
+            "bytes": 333
+          }
+        ]
+      }
+    },
+    {
+      "id": "r2-a1cafa6fc57a",
+      "number": 2,
+      "inputSha256": "a1cafa6fc57af437a2ef186d07a77fe0bb49bbe789623bf3fc0c90844bb775b4",
+      "parent": "r1-f9cd329bc615",
+      "createdAt": "2026-11-09T04:09:38.150Z",
+      "change": {
+        "kind": "bounded-change",
+        "planId": "9eb3682b1bfc2310cb7a2039367654c3ffe5a39388356321c07feedadc6089ee",
+        "baseRevision": "r1-f9cd329bc615",
+        "reason": "Add only D11 and D12 from v0.2 source geometry; preserve existing placements, BOM identities, quantity, variant, and source findings.",
+        "provenance": [],
+        "changes": [
+          {
+            "collection": "placements",
+            "ref": "D11",
+            "before": null,
+            "after": {
+              "ref": "D11",
+              "xMm": 49.6,
+              "yMm": 56.1,
+              "rotationDeg": 90,
+              "side": "top",
+              "sourceRow": 48,
+              "package": "Diode_SMD:D_SOD-123"
+            }
+          },
+          {
+            "collection": "placements",
+            "ref": "D12",
+            "before": null,
+            "after": {
+              "ref": "D12",
+              "xMm": 49.6,
+              "yMm": 50.7,
+              "rotationDeg": 90,
+              "side": "top",
+              "sourceRow": 49,
+              "package": "Diode_SMD:D_SOD-123"
+            }
+          }
+        ],
+        "sourceRowChanges": [
+          {
+            "ref": "J3",
+            "before": 48,
+            "after": 50
+          },
+          {
+            "ref": "L1",
+            "before": 49,
+            "after": 51
+          },
+          {
+            "ref": "L2",
+            "before": 50,
+            "after": 52
+          },
+          {
+            "ref": "LED1",
+            "before": 51,
+            "after": 53
+          },
+          {
+            "ref": "LED2",
+            "before": 52,
+            "after": 54
+          },
+          {
+            "ref": "Q1",
+            "before": 53,
+            "after": 55
+          },
+          {
+            "ref": "Q2",
+            "before": 54,
+            "after": 56
+          },
+          {
+            "ref": "Q3",
+            "before": 55,
+            "after": 57
+          },
+          {
+            "ref": "Q4",
+            "before": 56,
+            "after": 58
+          },
+          {
+            "ref": "Q5",
+            "before": 57,
+            "after": 59
+          },
+          {
+            "ref": "Q6",
+            "before": 58,
+            "after": 60
+          },
+          {
+            "ref": "Q7",
+            "before": 59,
+            "after": 61
+          },
+          {
+            "ref": "Q8",
+            "before": 60,
+            "after": 62
+          },
+          {
+            "ref": "Q9",
+            "before": 61,
+            "after": 63
+          },
+          {
+            "ref": "Q10",
+            "before": 62,
+            "after": 64
+          },
+          {
+            "ref": "Q11",
+            "before": 63,
+            "after": 65
+          },
+          {
+            "ref": "Q12",
+            "before": 64,
+            "after": 66
+          },
+          {
+            "ref": "Q13",
+            "before": 65,
+            "after": 67
+          },
+          {
+            "ref": "Q14",
+            "before": 66,
+            "after": 68
+          },
+          {
+            "ref": "Q15",
+            "before": 67,
+            "after": 69
+          },
+          {
+            "ref": "R1",
+            "before": 68,
+            "after": 70
+          },
+          {
+            "ref": "R2",
+            "before": 69,
+            "after": 71
+          },
+          {
+            "ref": "R3",
+            "before": 70,
+            "after": 72
+          },
+          {
+            "ref": "R4",
+            "before": 71,
+            "after": 73
+          },
+          {
+            "ref": "R5",
+            "before": 72,
+            "after": 74
+          },
+          {
+            "ref": "R6",
+            "before": 73,
+            "after": 75
+          },
+          {
+            "ref": "R7",
+            "before": 74,
+            "after": 76
+          },
+          {
+            "ref": "R8",
+            "before": 75,
+            "after": 77
+          },
+          {
+            "ref": "R9",
+            "before": 76,
+            "after": 78
+          },
+          {
+            "ref": "R10",
+            "before": 77,
+            "after": 79
+          },
+          {
+            "ref": "R11",
+            "before": 78,
+            "after": 80
+          },
+          {
+            "ref": "R12",
+            "before": 79,
+            "after": 81
+          },
+          {
+            "ref": "R13",
+            "before": 80,
+            "after": 82
+          },
+          {
+            "ref": "R14",
+            "before": 81,
+            "after": 83
+          },
+          {
+            "ref": "R15",
+            "before": 82,
+            "after": 84
+          },
+          {
+            "ref": "R16",
+            "before": 83,
+            "after": 85
+          },
+          {
+            "ref": "R17",
+            "before": 84,
+            "after": 86
+          },
+          {
+            "ref": "R18",
+            "before": 85,
+            "after": 87
+          },
+          {
+            "ref": "R19",
+            "before": 86,
+            "after": 88
+          },
+          {
+            "ref": "R20",
+            "before": 87,
+            "after": 89
+          },
+          {
+            "ref": "R21",
+            "before": 88,
+            "after": 90
+          },
+          {
+            "ref": "R22",
+            "before": 89,
+            "after": 91
+          },
+          {
+            "ref": "R23",
+            "before": 90,
+            "after": 92
+          },
+          {
+            "ref": "R24",
+            "before": 91,
+            "after": 93
+          },
+          {
+            "ref": "R25",
+            "before": 92,
+            "after": 94
+          },
+          {
+            "ref": "R26",
+            "before": 93,
+            "after": 95
+          },
+          {
+            "ref": "R27",
+            "before": 94,
+            "after": 96
+          },
+          {
+            "ref": "R28",
+            "before": 95,
+            "after": 97
+          },
+          {
+            "ref": "R29",
+            "before": 96,
+            "after": 98
+          },
+          {
+            "ref": "R30",
+            "before": 97,
+            "after": 99
+          },
+          {
+            "ref": "R31",
+            "before": 98,
+            "after": 100
+          },
+          {
+            "ref": "R32",
+            "before": 99,
+            "after": 101
+          },
+          {
+            "ref": "R33",
+            "before": 100,
+            "after": 102
+          },
+          {
+            "ref": "R34",
+            "before": 101,
+            "after": 103
+          },
+          {
+            "ref": "R35",
+            "before": 102,
+            "after": 104
+          },
+          {
+            "ref": "R36",
+            "before": 103,
+            "after": 105
+          },
+          {
+            "ref": "R37",
+            "before": 104,
+            "after": 106
+          },
+          {
+            "ref": "R38",
+            "before": 105,
+            "after": 107
+          },
+          {
+            "ref": "R39",
+            "before": 106,
+            "after": 108
+          },
+          {
+            "ref": "R40",
+            "before": 107,
+            "after": 109
+          },
+          {
+            "ref": "R41",
+            "before": 108,
+            "after": 110
+          },
+          {
+            "ref": "R42",
+            "before": 109,
+            "after": 111
+          },
+          {
+            "ref": "R43",
+            "before": 110,
+            "after": 112
+          },
+          {
+            "ref": "R44",
+            "before": 111,
+            "after": 113
+          },
+          {
+            "ref": "R45",
+            "before": 112,
+            "after": 114
+          },
+          {
+            "ref": "R46",
+            "before": 113,
+            "after": 115
+          },
+          {
+            "ref": "R47",
+            "before": 114,
+            "after": 116
+          },
+          {
+            "ref": "R48",
+            "before": 115,
+            "after": 117
+          },
+          {
+            "ref": "R49",
+            "before": 116,
+            "after": 118
+          },
+          {
+            "ref": "R50",
+            "before": 117,
+            "after": 119
+          },
+          {
+            "ref": "R51",
+            "before": 118,
+            "after": 120
+          },
+          {
+            "ref": "R52",
+            "before": 119,
+            "after": 121
+          },
+          {
+            "ref": "R53",
+            "before": 120,
+            "after": 122
+          },
+          {
+            "ref": "R54",
+            "before": 121,
+            "after": 123
+          },
+          {
+            "ref": "R55",
+            "before": 122,
+            "after": 124
+          },
+          {
+            "ref": "R56",
+            "before": 123,
+            "after": 125
+          },
+          {
+            "ref": "R57",
+            "before": 124,
+            "after": 126
+          },
+          {
+            "ref": "R58",
+            "before": 125,
+            "after": 127
+          },
+          {
+            "ref": "R60",
+            "before": 126,
+            "after": 128
+          },
+          {
+            "ref": "R61",
+            "before": 127,
+            "after": 129
+          },
+          {
+            "ref": "R62",
+            "before": 128,
+            "after": 130
+          },
+          {
+            "ref": "R63",
+            "before": 129,
+            "after": 131
+          },
+          {
+            "ref": "R64",
+            "before": 130,
+            "after": 132
+          },
+          {
+            "ref": "R65",
+            "before": 131,
+            "after": 133
+          },
+          {
+            "ref": "R66",
+            "before": 132,
+            "after": 134
+          },
+          {
+            "ref": "R67",
+            "before": 133,
+            "after": 135
+          },
+          {
+            "ref": "R68",
+            "before": 134,
+            "after": 136
+          },
+          {
+            "ref": "R69",
+            "before": 135,
+            "after": 137
+          },
+          {
+            "ref": "R70",
+            "before": 136,
+            "after": 138
+          },
+          {
+            "ref": "R71",
+            "before": 137,
+            "after": 139
+          },
+          {
+            "ref": "R72",
+            "before": 138,
+            "after": 140
+          },
+          {
+            "ref": "R73",
+            "before": 139,
+            "after": 141
+          },
+          {
+            "ref": "RT2",
+            "before": 140,
+            "after": 142
+          },
+          {
+            "ref": "S1",
+            "before": 141,
+            "after": 143
+          },
+          {
+            "ref": "U1",
+            "before": 142,
+            "after": 144
+          },
+          {
+            "ref": "U2",
+            "before": 143,
+            "after": 145
+          },
+          {
+            "ref": "U3",
+            "before": 144,
+            "after": 146
+          },
+          {
+            "ref": "U6",
+            "before": 145,
+            "after": 147
+          },
+          {
+            "ref": "U7",
+            "before": 146,
+            "after": 148
+          }
+        ]
+      }
+    }
+  ]
+}

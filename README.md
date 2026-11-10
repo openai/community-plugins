@@ -115,6 +115,7 @@ are picked up.
 | [React Native to SwiftUI](plugins/react-native-to-swiftui/README.md)           | Plan a bounded React Native/Expo feature migration, then port one explicitly approved slice with deterministic SwiftUI parity checks. | [Guide](plugins/react-native-to-swiftui/README.md) |
 | [Autodesk Fusion](plugins/autodesk-fusion/README.md) | Connect typed CAD/CAM operations, scoped Autodesk data, reviewed cloud recipes and engineering evidence; live qualification required. | [Guide](plugins/autodesk-fusion/README.md) |
 | [Physical Engineering](plugins/physical-engineering/README.md) | Build mechanical CAD from a brief, measure exports, preserve revisions and deliver a repeatable handoff. Custom parts plus a drone assembly example. Preview. | [Guide](plugins/physical-engineering/README.md) · [Two-minute demo](docs/media/physical-engineering/README.md) · [Session runbook](docs/physical-engineering-demo-runbook.md) |
+| [PCBA Engineering](plugins/pcba-engineering/README.md) | Reconcile assembly data, apply bounded revisions, and independently verify an offline PCBA handoff. | [Guide](plugins/pcba-engineering/README.md) · [2:27 demo](docs/media/pcba-engineering/README.md) |
 
 Grafana Observability requires Codex and Node.js 22.19 or newer. Its manifest
 declares both `Read` and `Write`. `Write` is limited to

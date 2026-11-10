@@ -1,0 +1,6 @@
+interface:
+  display_name: "Prepare PCBA handoff"
+  short_description: "Traceable assembly package workflow"
+  default_prompt: "Use $prepare-pcba-handoff to export and independently verify my assembly packet."
+policy:
+  allow_implicit_invocation: true
