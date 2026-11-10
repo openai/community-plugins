@@ -1,0 +1,92 @@
+{
+  "schema": 1,
+  "name": "Physical Engineering: from the brief to checked CAD",
+  "kind": "Animated walkthrough derived from actual CAD operations and saved workflow evidence",
+  "presentation_source_commit": "8ecb36b57469cf7258f42ca0ffbc043bf810570c",
+  "qualified_cad_source_commit": "272007ab1f52aba07f931b37452bfd9153fd1e87",
+  "plugin_version_in_recorded_evidence": "0.1.0-preview.2",
+  "assets": {
+    "physical-engineering-from-brief.mp4": {
+      "bytes": 12173088,
+      "sha256": "c026ec4849ade925131cca1d6a6a9f9af4fb6e3ccf8f31067bde634ead41004d"
+    },
+    "physical-engineering-from-brief.srt": {
+      "bytes": 1715,
+      "sha256": "6f00e0b8ca80c7b905c0da1c31cf9c1e6b5820177e8f778c907da498bebf26ea"
+    },
+    "physical-engineering-from-brief.vtt": {
+      "bytes": 1681,
+      "sha256": "c0c228c6f8f9ebdd369f538010d830fca90a5b60248e5c9a741355e340938dc1"
+    },
+    "poster.png": {
+      "bytes": 642576,
+      "sha256": "26d32b4f6c5354e2c9977e756a709b73f6aac964b3bd66ce4e36110b0240ce81"
+    }
+  },
+  "video": {
+    "duration_seconds": 120,
+    "width": 1920,
+    "height": 1080,
+    "frames_per_second": 24,
+    "frames": 2880,
+    "video_codec": "h264",
+    "audio_codec": "aac",
+    "audio_sample_rate_hz": 48000,
+    "audio_channels": 2,
+    "chapters": 9,
+    "caption_cues": 17
+  },
+  "poster": {
+    "source": "physical-engineering-from-brief.mp4",
+    "time_seconds": 115,
+    "altered": false
+  },
+  "cad_evidence": {
+    "asset_manifest_sha256": "ff9a236f5e1b1ea4b7bfd559908147181617c98b27e55393960b3805fd18638e",
+    "construction_manifest_sha256": "cf83ebb9a9197f482e2aefca16484232377efcb4b9d021192ee986275230aaad",
+    "construction_stages": 8,
+    "final_source_to_baseline_step_boolean_difference_mm3": {
+      "tray": 0,
+      "bridge": 0
+    }
+  },
+  "review": {
+    "reviewed_at_utc": "2026-11-06T07:53:01.902844+00:00",
+    "source_receipt_sha256": "61264e510ab166bad878fae365e173a362caa996c51581b81b3680f4a98cb6fb",
+    "full_video_and_audio_decode": "pass",
+    "visual_sample_times_seconds": [
+      0.8,
+      12,
+      17,
+      20,
+      29,
+      42,
+      54,
+      65,
+      76,
+      94,
+      103,
+      115
+    ],
+    "sampled_copy_readable": true,
+    "captions_match_script": true,
+    "caption_time_rounding_max_seconds": 0.0004576271186458314,
+    "perceptual_listening_performed": false,
+    "continuous_perceptual_playback_performed": false,
+    "native_player_caption_layout_assessed": false,
+    "privacy": {
+      "scope": "Prior delivery-kit text, PDF, metadata and embedded-asset inspection; visual samples as listed above",
+      "text_files_scanned": 285,
+      "pdf_pages_scanned": 26,
+      "nested_archive_members_scanned": 336,
+      "findings": []
+    }
+  },
+  "narration": {
+    "engine": "kokoro-onnx 0.6.1",
+    "model": "Kokoro-82M v1.0",
+    "stock_voice": "af_heart",
+    "voice_cloning": false
+  },
+  "scope": "Worked drone-module example. This media does not qualify later plugin revisions, arbitrary designs, fabrication or flight."
+}

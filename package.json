@@ -34,6 +34,7 @@
     "test:autodesk-fusion": "npm run validate:autodesk-fusion && npm run test:autodesk-fusion:package && npm --prefix plugins/autodesk-fusion run verify && npm run validate:autodesk-fusion",
     "test:autodesk-fusion:package": "node --test --test-concurrency=1 tests/autodesk-fusion/unit/*.test.mjs tests/autodesk-fusion/integration/*.test.mjs tests/autodesk-fusion/security/*.test.mjs",
     "build:autodesk-fusion": "npm --prefix plugins/autodesk-fusion run build",
+    "test:physical-engineering": "node tests/physical-engineering/run.mjs",
     "test:pcba-engineering": "npm run validate:pcba-engineering && node --test --test-concurrency=1 tests/pcba-engineering/unit/*.test.mjs tests/pcba-engineering/integration/*.test.mjs tests/pcba-engineering/security/*.test.mjs && python3 tests/pcba-engineering/support/dataset-verify.py",
     "validate:pcba-engineering": "node scripts/validate-pcba-engineering.mjs"
   },
