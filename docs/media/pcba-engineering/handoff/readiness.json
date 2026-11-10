@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "status": "pass",
+  "board": {
+    "id": "libresolar-bms-8s50-ic",
+    "name": "Drone BMS assembly review · Libre Solar 8S50",
+    "revision": "v0.2"
+  },
+  "variant": "standard",
+  "quantity": 10,
+  "counts": {
+    "bom": 159,
+    "requiredPlacements": 147,
+    "actualPlacements": 147,
+    "errors": 0,
+    "warnings": 2
+  },
+  "tolerances": {
+    "positionMm": 0.001,
+    "rotationDeg": 0.01
+  },
+  "findings": [
+    {
+      "id": "MPN_UNKNOWN:1",
+      "code": "MPN_UNKNOWN",
+      "severity": "warning",
+      "refs": [
+        "C10",
+        "C30",
+        "C39",
+        "JP3",
+        "LED1",
+        "LED2",
+        "P3",
+        "P5",
+        "R32",
+        "S1",
+        "SWD1"
+      ],
+      "message": "Manufacturer part numbers are missing for some populated parts. Procurement identity remains unresolved; values and footprints do not prove electrical equivalence."
+    },
+    {
+      "id": "SOURCE_FINDING:2",
+      "code": "SOURCE_FINDING",
+      "severity": "warning",
+      "refs": [
+        "R59"
+      ],
+      "message": "R59 exists in the PCB but is absent from the upstream published BOM. Both placement projections follow that BOM; this does not establish a DNP decision. Engineering disposition remains open.",
+      "sourceFindingId": "SOURCE-R59-BOM"
+    }
+  ],
+  "scope": {
+    "documentConsistency": "pass",
+    "materialReadiness": "unknown",
+    "electricalQualification": "not_assessed",
+    "manufacturingAuthorization": "not_assessed",
+    "geometryVerification": "supplied-authoritative-comparison",
+    "geometryProvenance": "supplied-source-not-authenticated"
+  }
+}

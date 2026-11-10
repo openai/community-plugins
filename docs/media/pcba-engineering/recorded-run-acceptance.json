@@ -1,0 +1,70 @@
+{
+  "status": "passed",
+  "verification": {
+    "ok": true,
+    "command": "verify-handoff",
+    "schemaVersion": 1,
+    "valid": true,
+    "directory": "handoff",
+    "revision": "r2-a1cafa6fc57a",
+    "filesChecked": 11,
+    "inputSha256": "a1cafa6fc57af437a2ef186d07a77fe0bb49bbe789623bf3fc0c90844bb775b4",
+    "checks": [
+      "all-artifact-hashes",
+      "complete-manifest",
+      "independent-csv-readback",
+      "population-and-placement-equality",
+      "fresh-document-consistency",
+      "brief-identity",
+      "source-and-history-identity",
+      "visual-artifact-consistency"
+    ],
+    "scope": {
+      "documentConsistency": "pass",
+      "materialReadiness": "unknown",
+      "electricalQualification": "not_assessed",
+      "manufacturingAuthorization": "not_assessed",
+      "geometryVerification": "supplied-authoritative-comparison",
+      "geometryProvenance": "supplied-source-not-authenticated"
+    }
+  },
+  "addedReferences": [
+    "D11",
+    "D12"
+  ],
+  "unchangedExistingPlacements": 145,
+  "allNonPlacementInputFieldsUnchanged": true,
+  "matchesPreviouslyQualifiedHandoff": {
+    "identicalFiles": [
+      "source-manifest.json",
+      "brief.json",
+      "assembly-view.svg",
+      "assembly-guide.html",
+      "input.json",
+      "population.csv",
+      "inspection-plan.md",
+      "readiness.json",
+      "placements.csv",
+      "handoff.md"
+    ],
+    "differentFiles": [
+      "change-record.json",
+      "manifest.json"
+    ]
+  },
+  "interactiveBrowserChecks": {
+    "method": "CUA in-app browser over loopback HTTP",
+    "guide": "previously qualified assembly-guide.html",
+    "passed": [
+      "loads self-contained guide",
+      "search D11",
+      "select D11: present / NRVTS260ESFT1G",
+      "toggle source design",
+      "toggle all labels",
+      "restore assembly export",
+      "search and select D12: present / NRVTS260ESFT1G"
+    ],
+    "nativeSvgPreview": "Codex preview pane failed in recorded take; this is not claimed as passed"
+  },
+  "receiptNote": "Original acceptance receipt with only the local handoff-directory path replaced by its relative public location."
+}

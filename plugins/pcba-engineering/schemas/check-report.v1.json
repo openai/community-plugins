@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.example.invalid/pcba-engineering/check-report.v1.json",
+  "title": "PCBA Engineering document consistency report v1",
+  "type": "object", "required": ["schemaVersion", "status", "counts", "findings", "scope", "tolerances"],
+  "properties": {
+    "schemaVersion": { "const": 1 }, "status": { "enum": ["pass", "fail"] },
+    "counts": {
+      "type": "object", "required": ["bom", "requiredPlacements", "actualPlacements", "errors", "warnings"],
+      "properties": { "bom": { "$ref": "#/$defs/count" }, "requiredPlacements": { "$ref": "#/$defs/count" }, "actualPlacements": { "$ref": "#/$defs/count" }, "errors": { "$ref": "#/$defs/count" }, "warnings": { "$ref": "#/$defs/count" } }, "additionalProperties": false
+    },
+    "findings": {
+      "type": "array", "items": {
+        "type": "object", "required": ["id", "code", "severity", "refs", "message"],
+        "properties": { "id": { "type": "string" }, "code": { "type": "string" }, "severity": { "enum": ["warning", "error"] }, "refs": { "type": "array", "items": { "type": "string" } }, "message": { "type": "string" } },
+        "additionalProperties": true
+      }
+    },
+    "tolerances": { "type": "object", "required": ["positionMm", "rotationDeg"], "properties": { "positionMm": { "const": 0.001 }, "rotationDeg": { "const": 0.01 } }, "additionalProperties": false },
+    "scope": {
+      "type": "object", "required": ["documentConsistency", "materialReadiness", "electricalQualification", "manufacturingAuthorization", "geometryVerification", "geometryProvenance"],
+      "properties": {
+        "documentConsistency": { "enum": ["pass", "fail"] }, "materialReadiness": { "const": "unknown" }, "electricalQualification": { "const": "not_assessed" }, "manufacturingAuthorization": { "const": "not_assessed" },
+        "geometryVerification": { "enum": ["supplied-authoritative-comparison", "bounds-only"] }, "geometryProvenance": { "const": "supplied-source-not-authenticated" }
+      }, "additionalProperties": true
+    }
+  }, "additionalProperties": true,
+  "$defs": { "count": { "type": "integer", "minimum": 0 } }
+}

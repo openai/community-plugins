@@ -1,0 +1,19 @@
+WEBVTT
+
+00:00:00.200 --> 00:00:03.731
+A drone's battery starts with a trustworthy assembly package.
+
+00:00:16.200 --> 00:00:20.851
+The bill of materials is revision point two. The placement export is older.
+
+00:00:42.200 --> 00:00:47.075
+Codex finds two missing diode placements, and locates both in the source board.
+
+00:01:13.200 --> 00:01:19.311
+The plugin previews the exact correction. Two additions. Every existing placement stays the same.
+
+00:01:48.200 --> 00:01:51.879
+The same checks now pass: one hundred forty-seven placements.
+
+00:02:12.200 --> 00:02:18.749
+Codex reopens the exported files and verifies the complete handoff. Ready for engineering review.

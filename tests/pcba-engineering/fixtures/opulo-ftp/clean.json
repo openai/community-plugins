@@ -1,0 +1,5662 @@
+{
+  "schemaVersion": 1,
+  "board": {
+    "id": "opulo-ftp",
+    "name": "FTP placement reference assembly",
+    "revision": "REV00-v4.1.0",
+    "widthMm": 75.0,
+    "heightMm": 75.0
+  },
+  "variant": "resistors-only",
+  "quantity": 10,
+  "conventions": {
+    "units": "mm",
+    "coordinateFrame": "board-bottom-left",
+    "rotation": "ccw",
+    "bottomView": "top"
+  },
+  "bom": [
+    {
+      "ref": "D1",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D2",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D3",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D4",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D5",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D6",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D7",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D8",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D9",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D10",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D11",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D12",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D13",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D14",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D15",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D16",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D17",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D18",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D19",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D20",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D21",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D22",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D23",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D24",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D25",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D26",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D27",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D28",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D29",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D30",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D31",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D32",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D33",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D34",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D35",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D36",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D37",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D38",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D39",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "D40",
+      "partId": "LED_SMD:LED_0603_1608Metric:LED_Small",
+      "value": "LED_Small",
+      "package": "LED_SMD:LED_0603_1608Metric",
+      "category": "smt",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "FID1",
+      "partId": "Fiducial:Fiducial_1mm_Mask3mm:Fiducial",
+      "value": "Fiducial",
+      "package": "Fiducial:Fiducial_1mm_Mask3mm",
+      "category": "fiducial",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "FID2",
+      "partId": "Fiducial:Fiducial_1mm_Mask3mm:Fiducial",
+      "value": "Fiducial",
+      "package": "Fiducial:Fiducial_1mm_Mask3mm",
+      "category": "fiducial",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "FID3",
+      "partId": "Fiducial:Fiducial_1mm_Mask3mm:Fiducial",
+      "value": "Fiducial",
+      "package": "Fiducial:Fiducial_1mm_Mask3mm",
+      "category": "fiducial",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "J1",
+      "partId": "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical:Conn_01x02_Male",
+      "value": "Conn_01x02_Male",
+      "package": "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical",
+      "category": "tht",
+      "populated": false,
+      "mpn": null
+    },
+    {
+      "ref": "R1",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R2",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R3",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R4",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R5",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R6",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R7",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R8",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R9",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R10",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R11",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R12",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R13",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R14",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R15",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R16",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R17",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R18",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R19",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R20",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R21",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R22",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R23",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R24",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R25",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R26",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R27",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R28",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R29",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R30",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R31",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R32",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R33",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R34",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R35",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R36",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R37",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R38",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R39",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    },
+    {
+      "ref": "R40",
+      "partId": "Resistor_SMD:R_0603_1608Metric:R_Small",
+      "value": "R_Small",
+      "package": "Resistor_SMD:R_0603_1608Metric",
+      "category": "smt",
+      "populated": true,
+      "mpn": null
+    }
+  ],
+  "placements": [
+    {
+      "ref": "FID1",
+      "xMm": 62.5,
+      "yMm": 5.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "Fiducial:Fiducial_1mm_Mask3mm"
+    },
+    {
+      "ref": "FID2",
+      "xMm": 12.5,
+      "yMm": 70.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "Fiducial:Fiducial_1mm_Mask3mm"
+    },
+    {
+      "ref": "FID3",
+      "xMm": 62.5,
+      "yMm": 70.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "Fiducial:Fiducial_1mm_Mask3mm"
+    },
+    {
+      "ref": "R1",
+      "xMm": 37.499966,
+      "yMm": 42.499987,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R2",
+      "xMm": 40.999966,
+      "yMm": 40.999987,
+      "rotationDeg": 45.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R3",
+      "xMm": 42.499966,
+      "yMm": 37.499987,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R4",
+      "xMm": 40.999966,
+      "yMm": 33.999987,
+      "rotationDeg": 315.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R5",
+      "xMm": 37.499966,
+      "yMm": 32.499987,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R6",
+      "xMm": 33.999966,
+      "yMm": 33.999987,
+      "rotationDeg": 225.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R7",
+      "xMm": 32.499966,
+      "yMm": 37.499987,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R8",
+      "xMm": 33.999966,
+      "yMm": 40.999987,
+      "rotationDeg": 135.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R9",
+      "xMm": 16.75,
+      "yMm": 45.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R10",
+      "xMm": 16.7625,
+      "yMm": 40.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R11",
+      "xMm": 16.75,
+      "yMm": 35.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R12",
+      "xMm": 16.75,
+      "yMm": 30.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R13",
+      "xMm": 5.75,
+      "yMm": 45.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R14",
+      "xMm": 5.75,
+      "yMm": 40.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R15",
+      "xMm": 5.75,
+      "yMm": 35.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R16",
+      "xMm": 5.75,
+      "yMm": 30.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R17",
+      "xMm": 11.25,
+      "yMm": 17.0,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R18",
+      "xMm": 18.75,
+      "yMm": 17.0,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R19",
+      "xMm": 26.25,
+      "yMm": 17.0,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R20",
+      "xMm": 33.75,
+      "yMm": 17.0,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R21",
+      "xMm": 41.25,
+      "yMm": 17.0,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R22",
+      "xMm": 48.75,
+      "yMm": 17.0,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R23",
+      "xMm": 56.25,
+      "yMm": 17.0,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R24",
+      "xMm": 63.75,
+      "yMm": 17.0,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R25",
+      "xMm": 58.25,
+      "yMm": 30.0,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R26",
+      "xMm": 58.25,
+      "yMm": 35.0,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R27",
+      "xMm": 58.25,
+      "yMm": 40.0,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R28",
+      "xMm": 58.25,
+      "yMm": 45.0,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R29",
+      "xMm": 69.25,
+      "yMm": 30.0,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R30",
+      "xMm": 69.25,
+      "yMm": 35.0,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R31",
+      "xMm": 69.25,
+      "yMm": 40.0,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R32",
+      "xMm": 69.25,
+      "yMm": 45.0,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R33",
+      "xMm": 63.75,
+      "yMm": 58.0,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R34",
+      "xMm": 56.25,
+      "yMm": 58.0,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R35",
+      "xMm": 48.75,
+      "yMm": 58.0,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R36",
+      "xMm": 41.25,
+      "yMm": 58.0,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R37",
+      "xMm": 33.75,
+      "yMm": 58.0,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R38",
+      "xMm": 26.25,
+      "yMm": 58.0,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R39",
+      "xMm": 18.75,
+      "yMm": 58.0,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R40",
+      "xMm": 11.25,
+      "yMm": 58.0,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    }
+  ],
+  "authoritativePlacements": [
+    {
+      "ref": "D1",
+      "xMm": 37.499966,
+      "yMm": 47.499987,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D2",
+      "xMm": 44.499966,
+      "yMm": 44.499987,
+      "rotationDeg": 315.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D3",
+      "xMm": 47.499966,
+      "yMm": 37.499987,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D4",
+      "xMm": 44.499966,
+      "yMm": 30.499987,
+      "rotationDeg": 225.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D5",
+      "xMm": 37.499966,
+      "yMm": 27.499987,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D6",
+      "xMm": 30.499966,
+      "yMm": 30.499987,
+      "rotationDeg": 135.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D7",
+      "xMm": 27.499966,
+      "yMm": 37.499987,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D8",
+      "xMm": 30.499966,
+      "yMm": 44.499987,
+      "rotationDeg": 45.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D9",
+      "xMm": 21.75,
+      "yMm": 45.0,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D10",
+      "xMm": 21.75,
+      "yMm": 40.0,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D11",
+      "xMm": 21.75,
+      "yMm": 35.0,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D12",
+      "xMm": 21.75,
+      "yMm": 30.0,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D13",
+      "xMm": 10.75,
+      "yMm": 45.0,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D14",
+      "xMm": 10.75,
+      "yMm": 40.0,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D15",
+      "xMm": 10.75,
+      "yMm": 35.0,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D16",
+      "xMm": 10.75,
+      "yMm": 30.0,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D17",
+      "xMm": 11.25,
+      "yMm": 22.0,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D18",
+      "xMm": 18.75,
+      "yMm": 22.0,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D19",
+      "xMm": 26.25,
+      "yMm": 22.0,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D20",
+      "xMm": 33.75,
+      "yMm": 22.0,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D21",
+      "xMm": 41.25,
+      "yMm": 22.0,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D22",
+      "xMm": 48.75,
+      "yMm": 22.0,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D23",
+      "xMm": 56.25,
+      "yMm": 22.0,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D24",
+      "xMm": 63.75,
+      "yMm": 22.0,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D25",
+      "xMm": 53.25,
+      "yMm": 30.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D26",
+      "xMm": 53.25,
+      "yMm": 35.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D27",
+      "xMm": 53.25,
+      "yMm": 40.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D28",
+      "xMm": 53.25,
+      "yMm": 45.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D29",
+      "xMm": 64.25,
+      "yMm": 30.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D30",
+      "xMm": 64.25,
+      "yMm": 35.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D31",
+      "xMm": 64.25,
+      "yMm": 40.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D32",
+      "xMm": 64.25,
+      "yMm": 45.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D33",
+      "xMm": 63.75,
+      "yMm": 53.0,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D34",
+      "xMm": 56.25,
+      "yMm": 53.0,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D35",
+      "xMm": 48.75,
+      "yMm": 53.0,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D36",
+      "xMm": 41.25,
+      "yMm": 53.0,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D37",
+      "xMm": 33.75,
+      "yMm": 53.0,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D38",
+      "xMm": 26.25,
+      "yMm": 53.0,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D39",
+      "xMm": 18.75,
+      "yMm": 53.0,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "D40",
+      "xMm": 11.25,
+      "yMm": 53.0,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "LED_SMD:LED_0603_1608Metric"
+    },
+    {
+      "ref": "FID1",
+      "xMm": 62.5,
+      "yMm": 5.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "Fiducial:Fiducial_1mm_Mask3mm"
+    },
+    {
+      "ref": "FID2",
+      "xMm": 12.5,
+      "yMm": 70.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "Fiducial:Fiducial_1mm_Mask3mm"
+    },
+    {
+      "ref": "FID3",
+      "xMm": 62.5,
+      "yMm": 70.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "Fiducial:Fiducial_1mm_Mask3mm"
+    },
+    {
+      "ref": "J1",
+      "xMm": 3.0,
+      "yMm": 18.75,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical"
+    },
+    {
+      "ref": "R1",
+      "xMm": 37.499966,
+      "yMm": 42.499987,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R2",
+      "xMm": 40.999966,
+      "yMm": 40.999987,
+      "rotationDeg": 45.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R3",
+      "xMm": 42.499966,
+      "yMm": 37.499987,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R4",
+      "xMm": 40.999966,
+      "yMm": 33.999987,
+      "rotationDeg": 315.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R5",
+      "xMm": 37.499966,
+      "yMm": 32.499987,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R6",
+      "xMm": 33.999966,
+      "yMm": 33.999987,
+      "rotationDeg": 225.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R7",
+      "xMm": 32.499966,
+      "yMm": 37.499987,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R8",
+      "xMm": 33.999966,
+      "yMm": 40.999987,
+      "rotationDeg": 135.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R9",
+      "xMm": 16.75,
+      "yMm": 45.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R10",
+      "xMm": 16.7625,
+      "yMm": 40.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R11",
+      "xMm": 16.75,
+      "yMm": 35.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R12",
+      "xMm": 16.75,
+      "yMm": 30.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R13",
+      "xMm": 5.75,
+      "yMm": 45.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R14",
+      "xMm": 5.75,
+      "yMm": 40.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R15",
+      "xMm": 5.75,
+      "yMm": 35.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R16",
+      "xMm": 5.75,
+      "yMm": 30.0,
+      "rotationDeg": 0.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R17",
+      "xMm": 11.25,
+      "yMm": 17.0,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R18",
+      "xMm": 18.75,
+      "yMm": 17.0,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R19",
+      "xMm": 26.25,
+      "yMm": 17.0,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R20",
+      "xMm": 33.75,
+      "yMm": 17.0,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R21",
+      "xMm": 41.25,
+      "yMm": 17.0,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R22",
+      "xMm": 48.75,
+      "yMm": 17.0,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R23",
+      "xMm": 56.25,
+      "yMm": 17.0,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R24",
+      "xMm": 63.75,
+      "yMm": 17.0,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R25",
+      "xMm": 58.25,
+      "yMm": 30.0,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R26",
+      "xMm": 58.25,
+      "yMm": 35.0,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R27",
+      "xMm": 58.25,
+      "yMm": 40.0,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R28",
+      "xMm": 58.25,
+      "yMm": 45.0,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R29",
+      "xMm": 69.25,
+      "yMm": 30.0,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R30",
+      "xMm": 69.25,
+      "yMm": 35.0,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R31",
+      "xMm": 69.25,
+      "yMm": 40.0,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R32",
+      "xMm": 69.25,
+      "yMm": 45.0,
+      "rotationDeg": 180.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R33",
+      "xMm": 63.75,
+      "yMm": 58.0,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R34",
+      "xMm": 56.25,
+      "yMm": 58.0,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R35",
+      "xMm": 48.75,
+      "yMm": 58.0,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R36",
+      "xMm": 41.25,
+      "yMm": 58.0,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R37",
+      "xMm": 33.75,
+      "yMm": 58.0,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R38",
+      "xMm": 26.25,
+      "yMm": 58.0,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R39",
+      "xMm": 18.75,
+      "yMm": 58.0,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    },
+    {
+      "ref": "R40",
+      "xMm": 11.25,
+      "yMm": 58.0,
+      "rotationDeg": 270.0,
+      "side": "top",
+      "package": "Resistor_SMD:R_0603_1608Metric"
+    }
+  ],
+  "source": {
+    "repo": "https://github.com/opulo-inc/lumenpnp",
+    "commit": "93f8124f24e04245a856cc3c9731e8de32d38726",
+    "license": "CERN-OHL-W-2.0 (hardware); see upstream notice for separate libraries and branding",
+    "files": [
+      {
+        "path": "source/LICENSE",
+        "sha256": "b087b62f28eecb55905425d3b7fe0ea65ba73ecfe7cb23b859bebb01e5ca9e96",
+        "url": "https://raw.githubusercontent.com/opulo-inc/lumenpnp/93f8124f24e04245a856cc3c9731e8de32d38726/LICENSE",
+        "bytes": 1242
+      },
+      {
+        "path": "source/pnp/pcb/ftp/ftp.kicad_pcb",
+        "sha256": "77818159f9508bcbf09c5d3d45fbc654585f26679af353f9308027d3e344e453",
+        "url": "https://raw.githubusercontent.com/opulo-inc/lumenpnp/93f8124f24e04245a856cc3c9731e8de32d38726/pnp/pcb/ftp/ftp.kicad_pcb",
+        "bytes": 816950
+      },
+      {
+        "path": "source/pnp/pcb/ftp/ftp.kicad_sch",
+        "sha256": "cbea383026863107a2518d383411623946e0c549daedf17d644ad41dd670f23d",
+        "url": "https://raw.githubusercontent.com/opulo-inc/lumenpnp/93f8124f24e04245a856cc3c9731e8de32d38726/pnp/pcb/ftp/ftp.kicad_sch",
+        "bytes": 163344
+      },
+      {
+        "path": "source/pnp/pcb/ftp/ftp.kicad_pro",
+        "sha256": "35cf47340d5f9724fb524e485b12f4c034f67ae51d3c9dd60bd86b0d7501aafd",
+        "url": "https://raw.githubusercontent.com/opulo-inc/lumenpnp/93f8124f24e04245a856cc3c9731e8de32d38726/pnp/pcb/ftp/ftp.kicad_pro",
+        "bytes": 11751
+      },
+      {
+        "path": "source/ftp-top.pos",
+        "sha256": "c29c029135504daf48049968e47645fbe69a907b93791d59ef29ecbadf65314f",
+        "url": "https://github.com/opulo-inc/lumenpnp/releases/download/v4.1.0/ftp-top.pos",
+        "bytes": 6806
+      }
+    ],
+    "omittedFiles": [
+      {
+        "path": "pnp/pcb/ftp/fp-lib-table",
+        "reason": "Machine-local footprint-library paths are not needed for the assembly-data fixture. The unmodified table remains available at the pinned upstream revision.",
+        "url": "https://raw.githubusercontent.com/opulo-inc/lumenpnp/93f8124f24e04245a856cc3c9731e8de32d38726/pnp/pcb/ftp/fp-lib-table"
+      }
+    ],
+    "exportMethod": "Pinned KiCad source parsed by dataset-normalize.py; CLI qualification recorded separately; not an ERC/DRC result",
+    "sourceCoordinateTransform": {
+      "xOffsetMm": 0.0,
+      "yOriginMm": 0.0,
+      "formula": "x=sourceX-xOffsetMm; y=yOriginMm-sourceY; rotation=sourceAngle mod 360"
+    },
+    "excludedFeatures": [
+      {
+        "ref": "H4",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad"
+      },
+      {
+        "ref": "H1",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad"
+      },
+      {
+        "ref": "H2",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad"
+      },
+      {
+        "ref": "H3",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "MountingHole:MountingHole_3.2mm_M3_DIN965_Pad"
+      },
+      {
+        "ref": "G1",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "mfg:opulo-logo"
+      },
+      {
+        "ref": "G2",
+        "reason": "non-purchased copper/silkscreen feature or upstream excluded-from-BOM",
+        "package": "index:cal-dot-grid"
+      }
+    ],
+    "referencePlacementExport": "source/ftp-top.pos",
+    "populationFilter": {
+      "description": "Data-only resistor assembly variant. Supplied assembly placements retain R1–R40 and fiducial/mechanical context; LEDs D1–D40 and header J1 remain in authoritative source geometry but are not populated.",
+      "excludedRefs": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6",
+        "D7",
+        "D8",
+        "D9",
+        "D10",
+        "D11",
+        "D12",
+        "D13",
+        "D14",
+        "D15",
+        "D16",
+        "D17",
+        "D18",
+        "D19",
+        "D20",
+        "D21",
+        "D22",
+        "D23",
+        "D24",
+        "D25",
+        "D26",
+        "D27",
+        "D28",
+        "D29",
+        "D30",
+        "D31",
+        "D32",
+        "D33",
+        "D34",
+        "D35",
+        "D36",
+        "D37",
+        "D38",
+        "D39",
+        "D40",
+        "J1"
+      ],
+      "upstreamFilesModified": false
+    }
+  },
+  "sourceFindings": [
+    {
+      "id": "SOURCE-NO-PROCUREMENT-BOM",
+      "severity": "warning",
+      "message": "FTP source uses generic R_Small/LED_Small values. No supplier MPN or qualified procurement BOM is supplied.",
+      "refs": []
+    },
+    {
+      "id": "SCENARIO-RESISTOR-VARIANT",
+      "severity": "warning",
+      "message": "Data-only resistor variant populates R1–R40 and retains LEDs, headers and fiducials as non-populated context. It does not execute OpenPnP or validate machine behavior.",
+      "refs": []
+    }
+  ],
+  "visual": {
+    "outline": [
+      [
+        0,
+        0
+      ],
+      [
+        75.0,
+        0
+      ],
+      [
+        75.0,
+        75.0
+      ],
+      [
+        0,
+        75.0
+      ],
+      [
+        0,
+        0
+      ]
+    ],
+    "cutouts": [],
+    "tracks": [
+      {
+        "x1": 37.499966,
+        "y1": 43.324987,
+        "x2": 37.499966,
+        "y2": 46.712487,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 37.499966,
+        "y1": 46.712487,
+        "x2": 38.287466,
+        "y2": 47.499987,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 41.583329,
+        "y1": 41.58335,
+        "x2": 43.943119,
+        "y2": 43.94314,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 43.943119,
+        "y1": 43.94314,
+        "x2": 45.056813,
+        "y2": 43.94314,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 43.324966,
+        "y1": 37.499987,
+        "x2": 46.712466,
+        "y2": 37.499987,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 46.712466,
+        "y1": 37.499987,
+        "x2": 47.499966,
+        "y2": 36.712487,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 43.943119,
+        "y1": 31.056834,
+        "x2": 43.943119,
+        "y2": 29.94314,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 41.583329,
+        "y1": 33.416624,
+        "x2": 43.943119,
+        "y2": 31.056834,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 37.499966,
+        "y1": 31.674987,
+        "x2": 37.499966,
+        "y2": 28.287487,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 37.499966,
+        "y1": 28.287487,
+        "x2": 36.712466,
+        "y2": 27.499987,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 33.416603,
+        "y1": 33.416624,
+        "x2": 31.056813,
+        "y2": 31.056834,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 31.056813,
+        "y1": 31.056834,
+        "x2": 29.943119,
+        "y2": 31.056834,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 28.287466,
+        "y1": 37.499987,
+        "x2": 27.499966,
+        "y2": 38.287487,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 31.674966,
+        "y1": 37.499987,
+        "x2": 28.287466,
+        "y2": 37.499987,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 33.416603,
+        "y1": 41.58335,
+        "x2": 31.056813,
+        "y2": 43.94314,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 31.056813,
+        "y1": 43.94314,
+        "x2": 31.056813,
+        "y2": 45.056834,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 56.25,
+        "y1": 16.175,
+        "x2": 48.75,
+        "y2": 16.175,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 34.583329,
+        "y1": 34.58335,
+        "x2": 33.324966,
+        "y2": 35.841713,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 40.416603,
+        "y1": 40.416624,
+        "x2": 41.674966,
+        "y2": 39.158261,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 3.0,
+        "y1": 18.9,
+        "x2": 3.0,
+        "y2": 18.75,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 18.75,
+        "y1": 16.175,
+        "x2": 26.25,
+        "y2": 16.175,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 59.075,
+        "y1": 45.0,
+        "x2": 59.075,
+        "y2": 40.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 34.583329,
+        "y1": 40.416624,
+        "x2": 35.841692,
+        "y2": 41.674987,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 18.75,
+        "y1": 58.825,
+        "x2": 26.25,
+        "y2": 58.825,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 44.575,
+        "y1": 16.175,
+        "x2": 41.25,
+        "y2": 16.175,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 70.075,
+        "y1": 54.175,
+        "x2": 70.075,
+        "y2": 45.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 15.925,
+        "y1": 29.925,
+        "x2": 13.575,
+        "y2": 27.575,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 39.15824,
+        "y1": 33.324987,
+        "x2": 39.15824,
+        "y2": 31.84176,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 33.324966,
+        "y1": 37.499987,
+        "x2": 33.324966,
+        "y2": 39.158261,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 9.575,
+        "y1": 16.175,
+        "x2": 4.925,
+        "y2": 20.825,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 65.425,
+        "y1": 58.825,
+        "x2": 70.075,
+        "y2": 54.175,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 35.841692,
+        "y1": 33.324987,
+        "x2": 34.583329,
+        "y2": 34.58335,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 41.674966,
+        "y1": 39.158261,
+        "x2": 41.674966,
+        "y2": 37.499987,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 15.925,
+        "y1": 40.0125,
+        "x2": 15.9375,
+        "y2": 40.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 59.075,
+        "y1": 35.0,
+        "x2": 59.075,
+        "y2": 40.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 39.15824,
+        "y1": 31.84176,
+        "x2": 44.25,
+        "y2": 26.75,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 63.75,
+        "y1": 16.175,
+        "x2": 56.25,
+        "y2": 16.175,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 4.925,
+        "y1": 27.575,
+        "x2": 4.925,
+        "y2": 30.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 15.925,
+        "y1": 35.0,
+        "x2": 15.925,
+        "y2": 30.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 41.674966,
+        "y1": 37.499987,
+        "x2": 41.674966,
+        "y2": 35.841713,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 11.25,
+        "y1": 16.175,
+        "x2": 18.75,
+        "y2": 16.175,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 33.324966,
+        "y1": 39.158261,
+        "x2": 34.583329,
+        "y2": 40.416624,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 70.075,
+        "y1": 45.0,
+        "x2": 70.075,
+        "y2": 40.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 70.075,
+        "y1": 20.75,
+        "x2": 70.075,
+        "y2": 27.575,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 48.75,
+        "y1": 16.175,
+        "x2": 44.575,
+        "y2": 16.175,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 39.15824,
+        "y1": 33.324987,
+        "x2": 37.499966,
+        "y2": 33.324987,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 44.25,
+        "y1": 26.75,
+        "x2": 44.25,
+        "y2": 16.25,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 11.25,
+        "y1": 58.825,
+        "x2": 18.75,
+        "y2": 58.825,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 70.075,
+        "y1": 30.0,
+        "x2": 70.075,
+        "y2": 35.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 70.075,
+        "y1": 27.575,
+        "x2": 70.075,
+        "y2": 30.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 63.75,
+        "y1": 58.825,
+        "x2": 65.425,
+        "y2": 58.825,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 61.3375,
+        "y1": 27.575,
+        "x2": 70.075,
+        "y2": 27.575,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 37.499966,
+        "y1": 33.324987,
+        "x2": 35.841692,
+        "y2": 33.324987,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 48.75,
+        "y1": 58.825,
+        "x2": 56.25,
+        "y2": 58.825,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 35.841692,
+        "y1": 41.674987,
+        "x2": 37.499966,
+        "y2": 41.674987,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 15.925,
+        "y1": 45.0,
+        "x2": 15.925,
+        "y2": 40.0125,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 26.25,
+        "y1": 58.825,
+        "x2": 33.75,
+        "y2": 58.825,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 33.324966,
+        "y1": 35.841713,
+        "x2": 33.324966,
+        "y2": 37.499987,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 63.75,
+        "y1": 16.175,
+        "x2": 65.5,
+        "y2": 16.175,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 39.15824,
+        "y1": 41.674987,
+        "x2": 40.416603,
+        "y2": 40.416624,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 41.25,
+        "y1": 16.175,
+        "x2": 33.75,
+        "y2": 16.175,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 41.25,
+        "y1": 58.825,
+        "x2": 48.75,
+        "y2": 58.825,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 15.9375,
+        "y1": 40.0,
+        "x2": 15.9375,
+        "y2": 35.0125,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 70.075,
+        "y1": 40.0,
+        "x2": 70.075,
+        "y2": 35.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 59.075,
+        "y1": 30.0,
+        "x2": 59.075,
+        "y2": 35.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 59.075,
+        "y1": 29.8375,
+        "x2": 61.3375,
+        "y2": 27.575,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 41.674966,
+        "y1": 35.841713,
+        "x2": 40.416603,
+        "y2": 34.58335,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 4.925,
+        "y1": 20.825,
+        "x2": 4.925,
+        "y2": 27.575,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 4.925,
+        "y1": 20.825,
+        "x2": 3.0,
+        "y2": 18.9,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 15.925,
+        "y1": 30.0,
+        "x2": 15.925,
+        "y2": 29.925,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 63.75,
+        "y1": 58.825,
+        "x2": 56.25,
+        "y2": 58.825,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 13.575,
+        "y1": 27.575,
+        "x2": 4.925,
+        "y2": 27.575,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 65.5,
+        "y1": 16.175,
+        "x2": 70.075,
+        "y2": 20.75,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 4.925,
+        "y1": 45.0,
+        "x2": 4.925,
+        "y2": 40.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 33.75,
+        "y1": 58.825,
+        "x2": 41.25,
+        "y2": 58.825,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 15.9375,
+        "y1": 35.0125,
+        "x2": 15.925,
+        "y2": 35.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 26.25,
+        "y1": 16.175,
+        "x2": 33.75,
+        "y2": 16.175,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 37.499966,
+        "y1": 41.674987,
+        "x2": 39.15824,
+        "y2": 41.674987,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 11.25,
+        "y1": 16.175,
+        "x2": 9.575,
+        "y2": 16.175,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 4.925,
+        "y1": 40.0,
+        "x2": 4.925,
+        "y2": 35.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 59.075,
+        "y1": 30.0,
+        "x2": 59.075,
+        "y2": 29.8375,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 4.925,
+        "y1": 35.0,
+        "x2": 4.925,
+        "y2": 30.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 40.416603,
+        "y1": 34.58335,
+        "x2": 39.15824,
+        "y2": 33.324987,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 17.575,
+        "y1": 45.0,
+        "x2": 20.9625,
+        "y2": 45.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 17.5875,
+        "y1": 40.0,
+        "x2": 20.9625,
+        "y2": 40.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 17.575,
+        "y1": 35.0,
+        "x2": 20.9625,
+        "y2": 35.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 17.575,
+        "y1": 30.0,
+        "x2": 20.9625,
+        "y2": 30.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 6.575,
+        "y1": 45.0,
+        "x2": 9.9625,
+        "y2": 45.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 6.575,
+        "y1": 40.0,
+        "x2": 9.9625,
+        "y2": 40.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 6.575,
+        "y1": 35.0,
+        "x2": 9.9625,
+        "y2": 35.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 6.575,
+        "y1": 30.0,
+        "x2": 9.9625,
+        "y2": 30.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 11.25,
+        "y1": 21.2125,
+        "x2": 11.25,
+        "y2": 17.825,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 18.75,
+        "y1": 21.2125,
+        "x2": 18.75,
+        "y2": 17.825,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 26.25,
+        "y1": 21.2125,
+        "x2": 26.25,
+        "y2": 17.825,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 33.75,
+        "y1": 21.2125,
+        "x2": 33.75,
+        "y2": 17.825,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 41.25,
+        "y1": 21.2125,
+        "x2": 41.25,
+        "y2": 17.825,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 48.75,
+        "y1": 21.2125,
+        "x2": 48.75,
+        "y2": 17.825,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 56.25,
+        "y1": 21.2125,
+        "x2": 56.25,
+        "y2": 17.825,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 63.75,
+        "y1": 21.2125,
+        "x2": 63.75,
+        "y2": 17.825,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 54.0375,
+        "y1": 30.0,
+        "x2": 57.425,
+        "y2": 30.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 54.0375,
+        "y1": 35.0,
+        "x2": 57.425,
+        "y2": 35.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 54.0375,
+        "y1": 40.0,
+        "x2": 57.425,
+        "y2": 40.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 54.0375,
+        "y1": 45.0,
+        "x2": 57.425,
+        "y2": 45.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 65.0375,
+        "y1": 30.0,
+        "x2": 68.425,
+        "y2": 30.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 65.0375,
+        "y1": 35.0,
+        "x2": 68.425,
+        "y2": 35.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 65.0375,
+        "y1": 40.0,
+        "x2": 68.425,
+        "y2": 40.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 65.0375,
+        "y1": 45.0,
+        "x2": 68.425,
+        "y2": 45.0,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 63.75,
+        "y1": 57.175,
+        "x2": 63.75,
+        "y2": 53.7875,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 56.25,
+        "y1": 57.175,
+        "x2": 56.25,
+        "y2": 53.7875,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 48.75,
+        "y1": 57.175,
+        "x2": 48.75,
+        "y2": 53.7875,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 41.25,
+        "y1": 57.175,
+        "x2": 41.25,
+        "y2": 53.7875,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 33.75,
+        "y1": 57.175,
+        "x2": 33.75,
+        "y2": 53.7875,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 26.25,
+        "y1": 57.175,
+        "x2": 26.25,
+        "y2": 53.7875,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 18.75,
+        "y1": 57.175,
+        "x2": 18.75,
+        "y2": 53.7875,
+        "width": 0.25,
+        "side": "top"
+      },
+      {
+        "x1": 11.25,
+        "y1": 57.175,
+        "x2": 11.25,
+        "y2": 53.7875,
+        "width": 0.25,
+        "side": "top"
+      }
+    ],
+    "pads": [
+      {
+        "ref": "D34",
+        "pad": "1",
+        "xMm": 56.25,
+        "yMm": 52.2125,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D34",
+        "pad": "2",
+        "xMm": 56.25,
+        "yMm": 53.7875,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R16",
+        "pad": "1",
+        "xMm": 4.925,
+        "yMm": 30.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R16",
+        "pad": "2",
+        "xMm": 6.575,
+        "yMm": 30.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R29",
+        "pad": "1",
+        "xMm": 70.075,
+        "yMm": 30.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R29",
+        "pad": "2",
+        "xMm": 68.425,
+        "yMm": 30.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D28",
+        "pad": "1",
+        "xMm": 52.4625,
+        "yMm": 45.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D28",
+        "pad": "2",
+        "xMm": 54.0375,
+        "yMm": 45.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R2",
+        "pad": "1",
+        "xMm": 40.416603,
+        "yMm": 40.416624,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 45.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R2",
+        "pad": "2",
+        "xMm": 41.583329,
+        "yMm": 41.58335,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 45.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R15",
+        "pad": "1",
+        "xMm": 4.925,
+        "yMm": 35.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R15",
+        "pad": "2",
+        "xMm": 6.575,
+        "yMm": 35.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D2",
+        "pad": "1",
+        "xMm": 43.943119,
+        "yMm": 45.056834,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 315.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D2",
+        "pad": "2",
+        "xMm": 45.056813,
+        "yMm": 43.94314,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 315.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R24",
+        "pad": "1",
+        "xMm": 63.75,
+        "yMm": 16.175,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R24",
+        "pad": "2",
+        "xMm": 63.75,
+        "yMm": 17.825,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D11",
+        "pad": "1",
+        "xMm": 22.5375,
+        "yMm": 35.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D11",
+        "pad": "2",
+        "xMm": 20.9625,
+        "yMm": 35.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R3",
+        "pad": "1",
+        "xMm": 41.674966,
+        "yMm": 37.499987,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R3",
+        "pad": "2",
+        "xMm": 43.324966,
+        "yMm": 37.499987,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D8",
+        "pad": "1",
+        "xMm": 29.943119,
+        "yMm": 43.94314,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 45.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D8",
+        "pad": "2",
+        "xMm": 31.056813,
+        "yMm": 45.056834,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 45.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R11",
+        "pad": "1",
+        "xMm": 15.925,
+        "yMm": 35.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R11",
+        "pad": "2",
+        "xMm": 17.575,
+        "yMm": 35.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R33",
+        "pad": "1",
+        "xMm": 63.75,
+        "yMm": 58.825,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R33",
+        "pad": "2",
+        "xMm": 63.75,
+        "yMm": 57.175,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D36",
+        "pad": "1",
+        "xMm": 41.25,
+        "yMm": 52.2125,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D36",
+        "pad": "2",
+        "xMm": 41.25,
+        "yMm": 53.7875,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R18",
+        "pad": "1",
+        "xMm": 18.75,
+        "yMm": 16.175,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R18",
+        "pad": "2",
+        "xMm": 18.75,
+        "yMm": 17.825,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D15",
+        "pad": "1",
+        "xMm": 11.5375,
+        "yMm": 35.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D15",
+        "pad": "2",
+        "xMm": 9.9625,
+        "yMm": 35.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D16",
+        "pad": "1",
+        "xMm": 11.5375,
+        "yMm": 30.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D16",
+        "pad": "2",
+        "xMm": 9.9625,
+        "yMm": 30.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R32",
+        "pad": "1",
+        "xMm": 70.075,
+        "yMm": 45.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R32",
+        "pad": "2",
+        "xMm": 68.425,
+        "yMm": 45.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D31",
+        "pad": "1",
+        "xMm": 63.4625,
+        "yMm": 40.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D31",
+        "pad": "2",
+        "xMm": 65.0375,
+        "yMm": 40.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "H4",
+        "pad": "1",
+        "xMm": 70.0,
+        "yMm": 5.0,
+        "widthMm": 5.6,
+        "heightMm": 5.6,
+        "rotationDeg": 0.0,
+        "shape": "circle",
+        "side": "top"
+      },
+      {
+        "ref": "D19",
+        "pad": "1",
+        "xMm": 26.25,
+        "yMm": 22.7875,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D19",
+        "pad": "2",
+        "xMm": 26.25,
+        "yMm": 21.2125,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D6",
+        "pad": "1",
+        "xMm": 31.056813,
+        "yMm": 29.94314,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 135.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D6",
+        "pad": "2",
+        "xMm": 29.943119,
+        "yMm": 31.056834,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 135.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D25",
+        "pad": "1",
+        "xMm": 52.4625,
+        "yMm": 30.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D25",
+        "pad": "2",
+        "xMm": 54.0375,
+        "yMm": 30.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R12",
+        "pad": "1",
+        "xMm": 15.925,
+        "yMm": 30.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R12",
+        "pad": "2",
+        "xMm": 17.575,
+        "yMm": 30.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R5",
+        "pad": "1",
+        "xMm": 37.499966,
+        "yMm": 33.324987,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R5",
+        "pad": "2",
+        "xMm": 37.499966,
+        "yMm": 31.674987,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "H1",
+        "pad": "1",
+        "xMm": 5.0,
+        "yMm": 70.0,
+        "widthMm": 5.6,
+        "heightMm": 5.6,
+        "rotationDeg": 0.0,
+        "shape": "circle",
+        "side": "top"
+      },
+      {
+        "ref": "R13",
+        "pad": "1",
+        "xMm": 4.925,
+        "yMm": 45.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R13",
+        "pad": "2",
+        "xMm": 6.575,
+        "yMm": 45.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "J1",
+        "pad": "1",
+        "xMm": 3.0,
+        "yMm": 18.75,
+        "widthMm": 1.7,
+        "heightMm": 1.7,
+        "rotationDeg": 0.0,
+        "shape": "rect",
+        "side": "top"
+      },
+      {
+        "ref": "J1",
+        "pad": "2",
+        "xMm": 3.0,
+        "yMm": 16.21,
+        "widthMm": 1.7,
+        "heightMm": 1.7,
+        "rotationDeg": 0.0,
+        "shape": "oval",
+        "side": "top"
+      },
+      {
+        "ref": "R6",
+        "pad": "1",
+        "xMm": 34.583329,
+        "yMm": 34.58335,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 225.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R6",
+        "pad": "2",
+        "xMm": 33.416603,
+        "yMm": 33.416624,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 225.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R23",
+        "pad": "1",
+        "xMm": 56.25,
+        "yMm": 16.175,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R23",
+        "pad": "2",
+        "xMm": 56.25,
+        "yMm": 17.825,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R37",
+        "pad": "1",
+        "xMm": 33.75,
+        "yMm": 58.825,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R37",
+        "pad": "2",
+        "xMm": 33.75,
+        "yMm": 57.175,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D30",
+        "pad": "1",
+        "xMm": 63.4625,
+        "yMm": 35.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D30",
+        "pad": "2",
+        "xMm": 65.0375,
+        "yMm": 35.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D22",
+        "pad": "1",
+        "xMm": 48.75,
+        "yMm": 22.7875,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D22",
+        "pad": "2",
+        "xMm": 48.75,
+        "yMm": 21.2125,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R9",
+        "pad": "1",
+        "xMm": 15.925,
+        "yMm": 45.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R9",
+        "pad": "2",
+        "xMm": 17.575,
+        "yMm": 45.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R38",
+        "pad": "1",
+        "xMm": 26.25,
+        "yMm": 58.825,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R38",
+        "pad": "2",
+        "xMm": 26.25,
+        "yMm": 57.175,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D21",
+        "pad": "1",
+        "xMm": 41.25,
+        "yMm": 22.7875,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D21",
+        "pad": "2",
+        "xMm": 41.25,
+        "yMm": 21.2125,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D32",
+        "pad": "1",
+        "xMm": 63.4625,
+        "yMm": 45.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D32",
+        "pad": "2",
+        "xMm": 65.0375,
+        "yMm": 45.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D20",
+        "pad": "1",
+        "xMm": 33.75,
+        "yMm": 22.7875,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D20",
+        "pad": "2",
+        "xMm": 33.75,
+        "yMm": 21.2125,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R25",
+        "pad": "1",
+        "xMm": 59.075,
+        "yMm": 30.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R25",
+        "pad": "2",
+        "xMm": 57.425,
+        "yMm": 30.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D17",
+        "pad": "1",
+        "xMm": 11.25,
+        "yMm": 22.7875,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D17",
+        "pad": "2",
+        "xMm": 11.25,
+        "yMm": 21.2125,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R10",
+        "pad": "1",
+        "xMm": 15.9375,
+        "yMm": 40.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R10",
+        "pad": "2",
+        "xMm": 17.5875,
+        "yMm": 40.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "H2",
+        "pad": "1",
+        "xMm": 70.0,
+        "yMm": 70.0,
+        "widthMm": 5.6,
+        "heightMm": 5.6,
+        "rotationDeg": 0.0,
+        "shape": "circle",
+        "side": "top"
+      },
+      {
+        "ref": "D26",
+        "pad": "1",
+        "xMm": 52.4625,
+        "yMm": 35.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D26",
+        "pad": "2",
+        "xMm": 54.0375,
+        "yMm": 35.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R4",
+        "pad": "1",
+        "xMm": 40.416603,
+        "yMm": 34.58335,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 315.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R4",
+        "pad": "2",
+        "xMm": 41.583329,
+        "yMm": 33.416624,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 315.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D3",
+        "pad": "1",
+        "xMm": 47.499966,
+        "yMm": 38.287487,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D3",
+        "pad": "2",
+        "xMm": 47.499966,
+        "yMm": 36.712487,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R14",
+        "pad": "1",
+        "xMm": 4.925,
+        "yMm": 40.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R14",
+        "pad": "2",
+        "xMm": 6.575,
+        "yMm": 40.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D23",
+        "pad": "1",
+        "xMm": 56.25,
+        "yMm": 22.7875,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D23",
+        "pad": "2",
+        "xMm": 56.25,
+        "yMm": 21.2125,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D35",
+        "pad": "1",
+        "xMm": 48.75,
+        "yMm": 52.2125,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D35",
+        "pad": "2",
+        "xMm": 48.75,
+        "yMm": 53.7875,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "FID3",
+        "pad": "",
+        "xMm": 62.5,
+        "yMm": 70.0,
+        "widthMm": 1.0,
+        "heightMm": 1.0,
+        "rotationDeg": 0.0,
+        "shape": "circle",
+        "side": "top"
+      },
+      {
+        "ref": "H3",
+        "pad": "1",
+        "xMm": 5.0,
+        "yMm": 5.0,
+        "widthMm": 5.6,
+        "heightMm": 5.6,
+        "rotationDeg": 0.0,
+        "shape": "circle",
+        "side": "top"
+      },
+      {
+        "ref": "R1",
+        "pad": "1",
+        "xMm": 37.499966,
+        "yMm": 41.674987,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R1",
+        "pad": "2",
+        "xMm": 37.499966,
+        "yMm": 43.324987,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R21",
+        "pad": "1",
+        "xMm": 41.25,
+        "yMm": 16.175,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R21",
+        "pad": "2",
+        "xMm": 41.25,
+        "yMm": 17.825,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R36",
+        "pad": "1",
+        "xMm": 41.25,
+        "yMm": 58.825,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R36",
+        "pad": "2",
+        "xMm": 41.25,
+        "yMm": 57.175,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D10",
+        "pad": "1",
+        "xMm": 22.5375,
+        "yMm": 40.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D10",
+        "pad": "2",
+        "xMm": 20.9625,
+        "yMm": 40.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D29",
+        "pad": "1",
+        "xMm": 63.4625,
+        "yMm": 30.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D29",
+        "pad": "2",
+        "xMm": 65.0375,
+        "yMm": 30.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R28",
+        "pad": "1",
+        "xMm": 59.075,
+        "yMm": 45.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R28",
+        "pad": "2",
+        "xMm": 57.425,
+        "yMm": 45.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R19",
+        "pad": "1",
+        "xMm": 26.25,
+        "yMm": 16.175,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R19",
+        "pad": "2",
+        "xMm": 26.25,
+        "yMm": 17.825,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D24",
+        "pad": "1",
+        "xMm": 63.75,
+        "yMm": 22.7875,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D24",
+        "pad": "2",
+        "xMm": 63.75,
+        "yMm": 21.2125,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R17",
+        "pad": "1",
+        "xMm": 11.25,
+        "yMm": 16.175,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R17",
+        "pad": "2",
+        "xMm": 11.25,
+        "yMm": 17.825,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D7",
+        "pad": "1",
+        "xMm": 27.499966,
+        "yMm": 36.712487,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D7",
+        "pad": "2",
+        "xMm": 27.499966,
+        "yMm": 38.287487,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D18",
+        "pad": "1",
+        "xMm": 18.75,
+        "yMm": 22.7875,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D18",
+        "pad": "2",
+        "xMm": 18.75,
+        "yMm": 21.2125,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R39",
+        "pad": "1",
+        "xMm": 18.75,
+        "yMm": 58.825,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R39",
+        "pad": "2",
+        "xMm": 18.75,
+        "yMm": 57.175,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R22",
+        "pad": "1",
+        "xMm": 48.75,
+        "yMm": 16.175,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R22",
+        "pad": "2",
+        "xMm": 48.75,
+        "yMm": 17.825,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D14",
+        "pad": "1",
+        "xMm": 11.5375,
+        "yMm": 40.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D14",
+        "pad": "2",
+        "xMm": 9.9625,
+        "yMm": 40.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D5",
+        "pad": "1",
+        "xMm": 38.287466,
+        "yMm": 27.499987,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D5",
+        "pad": "2",
+        "xMm": 36.712466,
+        "yMm": 27.499987,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D12",
+        "pad": "1",
+        "xMm": 22.5375,
+        "yMm": 30.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D12",
+        "pad": "2",
+        "xMm": 20.9625,
+        "yMm": 30.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R8",
+        "pad": "1",
+        "xMm": 34.583329,
+        "yMm": 40.416624,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 135.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R8",
+        "pad": "2",
+        "xMm": 33.416603,
+        "yMm": 41.58335,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 135.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R7",
+        "pad": "1",
+        "xMm": 33.324966,
+        "yMm": 37.499987,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R7",
+        "pad": "2",
+        "xMm": 31.674966,
+        "yMm": 37.499987,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "FID1",
+        "pad": "",
+        "xMm": 62.5,
+        "yMm": 5.0,
+        "widthMm": 1.0,
+        "heightMm": 1.0,
+        "rotationDeg": 0.0,
+        "shape": "circle",
+        "side": "top"
+      },
+      {
+        "ref": "R35",
+        "pad": "1",
+        "xMm": 48.75,
+        "yMm": 58.825,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R35",
+        "pad": "2",
+        "xMm": 48.75,
+        "yMm": 57.175,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D39",
+        "pad": "1",
+        "xMm": 18.75,
+        "yMm": 52.2125,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D39",
+        "pad": "2",
+        "xMm": 18.75,
+        "yMm": 53.7875,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D37",
+        "pad": "1",
+        "xMm": 33.75,
+        "yMm": 52.2125,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D37",
+        "pad": "2",
+        "xMm": 33.75,
+        "yMm": 53.7875,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D4",
+        "pad": "1",
+        "xMm": 45.056813,
+        "yMm": 31.056834,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 225.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D4",
+        "pad": "2",
+        "xMm": 43.943119,
+        "yMm": 29.94314,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 225.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R27",
+        "pad": "1",
+        "xMm": 59.075,
+        "yMm": 40.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R27",
+        "pad": "2",
+        "xMm": 57.425,
+        "yMm": 40.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D40",
+        "pad": "1",
+        "xMm": 11.25,
+        "yMm": 52.2125,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D40",
+        "pad": "2",
+        "xMm": 11.25,
+        "yMm": 53.7875,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R20",
+        "pad": "1",
+        "xMm": 33.75,
+        "yMm": 16.175,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R20",
+        "pad": "2",
+        "xMm": 33.75,
+        "yMm": 17.825,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D1",
+        "pad": "1",
+        "xMm": 36.712466,
+        "yMm": 47.499987,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D1",
+        "pad": "2",
+        "xMm": 38.287466,
+        "yMm": 47.499987,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R26",
+        "pad": "1",
+        "xMm": 59.075,
+        "yMm": 35.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R26",
+        "pad": "2",
+        "xMm": 57.425,
+        "yMm": 35.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D13",
+        "pad": "1",
+        "xMm": 11.5375,
+        "yMm": 45.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D13",
+        "pad": "2",
+        "xMm": 9.9625,
+        "yMm": 45.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "FID2",
+        "pad": "",
+        "xMm": 12.5,
+        "yMm": 70.0,
+        "widthMm": 1.0,
+        "heightMm": 1.0,
+        "rotationDeg": 0.0,
+        "shape": "circle",
+        "side": "top"
+      },
+      {
+        "ref": "D38",
+        "pad": "1",
+        "xMm": 26.25,
+        "yMm": 52.2125,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D38",
+        "pad": "2",
+        "xMm": 26.25,
+        "yMm": 53.7875,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D33",
+        "pad": "1",
+        "xMm": 63.75,
+        "yMm": 52.2125,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D33",
+        "pad": "2",
+        "xMm": 63.75,
+        "yMm": 53.7875,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 90.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R34",
+        "pad": "1",
+        "xMm": 56.25,
+        "yMm": 58.825,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R34",
+        "pad": "2",
+        "xMm": 56.25,
+        "yMm": 57.175,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R31",
+        "pad": "1",
+        "xMm": 70.075,
+        "yMm": 40.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R31",
+        "pad": "2",
+        "xMm": 68.425,
+        "yMm": 40.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R30",
+        "pad": "1",
+        "xMm": 70.075,
+        "yMm": 35.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R30",
+        "pad": "2",
+        "xMm": 68.425,
+        "yMm": 35.0,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R40",
+        "pad": "1",
+        "xMm": 11.25,
+        "yMm": 58.825,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "R40",
+        "pad": "2",
+        "xMm": 11.25,
+        "yMm": 57.175,
+        "widthMm": 0.8,
+        "heightMm": 0.95,
+        "rotationDeg": 270.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D27",
+        "pad": "1",
+        "xMm": 52.4625,
+        "yMm": 40.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D27",
+        "pad": "2",
+        "xMm": 54.0375,
+        "yMm": 40.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 0.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D9",
+        "pad": "1",
+        "xMm": 22.5375,
+        "yMm": 45.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      },
+      {
+        "ref": "D9",
+        "pad": "2",
+        "xMm": 20.9625,
+        "yMm": 45.0,
+        "widthMm": 0.875,
+        "heightMm": 0.95,
+        "rotationDeg": 180.0,
+        "shape": "roundrect",
+        "side": "top"
+      }
+    ],
+    "footprints": [
+      {
+        "ref": "D34",
+        "xMm": 56.25,
+        "yMm": 53.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 90.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R16",
+        "xMm": 5.75,
+        "yMm": 30.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R29",
+        "xMm": 69.25,
+        "yMm": 30.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 180.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D28",
+        "xMm": 53.25,
+        "yMm": 45.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R2",
+        "xMm": 40.999966,
+        "yMm": 40.999987,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 45.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R15",
+        "xMm": 5.75,
+        "yMm": 35.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D2",
+        "xMm": 44.499966,
+        "yMm": 44.499987,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 315.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R24",
+        "xMm": 63.75,
+        "yMm": 17.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 90.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D11",
+        "xMm": 21.75,
+        "yMm": 35.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 180.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R3",
+        "xMm": 42.499966,
+        "yMm": 37.499987,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D8",
+        "xMm": 30.499966,
+        "yMm": 44.499987,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 45.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R11",
+        "xMm": 16.75,
+        "yMm": 35.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R33",
+        "xMm": 63.75,
+        "yMm": 58.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 270.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D36",
+        "xMm": 41.25,
+        "yMm": 53.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 90.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R18",
+        "xMm": 18.75,
+        "yMm": 17.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 90.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D15",
+        "xMm": 10.75,
+        "yMm": 35.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 180.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D16",
+        "xMm": 10.75,
+        "yMm": 30.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 180.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R32",
+        "xMm": 69.25,
+        "yMm": 45.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 180.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D31",
+        "xMm": 64.25,
+        "yMm": 40.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "H4",
+        "xMm": 70.0,
+        "yMm": 5.0,
+        "widthMm": 5.6,
+        "heightMm": 5.6,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "pad-bounds"
+      },
+      {
+        "ref": "D19",
+        "xMm": 26.25,
+        "yMm": 22.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 270.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D6",
+        "xMm": 30.499966,
+        "yMm": 30.499987,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 135.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D25",
+        "xMm": 53.25,
+        "yMm": 30.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R12",
+        "xMm": 16.75,
+        "yMm": 30.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R5",
+        "xMm": 37.499966,
+        "yMm": 32.499987,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 270.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "H1",
+        "xMm": 5.0,
+        "yMm": 70.0,
+        "widthMm": 5.6,
+        "heightMm": 5.6,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "pad-bounds"
+      },
+      {
+        "ref": "R13",
+        "xMm": 5.75,
+        "yMm": 45.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "J1",
+        "xMm": 3.0,
+        "yMm": 17.475,
+        "widthMm": 3.6,
+        "heightMm": 6.15,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R6",
+        "xMm": 33.999966,
+        "yMm": 33.999987,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 225.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R23",
+        "xMm": 56.25,
+        "yMm": 17.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 90.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R37",
+        "xMm": 33.75,
+        "yMm": 58.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 270.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D30",
+        "xMm": 64.25,
+        "yMm": 35.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D22",
+        "xMm": 48.75,
+        "yMm": 22.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 270.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R9",
+        "xMm": 16.75,
+        "yMm": 45.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R38",
+        "xMm": 26.25,
+        "yMm": 58.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 270.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D21",
+        "xMm": 41.25,
+        "yMm": 22.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 270.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D32",
+        "xMm": 64.25,
+        "yMm": 45.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D20",
+        "xMm": 33.75,
+        "yMm": 22.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 270.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R25",
+        "xMm": 58.25,
+        "yMm": 30.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 180.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D17",
+        "xMm": 11.25,
+        "yMm": 22.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 270.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R10",
+        "xMm": 16.7625,
+        "yMm": 40.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "H2",
+        "xMm": 70.0,
+        "yMm": 70.0,
+        "widthMm": 5.6,
+        "heightMm": 5.6,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "pad-bounds"
+      },
+      {
+        "ref": "D26",
+        "xMm": 53.25,
+        "yMm": 35.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R4",
+        "xMm": 40.999966,
+        "yMm": 33.999987,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 315.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D3",
+        "xMm": 47.499966,
+        "yMm": 37.499987,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 270.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R14",
+        "xMm": 5.75,
+        "yMm": 40.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D23",
+        "xMm": 56.25,
+        "yMm": 22.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 270.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D35",
+        "xMm": 48.75,
+        "yMm": 53.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 90.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "FID3",
+        "xMm": 62.5,
+        "yMm": 70.0,
+        "widthMm": 1.0,
+        "heightMm": 1.0,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "pad-bounds"
+      },
+      {
+        "ref": "H3",
+        "xMm": 5.0,
+        "yMm": 5.0,
+        "widthMm": 5.6,
+        "heightMm": 5.6,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "pad-bounds"
+      },
+      {
+        "ref": "R1",
+        "xMm": 37.499966,
+        "yMm": 42.499987,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 90.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R21",
+        "xMm": 41.25,
+        "yMm": 17.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 90.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R36",
+        "xMm": 41.25,
+        "yMm": 58.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 270.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D10",
+        "xMm": 21.75,
+        "yMm": 40.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 180.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D29",
+        "xMm": 64.25,
+        "yMm": 30.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R28",
+        "xMm": 58.25,
+        "yMm": 45.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 180.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R19",
+        "xMm": 26.25,
+        "yMm": 17.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 90.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D24",
+        "xMm": 63.75,
+        "yMm": 22.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 270.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R17",
+        "xMm": 11.25,
+        "yMm": 17.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 90.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D7",
+        "xMm": 27.499966,
+        "yMm": 37.499987,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 90.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D18",
+        "xMm": 18.75,
+        "yMm": 22.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 270.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R39",
+        "xMm": 18.75,
+        "yMm": 58.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 270.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R22",
+        "xMm": 48.75,
+        "yMm": 17.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 90.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D14",
+        "xMm": 10.75,
+        "yMm": 40.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 180.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D5",
+        "xMm": 37.499966,
+        "yMm": 27.499987,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 180.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D12",
+        "xMm": 21.75,
+        "yMm": 30.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 180.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R8",
+        "xMm": 33.999966,
+        "yMm": 40.999987,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 135.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R7",
+        "xMm": 32.499966,
+        "yMm": 37.499987,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 180.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "FID1",
+        "xMm": 62.5,
+        "yMm": 5.0,
+        "widthMm": 1.0,
+        "heightMm": 1.0,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "pad-bounds"
+      },
+      {
+        "ref": "R35",
+        "xMm": 48.75,
+        "yMm": 58.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 270.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D39",
+        "xMm": 18.75,
+        "yMm": 53.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 90.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D37",
+        "xMm": 33.75,
+        "yMm": 53.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 90.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D4",
+        "xMm": 44.499966,
+        "yMm": 30.499987,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 225.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R27",
+        "xMm": 58.25,
+        "yMm": 40.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 180.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D40",
+        "xMm": 11.25,
+        "yMm": 53.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 90.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R20",
+        "xMm": 33.75,
+        "yMm": 17.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 90.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D1",
+        "xMm": 37.499966,
+        "yMm": 47.499987,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R26",
+        "xMm": 58.25,
+        "yMm": 35.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 180.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D13",
+        "xMm": 10.75,
+        "yMm": 45.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 180.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "FID2",
+        "xMm": 12.5,
+        "yMm": 70.0,
+        "widthMm": 1.0,
+        "heightMm": 1.0,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "pad-bounds"
+      },
+      {
+        "ref": "D38",
+        "xMm": 26.25,
+        "yMm": 53.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 90.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D33",
+        "xMm": 63.75,
+        "yMm": 53.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 90.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R34",
+        "xMm": 56.25,
+        "yMm": 58.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 270.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R31",
+        "xMm": 69.25,
+        "yMm": 40.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 180.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R30",
+        "xMm": 69.25,
+        "yMm": 35.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 180.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "R40",
+        "xMm": 11.25,
+        "yMm": 58.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 270.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D27",
+        "xMm": 53.25,
+        "yMm": 40.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 0.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      },
+      {
+        "ref": "D9",
+        "xMm": 21.75,
+        "yMm": 45.0,
+        "widthMm": 2.96,
+        "heightMm": 1.46,
+        "rotationDeg": 180.0,
+        "side": "top",
+        "envelopeSource": "courtyard"
+      }
+    ],
+    "holes": [
+      {
+        "xMm": 70.0,
+        "yMm": 5.0,
+        "diameterMm": 3.2
+      },
+      {
+        "xMm": 5.0,
+        "yMm": 70.0,
+        "diameterMm": 3.2
+      },
+      {
+        "xMm": 3.0,
+        "yMm": 18.75,
+        "diameterMm": 1.0
+      },
+      {
+        "xMm": 3.0,
+        "yMm": 16.21,
+        "diameterMm": 1.0
+      },
+      {
+        "xMm": 70.0,
+        "yMm": 70.0,
+        "diameterMm": 3.2
+      },
+      {
+        "xMm": 5.0,
+        "yMm": 5.0,
+        "diameterMm": 3.2
+      }
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "status": "passed",
+  "bomReferences": 159,
+  "requiredSmt": 147,
+  "olderPlacements": 145,
+  "addedInSourceRevision": [
+    {
+      "ref": "D11",
+      "xMm": 49.6,
+      "yMm": 56.1,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "Diode_SMD:D_SOD-123"
+    },
+    {
+      "ref": "D12",
+      "xMm": 49.6,
+      "yMm": 50.7,
+      "rotationDeg": 90.0,
+      "side": "top",
+      "package": "Diode_SMD:D_SOD-123"
+    }
+  ],
+  "commonPlacementsUnchanged": true,
+  "sourceFilesUnmodified": true,
+  "generatorSha256": "7931f66ebf18ceb7f04756a6f37ff45ef419fee0eeb48943c5d5bbed36ec3289",
+  "scope": "Assembly-record reconciliation. Hardware selection and flight qualification are separate from this example."
+}
