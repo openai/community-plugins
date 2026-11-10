@@ -1,0 +1,6 @@
+interface:
+  display_name: "Revise PCBA assembly"
+  short_description: "Traceable assembly package workflow"
+  default_prompt: "Use $revise-pcba-assembly to preview a bounded assembly correction."
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,19 @@
+{
+  "bom": {
+    "ref": "ref",
+    "partId": "partId",
+    "value": "value",
+    "package": "package",
+    "category": "category",
+    "populated": "populated",
+    "mpn": "mpn"
+  },
+  "placements": {
+    "ref": "ref",
+    "x": "xMm",
+    "y": "yMm",
+    "rotation": "rotationDeg",
+    "side": "side",
+    "package": "package"
+  }
+}

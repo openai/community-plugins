@@ -1,0 +1,38 @@
+{
+  "repo": "https://github.com/sparkfun/SparkFun_CO2_Sensor_STCC4_SHT40_Qwiic",
+  "commit": "836b63c8f684d57779cf0e699144ac056e0808ba",
+  "license": "CC-BY-SA-4.0 (hardware); MIT (software)",
+  "files": [
+    {
+      "path": "source/LICENSE.md",
+      "sha256": "60ff0c64f197db99b0f4fe6fbcd2de308117cdd791d99a86edfcaa5c10a82bc6",
+      "url": "https://raw.githubusercontent.com/sparkfun/SparkFun_CO2_Sensor_STCC4_SHT40_Qwiic/836b63c8f684d57779cf0e699144ac056e0808ba/LICENSE.md",
+      "bytes": 2887
+    },
+    {
+      "path": "source/README.md",
+      "sha256": "f1dd97631293667d4b803b949bc8399bc6e197dac87977da2e3a17a57c0dae12",
+      "url": "https://raw.githubusercontent.com/sparkfun/SparkFun_CO2_Sensor_STCC4_SHT40_Qwiic/836b63c8f684d57779cf0e699144ac056e0808ba/README.md",
+      "bytes": 2252
+    },
+    {
+      "path": "source/Hardware/SparkFun_Qwiic_CO2_Sensor_STCC4.kicad_pcb",
+      "sha256": "3e7230678d1a17356e258abfd5c03f2f24b84ddb84884a7a0f519bdbdcf1f206",
+      "url": "https://raw.githubusercontent.com/sparkfun/SparkFun_CO2_Sensor_STCC4_SHT40_Qwiic/836b63c8f684d57779cf0e699144ac056e0808ba/Hardware/SparkFun_Qwiic_CO2_Sensor_STCC4.kicad_pcb",
+      "bytes": 472335
+    },
+    {
+      "path": "source/Hardware/SparkFun_Qwiic_CO2_Sensor_STCC4.kicad_sch",
+      "sha256": "bda1cbb5b58394e6892bed6d227e5792dc779a67a681ec4b83b4e0f62447d953",
+      "url": "https://raw.githubusercontent.com/sparkfun/SparkFun_CO2_Sensor_STCC4_SHT40_Qwiic/836b63c8f684d57779cf0e699144ac056e0808ba/Hardware/SparkFun_Qwiic_CO2_Sensor_STCC4.kicad_sch",
+      "bytes": 208492
+    }
+  ],
+  "omittedFiles": [
+    {
+      "path": "Hardware/SparkFun_Qwiic_CO2_Sensor_STCC4.kicad_pro",
+      "reason": "Machine-local project settings are not needed for the assembly-data fixture. The unmodified project remains available at the pinned upstream revision.",
+      "url": "https://raw.githubusercontent.com/sparkfun/SparkFun_CO2_Sensor_STCC4_SHT40_Qwiic/836b63c8f684d57779cf0e699144ac056e0808ba/Hardware/SparkFun_Qwiic_CO2_Sensor_STCC4.kicad_pro"
+    }
+  ]
+}

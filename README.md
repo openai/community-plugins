@@ -107,6 +107,7 @@ are picked up.
 | [ReviewOps Auditor + Benchmark](plugins/reviewops-auditor-benchmark/README.md) | Normalize sanitized review-run exports, audit evaluation validity, benchmark lanes, and emit shadow-only guidance offline. | [Guide](plugins/reviewops-auditor-benchmark/README.md)                                                                    |
 | [React Native to SwiftUI](plugins/react-native-to-swiftui/README.md)           | Plan a bounded React Native/Expo feature migration, then port one explicitly approved slice with deterministic SwiftUI parity checks. | [Guide](plugins/react-native-to-swiftui/README.md) |
 | [Autodesk Fusion](plugins/autodesk-fusion/README.md) | Connect typed CAD/CAM operations, scoped Autodesk data, reviewed cloud recipes and engineering evidence; live qualification required. | [Guide](plugins/autodesk-fusion/README.md) |
+| [PCBA Engineering](plugins/pcba-engineering/README.md) | Reconcile assembly data, apply bounded revisions, and independently verify an offline PCBA handoff. | [Guide](plugins/pcba-engineering/README.md) · [2:27 demo](docs/media/pcba-engineering/README.md) |
 | [Masters’ Nudge](plugins/masters-nudge/README.md) | Ask a read-only Codex reviewer for a structural alternative after a code edit; adoption is optional and adds model usage and wait time. | [Guide](plugins/masters-nudge/README.md) · [Verification and limits](tests/masters-nudge/README.md) |
 
 Grafana Observability requires Codex and Node.js 22.19 or newer. Its manifest

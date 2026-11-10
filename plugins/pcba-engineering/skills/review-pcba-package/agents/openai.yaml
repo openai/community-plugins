@@ -1,0 +1,6 @@
+interface:
+  display_name: "Review PCBA package"
+  short_description: "Traceable assembly package workflow"
+  default_prompt: "Use $review-pcba-package to reconcile my local BOM and placement package."
+policy:
+  allow_implicit_invocation: true

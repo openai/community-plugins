@@ -21,6 +21,15 @@ plugins/autodesk-fusion/docs/native-dependencies.json linguist-generated=true
 plugins/autodesk-fusion/docs/support-matrix.md linguist-generated=true
 plugins/autodesk-fusion/docs/autodesk-fusion-*.md linguist-generated=true
 docs/autodesk-fusion-*.md text eol=lf
+# PCBA runtime and hash-bound public fixtures/evidence keep exact checkout bytes.
+plugins/pcba-engineering/** text eol=lf
+tests/pcba-engineering/fixtures/** -text
+tests/pcba-engineering/fixtures/**/source/** -whitespace linguist-vendored=true
+tests/pcba-engineering/fixtures/**/*.json linguist-generated=true
+docs/media/pcba-engineering/** -text
+docs/media/pcba-engineering/handoff/** linguist-generated=true
+docs/media/pcba-engineering/handoff/*.csv whitespace=cr-at-eol
+docs/media/pcba-engineering/LICENSE-CC-BY-SA-4.0.txt -whitespace linguist-vendored=true
 
 # Frozen Masters’ Nudge source receipts cover exact upstream Git blobs.
 plugins/masters-nudge/** -text -eol

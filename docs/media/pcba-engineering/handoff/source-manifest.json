@@ -1,0 +1,103 @@
+{
+  "schemaVersion": 1,
+  "importedFiles": [
+    {
+      "name": "brief.json",
+      "sha256": "9d76a58a811692b210f6e9ba2ae159f91c61afbb519b741078c3edc38fabc52a",
+      "bytes": 417365
+    },
+    {
+      "name": "bom-v0.2.csv",
+      "sha256": "579c855cbec3a988c7d90ea1f47893ccb7aca411c79f4a9b238b7a229b34a501",
+      "bytes": 11801
+    },
+    {
+      "name": "placements-v0.1.1.csv",
+      "sha256": "b8ff7376d9020196d16f2eaa83ef576f9ee756ed2290ca2dbdc6ac1c86e7a81e",
+      "bytes": 6605
+    },
+    {
+      "name": "source-placements-v0.2.csv",
+      "sha256": "f2544876b4662569ef7c2c7e2eeb21c254e1ba89f06006a26986d7b2dc0e751e",
+      "bytes": 6691
+    },
+    {
+      "name": "columns.json",
+      "sha256": "d76134122636c8957387878cdbd445f3f921618b2160adbd36480049e72c47ee",
+      "bytes": 333
+    }
+  ],
+  "source": {
+    "repository": "https://github.com/LibreSolar/bms-8s50-ic",
+    "commits": {
+      "current": "3904858673206ee54baeda014a3e92408ab6a3ef",
+      "previous": "ae37f94d3589a6ae6f21e286309b628e5d833342"
+    },
+    "license": "CC-BY-SA-4.0",
+    "files": [
+      {
+        "path": "source/current/kicad/bms-8s50-ic.kicad_pcb",
+        "upstreamPath": "kicad/bms-8s50-ic.kicad_pcb",
+        "commit": "3904858673206ee54baeda014a3e92408ab6a3ef",
+        "revision": "current",
+        "sha256": "6df22cef834e7e34a055ad06c4967208e9c63f0e0696ff4070fc83f21eb69d90",
+        "url": "https://raw.githubusercontent.com/LibreSolar/bms-8s50-ic/3904858673206ee54baeda014a3e92408ab6a3ef/kicad/bms-8s50-ic.kicad_pcb"
+      },
+      {
+        "path": "source/current/README.md",
+        "upstreamPath": "README.md",
+        "commit": "3904858673206ee54baeda014a3e92408ab6a3ef",
+        "revision": "current",
+        "sha256": "e0b59d75932d5089d4c70e2c11dc8a2b2ad3bb0daa0afae28f4d9d75850c32e8",
+        "url": "https://raw.githubusercontent.com/LibreSolar/bms-8s50-ic/3904858673206ee54baeda014a3e92408ab6a3ef/README.md"
+      },
+      {
+        "path": "source/current/LICENSE",
+        "upstreamPath": "LICENSE",
+        "commit": "3904858673206ee54baeda014a3e92408ab6a3ef",
+        "revision": "current",
+        "sha256": "9348ddfd44da5a127c59141981954746a860ec8e03e0412cf3af7134af0f97e2",
+        "url": "https://raw.githubusercontent.com/LibreSolar/bms-8s50-ic/3904858673206ee54baeda014a3e92408ab6a3ef/LICENSE"
+      },
+      {
+        "path": "source/current/build/bms-8s50-ic_bom.csv",
+        "upstreamPath": "build/bms-8s50-ic_bom.csv",
+        "commit": "3904858673206ee54baeda014a3e92408ab6a3ef",
+        "revision": "current",
+        "sha256": "9b0e1ff35e212ec9252bca52ab01c3df9fc975139cbb77098116a0322c1ae909",
+        "url": "https://raw.githubusercontent.com/LibreSolar/bms-8s50-ic/3904858673206ee54baeda014a3e92408ab6a3ef/build/bms-8s50-ic_bom.csv"
+      },
+      {
+        "path": "source/current/build/bms-8s50-ic.jpg",
+        "upstreamPath": "build/bms-8s50-ic.jpg",
+        "commit": "3904858673206ee54baeda014a3e92408ab6a3ef",
+        "revision": "current",
+        "sha256": "8cc68757d87c588c3038eb59749a6c32a457235b82622a4405f6486e1f74cbdd",
+        "url": "https://raw.githubusercontent.com/LibreSolar/bms-8s50-ic/3904858673206ee54baeda014a3e92408ab6a3ef/build/bms-8s50-ic.jpg"
+      },
+      {
+        "path": "source/previous/kicad/bms-8s50-ic.kicad_pcb",
+        "upstreamPath": "kicad/bms-8s50-ic.kicad_pcb",
+        "commit": "ae37f94d3589a6ae6f21e286309b628e5d833342",
+        "revision": "previous",
+        "sha256": "07a97c6228b2ac2f48a3b4a626272fdd4bb886577c46d0f9ab13be4ae72bb23e",
+        "url": "https://raw.githubusercontent.com/LibreSolar/bms-8s50-ic/ae37f94d3589a6ae6f21e286309b628e5d833342/kicad/bms-8s50-ic.kicad_pcb"
+      }
+    ],
+    "upstreamFilesModified": false,
+    "application": "Drone battery-pack assembly review example; source board is a general 3–8-cell BMS.",
+    "exportMethod": "Placement CSVs derived from unmodified, pinned KiCad revisions; values and identities from the upstream v0.2 BOM.",
+    "sourceCoordinateTransform": {
+      "xOffsetMm": 92.5,
+      "yOriginMm": 120,
+      "formula": "x=sourceX-xOffsetMm; y=yOriginMm-sourceY; rotation=sourceAngle mod 360"
+    },
+    "assemblyExportRevision": "v0.1.1",
+    "authoritativeRevision": "v0.2",
+    "populationSelection": "Use the published v0.2 BOM. Filter both placement projections to that BOM's SMT references; preserve all source geometry.",
+    "sourceOnlyReferences": [
+      "R59"
+    ]
+  },
+  "inputSha256": "a1cafa6fc57af437a2ef186d07a77fe0bb49bbe789623bf3fc0c90844bb775b4"
+}

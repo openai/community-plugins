@@ -1,0 +1,60 @@
+{
+  "repository": "https://github.com/LibreSolar/bms-8s50-ic",
+  "commits": {
+    "current": "3904858673206ee54baeda014a3e92408ab6a3ef",
+    "previous": "ae37f94d3589a6ae6f21e286309b628e5d833342"
+  },
+  "license": "CC-BY-SA-4.0",
+  "files": [
+    {
+      "path": "source/current/kicad/bms-8s50-ic.kicad_pcb",
+      "upstreamPath": "kicad/bms-8s50-ic.kicad_pcb",
+      "commit": "3904858673206ee54baeda014a3e92408ab6a3ef",
+      "revision": "current",
+      "sha256": "6df22cef834e7e34a055ad06c4967208e9c63f0e0696ff4070fc83f21eb69d90",
+      "url": "https://raw.githubusercontent.com/LibreSolar/bms-8s50-ic/3904858673206ee54baeda014a3e92408ab6a3ef/kicad/bms-8s50-ic.kicad_pcb"
+    },
+    {
+      "path": "source/current/README.md",
+      "upstreamPath": "README.md",
+      "commit": "3904858673206ee54baeda014a3e92408ab6a3ef",
+      "revision": "current",
+      "sha256": "e0b59d75932d5089d4c70e2c11dc8a2b2ad3bb0daa0afae28f4d9d75850c32e8",
+      "url": "https://raw.githubusercontent.com/LibreSolar/bms-8s50-ic/3904858673206ee54baeda014a3e92408ab6a3ef/README.md"
+    },
+    {
+      "path": "source/current/LICENSE",
+      "upstreamPath": "LICENSE",
+      "commit": "3904858673206ee54baeda014a3e92408ab6a3ef",
+      "revision": "current",
+      "sha256": "9348ddfd44da5a127c59141981954746a860ec8e03e0412cf3af7134af0f97e2",
+      "url": "https://raw.githubusercontent.com/LibreSolar/bms-8s50-ic/3904858673206ee54baeda014a3e92408ab6a3ef/LICENSE"
+    },
+    {
+      "path": "source/current/build/bms-8s50-ic_bom.csv",
+      "upstreamPath": "build/bms-8s50-ic_bom.csv",
+      "commit": "3904858673206ee54baeda014a3e92408ab6a3ef",
+      "revision": "current",
+      "sha256": "9b0e1ff35e212ec9252bca52ab01c3df9fc975139cbb77098116a0322c1ae909",
+      "url": "https://raw.githubusercontent.com/LibreSolar/bms-8s50-ic/3904858673206ee54baeda014a3e92408ab6a3ef/build/bms-8s50-ic_bom.csv"
+    },
+    {
+      "path": "source/current/build/bms-8s50-ic.jpg",
+      "upstreamPath": "build/bms-8s50-ic.jpg",
+      "commit": "3904858673206ee54baeda014a3e92408ab6a3ef",
+      "revision": "current",
+      "sha256": "8cc68757d87c588c3038eb59749a6c32a457235b82622a4405f6486e1f74cbdd",
+      "url": "https://raw.githubusercontent.com/LibreSolar/bms-8s50-ic/3904858673206ee54baeda014a3e92408ab6a3ef/build/bms-8s50-ic.jpg"
+    },
+    {
+      "path": "source/previous/kicad/bms-8s50-ic.kicad_pcb",
+      "upstreamPath": "kicad/bms-8s50-ic.kicad_pcb",
+      "commit": "ae37f94d3589a6ae6f21e286309b628e5d833342",
+      "revision": "previous",
+      "sha256": "07a97c6228b2ac2f48a3b4a626272fdd4bb886577c46d0f9ab13be4ae72bb23e",
+      "url": "https://raw.githubusercontent.com/LibreSolar/bms-8s50-ic/ae37f94d3589a6ae6f21e286309b628e5d833342/kicad/bms-8s50-ic.kicad_pcb"
+    }
+  ],
+  "upstreamFilesModified": false,
+  "application": "Drone battery-pack assembly review example; source board is a general 3\u20138-cell BMS."
+}

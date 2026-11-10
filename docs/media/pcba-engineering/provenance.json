@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "movie": "pcba-engineering-drone-bms-2m27s.mp4",
+  "movieSha256": "b60541258238f317571720a82a8d26730249e96eb0991e6b2c44f5d381447b70",
+  "sourceEditSha256": "7693ed1dcedc824a4025e4f74c46d7a45ec25790b9e9a78b8baaf4f7d768f9d0",
+  "privateCaptureSha256": "664b396024329dbb2bac4b70cd3d61d197aadc0ab950b25988f564ea1a79ac3d",
+  "privateCaptureIncluded": false,
+  "durationSeconds": 147,
+  "nativeFootageSeconds": 84,
+  "nativeFootageSpeed": 1,
+  "narrationWords": 72,
+  "scenes": [
+    {
+      "name": "hero",
+      "duration": 9,
+      "start": 0,
+      "end": 9
+    },
+    {
+      "name": "split-input",
+      "duration": 17,
+      "sourceStart": 86,
+      "crop": [
+        104,
+        750,
+        856,
+        1016
+      ],
+      "sourceEnd": 103,
+      "speed": 1,
+      "start": 9,
+      "end": 26
+    },
+    {
+      "name": "inputs",
+      "duration": 10,
+      "start": 26,
+      "end": 36
+    },
+    {
+      "name": "split-before",
+      "duration": 9,
+      "sourceStart": 104,
+      "crop": [
+        104,
+        650,
+        856,
+        1016
+      ],
+      "sourceEnd": 113,
+      "speed": 1,
+      "start": 36,
+      "end": 45
+    },
+    {
+      "name": "before",
+      "duration": 13,
+      "start": 45,
+      "end": 58
+    },
+    {
+      "name": "split-plan",
+      "duration": 20,
+      "sourceStart": 116,
+      "crop": [
+        104,
+        520,
+        856,
+        1016
+      ],
+      "sourceEnd": 136,
+      "speed": 1,
+      "start": 58,
+      "end": 78
+    },
+    {
+      "name": "split-after",
+      "duration": 20,
+      "sourceStart": 136,
+      "crop": [
+        104,
+        570,
+        856,
+        1016
+      ],
+      "sourceEnd": 156,
+      "speed": 1,
+      "start": 78,
+      "end": 98
+    },
+    {
+      "name": "after",
+      "duration": 10,
+      "start": 98,
+      "end": 108
+    },
+    {
+      "name": "split-verify",
+      "duration": 18,
+      "sourceStart": 168,
+      "crop": [
+        104,
+        750,
+        856,
+        520
+      ],
+      "nativeOutputHeight": 438,
+      "sourceEnd": 186,
+      "speed": 1,
+      "start": 108,
+      "end": 126
+    },
+    {
+      "name": "outputs",
+      "duration": 6,
+      "start": 126,
+      "end": 132
+    },
+    {
+      "name": "closing",
+      "duration": 15,
+      "start": 132,
+      "end": 147
+    }
+  ],
+  "privacyMasks": [
+    {
+      "start": 9,
+      "end": 26,
+      "x": 64,
+      "y": 850,
+      "width": 720,
+      "height": 156,
+      "reason": "Remove unrelated composer and partial model-picker chrome."
+    },
+    {
+      "start": 20.8,
+      "end": 22.8,
+      "x": 88,
+      "y": 704,
+      "width": 696,
+      "height": 42,
+      "reason": "Hide personal filesystem path in running-command status."
+    },
+    {
+      "start": 37.8,
+      "end": 41.3,
+      "x": 88,
+      "y": 788,
+      "width": 696,
+      "height": 48,
+      "reason": "Hide personal filesystem path in running-command status."
+    },
+    {
+      "start": 41.6,
+      "end": 43.0,
+      "x": 64,
+      "y": 580,
+      "width": 720,
+      "height": 210,
+      "reason": "Hide personal filesystem path while a Markdown link streams and scrolls."
+    },
+    {
+      "start": 58,
+      "end": 78,
+      "x": 64,
+      "y": 948,
+      "width": 720,
+      "height": 58,
+      "reason": "Hide personal filesystem path in running-command status."
+    }
+  ],
+  "redactionMethod": "Opaque rectangles over personal filesystem paths and unrelated composer/model-picker chrome. No chat messages, tool outcomes, or board geometry recreated.",
+  "audio": "Original encoded AAC stream copied without re-encoding.",
+  "captions": "Original timed captions copied; no timeline changes.",
+  "sourcePluginVersion": "0.1.2",
+  "sourceEvidence": "recorded-run-acceptance.json",
+  "chapters": "Scene boundaries retained in this receipt; embedded chapter track omitted for compatibility.",
+  "historicalVerifier": {
+    "file": "recorded-verifier-0.1.2.zip",
+    "sha256": "e1e76914cce5215de63b515ebd8e9a00ba6a16ea5bba787ecec75c136461cf35"
+  }
+}
