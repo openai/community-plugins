@@ -1,0 +1,27 @@
+{
+  "name": "local-review-workbench",
+  "version": "0.1.0",
+  "description": "Understand a code change, focus your review, and check findings against requirements and existing callers.",
+  "author": {
+    "name": "Community Plugins contributors",
+    "url": "https://github.com/openai/community-plugins"
+  },
+  "homepage": "https://github.com/openai/community-plugins/tree/main/plugins/local-review-workbench",
+  "repository": "https://github.com/openai/community-plugins",
+  "license": "Apache-2.0",
+  "keywords": ["code-review", "compatibility", "developer-tools", "skills"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Local Review Workbench",
+    "shortDescription": "Understand a PR and know what to review.",
+    "longDescription": "Explain what changed and where to focus your review. Check correctness, API compatibility, simplification, and naming, then verify findings before reporting them. This read-only skill uses your current session, configured model, and available tools. Preview; no automatic hooks or hosted service.",
+    "developerName": "Community Plugins contributors",
+    "category": "Developer Tools",
+    "websiteURL": "https://github.com/openai/community-plugins",
+    "capabilities": ["Read"],
+    "defaultPrompt": [
+      "Use $review-local-changes to explain the bundled compatibility fixture and review its before/after change without editing files. Do not read the evaluation answer key until the review is complete.",
+      "Use $review-local-changes on my current changes. Explain what this PR does and where I should focus my review, then report only validated issues and clearly separate optional suggestions."
+    ]
+  }
+}

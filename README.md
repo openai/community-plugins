@@ -112,6 +112,7 @@ are picked up.
 | ------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | [Grafana Observability](plugins/grafana-observability/README.md)               | Inspect administrator-approved, read-only Grafana evidence for infrastructure, APM, logs, IoT/edge, and business KPIs.     | [Guide](plugins/grafana-observability/README.md) · [23-second demo](docs/media/grafana-production-monitoring-demo-8x.mp4) |
 | [ReviewOps Auditor + Benchmark](plugins/reviewops-auditor-benchmark/README.md) | Normalize sanitized review-run exports, audit evaluation validity, benchmark lanes, and emit shadow-only guidance offline. | [Guide](plugins/reviewops-auditor-benchmark/README.md)                                                                    |
+| [Local Review Workbench](plugins/local-review-workbench/README.md) | Explain a change, guide human review, and validate findings from bounded local review passes. Skills-only preview. | [Guide](plugins/local-review-workbench/README.md) |
 | [React Native to SwiftUI](plugins/react-native-to-swiftui/README.md)           | Plan a bounded React Native/Expo feature migration, then port one explicitly approved slice with deterministic SwiftUI parity checks. | [Guide](plugins/react-native-to-swiftui/README.md) |
 | [Autodesk Fusion](plugins/autodesk-fusion/README.md) | Connect typed CAD/CAM operations, scoped Autodesk data, reviewed cloud recipes and engineering evidence; live qualification required. | [Guide](plugins/autodesk-fusion/README.md) |
 | [Physical Engineering](plugins/physical-engineering/README.md) | Build mechanical CAD from a brief, measure exports, preserve revisions and deliver a repeatable handoff. Custom parts plus a drone assembly example. Preview. | [Guide](plugins/physical-engineering/README.md) · [Two-minute demo](docs/media/physical-engineering/README.md) · [Session runbook](docs/physical-engineering-demo-runbook.md) |
@@ -172,6 +173,27 @@ Use $engineer-subsystem to start a mechanical-part study from my brief in an emp
 ```
 
 ## Copy-paste Codex prompts
+
+Try Local Review Workbench with its bundled synthetic example:
+
+```sh
+codex plugin marketplace add openai/community-plugins --ref main \
+  --sparse .agents/plugins --sparse plugins/local-review-workbench
+codex plugin add local-review-workbench@community-plugins
+```
+
+For an unmerged contribution, replace `main` with its candidate branch.
+Start a new task, then ask:
+
+```text
+Use $review-local-changes on the plugin's bundled synthetic API example. Explain the intended change and what I should review, then validate compatibility findings. Do not edit files.
+```
+
+This preview contains instructions and fixtures, with no additional server,
+authentication or runtime dependency. It uses the current Codex session's
+available tools and configured model provider. ReviewOps evaluates review-run
+exports; Local Review Workbench reviews code changes. See the plugin guide for
+its data boundaries and manual evaluation steps.
 
 Browse before installing:
 
