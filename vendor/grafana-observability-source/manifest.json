@@ -1,15 +1,15 @@
 {
   "schemaVersion": 1,
   "plugin": "grafana-observability",
-  "pluginVersion": "0.1.0",
+  "pluginVersion": "0.2.0",
   "snapshot": {
     "path": "source.tar.gz",
     "format": "USTAR_GZIP_V1",
-    "bytes": 556067,
-    "sha256": "5fc0e01c25d33701416751064a71ebf315abd38ab9418570a3fad1b0451ef106",
-    "fileCount": 327,
-    "sourceBytes": 2521343,
-    "treeSha256": "c9ee54fc3dce9ede1aaf49df711bdfb1083fa963d9ce420b37cbe8d4ef891677"
+    "bytes": 564057,
+    "sha256": "b867a9dc1aca76282b9c95ff0aaca00a08e750c46731f9524eb1f5cfea13ac3b",
+    "fileCount": 334,
+    "sourceBytes": 2547098,
+    "treeSha256": "a12d6949ba7e59d4bed5343091c35caf5c69081c2f04834d015c46d9e8b7d470"
   },
   "build": {
     "nodeMinimum": "22.19.0",
@@ -1368,8 +1368,8 @@
     },
     {
       "path": "plugins/grafana-observability/.codex-plugin/plugin.json",
-      "bytes": 1751,
-      "sha256": "b7675317e22d98dbbc18a2355b7a3a847aa33b6e82f740b341e7d945472afbb5"
+      "bytes": 1990,
+      "sha256": "b971e075aec99f779f85a72b75850bae56e880165c791f265de277e26e74e963"
     },
     {
       "path": "plugins/grafana-observability/.mcp.json",
@@ -1378,8 +1378,8 @@
     },
     {
       "path": "plugins/grafana-observability/README.md",
-      "bytes": 6180,
-      "sha256": "de0e4019cd5ab833f99ddbe8f64c51180a5139b23f3e1e8f68ffae8f82313ff0"
+      "bytes": 9425,
+      "sha256": "ff836f6f7a9c3db192bfee289310daa21b9520494c39ba2a3a1f96063e3eb2f7"
     },
     {
       "path": "plugins/grafana-observability/assets/icon.svg",
@@ -1395,6 +1395,31 @@
       "path": "plugins/grafana-observability/skills/analyze-log-signals/agents/openai.yaml",
       "bytes": 275,
       "sha256": "9445836d4eace94d50c6cb6125045a77a27a3d753fedacc0dc1d808e75ba9393"
+    },
+    {
+      "path": "plugins/grafana-observability/skills/coordinate-grafana-incident/SKILL.md",
+      "bytes": 6196,
+      "sha256": "cf3c02d798a2b20185aafd473b08353033c5cb7fa273f92f9ffe9168a10eae50"
+    },
+    {
+      "path": "plugins/grafana-observability/skills/coordinate-grafana-incident/agents/openai.yaml",
+      "bytes": 378,
+      "sha256": "409326b65ed8994e53b932d3514436f5f0af9f816e9cda1b31a735eecf302461"
+    },
+    {
+      "path": "plugins/grafana-observability/skills/coordinate-grafana-incident/references/incident-brief-template.md",
+      "bytes": 1312,
+      "sha256": "74d8532386f56f87873b321651d6f3a987ba322d95b7c3d00014380bcaea0e6b"
+    },
+    {
+      "path": "plugins/grafana-observability/skills/coordinate-grafana-incident/references/incident-response-contract.md",
+      "bytes": 7443,
+      "sha256": "75e1577d6f7b745f35d0019e9f3a8201577412b4532e7b7d2c0a0c954cc7bccd"
+    },
+    {
+      "path": "plugins/grafana-observability/skills/coordinate-grafana-incident/references/incident-review-template.md",
+      "bytes": 1400,
+      "sha256": "027a8a792181f5252767716577e7ef231fd1c588c4c598136a2b9a09155bb47e"
     },
     {
       "path": "plugins/grafana-observability/skills/inspect-infrastructure-health/SKILL.md",
@@ -1437,9 +1462,19 @@
       "sha256": "477800933a86eaa3ca7e7e1a971e1586bf3bd85c6a2a397e30f2df3b62745ff0"
     },
     {
+      "path": "plugins/grafana-observability/skills/review-grafana-incident/SKILL.md",
+      "bytes": 5173,
+      "sha256": "f9eb53f5fc5c7cd72c3a8b19f488b8cd446ae209ac5226dcd519ecfeb6118edd"
+    },
+    {
+      "path": "plugins/grafana-observability/skills/review-grafana-incident/agents/openai.yaml",
+      "bytes": 350,
+      "sha256": "32cf73b5393420b8a8f7fa54e54c89193fb72eab0b4527481ca2573947655d67"
+    },
+    {
       "path": "plugins/grafana-observability/skills/setup-grafana-observability/SKILL.md",
-      "bytes": 7496,
-      "sha256": "e6c4bbf6a62180d7852ef2929e0b11431361c41ffee92905687e772d2faa4f55"
+      "bytes": 7515,
+      "sha256": "c8edacf35cdcc427544f6db24823cf06751f65864ac2ae53cc4454286734c004"
     },
     {
       "path": "plugins/grafana-observability/skills/setup-grafana-observability/agents/openai.yaml",
@@ -1449,7 +1484,7 @@
     {
       "path": "plugins/grafana-observability/skills/setup-grafana-observability/references/client-launch.md",
       "bytes": 2858,
-      "sha256": "3792cd5ff23f4e6a7678f29e87a5f6792229b20c1f26ac6521ae787a7c29ee80"
+      "sha256": "fcdca57302bdbbcbb92712ce2145b2947250efd009e31815daa955a5f85530ef"
     },
     {
       "path": "plugins/grafana-observability/skills/setup-grafana-observability/references/saved-panel-enrollment.md",
@@ -2049,7 +2084,7 @@
     {
       "path": "plugins/grafana-observability/.codex-plugin/plugin.json",
       "baseSha256": "2ae5bb0681bfcefaa223fd811a4ba395b924a38ff80810bc88d1eee286a63e9c",
-      "sha256": "b7675317e22d98dbbc18a2355b7a3a847aa33b6e82f740b341e7d945472afbb5"
+      "sha256": "b971e075aec99f779f85a72b75850bae56e880165c791f265de277e26e74e963"
     },
     {
       "path": "plugins/grafana-observability/.mcp.json",
@@ -2059,12 +2094,52 @@
     {
       "path": "plugins/grafana-observability/README.md",
       "baseSha256": null,
-      "sha256": "de0e4019cd5ab833f99ddbe8f64c51180a5139b23f3e1e8f68ffae8f82313ff0"
+      "sha256": "ff836f6f7a9c3db192bfee289310daa21b9520494c39ba2a3a1f96063e3eb2f7"
+    },
+    {
+      "path": "plugins/grafana-observability/skills/coordinate-grafana-incident/SKILL.md",
+      "baseSha256": null,
+      "sha256": "cf3c02d798a2b20185aafd473b08353033c5cb7fa273f92f9ffe9168a10eae50"
+    },
+    {
+      "path": "plugins/grafana-observability/skills/coordinate-grafana-incident/agents/openai.yaml",
+      "baseSha256": null,
+      "sha256": "409326b65ed8994e53b932d3514436f5f0af9f816e9cda1b31a735eecf302461"
+    },
+    {
+      "path": "plugins/grafana-observability/skills/coordinate-grafana-incident/references/incident-brief-template.md",
+      "baseSha256": null,
+      "sha256": "74d8532386f56f87873b321651d6f3a987ba322d95b7c3d00014380bcaea0e6b"
+    },
+    {
+      "path": "plugins/grafana-observability/skills/coordinate-grafana-incident/references/incident-response-contract.md",
+      "baseSha256": null,
+      "sha256": "75e1577d6f7b745f35d0019e9f3a8201577412b4532e7b7d2c0a0c954cc7bccd"
+    },
+    {
+      "path": "plugins/grafana-observability/skills/coordinate-grafana-incident/references/incident-review-template.md",
+      "baseSha256": null,
+      "sha256": "027a8a792181f5252767716577e7ef231fd1c588c4c598136a2b9a09155bb47e"
+    },
+    {
+      "path": "plugins/grafana-observability/skills/review-grafana-incident/SKILL.md",
+      "baseSha256": null,
+      "sha256": "f9eb53f5fc5c7cd72c3a8b19f488b8cd446ae209ac5226dcd519ecfeb6118edd"
+    },
+    {
+      "path": "plugins/grafana-observability/skills/review-grafana-incident/agents/openai.yaml",
+      "baseSha256": null,
+      "sha256": "32cf73b5393420b8a8f7fa54e54c89193fb72eab0b4527481ca2573947655d67"
+    },
+    {
+      "path": "plugins/grafana-observability/skills/setup-grafana-observability/SKILL.md",
+      "baseSha256": "e6c4bbf6a62180d7852ef2929e0b11431361c41ffee92905687e772d2faa4f55",
+      "sha256": "c8edacf35cdcc427544f6db24823cf06751f65864ac2ae53cc4454286734c004"
     },
     {
       "path": "plugins/grafana-observability/skills/setup-grafana-observability/references/client-launch.md",
       "baseSha256": null,
-      "sha256": "3792cd5ff23f4e6a7678f29e87a5f6792229b20c1f26ac6521ae787a7c29ee80"
+      "sha256": "fcdca57302bdbbcbb92712ce2145b2947250efd009e31815daa955a5f85530ef"
     },
     {
       "path": "scripts/plugin-descriptors.mjs",
@@ -2104,8 +2179,8 @@
   ],
   "qualificationPatch": {
     "path": "qualification.patch",
-    "bytes": 67671,
-    "sha256": "78910536954a04d2c51707303e773decacfef99d708d4c8a44468a78ee3cd05d",
+    "bytes": 103285,
+    "sha256": "da1da652f259c500fd06354458eb2932381b30ed796783bcfba5b7df7e507528",
     "baseTreeSha256": "7e5d82af3ddafb49c3eb6aa2b35273f5980657c265008ee22c0758d4a24c1cc4"
   }
 }

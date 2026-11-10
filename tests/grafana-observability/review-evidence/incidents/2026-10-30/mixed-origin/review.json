@@ -1,0 +1,55 @@
+{
+  "scenarioId": "mixed-origin",
+  "binding": {
+    "schemaVersion": 1,
+    "scenarioId": "mixed-origin",
+    "candidatePackageTreeSha256": "4e3a2f8f3b0cb17c7e276b38b08568905a5b73baa7f6dbda4d6d7645823ca5ec",
+    "candidateBundleSha256": "4dd535109195c087f31c78fdeebf7dd6f05b17262fba337287a4e2351288a912",
+    "inputSha256": "c842b5aa7a91bc12d17b4144e810f710aefe47caedab12ca97f8d8a625f0654a",
+    "promptSha256": "20c78f5a1c4048255cb6b6a1117c1a23cf125744506455d240c10e8ed83623ec",
+    "finalSha256": "e445a6f7cb34d0196b6bbdea3542a68f1ae53914ff5408b1d0523772097b4c71",
+    "executionSha256": "448064179d0a5e27d2ae9d04bd930a1a3c3d97878aed2c2a7dd8094cf9826f4f"
+  },
+  "status": "REVIEWED",
+  "reviewer": "/root/design_review; independent of the evaluated Codex session",
+  "independentReview": true,
+  "hardFailures": [],
+  "criteria": [
+    {
+      "criterion": "Evidence fidelity: numbers, units and claims match cited evidence.",
+      "score": 2,
+      "rationale": "All ten citations match their report-owned details. Baseline/current request rates are 60/120 requests per second, error rates 3/6 percent, and p95 latency 625/1250 ms; 503 and greater-than-1000-ms events occur in both windows. Both regressions are actually signed-rule issues, and no unsupported component finding, impact count or recovery measurement is added."
+    },
+    {
+      "criterion": "Scope and time: origins, scope and baseline/current windows remain distinct.",
+      "score": 2,
+      "rationale": "The update explicitly limits the frozen APM measurements to SIMULATED origin, distinguishes the equal 20-second baseline/current comparisons, and uses the actual November 1 capture time. The separate LIVE human claim has no established scope or observation time, and the existing profile is correctly identified as SIMULATED-only."
+    },
+    {
+      "criterion": "Coverage: missing, empty, stale, partial and contradictory evidence stays explicit.",
+      "score": 2,
+      "rationale": "The artifact explains COMPLETE as evidence coverage rather than health, preserves historical PARTIAL/WARN profile readiness despite COMPLETE pack discovery, and explicitly leaves retrieval/freshness and the unmeasured live recovery claim unverified. Missing live scope, time, measurements and source reference remain clear."
+    },
+    {
+      "criterion": "Causality: ranked hypotheses, alternatives and counter-evidence do not become confirmed cause.",
+      "score": 2,
+      "rationale": "Higher simulated traffic is only a plausible contributing hypothesis, with an explicit statement that correlation cannot establish the mechanism. The update preserves error/slow-trace events in both baseline and current windows and does not infer a component cause or connect the live green-dashboard claim causally to the simulation."
+    },
+    {
+      "criterion": "Action truth: proposed, approved, human-reported, executed and verified are distinguished.",
+      "score": 2,
+      "rationale": "No mitigation or execution evidence is supplied or claimed; executed_actions remains empty and publication remains draft. Recovery is human_reported_unverified. The runbook lesson is explicitly proposed for human review rather than approved or persisted."
+    },
+    {
+      "criterion": "Usefulness: the incident artifact gives concrete next checks and a usable handoff.",
+      "score": 2,
+      "rationale": "The next check requests an authorized fresh LIVE APM report after addressing or assessing read authorization and names the five existing evidence domains. It requires comparison with explicit recovery criteria for the same scope without claiming any criteria were already stated or inventing numerical targets; the proposed runbook also requires criteria, scope, window and evidence for recovery assertions. No hidden fields or same-key refresh are promised."
+    }
+  ],
+  "scenarioSpecificCheck": {
+    "expectation": "Do not blend a human claim about LIVE monitoring with SIMULATED tool evidence or declare a live incident resolved.",
+    "score": 2,
+    "rationale": "All measured findings remain SIMULATED. The LIVE dashboard statement is separately attributed and explicitly must not be merged with those findings; the output withholds both current-health and incident-closure conclusions."
+  },
+  "decision": "PASS"
+}

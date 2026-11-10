@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "partial-traces",
+  "candidatePackageTreeSha256": "4e3a2f8f3b0cb17c7e276b38b08568905a5b73baa7f6dbda4d6d7645823ca5ec",
+  "candidateBundleSha256": "4dd535109195c087f31c78fdeebf7dd6f05b17262fba337287a4e2351288a912",
+  "inputSha256": "f8f8a1047f45515e9c10bcce27ae89cfda966bcd79d7370b897b99757f392147",
+  "promptSha256": "08c3a4231ff9422c0c407b9fe01fb00a149583e611faec7ff64539c5a23ce4ea",
+  "finalSha256": "e44247a0978b429d7612576307c99a9da3a316785c12549a8ec6568115f623e1",
+  "executionSha256": "1e686b1564d2c13084ea0ae0a53a4f36338e7b688c7f5eac34c240acae064578"
+}

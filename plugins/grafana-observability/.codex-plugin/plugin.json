@@ -1,13 +1,13 @@
 {
   "name": "grafana-observability",
-  "version": "0.1.0",
-  "description": "Inspect administrator-approved Grafana evidence for infrastructure, APM, logs, IoT/edge, and business KPIs.",
+  "version": "0.2.0",
+  "description": "Inspect administrator-approved Grafana evidence and draft incident briefs, handoffs, and postmortems.",
   "author": {
     "name": "Tony Loehr",
     "url": "https://github.com/tonyloehr"
   },
-  "homepage": "https://github.com/tonyloehr/community-plugins/tree/main/plugins/grafana-observability",
-  "repository": "https://github.com/tonyloehr/community-plugins",
+  "homepage": "https://github.com/openai/community-plugins/tree/main/plugins/grafana-observability",
+  "repository": "https://github.com/openai/community-plugins",
   "license": "Apache-2.0",
   "keywords": [
     "grafana",
@@ -15,16 +15,17 @@
     "prometheus",
     "loki",
     "tempo",
-    "business-intelligence"
+    "business-intelligence",
+    "incident-response"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Grafana Observability for Codex",
-    "shortDescription": "Inspect reviewed, read-only Grafana evidence.",
-    "longDescription": "Run five administrator-reviewed Grafana capability packs through bounded tools. Grafana and its datasources remain read-only; the plugin accepts aliases, time windows, and opaque references—not credentials, queries, datasource IDs, or URLs. Pack runs retain only plugin-owned local evidence state.",
+    "shortDescription": "Investigate Grafana evidence and draft incident reviews.",
+    "longDescription": "Run five administrator-reviewed Grafana capability packs through bounded tools, then draft incident briefs, handoffs, and postmortems. Preserve uncertainty, source origin, and measured recovery criteria. Grafana and its datasources remain read-only; inputs are aliases, time windows, and opaque references. Pack runs retain plugin-owned local evidence state. Communication stays in the active task; no background monitoring, messaging, or remediation is provided.",
     "developerName": "Tony Loehr",
     "category": "Developer Tools",
-    "websiteURL": "https://github.com/tonyloehr/community-plugins",
+    "websiteURL": "https://github.com/openai/community-plugins",
     "capabilities": [
       "Read",
       "Write"
@@ -34,8 +35,8 @@
     "composerIcon": "./assets/icon.svg",
     "defaultPrompt": [
       "Use $setup-grafana-observability to check the fixture profile and available packs.",
-      "Use $setup-grafana-observability to explain how to connect a reviewed read-only Grafana profile.",
-      "Use $setup-grafana-observability to list supported packs and activation prerequisites."
+      "Use $coordinate-grafana-incident to investigate this incident with my approved profile and draft a responder update.",
+      "Use $review-grafana-incident to draft a postmortem from the incident evidence and identify unresolved recovery criteria."
     ]
   },
   "mcpServers": "./.mcp.json"

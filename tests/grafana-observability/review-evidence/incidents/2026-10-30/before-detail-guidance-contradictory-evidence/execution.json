@@ -1,0 +1,37 @@
+{
+  "source": "HARNESS_CODEX_EXEC",
+  "startedAt": "2026-10-31T23:40:04.506Z",
+  "durationMs": 25570,
+  "code": 0,
+  "signal": null,
+  "timedOut": false,
+  "outputBoundExceeded": false,
+  "requestedModel": "gpt-5.6-sol",
+  "reportedModel": null,
+  "trace": {
+    "eventCounts": {
+      "thread.started": 1,
+      "turn.started": 1,
+      "item.completed": 1,
+      "turn.completed": 1
+    },
+    "itemTypeCounts": {
+      "agent_message": 1
+    },
+    "toolAttempts": [],
+    "invalidJsonLines": 0,
+    "completedTurns": 1,
+    "usage": {
+      "input_tokens": 29556,
+      "cached_input_tokens": 6528,
+      "output_tokens": 3915,
+      "reasoning_output_tokens": 908
+    },
+    "reportedModel": null,
+    "diagnostics": [],
+    "failureCategories": [],
+    "criticalConfigurationErrors": []
+  },
+  "finalOutputBinding": "MATCHED",
+  "clientVersion": "codex-cli 0.144.3"
+}

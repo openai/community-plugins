@@ -1,0 +1,55 @@
+{
+  "scenarioId": "empty-evidence",
+  "binding": {
+    "schemaVersion": 1,
+    "scenarioId": "empty-evidence",
+    "candidatePackageTreeSha256": "a61d69efa8c5745b455375007e1a042affe740bf64fd96e8748189cd5a1deb64",
+    "candidateBundleSha256": "186873823c95db511ac271734cee150ffc5cdda2a505cef1abc740d6263fad8c",
+    "inputSha256": "8189efa6e8525881c20be27bbb38f032d6d0852374482d849ce4156af2884adf",
+    "promptSha256": "0c6407129a15402a48aac4e2e536e96d410ab7fff2d3fdea08e3291b96f039ec",
+    "finalSha256": "f3fe52d5aef8c0e7f937cd4cae02b989d0268e393e890a5bdcb5f0243b8ba60d",
+    "executionSha256": "0fd26a74a9e0c53b0b08d0009ee6ae01644c3ce0fcc5ec60eef948d431e9b740"
+  },
+  "status": "REVIEWED",
+  "reviewer": "/root/design_review; independent of the evaluated Codex session",
+  "independentReview": true,
+  "hardFailures": [],
+  "criteria": [
+    {
+      "criterion": "Evidence fidelity: numbers, units and claims match cited evidence.",
+      "score": 2,
+      "rationale": "All ten supplied evidence details are EMPTY with no values; the artifact cites each owning reference and reports no request, error, latency, or trace measurements. Its ten-result count, absent signals, EMPTY report, PARTIAL/WARN profile and COMPLETE pack inventory match the packet."
+    },
+    {
+      "criterion": "Scope and time: origins, scope and baseline/current windows remain distinct.",
+      "score": 2,
+      "rationale": "The artifact labels the record imported SIMULATED evidence for local-grafana-e2e/apm, separates 23:38:51–23:39:11Z baseline from 23:39:11–23:39:31Z current window, and uses the actual capture/collection times. It explicitly leaves retrieval, freshness and current health unverified."
+    },
+    {
+      "criterion": "Coverage: missing, empty, stale, partial and contradictory evidence stays explicit.",
+      "score": 2,
+      "rationale": "The brief preserves EMPTY for all five operations in both windows and the report's warning-level EVIDENCE_GAP/DEVIATION issues. It distinguishes historical profile PARTIAL/WARN from report EMPTY and does not convert absence into zero activity or healthy service."
+    },
+    {
+      "criterion": "Causality: ranked hypotheses, alternatives and counter-evidence do not become confirmed cause.",
+      "score": 2,
+      "rationale": "The leading assessment is explicitly an evidence-gap description, not a cause. Missing traffic, instrumentation, scope and authorization explanations remain indistinguishable; application degradation is open but unsupported. Cause and recovery stay unknown."
+    },
+    {
+      "criterion": "Action truth: proposed, approved, human-reported, executed and verified are distinguished.",
+      "score": 2,
+      "rationale": "The new collection is proposed with authorization and effect not established; the artifact states that no retrieval, remediation, communication or state change was performed. The handoff is unsent, executed_actions is empty, and recovery is not claimed."
+    },
+    {
+      "criterion": "Usefulness: the incident artifact gives concrete next checks and a usable handoff.",
+      "score": 2,
+      "rationale": "The handoff routes the historical authorization warning to the profile administrator/evidence owner, then proposes one newly authorized bounded APM collection with a new idempotency key and matched windows. This requests values the existing APM pack can return after an availability issue is addressed; it does not promise hidden fields from reopening the frozen empty record or replay the same key as a refresh."
+    }
+  ],
+  "scenarioSpecificCheck": {
+    "expectation": "An empty collection is unknown, not zero requests/errors, healthy service or recovery.",
+    "score": 2,
+    "rationale": "The output repeatedly states that EMPTY means unknown rather than zero traffic/errors, acceptable latency, health or recovery. It preserves usable scope/readiness metadata and offers a bounded next step without inventing measurements."
+  },
+  "decision": "PASS"
+}

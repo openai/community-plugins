@@ -7,7 +7,6 @@ import { join } from "node:path";
 import { Readable } from "node:stream";
 import { pipeline } from "node:stream/promises";
 import test from "node:test";
-import { fileURLToPath } from "node:url";
 
 import { REPOSITORY_ROOT, SOURCE_PLUGIN_ROOT } from "./helpers/mcp-client.mjs";
 
@@ -25,7 +24,15 @@ const RELEASES = Object.freeze({
 });
 const IMAGE = "node:22.19.0-alpine3.22";
 const VERSION = "0.144.3";
-const innerCheck = fileURLToPath(new URL("./support/installed-client-check.mjs", import.meta.url));
+const companionFiles = [
+  "tests/grafana-observability/support/installed-client-check.mjs",
+  "tests/grafana-observability/support/synthetic-grafana.mjs",
+  "tests/grafana-observability/support/authority-definition.json",
+  "tests/grafana-observability/helpers/synthetic-session.mjs",
+  "tests/grafana-observability/helpers/live-authority.mjs",
+  "tests/grafana-observability/helpers/mcp-client.mjs",
+  "scripts/validate-grafana.mjs",
+];
 
 function sync(command, args, env) {
   const result = spawnSync(command, args, { env, encoding: "utf8", timeout: 20_000, maxBuffer: 2 * 1024 * 1024 });
@@ -112,7 +119,7 @@ async function stageOfficialClient(root, architecture) {
   return binaryRoot;
 }
 
-test("actual Codex installs the package and starts its five-tool MCP with a nonsecret launcher allowlist", {
+test("actual Codex installs eight skills, rejects inactive collection, and collects synthetic evidence through its five-tool MCP", {
   skip: process.env.GRAFANA_E2E_INSTALLED_CLIENT !== "1" && "Set GRAFANA_E2E_INSTALLED_CLIENT=1 for the disposable actual Codex client test",
   timeout: 480_000,
 }, async (t) => {
@@ -136,7 +143,11 @@ test("actual Codex installs the package and starts its five-tool MCP with a nons
   assert.equal(entries.length, 1);
   writeFileSync(join(manifestRoot, "marketplace.json"), `${JSON.stringify({ ...manifest, plugins: entries }, null, 2)}\n`, { mode: 0o600 });
   cpSync(SOURCE_PLUGIN_ROOT, join(marketplace, "plugins/grafana-observability"), { recursive: true, dereference: false });
-  cpSync(innerCheck, join(input, "installed-client-check.mjs"), { dereference: false });
+  for (const file of companionFiles) {
+    const destination = join(input, "companion", file);
+    mkdirSync(join(destination, ".."), { recursive: true, mode: 0o700 });
+    cpSync(join(REPOSITORY_ROOT, file), destination, { dereference: false });
+  }
   makeOwnedMountReadable(input);
   makeOwnedMountReadable(binaryRoot);
   chmodSync(join(binaryRoot, "codex"), 0o755);
@@ -153,8 +164,8 @@ test("actual Codex installs the package and starts its five-tool MCP with a nons
         "--tmpfs", "/root:rw,exec,nosuid,nodev,mode=0700", "--tmpfs", "/tmp:rw,exec,nosuid,nodev,mode=1777",
         "--mount", `type=bind,src=${binaryRoot},dst=/opt/codex,readonly`,
         "--mount", `type=bind,src=${input},dst=/input,readonly`,
-        IMAGE, "node", "/input/installed-client-check.mjs", launcher,
-      ], { env, timeoutMs: 180_000 });
+        IMAGE, "node", "/input/companion/tests/grafana-observability/support/installed-client-check.mjs", launcher,
+      ], { env, timeoutMs: 240_000 });
       const proof = JSON.parse(stdout.split("\n").at(-1));
       assert.equal(proof.codexVersion, "codex-cli 0.144.3");
       assert.equal(proof.launcher, launcher);
@@ -165,6 +176,24 @@ test("actual Codex installs the package and starts its five-tool MCP with a nons
       assert.equal(proof.tools.length, 5);
       assert.equal(proof.fixtureProfile, "COMPLETE");
       assert.equal(proof.fixturePacks, "EMPTY");
+      assert.equal(proof.inactiveCollection, "PACK_NOT_ACTIVE");
+      assert.equal(proof.skills.length, 8);
+      assert.ok(proof.skills.includes("grafana-observability:coordinate-grafana-incident"));
+      assert.ok(proof.skills.includes("grafana-observability:review-grafana-incident"));
+      assert.equal(proof.installedBytesPreserved, true);
+      assert.equal(proof.synthetic.origin, "SIMULATED");
+      assert.equal(proof.synthetic.profileStatus, "PARTIAL");
+      assert.equal(proof.synthetic.readiness, "WARN");
+      assert.equal(proof.synthetic.reportStatus, "COMPLETE");
+      assert.equal(proof.synthetic.providerReads, 10);
+      assert.equal(proof.synthetic.evidenceCount, 10);
+      assert.equal(proof.synthetic.sourceLinkCount, 10);
+      assert.equal(proof.synthetic.ownedReferences, true);
+      assert.equal(proof.synthetic.unexpectedRequests, 0);
+      assert.deepEqual(proof.synthetic.cleanup, { temporaryStateRemoved: true, mcpClosed: true, providerClosed: true });
+      assert.equal(proof.realGrafana, false);
+      assert.equal(proof.diagnosis, "NOT_ESTABLISHED");
+      assert.equal(proof.recovery, "NOT_ASSESSED");
       t.diagnostic(JSON.stringify(proof));
     } finally {
       // Address only this random task-owned name; never prune or remove others.

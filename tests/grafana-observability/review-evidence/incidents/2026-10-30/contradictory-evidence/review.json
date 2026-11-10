@@ -1,0 +1,55 @@
+{
+  "scenarioId": "contradictory-evidence",
+  "binding": {
+    "schemaVersion": 1,
+    "scenarioId": "contradictory-evidence",
+    "candidatePackageTreeSha256": "4e3a2f8f3b0cb17c7e276b38b08568905a5b73baa7f6dbda4d6d7645823ca5ec",
+    "candidateBundleSha256": "4dd535109195c087f31c78fdeebf7dd6f05b17262fba337287a4e2351288a912",
+    "inputSha256": "4dfbabc94e524e65636dc4d45727d357ec5765aee0fb7dc240a812569445c4b5",
+    "promptSha256": "8dc3230d387d3854f9265e5c1fb1ac86cbfdf4359f3e52dcfa5d3e4acde5cccb",
+    "finalSha256": "108d50b136912984db1d83fe63d9955079a07a73aeebb73c2d69c7273c5926f6",
+    "executionSha256": "5e731b68559c06dfddc5e582b60eeb5949229bcd7164dc7cc4acbb0ecba999f3"
+  },
+  "status": "REVIEWED",
+  "reviewer": "/root/design_review; independent of the evaluated Codex session",
+  "independentReview": true,
+  "hardFailures": [],
+  "criteria": [
+    {
+      "criterion": "Evidence fidelity: numbers, units and claims match cited evidence.",
+      "score": 2,
+      "rationale": "All eight values and references match: CPU 48.5/97 percent, memory-titled cpu_usage 41/82 percent, disk free 4/8 percent and system load 1.05/2.1 ratio. The signed critical LTE10 disk alert, contradictory CPU/memory statuses and returned FLAT directions are preserved without invented impact, host counts or memory measurements."
+    },
+    {
+      "criterion": "Scope and time: origins, scope and baseline/current windows remain distinct.",
+      "score": 2,
+      "rationale": "The artifact retains local-grafana-e2e/infrastructure, SIMULATED origin, exact November1 baseline 00:17:47–00:18:07Z and current 00:18:07–00:18:27Z windows, collection interval and capture time. It explicitly limits findings to the imported historical record rather than current or production health."
+    },
+    {
+      "criterion": "Coverage: missing, empty, stale, partial and contradictory evidence stays explicit.",
+      "score": 2,
+      "rationale": "The overall report remains CONTRADICTORY, both CPU/memory pairs remain disputed, and complete disk/load observations do not remove those gaps. Historical PARTIAL/WARN readiness and absent application impact, filesystem identity and service-level evidence remain explicit."
+    },
+    {
+      "criterion": "Causality: ranked hypotheses, alternatives and counter-evidence do not become confirmed cause.",
+      "score": 2,
+      "rationale": "Resource pressure, a possible disk/load relationship and a normalization/mapping defect are ranked as open hypotheses with counter-evidence. The artifact states the missing I/O, process, host and timing fields needed for causal analysis and does not confirm a mechanism or incident impact."
+    },
+    {
+      "criterion": "Action truth: proposed, approved, human-reported, executed and verified are distinguished.",
+      "score": 2,
+      "rationale": "Mapping checks, replacement collection and possible responder-led disk remediation remain proposals; authorization, execution and effect are not established. No tool retrieval or external action is claimed, executed_actions is empty, and no closure or measured recovery is asserted."
+    },
+    {
+      "criterion": "Usefulness: the incident artifact gives concrete next checks and a usable handoff.",
+      "score": 2,
+      "rationale": "The handoff identifies exact missing metric-identity fields and requests a separately reviewed bounded CPU/memory source. The weaker disk hypothesis similarly requests a separately reviewed source for filesystem and I/O-latency fields. It explicitly says the saved record cannot add them, routes mapping review to the evidence owner and conditions new collection on addressing the defect with a new key."
+    }
+  ],
+  "scenarioSpecificCheck": {
+    "expectation": "Expose incompatible scalar claims and preserve their references; do not choose one silently.",
+    "score": 2,
+    "rationale": "Both competing current values 97/82 and baseline values 48.5/41 retain their exact owning references. The memory-title/cpu_usage-label disagreement is exposed, no conflicting value is silently selected, and the next check requires independently reviewed metric identity."
+  },
+  "decision": "PASS"
+}

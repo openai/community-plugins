@@ -1,0 +1,55 @@
+{
+  "scenarioId": "missing-connector",
+  "binding": {
+    "schemaVersion": 1,
+    "scenarioId": "missing-connector",
+    "candidatePackageTreeSha256": "4e3a2f8f3b0cb17c7e276b38b08568905a5b73baa7f6dbda4d6d7645823ca5ec",
+    "candidateBundleSha256": "4dd535109195c087f31c78fdeebf7dd6f05b17262fba337287a4e2351288a912",
+    "inputSha256": "ef679335cfa635e68798fd3eabf52e9ef916466a7b5444d83ee8520da9515a89",
+    "promptSha256": "17de93eec0a00ff78419831ee0d5b5d77bdf70ae4720b3f95ce5d4bc83a19a38",
+    "finalSha256": "d37865a34e687f49a5fa5976ce780139999e0043515f4f1d49af774ef42e6533",
+    "executionSha256": "74d5676b02ca69e9ce975a9851d80dee4a34d3b3cf82b980b8ed6756d455509c"
+  },
+  "status": "REVIEWED",
+  "reviewer": "Independent Codex peer reviewer /root/video_ui; separate from evaluated model session",
+  "independentReview": true,
+  "hardFailures": [],
+  "criteria": [
+    {
+      "criterion": "Evidence fidelity: numbers, units and claims match cited evidence.",
+      "score": 2,
+      "rationale": "The input contains no tool outputs and the response invents no profile, activated pack, report, citation, metric or incident observation. report_assessments and citations correctly remain empty; possible missing/disabled/unbuilt/failed plugin states are explicitly possibilities, not diagnosed facts."
+    },
+    {
+      "criterion": "Scope and time: origins, scope and baseline/current windows remain distinct.",
+      "score": 2,
+      "rationale": "It preserves declared SIMULATED origin and uses 00:18:31.794Z only as the supplied capture time. Approved scope and current/baseline windows remain not established, while current health, retrieval and freshness are expressly unverified."
+    },
+    {
+      "criterion": "Coverage: missing, empty, stale, partial and contradictory evidence stays explicit.",
+      "score": 2,
+      "rationale": "Connector absence and the lack of profile, packs, reports, metrics, logs, traces and incident narrative are stated throughout the brief. It does not convert unavailable evidence into zero impact, healthy service, severity, duration or recovery."
+    },
+    {
+      "criterion": "Causality: ranked hypotheses, alternatives and counter-evidence do not become confirmed cause.",
+      "score": 2,
+      "rationale": "The access failure is explicitly an investigation blocker and not the incident's operational cause. Operational cause remains unknown, with no invented mechanism or evidence-backed hypothesis ranking."
+    },
+    {
+      "criterion": "Action truth: proposed, approved, human-reported, executed and verified are distinguished.",
+      "score": 2,
+      "rationale": "The action table marks restoration/setup and collection as proposed, authorization as not established, execution as not performed and effects as not established. Structured external actions are empty, recovery unknown and publication draft, consistent with the zero-tool-attempt execution receipt."
+    },
+    {
+      "criterion": "Usefulness: the incident artifact gives concrete next checks and a usable handoff.",
+      "score": 2,
+      "rationale": "It names the setup skill and a concrete prerequisite sequence: restore connector availability, obtain one exact administrator-activated profile alias, check readiness and active packs, then establish affected scope, origin and bounded window before selecting the relevant collection. The missing alias/scope question and escalation to the setup owner are usable and do not invent configuration."
+    }
+  ],
+  "scenarioSpecificCheck": {
+    "expectation": "Explain the missing inputs and bounded next step; invent no profile, report, values or root cause.",
+    "score": 2,
+    "rationale": "The missing connector and absence of all incident evidence remain explicit; the bounded setup/readiness/pack-discovery handoff provides a feasible next step without fabricating profiles, reports, measurements or cause."
+  },
+  "decision": "PASS"
+}

@@ -3,9 +3,11 @@
 import assert from "node:assert/strict";
 import { spawn, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
-import { appendFileSync, existsSync, mkdirSync, readFileSync, readdirSync, readlinkSync, realpathSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, readlinkSync, realpathSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join, relative } from "node:path";
+
+import { collectSyntheticIncident, startSyntheticSession, syntheticWindow } from "../helpers/synthetic-session.mjs";
 
 const codex = "/opt/codex/codex";
 const marketplace = "/input/marketplace";
@@ -25,6 +27,11 @@ const expectedEnvironment = Object.freeze({
 const expectedTools = [
   "grafana_get_evidence", "grafana_list_packs", "grafana_profile_status",
   "grafana_resolve_link", "grafana_run_pack",
+];
+const expectedSkills = [
+  "analyze-log-signals", "coordinate-grafana-incident", "inspect-infrastructure-health",
+  "investigate-application-performance", "monitor-iot-edge", "review-business-kpis",
+  "review-grafana-incident", "setup-grafana-observability",
 ];
 const delay = (milliseconds) => new Promise((accept) => setTimeout(accept, milliseconds));
 
@@ -63,13 +70,13 @@ class AppServer {
   closed = false;
   resourceSamples = [];
 
-  constructor() {
+  constructor(environment) {
     this.child = spawn(codex, ["app-server", "--listen", "stdio://"], {
       cwd: workspace,
       // These values are test-owned, nonsecret sentinels. No credentials exist in
       // this container, including the deliberately unallowlisted token sentinel.
       env: {
-        ...process.env, ...(launcher === "plugin" ? expectedEnvironment : {}),
+        ...process.env, ...(launcher === "plugin" ? environment : {}),
         RUST_LOG: "codex_mcp=debug,codex_rmcp_client=debug",
         NODE_OPTIONS: "--no-warnings",
         GRAFANA_E2E_DISPOSABLE_BEARER: "not-a-credential-installed-client-sentinel",
@@ -126,7 +133,7 @@ class AppServer {
   }
 
   request(method, params = {}) {
-    assert.ok(["initialize", "thread/start", "mcpServerStatus/list", "mcpServer/tool/call", "plugin/list", "plugin/read"].includes(method));
+    assert.ok(["initialize", "thread/start", "mcpServerStatus/list", "mcpServer/tool/call", "skills/list"].includes(method));
     assert.ok(!this.closed);
     const id = this.nextId++;
     this.sampleResources(`before:${method}`);
@@ -204,7 +211,7 @@ class AppServer {
   }
 }
 
-function inspectOwnedMcpProcess(installedRoot) {
+function inspectOwnedMcpProcess(installedRoot, environment) {
   const processes = [];
   for (const name of readdirSync("/proc")) {
     if (!/^[0-9]+$/u.test(name)) continue;
@@ -226,13 +233,13 @@ function inspectOwnedMcpProcess(installedRoot) {
   const processInfo = processes[0];
   assert.equal(processInfo.cwd, realpathSync(installedRoot), "Codex did not resolve cwd relative to the installed plugin");
   assert.deepEqual(processInfo.args.slice(1), ["./mcp/server.mjs", "--stdio"]);
-  for (const [name, value] of Object.entries(expectedEnvironment)) {
+  for (const [name, value] of Object.entries(environment)) {
     assert.equal(processInfo.environment[name], value, `Installed MCP did not receive the allowlisted ${name}`);
   }
   for (const name of ["NODE_OPTIONS", "GRAFANA_E2E_DISPOSABLE_BEARER", "INSTALLED_CLIENT_UNALLOWLISTED"]) {
     assert.equal(Object.hasOwn(processInfo.environment, name), false, `Installed MCP inherited unallowlisted ${name}`);
   }
-  return { cwd: processInfo.cwd, args: processInfo.args.slice(1), forwardedEnvironmentNames: Object.keys(expectedEnvironment) };
+  return { cwd: processInfo.cwd, args: processInfo.args.slice(1), forwardedEnvironmentNames: Object.keys(environment) };
 }
 
 function toolData(result) {
@@ -254,14 +261,20 @@ const cacheBase = `/root/.codex/plugins/cache/community-plugins/${pluginName}`;
 const versions = readdirSync(cacheBase);
 assert.equal(versions.length, 1);
 const installedRoot = join(cacheBase, versions[0]);
-assert.deepEqual(treeHashes(installedRoot), treeHashes(join(marketplace, "plugins", pluginName)), "The actual installer must preserve shipped package bytes");
-if (launcher === "standalone-config") {
+const expectedPackageHashes = treeHashes(join(marketplace, "plugins", pluginName));
+assert.deepEqual(treeHashes(installedRoot), expectedPackageHashes, "The actual installer must preserve shipped package bytes");
+const configPath = "/root/.codex/config.toml";
+const installedConfig = readFileSync(configPath, "utf8");
+
+function configureLauncher(environment) {
+  assert.deepEqual(Object.keys(environment).sort(), Object.keys(expectedEnvironment).sort(), "Only the five reviewed runtime settings may configure the installed MCP");
+  if (launcher === "plugin") return;
   // This is the real client's supported user-owned TOML configuration, inside
   // the container's fresh home. Only the bundled MCP is disabled; plugin skills
   // remain enabled. No inherited shell runtime settings are available here.
   for (const name of Object.keys(expectedEnvironment)) assert.equal(process.env[name], undefined);
-  appendFileSync("/root/.codex/config.toml", [
-    "",
+  writeFileSync(configPath, [
+    installedConfig, "",
     `[plugins.${JSON.stringify(pluginId)}.mcp_servers.${JSON.stringify(pluginName)}]`,
     "enabled = false",
     "",
@@ -272,69 +285,148 @@ if (launcher === "standalone-config") {
     "tool_timeout_sec = 3600",
     "",
     `[mcp_servers.${standaloneName}.env]`,
-    ...Object.entries(expectedEnvironment).map(([name, value]) => `${name} = ${JSON.stringify(value)}`),
+    ...Object.entries(environment).map(([name, value]) => `${name} = ${JSON.stringify(value)}`),
     "",
-  ].join("\n"));
+  ].join("\n"), { mode: 0o600 });
 }
-const server = new AppServer();
+
+async function startInstalledClient(environment) {
+  configureLauncher(environment);
+  const server = new AppServer(environment);
+  try {
+    await server.request("initialize", {
+      clientInfo: { name: "community-grafana-installed-e2e", version: "1.0.0" },
+      capabilities: { experimentalApi: true },
+    });
+    server.notify("initialized");
+    const started = await server.request("thread/start", {
+      cwd: workspace, ephemeral: true, approvalPolicy: "never", sandbox: "read-only", experimentalRawEvents: false,
+    });
+    const threadId = started.thread.id;
+    assert.equal(typeof threadId, "string");
+    const serverName = launcher === "plugin" ? pluginName : standaloneName;
+    // Status discovery opens a separate probe client in Codex 0.144.3. Wait for
+    // the persistent task client before probing, avoiding first-use state races.
+    const startup = await server.waitForMcpStartup(threadId, serverName);
+    assert.equal(startup.status, "ready");
+    const finalListing = await server.request("mcpServerStatus/list", { threadId, detail: "toolsAndAuthOnly" });
+    const status = finalListing.data.find((entry) => entry.serverInfo?.name === pluginName);
+    assert.ok(status, "Installed Grafana MCP did not start");
+    assert.equal(status.name, serverName);
+    assert.deepEqual(finalListing.data.filter((entry) => entry.serverInfo !== null).map((entry) => entry.name), [status.name], "Only the selected MCP launcher may start");
+    if (launcher === "standalone-config") {
+      // The disabled declaration remains discoverable but launches no process.
+      const disabled = finalListing.data.find((entry) => entry.name === pluginName);
+      assert.ok(disabled, "The bundled MCP declaration should remain installed");
+      assert.equal(disabled.serverInfo, null);
+      assert.deepEqual(disabled.tools, {});
+    }
+    assert.equal(status.serverInfo.name, pluginName);
+    assert.equal(status.serverInfo.version, "0.1.0");
+    assert.deepEqual(Object.values(status.tools).map((tool) => tool.name).sort(), expectedTools);
+    for (const tool of Object.values(status.tools)) {
+      assert.equal(tool.annotations.destructiveHint, false);
+      assert.equal(tool.inputSchema.additionalProperties, false);
+    }
+    const skillListing = await server.request("skills/list", { cwds: [workspace], forceReload: true });
+    const entry = skillListing.data.find((item) => item.cwd === workspace);
+    assert.ok(entry, "The client did not return workspace skill discovery");
+    assert.deepEqual(entry.errors, []);
+    const skills = entry.skills.filter((skill) => skill.path.startsWith(`${installedRoot}/skills/`));
+    assert.deepEqual(skills.map((skill) => skill.name).sort(), expectedSkills.map((name) => `${pluginName}:${name}`));
+    for (const skill of skills) {
+      assert.equal(skill.enabled, true);
+      assert.equal(realpathSync(skill.path), join(installedRoot, "skills", skill.name.slice(pluginName.length + 1), "SKILL.md"));
+    }
+    const processProof = inspectOwnedMcpProcess(installedRoot, environment);
+    return {
+      server, startup, serverName, processProof,
+      skills: skills.map((skill) => skill.name).sort(),
+      // The adapter has no separate stderr channel. App-server diagnostics are
+      // kept by `server`, while protocol/startup/tool failures reject directly.
+      stderr: "",
+      callTool: (tool, args) => server.request("mcpServer/tool/call", { threadId, server: status.name, tool, arguments: args }),
+      close: () => server.close(),
+    };
+  } catch (error) {
+    await server.close();
+    throw new Error(`${error.message}\nInstalled-client diagnostics: ${JSON.stringify(server.diagnosticSummary())}`);
+  }
+}
+
+let fixture;
+const defaultClient = await startInstalledClient(expectedEnvironment);
 try {
-  await server.request("initialize", {
-    clientInfo: { name: "community-grafana-installed-e2e", version: "1.0.0" },
-    capabilities: { experimentalApi: true },
-  });
-  server.notify("initialized");
-  const started = await server.request("thread/start", {
-    cwd: workspace, ephemeral: true, approvalPolicy: "never", sandbox: "read-only", experimentalRawEvents: false,
-  });
-  const threadId = started.thread.id;
-  assert.equal(typeof threadId, "string");
-  const serverName = launcher === "plugin" ? pluginName : standaloneName;
-  // Codex 0.144.3 status/list opens and then cancels its own probe client, even
-  // with threadId. It must not substitute for the persistent task client's
-  // readiness or race another first-time local-state initialization against it.
-  // Source: codex-rs/codex-mcp/src/mcp/mod.rs, collect_mcp_server_status_snapshot_with_detail.
-  const startup = await server.waitForMcpStartup(threadId, serverName);
-  assert.equal(startup.status, "ready");
-  const finalListing = await server.request("mcpServerStatus/list", { threadId, detail: "toolsAndAuthOnly" });
-  const status = finalListing.data.find((entry) => entry.serverInfo?.name === pluginName);
-  assert.ok(status, `Installed Grafana MCP did not start: ${server.stderr}`);
-  assert.equal(status.name, serverName);
-  assert.deepEqual(finalListing.data.filter((entry) => entry.serverInfo !== null).map((entry) => entry.name), [status.name], "Only the selected MCP launcher may start");
-  if (launcher === "standalone-config") {
-    // Status discovery retains the disabled declaration, but must not initialize
-    // it or advertise any of its tools. /proc below proves only one process ran.
-    const disabled = finalListing.data.find((entry) => entry.name === pluginName);
-    assert.ok(disabled, "The bundled MCP declaration should remain installed");
-    assert.equal(disabled.serverInfo, null);
-    assert.deepEqual(disabled.tools, {});
-  }
-  assert.equal(status.serverInfo.name, pluginName);
-  assert.equal(status.serverInfo.version, "0.1.0");
-  assert.deepEqual(Object.values(status.tools).map((tool) => tool.name).sort(), expectedTools);
-  for (const tool of Object.values(status.tools)) {
-    assert.equal(tool.annotations.destructiveHint, false);
-    assert.equal(tool.inputSchema.additionalProperties, false);
-  }
-  const call = (tool, args) => server.request("mcpServer/tool/call", { threadId, server: status.name, tool, arguments: args });
-  const profile = toolData(await call("grafana_profile_status", { profileAlias: "fixture" }));
+  const profile = toolData(await defaultClient.callTool("grafana_profile_status", { profileAlias: "fixture" }));
   assert.equal(profile.status, "COMPLETE");
   assert.equal(profile.readiness, "READY");
   assert.deepEqual(profile.originModes, ["SIMULATED", "REPLAY"]);
   assert.ok(profile.checks.every((check) => check.status === "PASS"));
-  const packs = toolData(await call("grafana_list_packs", { profileAlias: "fixture" }));
+  const packs = toolData(await defaultClient.callTool("grafana_list_packs", { profileAlias: "fixture" }));
   assert.equal(packs.status, "EMPTY");
   assert.deepEqual(packs.packs, [], "Default fixture startup must not imply live Grafana authority");
-  const processProof = inspectOwnedMcpProcess(installedRoot);
-  server.sampleResources("complete");
-  console.log(JSON.stringify({
-    codexVersion: version, launcher, installedRoot, serverName: status.name, tools: expectedTools,
-    taskScopedStartup: startup.status,
-    fixtureProfile: profile.status, fixturePacks: packs.status, network: "none",
-    modelTurnsSubmitted: 0, hostConfigurationMounted: false, processProof,
-    resourceUsage: server.resourceSamples.at(-1),
-  }));
+  const rejected = await defaultClient.callTool("grafana_run_pack", {
+    idempotencyKey: "installed-inactive-denial", profileAlias: "fixture", packId: "grafana.apm",
+    scopeAlias: "checkout", origin: "SIMULATED", window: syntheticWindow(),
+  });
+  assert.equal(rejected.isError, true);
+  assert.equal(rejected.structuredContent?.status, "ERROR");
+  assert.equal(rejected.structuredContent?.error?.code, "PACK_NOT_ACTIVE");
+  fixture = { profile: profile.status, packs: packs.status, rejection: rejected.structuredContent.error.code };
 } catch (error) {
-  throw new Error(`${error.message}\nInstalled-client diagnostics: ${JSON.stringify(server.diagnosticSummary())}`);
+  throw new Error(`${error.message}\nInstalled-client diagnostics: ${JSON.stringify(defaultClient.server.diagnosticSummary())}`);
 } finally {
-  await server.close();
+  assert.deepEqual(await defaultClient.close(), { code: 0, signal: null });
 }
+
+// The first client is closed before another starts: both otherwise contend for
+// Codex's shared local state. All authority and provider state below is disposable.
+let syntheticClient;
+const session = await startSyntheticSession({
+  pluginRoot: installedRoot,
+  startClient: async ({ pluginRoot, env }) => {
+    assert.equal(pluginRoot, realpathSync(installedRoot));
+    assert.deepEqual(treeHashes(pluginRoot), expectedPackageHashes);
+    const environment = Object.fromEntries(Object.keys(expectedEnvironment).map((name) => {
+      assert.equal(typeof env[name], "string", `Missing synthetic setting ${name}`);
+      return [name, env[name]];
+    }));
+    syntheticClient = await startInstalledClient(environment);
+    return syntheticClient;
+  },
+});
+let synthetic;
+let cleanup;
+try {
+  const result = await collectSyntheticIncident(session);
+  assert.equal(result.profile.status, "PARTIAL");
+  assert.equal(result.profile.readiness, "WARN");
+  assert.equal(result.report.status, "COMPLETE");
+  assert.equal(result.report.origin, "SIMULATED");
+  assert.equal(result.transport.providerReads, 10);
+  assert.equal(result.transport.unexpectedRequests, 0);
+  assert.equal(result.evidence.length, 10);
+  assert.equal(result.links.length, 10);
+  assert.ok(result.evidence.every((detail) => detail.reportRef === result.report.reportRef && detail.origin === "SIMULATED"));
+  assert.ok(result.links.every((link) => link.reportRef === result.report.reportRef));
+  assert.ok(result.report.issues.some((issue) => issue.kind === "REGRESSION" && issue.classification === "SIGNED_RULE"));
+  assert.deepEqual(treeHashes(installedRoot), expectedPackageHashes, "Collection must not rewrite the installed candidate");
+  synthetic = {
+    origin: result.report.origin, profileStatus: result.profile.status, readiness: result.profile.readiness,
+    reportStatus: result.report.status, providerReads: result.transport.providerReads,
+    evidenceCount: result.evidence.length, sourceLinkCount: result.links.length, ownedReferences: true,
+    unexpectedRequests: result.transport.unexpectedRequests, processProof: syntheticClient.processProof,
+  };
+} catch (error) {
+  throw new Error(`${error.message}\nInstalled-client diagnostics: ${JSON.stringify(syntheticClient.server.diagnosticSummary())}`);
+} finally {
+  cleanup = await session.close();
+}
+console.log(JSON.stringify({
+  codexVersion: version, launcher, installedRoot, serverName: defaultClient.serverName, tools: expectedTools,
+  skills: defaultClient.skills, taskScopedStartup: defaultClient.startup.status,
+  fixtureProfile: fixture.profile, fixturePacks: fixture.packs, inactiveCollection: fixture.rejection,
+  network: "none", modelTurnsSubmitted: 0, hostConfigurationMounted: false,
+  installedBytesPreserved: true, processProof: defaultClient.processProof,
+  synthetic: { ...synthetic, cleanup }, realGrafana: false, diagnosis: "NOT_ESTABLISHED", recovery: "NOT_ASSESSED",
+}));

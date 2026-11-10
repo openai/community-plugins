@@ -1,0 +1,55 @@
+{
+  "scenarioId": "complete-baseline",
+  "binding": {
+    "schemaVersion": 1,
+    "scenarioId": "complete-baseline",
+    "candidatePackageTreeSha256": "932ef62694f4d30d342504cbb17a80cbdc2d542fdf0bae1efd48449aa1bda6c4",
+    "candidateBundleSha256": "3edf3f4596d20afba6e3e4dc22bc39177f34c920c05233da2ce442321d70907f",
+    "inputSha256": "fb14dfe3d406db4191bec12f4b17633f246268abb734f1bc43a3e371395c356c",
+    "promptSha256": "febc8d327ae0e72bd7b4c2bba953a67e0ee0649f079a6ed8f10fbfe811245f09",
+    "finalSha256": "09e6790ef56888373320df586d2abb783e4dcb1985e38ed6afec187868726530",
+    "executionSha256": "cbfcdd3c2ffe5899c19e8dd80f85321455a8d923e3a03a88f70d167cbc23cd3e"
+  },
+  "status": "REVIEWED",
+  "reviewer": "Independent Codex root reviewer; separate from evaluated model session",
+  "independentReview": true,
+  "hardFailures": [],
+  "criteria": [
+    {
+      "criterion": "Evidence fidelity: numbers, units and claims match cited evidence.",
+      "score": 2,
+      "rationale": "The artifact and all ten structured citation claims match the supplied endpoints: request rate 60→120 requests/s, error rate 3→6 percent (+3 percentage points), p95 latency 625→1250 ms. It correctly distinguishes current CRITICAL signal severity from WARNING latency-regression severity."
+    },
+    {
+      "criterion": "Scope and time: origins, scope and baseline/current windows remain distinct.",
+      "score": 2,
+      "rationale": "It retains SIMULATED apm scope, the adjacent20-second windows ending01:05:52 Z and01:06:12 Z, capture time, and unverified retrieval/freshness; it makes no live-health claim."
+    },
+    {
+      "criterion": "Coverage: missing, empty, stale, partial and contradictory evidence stays explicit.",
+      "score": 2,
+      "rationale": "It preserves COMPLETE as collection completion, separately discloses profile PARTIAL/WARN, and leaves customer counts, duration and component-level evidence unknown."
+    },
+    {
+      "criterion": "Causality: ranked hypotheses, alternatives and counter-evidence do not become confirmed cause.",
+      "score": 2,
+      "rationale": "Load, checkout503-path and pre-existing bottleneck explanations remain hypotheses; baseline symptoms and endpoint-only correlation are explicit counter-evidence."
+    },
+    {
+      "criterion": "Action truth: proposed, approved, human-reported, executed and verified are distinguished.",
+      "score": 2,
+      "rationale": "The action record establishes no remediation, authorization, execution or measured recovery; structured actions are empty and publication remains draft."
+    },
+    {
+      "criterion": "Usefulness: the incident artifact gives concrete next checks and a usable handoff.",
+      "score": 2,
+      "rationale": "The handoff identifies temporal and component evidence needed to distinguish hypotheses, limits work to APM scope, and requires separately authorized fresh collection for current health."
+    }
+  ],
+  "scenarioSpecificCheck": {
+    "expectation": "Quantify the regression with the actual current/baseline values and preserve SIMULATED origin; no confirmed root cause.",
+    "score": 2,
+    "rationale": "The actual baseline comparison is quantified without converting signed regressions into a confirmed cause or production claim."
+  },
+  "decision": "PASS"
+}

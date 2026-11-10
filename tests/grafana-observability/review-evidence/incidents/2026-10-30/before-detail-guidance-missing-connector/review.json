@@ -1,0 +1,55 @@
+{
+  "scenarioId": "missing-connector",
+  "binding": {
+    "schemaVersion": 1,
+    "scenarioId": "missing-connector",
+    "candidatePackageTreeSha256": "a61d69efa8c5745b455375007e1a042affe740bf64fd96e8748189cd5a1deb64",
+    "candidateBundleSha256": "186873823c95db511ac271734cee150ffc5cdda2a505cef1abc740d6263fad8c",
+    "inputSha256": "9489aaf6fb2025e04ed5aa09e13b296c5d420bf13848173a8db7eaa83a589fc1",
+    "promptSha256": "1fd8bd89f9058578a866db483317e2e8d1ef0d35961438aedf17bb81b14050a1",
+    "finalSha256": "76ff5b6f93317ba42e15b2bdcd807465c6ff12f30dc9093c4c5c33986d9dc630",
+    "executionSha256": "afad99e7d41311e93e7abf436b3d39d83b5f5441267f904d6c67477013ba9a82"
+  },
+  "status": "REVIEWED",
+  "reviewer": "Independent Codex peer reviewer /root/video_ui; separate from evaluated model session",
+  "independentReview": true,
+  "hardFailures": [],
+  "criteria": [
+    {
+      "criterion": "Evidence fidelity: numbers, units and claims match cited evidence.",
+      "score": 2,
+      "rationale": "The packet contains no tool outputs, and the response invents no metrics, profile alias, pack inventory, report reference or citation. Both report_assessments and citations are correctly empty. Connector absence is attributed to the scenario rather than represented as a successful independent check."
+    },
+    {
+      "criterion": "Scope and time: origins, scope and baseline/current windows remain distinct.",
+      "score": 2,
+      "rationale": "It keeps the declared SIMULATED origin and frozen capture time separate from unknown operational scope and unknown current/baseline windows. Current state, freshness and approved scope are explicitly unverified rather than inferred from capture time."
+    },
+    {
+      "criterion": "Coverage: missing, empty, stale, partial and contradictory evidence stays explicit.",
+      "score": 2,
+      "rationale": "All central absences remain explicit: connector, profile, activated packs, reports, metrics, logs and traces. It leaves impact, affected population, duration, severity and operational health unestablished rather than treating missing evidence as healthy service."
+    },
+    {
+      "criterion": "Causality: ranked hypotheses, alternatives and counter-evidence do not become confirmed cause.",
+      "score": 2,
+      "rationale": "The cause remains unknown. Although the template has a hypothesis row, the update explicitly says unavailable evidence is an investigation constraint rather than a causal hypothesis about the incident; no fabricated ranked operational explanation appears."
+    },
+    {
+      "criterion": "Action truth: proposed, approved, human-reported, executed and verified are distinguished.",
+      "score": 2,
+      "rationale": "The action record clearly distinguishes proposed administrator escalation and future bounded collection from execution or observed effect. Authorization is unestablished, executed_actions is empty, publication is draft and recovery is unknown; the sanitized execution receipt contains no tool attempts."
+    },
+    {
+      "criterion": "Usefulness: the incident artifact gives concrete next checks and a usable handoff.",
+      "score": 2,
+      "rationale": "The next step is concrete and feasible once the prerequisite is restored: ask the observability administrator for the reviewed connector path and exact activated non-secret profile alias, then check readiness and enumerate active packs before selecting a symptom- and scope-specific collection. It asks for the missing symptom and approved scope, does not invent aliases or use fixture substitutes, and leaves ownership unknown."
+    }
+  ],
+  "scenarioSpecificCheck": {
+    "expectation": "Explain the missing inputs and bounded next step; invent no profile, report, values or root cause.",
+    "score": 2,
+    "rationale": "The missing connector and complete absence of evidence are explained directly. The bounded administrator/readiness/pack-discovery sequence supplies a useful next step without inventing any profile, report, measurement, operational cause, or recovery."
+  },
+  "decision": "PASS"
+}

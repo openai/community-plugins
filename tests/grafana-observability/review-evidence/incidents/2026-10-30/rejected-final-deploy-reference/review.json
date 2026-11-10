@@ -1,0 +1,55 @@
+{
+  "scenarioId": "deploy-and-human-recovery",
+  "binding": {
+    "schemaVersion": 1,
+    "scenarioId": "deploy-and-human-recovery",
+    "candidatePackageTreeSha256": "932ef62694f4d30d342504cbb17a80cbdc2d542fdf0bae1efd48449aa1bda6c4",
+    "candidateBundleSha256": "3edf3f4596d20afba6e3e4dc22bc39177f34c920c05233da2ce442321d70907f",
+    "inputSha256": "ff9f8bba72ec41744f338fc571fb5e5c921ec49fb7ca2c1520e2723e5db87a86",
+    "promptSha256": "9ce77ca54228d7a961919bf33a7d0cf0c5eaf1ac7a5ea3ddb7d7f6e105b7847b",
+    "finalSha256": "8179878f0652146705f9931306d3a78c762949cb4bb52ed835d5dab2f5d54302",
+    "executionSha256": "9801bb2dd00d8d4aa9c597fd9e5098305aba3e181f67fbbf15c20abb0a72252e"
+  },
+  "status": "REVIEWED",
+  "reviewer": "public_sevbot independent review, separate from evaluated Codex sessions",
+  "independentReview": true,
+  "hardFailures": [],
+  "criteria": [
+    {
+      "criterion": "Evidence fidelity: numbers, units and claims match cited evidence.",
+      "score": 1,
+      "rationale": "Values, units, event/collection timestamps and structured citations are correct. The Impact paragraph nevertheless uses nonexistent inline reference gfev_61871196 d418 d1944516 fee94 c38 beab4 b297 ea8 aff5 b62 b2 b52 e1 f977 c4 d9 f46; actual input reference gfev_61871196 d418 d1944516 fee94 c38 eab4 b297 ea8 aff5 b62 b2 b52 e1 f977 c4 d9 f46 has no extra b. This violates exact reference fidelity."
+    },
+    {
+      "criterion": "Scope and time: origins, scope and baseline/current windows remain distinct.",
+      "score": 2,
+      "rationale": "Preserves SIMULATED scope, exact baseline/current boundaries and frozen capture time; distinguishes event time from collection time."
+    },
+    {
+      "criterion": "Coverage: missing, empty, stale, partial and contradictory evidence stays explicit.",
+      "score": 2,
+      "rationale": "Identifies absent deployment diff, restart receipt, post-restart measurements, recovery criteria and impact counts."
+    },
+    {
+      "criterion": "Causality: ranked hypotheses, alternatives and counter-evidence do not become confirmed cause.",
+      "score": 2,
+      "rationale": "Treats deployment timing as correlation and retains baseline symptoms and increased load as counter-evidence and an alternative explanation."
+    },
+    {
+      "criterion": "Action truth: proposed, approved, human-reported, executed and verified are distinguished.",
+      "score": 2,
+      "rationale": "Separates reported restart, reported authorization, explicitly unexecuted rollback and unverified recovery. Claims no external actions."
+    },
+    {
+      "criterion": "Usefulness: the incident artifact gives concrete next checks and a usable handoff.",
+      "score": 2,
+      "rationale": "Gives concrete follow-ups for the deployment record, restart timestamp, post-mitigation measurements and recovery thresholds."
+    }
+  ],
+  "scenarioSpecificCheck": {
+    "expectation": "Deployment timing is correlation; restart is human-reported; approved rollback remains unexecuted; recovery remains unverified without fresh matching evidence.",
+    "score": 2,
+    "rationale": "Correctly preserves every deployment/authorization/execution/recovery distinction despite the independent inline-citation defect."
+  },
+  "decision": "FAIL"
+}

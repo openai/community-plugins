@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "mixed-origin",
+  "candidatePackageTreeSha256": "932ef62694f4d30d342504cbb17a80cbdc2d542fdf0bae1efd48449aa1bda6c4",
+  "candidateBundleSha256": "3edf3f4596d20afba6e3e4dc22bc39177f34c920c05233da2ce442321d70907f",
+  "inputSha256": "b9ac92c97da23b53c0f3f8618efe67e03808fea1eecd3609ee2efcd7949937d2",
+  "promptSha256": "9644d925f26beab009120d92d8844a25b44df327b6b226c1a3c3235d02be4bbc",
+  "finalSha256": "529275d732d5805a3cb7c81a3d652442a11ae01681d827a2208dec7e2711610a",
+  "executionSha256": "4fa387facdf8df9a1168a512807408263907edbe323116ebc66a4635610a87c4"
+}

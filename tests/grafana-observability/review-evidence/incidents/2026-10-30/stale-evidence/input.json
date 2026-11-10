@@ -1,0 +1,921 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "stale-evidence",
+  "origin": "SIMULATED",
+  "capturedAt": "2026-11-01T00:19:09.718Z",
+  "interpretation": "Frozen repository-generated evidence. Tool outputs are unchanged; they describe their collection time, not current monitoring. The model receives no connected Grafana tools. Authored context below is not tool evidence.",
+  "toolOutputs": [
+    {
+      "profile": {
+        "schemaVersion": "1.0.0",
+        "status": "PARTIAL",
+        "profileAlias": "local-grafana-e2e",
+        "readiness": "WARN",
+        "originModes": [
+          "SIMULATED"
+        ],
+        "checks": [
+          {
+            "name": "trust-bundle",
+            "status": "PASS"
+          },
+          {
+            "name": "production-mutation",
+            "status": "PASS"
+          },
+          {
+            "name": "raw-provider-retention",
+            "status": "PASS"
+          },
+          {
+            "name": "signed-worker:adapter.grafana.v1",
+            "status": "PASS"
+          },
+          {
+            "name": "read-only-transport",
+            "status": "PASS"
+          },
+          {
+            "name": "provider-scope-admission:grafana",
+            "status": "PASS"
+          },
+          {
+            "name": "provider-connectivity:grafana",
+            "status": "PASS"
+          },
+          {
+            "name": "provider-clock:grafana",
+            "status": "PASS"
+          },
+          {
+            "name": "provider-read-authorization:grafana",
+            "status": "WARN"
+          }
+        ],
+        "limitations": [
+          "This status is read-only and does not expose credentials or provider configuration."
+        ]
+      },
+      "packs": {
+        "schemaVersion": "1.0.0",
+        "status": "COMPLETE",
+        "profileAlias": "local-grafana-e2e",
+        "packs": [
+          {
+            "packId": "grafana.apm",
+            "revision": 1,
+            "useCase": "APPLICATION_PERFORMANCE",
+            "requiredOperationCount": 5,
+            "optionalOperationCount": 0
+          },
+          {
+            "packId": "grafana.business-kpis",
+            "revision": 1,
+            "useCase": "BUSINESS_INTELLIGENCE",
+            "requiredOperationCount": 3,
+            "optionalOperationCount": 0
+          },
+          {
+            "packId": "grafana.infrastructure",
+            "revision": 1,
+            "useCase": "INFRASTRUCTURE",
+            "requiredOperationCount": 4,
+            "optionalOperationCount": 0
+          },
+          {
+            "packId": "grafana.iot-edge",
+            "revision": 1,
+            "useCase": "IOT_EDGE",
+            "requiredOperationCount": 2,
+            "optionalOperationCount": 0
+          },
+          {
+            "packId": "grafana.logs",
+            "revision": 1,
+            "useCase": "LOG_ANALYTICS",
+            "requiredOperationCount": 3,
+            "optionalOperationCount": 0
+          }
+        ],
+        "limitations": [
+          "Packs contain reviewed frozen operations; provider queries and datasource identities are not returned."
+        ]
+      },
+      "request": {
+        "idempotencyKey": "onboarding-stale",
+        "profileAlias": "local-grafana-e2e",
+        "packId": "grafana.apm",
+        "scopeAlias": "apm",
+        "origin": "SIMULATED",
+        "window": {
+          "start": "2026-10-31T23:18:41.000Z",
+          "end": "2026-10-31T23:19:01.000Z"
+        },
+        "baselineWindow": {
+          "start": "2026-10-31T23:18:21.000Z",
+          "end": "2026-10-31T23:18:41.000Z"
+        }
+      },
+      "report": {
+        "schemaVersion": "1.0.0",
+        "status": "STALE",
+        "reportRef": "gfrpt_3ba4f420efd1f9081f75426216ba625d88562a1ded422a7c6e132f3222ae924e",
+        "profileAlias": "local-grafana-e2e",
+        "pack": {
+          "packId": "grafana.apm",
+          "revision": 1,
+          "useCase": "APPLICATION_PERFORMANCE",
+          "requiredOperationCount": 5,
+          "optionalOperationCount": 0
+        },
+        "scopeAlias": "apm",
+        "origin": "SIMULATED",
+        "window": {
+          "start": "2026-10-31T23:18:41.000Z",
+          "end": "2026-10-31T23:19:01.000Z"
+        },
+        "baselineWindow": {
+          "start": "2026-10-31T23:18:21.000Z",
+          "end": "2026-10-31T23:18:41.000Z"
+        },
+        "evidenceSummary": {
+          "COMPLETE": 0,
+          "EMPTY": 0,
+          "STALE": 10,
+          "CONTRADICTORY": 0,
+          "ERROR": 0
+        },
+        "collectionFailures": 0,
+        "evidence": [
+          {
+            "evidenceRef": "gfev_1ee01da120b8e47825ba395d359dee7282a7fcfc0467e93699eb281022bf9f22",
+            "title": "grafana.apm.error.codes",
+            "domain": "LOGS",
+            "status": "STALE",
+            "summary": "HTTP 503 response observed for checkout",
+            "observedAt": "2026-10-31T23:18:41.000Z",
+            "linkRefs": [
+              "gflnk_fe79c16a6ab3e22af9fd58088aa565b76c1b43f2de7e9aedefd71dae595c6a45"
+            ]
+          },
+          {
+            "evidenceRef": "gfev_1019fa0563b35a7f5a7c54479b99fe48d904239d0e54cc0edd82def7fe0f2b59",
+            "title": "grafana.apm.error.codes",
+            "domain": "LOGS",
+            "status": "STALE",
+            "summary": "HTTP 503 response observed for checkout",
+            "observedAt": "2026-10-31T23:19:01.000Z",
+            "linkRefs": [
+              "gflnk_bbbcff89d7b7309e6397a83a06220a441e4af707709db497a2426bc514ec1b0d"
+            ]
+          },
+          {
+            "evidenceRef": "gfev_c8d05425813093e6ba6bb498771b8b7d23414f1b2074829b69bdba8c1d24ac28",
+            "title": "grafana.apm.error.rate",
+            "domain": "METRICS",
+            "status": "STALE",
+            "summary": "error_rate is 3 from grafana.",
+            "observedAt": "2026-10-31T23:18:41.000Z",
+            "linkRefs": [
+              "gflnk_2cefcdb693bd9cfd68b4badf12b285b605c2b40ec5b5d3314d7822aa5e1d40e4"
+            ]
+          },
+          {
+            "evidenceRef": "gfev_eb8b53935f6b4d7d4ab790b75e33ca31156c46114aee9e9bf692719d82e010c5",
+            "title": "grafana.apm.error.rate",
+            "domain": "METRICS",
+            "status": "STALE",
+            "summary": "error_rate is 6 from grafana.",
+            "observedAt": "2026-10-31T23:19:01.000Z",
+            "linkRefs": [
+              "gflnk_cd3bf0388760dfd7c6c190e923e0371badc836d10c8e76454ac4b87e2f75a22a"
+            ]
+          },
+          {
+            "evidenceRef": "gfev_3a0d0886092a2950dda799c505632fc9489df5bf3859cca57d2913973a90951c",
+            "title": "grafana.apm.latency.p95",
+            "domain": "METRICS",
+            "status": "STALE",
+            "summary": "latency_p95 is 1250 from grafana.",
+            "observedAt": "2026-10-31T23:19:01.000Z",
+            "linkRefs": [
+              "gflnk_ad952aafdf5aa1d181bebd16dcb0eee8c1a581c8fc228b91404a78e8f1316f6a"
+            ]
+          },
+          {
+            "evidenceRef": "gfev_16c657fc1147dc1f2a55c7f62dcdc0324f8db6dae2eb6331cc3f48f5aa4dab08",
+            "title": "grafana.apm.latency.p95",
+            "domain": "METRICS",
+            "status": "STALE",
+            "summary": "latency_p95 is 625 from grafana.",
+            "observedAt": "2026-10-31T23:18:41.000Z",
+            "linkRefs": [
+              "gflnk_ea890c2521e989b998e22ae100b83253e30f80b730599e1010913d6aec993824"
+            ]
+          },
+          {
+            "evidenceRef": "gfev_df0235ca62537427669a2ce4263ae6a7e1ae59a9668242136d9089b5a99b87ee",
+            "title": "grafana.apm.request.rate",
+            "domain": "METRICS",
+            "status": "STALE",
+            "summary": "request_rate is 60 from grafana.",
+            "observedAt": "2026-10-31T23:18:41.000Z",
+            "linkRefs": [
+              "gflnk_5edc75598a97b0e802c357d2ef6dca138154642fe0298333cd526f32df36a32a"
+            ]
+          },
+          {
+            "evidenceRef": "gfev_5772fb037d43b24340784bf90c97454ddb8977f3ccbfc4c47b7f64ee8efb6f18",
+            "title": "grafana.apm.request.rate",
+            "domain": "METRICS",
+            "status": "STALE",
+            "summary": "request_rate is 120 from grafana.",
+            "observedAt": "2026-10-31T23:19:01.000Z",
+            "linkRefs": [
+              "gflnk_017b0f56899bc396c5ddb3463f328f2936ffa2ed268c521c9f1f77b53203c149"
+            ]
+          },
+          {
+            "evidenceRef": "gfev_63de73f12d4a64e9c4f29bc4fc97769c87db31eb3b2e613b72b7b0e3a4a2aa93",
+            "title": "grafana.apm.traces.slow",
+            "domain": "TRACES",
+            "status": "STALE",
+            "summary": "Slow checkout trace exceeded 1000 ms",
+            "observedAt": "2026-10-31T23:19:01.000Z",
+            "linkRefs": [
+              "gflnk_c50120a00531242873ec94ed420cb7a14e329c3ecaa70f990e0189f441da7fd1"
+            ]
+          },
+          {
+            "evidenceRef": "gfev_1c5dfa2a7fd56785fb6897c684d2e75cdc795222ce83d3ad33b32f9e46d35f3d",
+            "title": "grafana.apm.traces.slow",
+            "domain": "TRACES",
+            "status": "STALE",
+            "summary": "Slow checkout trace exceeded 1000 ms",
+            "observedAt": "2026-10-31T23:18:41.000Z",
+            "linkRefs": [
+              "gflnk_1a0a458b88086b6c853687fcfc5da8aab59aae8f386edc8f73bf4a0480971806"
+            ]
+          }
+        ],
+        "signals": [
+          {
+            "signalRef": "signal.f68e21d1f13fd5367ebfb265",
+            "title": "request_rate",
+            "displayValue": "120 requests_per_second",
+            "unit": "requests_per_second",
+            "severity": "WARNING",
+            "direction": "FLAT",
+            "evidenceRefs": [
+              "gfev_5772fb037d43b24340784bf90c97454ddb8977f3ccbfc4c47b7f64ee8efb6f18"
+            ]
+          },
+          {
+            "signalRef": "signal.d6b986b8a558c41276b6357e",
+            "title": "error_rate",
+            "displayValue": "6 percent",
+            "unit": "percent",
+            "severity": "WARNING",
+            "direction": "FLAT",
+            "evidenceRefs": [
+              "gfev_eb8b53935f6b4d7d4ab790b75e33ca31156c46114aee9e9bf692719d82e010c5"
+            ]
+          },
+          {
+            "signalRef": "signal.c8d2ac193bb2734d7e75fffa",
+            "title": "latency_p95",
+            "displayValue": "1250 milliseconds",
+            "unit": "milliseconds",
+            "severity": "WARNING",
+            "direction": "FLAT",
+            "evidenceRefs": [
+              "gfev_3a0d0886092a2950dda799c505632fc9489df5bf3859cca57d2913973a90951c"
+            ]
+          }
+        ],
+        "issues": [
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Required baseline evidence is incomplete",
+            "summary": "grafana.apm.request.rate produced STALE evidence for the sealed baseline window.",
+            "evidenceRefs": [
+              "gfev_df0235ca62537427669a2ce4263ae6a7e1ae59a9668242136d9089b5a99b87ee"
+            ]
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Named evidence gap",
+            "summary": "grafana.apm.request.rate did not produce fresh complete evidence",
+            "evidenceRefs": []
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Required current evidence is incomplete",
+            "summary": "grafana.apm.latency.p95 produced STALE evidence for the sealed current window.",
+            "evidenceRefs": [
+              "gfev_3a0d0886092a2950dda799c505632fc9489df5bf3859cca57d2913973a90951c"
+            ]
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Named evidence gap",
+            "summary": "grafana.apm.error.rate did not produce fresh complete evidence",
+            "evidenceRefs": []
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Required current evidence is incomplete",
+            "summary": "grafana.apm.traces.slow produced STALE evidence for the sealed current window.",
+            "evidenceRefs": [
+              "gfev_63de73f12d4a64e9c4f29bc4fc97769c87db31eb3b2e613b72b7b0e3a4a2aa93"
+            ]
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Required baseline evidence is incomplete",
+            "summary": "grafana.apm.error.rate produced STALE evidence for the sealed baseline window.",
+            "evidenceRefs": [
+              "gfev_c8d05425813093e6ba6bb498771b8b7d23414f1b2074829b69bdba8c1d24ac28"
+            ]
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Named evidence gap",
+            "summary": "grafana.apm.error.codes did not produce fresh complete evidence",
+            "evidenceRefs": []
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Required current evidence is incomplete",
+            "summary": "grafana.apm.error.rate produced STALE evidence for the sealed current window.",
+            "evidenceRefs": [
+              "gfev_eb8b53935f6b4d7d4ab790b75e33ca31156c46114aee9e9bf692719d82e010c5"
+            ]
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Required baseline evidence is incomplete",
+            "summary": "grafana.apm.latency.p95 produced STALE evidence for the sealed baseline window.",
+            "evidenceRefs": [
+              "gfev_16c657fc1147dc1f2a55c7f62dcdc0324f8db6dae2eb6331cc3f48f5aa4dab08"
+            ]
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Named evidence gap",
+            "summary": "No analysis draft was submitted; this artifact is evidence-only and cannot claim a complete investigation.",
+            "evidenceRefs": []
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Named evidence gap",
+            "summary": "grafana.apm.latency.p95: STALE",
+            "evidenceRefs": []
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Required current evidence is incomplete",
+            "summary": "grafana.apm.error.codes produced STALE evidence for the sealed current window.",
+            "evidenceRefs": [
+              "gfev_1019fa0563b35a7f5a7c54479b99fe48d904239d0e54cc0edd82def7fe0f2b59"
+            ]
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Named evidence gap",
+            "summary": "grafana.apm.error.codes: STALE",
+            "evidenceRefs": []
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Named evidence gap",
+            "summary": "grafana.apm.latency.p95 did not produce fresh complete evidence",
+            "evidenceRefs": []
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Required baseline evidence is incomplete",
+            "summary": "grafana.apm.error.codes produced STALE evidence for the sealed baseline window.",
+            "evidenceRefs": [
+              "gfev_1ee01da120b8e47825ba395d359dee7282a7fcfc0467e93699eb281022bf9f22"
+            ]
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Required baseline evidence is incomplete",
+            "summary": "grafana.apm.traces.slow produced STALE evidence for the sealed baseline window.",
+            "evidenceRefs": [
+              "gfev_1c5dfa2a7fd56785fb6897c684d2e75cdc795222ce83d3ad33b32f9e46d35f3d"
+            ]
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Required current evidence is incomplete",
+            "summary": "grafana.apm.request.rate produced STALE evidence for the sealed current window.",
+            "evidenceRefs": [
+              "gfev_5772fb037d43b24340784bf90c97454ddb8977f3ccbfc4c47b7f64ee8efb6f18"
+            ]
+          },
+          {
+            "kind": "EVIDENCE_GAP",
+            "severity": "WARNING",
+            "status": "BLOCKED",
+            "classification": "DEVIATION",
+            "title": "Named evidence gap",
+            "summary": "grafana.apm.error.rate: STALE",
+            "evidenceRefs": []
+          }
+        ],
+        "limitations": [
+          "Evidence is read-only and cannot authorize a patch or mutate Grafana.",
+          "Datasource identities and frozen provider queries are intentionally omitted."
+        ]
+      },
+      "evidence": [
+        {
+          "schemaVersion": "1.0.0",
+          "status": "STALE",
+          "reportRef": "gfrpt_3ba4f420efd1f9081f75426216ba625d88562a1ded422a7c6e132f3222ae924e",
+          "evidenceRef": "gfev_1ee01da120b8e47825ba395d359dee7282a7fcfc0467e93699eb281022bf9f22",
+          "title": "grafana.apm.error.codes",
+          "domain": "LOGS",
+          "origin": "SIMULATED",
+          "authority": "CORROBORATING",
+          "provider": "grafana",
+          "evaluatedAt": "2026-10-31T23:18:41.000Z",
+          "collectedAt": "2026-11-01T00:19:05.077Z",
+          "window": {
+            "end": "2026-10-31T23:18:41.000Z",
+            "start": "2026-10-31T23:18:21.000Z"
+          },
+          "summary": "HTTP 503 response observed for checkout",
+          "values": [
+            {
+              "kind": "EVENT",
+              "at": "2026-10-31T23:18:40.000Z",
+              "summary": "HTTP 503 response observed for checkout"
+            }
+          ],
+          "limitationCount": 0,
+          "linkRefs": [
+            "gflnk_fe79c16a6ab3e22af9fd58088aa565b76c1b43f2de7e9aedefd71dae595c6a45"
+          ]
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "STALE",
+          "reportRef": "gfrpt_3ba4f420efd1f9081f75426216ba625d88562a1ded422a7c6e132f3222ae924e",
+          "evidenceRef": "gfev_1019fa0563b35a7f5a7c54479b99fe48d904239d0e54cc0edd82def7fe0f2b59",
+          "title": "grafana.apm.error.codes",
+          "domain": "LOGS",
+          "origin": "SIMULATED",
+          "authority": "CORROBORATING",
+          "provider": "grafana",
+          "evaluatedAt": "2026-10-31T23:19:01.000Z",
+          "collectedAt": "2026-11-01T00:19:02.593Z",
+          "window": {
+            "end": "2026-10-31T23:19:01.000Z",
+            "start": "2026-10-31T23:18:41.000Z"
+          },
+          "summary": "HTTP 503 response observed for checkout",
+          "values": [
+            {
+              "kind": "EVENT",
+              "at": "2026-10-31T23:19:00.000Z",
+              "summary": "HTTP 503 response observed for checkout"
+            }
+          ],
+          "limitationCount": 0,
+          "linkRefs": [
+            "gflnk_bbbcff89d7b7309e6397a83a06220a441e4af707709db497a2426bc514ec1b0d"
+          ]
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "STALE",
+          "reportRef": "gfrpt_3ba4f420efd1f9081f75426216ba625d88562a1ded422a7c6e132f3222ae924e",
+          "evidenceRef": "gfev_c8d05425813093e6ba6bb498771b8b7d23414f1b2074829b69bdba8c1d24ac28",
+          "title": "grafana.apm.error.rate",
+          "domain": "METRICS",
+          "origin": "SIMULATED",
+          "authority": "CORROBORATING",
+          "provider": "grafana",
+          "evaluatedAt": "2026-10-31T23:18:41.000Z",
+          "collectedAt": "2026-11-01T00:19:05.630Z",
+          "window": {
+            "end": "2026-10-31T23:18:41.000Z",
+            "start": "2026-10-31T23:18:21.000Z"
+          },
+          "summary": "error_rate is 3 from grafana.",
+          "values": [
+            {
+              "kind": "METRIC",
+              "label": "error_rate",
+              "value": 3,
+              "unit": "percent",
+              "points": [
+                {
+                  "at": "2026-10-31T23:18:41.000Z",
+                  "value": 3
+                }
+              ]
+            }
+          ],
+          "limitationCount": 0,
+          "linkRefs": [
+            "gflnk_2cefcdb693bd9cfd68b4badf12b285b605c2b40ec5b5d3314d7822aa5e1d40e4"
+          ]
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "STALE",
+          "reportRef": "gfrpt_3ba4f420efd1f9081f75426216ba625d88562a1ded422a7c6e132f3222ae924e",
+          "evidenceRef": "gfev_eb8b53935f6b4d7d4ab790b75e33ca31156c46114aee9e9bf692719d82e010c5",
+          "title": "grafana.apm.error.rate",
+          "domain": "METRICS",
+          "origin": "SIMULATED",
+          "authority": "CORROBORATING",
+          "provider": "grafana",
+          "evaluatedAt": "2026-10-31T23:19:01.000Z",
+          "collectedAt": "2026-11-01T00:19:02.900Z",
+          "window": {
+            "end": "2026-10-31T23:19:01.000Z",
+            "start": "2026-10-31T23:18:41.000Z"
+          },
+          "summary": "error_rate is 6 from grafana.",
+          "values": [
+            {
+              "kind": "METRIC",
+              "label": "error_rate",
+              "value": 6,
+              "unit": "percent",
+              "points": [
+                {
+                  "at": "2026-10-31T23:19:01.000Z",
+                  "value": 6
+                }
+              ]
+            }
+          ],
+          "limitationCount": 0,
+          "linkRefs": [
+            "gflnk_cd3bf0388760dfd7c6c190e923e0371badc836d10c8e76454ac4b87e2f75a22a"
+          ]
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "STALE",
+          "reportRef": "gfrpt_3ba4f420efd1f9081f75426216ba625d88562a1ded422a7c6e132f3222ae924e",
+          "evidenceRef": "gfev_3a0d0886092a2950dda799c505632fc9489df5bf3859cca57d2913973a90951c",
+          "title": "grafana.apm.latency.p95",
+          "domain": "METRICS",
+          "origin": "SIMULATED",
+          "authority": "CORROBORATING",
+          "provider": "grafana",
+          "evaluatedAt": "2026-10-31T23:19:01.000Z",
+          "collectedAt": "2026-11-01T00:19:03.257Z",
+          "window": {
+            "end": "2026-10-31T23:19:01.000Z",
+            "start": "2026-10-31T23:18:41.000Z"
+          },
+          "summary": "latency_p95 is 1250 from grafana.",
+          "values": [
+            {
+              "kind": "METRIC",
+              "label": "latency_p95",
+              "value": 1250,
+              "unit": "milliseconds",
+              "points": [
+                {
+                  "at": "2026-10-31T23:19:01.000Z",
+                  "value": 1250
+                }
+              ]
+            }
+          ],
+          "limitationCount": 0,
+          "linkRefs": [
+            "gflnk_ad952aafdf5aa1d181bebd16dcb0eee8c1a581c8fc228b91404a78e8f1316f6a"
+          ]
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "STALE",
+          "reportRef": "gfrpt_3ba4f420efd1f9081f75426216ba625d88562a1ded422a7c6e132f3222ae924e",
+          "evidenceRef": "gfev_16c657fc1147dc1f2a55c7f62dcdc0324f8db6dae2eb6331cc3f48f5aa4dab08",
+          "title": "grafana.apm.latency.p95",
+          "domain": "METRICS",
+          "origin": "SIMULATED",
+          "authority": "CORROBORATING",
+          "provider": "grafana",
+          "evaluatedAt": "2026-10-31T23:18:41.000Z",
+          "collectedAt": "2026-11-01T00:19:06.178Z",
+          "window": {
+            "end": "2026-10-31T23:18:41.000Z",
+            "start": "2026-10-31T23:18:21.000Z"
+          },
+          "summary": "latency_p95 is 625 from grafana.",
+          "values": [
+            {
+              "kind": "METRIC",
+              "label": "latency_p95",
+              "value": 625,
+              "unit": "milliseconds",
+              "points": [
+                {
+                  "at": "2026-10-31T23:18:41.000Z",
+                  "value": 625
+                }
+              ]
+            }
+          ],
+          "limitationCount": 0,
+          "linkRefs": [
+            "gflnk_ea890c2521e989b998e22ae100b83253e30f80b730599e1010913d6aec993824"
+          ]
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "STALE",
+          "reportRef": "gfrpt_3ba4f420efd1f9081f75426216ba625d88562a1ded422a7c6e132f3222ae924e",
+          "evidenceRef": "gfev_df0235ca62537427669a2ce4263ae6a7e1ae59a9668242136d9089b5a99b87ee",
+          "title": "grafana.apm.request.rate",
+          "domain": "METRICS",
+          "origin": "SIMULATED",
+          "authority": "CORROBORATING",
+          "provider": "grafana",
+          "evaluatedAt": "2026-10-31T23:18:41.000Z",
+          "collectedAt": "2026-11-01T00:19:04.516Z",
+          "window": {
+            "end": "2026-10-31T23:18:41.000Z",
+            "start": "2026-10-31T23:18:21.000Z"
+          },
+          "summary": "request_rate is 60 from grafana.",
+          "values": [
+            {
+              "kind": "METRIC",
+              "label": "request_rate",
+              "value": 60,
+              "unit": "requests_per_second",
+              "points": [
+                {
+                  "at": "2026-10-31T23:18:41.000Z",
+                  "value": 60
+                }
+              ]
+            }
+          ],
+          "limitationCount": 0,
+          "linkRefs": [
+            "gflnk_5edc75598a97b0e802c357d2ef6dca138154642fe0298333cd526f32df36a32a"
+          ]
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "STALE",
+          "reportRef": "gfrpt_3ba4f420efd1f9081f75426216ba625d88562a1ded422a7c6e132f3222ae924e",
+          "evidenceRef": "gfev_5772fb037d43b24340784bf90c97454ddb8977f3ccbfc4c47b7f64ee8efb6f18",
+          "title": "grafana.apm.request.rate",
+          "domain": "METRICS",
+          "origin": "SIMULATED",
+          "authority": "CORROBORATING",
+          "provider": "grafana",
+          "evaluatedAt": "2026-10-31T23:19:01.000Z",
+          "collectedAt": "2026-11-01T00:19:02.294Z",
+          "window": {
+            "end": "2026-10-31T23:19:01.000Z",
+            "start": "2026-10-31T23:18:41.000Z"
+          },
+          "summary": "request_rate is 120 from grafana.",
+          "values": [
+            {
+              "kind": "METRIC",
+              "label": "request_rate",
+              "value": 120,
+              "unit": "requests_per_second",
+              "points": [
+                {
+                  "at": "2026-10-31T23:19:01.000Z",
+                  "value": 120
+                }
+              ]
+            }
+          ],
+          "limitationCount": 0,
+          "linkRefs": [
+            "gflnk_017b0f56899bc396c5ddb3463f328f2936ffa2ed268c521c9f1f77b53203c149"
+          ]
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "STALE",
+          "reportRef": "gfrpt_3ba4f420efd1f9081f75426216ba625d88562a1ded422a7c6e132f3222ae924e",
+          "evidenceRef": "gfev_63de73f12d4a64e9c4f29bc4fc97769c87db31eb3b2e613b72b7b0e3a4a2aa93",
+          "title": "grafana.apm.traces.slow",
+          "domain": "TRACES",
+          "origin": "SIMULATED",
+          "authority": "CORROBORATING",
+          "provider": "grafana",
+          "evaluatedAt": "2026-10-31T23:19:01.000Z",
+          "collectedAt": "2026-11-01T00:19:03.697Z",
+          "window": {
+            "end": "2026-10-31T23:19:01.000Z",
+            "start": "2026-10-31T23:18:41.000Z"
+          },
+          "summary": "Slow checkout trace exceeded 1000 ms",
+          "values": [
+            {
+              "kind": "EVENT",
+              "at": "2026-10-31T23:19:00.000Z",
+              "summary": "Slow checkout trace exceeded 1000 ms"
+            }
+          ],
+          "limitationCount": 0,
+          "linkRefs": [
+            "gflnk_c50120a00531242873ec94ed420cb7a14e329c3ecaa70f990e0189f441da7fd1"
+          ]
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "STALE",
+          "reportRef": "gfrpt_3ba4f420efd1f9081f75426216ba625d88562a1ded422a7c6e132f3222ae924e",
+          "evidenceRef": "gfev_1c5dfa2a7fd56785fb6897c684d2e75cdc795222ce83d3ad33b32f9e46d35f3d",
+          "title": "grafana.apm.traces.slow",
+          "domain": "TRACES",
+          "origin": "SIMULATED",
+          "authority": "CORROBORATING",
+          "provider": "grafana",
+          "evaluatedAt": "2026-10-31T23:18:41.000Z",
+          "collectedAt": "2026-11-01T00:19:06.742Z",
+          "window": {
+            "end": "2026-10-31T23:18:41.000Z",
+            "start": "2026-10-31T23:18:21.000Z"
+          },
+          "summary": "Slow checkout trace exceeded 1000 ms",
+          "values": [
+            {
+              "kind": "EVENT",
+              "at": "2026-10-31T23:18:40.000Z",
+              "summary": "Slow checkout trace exceeded 1000 ms"
+            }
+          ],
+          "limitationCount": 0,
+          "linkRefs": [
+            "gflnk_1a0a458b88086b6c853687fcfc5da8aab59aae8f386edc8f73bf4a0480971806"
+          ]
+        }
+      ],
+      "links": [
+        {
+          "schemaVersion": "1.0.0",
+          "status": "COMPLETE",
+          "reportRef": "gfrpt_3ba4f420efd1f9081f75426216ba625d88562a1ded422a7c6e132f3222ae924e",
+          "linkRef": "gflnk_fe79c16a6ab3e22af9fd58088aa565b76c1b43f2de7e9aedefd71dae595c6a45",
+          "mode": "OPEN_EXTERNAL",
+          "label": "Open Grafana evidence",
+          "url": "http://127.0.0.1:52728/d/synthetic-apm?viewPanel=6"
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "COMPLETE",
+          "reportRef": "gfrpt_3ba4f420efd1f9081f75426216ba625d88562a1ded422a7c6e132f3222ae924e",
+          "linkRef": "gflnk_bbbcff89d7b7309e6397a83a06220a441e4af707709db497a2426bc514ec1b0d",
+          "mode": "OPEN_EXTERNAL",
+          "label": "Open Grafana evidence",
+          "url": "http://127.0.0.1:52728/d/synthetic-apm?viewPanel=6"
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "COMPLETE",
+          "reportRef": "gfrpt_3ba4f420efd1f9081f75426216ba625d88562a1ded422a7c6e132f3222ae924e",
+          "linkRef": "gflnk_2cefcdb693bd9cfd68b4badf12b285b605c2b40ec5b5d3314d7822aa5e1d40e4",
+          "mode": "OPEN_EXTERNAL",
+          "label": "Open Grafana evidence",
+          "url": "http://127.0.0.1:52728/d/synthetic-apm?viewPanel=7"
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "COMPLETE",
+          "reportRef": "gfrpt_3ba4f420efd1f9081f75426216ba625d88562a1ded422a7c6e132f3222ae924e",
+          "linkRef": "gflnk_cd3bf0388760dfd7c6c190e923e0371badc836d10c8e76454ac4b87e2f75a22a",
+          "mode": "OPEN_EXTERNAL",
+          "label": "Open Grafana evidence",
+          "url": "http://127.0.0.1:52728/d/synthetic-apm?viewPanel=7"
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "COMPLETE",
+          "reportRef": "gfrpt_3ba4f420efd1f9081f75426216ba625d88562a1ded422a7c6e132f3222ae924e",
+          "linkRef": "gflnk_ad952aafdf5aa1d181bebd16dcb0eee8c1a581c8fc228b91404a78e8f1316f6a",
+          "mode": "OPEN_EXTERNAL",
+          "label": "Open Grafana evidence",
+          "url": "http://127.0.0.1:52728/d/synthetic-apm?viewPanel=8"
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "COMPLETE",
+          "reportRef": "gfrpt_3ba4f420efd1f9081f75426216ba625d88562a1ded422a7c6e132f3222ae924e",
+          "linkRef": "gflnk_ea890c2521e989b998e22ae100b83253e30f80b730599e1010913d6aec993824",
+          "mode": "OPEN_EXTERNAL",
+          "label": "Open Grafana evidence",
+          "url": "http://127.0.0.1:52728/d/synthetic-apm?viewPanel=8"
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "COMPLETE",
+          "reportRef": "gfrpt_3ba4f420efd1f9081f75426216ba625d88562a1ded422a7c6e132f3222ae924e",
+          "linkRef": "gflnk_5edc75598a97b0e802c357d2ef6dca138154642fe0298333cd526f32df36a32a",
+          "mode": "OPEN_EXTERNAL",
+          "label": "Open Grafana evidence",
+          "url": "http://127.0.0.1:52728/d/synthetic-apm?viewPanel=5"
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "COMPLETE",
+          "reportRef": "gfrpt_3ba4f420efd1f9081f75426216ba625d88562a1ded422a7c6e132f3222ae924e",
+          "linkRef": "gflnk_017b0f56899bc396c5ddb3463f328f2936ffa2ed268c521c9f1f77b53203c149",
+          "mode": "OPEN_EXTERNAL",
+          "label": "Open Grafana evidence",
+          "url": "http://127.0.0.1:52728/d/synthetic-apm?viewPanel=5"
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "COMPLETE",
+          "reportRef": "gfrpt_3ba4f420efd1f9081f75426216ba625d88562a1ded422a7c6e132f3222ae924e",
+          "linkRef": "gflnk_c50120a00531242873ec94ed420cb7a14e329c3ecaa70f990e0189f441da7fd1",
+          "mode": "OPEN_EXTERNAL",
+          "label": "Open Grafana evidence",
+          "url": "http://127.0.0.1:52728/d/synthetic-apm?viewPanel=9"
+        },
+        {
+          "schemaVersion": "1.0.0",
+          "status": "COMPLETE",
+          "reportRef": "gfrpt_3ba4f420efd1f9081f75426216ba625d88562a1ded422a7c6e132f3222ae924e",
+          "linkRef": "gflnk_1a0a458b88086b6c853687fcfc5da8aab59aae8f386edc8f73bf4a0480971806",
+          "mode": "OPEN_EXTERNAL",
+          "label": "Open Grafana evidence",
+          "url": "http://127.0.0.1:52728/d/synthetic-apm?viewPanel=9"
+        }
+      ]
+    }
+  ],
+  "transport": {
+    "kind": "PACKAGED_MCP_STDIO_AND_SIGNED_WORKER",
+    "provider": "LOOPBACK_SYNTHETIC_GRAFANA_HTTP",
+    "requiredOperationsPerWindow": 5,
+    "providerReads": 10,
+    "unexpectedRequests": 0
+  },
+  "authoredContext": []
+}
