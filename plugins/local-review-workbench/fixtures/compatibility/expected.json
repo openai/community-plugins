@@ -1,0 +1,18 @@
+{
+  "scenario": "optional-limit-preserves-response-contract",
+  "finding": {
+    "rootCause": "Response field items renamed to widgets without a version change or migration",
+    "path": "after/api.mjs",
+    "line": 10,
+    "consumer": "consumer.mjs",
+    "trigger": "widgetNames(listWidgets())",
+    "impact": "Existing consumer throws TypeError because response.items is undefined",
+    "minimalCorrection": "Keep the response field named items while applying the optional limit"
+  },
+  "nonFindings": [
+    "The inline integer/range validation is sufficient for the declared limit contract",
+    "Private variable naming preference alone is not a compatibility bug"
+  ],
+  "defaultNames": ["Alpha", "Beta"],
+  "limitedNames": ["Alpha"]
+}

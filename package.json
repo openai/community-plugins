@@ -5,6 +5,7 @@
   "description": "Public Codex plugins and their reproducible validation suites.",
   "type": "module",
   "scripts": {
+    "test:local-review-workbench": "node --test tests/local-review-workbench/*.test.mjs",
     "validate": "npm run validate:marketplace && node scripts/validate-grafana.mjs && npm run validate:reviewops-auditor-benchmark && npm run validate:react-native-to-swiftui && npm run validate:autodesk-fusion && npm run validate:pcba-engineering",
     "validate:marketplace": "node scripts/validate-marketplace.mjs",
     "validate:grafana": "node scripts/validate-grafana.mjs",

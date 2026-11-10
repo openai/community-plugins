@@ -1,0 +1,6 @@
+interface:
+  display_name: "Review Local Changes"
+  short_description: "Explain changes and validate review findings"
+  default_prompt: "Use $review-local-changes on my current changes. Explain the PR and what I should review, then report validated findings without editing or posting."
+policy:
+  allow_implicit_invocation: false
