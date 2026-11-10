@@ -1,7 +1,7 @@
 {
   "name": "local-review-workbench",
   "version": "0.1.0",
-  "description": "Explain a change and review local code with bounded independent perspectives, compatibility checks, and validated findings.",
+  "description": "Understand a code change, focus your review, and check findings against requirements and existing callers.",
   "author": {
     "name": "Community Plugins contributors",
     "url": "https://github.com/openai/community-plugins"
@@ -13,8 +13,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Local Review Workbench",
-    "shortDescription": "Understand changes and validate review findings.",
-    "longDescription": "A preview, skills-only workflow for session-aware, read-only code review. Explain intent, inspect correctness and backward compatibility, consider bounded simplification and naming, and independently validate findings before presenting a human review map. Uses the configured model and available tools without an automatic hook or hosted service.",
+    "shortDescription": "Understand a PR and know what to review.",
+    "longDescription": "Explain what changed and where to focus your review. Check correctness, API compatibility, simplification, and naming, then verify findings before reporting them. This read-only skill uses your current session, configured model, and available tools. Preview; no automatic hooks or hosted service.",
     "developerName": "Community Plugins contributors",
     "category": "Developer Tools",
     "websiteURL": "https://github.com/openai/community-plugins",
