@@ -1,0 +1,31 @@
+{
+  "name": "datacircle",
+  "version": "0.1.0",
+  "description": "Find the best GTM APIs. Datacircle benchmarks all the GTM APIs and puts the results on its website.",
+  "author": {
+    "name": "Datacircle",
+    "url": "https://datacircle.dev"
+  },
+  "homepage": "https://datacircle.dev",
+  "repository": "https://github.com/waynehamadi/datacircle-cursor-plugin",
+  "license": "Apache-2.0",
+  "keywords": ["gtm", "api", "mcp", "benchmark", "data-enrichment"],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Datacircle",
+    "shortDescription": "Find the best GTM APIs.",
+    "longDescription": "Datacircle benchmarks all the GTM APIs and puts the results on its website. The plugin adds Datacircle's open MCP server, which lists the APIs and searches their plans, and a skill that compares or prices a GTM API.",
+    "developerName": "Datacircle",
+    "category": "Developer Tools",
+    "websiteURL": "https://datacircle.dev",
+    "capabilities": ["Read"],
+    "brandColor": "#111827",
+    "logo": "./assets/logo.png",
+    "composerIcon": "./assets/logo.png",
+    "defaultPrompt": [
+      "Use Datacircle to list the GTM APIs it benchmarks.",
+      "Use Datacircle to compare the plans of the best email finder APIs by price."
+    ]
+  }
+}
