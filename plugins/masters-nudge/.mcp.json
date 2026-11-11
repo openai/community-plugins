@@ -1,0 +1,28 @@
+{
+  "mcpServers": {
+    "masters_nudge": {
+      "command": "python",
+      "args": ["launch.py", "mcp"],
+      "cwd": "./",
+      "enabled": true,
+      "enabled_tools": ["review_patch"],
+      "omit_tools_from": ["code_mode", "deferred"],
+      "default_tools_approval_mode": "approve",
+      "startup_timeout_sec": 30,
+      "tool_timeout_sec": 1320,
+      "env": {
+        "PYTHONIOENCODING": "utf-8"
+      },
+      "env_vars": [
+        "HOME",
+        "LOCALAPPDATA",
+        "MASTERS_NUDGE_ACTIVE",
+        "MASTERS_NUDGE_DATA_DIR",
+        "MASTERS_NUDGE_RUNTIME_DIR",
+        "MASTERS_NUDGE_TEST_MODE",
+        "PATH",
+        "USERPROFILE"
+      ]
+    }
+  }
+}

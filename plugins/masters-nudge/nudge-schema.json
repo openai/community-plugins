@@ -1,0 +1,48 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "feedback"
+  ],
+  "properties": {
+    "feedback": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "required",
+            "observed",
+            "why",
+            "structure"
+          ],
+          "properties": {
+            "required": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 35
+            },
+            "observed": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "why": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 25
+            },
+            "structure": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 61
+            }
+          }
+        }
+      ]
+    }
+  }
+}

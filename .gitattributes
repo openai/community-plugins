@@ -30,3 +30,7 @@ docs/media/pcba-engineering/** -text
 docs/media/pcba-engineering/handoff/** linguist-generated=true
 docs/media/pcba-engineering/handoff/*.csv whitespace=cr-at-eol
 docs/media/pcba-engineering/LICENSE-CC-BY-SA-4.0.txt -whitespace linguist-vendored=true
+
+# Frozen Masters’ Nudge source receipts cover exact upstream Git blobs.
+plugins/masters-nudge/** -text -eol
+tests/masters-nudge/support/upstream-tests/** -text -eol
