@@ -1,0 +1,4 @@
+interface:
+  display_name: "Datacircle"
+  short_description: "Compare and price GTM APIs."
+  default_prompt: "Use $datacircle to compare the plans of the best email finder APIs by price."
