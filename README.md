@@ -59,6 +59,13 @@ To fetch only Autodesk Fusion interoperability, use:
 plugins/autodesk-fusion
 ```
 
+To fetch the Physical Engineering candidate, use:
+
+```text
+.agents/plugins
+plugins/physical-engineering
+```
+
 Adding a marketplace makes its catalog available to browse. It does **not**
 install, enable, or authenticate every plugin. After adding it, install only
 the plugin you want.
@@ -84,8 +91,8 @@ codex plugin add react-native-to-swiftui@community-plugins
 # Or install the Fusion interoperability preview (starts in synthetic fixture mode).
 codex plugin add autodesk-fusion@community-plugins
 
-# Or install optional structural second opinions (requires Python, Git and signed-in Codex CLI).
-codex plugin add masters-nudge@community-plugins
+# Or install the reusable mechanical CAD workflow and examples.
+codex plugin add physical-engineering@community-plugins
 ```
 
 If you want a full checkout instead of a sparse one:
@@ -107,6 +114,7 @@ are picked up.
 | [ReviewOps Auditor + Benchmark](plugins/reviewops-auditor-benchmark/README.md) | Normalize sanitized review-run exports, audit evaluation validity, benchmark lanes, and emit shadow-only guidance offline. | [Guide](plugins/reviewops-auditor-benchmark/README.md)                                                                    |
 | [React Native to SwiftUI](plugins/react-native-to-swiftui/README.md)           | Plan a bounded React Native/Expo feature migration, then port one explicitly approved slice with deterministic SwiftUI parity checks. | [Guide](plugins/react-native-to-swiftui/README.md) |
 | [Autodesk Fusion](plugins/autodesk-fusion/README.md) | Connect typed CAD/CAM operations, scoped Autodesk data, reviewed cloud recipes and engineering evidence; live qualification required. | [Guide](plugins/autodesk-fusion/README.md) |
+| [Physical Engineering](plugins/physical-engineering/README.md) | Build mechanical CAD from a brief, measure exports, preserve revisions and deliver a repeatable handoff. Custom parts plus a drone assembly example. Preview. | [Guide](plugins/physical-engineering/README.md) · [Two-minute demo](docs/media/physical-engineering/README.md) · [Session runbook](docs/physical-engineering-demo-runbook.md) |
 | [PCBA Engineering](plugins/pcba-engineering/README.md) | Reconcile assembly data, apply bounded revisions, and independently verify an offline PCBA handoff. | [Guide](plugins/pcba-engineering/README.md) · [2:27 demo](docs/media/pcba-engineering/README.md) |
 | [Masters’ Nudge](plugins/masters-nudge/README.md) | Ask a read-only Codex reviewer for a structural alternative after a code edit; adoption is optional and adds model usage and wait time. | [Guide](plugins/masters-nudge/README.md) · [Verification and limits](tests/masters-nudge/README.md) |
 
@@ -151,6 +159,17 @@ independent qualification; installation grants none of these.
 
 ```text
 Use $setup-autodesk-fusion to check the synthetic fixture and explain the available connection modes. Do not connect to Autodesk or change a real model.
+```
+
+Physical Engineering targets macOS arm64 with Python 3.14 and separately
+installed Text-to-CAD 0.10.3. It declares `Read` and `Write` for the selected
+local study, runtime and handoff. Custom single-solid parts use declared
+measurements; the drone assembly is an optional specialized example. Neither
+needs a CAD account. Setup downloads public dependencies, and Codex uses the
+user's configured model provider. Digital checks do not qualify fabrication.
+
+```text
+Use $engineer-subsystem to start a mechanical-part study from my brief in an empty directory. Record supported measurements and unresolved requirements, then build and check the CAD.
 ```
 
 ## Copy-paste Codex prompts

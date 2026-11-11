@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "profile_id": "mechanical-part-v1",
+  "units": "mm",
+  "part_name": "sensor_plate",
+  "envelope_max_mm": [
+    100,
+    70,
+    10
+  ],
+  "density_g_per_cm3": 1.25,
+  "mass_max_g": 30,
+  "checks": [
+    {
+      "id": "overall_size",
+      "type": "dimensions",
+      "size_mm": [
+        80,
+        50,
+        4
+      ],
+      "center_mm": [
+        0,
+        0,
+        2
+      ],
+      "tolerance_mm": 0.05
+    },
+    {
+      "id": "mounts",
+      "type": "through_holes",
+      "centers_xy_mm": [
+        [
+          -32,
+          -15
+        ],
+        [
+          -32,
+          15
+        ],
+        [
+          32,
+          -15
+        ],
+        [
+          32,
+          15
+        ]
+      ],
+      "diameter_mm": 3.2,
+      "z_span_mm": [
+        0,
+        4
+      ],
+      "tolerance_mm": 0.05
+    },
+    {
+      "id": "cable_access",
+      "type": "keepout",
+      "size_mm": [
+        10,
+        10,
+        6
+      ],
+      "center_mm": [
+        46,
+        0,
+        3
+      ],
+      "max_overlap_mm3": 1e-05
+    }
+  ]
+}

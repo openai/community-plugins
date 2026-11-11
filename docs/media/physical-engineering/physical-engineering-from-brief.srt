@@ -1,0 +1,71 @@
+1
+00:00:00,200 --> 00:00:07,515
+Start with an empty project and a brief: a battery tray, removable electronics
+bridge, and fixed mounting patterns.
+
+2
+00:00:10,200 --> 00:00:16,129
+Codex builds the tray around the battery, adding mounting pads, strap guides and
+side rails.
+
+3
+00:00:16,129 --> 00:00:17,804
+The source stays editable.
+
+4
+00:00:23,200 --> 00:00:26,898
+Codex adds the electronics bridge and assembles both parts.
+
+5
+00:00:26,898 --> 00:00:30,282
+The frame and board mounting patterns match the brief.
+
+6
+00:00:36,200 --> 00:00:41,245
+The baseline passes: zero point seven five millimeters of clearance per side.
+
+7
+00:00:41,245 --> 00:00:44,063
+The checker measures the exported geometry.
+
+8
+00:00:48,200 --> 00:00:52,896
+Now the battery requirement changes from thirty-five to forty millimeters.
+
+9
+00:00:52,896 --> 00:00:55,561
+First, test it against the unchanged tray.
+
+10
+00:00:59,200 --> 00:01:01,313
+The battery overlaps both rails.
+
+11
+00:01:01,313 --> 00:01:07,851
+Clearance is minus one point seven five millimeters per side, and Codex preserves
+the failed check.
+
+12
+00:01:12,200 --> 00:01:16,258
+Codex widens the cavity to forty-one point five millimeters.
+
+13
+00:01:16,258 --> 00:01:22,075
+Clearance returns to zero point seven five per side; the mounting patterns stay
+fixed.
+
+14
+00:01:28,200 --> 00:01:33,741
+With the bridge installed and straps removed, the battery’s insertion path clears.
+
+15
+00:01:33,741 --> 00:01:37,795
+Codex packages the checked CAD, drawing and editable source.
+
+16
+00:01:37,795 --> 00:01:41,715
+Rebuilding that source returns the same measured geometry.
+
+17
+00:01:49,200 --> 00:01:52,997
+Now let’s build it in Codex, from the brief to the checked handoff.

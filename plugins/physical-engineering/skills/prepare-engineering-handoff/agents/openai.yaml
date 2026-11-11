@@ -1,0 +1,6 @@
+interface:
+  display_name: "Prepare an Engineering Handoff"
+  short_description: "Regenerate and reproduce a consistent CAD handoff"
+  default_prompt: "Use $prepare-engineering-handoff to regenerate checked CAD, source, measurements, BOM and rebuild evidence."
+policy:
+  allow_implicit_invocation: true

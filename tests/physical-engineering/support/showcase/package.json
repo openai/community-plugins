@@ -1,0 +1,14 @@
+{
+  "name": "physical-engineering-showcase",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Presentation renderer for verified Physical Engineering CAD artifacts",
+  "dependencies": {
+    "three": "0.185.1"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12",
+    "playwright": "1.62.1"
+  }
+}
