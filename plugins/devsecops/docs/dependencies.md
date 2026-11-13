@@ -15,7 +15,7 @@ third-party wheels or executable environments.
 | packaging | 26.3 | Apache-2.0 OR BSD-2-Clause |
 | pluggy | 1.6.0 | MIT |
 | Pygments | 2.21.0 | BSD-2-Clause |
-| pytest | 8.4.2 | MIT |
+| pytest | 9.0.3 | MIT |
 | PyYAML | 6.0.3 | MIT |
 | referencing | 0.37.0 | MIT |
 | rpds-py | 2026.9.1 | MIT |

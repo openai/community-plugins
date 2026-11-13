@@ -18,7 +18,7 @@ factory-demo = "devsecops.factory.cli:main"
 [dependency-groups]
 dev = [
     "prometheus-client==0.26.0",
-    "pytest==8.4.2",
+    "pytest==9.0.3",
     "ruff==0.14.0",
 ]
 
