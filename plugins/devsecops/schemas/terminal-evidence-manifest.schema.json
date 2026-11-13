@@ -1,0 +1,173 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.devsecops.invalid/terminal-evidence-manifest.v1.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "environment_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,119}$"
+    },
+    "identities": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "scenario_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "assertions_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "package_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "lock_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "config_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "environment_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "scenario_sha256",
+        "assertions_sha256",
+        "package_sha256",
+        "lock_sha256",
+        "config_sha256",
+        "environment_sha256"
+      ]
+    },
+    "scenario_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "operation_backend": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "execution_mode": {
+      "enum": [
+        "operator",
+        "controlled-test"
+      ]
+    },
+    "finalized_at": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 40
+    },
+    "kind": {
+      "const": "factory-terminal-evidence-manifest"
+    },
+    "journal_seq": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10000
+    },
+    "journal_head_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "files": {
+      "type": "array",
+      "maxItems": 15000,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 16000000
+          }
+        },
+        "required": [
+          "path",
+          "sha256",
+          "bytes"
+        ]
+      }
+    },
+    "references": {
+      "type": "array",
+      "maxItems": 4096,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 16000000
+          },
+          "location": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          }
+        },
+        "required": [
+          "path",
+          "sha256",
+          "bytes",
+          "location"
+        ]
+      }
+    },
+    "authenticity": {
+      "const": "hash-binding-only"
+    }
+  },
+  "required": [
+    "schema_version",
+    "run_id",
+    "environment_id",
+    "identities",
+    "scenario_id",
+    "operation_backend",
+    "execution_mode",
+    "finalized_at",
+    "kind",
+    "journal_seq",
+    "journal_head_sha256",
+    "files",
+    "references",
+    "authenticity"
+  ]
+}

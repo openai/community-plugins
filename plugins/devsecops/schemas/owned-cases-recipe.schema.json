@@ -1,0 +1,643 @@
+{
+  "$id": "urn:devsecops:owned-cases-recipe:1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "environment_id": {
+      "pattern": "^[a-z][a-z0-9-]{0,31}$",
+      "type": "string"
+    },
+    "evidence_gaps": {
+      "additionalProperties": false,
+      "properties": {
+        "max_native_seconds": {
+          "maximum": 240,
+          "minimum": 10,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "max_native_seconds"
+      ],
+      "type": "object"
+    },
+    "kind": {
+      "const": "owned-cases-recipe"
+    },
+    "platform_dependency": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline_file": {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "maxLength": 4096,
+              "pattern": "^/[^\\u0000\\r\\n]+$",
+              "type": "string"
+            },
+            "sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "path",
+            "sha256"
+          ],
+          "type": "object"
+        },
+        "core_resources": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "apiVersion": {
+                "enum": [
+                  "apps/v1",
+                  "helm.toolkit.fluxcd.io/v2",
+                  "argoproj.io/v1alpha1"
+                ]
+              },
+              "kind": {
+                "enum": [
+                  "Deployment",
+                  "HelmRelease",
+                  "Application"
+                ]
+              },
+              "name": {
+                "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                "type": "string"
+              },
+              "namespace": {
+                "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "apiVersion",
+              "kind",
+              "namespace",
+              "name"
+            ],
+            "type": "object"
+          },
+          "maxItems": 129,
+          "minItems": 3,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "dependency_name": {
+          "pattern": "^[a-z][a-z0-9-]{0,62}$",
+          "type": "string"
+        },
+        "extension_name": {
+          "pattern": "^[a-z][a-z0-9-]{0,62}$",
+          "type": "string"
+        },
+        "max_observations": {
+          "maximum": 120,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "namespace": {
+          "pattern": "^[a-z][a-z0-9-]{0,62}$",
+          "type": "string"
+        },
+        "poll_seconds": {
+          "maximum": 10,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "repository_path": {
+          "pattern": "^platform/[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+){0,5}\\.ya?ml$",
+          "type": "string"
+        },
+        "root_name": {
+          "pattern": "^[a-z][a-z0-9-]{0,62}$",
+          "type": "string"
+        },
+        "service": {
+          "additionalProperties": false,
+          "properties": {
+            "expected": {
+              "additionalProperties": false,
+              "properties": {
+                "status": {
+                  "const": "ok"
+                }
+              },
+              "required": [
+                "status"
+              ],
+              "type": "object"
+            },
+            "health_path": {
+              "enum": [
+                "/health",
+                "/healthz"
+              ]
+            },
+            "name": {
+              "pattern": "^[a-z][a-z0-9-]{0,62}$",
+              "type": "string"
+            },
+            "port": {
+              "maximum": 65535,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "name",
+            "port",
+            "health_path",
+            "expected"
+          ],
+          "type": "object"
+        },
+        "source_name": {
+          "pattern": "^[a-z][a-z0-9-]{0,62}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "namespace",
+        "source_name",
+        "root_name",
+        "dependency_name",
+        "extension_name",
+        "repository_path",
+        "baseline_file",
+        "core_resources",
+        "service",
+        "poll_seconds",
+        "max_observations"
+      ],
+      "type": "object"
+    },
+    "plugin_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "type": "string"
+    },
+    "plugin_version": {
+      "maxLength": 128,
+      "minLength": 1,
+      "type": "string"
+    },
+    "run_scope": {
+      "additionalProperties": false,
+      "properties": {
+        "assertions_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "config_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "environment_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "lock_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "package_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "scenario_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "assertions_sha256",
+        "config_sha256",
+        "environment_sha256",
+        "lock_sha256",
+        "package_sha256",
+        "scenario_sha256"
+      ],
+      "type": "object"
+    },
+    "schema_version": {
+      "const": 1,
+      "type": "integer"
+    },
+    "supply_chain": {
+      "additionalProperties": false,
+      "properties": {
+        "cosign": {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "maxLength": 4096,
+              "pattern": "^/[^\\u0000\\r\\n]+$",
+              "type": "string"
+            },
+            "sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "path",
+            "sha256"
+          ],
+          "type": "object"
+        },
+        "max_verification_age_seconds": {
+          "maximum": 3600,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "mission_base": {
+          "additionalProperties": false,
+          "properties": {
+            "attestation_size_policy": {
+              "additionalProperties": false,
+              "properties": {
+                "path": {
+                  "maxLength": 4096,
+                  "pattern": "^/[^\\u0000\\r\\n]+$",
+                  "type": "string"
+                },
+                "sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path",
+                "sha256"
+              ],
+              "type": "object"
+            },
+            "blob_download_policy": {
+              "additionalProperties": false,
+              "properties": {
+                "path": {
+                  "maxLength": 4096,
+                  "pattern": "^/[^\\u0000\\r\\n]+$",
+                  "type": "string"
+                },
+                "sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path",
+                "sha256"
+              ],
+              "type": "object"
+            },
+            "image_policy": {
+              "additionalProperties": false,
+              "properties": {
+                "path": {
+                  "maxLength": 4096,
+                  "pattern": "^/[^\\u0000\\r\\n]+$",
+                  "type": "string"
+                },
+                "sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path",
+                "sha256"
+              ],
+              "type": "object"
+            },
+            "public_key": {
+              "additionalProperties": false,
+              "properties": {
+                "path": {
+                  "maxLength": 4096,
+                  "pattern": "^/[^\\u0000\\r\\n]+$",
+                  "type": "string"
+                },
+                "sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path",
+                "sha256"
+              ],
+              "type": "object"
+            },
+            "publisher_package": {
+              "oneOf": [
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "path": {
+                      "maxLength": 4096,
+                      "pattern": "^/[^\\u0000\\r\\n]+$",
+                      "type": "string"
+                    },
+                    "sha256": {
+                      "pattern": "^[a-f0-9]{64}$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "path",
+                    "sha256"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "publisher_policy": {
+              "additionalProperties": false,
+              "properties": {
+                "path": {
+                  "maxLength": 4096,
+                  "pattern": "^/[^\\u0000\\r\\n]+$",
+                  "type": "string"
+                },
+                "sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path",
+                "sha256"
+              ],
+              "type": "object"
+            },
+            "registry_auth": {
+              "additionalProperties": false,
+              "properties": {
+                "basic_password_env": {
+                  "pattern": "^[A-Z][A-Z0-9_]{0,127}$",
+                  "type": "string"
+                },
+                "basic_username_env": {
+                  "pattern": "^[A-Z][A-Z0-9_]{0,127}$",
+                  "type": "string"
+                },
+                "ca_bundle": {
+                  "maxLength": 4096,
+                  "pattern": "^/[^\\u0000\\r\\n]+$",
+                  "type": "string"
+                },
+                "token_env": {
+                  "pattern": "^[A-Z][A-Z0-9_]{0,127}$",
+                  "type": "string"
+                },
+                "token_path": {
+                  "maxLength": 4096,
+                  "pattern": "^/[^\\u0000\\r\\n]+$",
+                  "type": "string"
+                },
+                "token_service": {
+                  "maxLength": 256,
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [],
+              "type": "object"
+            },
+            "trust_identity_basis": {
+              "const": "publisher-policy-sha256-v1"
+            }
+          },
+          "required": [
+            "trust_identity_basis",
+            "publisher_policy",
+            "public_key",
+            "publisher_package",
+            "image_policy",
+            "registry_auth"
+          ],
+          "type": "object"
+        },
+        "reference_web": {
+          "additionalProperties": false,
+          "properties": {
+            "attestation_size_policy": {
+              "additionalProperties": false,
+              "properties": {
+                "path": {
+                  "maxLength": 4096,
+                  "pattern": "^/[^\\u0000\\r\\n]+$",
+                  "type": "string"
+                },
+                "sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path",
+                "sha256"
+              ],
+              "type": "object"
+            },
+            "blob_download_policy": {
+              "additionalProperties": false,
+              "properties": {
+                "path": {
+                  "maxLength": 4096,
+                  "pattern": "^/[^\\u0000\\r\\n]+$",
+                  "type": "string"
+                },
+                "sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path",
+                "sha256"
+              ],
+              "type": "object"
+            },
+            "image_policy": {
+              "additionalProperties": false,
+              "properties": {
+                "path": {
+                  "maxLength": 4096,
+                  "pattern": "^/[^\\u0000\\r\\n]+$",
+                  "type": "string"
+                },
+                "sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path",
+                "sha256"
+              ],
+              "type": "object"
+            },
+            "public_key": {
+              "additionalProperties": false,
+              "properties": {
+                "path": {
+                  "maxLength": 4096,
+                  "pattern": "^/[^\\u0000\\r\\n]+$",
+                  "type": "string"
+                },
+                "sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path",
+                "sha256"
+              ],
+              "type": "object"
+            },
+            "publisher_package": {
+              "oneOf": [
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "path": {
+                      "maxLength": 4096,
+                      "pattern": "^/[^\\u0000\\r\\n]+$",
+                      "type": "string"
+                    },
+                    "sha256": {
+                      "pattern": "^[a-f0-9]{64}$",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "path",
+                    "sha256"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "publisher_policy": {
+              "additionalProperties": false,
+              "properties": {
+                "path": {
+                  "maxLength": 4096,
+                  "pattern": "^/[^\\u0000\\r\\n]+$",
+                  "type": "string"
+                },
+                "sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path",
+                "sha256"
+              ],
+              "type": "object"
+            },
+            "registry_auth": {
+              "additionalProperties": false,
+              "properties": {
+                "basic_password_env": {
+                  "pattern": "^[A-Z][A-Z0-9_]{0,127}$",
+                  "type": "string"
+                },
+                "basic_username_env": {
+                  "pattern": "^[A-Z][A-Z0-9_]{0,127}$",
+                  "type": "string"
+                },
+                "ca_bundle": {
+                  "maxLength": 4096,
+                  "pattern": "^/[^\\u0000\\r\\n]+$",
+                  "type": "string"
+                },
+                "token_env": {
+                  "pattern": "^[A-Z][A-Z0-9_]{0,127}$",
+                  "type": "string"
+                },
+                "token_path": {
+                  "maxLength": 4096,
+                  "pattern": "^/[^\\u0000\\r\\n]+$",
+                  "type": "string"
+                },
+                "token_service": {
+                  "maxLength": 256,
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [],
+              "type": "object"
+            },
+            "trust_identity_basis": {
+              "const": "publisher-policy-sha256-v1"
+            }
+          },
+          "required": [
+            "trust_identity_basis",
+            "publisher_policy",
+            "public_key",
+            "publisher_package",
+            "image_policy",
+            "registry_auth"
+          ],
+          "type": "object"
+        },
+        "untrusted_public_key": {
+          "additionalProperties": false,
+          "properties": {
+            "path": {
+              "maxLength": 4096,
+              "pattern": "^/[^\\u0000\\r\\n]+$",
+              "type": "string"
+            },
+            "sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "path",
+            "sha256"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "reference_web",
+        "mission_base",
+        "cosign",
+        "untrusted_public_key",
+        "max_verification_age_seconds"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "environment_id",
+    "run_scope",
+    "plugin_id",
+    "plugin_version",
+    "supply_chain",
+    "platform_dependency",
+    "evidence_gaps"
+  ],
+  "type": "object"
+}

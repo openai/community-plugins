@@ -1,0 +1,239 @@
+{
+  "$id": "urn:devsecops:qualification:1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "additional_gate_evidence": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "artifacts": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "bytes": {
+                  "maximum": 1000000000000,
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "path": {
+                  "maxLength": 4096,
+                  "minLength": 1,
+                  "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\u0000\\r\\n\\\\]+$",
+                  "type": "string"
+                },
+                "sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "path",
+                "sha256",
+                "bytes"
+              ],
+              "type": "object"
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "gate": {
+            "enum": [
+              "G1",
+              "G2",
+              "G3",
+              "G4",
+              "G5",
+              "G6",
+              "G7",
+              "G8",
+              "G9",
+              "G10"
+            ]
+          }
+        },
+        "required": [
+          "gate",
+          "artifacts"
+        ],
+        "type": "object"
+      },
+      "maxItems": 10,
+      "minItems": 0,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "assertions_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "author_id": {
+      "maxLength": 160,
+      "minLength": 1,
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "kind": {
+      "const": "factory-release-qualification"
+    },
+    "lock_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "package_manifest_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "qualification_id": {
+      "maxLength": 160,
+      "minLength": 1,
+      "type": "string"
+    },
+    "runs": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "cluster_uid": {
+            "maxLength": 256,
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "environment_evidence": {
+            "items": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\u0000\\r\\n\\\\]+$",
+              "type": "string"
+            },
+            "maxItems": 32,
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "environment_origin": {
+            "enum": [
+              "fresh",
+              "retained",
+              "unknown"
+            ]
+          },
+          "operator_attested_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "operator_id": {
+            "maxLength": 160,
+            "minLength": 1,
+            "type": "string"
+          },
+          "operator_performed_run": {
+            "type": "boolean"
+          },
+          "result": {
+            "additionalProperties": false,
+            "properties": {
+              "bytes": {
+                "maximum": 1000000000000,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "path": {
+                "maxLength": 4096,
+                "minLength": 1,
+                "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\u0000\\r\\n\\\\]+$",
+                "type": "string"
+              },
+              "sha256": {
+                "pattern": "^[a-f0-9]{64}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "path",
+              "sha256",
+              "bytes"
+            ],
+            "type": "object"
+          },
+          "role": {
+            "enum": [
+              "fresh-1",
+              "fresh-2",
+              "reset-replay"
+            ]
+          }
+        },
+        "required": [
+          "role",
+          "result",
+          "operator_id",
+          "operator_attested_at",
+          "operator_performed_run",
+          "environment_origin",
+          "cluster_uid",
+          "environment_evidence"
+        ],
+        "type": "object"
+      },
+      "maxItems": 3,
+      "minItems": 3,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "scenario_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "video_review": {
+      "additionalProperties": false,
+      "properties": {
+        "bytes": {
+          "maximum": 1000000000000,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "path": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\u0000\\r\\n\\\\]+$",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "sha256",
+        "bytes"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "qualification_id",
+    "created_at",
+    "author_id",
+    "package_manifest_sha256",
+    "scenario_sha256",
+    "assertions_sha256",
+    "lock_sha256",
+    "runs",
+    "video_review",
+    "additional_gate_evidence"
+  ],
+  "type": "object"
+}

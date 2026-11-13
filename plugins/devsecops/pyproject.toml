@@ -1,0 +1,39 @@
+[build-system]
+requires = ["hatchling>=1.27,<2"]
+build-backend = "hatchling.build"
+
+[project]
+name = "devsecops-codex-plugin"
+version = "0.2.0a14"
+description = "Evidence-backed Kubernetes and GitOps change review for Codex"
+requires-python = ">=3.11"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+dependencies = ["PyYAML==6.0.3", "jsonschema==4.25.1", "zstandard==0.25.0"]
+
+[project.scripts]
+devsecops-review = "devsecops.cli:main"
+factory-demo = "devsecops.factory.cli:main"
+
+[dependency-groups]
+dev = [
+    "prometheus-client==0.26.0",
+    "pytest==8.4.2",
+    "ruff==0.14.0",
+]
+
+[[tool.uv.index]]
+url = "https://pypi.org/simple"
+default = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/devsecops"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src", "."]
+markers = ["integration: requires real pinned Helm and kubeconform binaries and local schemas"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 110

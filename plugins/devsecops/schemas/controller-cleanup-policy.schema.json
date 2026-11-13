@@ -1,0 +1,6 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Selected canonical controller cleanup policy",
+  "type": "string",
+  "const": "owned-controller-inventory-v1"
+}

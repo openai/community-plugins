@@ -1,0 +1,46 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "devsecops",
+  "version": "0.2.0-alpha.14",
+  "description": "Review Kubernetes changes, diagnose GitOps evidence, and validate corrections with explicit proof and coverage.",
+  "author": {
+    "name": "DevSecOps contributors"
+  },
+  "keywords": [
+    "kubernetes",
+    "helm",
+    "kustomize",
+    "devsecops",
+    "gitops",
+    "gitlab"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "DevSecOps",
+        "shortDescription": "Kubernetes + GitOps reviews",
+        "longDescription": "Development preview. Review Kubernetes, Helm and Kustomize changes; diagnose scoped GitOps evidence; validate proposed corrections; and compare recovery observations. Reviews use read-only integrations. Separate operator commands support explicitly configured lab builds and registry staging. Reports distinguish measured results from missing evidence. The Software Factory demo is still under implementation and qualification. Customer profiles are configurable; this plugin does not certify compliance.",
+        "developerName": "DevSecOps contributors",
+        "category": "Developer Tools",
+        "capabilities": [
+          "Read",
+          "Write"
+        ],
+        "brandColor": "#164E63",
+        "logo": "./assets/icon.svg",
+        "composerIcon": "./assets/icon.svg",
+        "defaultPrompt": [
+          "Use $review-kubernetes-change to review this Kubernetes, Helm or Kustomize change against a selected profile.",
+          "Use $diagnose-gitops-deployment to compare baseline and fault evidence and explain the likely cause and remaining gaps.",
+          "Use $verify-gitops-recovery to check whether the evidence proves functional recovery after this correction."
+        ]
+      },
+      "publication": {
+        "release_notes": "Community contribution preview of alpha.14: public Apache-2.0 licensing and repository metadata, sanitized lab examples, and the Registry1 blob-download policy example. This is a changed package, not the R20 candidate; full regression, installed-client acceptance and the live narrated demo remain unqualified."
+      }
+    }
+  },
+  "license": "Apache-2.0",
+  "repository": "https://github.com/tonyloehr/community-plugins",
+  "homepage": "https://github.com/tonyloehr/community-plugins"
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["environment", "architecture", "image", "imagePullSecrets", "networkPolicy"],
+  "properties": {
+    "environment": {"$ref": "#/definitions/name"},
+    "architecture": {"enum": ["amd64", "arm64"]},
+    "image": {
+      "type": "object", "additionalProperties": false,
+      "required": ["repository", "digest"],
+      "properties": {
+        "repository": {"type": "string", "maxLength": 255, "pattern": "^[a-z0-9][a-z0-9.-]*(:[1-9][0-9]{0,4})?(/[a-z0-9]+([._-][a-z0-9]+)*)+$"},
+        "digest": {"type": "string", "pattern": "^sha256:[a-f0-9]{64}$"}
+      }
+    },
+    "imagePullSecrets": {
+      "type": "array", "maxItems": 4, "uniqueItems": true,
+      "items": {"type": "object", "additionalProperties": false, "required": ["name"],
+        "properties": {"name": {"$ref": "#/definitions/name"}}}
+    },
+    "networkPolicy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["healthPeer", "metricsPeer", "metricsPort"],
+      "properties": {
+        "healthPeer": {"$ref": "#/definitions/peer"},
+        "metricsPeer": {"$ref": "#/definitions/peer"},
+        "metricsPort": {"type": "integer", "minimum": 1, "maximum": 65535}
+      }
+    }
+  },
+  "definitions": {
+    "name": {"type": "string", "minLength": 1, "maxLength": 63, "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$"},
+    "peer": {
+      "type": "object", "additionalProperties": false, "required": ["namespace", "podLabels"],
+      "properties": {
+        "namespace": {"$ref": "#/definitions/name"},
+        "podLabels": {
+          "type": "object", "minProperties": 1, "maxProperties": 16,
+          "propertyNames": {"maxLength": 317, "pattern": "^([a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?(\\.[a-z0-9]([-a-z0-9]{0,61}[a-z0-9])?)*/)?[A-Za-z0-9]([-A-Za-z0-9_.]{0,61}[A-Za-z0-9])?$"},
+          "additionalProperties": {"type": "string", "maxLength": 63, "pattern": "^$|^[A-Za-z0-9]([-A-Za-z0-9_.]*[A-Za-z0-9])?$"}
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "schema_version": 1,
+  "scenario_id": "ironbank-mission-recovery-v1",
+  "acceptance": "All listed assertions require direct receipts; missing, stale, unrelated or partial evidence is unknown.",
+  "cases": {
+    "D1": [
+      "reference-web-signature-and-required-attestations",
+      "reference-web-unchanged-origin-to-runtime-identity",
+      "reference-web-http",
+      "mission-real-ci-build-to-digest",
+      "mission-sbom-scan-signature-subjects",
+      "controller-expected-revision",
+      "mission-ready-and-healthy",
+      "fresh-target-up-and-mission-metrics",
+      "unauthorized-probes-denied-with-listening-controls"
+    ],
+    "D2": [
+      "baseline-proven-before-fault",
+      "exact-qualified-policy-fault",
+      "mission-and-reference-health-retained",
+      "scrape-failure-causally-isolated",
+      "actual-installed-review-and-diagnosis",
+      "native-patch-digest-before-validation",
+      "minimal-default-deny-preserving-patch",
+      "patched-tree-equals-delivered-tree",
+      "expected-deployment-and-controller-revision",
+      "both-image-identities-unchanged",
+      "fresh-scrapes-after-repair",
+      "unauthorized-probes-still-denied",
+      "independent-recovery-assertions"
+    ],
+    "D3": [
+      "real-bigbang-flux-extension-dependency-failure",
+      "applied-versus-attempted-generation-bound",
+      "git-repair-and-dependent-service-recovered",
+      "core-platform-preserved"
+    ],
+    "D4": [
+      "valid-unchanged-reference-and-mission-base-trust-controls",
+      "mismatched-sbom-and-scan-rejected",
+      "missing-tampered-untrusted-attestations-rejected",
+      "valid-derived-app-subject-chain"
+    ],
+    "D5": [
+      "denied-expired-stale-missing-input-is-unknown",
+      "restored-evidence-new-scoped-review"
+    ],
+    "D6": [
+      "interruption-has-no-success-receipt",
+      "baseline-restored-through-git",
+      "one-new-attempt-d1-d2-replay",
+      "unowned-resources-preserved",
+      "owned-resource-deletions-verified",
+      "residual-resources-reported",
+      "cleanup-before-terminal-result"
+    ]
+  }
+}

@@ -1,0 +1,1674 @@
+{
+  "$id": "urn:devsecops:runtime-recovery-contract:1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "attempt_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+      "type": "string"
+    },
+    "correction_contract_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "delivery_source_position": {
+      "maximum": 32,
+      "minimum": 1,
+      "type": "integer"
+    },
+    "delivery_target": {
+      "pattern": "^[a-z][a-z0-9-]{0,62}$",
+      "type": "string"
+    },
+    "environment": {
+      "pattern": "^[a-z][a-z0-9-]{0,62}$",
+      "type": "string"
+    },
+    "factory_lock": {
+      "$id": "urn:devsecops:factory-lock:1",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": false,
+      "properties": {
+        "assertions_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "freshness_seconds": {
+          "maximum": 300,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "images": {
+          "additionalProperties": false,
+          "properties": {
+            "mission_base": {
+              "additionalProperties": false,
+              "properties": {
+                "architecture": {
+                  "enum": [
+                    "amd64",
+                    "arm64"
+                  ]
+                },
+                "config_sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                },
+                "manifest_sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                },
+                "os": {
+                  "const": "linux"
+                },
+                "platform_manifest_sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                },
+                "repository": {
+                  "pattern": "^registry1\\.dso\\.mil/ironbank/[a-z0-9._/-]+$",
+                  "type": "string"
+                },
+                "required_predicates": {
+                  "items": {
+                    "maxLength": 256,
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "maxItems": 128,
+                  "minItems": 1,
+                  "type": "array",
+                  "uniqueItems": true
+                },
+                "trust_sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "repository",
+                "manifest_sha256",
+                "platform_manifest_sha256",
+                "config_sha256",
+                "os",
+                "architecture",
+                "required_predicates",
+                "trust_sha256"
+              ],
+              "type": "object"
+            },
+            "reference_web": {
+              "additionalProperties": false,
+              "properties": {
+                "architecture": {
+                  "enum": [
+                    "amd64",
+                    "arm64"
+                  ]
+                },
+                "config_sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                },
+                "manifest_sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                },
+                "os": {
+                  "const": "linux"
+                },
+                "platform_manifest_sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                },
+                "repository": {
+                  "pattern": "^registry1\\.dso\\.mil/ironbank/[a-z0-9._/-]+$",
+                  "type": "string"
+                },
+                "required_predicates": {
+                  "items": {
+                    "maxLength": 256,
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "maxItems": 128,
+                  "minItems": 1,
+                  "type": "array",
+                  "uniqueItems": true
+                },
+                "trust_sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "repository",
+                "manifest_sha256",
+                "platform_manifest_sha256",
+                "config_sha256",
+                "os",
+                "architecture",
+                "required_predicates",
+                "trust_sha256"
+              ],
+              "type": "object"
+            }
+          },
+          "required": [
+            "reference_web",
+            "mission_base"
+          ],
+          "type": "object"
+        },
+        "observation_window_seconds": {
+          "maximum": 3600,
+          "minimum": 2,
+          "type": "integer"
+        },
+        "platform": {
+          "additionalProperties": false,
+          "properties": {
+            "architecture": {
+              "enum": [
+                "amd64",
+                "arm64"
+              ]
+            },
+            "argo_version": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "bigbang_version": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "cni": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "distribution": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "distribution_version": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "flux_version": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "kubernetes_version": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "mesh_mode": {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            "os": {
+              "const": "linux"
+            }
+          },
+          "required": [
+            "os",
+            "architecture",
+            "distribution",
+            "distribution_version",
+            "kubernetes_version",
+            "bigbang_version",
+            "flux_version",
+            "argo_version",
+            "cni",
+            "mesh_mode"
+          ],
+          "type": "object"
+        },
+        "profile": {
+          "enum": [
+            "bigbang-live",
+            "bigbang-disconnected",
+            "partybus-hosted",
+            "openshift-app",
+            "adapter-qualification",
+            "replay"
+          ]
+        },
+        "required_fresh_scrapes": {
+          "maximum": 20,
+          "minimum": 3,
+          "type": "integer"
+        },
+        "scenario_id": {
+          "const": "ironbank-mission-recovery-v1"
+        },
+        "scenario_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "scrape_interval_seconds": {
+          "maximum": 300,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "tools": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "name": {
+                "enum": [
+                  "git",
+                  "helm",
+                  "kustomize",
+                  "kubeconform",
+                  "kubectl",
+                  "cosign",
+                  "syft",
+                  "grype",
+                  "codex"
+                ]
+              },
+              "sha256": {
+                "pattern": "^[a-f0-9]{64}$",
+                "type": "string"
+              },
+              "version": {
+                "maxLength": 256,
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "name",
+              "version",
+              "sha256"
+            ],
+            "type": "object"
+          },
+          "maxItems": 128,
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "schema_version",
+        "profile",
+        "scenario_id",
+        "scenario_sha256",
+        "assertions_sha256",
+        "platform",
+        "tools",
+        "images",
+        "freshness_seconds",
+        "observation_window_seconds",
+        "scrape_interval_seconds",
+        "required_fresh_scrapes"
+      ],
+      "type": "object"
+    },
+    "id": {
+      "pattern": "^[a-z][a-z0-9-]{0,62}$",
+      "type": "string"
+    },
+    "identities": {
+      "additionalProperties": false,
+      "properties": {
+        "assertions_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "config_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "environment_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "lock_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "package_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "scenario_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "scenario_sha256",
+        "assertions_sha256",
+        "package_sha256",
+        "lock_sha256",
+        "config_sha256",
+        "environment_sha256"
+      ],
+      "type": "object"
+    },
+    "image_expectations": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "config_sha256": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "container": {
+            "pattern": "^[a-z][a-z0-9-]{0,62}$",
+            "type": "string"
+          },
+          "container_type": {
+            "enum": [
+              "regular",
+              "init"
+            ]
+          },
+          "mapping_receipt_sha256": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "platform_manifest_sha256": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "target_id": {
+            "pattern": "^[a-z][a-z0-9-]{0,62}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "target_id",
+          "container",
+          "container_type",
+          "platform_manifest_sha256",
+          "config_sha256",
+          "mapping_receipt_sha256"
+        ],
+        "type": "object"
+      },
+      "maxItems": 64,
+      "minItems": 2,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "intents": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline": {
+          "$id": "urn:devsecops:runtime-intent:1",
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "additionalProperties": false,
+          "properties": {
+            "attempt_id": {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+              "type": "string"
+            },
+            "environment": {
+              "pattern": "^[a-z][a-z0-9-]{0,62}$",
+              "type": "string"
+            },
+            "environment_inventory_receipt": {
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                  "type": "string"
+                },
+                "sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "sha256"
+              ],
+              "type": "object"
+            },
+            "identities": {
+              "additionalProperties": false,
+              "properties": {
+                "assertions_sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                },
+                "config_sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                },
+                "environment_sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                },
+                "lock_sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                },
+                "package_sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                },
+                "scenario_sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "scenario_sha256",
+                "assertions_sha256",
+                "package_sha256",
+                "lock_sha256",
+                "config_sha256",
+                "environment_sha256"
+              ],
+              "type": "object"
+            },
+            "phase": {
+              "enum": [
+                "baseline",
+                "fault",
+                "recovery",
+                "observation"
+              ]
+            },
+            "profile": {
+              "maxLength": 64,
+              "type": "string"
+            },
+            "run_id": {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+              "type": "string"
+            },
+            "scenario_id": {
+              "pattern": "^[a-z][a-z0-9-]{0,62}$",
+              "type": "string"
+            },
+            "schema_version": {
+              "const": 1
+            },
+            "targets": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "argocd": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "application": {
+                        "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                        "type": "string"
+                      },
+                      "application_namespace": {
+                        "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                        "type": "string"
+                      },
+                      "destination": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "namespace": {
+                            "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                            "type": "string"
+                          },
+                          "server": {
+                            "maxLength": 2048,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "server",
+                          "namespace"
+                        ],
+                        "type": "object"
+                      },
+                      "destination_spec_sha256": {
+                        "pattern": "^[a-f0-9]{64}$",
+                        "type": "string"
+                      },
+                      "intent_receipt": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "id": {
+                            "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                            "type": "string"
+                          },
+                          "sha256": {
+                            "pattern": "^[a-f0-9]{64}$",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "sha256"
+                        ],
+                        "type": "object"
+                      },
+                      "project": {
+                        "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                        "type": "string"
+                      },
+                      "service_id": {
+                        "const": "argocd"
+                      },
+                      "sources": {
+                        "items": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "intent_receipt": {
+                              "additionalProperties": false,
+                              "properties": {
+                                "id": {
+                                  "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                                  "type": "string"
+                                },
+                                "sha256": {
+                                  "pattern": "^[a-f0-9]{64}$",
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "id",
+                                "sha256"
+                              ],
+                              "type": "object"
+                            },
+                            "path": {
+                              "maxLength": 1024,
+                              "type": "string"
+                            },
+                            "position": {
+                              "maximum": 32,
+                              "minimum": 1,
+                              "type": "integer"
+                            },
+                            "rendered_artifact_sha256": {
+                              "pattern": "^[a-f0-9]{64}$",
+                              "type": "string"
+                            },
+                            "renderer": {
+                              "enum": [
+                                "helm",
+                                "kustomize",
+                                "manifests",
+                                "values"
+                              ]
+                            },
+                            "repository_url": {
+                              "maxLength": 2048,
+                              "type": "string"
+                            },
+                            "revision": {
+                              "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$",
+                              "type": "string"
+                            },
+                            "source_spec_sha256": {
+                              "pattern": "^[a-f0-9]{64}$",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "position",
+                            "repository_url",
+                            "revision",
+                            "path",
+                            "renderer"
+                          ],
+                          "type": "object"
+                        },
+                        "maxItems": 32,
+                        "minItems": 1,
+                        "type": "array",
+                        "uniqueItems": true
+                      }
+                    },
+                    "required": [
+                      "service_id",
+                      "project",
+                      "application_namespace",
+                      "application",
+                      "sources",
+                      "destination"
+                    ],
+                    "type": "object"
+                  },
+                  "id": {
+                    "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                    "type": "string"
+                  },
+                  "image_mapping_receipt": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "id": {
+                        "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                        "type": "string"
+                      },
+                      "sha256": {
+                        "pattern": "^[a-f0-9]{64}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "sha256"
+                    ],
+                    "type": "object"
+                  },
+                  "kubernetes": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "deployment": {
+                        "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                        "type": "string"
+                      },
+                      "deployment_uid": {
+                        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+                        "type": "string"
+                      },
+                      "generation": {
+                        "minimum": 1,
+                        "type": "integer"
+                      },
+                      "namespace": {
+                        "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                        "type": "string"
+                      },
+                      "service": {
+                        "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                        "type": "string"
+                      },
+                      "service_id": {
+                        "const": "kubernetes"
+                      },
+                      "service_uid": {
+                        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "service_id",
+                      "namespace",
+                      "deployment",
+                      "service"
+                    ],
+                    "type": "object"
+                  },
+                  "prometheus": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "instance": {
+                        "pattern": "^[A-Za-z0-9_.:\\[\\]-]{1,253}$",
+                        "type": "string"
+                      },
+                      "job": {
+                        "pattern": "^[A-Za-z0-9_.:/-]{1,128}$",
+                        "type": "string"
+                      },
+                      "namespace": {
+                        "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                        "type": "string"
+                      },
+                      "service": {
+                        "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                        "type": "string"
+                      },
+                      "service_id": {
+                        "const": "prometheus"
+                      }
+                    },
+                    "required": [
+                      "service_id",
+                      "namespace",
+                      "service",
+                      "job",
+                      "instance"
+                    ],
+                    "type": "object"
+                  },
+                  "roles": {
+                    "items": {
+                      "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                      "type": "string"
+                    },
+                    "maxItems": 8,
+                    "minItems": 1,
+                    "type": "array",
+                    "uniqueItems": true
+                  }
+                },
+                "required": [
+                  "id",
+                  "roles",
+                  "kubernetes",
+                  "argocd"
+                ],
+                "type": "object"
+              },
+              "maxItems": 8,
+              "minItems": 1,
+              "type": "array",
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "schema_version",
+            "run_id",
+            "attempt_id",
+            "phase",
+            "environment",
+            "profile",
+            "scenario_id",
+            "identities",
+            "targets"
+          ],
+          "type": "object"
+        },
+        "fault": {
+          "$id": "urn:devsecops:runtime-intent:1",
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "additionalProperties": false,
+          "properties": {
+            "attempt_id": {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+              "type": "string"
+            },
+            "environment": {
+              "pattern": "^[a-z][a-z0-9-]{0,62}$",
+              "type": "string"
+            },
+            "environment_inventory_receipt": {
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                  "type": "string"
+                },
+                "sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "sha256"
+              ],
+              "type": "object"
+            },
+            "identities": {
+              "additionalProperties": false,
+              "properties": {
+                "assertions_sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                },
+                "config_sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                },
+                "environment_sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                },
+                "lock_sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                },
+                "package_sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                },
+                "scenario_sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "scenario_sha256",
+                "assertions_sha256",
+                "package_sha256",
+                "lock_sha256",
+                "config_sha256",
+                "environment_sha256"
+              ],
+              "type": "object"
+            },
+            "phase": {
+              "enum": [
+                "baseline",
+                "fault",
+                "recovery",
+                "observation"
+              ]
+            },
+            "profile": {
+              "maxLength": 64,
+              "type": "string"
+            },
+            "run_id": {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+              "type": "string"
+            },
+            "scenario_id": {
+              "pattern": "^[a-z][a-z0-9-]{0,62}$",
+              "type": "string"
+            },
+            "schema_version": {
+              "const": 1
+            },
+            "targets": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "argocd": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "application": {
+                        "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                        "type": "string"
+                      },
+                      "application_namespace": {
+                        "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                        "type": "string"
+                      },
+                      "destination": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "namespace": {
+                            "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                            "type": "string"
+                          },
+                          "server": {
+                            "maxLength": 2048,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "server",
+                          "namespace"
+                        ],
+                        "type": "object"
+                      },
+                      "destination_spec_sha256": {
+                        "pattern": "^[a-f0-9]{64}$",
+                        "type": "string"
+                      },
+                      "intent_receipt": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "id": {
+                            "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                            "type": "string"
+                          },
+                          "sha256": {
+                            "pattern": "^[a-f0-9]{64}$",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "sha256"
+                        ],
+                        "type": "object"
+                      },
+                      "project": {
+                        "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                        "type": "string"
+                      },
+                      "service_id": {
+                        "const": "argocd"
+                      },
+                      "sources": {
+                        "items": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "intent_receipt": {
+                              "additionalProperties": false,
+                              "properties": {
+                                "id": {
+                                  "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                                  "type": "string"
+                                },
+                                "sha256": {
+                                  "pattern": "^[a-f0-9]{64}$",
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "id",
+                                "sha256"
+                              ],
+                              "type": "object"
+                            },
+                            "path": {
+                              "maxLength": 1024,
+                              "type": "string"
+                            },
+                            "position": {
+                              "maximum": 32,
+                              "minimum": 1,
+                              "type": "integer"
+                            },
+                            "rendered_artifact_sha256": {
+                              "pattern": "^[a-f0-9]{64}$",
+                              "type": "string"
+                            },
+                            "renderer": {
+                              "enum": [
+                                "helm",
+                                "kustomize",
+                                "manifests",
+                                "values"
+                              ]
+                            },
+                            "repository_url": {
+                              "maxLength": 2048,
+                              "type": "string"
+                            },
+                            "revision": {
+                              "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$",
+                              "type": "string"
+                            },
+                            "source_spec_sha256": {
+                              "pattern": "^[a-f0-9]{64}$",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "position",
+                            "repository_url",
+                            "revision",
+                            "path",
+                            "renderer"
+                          ],
+                          "type": "object"
+                        },
+                        "maxItems": 32,
+                        "minItems": 1,
+                        "type": "array",
+                        "uniqueItems": true
+                      }
+                    },
+                    "required": [
+                      "service_id",
+                      "project",
+                      "application_namespace",
+                      "application",
+                      "sources",
+                      "destination"
+                    ],
+                    "type": "object"
+                  },
+                  "id": {
+                    "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                    "type": "string"
+                  },
+                  "image_mapping_receipt": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "id": {
+                        "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                        "type": "string"
+                      },
+                      "sha256": {
+                        "pattern": "^[a-f0-9]{64}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "sha256"
+                    ],
+                    "type": "object"
+                  },
+                  "kubernetes": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "deployment": {
+                        "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                        "type": "string"
+                      },
+                      "deployment_uid": {
+                        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+                        "type": "string"
+                      },
+                      "generation": {
+                        "minimum": 1,
+                        "type": "integer"
+                      },
+                      "namespace": {
+                        "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                        "type": "string"
+                      },
+                      "service": {
+                        "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                        "type": "string"
+                      },
+                      "service_id": {
+                        "const": "kubernetes"
+                      },
+                      "service_uid": {
+                        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "service_id",
+                      "namespace",
+                      "deployment",
+                      "service"
+                    ],
+                    "type": "object"
+                  },
+                  "prometheus": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "instance": {
+                        "pattern": "^[A-Za-z0-9_.:\\[\\]-]{1,253}$",
+                        "type": "string"
+                      },
+                      "job": {
+                        "pattern": "^[A-Za-z0-9_.:/-]{1,128}$",
+                        "type": "string"
+                      },
+                      "namespace": {
+                        "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                        "type": "string"
+                      },
+                      "service": {
+                        "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                        "type": "string"
+                      },
+                      "service_id": {
+                        "const": "prometheus"
+                      }
+                    },
+                    "required": [
+                      "service_id",
+                      "namespace",
+                      "service",
+                      "job",
+                      "instance"
+                    ],
+                    "type": "object"
+                  },
+                  "roles": {
+                    "items": {
+                      "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                      "type": "string"
+                    },
+                    "maxItems": 8,
+                    "minItems": 1,
+                    "type": "array",
+                    "uniqueItems": true
+                  }
+                },
+                "required": [
+                  "id",
+                  "roles",
+                  "kubernetes",
+                  "argocd"
+                ],
+                "type": "object"
+              },
+              "maxItems": 8,
+              "minItems": 1,
+              "type": "array",
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "schema_version",
+            "run_id",
+            "attempt_id",
+            "phase",
+            "environment",
+            "profile",
+            "scenario_id",
+            "identities",
+            "targets"
+          ],
+          "type": "object"
+        },
+        "recovery": {
+          "$id": "urn:devsecops:runtime-intent:1",
+          "$schema": "https://json-schema.org/draft/2020-12/schema",
+          "additionalProperties": false,
+          "properties": {
+            "attempt_id": {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+              "type": "string"
+            },
+            "environment": {
+              "pattern": "^[a-z][a-z0-9-]{0,62}$",
+              "type": "string"
+            },
+            "environment_inventory_receipt": {
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                  "type": "string"
+                },
+                "sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "sha256"
+              ],
+              "type": "object"
+            },
+            "identities": {
+              "additionalProperties": false,
+              "properties": {
+                "assertions_sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                },
+                "config_sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                },
+                "environment_sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                },
+                "lock_sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                },
+                "package_sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                },
+                "scenario_sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "scenario_sha256",
+                "assertions_sha256",
+                "package_sha256",
+                "lock_sha256",
+                "config_sha256",
+                "environment_sha256"
+              ],
+              "type": "object"
+            },
+            "phase": {
+              "enum": [
+                "baseline",
+                "fault",
+                "recovery",
+                "observation"
+              ]
+            },
+            "profile": {
+              "maxLength": 64,
+              "type": "string"
+            },
+            "run_id": {
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+              "type": "string"
+            },
+            "scenario_id": {
+              "pattern": "^[a-z][a-z0-9-]{0,62}$",
+              "type": "string"
+            },
+            "schema_version": {
+              "const": 1
+            },
+            "targets": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "argocd": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "application": {
+                        "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                        "type": "string"
+                      },
+                      "application_namespace": {
+                        "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                        "type": "string"
+                      },
+                      "destination": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "namespace": {
+                            "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                            "type": "string"
+                          },
+                          "server": {
+                            "maxLength": 2048,
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "server",
+                          "namespace"
+                        ],
+                        "type": "object"
+                      },
+                      "destination_spec_sha256": {
+                        "pattern": "^[a-f0-9]{64}$",
+                        "type": "string"
+                      },
+                      "intent_receipt": {
+                        "additionalProperties": false,
+                        "properties": {
+                          "id": {
+                            "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                            "type": "string"
+                          },
+                          "sha256": {
+                            "pattern": "^[a-f0-9]{64}$",
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "id",
+                          "sha256"
+                        ],
+                        "type": "object"
+                      },
+                      "project": {
+                        "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                        "type": "string"
+                      },
+                      "service_id": {
+                        "const": "argocd"
+                      },
+                      "sources": {
+                        "items": {
+                          "additionalProperties": false,
+                          "properties": {
+                            "intent_receipt": {
+                              "additionalProperties": false,
+                              "properties": {
+                                "id": {
+                                  "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                                  "type": "string"
+                                },
+                                "sha256": {
+                                  "pattern": "^[a-f0-9]{64}$",
+                                  "type": "string"
+                                }
+                              },
+                              "required": [
+                                "id",
+                                "sha256"
+                              ],
+                              "type": "object"
+                            },
+                            "path": {
+                              "maxLength": 1024,
+                              "type": "string"
+                            },
+                            "position": {
+                              "maximum": 32,
+                              "minimum": 1,
+                              "type": "integer"
+                            },
+                            "rendered_artifact_sha256": {
+                              "pattern": "^[a-f0-9]{64}$",
+                              "type": "string"
+                            },
+                            "renderer": {
+                              "enum": [
+                                "helm",
+                                "kustomize",
+                                "manifests",
+                                "values"
+                              ]
+                            },
+                            "repository_url": {
+                              "maxLength": 2048,
+                              "type": "string"
+                            },
+                            "revision": {
+                              "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$",
+                              "type": "string"
+                            },
+                            "source_spec_sha256": {
+                              "pattern": "^[a-f0-9]{64}$",
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "position",
+                            "repository_url",
+                            "revision",
+                            "path",
+                            "renderer"
+                          ],
+                          "type": "object"
+                        },
+                        "maxItems": 32,
+                        "minItems": 1,
+                        "type": "array",
+                        "uniqueItems": true
+                      }
+                    },
+                    "required": [
+                      "service_id",
+                      "project",
+                      "application_namespace",
+                      "application",
+                      "sources",
+                      "destination"
+                    ],
+                    "type": "object"
+                  },
+                  "id": {
+                    "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                    "type": "string"
+                  },
+                  "image_mapping_receipt": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "id": {
+                        "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                        "type": "string"
+                      },
+                      "sha256": {
+                        "pattern": "^[a-f0-9]{64}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "id",
+                      "sha256"
+                    ],
+                    "type": "object"
+                  },
+                  "kubernetes": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "deployment": {
+                        "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                        "type": "string"
+                      },
+                      "deployment_uid": {
+                        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+                        "type": "string"
+                      },
+                      "generation": {
+                        "minimum": 1,
+                        "type": "integer"
+                      },
+                      "namespace": {
+                        "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                        "type": "string"
+                      },
+                      "service": {
+                        "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                        "type": "string"
+                      },
+                      "service_id": {
+                        "const": "kubernetes"
+                      },
+                      "service_uid": {
+                        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "service_id",
+                      "namespace",
+                      "deployment",
+                      "service"
+                    ],
+                    "type": "object"
+                  },
+                  "prometheus": {
+                    "additionalProperties": false,
+                    "properties": {
+                      "instance": {
+                        "pattern": "^[A-Za-z0-9_.:\\[\\]-]{1,253}$",
+                        "type": "string"
+                      },
+                      "job": {
+                        "pattern": "^[A-Za-z0-9_.:/-]{1,128}$",
+                        "type": "string"
+                      },
+                      "namespace": {
+                        "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                        "type": "string"
+                      },
+                      "service": {
+                        "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                        "type": "string"
+                      },
+                      "service_id": {
+                        "const": "prometheus"
+                      }
+                    },
+                    "required": [
+                      "service_id",
+                      "namespace",
+                      "service",
+                      "job",
+                      "instance"
+                    ],
+                    "type": "object"
+                  },
+                  "roles": {
+                    "items": {
+                      "pattern": "^[a-z][a-z0-9-]{0,62}$",
+                      "type": "string"
+                    },
+                    "maxItems": 8,
+                    "minItems": 1,
+                    "type": "array",
+                    "uniqueItems": true
+                  }
+                },
+                "required": [
+                  "id",
+                  "roles",
+                  "kubernetes",
+                  "argocd"
+                ],
+                "type": "object"
+              },
+              "maxItems": 8,
+              "minItems": 1,
+              "type": "array",
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "schema_version",
+            "run_id",
+            "attempt_id",
+            "phase",
+            "environment",
+            "profile",
+            "scenario_id",
+            "identities",
+            "targets"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "baseline",
+        "fault",
+        "recovery"
+      ],
+      "type": "object"
+    },
+    "metrics_authorization": {
+      "additionalProperties": false,
+      "properties": {
+        "namespace_labels": {
+          "additionalProperties": {
+            "maxLength": 63,
+            "type": "string"
+          },
+          "maxProperties": 64,
+          "propertyNames": {
+            "maxLength": 253,
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "pod_labels": {
+          "additionalProperties": {
+            "maxLength": 63,
+            "type": "string"
+          },
+          "maxProperties": 64,
+          "propertyNames": {
+            "maxLength": 253,
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "namespace_labels",
+        "pod_labels"
+      ],
+      "type": "object"
+    },
+    "mission_application_container": {
+      "pattern": "^[a-z][a-z0-9-]{0,62}$",
+      "type": "string"
+    },
+    "mission_target": {
+      "pattern": "^[a-z][a-z0-9-]{0,62}$",
+      "type": "string"
+    },
+    "probe_cases": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "body_sha256": {
+            "anyOf": [
+              {
+                "pattern": "^[a-f0-9]{64}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "id": {
+            "pattern": "^[a-z][a-z0-9-]{0,62}$",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "mission-health",
+              "reference-health",
+              "metrics-allowed-before",
+              "metrics-allowed-after",
+              "metrics-denied-wrong-namespace",
+              "metrics-denied-wrong-label"
+            ]
+          },
+          "path": {
+            "enum": [
+              "/",
+              "/health",
+              "/healthz",
+              "/metrics"
+            ]
+          },
+          "phase": {
+            "enum": [
+              "baseline",
+              "fault",
+              "recovery"
+            ]
+          },
+          "port": {
+            "maximum": 65535,
+            "minimum": 1,
+            "type": "integer"
+          },
+          "source_id": {
+            "pattern": "^[a-z][a-z0-9-]{0,62}$",
+            "type": "string"
+          },
+          "target_id": {
+            "pattern": "^[a-z][a-z0-9-]{0,62}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "phase",
+          "kind",
+          "target_id",
+          "source_id",
+          "port",
+          "path",
+          "body_sha256"
+        ],
+        "type": "object"
+      },
+      "maxItems": 32,
+      "minItems": 14,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "reference_application_container": {
+      "pattern": "^[a-z][a-z0-9-]{0,62}$",
+      "type": "string"
+    },
+    "reference_target": {
+      "pattern": "^[a-z][a-z0-9-]{0,62}$",
+      "type": "string"
+    },
+    "run_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "id",
+    "run_id",
+    "attempt_id",
+    "environment",
+    "identities",
+    "factory_lock",
+    "intents",
+    "mission_target",
+    "reference_target",
+    "mission_application_container",
+    "reference_application_container",
+    "image_expectations",
+    "delivery_target",
+    "delivery_source_position",
+    "correction_contract_sha256",
+    "probe_cases",
+    "metrics_authorization"
+  ],
+  "type": "object"
+}

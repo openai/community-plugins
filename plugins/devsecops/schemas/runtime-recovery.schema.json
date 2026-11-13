@@ -1,0 +1,382 @@
+{
+  "$id": "urn:devsecops:runtime-recovery:1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "causality": {
+      "const": "unproven"
+    },
+    "conditions": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "authenticated": {
+            "type": "boolean"
+          },
+          "code": {
+            "pattern": "^[a-z][a-z0-9-]{0,62}$",
+            "type": "string"
+          },
+          "evidence": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "input": {
+                  "maxLength": 128,
+                  "type": "string"
+                },
+                "pointer": {
+                  "maxLength": 2048,
+                  "type": "string"
+                },
+                "sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "input",
+                "pointer",
+                "sha256"
+              ],
+              "type": "object"
+            },
+            "maxItems": 20,
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "id": {
+            "pattern": "^[a-z][a-z0-9-]{0,62}$",
+            "type": "string"
+          },
+          "observed_state": {
+            "enum": [
+              "recovered",
+              "not-recovered",
+              "unknown"
+            ]
+          },
+          "phase": {
+            "enum": [
+              "baseline",
+              "fault",
+              "recovery",
+              "chain",
+              "all"
+            ]
+          },
+          "target_id": {
+            "pattern": "^[a-z][a-z0-9-]{0,62}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "phase",
+          "observed_state",
+          "code",
+          "authenticated",
+          "evidence"
+        ],
+        "type": "object"
+      },
+      "maxItems": 100,
+      "minItems": 0,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "confirmed_failure": {
+      "type": "boolean"
+    },
+    "decision": {
+      "enum": [
+        "pass",
+        "fail",
+        "unknown"
+      ]
+    },
+    "execution_mode": {
+      "enum": [
+        "direct",
+        "controlled-test"
+      ]
+    },
+    "execution_status": {
+      "enum": [
+        "complete",
+        "partial"
+      ]
+    },
+    "gaps": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "pattern": "^[a-z][a-z0-9-]{0,62}$",
+            "type": "string"
+          },
+          "input": {
+            "maxLength": 128,
+            "type": "string"
+          },
+          "required": {
+            "const": true
+          }
+        },
+        "required": [
+          "code",
+          "required"
+        ],
+        "type": "object"
+      },
+      "maxItems": 200,
+      "minItems": 0,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "identities": {
+      "additionalProperties": false,
+      "properties": {
+        "assertions_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "config_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "environment_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "lock_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "package_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "scenario_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "scenario_sha256",
+        "assertions_sha256",
+        "package_sha256",
+        "lock_sha256",
+        "config_sha256",
+        "environment_sha256"
+      ],
+      "type": "object"
+    },
+    "inputs": {
+      "additionalProperties": {
+        "additionalProperties": false,
+        "properties": {
+          "bytes": {
+            "maximum": 16000000,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "sha256": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "state": {
+            "enum": [
+              "valid",
+              "invalid",
+              "missing"
+            ]
+          }
+        },
+        "required": [
+          "state"
+        ],
+        "type": "object"
+      },
+      "maxProperties": 50,
+      "type": "object"
+    },
+    "kind": {
+      "const": "runtime-recovery"
+    },
+    "observation_kind": {
+      "const": "independent-recovery-conditions"
+    },
+    "observed_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "provenance": {
+      "additionalProperties": false,
+      "properties": {
+        "adapter": {
+          "maxLength": 64,
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "assurances": {
+          "items": {
+            "enum": [
+              "operator-intent",
+              "collection-origin",
+              "cluster-destination",
+              "probe-origin-and-source",
+              "image-content-mapping",
+              "native-execution",
+              "correction-execution",
+              "git-delivery",
+              "network-policy-path"
+            ]
+          },
+          "maxItems": 9,
+          "minItems": 0,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "receipt_sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "verified": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "adapter",
+        "verified",
+        "receipt_sha256",
+        "assurances"
+      ],
+      "type": "object"
+    },
+    "recovery": {
+      "enum": [
+        "verified",
+        "not-recovered",
+        "unknown"
+      ]
+    },
+    "recovery_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "retained_failures": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "authenticated": {
+            "type": "boolean"
+          },
+          "code": {
+            "pattern": "^[a-z][a-z0-9-]{0,62}$",
+            "type": "string"
+          },
+          "evidence": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "input": {
+                  "maxLength": 128,
+                  "type": "string"
+                },
+                "pointer": {
+                  "maxLength": 2048,
+                  "type": "string"
+                },
+                "sha256": {
+                  "pattern": "^[a-f0-9]{64}$",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "input",
+                "pointer",
+                "sha256"
+              ],
+              "type": "object"
+            },
+            "maxItems": 20,
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "id": {
+            "pattern": "^[a-z][a-z0-9-]{0,62}$",
+            "type": "string"
+          },
+          "observed_state": {
+            "enum": [
+              "recovered",
+              "not-recovered",
+              "unknown"
+            ]
+          },
+          "phase": {
+            "enum": [
+              "baseline",
+              "fault",
+              "recovery",
+              "chain",
+              "all"
+            ]
+          },
+          "target_id": {
+            "pattern": "^[a-z][a-z0-9-]{0,62}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "phase",
+          "observed_state",
+          "code",
+          "authenticated",
+          "evidence"
+        ],
+        "type": "object"
+      },
+      "maxItems": 100,
+      "minItems": 0,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "schema_version": {
+      "const": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "observation_kind",
+    "observed_at",
+    "execution_mode",
+    "execution_status",
+    "decision",
+    "recovery",
+    "causality",
+    "confirmed_failure",
+    "identities",
+    "inputs",
+    "conditions",
+    "retained_failures",
+    "provenance",
+    "gaps",
+    "recovery_sha256"
+  ],
+  "type": "object"
+}

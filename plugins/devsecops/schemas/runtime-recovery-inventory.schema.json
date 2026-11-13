@@ -1,0 +1,336 @@
+{
+  "$id": "urn:devsecops:runtime-recovery-inventory:1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "argo_destination_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "attempt_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+      "type": "string"
+    },
+    "cluster_uid": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+      "type": "string"
+    },
+    "environment": {
+      "pattern": "^[a-z][a-z0-9-]{0,62}$",
+      "type": "string"
+    },
+    "identities": {
+      "additionalProperties": false,
+      "properties": {
+        "assertions_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "config_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "environment_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "lock_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "package_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "scenario_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "scenario_sha256",
+        "assertions_sha256",
+        "package_sha256",
+        "lock_sha256",
+        "config_sha256",
+        "environment_sha256"
+      ],
+      "type": "object"
+    },
+    "images": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "config_digest": {
+            "pattern": "^sha256:[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "container": {
+            "pattern": "^[a-z][a-z0-9-]{0,62}$",
+            "type": "string"
+          },
+          "container_type": {
+            "enum": [
+              "regular",
+              "init"
+            ]
+          },
+          "manifest_digest": {
+            "pattern": "^sha256:[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "mapping_receipt_sha256": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "runtime_image_id": {
+            "maxLength": 1024,
+            "pattern": "^(?:[a-z][a-z0-9+.-]*://)?(?:[A-Za-z0-9._:/-]+@)?sha256:[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "target_id": {
+            "pattern": "^[a-z][a-z0-9-]{0,62}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "target_id",
+          "container",
+          "container_type",
+          "runtime_image_id",
+          "manifest_digest",
+          "config_digest",
+          "mapping_receipt_sha256"
+        ],
+        "type": "object"
+      },
+      "maxItems": 64,
+      "minItems": 2,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "kubernetes_origin_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "probe_sources": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "pattern": "^[a-z][a-z0-9-]{0,62}$",
+            "type": "string"
+          },
+          "image_id": {
+            "maxLength": 1024,
+            "pattern": "^(?:[a-z][a-z0-9+.-]*://)?(?:[A-Za-z0-9._:/-]+@)?sha256:[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "name": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+            "type": "string"
+          },
+          "namespace": {
+            "pattern": "^[a-z][a-z0-9-]{0,62}$",
+            "type": "string"
+          },
+          "namespace_labels": {
+            "additionalProperties": {
+              "maxLength": 63,
+              "type": "string"
+            },
+            "maxProperties": 64,
+            "propertyNames": {
+              "maxLength": 253,
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "namespace_uid": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+            "type": "string"
+          },
+          "observed_after": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "observed_before": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "pod_labels": {
+            "additionalProperties": {
+              "maxLength": 63,
+              "type": "string"
+            },
+            "maxProperties": 64,
+            "propertyNames": {
+              "maxLength": 253,
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "object"
+          },
+          "uid": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "namespace",
+          "name",
+          "uid",
+          "namespace_uid",
+          "pod_labels",
+          "namespace_labels",
+          "image_id",
+          "observed_before",
+          "observed_after"
+        ],
+        "type": "object"
+      },
+      "maxItems": 32,
+      "minItems": 3,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "run_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "services": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "cluster_domain": {
+            "maxLength": 253,
+            "type": "string"
+          },
+          "cluster_ips": {
+            "items": {
+              "maxLength": 45,
+              "type": "string"
+            },
+            "maxItems": 2,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "observed_after": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "observed_before": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "target_id": {
+            "pattern": "^[a-z][a-z0-9-]{0,62}$",
+            "type": "string"
+          },
+          "uid": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+            "type": "string"
+          }
+        },
+        "required": [
+          "target_id",
+          "uid",
+          "cluster_ips",
+          "cluster_domain",
+          "observed_before",
+          "observed_after"
+        ],
+        "type": "object"
+      },
+      "maxItems": 8,
+      "minItems": 2,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "telemetry": {
+      "additionalProperties": false,
+      "properties": {
+        "instance": {
+          "maxLength": 253,
+          "type": "string"
+        },
+        "job": {
+          "maxLength": 128,
+          "type": "string"
+        },
+        "pod_uid": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+          "type": "string"
+        },
+        "service_uid": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+          "type": "string"
+        },
+        "target_id": {
+          "pattern": "^[a-z][a-z0-9-]{0,62}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "target_id",
+        "service_uid",
+        "pod_uid",
+        "job",
+        "instance"
+      ],
+      "type": "object"
+    },
+    "topology": {
+      "additionalProperties": false,
+      "properties": {
+        "cni": {
+          "maxLength": 256,
+          "type": "string"
+        },
+        "mesh_mode": {
+          "maxLength": 256,
+          "type": "string"
+        },
+        "probe_transport": {
+          "enum": [
+            "plain-http-networkpolicy",
+            "unsupported"
+          ]
+        },
+        "qualification_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "cni",
+        "mesh_mode",
+        "probe_transport",
+        "qualification_sha256"
+      ],
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema_version",
+    "run_id",
+    "attempt_id",
+    "environment",
+    "identities",
+    "cluster_uid",
+    "kubernetes_origin_sha256",
+    "argo_destination_sha256",
+    "services",
+    "probe_sources",
+    "images",
+    "telemetry",
+    "topology"
+  ],
+  "type": "object"
+}

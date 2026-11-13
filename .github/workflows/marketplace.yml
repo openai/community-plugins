@@ -51,7 +51,9 @@ jobs:
   plugin-suites:
     name: Marketplace plugin suites
     runs-on: macos-latest
-    timeout-minutes: 30
+    # The DevSecOps master retains its full 75-minute Python phase. Allow cold
+    # setup and the existing catalog suites without selecting fewer tests.
+    timeout-minutes: 150
     env:
       FUSION_TEST_PYTHON: python
       PYTHONDONTWRITEBYTECODE: "1"
@@ -79,6 +81,16 @@ jobs:
           printf 'FUSION_TEST_PYTHON=%s\n' '${{ steps.fusion-python.outputs.python-path }}' >> "$GITHUB_ENV"
       - name: Validate catalog before selecting package directories
         run: npm run validate:marketplace
+      - name: Select real OpenSSL for mandatory DevSecOps strict TLS tests
+        shell: bash
+        run: |
+          openssl_prefix="$(brew --prefix openssl@3)"
+          if [ ! -x "$openssl_prefix/bin/openssl" ]; then
+            brew install openssl@3
+            openssl_prefix="$(brew --prefix openssl@3)"
+          fi
+          "$openssl_prefix/bin/openssl" version
+          printf 'DEVSECOPS_TEST_OPENSSL=%s\n' "$openssl_prefix/bin/openssl" >> "$GITHUB_ENV"
       - name: Install catalog packages' locked development dependencies without lifecycle scripts
         shell: bash
         run: |

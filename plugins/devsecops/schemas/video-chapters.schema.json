@@ -1,0 +1,239 @@
+{
+  "$id": "urn:devsecops:video-chapters:1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "chapters": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "attempt": {
+            "enum": [
+              "shared",
+              "primary",
+              "replay"
+            ]
+          },
+          "evidence_paths": {
+            "items": {
+              "maxLength": 4096,
+              "minLength": 1,
+              "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\u0000\\r\\n\\\\]+$",
+              "type": "string"
+            },
+            "maxItems": 200,
+            "minItems": 0,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "id": {
+            "maxLength": 160,
+            "minLength": 1,
+            "type": "string"
+          },
+          "observed_at": {
+            "format": "date-time",
+            "type": "string"
+          },
+          "phase_id": {
+            "maxLength": 160,
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "source_range": {
+            "additionalProperties": false,
+            "properties": {
+              "end_seconds": {
+                "maximum": 2592000,
+                "minimum": 0,
+                "type": "number"
+              },
+              "start_seconds": {
+                "maximum": 2592000,
+                "minimum": 0,
+                "type": "number"
+              }
+            },
+            "required": [
+              "start_seconds",
+              "end_seconds"
+            ],
+            "type": "object"
+          },
+          "title": {
+            "maxLength": 160,
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "title",
+          "phase_id",
+          "attempt",
+          "source_range",
+          "observed_at",
+          "evidence_paths"
+        ],
+        "type": "object"
+      },
+      "maxItems": 35,
+      "minItems": 35,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "duration_seconds": {
+      "exclusiveMinimum": 0,
+      "maximum": 2592000,
+      "type": "number"
+    },
+    "handoffs": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "claims": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "artifact": {
+                  "maxLength": 4096,
+                  "minLength": 1,
+                  "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\u0000\\r\\n\\\\]+$",
+                  "type": "string"
+                },
+                "json_pointer": {
+                  "maxLength": 2048,
+                  "type": "string"
+                },
+                "label": {
+                  "maxLength": 160,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "role": {
+                  "enum": [
+                    "application",
+                    "argo-revision",
+                    "cleanup-evidence",
+                    "cluster-uid",
+                    "correction-patch-sha256",
+                    "deployment-commit",
+                    "fault-commit",
+                    "http-probe",
+                    "isolation-probe",
+                    "job-id",
+                    "metrics-query",
+                    "mission-image-digest",
+                    "namespace",
+                    "nginx-image-digest",
+                    "pipeline-id",
+                    "recovery-evidence",
+                    "reset-commit",
+                    "runtime-image-digest",
+                    "sbom-subject",
+                    "signature-subject",
+                    "source-commit",
+                    "workload-uid"
+                  ]
+                },
+                "value": {
+                  "type": [
+                    "string",
+                    "number",
+                    "boolean",
+                    "null"
+                  ]
+                }
+              },
+              "required": [
+                "artifact",
+                "json_pointer",
+                "role",
+                "label",
+                "value"
+              ],
+              "type": "object"
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "kind": {
+            "enum": [
+              "source-to-ci",
+              "ci-registry-deployment",
+              "deployment-to-argo",
+              "argo-to-runtime",
+              "fault-correction-recovery"
+            ]
+          },
+          "phase_ids": {
+            "items": {
+              "maxLength": 160,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 33,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "source_range": {
+            "additionalProperties": false,
+            "properties": {
+              "end_seconds": {
+                "maximum": 2592000,
+                "minimum": 0,
+                "type": "number"
+              },
+              "start_seconds": {
+                "maximum": 2592000,
+                "minimum": 0,
+                "type": "number"
+              }
+            },
+            "required": [
+              "start_seconds",
+              "end_seconds"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "kind",
+          "source_range",
+          "phase_ids",
+          "claims"
+        ],
+        "type": "object"
+      },
+      "maxItems": 5,
+      "minItems": 5,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "kind": {
+      "const": "factory-video-chapters"
+    },
+    "run_id": {
+      "maxLength": 160,
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema_version": {
+      "const": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "run_id",
+    "duration_seconds",
+    "chapters",
+    "handoffs"
+  ],
+  "type": "object"
+}

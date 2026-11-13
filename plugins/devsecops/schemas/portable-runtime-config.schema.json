@@ -1,0 +1,182 @@
+{
+  "$id": "urn:devsecops:portable-runtime-config:1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "argocd": {
+      "additionalProperties": false,
+      "properties": {
+        "application": {
+          "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$",
+          "type": "string"
+        },
+        "application_namespace": {
+          "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$",
+          "type": "string"
+        },
+        "connection": {
+          "additionalProperties": false,
+          "properties": {
+            "ca_bundle": {
+              "maxLength": 4096,
+              "pattern": "^/[^\\u0000\\r\\n]+$",
+              "type": "string"
+            },
+            "origin": {
+              "maxLength": 2048,
+              "pattern": "^https://",
+              "type": "string"
+            },
+            "token_env": {
+              "pattern": "^[A-Z][A-Z0-9_]{0,127}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "origin"
+          ],
+          "type": "object"
+        },
+        "expected_revision": {
+          "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$",
+          "type": "string"
+        },
+        "project": {
+          "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "connection",
+        "project",
+        "application_namespace",
+        "application",
+        "expected_revision"
+      ],
+      "type": "object"
+    },
+    "kubernetes": {
+      "additionalProperties": false,
+      "properties": {
+        "connection": {
+          "additionalProperties": false,
+          "properties": {
+            "ca_bundle": {
+              "maxLength": 4096,
+              "pattern": "^/[^\\u0000\\r\\n]+$",
+              "type": "string"
+            },
+            "origin": {
+              "maxLength": 2048,
+              "pattern": "^https://",
+              "type": "string"
+            },
+            "token_env": {
+              "pattern": "^[A-Z][A-Z0-9_]{0,127}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "origin"
+          ],
+          "type": "object"
+        },
+        "deployment": {
+          "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$",
+          "type": "string"
+        },
+        "namespace": {
+          "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$",
+          "type": "string"
+        },
+        "service": {
+          "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "connection",
+        "namespace",
+        "deployment",
+        "service"
+      ],
+      "type": "object"
+    },
+    "profile": {
+      "const": "portable-gitops-v1"
+    },
+    "prometheus": {
+      "additionalProperties": false,
+      "properties": {
+        "connection": {
+          "additionalProperties": false,
+          "properties": {
+            "ca_bundle": {
+              "maxLength": 4096,
+              "pattern": "^/[^\\u0000\\r\\n]+$",
+              "type": "string"
+            },
+            "origin": {
+              "maxLength": 2048,
+              "pattern": "^https://",
+              "type": "string"
+            },
+            "token_env": {
+              "pattern": "^[A-Z][A-Z0-9_]{0,127}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "origin"
+          ],
+          "type": "object"
+        },
+        "instance": {
+          "pattern": "^[A-Za-z0-9_.:\\[\\]-]{1,253}$",
+          "type": "string"
+        },
+        "job": {
+          "pattern": "^[A-Za-z0-9_.:/-]{1,128}$",
+          "type": "string"
+        },
+        "max_sample_age_seconds": {
+          "maximum": 120,
+          "minimum": 5,
+          "type": "integer"
+        },
+        "minimum_samples": {
+          "maximum": 121,
+          "minimum": 3,
+          "type": "integer"
+        },
+        "step_seconds": {
+          "maximum": 60,
+          "minimum": 5,
+          "type": "integer"
+        },
+        "window_seconds": {
+          "maximum": 600,
+          "minimum": 30,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "connection",
+        "job",
+        "instance"
+      ],
+      "type": "object"
+    },
+    "schema_version": {
+      "const": 1
+    }
+  },
+  "required": [
+    "schema_version",
+    "profile",
+    "argocd",
+    "kubernetes",
+    "prometheus"
+  ],
+  "type": "object"
+}

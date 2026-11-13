@@ -1,0 +1,30 @@
+# Deliberate defects for local demonstration and regression tests. Never deploy.
+replicaCount: 1
+image:
+  repository: docker.io/library/nginx
+  tag: latest
+  digest: ""
+service:
+  type: LoadBalancer
+securityContext:
+  privileged: true
+  allowPrivilegeEscalation: true
+  readOnlyRootFilesystem: false
+  runAsNonRoot: false
+  runAsUser: 0
+  capabilities:
+    add: [SYS_ADMIN]
+    drop: []
+serviceAccount:
+  automountServiceAccountToken: true
+resourcesEnabled: false
+probes:
+  readiness: false
+  liveness: false
+rbac:
+  resources: ["*"]
+  verbs: ["*"]
+networkPolicy:
+  enabled: false
+persistence:
+  enabled: false

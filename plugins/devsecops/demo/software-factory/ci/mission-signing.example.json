@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "kind": "mission-local-signing-configuration",
+  "private_key_path": "/approved/private-signing/application.key",
+  "password_env": "MISSION_SIGNING_PASSWORD",
+  "public_key_path": "/approved/signing-trust/application.pub",
+  "trust_policy_path": "/approved/signing-trust/trust.json",
+  "trust_policy_sha256": "REPLACE_WITH_INDEPENDENTLY_SELECTED_TRUST_POLICY_SHA256",
+  "cosign_path": "/approved/cosign-v3.1.4/bin/cosign"
+}

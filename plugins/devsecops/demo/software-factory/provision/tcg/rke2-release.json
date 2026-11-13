@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "rke2_version": "v1.36.5+rke2r1",
+  "release_url": "https://github.com/rancher/rke2/releases/tag/v1.36.5%2Brke2r1",
+  "published_at": "2026-09-30T16:47:37Z",
+  "bigbang": {
+    "version": "3.35.1",
+    "commit": "02efc8b0d259ee0cd2c31ea857d50a4021cf6d8e",
+    "chart_sha256": "3f0230acab679c7459260a8f0a03663ccd9087aba4269cca5563857af0da48bf",
+    "kube_version": ">=1.34.0-0",
+    "chart_url": "https://repo1.dso.mil/big-bang/bigbang/-/raw/02efc8b0d259ee0cd2c31ea857d50a4021cf6d8e/chart/Chart.yaml",
+    "qualification": "declared-version-compatibility-only"
+  },
+  "assets": [
+    {
+      "name": "rke2-images.linux-amd64.tar.zst",
+      "bytes": 806932038,
+      "sha256": "5af963b4a2cbb553dbf54bae5d884ce48562af808883e627ecc5d179408949f3",
+      "url": "https://github.com/rancher/rke2/releases/download/v1.36.5%2Brke2r1/rke2-images.linux-amd64.tar.zst"
+    },
+    {
+      "name": "rke2-images.linux-amd64.txt",
+      "bytes": 950,
+      "sha256": "b501891895be418ea65e3d338b0b984f83bb4641a5fbb081ddd7d982ecd6cd96",
+      "url": "https://github.com/rancher/rke2/releases/download/v1.36.5%2Brke2r1/rke2-images.linux-amd64.txt"
+    },
+    {
+      "name": "rke2.linux-amd64.tar.gz",
+      "bytes": 41238340,
+      "sha256": "4fdbe8a8a32517fbcb6e80c71ca393b96828fbb87685102d9058b51527f9278d",
+      "url": "https://github.com/rancher/rke2/releases/download/v1.36.5%2Brke2r1/rke2.linux-amd64.tar.gz"
+    },
+    {
+      "name": "sha256sum-amd64.txt",
+      "bytes": 3558,
+      "sha256": "75dd00b1f228c63cf101744738660843468874bbd7b354fa8329fd5f80b053ce",
+      "url": "https://github.com/rancher/rke2/releases/download/v1.36.5%2Brke2r1/sha256sum-amd64.txt"
+    },
+    {
+      "name": "install.sh",
+      "bytes": 26731,
+      "sha256": "42983c86d1da64a92061d83afb57630cedd69241989f1b0673f3db6c3d92ee6b",
+      "url": "https://raw.githubusercontent.com/rancher/rke2/v1.36.5+rke2r1/install.sh"
+    }
+  ]
+}

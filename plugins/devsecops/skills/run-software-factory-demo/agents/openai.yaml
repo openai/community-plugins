@@ -1,0 +1,7 @@
+interface:
+  display_name: "Run Software Factory Demo"
+  short_description: "Run an owned lab through fault, repair and recovery."
+  default_prompt: "Use $run-software-factory-demo with my approved config, qualified lock and environment inventory. Run or resume the canonical scenario, preserve the native patch and evidence, verify recovery and report owned-resource cleanup."
+  brand_color: "#164E63"
+policy:
+  allow_implicit_invocation: false

@@ -1,0 +1,131 @@
+{
+  "schema_version": 1,
+  "profile": "bigbang-live",
+  "environment": "devsecops-demo",
+  "owner": "replace-with-approved-lab-owner",
+  "expires_at": "2026-10-27T00:00:00Z",
+  "allowed_mutations": [],
+  "runtime": {
+    "driver": "preprovisioned-linux",
+    "os": "linux",
+    "architecture": "amd64",
+    "nodes": [
+      {
+        "id": "demo-node",
+        "address": "demo-node.invalid",
+        "roles": [
+          "server"
+        ]
+      }
+    ]
+  },
+  "services": [
+    {
+      "id": "gitlab",
+      "origin": "https://gitlab.demo.invalid",
+      "read_auth": {
+        "mode": "bearer",
+        "token_env": "DEVSECOPS_GITLAB_READ_TOKEN"
+      },
+      "scope": {
+        "project_ids": [
+          1,
+          2,
+          3
+        ]
+      },
+      "operator_auth": {
+        "mode": "bearer",
+        "token_env": "DEVSECOPS_GITLAB_OPERATOR_TOKEN"
+      }
+    },
+    {
+      "id": "argocd",
+      "origin": "https://argocd.demo.invalid",
+      "read_auth": {
+        "mode": "bearer",
+        "token_env": "DEVSECOPS_ARGOCD_READ_TOKEN"
+      },
+      "scope": {
+        "namespaces": [
+          "mission-demo",
+          "argocd"
+        ],
+        "applications": [
+          "mission-status",
+          "ironbank-reference-web"
+        ],
+        "argocd_projects": [
+          "devsecops-demo"
+        ]
+      }
+    },
+    {
+      "id": "registry",
+      "origin": "https://registry.demo.invalid",
+      "read_auth": {
+        "mode": "basic",
+        "username_env": "DEVSECOPS_REGISTRY_READ_USER",
+        "password_env": "DEVSECOPS_REGISTRY_READ_PASSWORD"
+      },
+      "scope": {},
+      "operator_auth": {
+        "mode": "bearer",
+        "token_env": "DEVSECOPS_REGISTRY_OPERATOR_TOKEN"
+      }
+    },
+    {
+      "id": "registry1",
+      "origin": "https://registry1.dso.mil",
+      "read_auth": {
+        "mode": "basic",
+        "username_env": "DEVSECOPS_REGISTRY1_READ_USER",
+        "password_env": "DEVSECOPS_REGISTRY1_READ_PASSWORD"
+      },
+      "scope": {
+        "repositories": [
+          "ironbank/opensource/nginx/nginx"
+        ]
+      }
+    },
+    {
+      "id": "prometheus",
+      "origin": "https://prometheus.demo.invalid",
+      "read_auth": {
+        "mode": "bearer",
+        "token_env": "DEVSECOPS_PROMETHEUS_READ_TOKEN"
+      },
+      "scope": {
+        "namespaces": [
+          "mission-demo"
+        ],
+        "applications": [
+          "mission-status",
+          "ironbank-reference-web"
+        ]
+      }
+    },
+    {
+      "id": "kubernetes",
+      "origin": "https://kubernetes.demo.invalid",
+      "read_auth": {
+        "mode": "bearer",
+        "token_env": "DEVSECOPS_KUBERNETES_READ_TOKEN"
+      },
+      "scope": {
+        "namespaces": [
+          "mission-demo"
+        ],
+        "applications": [
+          "mission-status",
+          "ironbank-reference-web"
+        ]
+      },
+      "operator_auth": {
+        "mode": "bearer",
+        "token_env": "DEVSECOPS_KUBERNETES_OPERATOR_TOKEN"
+      }
+    }
+  ],
+  "tool_paths": {}
+}
