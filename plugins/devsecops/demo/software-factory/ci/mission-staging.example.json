@@ -1,0 +1,10 @@
+{
+  "schema_version": 1,
+  "kind": "mission-staging-configuration",
+  "origin": "https://staging-registry.example.invalid",
+  "repository": "approved-team/mission-staging",
+  "credentials": {
+    "token_env": "MISSION_STAGING_WRITE_TOKEN"
+  },
+  "ca_bundle": null
+}

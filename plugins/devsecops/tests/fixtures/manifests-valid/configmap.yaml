@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: demo-config
+  namespace: demo
+  labels:
+    app.kubernetes.io/name: demo
+    team: platform
+data:
+  mode: staging

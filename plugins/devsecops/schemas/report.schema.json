@@ -1,0 +1,495 @@
+{
+  "$id": "urn:devsecops:report",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "$defs": {
+        "finding": {
+          "properties": {
+            "change": {
+              "enum": [
+                "introduced",
+                "worsened",
+                "preexisting",
+                "resolved"
+              ]
+            },
+            "evidence": {
+              "type": "object"
+            },
+            "field": {
+              "type": "string"
+            },
+            "fingerprint": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            },
+            "remediation": {
+              "type": "string"
+            },
+            "resource": {
+              "type": "string"
+            },
+            "rule_id": {
+              "type": "string"
+            },
+            "severity": {
+              "enum": [
+                "low",
+                "medium",
+                "high",
+                "critical"
+              ]
+            }
+          },
+          "required": [
+            "rule_id",
+            "severity",
+            "resource",
+            "field",
+            "message",
+            "evidence",
+            "change",
+            "remediation",
+            "fingerprint"
+          ],
+          "type": "object"
+        },
+        "gap": {
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            },
+            "required": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "code",
+            "message"
+          ],
+          "type": "object"
+        }
+      },
+      "$id": "urn:devsecops:report:1",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "properties": {
+        "ci": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "decision": {
+          "enum": [
+            "pass",
+            "fail",
+            "unknown"
+          ]
+        },
+        "finished_at": {
+          "type": "string"
+        },
+        "gaps": {
+          "items": {
+            "$ref": "#/$defs/gap"
+          },
+          "type": "array"
+        },
+        "plugin_version": {
+          "type": "string"
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "scope": {
+          "properties": {
+            "repo": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "repo"
+          ],
+          "type": "object"
+        },
+        "started_at": {
+          "type": "string"
+        },
+        "static_decision": {
+          "enum": [
+            "pass",
+            "fail",
+            "unknown"
+          ]
+        },
+        "status": {
+          "enum": [
+            "complete",
+            "partial",
+            "error"
+          ]
+        },
+        "summary": {
+          "properties": {
+            "findings": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "high_findings": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "required_gaps": {
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "targets": {
+          "items": {
+            "properties": {
+              "changes": {
+                "type": "array"
+              },
+              "decision": {
+                "enum": [
+                  "pass",
+                  "fail",
+                  "unknown"
+                ]
+              },
+              "findings": {
+                "items": {
+                  "$ref": "#/$defs/finding"
+                },
+                "type": "array"
+              },
+              "gaps": {
+                "items": {
+                  "$ref": "#/$defs/gap"
+                },
+                "type": "array"
+              },
+              "inventory": {
+                "properties": {
+                  "base_count": {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "head_count": {
+                    "minimum": 0,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "base_count",
+                  "head_count"
+                ],
+                "type": "object"
+              },
+              "name": {
+                "type": "string"
+              },
+              "receipts": {
+                "type": "array"
+              },
+              "status": {
+                "enum": [
+                  "complete",
+                  "partial",
+                  "error"
+                ]
+              },
+              "type": {
+                "enum": [
+                  "helm",
+                  "manifests"
+                ]
+              }
+            },
+            "required": [
+              "name",
+              "type",
+              "status",
+              "decision",
+              "findings",
+              "changes",
+              "gaps",
+              "inventory",
+              "receipts"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "plugin_version",
+        "status",
+        "decision",
+        "scope",
+        "targets",
+        "summary",
+        "gaps",
+        "ci"
+      ],
+      "type": "object"
+    },
+    {
+      "$defs": {
+        "finding": {
+          "properties": {
+            "change": {
+              "enum": [
+                "introduced",
+                "worsened",
+                "preexisting",
+                "resolved"
+              ]
+            },
+            "evidence": {
+              "type": "object"
+            },
+            "field": {
+              "type": "string"
+            },
+            "fingerprint": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            },
+            "remediation": {
+              "type": "string"
+            },
+            "resource": {
+              "type": "string"
+            },
+            "rule_id": {
+              "type": "string"
+            },
+            "severity": {
+              "enum": [
+                "low",
+                "medium",
+                "high",
+                "critical"
+              ]
+            }
+          },
+          "required": [
+            "rule_id",
+            "severity",
+            "resource",
+            "field",
+            "message",
+            "evidence",
+            "change",
+            "remediation",
+            "fingerprint"
+          ],
+          "type": "object"
+        },
+        "gap": {
+          "properties": {
+            "code": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            },
+            "required": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "code",
+            "message"
+          ],
+          "type": "object"
+        }
+      },
+      "$id": "urn:devsecops:report:2",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "properties": {
+        "ci": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "decision": {
+          "enum": [
+            "pass",
+            "fail",
+            "unknown"
+          ]
+        },
+        "finished_at": {
+          "type": "string"
+        },
+        "gaps": {
+          "items": {
+            "$ref": "#/$defs/gap"
+          },
+          "type": "array"
+        },
+        "plugin_version": {
+          "type": "string"
+        },
+        "run_id": {
+          "type": "string"
+        },
+        "schema_version": {
+          "const": 2
+        },
+        "scope": {
+          "properties": {
+            "repo": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "repo"
+          ],
+          "type": "object"
+        },
+        "started_at": {
+          "type": "string"
+        },
+        "static_decision": {
+          "enum": [
+            "pass",
+            "fail",
+            "unknown"
+          ]
+        },
+        "status": {
+          "enum": [
+            "complete",
+            "partial",
+            "error"
+          ]
+        },
+        "summary": {
+          "properties": {
+            "findings": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "high_findings": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "required_gaps": {
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          "type": "object"
+        },
+        "targets": {
+          "items": {
+            "properties": {
+              "changes": {
+                "type": "array"
+              },
+              "decision": {
+                "enum": [
+                  "pass",
+                  "fail",
+                  "unknown"
+                ]
+              },
+              "findings": {
+                "items": {
+                  "$ref": "#/$defs/finding"
+                },
+                "type": "array"
+              },
+              "gaps": {
+                "items": {
+                  "$ref": "#/$defs/gap"
+                },
+                "type": "array"
+              },
+              "inventory": {
+                "properties": {
+                  "base_count": {
+                    "minimum": 0,
+                    "type": "integer"
+                  },
+                  "head_count": {
+                    "minimum": 0,
+                    "type": "integer"
+                  }
+                },
+                "required": [
+                  "base_count",
+                  "head_count"
+                ],
+                "type": "object"
+              },
+              "name": {
+                "type": "string"
+              },
+              "receipts": {
+                "type": "array"
+              },
+              "status": {
+                "enum": [
+                  "complete",
+                  "partial",
+                  "error"
+                ]
+              },
+              "type": {
+                "enum": [
+                  "helm",
+                  "manifests",
+                  "kustomize"
+                ]
+              }
+            },
+            "required": [
+              "name",
+              "type",
+              "status",
+              "decision",
+              "findings",
+              "changes",
+              "gaps",
+              "inventory",
+              "receipts"
+            ],
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "plugin_version",
+        "status",
+        "decision",
+        "scope",
+        "targets",
+        "summary",
+        "gaps",
+        "ci"
+      ],
+      "type": "object"
+    }
+  ]
+}

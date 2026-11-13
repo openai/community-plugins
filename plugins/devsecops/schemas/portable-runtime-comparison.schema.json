@@ -1,0 +1,282 @@
+{
+  "$id": "urn:devsecops:portable-runtime-comparison:1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "conditions": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "baseline": {
+            "enum": [
+              "pass",
+              "fail",
+              "unknown"
+            ]
+          },
+          "condition": {
+            "enum": [
+              "controller_sync",
+              "controller_health",
+              "workload_ready",
+              "scrape_fresh",
+              "functional_progress"
+            ]
+          },
+          "fault": {
+            "enum": [
+              "pass",
+              "fail",
+              "unknown"
+            ]
+          },
+          "fault_observed": {
+            "type": "boolean"
+          },
+          "recovered": {
+            "enum": [
+              "pass",
+              "fail",
+              "unknown"
+            ]
+          },
+          "recovery_observed": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "condition",
+          "baseline",
+          "fault",
+          "fault_observed",
+          "recovery_observed"
+        ],
+        "type": "object"
+      },
+      "maxItems": 5,
+      "minItems": 5,
+      "type": "array"
+    },
+    "controlled_test_inputs": {
+      "type": "boolean"
+    },
+    "decision": {
+      "const": "unknown"
+    },
+    "execution_status": {
+      "const": "partial"
+    },
+    "gaps": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "maxLength": 128,
+            "type": "string"
+          },
+          "message": {
+            "maxLength": 512,
+            "type": "string"
+          },
+          "required": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "required"
+        ],
+        "type": "object"
+      },
+      "maxItems": 128,
+      "minItems": 1,
+      "type": "array"
+    },
+    "input_sha256": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "fault": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "recovered": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "baseline",
+        "fault"
+      ],
+      "type": "object"
+    },
+    "kind": {
+      "const": "portable-gitops-comparison"
+    },
+    "phases": {
+      "additionalProperties": false,
+      "properties": {
+        "baseline": {
+          "additionalProperties": false,
+          "properties": {
+            "declared_delivery_at": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "expected_revision": {
+              "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$",
+              "type": "string"
+            },
+            "finished_at": {
+              "format": "date-time",
+              "type": "string"
+            },
+            "started_at": {
+              "format": "date-time",
+              "type": "string"
+            },
+            "transport_mode": {
+              "enum": [
+                "verified-https",
+                "controlled-test"
+              ]
+            }
+          },
+          "required": [
+            "expected_revision",
+            "transport_mode",
+            "started_at",
+            "finished_at",
+            "declared_delivery_at"
+          ],
+          "type": "object"
+        },
+        "fault": {
+          "additionalProperties": false,
+          "properties": {
+            "declared_delivery_at": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "expected_revision": {
+              "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$",
+              "type": "string"
+            },
+            "finished_at": {
+              "format": "date-time",
+              "type": "string"
+            },
+            "started_at": {
+              "format": "date-time",
+              "type": "string"
+            },
+            "transport_mode": {
+              "enum": [
+                "verified-https",
+                "controlled-test"
+              ]
+            }
+          },
+          "required": [
+            "expected_revision",
+            "transport_mode",
+            "started_at",
+            "finished_at",
+            "declared_delivery_at"
+          ],
+          "type": "object"
+        },
+        "recovered": {
+          "additionalProperties": false,
+          "properties": {
+            "declared_delivery_at": {
+              "anyOf": [
+                {
+                  "format": "date-time",
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "expected_revision": {
+              "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$",
+              "type": "string"
+            },
+            "finished_at": {
+              "format": "date-time",
+              "type": "string"
+            },
+            "started_at": {
+              "format": "date-time",
+              "type": "string"
+            },
+            "transport_mode": {
+              "enum": [
+                "verified-https",
+                "controlled-test"
+              ]
+            }
+          },
+          "required": [
+            "expected_revision",
+            "transport_mode",
+            "started_at",
+            "finished_at",
+            "declared_delivery_at"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "baseline",
+        "fault"
+      ],
+      "type": "object"
+    },
+    "profile": {
+      "const": "portable-gitops-v1"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "scope_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "profile",
+    "decision",
+    "execution_status",
+    "scope_sha256",
+    "input_sha256",
+    "conditions",
+    "phases",
+    "gaps",
+    "controlled_test_inputs"
+  ],
+  "type": "object"
+}

@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "kind": "registry-blob-download-policy",
+  "registry_origin": "https://registry1.dso.mil",
+  "repositories": [
+    "ironbank/opensource/nginx/nginx"
+  ],
+  "storage_origins": [
+    "https://ib-prod-harbor-storage.s3.us-gov-west-1.amazonaws.com"
+  ]
+}

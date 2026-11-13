@@ -1,0 +1,506 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "kind": {
+      "const": "owned-runner-vm-v1"
+    },
+    "host": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._-]{0,100}$"
+    },
+    "remote_parent": {
+      "type": "string",
+      "pattern": "^/home/[A-Za-z0-9_-]+/\\.local/share/devsecops/runner-vm$"
+    },
+    "private_state_directory": {
+      "type": "string",
+      "pattern": "^/[^\\x00-\\x20,]{1,4000}$"
+    },
+    "tool_image": {
+      "type": "string",
+      "pattern": "^sha256:[a-f0-9]{64}$"
+    },
+    "boot_image": {
+      "type": "object",
+      "properties": {
+        "path": {
+          "type": "string",
+          "pattern": "^/[^\\x00-\\x20,]{1,4000}$"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 68719476736
+        }
+      },
+      "required": [
+        "path",
+        "sha256",
+        "bytes"
+      ],
+      "additionalProperties": false
+    },
+    "ssh_pki": {
+      "type": "object",
+      "properties": {
+        "operator_private": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "pattern": "^/[^\\x00-\\x20,]{1,4000}$"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "bytes": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 16384
+            }
+          },
+          "required": [
+            "path",
+            "sha256",
+            "bytes"
+          ],
+          "additionalProperties": false
+        },
+        "operator_public": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "pattern": "^/[^\\x00-\\x20,]{1,4000}$"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "bytes": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 16384
+            }
+          },
+          "required": [
+            "path",
+            "sha256",
+            "bytes"
+          ],
+          "additionalProperties": false
+        },
+        "host_private": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "pattern": "^/[^\\x00-\\x20,]{1,4000}$"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "bytes": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 16384
+            }
+          },
+          "required": [
+            "path",
+            "sha256",
+            "bytes"
+          ],
+          "additionalProperties": false
+        },
+        "host_public": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "pattern": "^/[^\\x00-\\x20,]{1,4000}$"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "bytes": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 16384
+            }
+          },
+          "required": [
+            "path",
+            "sha256",
+            "bytes"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "operator_private",
+        "operator_public",
+        "host_private",
+        "host_public"
+      ],
+      "additionalProperties": false
+    },
+    "transport": {
+      "type": "object",
+      "properties": {
+        "config": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "pattern": "^/[^\\x00-\\x20,]{1,4000}$"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "required": [
+            "path",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "known_hosts": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "pattern": "^/[^\\x00-\\x20,]{1,4000}$"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "required": [
+            "path",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "certificate": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "pattern": "^/[^\\x00-\\x20,]{1,4000}$"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "required": [
+            "path",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "identity": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "pattern": "^/[^\\x00-\\x20,]{1,4000}$"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "required": [
+            "path",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "proxy": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "pattern": "^/[^\\x00-\\x20,]{1,4000}$"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "required": [
+            "path",
+            "sha256"
+          ],
+          "additionalProperties": false
+        },
+        "identity_agent": {
+          "type": "string",
+          "pattern": "^/[^\\x00-\\x20,]{1,4000}$"
+        },
+        "host_key_sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "verification_basis": {
+          "enum": [
+            "operator-verified",
+            "authenticated-control-plane"
+          ]
+        },
+        "agent_protocol": {
+          "enum": [
+            "native",
+            "certificate-view-v1"
+          ]
+        }
+      },
+      "required": [
+        "config",
+        "known_hosts",
+        "certificate",
+        "identity",
+        "proxy",
+        "identity_agent",
+        "host_key_sha256",
+        "verification_basis",
+        "agent_protocol"
+      ],
+      "additionalProperties": false
+    },
+    "resources": {
+      "type": "object",
+      "properties": {
+        "cpus": {
+          "type": "integer",
+          "minimum": 2,
+          "maximum": 16
+        },
+        "memory_mib": {
+          "type": "integer",
+          "minimum": 4096,
+          "maximum": 65536
+        },
+        "disk_gib": {
+          "type": "integer",
+          "minimum": 32,
+          "maximum": 512
+        }
+      },
+      "required": [
+        "cpus",
+        "memory_mib",
+        "disk_gib"
+      ],
+      "additionalProperties": false
+    },
+    "guest": {
+      "type": "object",
+      "properties": {
+        "os": {
+          "const": "linux"
+        },
+        "architecture": {
+          "const": "amd64"
+        },
+        "control_user": {
+          "const": "gitlab-runner"
+        },
+        "runner_user": {
+          "const": "gitlab-runner"
+        },
+        "home": {
+          "const": "/home/gitlab-runner"
+        },
+        "runner_uid": {
+          "const": 10001
+        },
+        "runner_gid": {
+          "const": 10001
+        },
+        "runner_version": {
+          "const": "19.5.1"
+        },
+        "python_major": {
+          "const": 3
+        },
+        "python_min_minor": {
+          "const": 11
+        },
+        "subid_count": {
+          "const": 65536
+        }
+      },
+      "required": [
+        "os",
+        "architecture",
+        "control_user",
+        "runner_user",
+        "home",
+        "runner_uid",
+        "runner_gid",
+        "runner_version",
+        "python_major",
+        "python_min_minor",
+        "subid_count"
+      ],
+      "additionalProperties": false
+    },
+    "egress": {
+      "type": "object",
+      "properties": {
+        "external_origins": {
+          "type": "array",
+          "items": {
+            "enum": [
+              "https://registry1.dso.mil",
+              "https://p1docs.dso.mil",
+              "https://ib-prod-harbor-storage.s3.us-gov-west-1.amazonaws.com"
+            ]
+          },
+          "uniqueItems": true,
+          "maxItems": 3
+        },
+        "external_ca_bundle": {
+          "oneOf": [
+            {
+              "type": "null"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "pattern": "^/[^\\x00-\\x20,]{1,4000}$"
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              },
+              "required": [
+                "path",
+                "sha256"
+              ],
+              "additionalProperties": false
+            }
+          ]
+        },
+        "blob_download_policy": {
+          "type": "object",
+          "properties": {
+            "path": {
+              "type": "string",
+              "pattern": "^/[^\\x00-\\x20,]{1,4000}$"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "required": [
+            "path",
+            "sha256"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "external_origins",
+        "external_ca_bundle"
+      ],
+      "additionalProperties": false,
+      "allOf": [
+        {
+          "if": {
+            "required": [
+              "blob_download_policy"
+            ]
+          },
+          "then": {
+            "properties": {
+              "external_origins": {
+                "allOf": [
+                  {
+                    "contains": {
+                      "const": "https://registry1.dso.mil"
+                    }
+                  },
+                  {
+                    "contains": {
+                      "const": "https://ib-prod-harbor-storage.s3.us-gov-west-1.amazonaws.com"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "external_origins": {
+                "items": {
+                  "enum": [
+                    "https://registry1.dso.mil",
+                    "https://p1docs.dso.mil"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "cleanup": {
+      "const": "remove-owned-runner-generation-preserve-inputs"
+    },
+    "acceleration": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "const": "kvm"
+        },
+        "device_group": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 2147483647
+        }
+      },
+      "required": [
+        "kind",
+        "device_group"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "host",
+    "remote_parent",
+    "private_state_directory",
+    "tool_image",
+    "boot_image",
+    "ssh_pki",
+    "transport",
+    "resources",
+    "guest",
+    "egress",
+    "cleanup"
+  ],
+  "additionalProperties": false
+}

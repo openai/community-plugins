@@ -1,0 +1,310 @@
+{
+  "$id": "urn:devsecops:portable-runtime-observation:1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "phase": {
+            "const": "recovered"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "declared_delivery_at": {
+            "format": "date-time",
+            "type": "string"
+          }
+        }
+      }
+    }
+  ],
+  "properties": {
+    "conditions": {
+      "additionalProperties": false,
+      "properties": {
+        "controller_health": {
+          "enum": [
+            "pass",
+            "fail",
+            "unknown"
+          ]
+        },
+        "controller_sync": {
+          "enum": [
+            "pass",
+            "fail",
+            "unknown"
+          ]
+        },
+        "functional_progress": {
+          "enum": [
+            "pass",
+            "fail",
+            "unknown"
+          ]
+        },
+        "scrape_fresh": {
+          "enum": [
+            "pass",
+            "fail",
+            "unknown"
+          ]
+        },
+        "workload_ready": {
+          "enum": [
+            "pass",
+            "fail",
+            "unknown"
+          ]
+        }
+      },
+      "required": [
+        "controller_sync",
+        "controller_health",
+        "workload_ready",
+        "scrape_fresh",
+        "functional_progress"
+      ],
+      "type": "object"
+    },
+    "config_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "decision": {
+      "const": "unknown"
+    },
+    "declared_delivery_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "execution_status": {
+      "const": "partial"
+    },
+    "expected_revision": {
+      "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$",
+      "type": "string"
+    },
+    "finished_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "gaps": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "maxLength": 128,
+            "type": "string"
+          },
+          "message": {
+            "maxLength": 512,
+            "type": "string"
+          },
+          "required": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "required"
+        ],
+        "type": "object"
+      },
+      "maxItems": 128,
+      "minItems": 1,
+      "type": "array"
+    },
+    "kind": {
+      "const": "portable-gitops-observation"
+    },
+    "phase": {
+      "enum": [
+        "baseline",
+        "fault",
+        "recovered",
+        "observation"
+      ]
+    },
+    "profile": {
+      "const": "portable-gitops-v1"
+    },
+    "providers": {
+      "additionalProperties": false,
+      "properties": {
+        "argocd": {
+          "type": "object"
+        },
+        "kubernetes": {
+          "type": "object"
+        },
+        "prometheus": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "argocd",
+        "kubernetes",
+        "prometheus"
+      ],
+      "type": "object"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "scope": {
+      "additionalProperties": false,
+      "properties": {
+        "argocd": {
+          "additionalProperties": false,
+          "properties": {
+            "application": {
+              "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$",
+              "type": "string"
+            },
+            "application_namespace": {
+              "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$",
+              "type": "string"
+            },
+            "origin": {
+              "type": "string"
+            },
+            "project": {
+              "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "origin",
+            "project",
+            "application_namespace",
+            "application"
+          ],
+          "type": "object"
+        },
+        "kubernetes": {
+          "additionalProperties": false,
+          "properties": {
+            "deployment": {
+              "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$",
+              "type": "string"
+            },
+            "namespace": {
+              "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$",
+              "type": "string"
+            },
+            "origin": {
+              "type": "string"
+            },
+            "service": {
+              "pattern": "^[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "origin",
+            "namespace",
+            "deployment",
+            "service"
+          ],
+          "type": "object"
+        },
+        "prometheus": {
+          "additionalProperties": false,
+          "properties": {
+            "instance": {
+              "type": "string"
+            },
+            "job": {
+              "type": "string"
+            },
+            "max_sample_age_seconds": {
+              "maximum": 120,
+              "minimum": 5,
+              "type": "integer"
+            },
+            "minimum_samples": {
+              "maximum": 121,
+              "minimum": 3,
+              "type": "integer"
+            },
+            "origin": {
+              "type": "string"
+            },
+            "step_seconds": {
+              "maximum": 60,
+              "minimum": 5,
+              "type": "integer"
+            },
+            "window_seconds": {
+              "maximum": 600,
+              "minimum": 30,
+              "type": "integer"
+            }
+          },
+          "required": [
+            "origin",
+            "job",
+            "instance",
+            "window_seconds",
+            "step_seconds",
+            "max_sample_age_seconds",
+            "minimum_samples"
+          ],
+          "type": "object"
+        }
+      },
+      "required": [
+        "argocd",
+        "kubernetes",
+        "prometheus"
+      ],
+      "type": "object"
+    },
+    "scope_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "started_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "transport_mode": {
+      "enum": [
+        "verified-https",
+        "controlled-test"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "profile",
+    "phase",
+    "decision",
+    "execution_status",
+    "transport_mode",
+    "started_at",
+    "finished_at",
+    "declared_delivery_at",
+    "config_sha256",
+    "scope_sha256",
+    "scope",
+    "expected_revision",
+    "conditions",
+    "providers",
+    "gaps"
+  ],
+  "type": "object"
+}

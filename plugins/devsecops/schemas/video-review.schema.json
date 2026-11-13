@@ -1,0 +1,540 @@
+{
+  "$id": "urn:devsecops:video-review:1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "answers": {
+      "additionalProperties": false,
+      "properties": {
+        "codex_contribution": {
+          "maxLength": 8000,
+          "minLength": 1,
+          "type": "string"
+        },
+        "delivered_patch": {
+          "maxLength": 8000,
+          "minLength": 1,
+          "type": "string"
+        },
+        "fault_cause": {
+          "maxLength": 8000,
+          "minLength": 1,
+          "type": "string"
+        },
+        "how_to_rerun": {
+          "maxLength": 8000,
+          "minLength": 1,
+          "type": "string"
+        },
+        "recovery_and_isolation": {
+          "maxLength": 8000,
+          "minLength": 1,
+          "type": "string"
+        },
+        "what_deployed": {
+          "maxLength": 8000,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "what_deployed",
+        "codex_contribution",
+        "fault_cause",
+        "delivered_patch",
+        "recovery_and_isolation",
+        "how_to_rerun"
+      ],
+      "type": "object"
+    },
+    "capture_ended_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "capture_started_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "chapters": {
+      "additionalProperties": false,
+      "properties": {
+        "bytes": {
+          "maximum": 1000000000000,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "path": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\u0000\\r\\n\\\\]+$",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "sha256",
+        "bytes"
+      ],
+      "type": "object"
+    },
+    "clarity_decision": {
+      "enum": [
+        "pass",
+        "fail",
+        "incomplete"
+      ]
+    },
+    "completeness_decision": {
+      "enum": [
+        "pass",
+        "fail",
+        "incomplete"
+      ]
+    },
+    "confusing_steps": {
+      "items": {
+        "maxLength": 2000,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 100,
+      "minItems": 0,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "continuous_source": {
+      "type": "boolean"
+    },
+    "duration_seconds": {
+      "exclusiveMinimum": 0,
+      "maximum": 2592000,
+      "type": "number"
+    },
+    "environment_id": {
+      "maxLength": 160,
+      "minLength": 1,
+      "type": "string"
+    },
+    "evidence_manifest": {
+      "additionalProperties": false,
+      "properties": {
+        "bytes": {
+          "maximum": 1000000000000,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "path": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\u0000\\r\\n\\\\]+$",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "sha256",
+        "bytes"
+      ],
+      "type": "object"
+    },
+    "identities": {
+      "additionalProperties": false,
+      "properties": {
+        "assertions_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "config_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "environment_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "lock_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "package_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "scenario_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "scenario_sha256",
+        "assertions_sha256",
+        "config_sha256",
+        "lock_sha256",
+        "package_sha256",
+        "environment_sha256"
+      ],
+      "type": "object"
+    },
+    "kind": {
+      "const": "factory-video-review"
+    },
+    "narration_or_captions_explain_transitions": {
+      "type": "boolean"
+    },
+    "native_identity_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "no_exposed_credentials": {
+      "type": "boolean"
+    },
+    "no_fixture_replacement": {
+      "type": "boolean"
+    },
+    "no_off_camera_repair": {
+      "type": "boolean"
+    },
+    "optional_edits": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "discloses_cuts_speed_and_elapsed_time": {
+            "type": "boolean"
+          },
+          "duration_seconds": {
+            "maximum": 2592000,
+            "minimum": 0,
+            "type": "number"
+          },
+          "segments": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "edit_range": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "end_seconds": {
+                      "maximum": 2592000,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    "start_seconds": {
+                      "maximum": 2592000,
+                      "minimum": 0,
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "start_seconds",
+                    "end_seconds"
+                  ],
+                  "type": "object"
+                },
+                "source_range": {
+                  "additionalProperties": false,
+                  "properties": {
+                    "end_seconds": {
+                      "maximum": 2592000,
+                      "minimum": 0,
+                      "type": "number"
+                    },
+                    "start_seconds": {
+                      "maximum": 2592000,
+                      "minimum": 0,
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "start_seconds",
+                    "end_seconds"
+                  ],
+                  "type": "object"
+                },
+                "speed": {
+                  "exclusiveMinimum": 0,
+                  "maximum": 100,
+                  "type": "number"
+                }
+              },
+              "required": [
+                "source_range",
+                "edit_range",
+                "speed"
+              ],
+              "type": "object"
+            },
+            "maxItems": 10000,
+            "minItems": 1,
+            "type": "array",
+            "uniqueItems": true
+          },
+          "video": {
+            "additionalProperties": false,
+            "properties": {
+              "bytes": {
+                "maximum": 1000000000000,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "path": {
+                "maxLength": 4096,
+                "minLength": 1,
+                "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\u0000\\r\\n\\\\]+$",
+                "type": "string"
+              },
+              "sha256": {
+                "pattern": "^[a-f0-9]{64}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "path",
+              "sha256",
+              "bytes"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "video",
+          "duration_seconds",
+          "discloses_cuts_speed_and_elapsed_time",
+          "segments"
+        ],
+        "type": "object"
+      },
+      "maxItems": 20,
+      "minItems": 0,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "playback_decision": {
+      "enum": [
+        "pass",
+        "fail",
+        "incomplete"
+      ]
+    },
+    "profile": {
+      "const": "bigbang-live"
+    },
+    "readable_text": {
+      "type": "boolean"
+    },
+    "recording_date": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "requested_client_model": {
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "client_sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            "client_version": {
+              "maxLength": 160,
+              "minLength": 1,
+              "type": "string"
+            },
+            "model": {
+              "maxLength": 160,
+              "minLength": 1,
+              "type": "string"
+            },
+            "reasoning_effort": {
+              "maxLength": 160,
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "client_version",
+            "client_sha256",
+            "model",
+            "reasoning_effort"
+          ],
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "result": {
+      "additionalProperties": false,
+      "properties": {
+        "bytes": {
+          "maximum": 1000000000000,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "path": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\u0000\\r\\n\\\\]+$",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "sha256",
+        "bytes"
+      ],
+      "type": "object"
+    },
+    "reviewed_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "reviewer": {
+      "maxLength": 160,
+      "minLength": 1,
+      "type": "string"
+    },
+    "reviewer_did_not_build_demo": {
+      "type": "boolean"
+    },
+    "run_id": {
+      "maxLength": 160,
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "transcript": {
+      "additionalProperties": false,
+      "properties": {
+        "bytes": {
+          "maximum": 1000000000000,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "path": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\u0000\\r\\n\\\\]+$",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "sha256",
+        "bytes"
+      ],
+      "type": "object"
+    },
+    "transcript_format": {
+      "enum": [
+        "webvtt",
+        "srt"
+      ]
+    },
+    "unresolved_material_gaps": {
+      "items": {
+        "maxLength": 2000,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 100,
+      "minItems": 0,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "video": {
+      "additionalProperties": false,
+      "properties": {
+        "bytes": {
+          "maximum": 1000000000000,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "path": {
+          "maxLength": 4096,
+          "minLength": 1,
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\u0000\\r\\n\\\\]+$",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "sha256",
+        "bytes"
+      ],
+      "type": "object"
+    },
+    "video_format": {
+      "enum": [
+        "mp4",
+        "webm",
+        "mov",
+        "mkv"
+      ]
+    },
+    "watched_full_delivered_video": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "run_id",
+    "profile",
+    "environment_id",
+    "identities",
+    "native_identity_sha256",
+    "requested_client_model",
+    "result",
+    "evidence_manifest",
+    "video",
+    "chapters",
+    "transcript",
+    "video_format",
+    "transcript_format",
+    "duration_seconds",
+    "capture_started_at",
+    "capture_ended_at",
+    "recording_date",
+    "reviewer",
+    "reviewed_at",
+    "reviewer_did_not_build_demo",
+    "watched_full_delivered_video",
+    "playback_decision",
+    "completeness_decision",
+    "clarity_decision",
+    "continuous_source",
+    "no_off_camera_repair",
+    "no_fixture_replacement",
+    "readable_text",
+    "narration_or_captions_explain_transitions",
+    "no_exposed_credentials",
+    "answers",
+    "confusing_steps",
+    "unresolved_material_gaps",
+    "optional_edits"
+  ],
+  "type": "object"
+}

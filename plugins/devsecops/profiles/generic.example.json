@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "id": "generic",
+  "revision": "1",
+  "description": "Runnable against the bundled Helm web fixture. Copy outside your repository and configure target paths.",
+  "targets": [{"name": "web", "type": "helm", "path": "chart", "values": ["values/staging.yaml"], "namespace": "demo", "release": "web", "kubernetes_version": "1.34.0", "api_versions": [], "mode": "upgrade"}],
+  "policy": {"require_image_digest": true, "allowed_registries": [], "required_labels": []}
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "name": "prometheus-client",
+  "version": "0.26.0",
+  "filename": "prometheus_client-0.26.0-py3-none-any.whl",
+  "url": "https://files.pythonhosted.org/packages/eb/a3/b69efbf4143b5b9859b977770bbbabcc2796b702fa69dc40271e45cd5a56/prometheus_client-0.26.0-py3-none-any.whl",
+  "metadata_url": "https://pypi.org/pypi/prometheus-client/0.26.0/json",
+  "sha256": "fa93d06737aa02bacd05794768508bb97d2fbee28cb3bca04eaae92f0ca953d6",
+  "bytes": 64494,
+  "requires_python": ">=3.9",
+  "license_expression": "Apache-2.0 AND BSD-2-Clause",
+  "runtime_dependencies_without_extras": [],
+  "verified_on": "2026-10-26",
+  "verification": "Downloaded wheel bytes matched the SHA-256 in the public PyPI release metadata. This is an integrity check, not a signature or vulnerability assessment.",
+  "pypi_provenance_available": false
+}

@@ -1,0 +1,416 @@
+{
+  "schema_version": 1,
+  "scenario_id": "ironbank-mission-recovery-v1",
+  "primary_profile": "bigbang-live",
+  "required_cases": [
+    "D1",
+    "D2",
+    "D3",
+    "D4",
+    "D5",
+    "D6"
+  ],
+  "phases": [
+    {
+      "id": "preflight",
+      "operation": "preflight",
+      "depends_on": [],
+      "attempt": "shared",
+      "case_ids": [],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "prepare",
+      "operation": "prepare",
+      "depends_on": [
+        "preflight"
+      ],
+      "attempt": "shared",
+      "case_ids": [],
+      "timeout_seconds": 1800
+    },
+    {
+      "id": "provision",
+      "operation": "up",
+      "depends_on": [
+        "prepare"
+      ],
+      "attempt": "shared",
+      "case_ids": [],
+      "timeout_seconds": 7200
+    },
+    {
+      "id": "build-promote",
+      "operation": "build-promote",
+      "depends_on": [
+        "provision"
+      ],
+      "attempt": "shared",
+      "case_ids": [],
+      "timeout_seconds": 3600
+    },
+    {
+      "id": "primary-baseline",
+      "operation": "baseline",
+      "depends_on": [
+        "build-promote"
+      ],
+      "attempt": "primary",
+      "case_ids": [
+        "D1"
+      ],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "primary-inject",
+      "operation": "inject",
+      "depends_on": [
+        "primary-baseline"
+      ],
+      "attempt": "primary",
+      "case_ids": [
+        "D2"
+      ],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "primary-confirm-fault",
+      "operation": "confirm-fault",
+      "depends_on": [
+        "primary-inject"
+      ],
+      "attempt": "primary",
+      "case_ids": [
+        "D2"
+      ],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "primary-review",
+      "operation": "native",
+      "depends_on": [
+        "primary-confirm-fault"
+      ],
+      "attempt": "primary",
+      "case_ids": [
+        "D2"
+      ],
+      "timeout_seconds": 900,
+      "workflow": "review-kubernetes-change"
+    },
+    {
+      "id": "primary-diagnose",
+      "operation": "native",
+      "depends_on": [
+        "primary-review"
+      ],
+      "attempt": "primary",
+      "case_ids": [
+        "D2"
+      ],
+      "timeout_seconds": 900,
+      "workflow": "diagnose-gitops-deployment"
+    },
+    {
+      "id": "primary-correction",
+      "operation": "native",
+      "depends_on": [
+        "primary-diagnose"
+      ],
+      "attempt": "primary",
+      "case_ids": [
+        "D2"
+      ],
+      "timeout_seconds": 900,
+      "workflow": "prepare-gitops-correction"
+    },
+    {
+      "id": "primary-validate-correction",
+      "operation": "validate-correction",
+      "depends_on": [
+        "primary-correction"
+      ],
+      "attempt": "primary",
+      "case_ids": [
+        "D2"
+      ],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "primary-deliver",
+      "operation": "deliver",
+      "depends_on": [
+        "primary-validate-correction"
+      ],
+      "attempt": "primary",
+      "case_ids": [
+        "D2"
+      ],
+      "timeout_seconds": 900
+    },
+    {
+      "id": "primary-probes",
+      "operation": "probe",
+      "depends_on": [
+        "primary-deliver"
+      ],
+      "attempt": "primary",
+      "case_ids": [
+        "D2"
+      ],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "primary-recovery",
+      "operation": "native",
+      "depends_on": [
+        "primary-probes"
+      ],
+      "attempt": "primary",
+      "case_ids": [
+        "D2"
+      ],
+      "timeout_seconds": 900,
+      "workflow": "verify-gitops-recovery"
+    },
+    {
+      "id": "primary-verify",
+      "operation": "verify",
+      "depends_on": [
+        "primary-recovery"
+      ],
+      "attempt": "primary",
+      "case_ids": [
+        "D1",
+        "D2"
+      ],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "platform-dependency",
+      "operation": "case",
+      "depends_on": [
+        "primary-verify"
+      ],
+      "attempt": "shared",
+      "case_ids": [
+        "D3"
+      ],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "supply-chain-controls",
+      "operation": "case",
+      "depends_on": [
+        "platform-dependency"
+      ],
+      "attempt": "shared",
+      "case_ids": [
+        "D4"
+      ],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "evidence-gaps",
+      "operation": "case",
+      "depends_on": [
+        "supply-chain-controls"
+      ],
+      "attempt": "shared",
+      "case_ids": [
+        "D5"
+      ],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "reset",
+      "operation": "reset",
+      "depends_on": [
+        "evidence-gaps"
+      ],
+      "attempt": "shared",
+      "case_ids": [
+        "D6"
+      ],
+      "timeout_seconds": 900
+    },
+    {
+      "id": "replay-baseline",
+      "operation": "baseline",
+      "depends_on": [
+        "reset"
+      ],
+      "attempt": "replay",
+      "case_ids": [
+        "D1"
+      ],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "replay-inject",
+      "operation": "inject",
+      "depends_on": [
+        "replay-baseline"
+      ],
+      "attempt": "replay",
+      "case_ids": [
+        "D2"
+      ],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "replay-confirm-fault",
+      "operation": "confirm-fault",
+      "depends_on": [
+        "replay-inject"
+      ],
+      "attempt": "replay",
+      "case_ids": [
+        "D2"
+      ],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "replay-review",
+      "operation": "native",
+      "depends_on": [
+        "replay-confirm-fault"
+      ],
+      "attempt": "replay",
+      "case_ids": [
+        "D2"
+      ],
+      "timeout_seconds": 900,
+      "workflow": "review-kubernetes-change"
+    },
+    {
+      "id": "replay-diagnose",
+      "operation": "native",
+      "depends_on": [
+        "replay-review"
+      ],
+      "attempt": "replay",
+      "case_ids": [
+        "D2"
+      ],
+      "timeout_seconds": 900,
+      "workflow": "diagnose-gitops-deployment"
+    },
+    {
+      "id": "replay-correction",
+      "operation": "native",
+      "depends_on": [
+        "replay-diagnose"
+      ],
+      "attempt": "replay",
+      "case_ids": [
+        "D2"
+      ],
+      "timeout_seconds": 900,
+      "workflow": "prepare-gitops-correction"
+    },
+    {
+      "id": "replay-validate-correction",
+      "operation": "validate-correction",
+      "depends_on": [
+        "replay-correction"
+      ],
+      "attempt": "replay",
+      "case_ids": [
+        "D2"
+      ],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "replay-deliver",
+      "operation": "deliver",
+      "depends_on": [
+        "replay-validate-correction"
+      ],
+      "attempt": "replay",
+      "case_ids": [
+        "D2"
+      ],
+      "timeout_seconds": 900
+    },
+    {
+      "id": "replay-probes",
+      "operation": "probe",
+      "depends_on": [
+        "replay-deliver"
+      ],
+      "attempt": "replay",
+      "case_ids": [
+        "D2"
+      ],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "replay-recovery",
+      "operation": "native",
+      "depends_on": [
+        "replay-probes"
+      ],
+      "attempt": "replay",
+      "case_ids": [
+        "D2"
+      ],
+      "timeout_seconds": 900,
+      "workflow": "verify-gitops-recovery"
+    },
+    {
+      "id": "replay-verify",
+      "operation": "verify",
+      "depends_on": [
+        "replay-recovery"
+      ],
+      "attempt": "replay",
+      "case_ids": [
+        "D1",
+        "D2"
+      ],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "export",
+      "operation": "export",
+      "depends_on": [
+        "replay-verify"
+      ],
+      "attempt": "shared",
+      "case_ids": [
+        "D6"
+      ],
+      "timeout_seconds": 300
+    },
+    {
+      "id": "cleanup",
+      "operation": "down",
+      "depends_on": [
+        "export"
+      ],
+      "attempt": "shared",
+      "case_ids": [
+        "D6"
+      ],
+      "timeout_seconds": 1800
+    },
+    {
+      "id": "finalize",
+      "operation": "finalize",
+      "depends_on": [
+        "cleanup"
+      ],
+      "attempt": "shared",
+      "case_ids": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6"
+      ],
+      "timeout_seconds": 300
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+DevSecOps community contribution preview
+
+The original plugin source is distributed under the Apache License, Version 2.0.
+See LICENSE. The source dependency inventory records that no VoltAgent source
+file is incorporated. The existing shield icon is a source SVG included with the
+plugin; no external font or image resource is referenced by that SVG.
+
+Python dependencies, Helm, Kubeconform, Kubernetes schemas, Cosign, Syft, Grype,
+and platform container images are separately provisioned and are not bundled
+in this source archive. They retain their respective upstream licenses.
+See docs/dependencies.md and the toolchain lockfiles for the recorded dependencies
+and acquisition origins. This notice does not authorize redistribution of an
+operator tool cache, downloaded image or other separately acquired artifact.
+
+Product and organization names in documentation identify compatible tools or
+illustrative profiles; they do not imply endorsement or customer authorization.

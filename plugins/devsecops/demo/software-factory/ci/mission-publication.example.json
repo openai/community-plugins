@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "kind": "mission-evidence-publication-configuration",
+  "origin": "https://registry.staging.example",
+  "repository": "demo/mission-app",
+  "credentials": {"token_env": "MISSION_EVIDENCE_STAGING_TOKEN"},
+  "ca_bundle": null,
+  "trust_policy_path": "/approved/mission-signing-trust.json",
+  "trust_policy_sha256": "REPLACE_WITH_EXACT_TRUST_POLICY_SHA256",
+  "public_key_path": "/approved/application.pub",
+  "public_key_sha256": "REPLACE_WITH_EXACT_PUBLIC_KEY_SHA256",
+  "cosign_path": "/approved/tools/cosign"
+}

@@ -1,0 +1,17 @@
+# Supplied from the authenticated build receipt and qualified environment.
+# No tag, public-image fallback, or example digest is deployable by default.
+environment: ""
+architecture: amd64
+image:
+  repository: ""
+  digest: ""
+imagePullSecrets: []
+networkPolicy:
+  healthPeer:
+    namespace: ""
+    podLabels: {}
+  metricsPeer:
+    namespace: ""
+    podLabels: {}
+  # D2 changes this permission in Git, without changing the application listener.
+  metricsPort: 9090

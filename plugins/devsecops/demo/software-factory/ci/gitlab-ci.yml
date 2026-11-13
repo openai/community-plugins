@@ -1,0 +1,70 @@
+# Explicit development recipe, not a qualified canonical factory pipeline.
+# The operator supplies an owned Linux shell runner and a manifest-verified
+# plugin/dependency environment outside candidate source. No Docker socket,
+# privileged service, automatic dependency download, or credential is supplied.
+# Use a separately configured OCI-referrers-capable staging registry. GitLab's
+# native registry is not yet supported by this publication profile.
+# This job writes to that authorized registry, then prepares a local proposal.
+# The sixth pinned config selects an existing deployment checkout and tools on
+# the runner. It grants no Git commit, push, MR, promotion or deployment action.
+stages: [publish]
+
+publish_verified_mission:
+  stage: publish
+  # Install these rules directly in the owned project .gitlab-ci.yml.
+  # An included template alone does not enable merge-request pipelines.
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      when: on_success
+    - when: never
+  tags: ["$DEVSECOPS_RUNNER_TAG"]
+  timeout: 1 hour
+  script:
+    - |
+      : "${DEVSECOPS_PYTHON:?Supply approved external dependency interpreter}"
+      : "${DEVSECOPS_PLUGIN_ROOT:?Supply verified installed plugin}"
+      : "${DEVSECOPS_BUILD_CONFIG:?Supply pinned build configuration}"
+      : "${DEVSECOPS_BUILD_CONFIG_SHA256:?Supply build configuration pin}"
+      : "${DEVSECOPS_STAGING_CONFIG:?Supply pinned staging configuration}"
+      : "${DEVSECOPS_STAGING_CONFIG_SHA256:?Supply staging configuration pin}"
+      : "${DEVSECOPS_SECURITY_CONFIG:?Supply pinned security configuration}"
+      : "${DEVSECOPS_SECURITY_CONFIG_SHA256:?Supply security configuration pin}"
+      : "${DEVSECOPS_SIGNING_CONFIG:?Supply pinned signing configuration}"
+      : "${DEVSECOPS_SIGNING_CONFIG_SHA256:?Supply signing configuration pin}"
+      : "${DEVSECOPS_PUBLICATION_CONFIG:?Supply pinned publication configuration}"
+      : "${DEVSECOPS_PUBLICATION_CONFIG_SHA256:?Supply publication configuration pin}"
+      : "${DEVSECOPS_PROPOSAL_CONFIG:?Supply pinned local deployment proposal configuration}"
+      : "${DEVSECOPS_PROPOSAL_CONFIG_SHA256:?Supply proposal configuration pin}"
+      : "${DEVSECOPS_BUILD_RUNTIME_ROOT:?Supply a new short owned runtime root}"
+    - >-
+      "$DEVSECOPS_PYTHON" -B "$DEVSECOPS_PLUGIN_ROOT/scripts/publish_and_propose_mission.py"
+      --build-config "$DEVSECOPS_BUILD_CONFIG"
+      --build-config-sha256 "$DEVSECOPS_BUILD_CONFIG_SHA256"
+      --staging-config "$DEVSECOPS_STAGING_CONFIG"
+      --staging-config-sha256 "$DEVSECOPS_STAGING_CONFIG_SHA256"
+      --security-config "$DEVSECOPS_SECURITY_CONFIG"
+      --security-config-sha256 "$DEVSECOPS_SECURITY_CONFIG_SHA256"
+      --signing-config "$DEVSECOPS_SIGNING_CONFIG"
+      --signing-config-sha256 "$DEVSECOPS_SIGNING_CONFIG_SHA256"
+      --publication-config "$DEVSECOPS_PUBLICATION_CONFIG"
+      --publication-config-sha256 "$DEVSECOPS_PUBLICATION_CONFIG_SHA256"
+      --proposal-config "$DEVSECOPS_PROPOSAL_CONFIG"
+      --proposal-config-sha256 "$DEVSECOPS_PROPOSAL_CONFIG_SHA256"
+      --output "$CI_PROJECT_DIR/mission-proposal"
+      --runtime-root "$DEVSECOPS_BUILD_RUNTIME_ROOT"
+      --expected-source-repository "$CI_PROJECT_DIR"
+      --expected-source-revision "$CI_COMMIT_SHA"
+  artifacts:
+    when: always
+    paths:
+      - mission-proposal/mission-proposal-operation.json
+      - mission-proposal/publication/mission-publication-operation.json
+      - mission-proposal/publication/publication/mission-publication.json
+      - mission-proposal/proposal/deployment-proposal.json
+      - mission-proposal/proposal/proposal.patch
+    expire_in: 7 days
+  # Exit 0 means this exact publication and local proposal component passed.
+  # Exit 1 preserves failure; exit 2 is unknown/incomplete. Both fail the job.
+  # Reports/patches are review evidence, never serialized delivery authority.
+  # CI authentication, registry acceptance, Git delivery and D1-D6 are separate.
+  # Do not archive the complete private execution tree or signer credentials.

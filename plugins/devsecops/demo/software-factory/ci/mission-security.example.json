@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "kind": "mission-security-configuration",
+  "policy_path": "/approved/config/mission-security-policy.json",
+  "policy_sha256": "REPLACE_WITH_INDEPENDENTLY_SELECTED_POLICY_SHA256",
+  "database_path": "/approved/offline-database/vulnerability-db.tar.zst",
+  "listing_path": "/approved/offline-database/latest.json",
+  "syft_path": "/approved/supplychain/bin/syft",
+  "grype_path": "/approved/supplychain/bin/grype",
+  "database_preparation_timeout_seconds": 900,
+  "scanner_timeout_seconds": 300
+}
