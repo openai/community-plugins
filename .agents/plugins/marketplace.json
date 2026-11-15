@@ -75,6 +75,18 @@
         "authentication": "ON_USE"
       },
       "category": "Developer Tools"
+    },
+    {
+      "name": "electron-agent-debug",
+      "source": {
+        "source": "local",
+        "path": "./plugins/electron-agent-debug"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_USE"
+      },
+      "category": "Developer Tools"
     }
   ]
 }

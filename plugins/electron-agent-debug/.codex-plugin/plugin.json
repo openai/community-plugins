@@ -1,0 +1,37 @@
+{
+  "name": "electron-agent-debug",
+  "version": "1.0.4",
+  "description": "Diagnose running local Electron apps using a bundled, attach-only MCP runtime and Agent Skill.",
+  "author": {
+    "name": "longhun12346",
+    "url": "https://github.com/longhun12346"
+  },
+  "homepage": "https://github.com/openai/community-plugins/tree/main/plugins/electron-agent-debug",
+  "repository": "https://github.com/longhun12346/electron-agent-debug",
+  "license": "MIT",
+  "keywords": [
+    "electron",
+    "debugging",
+    "diagnostics",
+    "mcp",
+    "developer-tools"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Electron Agent Debug",
+    "shortDescription": "Diagnose Electron with a bundled local MCP runtime.",
+    "longDescription": "Use the bundled Node.js MCP runtime to inspect main-process Inspector and renderer CDP state, targets, logs and exceptions. The Agent verifies the package, configures the local stdio entry and provides the running app, dynamic loopback endpoints and regression steps. Application lifecycle and final verification remain with the Agent.",
+    "developerName": "longhun12346",
+    "category": "Developer Tools",
+    "websiteURL": "https://github.com/longhun12346/electron-agent-debug",
+    "capabilities": [
+      "Read",
+      "Write",
+      "Execute"
+    ],
+    "brandColor": "#478CBF",
+    "defaultPrompt": [
+      "Use $electron-debug after I provide the Electron project checks and dynamic Inspector/CDP endpoints. Collect runtime evidence and tell me what remains to verify."
+    ]
+  }
+}

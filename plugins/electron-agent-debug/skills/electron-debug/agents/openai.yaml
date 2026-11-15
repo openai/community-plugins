@@ -1,0 +1,5 @@
+interface:
+  display_name: "Electron Agent Debug"
+  short_description: "Collect local Electron runtime evidence"
+  brand_color: "#478CBF"
+  default_prompt: "Use $electron-debug after I provide the Electron project checks and dynamic Inspector/CDP endpoints. Collect runtime evidence and tell me what remains to verify."
