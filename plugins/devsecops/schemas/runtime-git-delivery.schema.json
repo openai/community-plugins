@@ -1,0 +1,155 @@
+{
+  "$id": "urn:devsecops:runtime-git-delivery:1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "attempt_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+      "type": "string"
+    },
+    "environment": {
+      "pattern": "^[a-z][a-z0-9-]{0,62}$",
+      "type": "string"
+    },
+    "identities": {
+      "additionalProperties": false,
+      "properties": {
+        "assertions_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "config_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "environment_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "lock_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "package_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "scenario_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "scenario_sha256",
+        "assertions_sha256",
+        "package_sha256",
+        "lock_sha256",
+        "config_sha256",
+        "environment_sha256"
+      ],
+      "type": "object"
+    },
+    "kind": {
+      "const": "runtime-git-delivery"
+    },
+    "observed_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "rendered_artifact_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "type": "string"
+    },
+    "repository_url": {
+      "maxLength": 2048,
+      "type": "string"
+    },
+    "revision": {
+      "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$",
+      "type": "string"
+    },
+    "run_id": {
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": 1
+    },
+    "selected_tree": {
+      "additionalProperties": false,
+      "properties": {
+        "bytes": {
+          "maximum": 64000000,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "file_count": {
+          "maximum": 5000,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "files": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "bytes": {
+                "maximum": 64000000,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "path": {
+                "maxLength": 1024,
+                "minLength": 1,
+                "type": "string"
+              },
+              "sha256": {
+                "pattern": "^[a-f0-9]{64}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "path",
+              "sha256",
+              "bytes"
+            ],
+            "type": "object"
+          },
+          "maxItems": 5000,
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "sha256",
+        "file_count",
+        "bytes",
+        "files"
+      ],
+      "type": "object"
+    },
+    "source_path": {
+      "maxLength": 1024,
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "run_id",
+    "attempt_id",
+    "environment",
+    "identities",
+    "kind",
+    "repository_url",
+    "revision",
+    "source_path",
+    "selected_tree",
+    "rendered_artifact_sha256",
+    "observed_at"
+  ],
+  "type": "object"
+}

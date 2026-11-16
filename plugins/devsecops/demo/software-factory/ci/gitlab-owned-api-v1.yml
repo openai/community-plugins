@@ -1,0 +1,34 @@
+# Explicit alternate recipe for OwnedOperationCoordinator. Seed commits cannot
+# publish; the canonical current build operation creates one API pipeline.
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "api"'
+    - when: never
+stages: [prepare]
+publish_and_prepare_mission_git:
+  stage: prepare
+  tags: [devsecops-owned]
+  timeout: 55 minutes
+  retry: 0
+  script:
+    - |
+      : "${DEVSECOPS_PYTHON:?Supply approved external dependency interpreter}"
+      : "${DEVSECOPS_PLUGIN_ROOT:?Supply verified installed plugin}"
+      : "${DEVSECOPS_GIT_INVOCATION:?Supply independently selected invocation}"
+      : "${DEVSECOPS_GIT_INVOCATION_SHA256:?Supply invocation pin}"
+      : "${CI_PROJECT_DIR:?Supply source checkout declaration}"
+      : "${CI_COMMIT_SHA:?Supply source revision declaration}"
+      (
+        umask 077
+        set -C
+        "$DEVSECOPS_PYTHON" -I -B "$DEVSECOPS_PLUGIN_ROOT/scripts/publish_owned_mission.py" \
+          --invocation "$DEVSECOPS_GIT_INVOCATION" \
+          --invocation-sha256 "$DEVSECOPS_GIT_INVOCATION_SHA256" \
+          --expected-source-repository "$CI_PROJECT_DIR" \
+          --expected-source-revision "$CI_COMMIT_SHA" \
+          > "$CI_PROJECT_DIR/mission-ci-publication.json"
+      )
+  artifacts:
+    when: on_success
+    paths: [mission-ci-publication.json]
+    expire_in: 7 days

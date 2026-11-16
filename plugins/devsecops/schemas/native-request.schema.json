@@ -1,0 +1,150 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.devsecops.invalid/native-request.v1.json",
+  "title": "native-request v1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "request_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "step_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,119}$"
+    },
+    "workflow": {
+      "type": "string",
+      "enum": [
+        "review-kubernetes-change",
+        "diagnose-gitops-deployment",
+        "prepare-gitops-correction",
+        "verify-gitops-recovery"
+      ]
+    },
+    "identities": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "scenario_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "assertions_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "package_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "lock_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "config_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "environment_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "scenario_sha256",
+        "assertions_sha256",
+        "package_sha256",
+        "lock_sha256",
+        "config_sha256",
+        "environment_sha256"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 40
+    },
+    "expires_at": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 40
+    },
+    "required_artifact_kind": {
+      "type": "string",
+      "enum": [
+        "review-report",
+        "diagnosis",
+        "patch",
+        "recovery-report",
+        "explanation",
+        "supporting-evidence"
+      ]
+    },
+    "input_artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,119}$"
+          },
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 16000000
+          }
+        },
+        "required": [
+          "name",
+          "path",
+          "sha256",
+          "bytes"
+        ]
+      },
+      "maxItems": 64
+    },
+    "result_path": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "output_directory": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    }
+  },
+  "required": [
+    "schema_version",
+    "request_id",
+    "run_id",
+    "step_id",
+    "workflow",
+    "identities",
+    "created_at",
+    "expires_at",
+    "required_artifact_kind",
+    "input_artifacts",
+    "result_path",
+    "output_directory"
+  ]
+}

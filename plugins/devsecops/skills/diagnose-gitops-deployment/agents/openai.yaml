@@ -1,0 +1,4 @@
+interface:
+  display_name: "Diagnose GitOps Deployment"
+  short_description: "Compare runtime evidence and supported explanations"
+  default_prompt: "Use $diagnose-gitops-deployment to compare the supplied baseline and fault runtime bundles, explain observed changes and retained failures, and show the evidence and unresolved alternatives."

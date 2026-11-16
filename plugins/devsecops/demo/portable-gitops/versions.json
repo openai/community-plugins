@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "gitlab": "gitlab/gitlab-ce:19.5.5-ce.0",
+  "gitlab_runner": "19.5.1",
+  "k3s": "v1.34.13+k3s1",
+  "argocd": "v3.5.6",
+  "prometheus": "prom/prometheus:v3.13.5",
+  "sources": [
+    "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-5-5-released/",
+    "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-5-3-released/",
+    "https://docs.k3s.io/release-notes/v1.34.X",
+    "https://docs.k3s.io/networking/networking-services",
+    "https://github.com/argoproj/argo-cd/releases/tag/v3.5.6",
+    "https://github.com/prometheus/prometheus/releases/tag/v3.13.5"
+  ]
+}

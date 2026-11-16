@@ -1,0 +1,42 @@
+# Select this recipe instead of gitlab-ci.yml; including both repeats publication.
+# Operator-owned Linux shell runner, externally verified plugin/interpreter and
+# eight independently pinned inputs are prerequisites. No dependency acquisition.
+# The upstream operation can write its configured OCI-referrers registry.
+# CI variables declare source identity; authenticated job/runner collection remains separate.
+stages: [prepare]
+
+publish_and_prepare_mission_git:
+  stage: prepare
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  tags: ["$DEVSECOPS_RUNNER_TAG"]
+  timeout: 75 minutes
+  retry: 0
+  script:
+    - |
+      : "${DEVSECOPS_PYTHON:?Supply approved external dependency interpreter}"
+      : "${DEVSECOPS_PLUGIN_ROOT:?Supply verified installed plugin}"
+      : "${DEVSECOPS_GIT_INVOCATION:?Supply independently selected invocation}"
+      : "${DEVSECOPS_GIT_INVOCATION_SHA256:?Supply invocation pin}"
+      : "${CI_PROJECT_DIR:?Supply source checkout declaration}"
+      : "${CI_COMMIT_SHA:?Supply source revision declaration}"
+      (
+        if [ -e "$CI_PROJECT_DIR/mission-git-summary.json" ] || [ -L "$CI_PROJECT_DIR/mission-git-summary.json" ]; then
+          exit 2
+        fi
+        umask 077
+        set -C
+        "$DEVSECOPS_PYTHON" -I -B "$DEVSECOPS_PLUGIN_ROOT/scripts/publish_and_prepare_mission_git.py" \
+          --invocation "$DEVSECOPS_GIT_INVOCATION" \
+          --invocation-sha256 "$DEVSECOPS_GIT_INVOCATION_SHA256" \
+          --expected-source-repository "$CI_PROJECT_DIR" \
+          --expected-source-revision "$CI_COMMIT_SHA" \
+          > "$CI_PROJECT_DIR/mission-git-summary.json"
+      )
+  artifacts:
+    when: on_success
+    paths: [mission-git-summary.json]
+    expire_in: 7 days
+  # The subshell preserves CLI exit 0/1/2. Exclusive creation refuses old output.
+  # This bounded summary is evidence only. Never archive the external execution,
+  # runtime, configuration or credential tree, or treat hashes as capabilities.

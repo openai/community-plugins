@@ -1,0 +1,497 @@
+{
+  "$id": "urn:devsecops:profile",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": false,
+      "properties": {
+        "configured": {
+          "type": "boolean"
+        },
+        "description": {
+          "maxLength": 1000,
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z0-9][a-z0-9-]{0,63}$",
+          "type": "string"
+        },
+        "policy": {
+          "additionalProperties": false,
+          "properties": {
+            "allowed_registries": {
+              "items": {
+                "pattern": "^[a-zA-Z0-9.:-]{1,253}$",
+                "type": "string"
+              },
+              "maxItems": 100,
+              "type": "array"
+            },
+            "exceptions": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "expires": {
+                    "maxLength": 1000,
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "id": {
+                    "maxLength": 1000,
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "owner": {
+                    "maxLength": 1000,
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "reason": {
+                    "maxLength": 1000,
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "resource": {
+                    "maxLength": 1000,
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "rule_id": {
+                    "maxLength": 1000,
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "target": {
+                    "maxLength": 1000,
+                    "minLength": 1,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "rule_id",
+                  "target",
+                  "resource",
+                  "reason",
+                  "owner",
+                  "expires"
+                ],
+                "type": "object"
+              },
+              "maxItems": 100,
+              "type": "array"
+            },
+            "gate": {
+              "additionalProperties": false,
+              "properties": {
+                "changes": {
+                  "items": {
+                    "enum": [
+                      "introduced",
+                      "worsened",
+                      "preexisting"
+                    ]
+                  },
+                  "minItems": 1,
+                  "type": "array",
+                  "uniqueItems": true
+                },
+                "minimum_severity": {
+                  "enum": [
+                    "low",
+                    "medium",
+                    "high",
+                    "critical"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "require_image_digest": {
+              "type": "boolean"
+            },
+            "required_labels": {
+              "items": {
+                "pattern": "^[A-Za-z0-9._/-]{1,253}$",
+                "type": "string"
+              },
+              "maxItems": 100,
+              "type": "array"
+            },
+            "rule_severities": {
+              "additionalProperties": {
+                "enum": [
+                  "low",
+                  "medium",
+                  "high",
+                  "critical"
+                ]
+              },
+              "maxProperties": 100,
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "revision": {
+          "maxLength": 80,
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "targets": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "api_versions": {
+                "items": {
+                  "pattern": "^[A-Za-z0-9./-]{1,120}$",
+                  "type": "string"
+                },
+                "maxItems": 100,
+                "type": "array"
+              },
+              "kubernetes_version": {
+                "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+                "type": "string"
+              },
+              "mode": {
+                "enum": [
+                  "install",
+                  "upgrade"
+                ]
+              },
+              "name": {
+                "pattern": "^[a-z0-9][a-z0-9-]{0,62}$",
+                "type": "string"
+              },
+              "namespace": {
+                "maxLength": 63,
+                "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$",
+                "type": "string"
+              },
+              "path": {
+                "maxLength": 300,
+                "minLength": 1,
+                "type": "string"
+              },
+              "release": {
+                "maxLength": 53,
+                "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$",
+                "type": "string"
+              },
+              "type": {
+                "enum": [
+                  "helm",
+                  "manifests"
+                ]
+              },
+              "values": {
+                "items": {
+                  "maxLength": 300,
+                  "type": "string"
+                },
+                "maxItems": 16,
+                "type": "array"
+              }
+            },
+            "required": [
+              "name",
+              "type",
+              "path",
+              "namespace",
+              "kubernetes_version"
+            ],
+            "type": "object"
+          },
+          "maxItems": 32,
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "revision",
+        "targets",
+        "policy"
+      ],
+      "type": "object"
+    },
+    {
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": false,
+      "properties": {
+        "configured": {
+          "type": "boolean"
+        },
+        "description": {
+          "maxLength": 1000,
+          "type": "string"
+        },
+        "id": {
+          "pattern": "^[a-z0-9][a-z0-9-]{0,63}$",
+          "type": "string"
+        },
+        "policy": {
+          "additionalProperties": false,
+          "properties": {
+            "allowed_registries": {
+              "items": {
+                "pattern": "^[a-zA-Z0-9.:-]{1,253}$",
+                "type": "string"
+              },
+              "maxItems": 100,
+              "type": "array"
+            },
+            "exceptions": {
+              "items": {
+                "additionalProperties": false,
+                "properties": {
+                  "expires": {
+                    "maxLength": 1000,
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "id": {
+                    "maxLength": 1000,
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "owner": {
+                    "maxLength": 1000,
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "reason": {
+                    "maxLength": 1000,
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "resource": {
+                    "maxLength": 1000,
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "rule_id": {
+                    "maxLength": 1000,
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "target": {
+                    "maxLength": 1000,
+                    "minLength": 1,
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "id",
+                  "rule_id",
+                  "target",
+                  "resource",
+                  "reason",
+                  "owner",
+                  "expires"
+                ],
+                "type": "object"
+              },
+              "maxItems": 100,
+              "type": "array"
+            },
+            "gate": {
+              "additionalProperties": false,
+              "properties": {
+                "changes": {
+                  "items": {
+                    "enum": [
+                      "introduced",
+                      "worsened",
+                      "preexisting"
+                    ]
+                  },
+                  "minItems": 1,
+                  "type": "array",
+                  "uniqueItems": true
+                },
+                "minimum_severity": {
+                  "enum": [
+                    "low",
+                    "medium",
+                    "high",
+                    "critical"
+                  ]
+                }
+              },
+              "type": "object"
+            },
+            "require_image_digest": {
+              "type": "boolean"
+            },
+            "required_labels": {
+              "items": {
+                "pattern": "^[A-Za-z0-9._/-]{1,253}$",
+                "type": "string"
+              },
+              "maxItems": 100,
+              "type": "array"
+            },
+            "rule_severities": {
+              "additionalProperties": {
+                "enum": [
+                  "low",
+                  "medium",
+                  "high",
+                  "critical"
+                ]
+              },
+              "maxProperties": 100,
+              "type": "object"
+            }
+          },
+          "type": "object"
+        },
+        "revision": {
+          "maxLength": 80,
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema_version": {
+          "const": 2
+        },
+        "targets": {
+          "items": {
+            "additionalProperties": false,
+            "allOf": [
+              {
+                "else": {
+                  "not": {
+                    "required": [
+                      "source_root"
+                    ]
+                  }
+                },
+                "if": {
+                  "properties": {
+                    "type": {
+                      "const": "kustomize"
+                    }
+                  }
+                },
+                "then": {
+                  "not": {
+                    "anyOf": [
+                      {
+                        "required": [
+                          "release"
+                        ]
+                      },
+                      {
+                        "required": [
+                          "mode"
+                        ]
+                      },
+                      {
+                        "required": [
+                          "values"
+                        ]
+                      },
+                      {
+                        "required": [
+                          "api_versions"
+                        ]
+                      }
+                    ]
+                  },
+                  "required": [
+                    "source_root"
+                  ]
+                }
+              }
+            ],
+            "properties": {
+              "api_versions": {
+                "items": {
+                  "pattern": "^[A-Za-z0-9./-]{1,120}$",
+                  "type": "string"
+                },
+                "maxItems": 100,
+                "type": "array"
+              },
+              "kubernetes_version": {
+                "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+                "type": "string"
+              },
+              "mode": {
+                "enum": [
+                  "install",
+                  "upgrade"
+                ]
+              },
+              "name": {
+                "pattern": "^[a-z0-9][a-z0-9-]{0,62}$",
+                "type": "string"
+              },
+              "namespace": {
+                "maxLength": 63,
+                "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$",
+                "type": "string"
+              },
+              "path": {
+                "maxLength": 300,
+                "minLength": 1,
+                "type": "string"
+              },
+              "release": {
+                "maxLength": 53,
+                "pattern": "^[a-z0-9]([-a-z0-9]*[a-z0-9])?$",
+                "type": "string"
+              },
+              "source_root": {
+                "maxLength": 300,
+                "minLength": 1,
+                "type": "string"
+              },
+              "type": {
+                "enum": [
+                  "helm",
+                  "manifests",
+                  "kustomize"
+                ]
+              },
+              "values": {
+                "items": {
+                  "maxLength": 300,
+                  "type": "string"
+                },
+                "maxItems": 16,
+                "type": "array"
+              }
+            },
+            "required": [
+              "name",
+              "type",
+              "path",
+              "namespace",
+              "kubernetes_version"
+            ],
+            "type": "object"
+          },
+          "maxItems": 32,
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "id",
+        "revision",
+        "targets",
+        "policy"
+      ],
+      "type": "object"
+    }
+  ]
+}

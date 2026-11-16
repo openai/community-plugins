@@ -1,0 +1,595 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.devsecops.invalid/scenario-result.v1.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "run_id": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+    },
+    "environment_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,119}$"
+    },
+    "identities": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "scenario_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "assertions_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "package_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "lock_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "config_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "environment_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "required": [
+        "scenario_sha256",
+        "assertions_sha256",
+        "package_sha256",
+        "lock_sha256",
+        "config_sha256",
+        "environment_sha256"
+      ]
+    },
+    "scenario_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "operation_backend": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "execution_mode": {
+      "enum": [
+        "operator",
+        "controlled-test"
+      ]
+    },
+    "finalized_at": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 40
+    },
+    "execution_status": {
+      "enum": [
+        "complete",
+        "incomplete",
+        "error"
+      ]
+    },
+    "scenario_assertion_status": {
+      "enum": [
+        "pass",
+        "fail",
+        "unknown"
+      ]
+    },
+    "canonical_success": {
+      "type": "boolean"
+    },
+    "terminal": {
+      "const": true
+    },
+    "exit_code": {
+      "enum": [
+        0,
+        1,
+        2
+      ]
+    },
+    "original_failure": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "phase_id": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,119}$"
+            },
+            "outcome": {
+              "enum": [
+                "incomplete",
+                "error",
+                "assertion-failure",
+                "interrupted"
+              ]
+            },
+            "code": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,119}$"
+            }
+          },
+          "required": [
+            "phase_id",
+            "outcome",
+            "code"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "missing_assertions": {
+      "type": "array",
+      "maxItems": 200,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,119}$"
+      }
+    },
+    "kind": {
+      "const": "factory-e2e-result"
+    },
+    "profile": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500
+    },
+    "native_driver": {
+      "enum": [
+        "current-host",
+        "codex-cli"
+      ]
+    },
+    "native_identity": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "client_path": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "client_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "client_version": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "model": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "reasoning_effort": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 500
+            },
+            "provider_observed_model": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "identity_basis": {
+              "const": "explicit-selection-and-native-receipts"
+            }
+          },
+          "required": [
+            "client_path",
+            "client_sha256",
+            "client_version",
+            "model",
+            "reasoning_effort",
+            "provider_observed_model",
+            "identity_basis"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "phase_records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "phase_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,119}$"
+          },
+          "started_at": {
+            "type": "string",
+            "minLength": 20,
+            "maxLength": 40
+          },
+          "finished_at": {
+            "type": "string",
+            "minLength": 20,
+            "maxLength": 40
+          },
+          "outcome": {
+            "enum": [
+              "completed",
+              "incomplete",
+              "error",
+              "assertion-failure",
+              "interrupted"
+            ]
+          },
+          "code": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,119}$"
+          },
+          "artifacts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "bytes": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 16000000
+                }
+              },
+              "required": [
+                "path",
+                "sha256",
+                "bytes"
+              ]
+            },
+            "minItems": 1,
+            "maxItems": 256
+          },
+          "assertions": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "case_id": {
+                  "enum": [
+                    "D1",
+                    "D2",
+                    "D3",
+                    "D4",
+                    "D5",
+                    "D6"
+                  ]
+                },
+                "assertion_id": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,119}$"
+                },
+                "status": {
+                  "enum": [
+                    "pass",
+                    "fail",
+                    "unknown"
+                  ]
+                }
+              },
+              "required": [
+                "case_id",
+                "assertion_id",
+                "status"
+              ]
+            },
+            "maxItems": 100
+          },
+          "attempt": {
+            "enum": [
+              "primary",
+              "replay",
+              "shared"
+            ]
+          },
+          "operation": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          }
+        },
+        "required": [
+          "phase_id",
+          "started_at",
+          "finished_at",
+          "outcome",
+          "code",
+          "artifacts",
+          "assertions",
+          "attempt",
+          "operation"
+        ]
+      },
+      "maxItems": 33
+    },
+    "native_results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "request_id": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+          },
+          "step_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,119}$"
+          },
+          "status": {
+            "enum": [
+              "completed",
+              "incomplete"
+            ]
+          },
+          "result": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "bytes": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 16000000
+              }
+            },
+            "required": [
+              "path",
+              "sha256",
+              "bytes"
+            ]
+          },
+          "artifacts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,119}$"
+                },
+                "kind": {
+                  "type": "string",
+                  "enum": [
+                    "review-report",
+                    "diagnosis",
+                    "patch",
+                    "recovery-report",
+                    "explanation",
+                    "supporting-evidence"
+                  ]
+                },
+                "path": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "bytes": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 16000000
+                }
+              },
+              "required": [
+                "name",
+                "kind",
+                "path",
+                "sha256",
+                "bytes"
+              ]
+            },
+            "maxItems": 64
+          },
+          "validation": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "bytes": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 16000000
+              }
+            },
+            "required": [
+              "path",
+              "sha256",
+              "bytes"
+            ]
+          }
+        },
+        "required": [
+          "request_id",
+          "step_id",
+          "status",
+          "result",
+          "artifacts",
+          "validation"
+        ]
+      },
+      "maxItems": 1000
+    },
+    "cleanup": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "environment_released": {
+          "const": true
+        },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "path": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 500
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[0-9a-f]{64}$"
+              },
+              "bytes": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 16000000
+              }
+            },
+            "required": [
+              "path",
+              "sha256",
+              "bytes"
+            ]
+          },
+          "maxItems": 256
+        },
+        "validation": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "path": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 500
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "bytes": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 16000000
+                }
+              },
+              "required": [
+                "path",
+                "sha256",
+                "bytes"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "environment_released",
+        "artifacts",
+        "validation"
+      ]
+    },
+    "evidence_manifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 500
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 16000000
+        }
+      },
+      "required": [
+        "path",
+        "sha256",
+        "bytes"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "run_id",
+    "environment_id",
+    "identities",
+    "scenario_id",
+    "operation_backend",
+    "execution_mode",
+    "finalized_at",
+    "execution_status",
+    "scenario_assertion_status",
+    "canonical_success",
+    "terminal",
+    "exit_code",
+    "original_failure",
+    "missing_assertions",
+    "kind",
+    "profile",
+    "native_driver",
+    "native_identity",
+    "phase_records",
+    "native_results",
+    "cleanup",
+    "evidence_manifest"
+  ]
+}

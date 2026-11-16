@@ -1,0 +1,7 @@
+**
+!Dockerfile
+!app.py
+!probe.py
+!requirements.txt
+!wheelhouse/
+!wheelhouse/prometheus_client-0.26.0-py3-none-any.whl

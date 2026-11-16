@@ -5,7 +5,7 @@
   "description": "Public Codex plugins and their reproducible validation suites.",
   "type": "module",
   "scripts": {
-    "validate": "npm run validate:marketplace && node scripts/validate-grafana.mjs && npm run validate:reviewops-auditor-benchmark && npm run validate:react-native-to-swiftui && npm run validate:autodesk-fusion && npm run validate:pcba-engineering",
+    "validate": "npm run validate:marketplace && node scripts/validate-grafana.mjs && npm run validate:reviewops-auditor-benchmark && npm run validate:react-native-to-swiftui && npm run validate:autodesk-fusion && npm run validate:pcba-engineering && npm run validate:devsecops",
     "validate:marketplace": "node scripts/validate-marketplace.mjs",
     "validate:grafana": "node scripts/validate-grafana.mjs",
     "validate:reviewops-auditor-benchmark": "node scripts/validate-reviewops-auditor-benchmark.mjs",
@@ -36,7 +36,10 @@
     "build:autodesk-fusion": "npm --prefix plugins/autodesk-fusion run build",
     "test:physical-engineering": "node tests/physical-engineering/run.mjs",
     "test:pcba-engineering": "npm run validate:pcba-engineering && node --test --test-concurrency=1 tests/pcba-engineering/unit/*.test.mjs tests/pcba-engineering/integration/*.test.mjs tests/pcba-engineering/security/*.test.mjs && python3 tests/pcba-engineering/support/dataset-verify.py",
-    "validate:pcba-engineering": "node scripts/validate-pcba-engineering.mjs"
+    "validate:pcba-engineering": "node scripts/validate-pcba-engineering.mjs",
+    "validate:devsecops": "node tests/devsecops/contracts.mjs --static",
+    "test:devsecops": "node tests/devsecops/run.mjs",
+    "test:devsecops:contracts": "node tests/devsecops/contracts.mjs"
   },
   "engines": {
     "node": ">=22.19.0"

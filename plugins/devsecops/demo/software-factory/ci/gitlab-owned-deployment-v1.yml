@@ -1,0 +1,36 @@
+# Fixed owned deployment validation. This job performs no build/publication.
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - when: never
+stages: [validate]
+validate_owned_deployment:
+  stage: validate
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - when: never
+  tags: [devsecops-owned]
+  timeout: 15 minutes
+  retry: 0
+  script:
+    - |
+      : "${DEVSECOPS_PYTHON:?Supply installed external interpreter}"
+      : "${DEVSECOPS_PLUGIN_ROOT:?Supply verified installed plugin}"
+      : "${DEVSECOPS_GIT_INVOCATION:?Supply frozen runner invocation}"
+      : "${DEVSECOPS_GIT_INVOCATION_SHA256:?Supply invocation pin}"
+      : "${CI_PROJECT_DIR:?Supply actual deployment checkout}"
+      : "${CI_COMMIT_SHA:?Supply exact detached MR commit}"
+      (
+        umask 077
+        set -C
+        "$DEVSECOPS_PYTHON" -I -B "$DEVSECOPS_PLUGIN_ROOT/scripts/validate_owned_deployment.py" \
+          --invocation "$DEVSECOPS_GIT_INVOCATION" \
+          --invocation-sha256 "$DEVSECOPS_GIT_INVOCATION_SHA256" \
+          --expected-source-repository "$CI_PROJECT_DIR" \
+          --expected-source-revision "$CI_COMMIT_SHA" \
+          > "$CI_PROJECT_DIR/deployment-validation.json"
+      )
+  artifacts:
+    when: on_success
+    paths: [deployment-validation.json]
+    expire_in: 7 days

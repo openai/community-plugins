@@ -1,0 +1,693 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:devsecops:runtime-diagnosis:1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "kind": {
+      "const": "runtime-diagnosis"
+    },
+    "observation_kind": {
+      "const": "baseline-fault-comparison"
+    },
+    "execution_status": {
+      "const": "partial"
+    },
+    "decision": {
+      "const": "unknown"
+    },
+    "comparison_status": {
+      "enum": [
+        "aligned",
+        "incomplete",
+        "incompatible"
+      ]
+    },
+    "causality": {
+      "const": "unproven"
+    },
+    "recovery": {
+      "const": "not-evaluated"
+    },
+    "http_health": {
+      "const": "not-observed"
+    },
+    "confirmed_failure": {
+      "type": "boolean"
+    },
+    "inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "baseline": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "valid",
+                "missing",
+                "invalid"
+              ]
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "encoding": {
+              "enum": [
+                "raw-json",
+                "devsecops-runtime-json-sha256-v1"
+              ]
+            },
+            "bundle_sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "context_sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "required": [
+            "state"
+          ]
+        },
+        "fault": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "state": {
+              "enum": [
+                "valid",
+                "missing",
+                "invalid"
+              ]
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "encoding": {
+              "enum": [
+                "raw-json",
+                "devsecops-runtime-json-sha256-v1"
+              ]
+            },
+            "bundle_sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "context_sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "required": [
+            "state"
+          ]
+        }
+      },
+      "required": [
+        "baseline",
+        "fault"
+      ]
+    },
+    "identities": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "scenario_sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "assertions_sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "package_sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "lock_sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "config_sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            },
+            "environment_sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          },
+          "required": [
+            "scenario_sha256",
+            "assertions_sha256",
+            "package_sha256",
+            "lock_sha256",
+            "config_sha256",
+            "environment_sha256"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "observations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,62}$"
+          },
+          "target_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,62}$"
+          },
+          "kind": {
+            "enum": [
+              "scrape-state",
+              "counter-progression",
+              "kubernetes-readiness",
+              "argo-sync",
+              "argo-health",
+              "container-errors",
+              "ready-endpoints",
+              "service-selector",
+              "service-ports",
+              "network-policy",
+              "runtime-identity",
+              "deployment-generation"
+            ]
+          },
+          "baseline": {
+            "anyOf": [
+              {
+                "enum": [
+                  "up",
+                  "down",
+                  "progressing",
+                  "flat",
+                  "reset",
+                  "unknown",
+                  "ready",
+                  "not-ready",
+                  "Synced",
+                  "OutOfSync",
+                  "Healthy",
+                  "Degraded",
+                  "Progressing",
+                  "Missing",
+                  "Suspended",
+                  "Unknown",
+                  "unchanged",
+                  "changed",
+                  "not-observed"
+                ]
+              },
+              {
+                "type": "null"
+              },
+              {
+                "type": "integer",
+                "minimum": 0
+              },
+              {
+                "type": "array",
+                "items": {
+                  "enum": [
+                    "CrashLoopBackOff",
+                    "ImagePullBackOff",
+                    "ErrImagePull",
+                    "ContainerCreating",
+                    "CreateContainerConfigError",
+                    "OOMKilled",
+                    "Completed",
+                    "Error"
+                  ]
+                },
+                "minItems": 0,
+                "maxItems": 8,
+                "uniqueItems": true
+              }
+            ]
+          },
+          "fault": {
+            "anyOf": [
+              {
+                "enum": [
+                  "up",
+                  "down",
+                  "progressing",
+                  "flat",
+                  "reset",
+                  "unknown",
+                  "ready",
+                  "not-ready",
+                  "Synced",
+                  "OutOfSync",
+                  "Healthy",
+                  "Degraded",
+                  "Progressing",
+                  "Missing",
+                  "Suspended",
+                  "Unknown",
+                  "unchanged",
+                  "changed",
+                  "not-observed"
+                ]
+              },
+              {
+                "type": "null"
+              },
+              {
+                "type": "integer",
+                "minimum": 0
+              },
+              {
+                "type": "array",
+                "items": {
+                  "enum": [
+                    "CrashLoopBackOff",
+                    "ImagePullBackOff",
+                    "ErrImagePull",
+                    "ContainerCreating",
+                    "CreateContainerConfigError",
+                    "OOMKilled",
+                    "Completed",
+                    "Error"
+                  ]
+                },
+                "minItems": 0,
+                "maxItems": 8,
+                "uniqueItems": true
+              }
+            ]
+          },
+          "comparison": {
+            "enum": [
+              "changed",
+              "unchanged",
+              "unavailable"
+            ]
+          },
+          "evidence": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "input": {
+                  "enum": [
+                    "baseline",
+                    "fault"
+                  ]
+                },
+                "pointer": {
+                  "type": "string",
+                  "maxLength": 2048
+                },
+                "sha256": {
+                  "type": "string",
+                  "pattern": "^[a-f0-9]{64}$"
+                }
+              },
+              "required": [
+                "input",
+                "pointer",
+                "sha256"
+              ]
+            },
+            "minItems": 0,
+            "maxItems": 4,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "id",
+          "target_id",
+          "kind",
+          "baseline",
+          "fault",
+          "comparison",
+          "evidence"
+        ]
+      },
+      "minItems": 0,
+      "maxItems": 100,
+      "uniqueItems": true
+    },
+    "alternatives": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "target_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,62}$"
+          },
+          "id": {
+            "enum": [
+              "network-policy",
+              "discovery-or-selector",
+              "application",
+              "dns",
+              "mesh-or-certificate"
+            ]
+          },
+          "rank": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1,
+            "maximum": 5
+          },
+          "evidence_status": {
+            "enum": [
+              "observed-support",
+              "no-direct-support",
+              "comparison-incomplete"
+            ]
+          },
+          "supporting_fact_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,62}$"
+            },
+            "minItems": 0,
+            "maxItems": 20,
+            "uniqueItems": true
+          },
+          "counterevidence_fact_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,62}$"
+            },
+            "minItems": 0,
+            "maxItems": 20,
+            "uniqueItems": true
+          },
+          "required_controls": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "effective-policy-enforcement",
+                "authorized-positive-and-negative-probes",
+                "namespace-and-pod-labels",
+                "monitoring-discovery",
+                "endpoint-listener",
+                "dns-resolution",
+                "mesh-enrollment-and-authorization",
+                "certificate-and-transport",
+                "direct-application-http",
+                "independent-functional-probe"
+              ]
+            },
+            "minItems": 1,
+            "maxItems": 10,
+            "uniqueItems": true
+          },
+          "causality": {
+            "const": "unproven"
+          }
+        },
+        "required": [
+          "target_id",
+          "id",
+          "rank",
+          "evidence_status",
+          "supporting_fact_ids",
+          "counterevidence_fact_ids",
+          "required_controls",
+          "causality"
+        ]
+      },
+      "minItems": 0,
+      "maxItems": 40,
+      "uniqueItems": true
+    },
+    "policy_changes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "target_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,62}$"
+          },
+          "namespace": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,62}$"
+          },
+          "name": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,62}$"
+          },
+          "baseline_sha256": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "fault_sha256": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "applicability": {
+            "enum": [
+              "selected",
+              "not-selected",
+              "unknown"
+            ]
+          }
+        },
+        "required": [
+          "target_id",
+          "namespace",
+          "name",
+          "baseline_sha256",
+          "fault_sha256",
+          "applicability"
+        ]
+      },
+      "minItems": 0,
+      "maxItems": 1600,
+      "uniqueItems": true
+    },
+    "source_changes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "target_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,62}$"
+          },
+          "position": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 32
+          },
+          "baseline_revision": {
+            "type": "string",
+            "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+          },
+          "fault_revision": {
+            "type": "string",
+            "pattern": "^(?:[a-f0-9]{40}|[a-f0-9]{64})$"
+          },
+          "baseline_source_spec_sha256": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "fault_source_spec_sha256": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "required": [
+          "target_id",
+          "position",
+          "baseline_revision",
+          "fault_revision",
+          "baseline_source_spec_sha256",
+          "fault_source_spec_sha256"
+        ]
+      },
+      "minItems": 0,
+      "maxItems": 256,
+      "uniqueItems": true
+    },
+    "retained_failures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "input": {
+            "enum": [
+              "baseline",
+              "fault"
+            ]
+          },
+          "target_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,62}$"
+          },
+          "provider": {
+            "enum": [
+              "kubernetes",
+              "argocd",
+              "prometheus"
+            ]
+          },
+          "phase": {
+            "enum": [
+              "before",
+              "after",
+              "window"
+            ]
+          },
+          "fact": {
+            "enum": [
+              "workload-not-ready",
+              "controller-out-of-sync",
+              "controller-degraded",
+              "scrape-down",
+              "counter-flat"
+            ]
+          },
+          "freshness": {
+            "enum": [
+              "fresh-at-collection",
+              "historical-window-only",
+              "not-assessed"
+            ]
+          },
+          "evidence": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "input": {
+                "enum": [
+                  "baseline",
+                  "fault"
+                ]
+              },
+              "pointer": {
+                "type": "string",
+                "maxLength": 2048
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            },
+            "required": [
+              "input",
+              "pointer",
+              "sha256"
+            ]
+          }
+        },
+        "required": [
+          "input",
+          "target_id",
+          "provider",
+          "phase",
+          "fact",
+          "freshness",
+          "evidence"
+        ]
+      },
+      "minItems": 0,
+      "maxItems": 200,
+      "uniqueItems": true
+    },
+    "gaps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,62}$"
+          },
+          "required": {
+            "const": true
+          },
+          "input": {
+            "enum": [
+              "baseline",
+              "fault"
+            ]
+          },
+          "target_id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,62}$"
+          }
+        },
+        "required": [
+          "code",
+          "required"
+        ]
+      },
+      "minItems": 0,
+      "maxItems": 3000,
+      "uniqueItems": true
+    },
+    "diagnosis_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "observation_kind",
+    "execution_status",
+    "decision",
+    "comparison_status",
+    "causality",
+    "recovery",
+    "http_health",
+    "confirmed_failure",
+    "inputs",
+    "identities",
+    "observations",
+    "alternatives",
+    "policy_changes",
+    "source_changes",
+    "retained_failures",
+    "gaps",
+    "diagnosis_sha256"
+  ]
+}

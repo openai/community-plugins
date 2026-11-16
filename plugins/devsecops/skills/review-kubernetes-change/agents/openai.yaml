@@ -1,0 +1,7 @@
+interface:
+  display_name: "Review Kubernetes Changes"
+  short_description: "Review Helm, Kustomize and manifest changes."
+  default_prompt: "Use $review-kubernetes-change to review the Kubernetes or Helm changes in this repository against a selected profile."
+  brand_color: "#164E63"
+policy:
+  allow_implicit_invocation: true

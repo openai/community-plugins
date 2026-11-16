@@ -1,0 +1,346 @@
+{
+  "$id": "urn:devsecops:runtime-native-execution:compatible",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "oneOf": [
+    {
+      "$id": "urn:devsecops:runtime-native-execution:1",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": false,
+      "properties": {
+        "attempt_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+          "type": "string"
+        },
+        "environment": {
+          "pattern": "^[a-z][a-z0-9-]{0,62}$",
+          "type": "string"
+        },
+        "finished_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "host_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+          "type": "string"
+        },
+        "identities": {
+          "additionalProperties": false,
+          "properties": {
+            "assertions_sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            "config_sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            "environment_sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            "lock_sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            "package_sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            "scenario_sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "scenario_sha256",
+            "assertions_sha256",
+            "package_sha256",
+            "lock_sha256",
+            "config_sha256",
+            "environment_sha256"
+          ],
+          "type": "object"
+        },
+        "kind": {
+          "const": "runtime-native-execution"
+        },
+        "package_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "patch_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "request_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "result_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "run_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": 1
+        },
+        "started_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "trace_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "turn_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema_version",
+        "run_id",
+        "attempt_id",
+        "environment",
+        "identities",
+        "kind",
+        "request_sha256",
+        "result_sha256",
+        "patch_sha256",
+        "package_sha256",
+        "host_id",
+        "turn_id",
+        "trace_sha256",
+        "started_at",
+        "finished_at"
+      ],
+      "type": "object"
+    },
+    {
+      "$id": "urn:devsecops:runtime-native-execution:2",
+      "$schema": "https://json-schema.org/draft/2020-12/schema",
+      "additionalProperties": false,
+      "properties": {
+        "attempt_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+          "type": "string"
+        },
+        "authority_scope": {
+          "const": "native-execution-and-artifact-validation-only"
+        },
+        "client_version": {
+          "maxLength": 128,
+          "minLength": 1,
+          "type": "string"
+        },
+        "configured_model": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]{0,119}$",
+          "type": "string"
+        },
+        "configured_reasoning_effort": {
+          "enum": [
+            "none",
+            "minimal",
+            "low",
+            "medium",
+            "high",
+            "xhigh",
+            "max",
+            "ultra"
+          ]
+        },
+        "driver": {
+          "const": "codex-cli-single-turn"
+        },
+        "driver_execution_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "engine_python_identity_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "environment": {
+          "pattern": "^[a-z][a-z0-9-]{0,62}$",
+          "type": "string"
+        },
+        "executable_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "execution_id": {
+          "pattern": "^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$",
+          "type": "string"
+        },
+        "execution_manifest_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "execution_mode": {
+          "enum": [
+            "direct",
+            "controlled-test"
+          ]
+        },
+        "finished_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "host_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+          "type": "string"
+        },
+        "identities": {
+          "additionalProperties": false,
+          "properties": {
+            "assertions_sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            "config_sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            "environment_sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            "lock_sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            "package_sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            "scenario_sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            }
+          },
+          "required": [
+            "scenario_sha256",
+            "assertions_sha256",
+            "package_sha256",
+            "lock_sha256",
+            "config_sha256",
+            "environment_sha256"
+          ],
+          "type": "object"
+        },
+        "invocation_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "kind": {
+          "const": "runtime-native-execution"
+        },
+        "package_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "patch_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "request_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+          "type": "string"
+        },
+        "request_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "result_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "run_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": 2
+        },
+        "server_turn_id": {
+          "type": "null"
+        },
+        "started_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "step_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+          "type": "string"
+        },
+        "thread_id": {
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+          "type": "string"
+        },
+        "trace_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "turn_ordinal": {
+          "const": 1
+        },
+        "validated_at": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "validation_receipt_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "validator_identity_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "workflow": {
+          "const": "prepare-gitops-correction"
+        }
+      },
+      "required": [
+        "schema_version",
+        "run_id",
+        "attempt_id",
+        "environment",
+        "identities",
+        "kind",
+        "driver",
+        "execution_id",
+        "execution_mode",
+        "authority_scope",
+        "host_id",
+        "thread_id",
+        "turn_ordinal",
+        "server_turn_id",
+        "request_id",
+        "step_id",
+        "workflow",
+        "configured_model",
+        "configured_reasoning_effort",
+        "client_version",
+        "executable_sha256",
+        "engine_python_identity_sha256",
+        "request_sha256",
+        "result_sha256",
+        "patch_sha256",
+        "package_sha256",
+        "trace_sha256",
+        "invocation_sha256",
+        "driver_execution_sha256",
+        "execution_manifest_sha256",
+        "validator_identity_sha256",
+        "validation_receipt_sha256",
+        "started_at",
+        "finished_at",
+        "validated_at"
+      ],
+      "type": "object"
+    }
+  ]
+}

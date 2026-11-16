@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "kind": "mission-security-policy",
+  "id": "customer-neutral-image-review",
+  "version": "1.0",
+  "valid_from": "REPLACE_WITH_POLICY_START_UTC",
+  "expires_at": "REPLACE_WITH_POLICY_EXPIRY_UTC",
+  "severity_limits": {
+    "Critical": 0,
+    "High": 0,
+    "Medium": null,
+    "Low": null,
+    "Negligible": null,
+    "Unknown": 0
+  },
+  "coverage": {
+    "minimum_packages": 1,
+    "require_distro": true,
+    "required_providers": ["nvd", "github"]
+  },
+  "database": {
+    "authority": "operator-selected-official-anchore-v6",
+    "source_url": "https://grype.anchore.io/databases/v6/latest.json",
+    "listing_sha256": "REPLACE_WITH_ORIGINAL_OFFICIAL_LISTING_SHA256",
+    "archive_sha256": "REPLACE_WITH_MATCHING_DATABASE_ARCHIVE_SHA256",
+    "acquired_at": "REPLACE_WITH_ACTUAL_ACQUISITION_UTC",
+    "maximum_age_hours": 120,
+    "trust_reference": "REPLACE_WITH_TRUSTED_OPERATOR_ACQUISITION_RECORD"
+  },
+  "exceptions": []
+}

@@ -1,0 +1,70 @@
+WEBVTT
+
+00:00:00.080 --> 00:00:02.161
+The fix is one line.
+
+00:00:02.161 --> 00:00:06.324
+Codex changes the allowed metrics port from
+9091 to 9090,
+
+00:00:06.324 --> 00:00:08.405
+where the service actually listens.
+
+00:00:08.680 --> 00:00:12.445
+GitLab built, scanned, and published the
+service image.
+
+00:00:12.747 --> 00:00:15.137
+Argo CD synced the deployment in Azure.
+
+00:00:15.137 --> 00:00:19.234
+We replay the policy change on local
+Kubernetes to test the repair.
+
+00:00:19.513 --> 00:00:22.649
+With the wrong port, Prometheus marks the
+target down.
+
+00:00:22.649 --> 00:00:25.437
+The same pod still answers its health check.
+
+00:00:25.713 --> 00:00:29.370
+The plugin renders the chart before and after
+the edit.
+
+00:00:29.370 --> 00:00:31.563
+All six resources pass schema validation.
+
+00:00:31.847 --> 00:00:33.213
+Compare the policies.
+
+00:00:33.213 --> 00:00:35.491
+Only the ingress port changed.
+
+00:00:35.533 --> 00:00:39.543
+The namespace and pod selectors still restrict
+access to Prometheus.
+
+00:00:39.713 --> 00:00:42.772
+The deployment branch now points to the
+corrected policy.
+
+00:00:42.772 --> 00:00:46.851
+Argo CD syncs that commit and applies the new
+port in Kubernetes.
+
+00:00:47.147 --> 00:00:48.596
+The scrape is back.
+
+00:00:48.596 --> 00:00:50.769
+Prometheus goes from 0 to 1,
+
+00:00:50.769 --> 00:00:53.667
+and fresh samples show the event counter
+increasing.
+
+00:00:53.947 --> 00:00:55.500
+The pod kept serving.
+
+00:00:55.500 --> 00:00:57.830
+The unauthorized probe is still blocked.

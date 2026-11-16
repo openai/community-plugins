@@ -1,0 +1,149 @@
+{
+  "schema_version": 1,
+  "tools": {
+    "syft": {
+      "version": "1.55.0",
+      "release": "https://github.com/anchore/syft/releases/tag/v1.55.0",
+      "checksums": {
+        "url": "https://github.com/anchore/syft/releases/download/v1.55.0/syft_1.55.0_checksums.txt",
+        "sha256": "aba5ac8ee870bb93fd3b2058471ffe7e57492ba673b5e0bcbfca92006c2f4dc7"
+      },
+      "platforms": {
+        "darwin-amd64": {
+          "url": "https://github.com/anchore/syft/releases/download/v1.55.0/syft_1.55.0_darwin_amd64.tar.gz",
+          "archive_sha256": "e2e5831cbabaec9a36fe65c34755c1113982c842a685edce3ce0b54a0ded8003",
+          "archive_bytes": 30658726,
+          "binary_sha256": "8a16b906c8533cf975d64aef9f696f6c83c858a1de8732e58e3f0b57805484e1",
+          "binary_bytes": 90893701
+        },
+        "darwin-arm64": {
+          "url": "https://github.com/anchore/syft/releases/download/v1.55.0/syft_1.55.0_darwin_arm64.tar.gz",
+          "archive_sha256": "1217c258bd5eb91ef3189cf22a82e02f9cac07e4ce934350f428e93aff674625",
+          "archive_bytes": 28090287,
+          "binary_sha256": "55a63db797b2a060aa56c7a03991bb11084e01ed4e3863df12370d74e84b4821",
+          "binary_bytes": 85254439
+        },
+        "linux-amd64": {
+          "url": "https://github.com/anchore/syft/releases/download/v1.55.0/syft_1.55.0_linux_amd64.tar.gz",
+          "archive_sha256": "bb65249542db5fedeeb4d3f9b018b75e7264dbfbbb10486f044581a92f90490d",
+          "archive_bytes": 31198534,
+          "binary_sha256": "64c9631c3560336c55c549df0de08cd577d02399c9de807ac390960a4ed5c351",
+          "binary_bytes": 92582050
+        },
+        "linux-arm64": {
+          "url": "https://github.com/anchore/syft/releases/download/v1.55.0/syft_1.55.0_linux_arm64.tar.gz",
+          "archive_sha256": "929bd163db2d7cd2255d3bcb8967208079813d7b46b0c952f7b794d8e2c7d304",
+          "archive_bytes": 28485268,
+          "binary_sha256": "4f8068b25551a42991a292a42078519fdc739a97a6f6310e1dcf1367a258c1c2",
+          "binary_bytes": 85983394
+        }
+      }
+    },
+    "grype": {
+      "version": "0.121.0",
+      "release": "https://github.com/anchore/grype/releases/tag/v0.121.0",
+      "checksums": {
+        "url": "https://github.com/anchore/grype/releases/download/v0.121.0/grype_0.121.0_checksums.txt",
+        "sha256": "938761709760ee0e94ebca564a757b6658ab4efddc0d19ecc6ede12f22d2fdd0"
+      },
+      "platforms": {
+        "darwin-amd64": {
+          "url": "https://github.com/anchore/grype/releases/download/v0.121.0/grype_0.121.0_darwin_amd64.tar.gz",
+          "archive_sha256": "27eef17e42f0340af6582cdbc33ad18faf9f601c613ab81d2e1658a94cbc357f",
+          "archive_bytes": 32056607,
+          "binary_sha256": "5d9eca2933a90fd3cefab981dd2493a140cc76d61537152e71f3f2c212f16ab9",
+          "binary_bytes": 94581865
+        },
+        "darwin-arm64": {
+          "url": "https://github.com/anchore/grype/releases/download/v0.121.0/grype_0.121.0_darwin_arm64.tar.gz",
+          "archive_sha256": "7be39d3a0428c664ce0183e4aba31ed9accffce9eda7e7f6fa84e9c512285f27",
+          "archive_bytes": 29343080,
+          "binary_sha256": "4fc87cd48bc1d85bb46f6d61dc3ff8f9f2730e3e51cb94423adee1a3a47d11ba",
+          "binary_bytes": 88576235
+        },
+        "linux-amd64": {
+          "url": "https://github.com/anchore/grype/releases/download/v0.121.0/grype_0.121.0_linux_amd64.tar.gz",
+          "archive_sha256": "64e07133d3486115de647a66581461dccf5c732748a0a3119077395565f15519",
+          "archive_bytes": 32504199,
+          "binary_sha256": "bd511334178bc3002eb9eb58880f89e01e35f7fed7cfbe671171127a8afa3596",
+          "binary_bytes": 96047266
+        },
+        "linux-arm64": {
+          "url": "https://github.com/anchore/grype/releases/download/v0.121.0/grype_0.121.0_linux_arm64.tar.gz",
+          "archive_sha256": "86f570f75ca947ea3dd6486309232bcff6d78e44ba081ae75ab14eab72be3dae",
+          "archive_bytes": 29658981,
+          "binary_sha256": "e81fd2b6669c5a9ab7fee756e63e769cc40163310c11e546420b4d93e2118543",
+          "binary_bytes": 88998050
+        }
+      }
+    }
+  },
+  "builder": {
+    "version": "0.34.1",
+    "release": "https://github.com/moby/buildkit/releases/tag/v0.34.1",
+    "platforms": {
+      "linux-amd64": {
+        "url": "https://github.com/moby/buildkit/releases/download/v0.34.1/buildkit-v0.34.1.linux-amd64.tar.gz",
+        "archive_sha256": "a59539daf547fe0958efe2d07e41c0a6944e1112a66d7e519ec1cf5b673ef15b",
+        "archive_bytes": 92218962,
+        "binaries": {
+          "buildctl": {
+            "sha256": "8e64362dceba989827b23af567915feda10426ebd40611772318662e33bf2bfd",
+            "bytes": 34819330
+          },
+          "buildkitd": {
+            "sha256": "ca3c5d4fe1defc5df56631e179824f17ddd555f1fcf5057d14dfb87496baa8c3",
+            "bytes": 80918593
+          },
+          "buildkit-runc": {
+            "sha256": "2f5ed1fb8b0d57bf8442767d572229cb0ff29bdcfe279c6a51535a6a84f85eff",
+            "bytes": 13517072
+          }
+        }
+      },
+      "linux-arm64": {
+        "url": "https://github.com/moby/buildkit/releases/download/v0.34.1/buildkit-v0.34.1.linux-arm64.tar.gz",
+        "archive_sha256": "c8c97b84baf89dfe0ea85063ac24ad88eb909979ea476ce3ef9e8e11e60ebef8",
+        "archive_bytes": 85037687,
+        "binaries": {
+          "buildctl": {
+            "sha256": "289c95e81a30aa65bfd974dc9e6a86f19fb69dc208ef5b680028f56db25d6892",
+            "bytes": 32854526
+          },
+          "buildkitd": {
+            "sha256": "f2a9107e88004fd611d731d7145b7af20db42462a30424daecdf0e8b01cc1aa7",
+            "bytes": 75155036
+          },
+          "buildkit-runc": {
+            "sha256": "7e99edf13f38a924f0f567f7913b3f03105c0b2fc1b4c2edffa700adea189206",
+            "bytes": 12743512
+          }
+        }
+      }
+    }
+  },
+  "rootlesskit": {
+    "version": "3.3.0",
+    "release": "https://github.com/rootless-containers/rootlesskit/releases/tag/v3.3.0",
+    "checksums": {
+      "url": "https://github.com/rootless-containers/rootlesskit/releases/download/v3.3.0/SHA256SUMS",
+      "sha256": "2f4fc736e73d8e0c4368395ba4bdc651140fef573ee02b58e4deecfc88217df3"
+    },
+    "platforms": {
+      "linux-amd64": {
+        "url": "https://github.com/rootless-containers/rootlesskit/releases/download/v3.3.0/rootlesskit-x86_64.tar.gz",
+        "archive_sha256": "0e757c8f80510d764df8c9a5f169805580b48d02329f0a200900e261ecec27ed",
+        "archive_bytes": 23936825,
+        "binary_sha256": "97e05ca62b7b9602fdc5b22e43fefe5236cb797258877948ba94c0b7405925fd",
+        "binary_bytes": 23959613
+      },
+      "linux-arm64": {
+        "url": "https://github.com/rootless-containers/rootlesskit/releases/download/v3.3.0/rootlesskit-aarch64.tar.gz",
+        "archive_sha256": "7a159e79ef3e65e1f2702ab89537bb79de67b433428328b9626cf75786dbe43a",
+        "archive_bytes": 22016785,
+        "binary_sha256": "d8f319102726639c831fbefe4606c594b6582964a0a3478947d262f736dee78c",
+        "binary_bytes": 22712261
+      }
+    }
+  }
+}

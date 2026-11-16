@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "profile": "portable-gitops-v1",
+  "argocd": {
+    "connection": {
+      "origin": "https://argocd.example.test",
+      "token_env": "DEVSECOPS_ARGOCD_READ_TOKEN",
+      "ca_bundle": "/absolute/private/lab-ca.pem"
+    },
+    "project": "demo",
+    "application_namespace": "argocd",
+    "application": "mission",
+    "expected_revision": "0000000000000000000000000000000000000000"
+  },
+  "kubernetes": {
+    "connection": {
+      "origin": "https://kubernetes.example.test",
+      "token_env": "DEVSECOPS_KUBERNETES_READ_TOKEN",
+      "ca_bundle": "/absolute/private/lab-ca.pem"
+    },
+    "namespace": "demo",
+    "deployment": "mission",
+    "service": "mission"
+  },
+  "prometheus": {
+    "connection": {
+      "origin": "https://prometheus.example.test",
+      "ca_bundle": "/absolute/private/lab-ca.pem"
+    },
+    "job": "mission",
+    "instance": "mission.demo.svc.cluster.local:9090",
+    "window_seconds": 60,
+    "step_seconds": 15,
+    "max_sample_age_seconds": 45,
+    "minimum_samples": 3
+  }
+}

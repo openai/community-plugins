@@ -1,0 +1,9 @@
+ExecStart={ path=/usr/local/bin/rke2 ; argv[]=/usr/local/bin/rke2 server ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=123 ; code=(null) ; status=0/0 }
+Environment=
+EnvironmentFiles=/etc/default/rke2-server (ignore_errors=yes)
+EnvironmentFiles=/etc/sysconfig/rke2-server (ignore_errors=yes)
+EnvironmentFiles=/usr/local/lib/systemd/system/rke2-server.env (ignore_errors=yes)
+PassEnvironment=
+FragmentPath=/usr/local/lib/systemd/system/rke2-server.service
+DropInPaths=
+NeedDaemonReload=no

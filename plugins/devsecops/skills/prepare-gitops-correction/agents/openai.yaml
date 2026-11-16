@@ -1,0 +1,7 @@
+interface:
+  display_name: "Prepare GitOps Correction"
+  short_description: "Prepare a patch with scoped local validation."
+  default_prompt: "Use $prepare-gitops-correction to prepare and validate a patch against the frozen commit, trusted profile and supplied correction contract. Explain the evidence and remaining gaps."
+  brand_color: "#164E63"
+policy:
+  allow_implicit_invocation: true

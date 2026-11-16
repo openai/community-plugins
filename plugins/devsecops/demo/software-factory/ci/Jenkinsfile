@@ -1,0 +1,46 @@
+// Development recipe using the same Python commands as GitLab. The unfinished
+// canonical gate fails closed; this is not a successful build/push demonstration.
+// DEVSECOPS_PYTHON names the approved external dependency interpreter. -B keeps
+// the verified immutable plugin installation free of bytecode writes.
+pipeline {
+  agent { label 'devsecops-owned-linux' }
+  options { timeout(time: 35, unit: 'MINUTES'); disableConcurrentBuilds() }
+  stages {
+    stage('Prepare frozen mission inputs') {
+      steps {
+        sh '''set -eu
+          "$DEVSECOPS_PYTHON" -B "$DEVSECOPS_PLUGIN_ROOT/scripts/build_mission.py" prepare \
+            --repo "$WORKSPACE" --revision "$GIT_COMMIT" \
+            --wheel "$DEVSECOPS_OFFLINE_WHEEL" \
+            --base-repository "$DEVSECOPS_IRONBANK_PYTHON_REPOSITORY" \
+            --base-digest "$DEVSECOPS_IRONBANK_PYTHON_DIGEST" \
+            --architecture "$DEVSECOPS_BUILD_ARCHITECTURE" \
+            --output "$WORKSPACE/mission-prepared"
+        '''
+      }
+      post { always { archiveArtifacts artifacts: 'mission-prepared/prepared.json', allowEmptyArchive: true } }
+    }
+    stage('Build with verified Iron Bank base') {
+      steps {
+        // Trusted runner configuration must bind source.revision to GIT_COMMIT
+        // and select a new short owned runtime root. No credentials in JSON.
+        sh '''set -eu
+          "$DEVSECOPS_PYTHON" -B "$DEVSECOPS_PLUGIN_ROOT/scripts/build_mission.py" build \
+            --config "$DEVSECOPS_BUILD_CONFIG" \
+            --config-sha256 "$DEVSECOPS_BUILD_CONFIG_SHA256" \
+            --output "$WORKSPACE/mission-build" \
+            --runtime-root "$DEVSECOPS_BUILD_RUNTIME_ROOT" \
+            --expected-source-repository "$WORKSPACE" \
+            --expected-source-revision "$GIT_COMMIT"
+        '''
+      }
+      post { always { archiveArtifacts artifacts: 'mission-build/mission-operation.json,mission-build/mission/mission-build.json', allowEmptyArchive: true } }
+    }
+    stage('Canonical build qualification gate') {
+      steps {
+        sh '"$DEVSECOPS_PYTHON" -B "$DEVSECOPS_PLUGIN_ROOT/scripts/build_mission.py" build-gate --output "$WORKSPACE/mission-build-gate"'
+      }
+      post { always { archiveArtifacts artifacts: 'mission-build-gate/build-gate.json', allowEmptyArchive: true } }
+    }
+  }
+}

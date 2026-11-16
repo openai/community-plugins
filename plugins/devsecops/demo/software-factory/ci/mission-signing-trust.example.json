@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "kind": "mission-application-signing-trust",
+  "id": "owned-lab-application-signer",
+  "version": "1.0",
+  "issuer": "REPLACE_WITH_SELECTED_APPLICATION_ISSUER",
+  "authority": "owned-lab-application-key",
+  "public_key_sha256": "REPLACE_WITH_INDEPENDENTLY_SELECTED_PUBLIC_KEY_SHA256",
+  "origin": "https://staging.example.invalid",
+  "repository": "demo/mission",
+  "status": "active",
+  "valid_from": "REPLACE_WITH_KEY_POLICY_START_UTC",
+  "expires_at": "REPLACE_WITH_KEY_POLICY_EXPIRY_UTC",
+  "trust_reference": "REPLACE_WITH_OPERATOR_KEY_AUTHORITY_AND_VALIDITY_RECORD"
+}

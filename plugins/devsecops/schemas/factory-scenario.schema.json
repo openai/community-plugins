@@ -1,0 +1,125 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:devsecops:factory-scenario:1",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "scenario_id": {
+      "const": "ironbank-mission-recovery-v1"
+    },
+    "primary_profile": {
+      "const": "bigbang-live"
+    },
+    "required_cases": {
+      "const": [
+        "D1",
+        "D2",
+        "D3",
+        "D4",
+        "D5",
+        "D6"
+      ]
+    },
+    "phases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9-]{0,62}$"
+          },
+          "operation": {
+            "enum": [
+              "preflight",
+              "prepare",
+              "up",
+              "build-promote",
+              "baseline",
+              "inject",
+              "confirm-fault",
+              "native",
+              "validate-correction",
+              "deliver",
+              "probe",
+              "verify",
+              "case",
+              "reset",
+              "export",
+              "down",
+              "finalize"
+            ]
+          },
+          "depends_on": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9-]{0,62}$"
+            },
+            "minItems": 0,
+            "maxItems": 8,
+            "uniqueItems": true
+          },
+          "attempt": {
+            "enum": [
+              "primary",
+              "replay",
+              "shared"
+            ]
+          },
+          "case_ids": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "D1",
+                "D2",
+                "D3",
+                "D4",
+                "D5",
+                "D6"
+              ]
+            },
+            "minItems": 0,
+            "maxItems": 128,
+            "uniqueItems": true
+          },
+          "workflow": {
+            "enum": [
+              "review-kubernetes-change",
+              "diagnose-gitops-deployment",
+              "prepare-gitops-correction",
+              "verify-gitops-recovery"
+            ]
+          },
+          "timeout_seconds": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 7200
+          }
+        },
+        "required": [
+          "id",
+          "operation",
+          "depends_on",
+          "attempt",
+          "case_ids",
+          "timeout_seconds"
+        ]
+      },
+      "minItems": 1,
+      "maxItems": 100,
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "scenario_id",
+    "primary_profile",
+    "required_cases",
+    "phases"
+  ]
+}

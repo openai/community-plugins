@@ -1,0 +1,353 @@
+{
+  "template_version": "1",
+  "kind": "prepared-canonical-phase-cue-map",
+  "status": "preparation_only",
+  "canonical_qualification": false,
+  "scenario_id": "ironbank-mission-recovery-v1",
+  "scenario_reference": {
+    "path": "demo/software-factory/scenarios/ironbank-mission-recovery-v1/scenario.json",
+    "sha256": "7afdb8cf7cb6ea2d7d7f0698ba2786dca658593db741c1fe1b6a4d9b97821048"
+  },
+  "phase_order_is_canonical": true,
+  "historical_component_discussion": "The separately planned 00:10\u201300:30 synthetic local Helm discussion is outside canonical same-run evidence and has no canonical phase or recording cue here.",
+  "cue_notes": "start precedes the command. build-promote maps to ci and registry as two views of one actual phase. Expected phase IDs are planning data, not observed execution. Actual timings and identities remain blank.",
+  "phases": [
+    {
+      "phase_id": "preflight",
+      "depends_on": [],
+      "operation": "preflight",
+      "recording_cue_ids": [
+        "preflight"
+      ]
+    },
+    {
+      "phase_id": "prepare",
+      "depends_on": [
+        "preflight"
+      ],
+      "operation": "prepare",
+      "recording_cue_ids": [
+        "upstream_verification"
+      ]
+    },
+    {
+      "phase_id": "provision",
+      "depends_on": [
+        "prepare"
+      ],
+      "operation": "up",
+      "recording_cue_ids": [
+        "provisioning"
+      ]
+    },
+    {
+      "phase_id": "build-promote",
+      "depends_on": [
+        "provision"
+      ],
+      "operation": "build-promote",
+      "recording_cue_ids": [
+        "ci",
+        "registry"
+      ]
+    },
+    {
+      "phase_id": "primary-baseline",
+      "depends_on": [
+        "build-promote"
+      ],
+      "operation": "baseline",
+      "recording_cue_ids": [
+        "baseline"
+      ]
+    },
+    {
+      "phase_id": "primary-inject",
+      "depends_on": [
+        "primary-baseline"
+      ],
+      "operation": "inject",
+      "recording_cue_ids": [
+        "fault"
+      ]
+    },
+    {
+      "phase_id": "primary-confirm-fault",
+      "depends_on": [
+        "primary-inject"
+      ],
+      "operation": "confirm-fault",
+      "recording_cue_ids": [
+        "fault"
+      ]
+    },
+    {
+      "phase_id": "primary-review",
+      "depends_on": [
+        "primary-confirm-fault"
+      ],
+      "operation": "native",
+      "workflow": "review-kubernetes-change",
+      "recording_cue_ids": [
+        "review"
+      ]
+    },
+    {
+      "phase_id": "primary-diagnose",
+      "depends_on": [
+        "primary-review"
+      ],
+      "operation": "native",
+      "workflow": "diagnose-gitops-deployment",
+      "recording_cue_ids": [
+        "correction"
+      ]
+    },
+    {
+      "phase_id": "primary-correction",
+      "depends_on": [
+        "primary-diagnose"
+      ],
+      "operation": "native",
+      "workflow": "prepare-gitops-correction",
+      "recording_cue_ids": [
+        "correction"
+      ]
+    },
+    {
+      "phase_id": "primary-validate-correction",
+      "depends_on": [
+        "primary-correction"
+      ],
+      "operation": "validate-correction",
+      "recording_cue_ids": [
+        "correction"
+      ]
+    },
+    {
+      "phase_id": "primary-deliver",
+      "depends_on": [
+        "primary-validate-correction"
+      ],
+      "operation": "deliver",
+      "recording_cue_ids": [
+        "correction"
+      ]
+    },
+    {
+      "phase_id": "primary-probes",
+      "depends_on": [
+        "primary-deliver"
+      ],
+      "operation": "probe",
+      "recording_cue_ids": [
+        "recovery"
+      ]
+    },
+    {
+      "phase_id": "primary-recovery",
+      "depends_on": [
+        "primary-probes"
+      ],
+      "operation": "native",
+      "workflow": "verify-gitops-recovery",
+      "recording_cue_ids": [
+        "recovery"
+      ]
+    },
+    {
+      "phase_id": "primary-verify",
+      "depends_on": [
+        "primary-recovery"
+      ],
+      "operation": "verify",
+      "recording_cue_ids": [
+        "recovery"
+      ]
+    },
+    {
+      "phase_id": "platform-dependency",
+      "depends_on": [
+        "primary-verify"
+      ],
+      "operation": "case",
+      "recording_cue_ids": [
+        "platform"
+      ]
+    },
+    {
+      "phase_id": "supply-chain-controls",
+      "depends_on": [
+        "platform-dependency"
+      ],
+      "operation": "case",
+      "recording_cue_ids": [
+        "supply_chain"
+      ]
+    },
+    {
+      "phase_id": "evidence-gaps",
+      "depends_on": [
+        "supply-chain-controls"
+      ],
+      "operation": "case",
+      "recording_cue_ids": [
+        "missing_evidence"
+      ]
+    },
+    {
+      "phase_id": "reset",
+      "depends_on": [
+        "evidence-gaps"
+      ],
+      "operation": "reset",
+      "recording_cue_ids": [
+        "reset"
+      ]
+    },
+    {
+      "phase_id": "replay-baseline",
+      "depends_on": [
+        "reset"
+      ],
+      "operation": "baseline",
+      "recording_cue_ids": [
+        "bounded_replay"
+      ]
+    },
+    {
+      "phase_id": "replay-inject",
+      "depends_on": [
+        "replay-baseline"
+      ],
+      "operation": "inject",
+      "recording_cue_ids": [
+        "bounded_replay"
+      ]
+    },
+    {
+      "phase_id": "replay-confirm-fault",
+      "depends_on": [
+        "replay-inject"
+      ],
+      "operation": "confirm-fault",
+      "recording_cue_ids": [
+        "bounded_replay"
+      ]
+    },
+    {
+      "phase_id": "replay-review",
+      "depends_on": [
+        "replay-confirm-fault"
+      ],
+      "operation": "native",
+      "workflow": "review-kubernetes-change",
+      "recording_cue_ids": [
+        "replay_review"
+      ]
+    },
+    {
+      "phase_id": "replay-diagnose",
+      "depends_on": [
+        "replay-review"
+      ],
+      "operation": "native",
+      "workflow": "diagnose-gitops-deployment",
+      "recording_cue_ids": [
+        "replay_correction"
+      ]
+    },
+    {
+      "phase_id": "replay-correction",
+      "depends_on": [
+        "replay-diagnose"
+      ],
+      "operation": "native",
+      "workflow": "prepare-gitops-correction",
+      "recording_cue_ids": [
+        "replay_correction"
+      ]
+    },
+    {
+      "phase_id": "replay-validate-correction",
+      "depends_on": [
+        "replay-correction"
+      ],
+      "operation": "validate-correction",
+      "recording_cue_ids": [
+        "replay_correction"
+      ]
+    },
+    {
+      "phase_id": "replay-deliver",
+      "depends_on": [
+        "replay-validate-correction"
+      ],
+      "operation": "deliver",
+      "recording_cue_ids": [
+        "replay_correction"
+      ]
+    },
+    {
+      "phase_id": "replay-probes",
+      "depends_on": [
+        "replay-deliver"
+      ],
+      "operation": "probe",
+      "recording_cue_ids": [
+        "replay_recovery"
+      ]
+    },
+    {
+      "phase_id": "replay-recovery",
+      "depends_on": [
+        "replay-probes"
+      ],
+      "operation": "native",
+      "workflow": "verify-gitops-recovery",
+      "recording_cue_ids": [
+        "replay_recovery"
+      ]
+    },
+    {
+      "phase_id": "replay-verify",
+      "depends_on": [
+        "replay-recovery"
+      ],
+      "operation": "verify",
+      "recording_cue_ids": [
+        "replay_recovery"
+      ]
+    },
+    {
+      "phase_id": "export",
+      "depends_on": [
+        "replay-verify"
+      ],
+      "operation": "export",
+      "recording_cue_ids": [
+        "export"
+      ]
+    },
+    {
+      "phase_id": "cleanup",
+      "depends_on": [
+        "export"
+      ],
+      "operation": "down",
+      "recording_cue_ids": [
+        "cleanup"
+      ]
+    },
+    {
+      "phase_id": "finalize",
+      "depends_on": [
+        "cleanup"
+      ],
+      "operation": "finalize",
+      "recording_cue_ids": [
+        "terminal"
+      ]
+    }
+  ]
+}

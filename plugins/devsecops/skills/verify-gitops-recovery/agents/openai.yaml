@@ -1,0 +1,4 @@
+interface:
+  display_name: "Verify GitOps Recovery"
+  short_description: "Check recovery evidence and unresolved proof gaps"
+  default_prompt: "Use $verify-gitops-recovery to evaluate the supplied recovery evidence and approved contract, explain measured conditions, and preserve missing provenance or stale-data gaps."

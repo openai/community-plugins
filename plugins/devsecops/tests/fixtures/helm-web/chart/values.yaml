@@ -1,0 +1,50 @@
+replicaCount: 2
+image:
+  repository: registry.example.invalid/platform/web
+  tag: ""
+  digest: sha256:1111111111111111111111111111111111111111111111111111111111111111
+labels:
+  team: platform
+  environment: staging
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 8080
+serviceAccount:
+  automountServiceAccountToken: false
+securityContext:
+  privileged: false
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  runAsUser: 10001
+  capabilities:
+    drop: [ALL]
+podSecurityContext:
+  runAsNonRoot: true
+  seccompProfile:
+    type: RuntimeDefault
+resourcesEnabled: true
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 256Mi
+probes:
+  readiness: true
+  liveness: true
+rbac:
+  enabled: true
+  resources: [configmaps]
+  verbs: [get]
+networkPolicy:
+  enabled: true
+  ingressNamespace: ingress-system
+persistence:
+  enabled: true
+  size: 1Gi
+secret:
+  enabled: false
+  token: ""

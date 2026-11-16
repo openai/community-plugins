@@ -1,0 +1,5 @@
+# Synthetic fixture only. These are not customer deployment values.
+replicaCount: 2
+labels:
+  team: platform
+  environment: staging
