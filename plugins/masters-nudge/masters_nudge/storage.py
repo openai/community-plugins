@@ -157,6 +157,20 @@ class Journal:
             pass
         raise ToolFault("input_size", "回合識別碼或任務文字超出儲存上限")
 
+    @staticmethod
+    def _make_round_space(db):
+        if db.execute("SELECT COUNT(*) FROM work_rounds").fetchone()[0] < ROUND_LIMIT:
+            return True
+        # A prior fault closes the round. An open round can still receive an edit,
+        # even if it has no review in flight at the moment.
+        return db.execute(
+            "DELETE FROM work_rounds WHERE round_id = ("
+            " SELECT r.round_id FROM work_rounds r WHERE r.fault IS NOT NULL AND NOT EXISTS("
+            "  SELECT 1 FROM work_reviews w WHERE w.round_id=r.round_id AND w.state<>'sent'"
+            " ) ORDER BY r.expires,r.round_id LIMIT 1"
+            ")",
+        ).rowcount == 1
+
     def start_round(self, session: SessionRef, request: str, goal: str = ""):
         for value, limit in ((session.session_id, ID_MAX_BYTES), (session.turn_id, ID_MAX_BYTES),
                              (request, TASK_MAX_BYTES), (goal, TASK_MAX_BYTES)):
@@ -177,7 +191,7 @@ class Journal:
             current = self._current(db, session)
             if current and (not observed or current["round_id"] != observed["round_id"]):
                 fault = ToolFault("busy", "另一個提示已更新此會話")
-            elif not current and db.execute("SELECT COUNT(*) FROM work_rounds").fetchone()[0] >= ROUND_LIMIT:
+            elif not current and not self._make_round_space(db):
                 fault = ToolFault("busy", "Nudge 的會話工作空間已滿")
             else:
                 if current:

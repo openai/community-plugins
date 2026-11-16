@@ -1,5 +1,9 @@
 # Verification
 
+## 0.6.7 session capacity
+
+On Windows, the installed package accepted a new session against a copy of a real database with all 64 slots occupied. It reclaimed one closed round, preserved open rounds, and returned feedback from a live Provider on a synthetic Git change. The regression tests also verify that a full store with no reclaimable round still reports busy.
+
 ## 0.6.6 capacity update
 
 The Nudge master suite passed on Windows against the submitted package and source receipt. It covers summary overwrite, storage pressure, interruption and delivery ordering, and a 128 MiB legacy database that rolls back a failed upgrade and can review again after retrying.

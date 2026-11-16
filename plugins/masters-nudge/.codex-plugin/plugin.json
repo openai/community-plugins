@@ -1,6 +1,6 @@
 {
   "name": "masters-nudge",
-  "version": "0.6.6",
+  "version": "0.6.7",
   "description": "Optional read-only structural second opinions after Codex code edits.",
   "author": {
     "name": "shihchengwei-lab",

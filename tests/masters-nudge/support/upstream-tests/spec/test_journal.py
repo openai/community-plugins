@@ -64,6 +64,32 @@ class JournalTests(unittest.TestCase):
                     journal.begin(self.session)
                 self.assertIsNotNone(journal.begin(other))
 
+    def test_new_session_reclaims_oldest_closed_round_only_at_capacity(self):
+        journal = Journal(self.root)
+        closed = [SessionRef(f"closed-{i}", "t", str(self.root)) for i in range(2)]
+        newcomer = SessionRef("newcomer", "t", str(self.root))
+        with mock.patch("masters_nudge.storage.ROUND_LIMIT", 4):
+            for i, session in enumerate(closed):
+                with mock.patch("masters_nudge.storage.time.time", return_value=100 + i):
+                    journal.start_round(session, "task")
+                    journal.interrupt(session)
+            with mock.patch("masters_nudge.storage.time.time", return_value=102):
+                journal.start_round(self.session, "task")
+                attempt, task = journal.begin(self.session)
+                idle = SessionRef("open-without-review", "t", str(self.root))
+                journal.start_round(idle, "task")
+                with journal.connect() as db:
+                    self.assertEqual(db.execute("SELECT count(*) FROM work_rounds WHERE fault IS NOT NULL").fetchone()[0], 2)
+                journal.start_round(newcomer, "task")
+                with journal.connect() as db:
+                    self.assertEqual({row["session"] for row in db.execute("SELECT session FROM work_rounds")},
+                                     {closed[1].session_id, self.session.session_id, idle.session_id, newcomer.session_id})
+                self.assertTrue(journal.finish(self.session, attempt, task, "silence"))
+                fresh_attempt, fresh_task = journal.begin(newcomer)
+                self.assertTrue(journal.finish(newcomer, fresh_attempt, fresh_task, "silence"))
+                with self.assertRaisesRegex(ToolFault, "找不到"):
+                    journal.begin(closed[0])
+
     def test_full_legacy_database_cutover_rolls_back_then_can_review(self):
         path = self.root / "feedback.sqlite3"
         db = sqlite3.connect(path)
