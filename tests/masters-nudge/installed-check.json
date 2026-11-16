@@ -1,0 +1,27 @@
+{
+  "status": "passed_on_tested_host",
+  "plugin_version": "0.6.2+codex.20261012",
+  "source_commit": "6ccceb895ff393bffb84b3bbe4bc3f194cd030db",
+  "host": {
+    "os": "Windows",
+    "actor_cli": "0.162.0-alpha.17.2",
+    "windows_sandbox": "mxc"
+  },
+  "models": {
+    "actor": "gpt-6.1-sol",
+    "provider": "gpt-6.1-sol",
+    "effort": "medium"
+  },
+  "installation": "Fresh local-marketplace install with reviewed installed hook hashes; isolated user data; synthetic Git project.",
+  "verification": "pending -> finish(job) -> done",
+  "outcomes": {
+    "feedback": 1,
+    "feedback_delivered": 1,
+    "silence": 1,
+    "faults": 0,
+    "post_tool_use_completed": 2
+  },
+  "delivered_context": "Masters’ Nudge\nOBSERVED: job.py@5: status + is_done 雙寫\nWHY: 雙份完成狀態可能分歧，使標籤不一致\nSTRUCTURE: status 為唯一完成來源；finish 更新 status，label 由 status 推導\nREQUIRED: label: pending ->finish-> done\nFirst check REQUIRED against the latest task contract and use it to determine the delivered behavior. When adopting STRUCTURE, implement the stated data and responsibility relation and address its affected uses; verify that the actual results satisfy the task requirements.",
+  "adoption_summary": "Removed duplicated is_done; finish(job) writes status and label(job) reads status.",
+  "final_code": "def new_job():\n    return {\"status\": \"pending\"}\n\ndef finish(job):\n    job[\"status\"] = \"done\"\n\n\ndef label(job):\n    return \"done\" if job[\"status\"] == \"done\" else \"pending\"\n"
+}

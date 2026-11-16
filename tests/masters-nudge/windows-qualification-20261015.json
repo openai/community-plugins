@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-15",
+  "plugin_version": "0.6.4+codex.20261015",
+  "source_commit": "cb29b3db50db817eba07d6cc54cad9f52c577f39",
+  "supported_installed_platform": "Windows 11 x64",
+  "windows_build": "10.0.26300",
+  "python": "3.12.10",
+  "actor_and_provider_cli": "codex-cli 0.162.0-alpha.17.2",
+  "windows_sandbox": "mxc",
+  "model": "gpt-6.1-sol",
+  "actor_and_provider_effort": "medium",
+  "installation": "Fresh isolated Codex profile; local marketplace containing exact committed package blobs; all three hooks explicitly trusted.",
+  "normal": {
+    "turn_status": "completed",
+    "behavior_verification": "pass",
+    "outcomes": [
+      {
+        "outcome": "feedback",
+        "delivered": true
+      },
+      {
+        "outcome": "silence",
+        "delivered": false
+      }
+    ],
+    "unresolved_reviews": 0,
+    "integrity": "ok",
+    "provider_processes_remaining": 0,
+    "elapsed_seconds": 40.281,
+    "observed_followup": "Removed is_done; status became the sole completion source."
+  },
+  "interruption_and_resume": {
+    "interrupted_turn_status": "interrupted",
+    "actual_provider_process_observed_before_interrupt": true,
+    "provider_processes_after_interrupt": 0,
+    "interrupted_outcomes": [
+      {
+        "outcome": "fault",
+        "delivered": false,
+        "fault": {
+          "kind": "interrupted",
+          "detail": "User interrupted turn"
+        }
+      }
+    ],
+    "resume_in_same_thread": true,
+    "resumed_turn_status": "completed",
+    "resumed_outcomes": [
+      {
+        "outcome": "feedback",
+        "delivered": true
+      },
+      {
+        "outcome": "silence",
+        "delivered": false
+      }
+    ],
+    "behavior_verification": "pass",
+    "old_interrupted_records_unchanged": true,
+    "unresolved_reviews": 0,
+    "integrity": "ok",
+    "provider_processes_remaining": 0,
+    "original_post_tool_use_completed": true,
+    "original_post_tool_use_completed_after_interrupted_turn": true,
+    "elapsed_seconds": 58.156
+  },
+  "tested_package_sha256": {
+    ".mcp.json": "32098128a64e66e6a5e6f65ff7e89a663b2528eb5c0431769ced71a61ef8ec20",
+    "buddy-prompt.txt": "6c058c7110caac5cf86f96a457821d60feb481ef8fbf25ca52b39e7b6e6109a3",
+    "hook_entry.py": "8ba6735af4d3004fbdd5cf009646d040b47fd94adcadf1d56716d5c1cebb1ee3",
+    "launch.py": "a3a0ca6b90f5691002f4be984bc2b13dbe5adce3f3c61c9ef49d2203ec3158b0",
+    "LICENSE": "e47f465cb04d113ef607aa7653f27d435eedd541b5f0bdfe9d8e7bd9ec967c61",
+    "masters_nudge_cli.py": "64bd8ed0d7e16be5e70f8b1ace583751c2044bb95c756c0f801457c6c4261e69",
+    "mcp_entry.py": "3d70dbe215d8e2e2eae4c341678bb82fee2c0a2147ecac1bd2142b99d14054a6",
+    "nudge-schema.json": "ce3c0e0a74fd63dd5b01bf0d88c798c223f27bb9110dc7b34137f7cb1ddac0e0",
+    "README.md": "17e5ef1b12b3460fd2e94866beec08f593bbf8a6e123efd9a6d3c381287f42f4",
+    ".codex-plugin/plugin.json": "5d155799fb348bef48a70c84de57f928b52eb36a88317910db54ceb38198317b",
+    "hooks/hooks.json": "892a34396af80f9f6d6cbf87e78ef159b022c6a09893446b4490502ab451f5d3",
+    "masters_nudge/codex_adapter.py": "3b7f89df4cbf59f8aff3b709994cdfb4ba6ae849c6d893bdb16ba73005305fe0",
+    "masters_nudge/contracts.py": "eb9909553c07ccdcbd5f5a8303798c4ea7b26df4bf8cec12ecbe940bf69208f6",
+    "masters_nudge/core.py": "d2e20be6f4f3ddb5905e18955be145f3ec9d0dbba8ec0f7b5b7975cf77efba03",
+    "masters_nudge/evidence.py": "3031711639a2eb000b661d3bdc1bf96f2e7a116a42b3bc7ce17cccba5e2cf683",
+    "masters_nudge/management.py": "5c7b95181a8d270731d4d6492fdb050292ff53f2898d46fa414dff27e2b13e0a",
+    "masters_nudge/plugin_inventory.py": "d19f1a6d535707a2a4a9feff1c77b7355d4b99d418ab299bc26964284c2ed141",
+    "masters_nudge/prompting.py": "0075b234602db26ec467231678a4ce7c1a216920f487b2ed1c53d0b13be9e1ae",
+    "masters_nudge/providers.py": "626dd0061ad36f99bb2cd15899281786c633adbedd1677969e1f89412ede0fee",
+    "masters_nudge/provider_contract.py": "ee797b2cce604adaae1855b4890ac36cc10a45a1adafc20e8033031a19a9e12e",
+    "masters_nudge/read_only_repo_mcp.py": "cbdb981751f7368f27427c73c39a35b83ee5f503030a796e0300115c10a67884",
+    "masters_nudge/runtime.py": "b5a082ab75c734a8cda302cbbaf7c3dab5ea3934d12dee32df77ac8f185ef4cd",
+    "masters_nudge/settings.py": "b4904c5eab5d4a5e7d9e3bfa4a3992af675635fbdf4932e49861d07774481729",
+    "masters_nudge/storage.py": "32040bc554013fd575c83d16ef531da6b16234890033342f1c9014d3a39578d2",
+    "masters_nudge/windows_process.py": "9a208b268e189a9d24694ef056cb04e08d6b1052771f891b23acfe292a07c509",
+    "masters_nudge/__init__.py": "0baf124d1551a8c96c40950d10f06beeeb07d56b77097d65377d14570eccf413",
+    "skills/doctor/SKILL.md": "78b719fac97bdca8b4167193f7de648ea507292bdd26ae4d212f934cfa3a3062",
+    "skills/recent-nudges/SKILL.md": "3f968bb5cca49257c5fc6477c4ec4a345bd9ff4cef26be0c7fccc5ed82221a5d",
+    "skills/select-provider/SKILL.md": "1843464ef6aadc934d747be8b7f3503567bc7b1d2852506d1eb3b45cfdfdac9c"
+  },
+  "offline_lifecycle_cases": "tests/spec/test_lifecycle.py",
+  "private_materials": "Raw transcripts, process identities, settings and authentication remain local and are excluded."
+}
