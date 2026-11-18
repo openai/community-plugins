@@ -1,6 +1,6 @@
 # Fork Chat Fixed
 
-A Codex plugin for local desktop chats. Its `UserPromptSubmit` hook calls the local Codex App Server; the trigger is handled before a model turn. There are no skills or background services.
+Fixes Fork Chat for Codex desktop users signed in with an API key but not a ChatGPT account. In that mode, the built-in Fork Chat can remain stuck at `execution-config-loading` because its Statsig sidebar gate is unavailable. This plugin uses a `UserPromptSubmit` hook to call the local Codex App Server directly, before a model turn. There are no skills or background services.
 
 ## Commands
 
