@@ -1,0 +1,29 @@
+{
+  "name": "forkbuggedchat",
+  "version": "1.0.4",
+  "description": "Fork Codex chats with exact prompt commands, including a new Git worktree.",
+  "requires_local_executor": true,
+  "author": {
+    "name": "Dandelion011",
+    "url": "https://github.com/Dandelion011"
+  },
+  "homepage": "https://github.com/Dandelion011/codex-fork-chat-fixed",
+  "repository": "https://github.com/Dandelion011/codex-fork-chat-fixed",
+  "license": "Apache-2.0",
+  "interface": {
+    "displayName": "Fork Chat Fixed",
+    "shortDescription": "Fork chats directly without a model turn",
+    "longDescription": "Send forkchatfixed to fork locally, or forkchatinnewworktreefixed to create a Git worktree and fork there.",
+    "developerName": "Dandelion011",
+    "category": "Productivity",
+    "websiteURL": "https://github.com/Dandelion011/codex-fork-chat-fixed",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "forkchatfixed",
+      "forkchatinnewworktreefixed"
+    ]
+  }
+}

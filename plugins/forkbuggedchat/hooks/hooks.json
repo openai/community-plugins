@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$PLUGIN_ROOT/hooks/fork.mjs\"",
+            "commandWindows": "& node (Join-Path $env:PLUGIN_ROOT 'hooks\\fork.mjs')",
+            "timeout": 120,
+            "statusMessage": "分叉聊天"
+          }
+        ]
+      }
+    ]
+  }
+}
