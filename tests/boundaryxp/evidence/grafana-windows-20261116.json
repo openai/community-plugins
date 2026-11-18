@@ -1,0 +1,79 @@
+{
+  "date": "2026-11-16",
+  "platform": "win32-x64",
+  "node": "24.19.0",
+  "baseline_commit": "6ab9f2066b527e6bc295f638c5b74553a4bf5e05",
+  "candidate_commit": "b66b5a1ba796bc751ebf8ad51faa0184ac8e73f6",
+  "compared_grafana_files": 124,
+  "changed_grafana_files": [],
+  "identical_failure_names": true,
+  "baseline": {
+    "tests": 32,
+    "passed": 16,
+    "failed": 10,
+    "skipped": 6
+  },
+  "candidate": {
+    "tests": 32,
+    "passed": 16,
+    "failed": 10,
+    "skipped": 6
+  },
+  "failing_tests": [
+    "an isolated package copy serves the exact five-tool contract",
+    "unactivated packs, invented references, unsafe input, and invalid windows fail closed",
+    "live mode cannot start without independently activated authority",
+    "the documented Prometheus and both PostgreSQL enrollment forms really compile",
+    "the review patch reverses exactly to the recorded pre-qualification source baseline",
+    "synthetic HTTP: copied package runs all five signed packs through real MCP stdio and worker transport",
+    "synthetic HTTP: packaged reports preserve empty, stale, partial, denied, drifted, and rate-limited states",
+    "synthetic HTTP: current/baseline collection and sensitive provider text remain bounded",
+    "synthetic HTTP: conflicting signed scalar claims produce a contradictory report",
+    "synthetic HTTP: native Tempo and Loki responses cannot bypass enrolled scope or shape"
+  ],
+  "url_guard": {
+    "windows_file_url_comparison_equal": false
+  },
+  "permissions": {
+    "requested": "0700",
+    "observed": "666",
+    "rejects_owner_only_guard": true,
+    "cli_exit": 1,
+    "cli_diagnostic": {
+      "code": "AUTHORITY_OPERATION_REJECTED",
+      "diagnostic_code": "UNSAFE_MODE",
+      "diagnostic_function": "at assertPrivateDirectory",
+      "schemaVersion": "1.0.0",
+      "status": "ERROR"
+    },
+    "enrollment_exit": 1,
+    "enrollment_diagnostic": {
+      "code": "AUTHORITY_OPERATION_REJECTED",
+      "diagnostic_code": "Error",
+      "diagnostic_function": "at writeNoClobber",
+      "schemaVersion": "1.0.0",
+      "status": "ERROR"
+    }
+  },
+  "source_provenance_with_child_git_lf": {
+    "tests": 4,
+    "passed": 4,
+    "failed": 0,
+    "skipped": 0
+  },
+  "logs": [
+    {
+      "path": "grafana-baseline.tap",
+      "sha256": "ea5e58c088421845c1b688327c6403b5519be9514e38b8057da520bbe1f690c6"
+    },
+    {
+      "path": "grafana-candidate.tap",
+      "sha256": "6dcbd34c5a2921d96f5d366ecfed9f9600e695b816171d35f2ff2c6ead06700a"
+    },
+    {
+      "path": "grafana-source-lf.tap",
+      "sha256": "3dbb4d03fb93aa63bc23de81c5d22b8fa4daec9426f677c0917a8b02e2d67cc2"
+    }
+  ],
+  "scope": "No Grafana product or security-check modifications; diagnostic logging was applied only to a disposable assembled probe. No BoundaryXP original Core source or existing user data is included."
+}

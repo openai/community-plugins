@@ -1,0 +1,398 @@
+TAP version 13
+# Subtest: real Grafana12.1 legacy Viewer annotation-write grants are rejected before credential storage
+ok 1 - real Grafana12.1 legacy Viewer annotation-write grants are rejected before credential storage # SKIP opt in with GRAFANA_E2E_AUTH=1; starts a separate disposable authenticated Docker stack
+  ---
+  duration_ms: 1.1828
+  type: 'test'
+  ...
+# Subtest: real Grafana Viewer-token discovery, signed-worker Bearer access, and revocation (isolated scripted CLI storage)
+ok 2 - real Grafana Viewer-token discovery, signed-worker Bearer access, and revocation (isolated scripted CLI storage) # SKIP opt in with GRAFANA_E2E_AUTH=1; starts a separate disposable authenticated Docker stack
+  ---
+  duration_ms: 0.227
+  type: 'test'
+  ...
+# Subtest: actual Codex installs the package and starts its five-tool MCP with a nonsecret launcher allowlist
+ok 3 - actual Codex installs the package and starts its five-tool MCP with a nonsecret launcher allowlist # SKIP Set GRAFANA_E2E_INSTALLED_CLIENT=1 for the disposable actual Codex client test
+  ---
+  duration_ms: 1.2255
+  type: 'test'
+  ...
+# Subtest: real Docker Grafana: copied package executes all five signed packs and all 17 reviewed operations
+ok 4 - real Docker Grafana: copied package executes all five signed packs and all 17 reviewed operations # SKIP opt in with npm run test:grafana:live (starts disposable local Docker containers)
+  ---
+  duration_ms: 1.2185
+  type: 'test'
+  ...
+# Subtest: the plugin guide features the verified fast-start 8× demo and full walkthrough
+ok 5 - the plugin guide features the verified fast-start 8× demo and full walkthrough
+  ---
+  duration_ms: 139.3726
+  type: 'test'
+  ...
+# Subtest: the shipped keychain loader rejects unsupported platforms and altered assets
+ok 6 - the shipped keychain loader rejects unsupported platforms and altered assets
+  ---
+  duration_ms: 11260.082
+  type: 'test'
+  ...
+# Subtest: the pinned macOS arm64 broker creates, rotates, reads, and deletes one disposable credential
+ok 7 - the pinned macOS arm64 broker creates, rotates, reads, and deletes one disposable credential # SKIP Opt in with GRAFANA_E2E_KEYCHAIN=1; this writes one disposable OS Keychain item
+  ---
+  duration_ms: 1.6058
+  type: 'test'
+  ...
+# Subtest: broker handoff authority admits only the exact disposable revision-one UUID reference
+ok 8 - broker handoff authority admits only the exact disposable revision-one UUID reference
+  ---
+  duration_ms: 3.8408
+  type: 'test'
+  ...
+# Subtest: real PTY CLI → macOS Keychain → shared-profile broker → packaged MCP handoff
+ok 9 - real PTY CLI → macOS Keychain → shared-profile broker → packaged MCP handoff # SKIP opt in with GRAFANA_E2E_NATIVE_PROFILE=1; requires an absent real shared-profile store and creates/deletes one disposable macOS Keychain profile
+  ---
+  duration_ms: 0.3346
+  type: 'test'
+  ...
+# Subtest: the distributable is self-contained, hash-pinned, and syntactically valid
+ok 10 - the distributable is self-contained, hash-pinned, and syntactically valid
+  ---
+  duration_ms: 4669.4529
+  type: 'test'
+  ...
+# Subtest: the launcher forwards only the reviewed non-secret settings
+ok 11 - the launcher forwards only the reviewed non-secret settings
+  ---
+  duration_ms: 2481.2442
+  type: 'test'
+  ...
+# Subtest: an isolated package copy serves the exact five-tool contract
+not ok 12 - an isolated package copy serves the exact five-tool contract
+  ---
+  duration_ms: 1939.9253
+  type: 'test'
+  location: 'E:\\boundx\\tmp\\bxp-grafana-candidate-20261116\\tests\\grafana-observability\\packaged.test.mjs:105:1'
+  failureType: 'testCodeFailure'
+  error: 'MCP server closed (0)'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    ChildProcess.<anonymous> (file:///<CANDIDATE>/tests/grafana-observability/helpers/mcp-client.mjs:124:20)
+    Object.onceWrapper (node:events:631:26)
+    ChildProcess.emit (node:events:509:28)
+    maybeClose (node:internal/child_process:1141:16)
+    ChildProcess._handle.onexit (node:internal/child_process:306:5)
+  ...
+# Subtest: unactivated packs, invented references, unsafe input, and invalid windows fail closed
+not ok 13 - unactivated packs, invented references, unsafe input, and invalid windows fail closed
+  ---
+  duration_ms: 1673.016
+  type: 'test'
+  location: 'E:\\boundx\\tmp\\bxp-grafana-candidate-20261116\\tests\\grafana-observability\\packaged.test.mjs:137:1'
+  failureType: 'testCodeFailure'
+  error: 'MCP server closed (0)'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    ChildProcess.<anonymous> (file:///<CANDIDATE>/tests/grafana-observability/helpers/mcp-client.mjs:124:20)
+    Object.onceWrapper (node:events:631:26)
+    ChildProcess.emit (node:events:509:28)
+    maybeClose (node:internal/child_process:1141:16)
+    ChildProcess._handle.onexit (node:internal/child_process:306:5)
+  ...
+# Subtest: live mode cannot start without independently activated authority
+not ok 14 - live mode cannot start without independently activated authority
+  ---
+  duration_ms: 2076.5294
+  type: 'test'
+  location: 'E:\\boundx\\tmp\\bxp-grafana-candidate-20261116\\tests\\grafana-observability\\packaged.test.mjs:183:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    0 !== 1
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 1
+  actual: 0
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///<CANDIDATE>/tests/grafana-observability/packaged.test.mjs:192:12)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: every generated entrypoint rejects source tampering before execution
+    # Subtest: mcp/server.mjs
+    ok 1 - mcp/server.mjs
+      ---
+      duration_ms: 1430.2784
+      type: 'test'
+      ...
+    # Subtest: workers/provider-worker.mjs
+    ok 2 - workers/provider-worker.mjs
+      ---
+      duration_ms: 1085.4593
+      type: 'test'
+      ...
+    # Subtest: scripts/observabilityctl.mjs
+    ok 3 - scripts/observabilityctl.mjs
+      ---
+      duration_ms: 490.6343
+      type: 'test'
+      ...
+    # Subtest: scripts/grafana-authorityctl.mjs
+    ok 4 - scripts/grafana-authorityctl.mjs
+      ---
+      duration_ms: 1092.2681
+      type: 'test'
+      ...
+    1..4
+ok 15 - every generated entrypoint rejects source tampering before execution
+  ---
+  duration_ms: 4099.948
+  type: 'test'
+  ...
+# Subtest: package validation rejects missing, extra, symlinked, and altered native assets
+ok 16 - package validation rejects missing, extra, symlinked, and altered native assets
+  ---
+  duration_ms: 1992.4295
+  type: 'test'
+  ...
+# Subtest: both shipped administration CLIs expose working credential-safe help
+ok 17 - both shipped administration CLIs expose working credential-safe help
+  ---
+  duration_ms: 2978.1178
+  type: 'test'
+  ...
+# Subtest: the documented Prometheus and both PostgreSQL enrollment forms really compile
+not ok 18 - the documented Prometheus and both PostgreSQL enrollment forms really compile
+  ---
+  duration_ms: 1479.7747
+  type: 'test'
+  location: 'E:\\boundx\\tmp\\bxp-grafana-candidate-20261116\\tests\\grafana-observability\\packaged.test.mjs:279:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    {"code":"AUTHORITY_OPERATION_REJECTED","schemaVersion":"1.0.0","status":"ERROR"}
+    
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///<CANDIDATE>/tests/grafana-observability/packaged.test.mjs:291:12)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: saved-panel enrollment rejects unscoped, executable, expanded, or unattested input
+ok 19 - saved-panel enrollment rejects unscoped, executable, expanded, or unattested input
+  ---
+  duration_ms: 4733.207
+  type: 'test'
+  ...
+# Subtest: vendored source and every generated runtime file have deterministic matching receipts
+ok 20 - vendored source and every generated runtime file have deterministic matching receipts
+  ---
+  duration_ms: 707.9726
+  type: 'test'
+  ...
+# Subtest: source archive corruption, links, and unsafe paths fail closed
+ok 21 - source archive corruption, links, and unsafe paths fail closed
+  ---
+  duration_ms: 343.0647
+  type: 'test'
+  ...
+# Subtest: native source rebuild is explicitly limited to the actual macOS arm64 host
+ok 22 - native source rebuild is explicitly limited to the actual macOS arm64 host
+  ---
+  duration_ms: 0.9465
+  type: 'test'
+  ...
+# Subtest: the review patch reverses exactly to the recorded pre-qualification source baseline
+not ok 23 - the review patch reverses exactly to the recorded pre-qualification source baseline
+  ---
+  duration_ms: 10844.354
+  type: 'test'
+  location: 'E:\\boundx\\tmp\\bxp-grafana-candidate-20261116\\tests\\grafana-observability\\source-provenance.test.mjs:89:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + '37995e6b8595e13411c84a85b55ccb3e861ea2e948c5f14f85363671262e52cb'
+    - '7e5d82af3ddafb49c3eb6aa2b35273f5980657c265008ee22c0758d4a24c1cc4'
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: '7e5d82af3ddafb49c3eb6aa2b35273f5980657c265008ee22c0758d4a24c1cc4'
+  actual: '37995e6b8595e13411c84a85b55ccb3e861ea2e948c5f14f85363671262e52cb'
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///<CANDIDATE>/tests/grafana-observability/source-provenance.test.mjs:110:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: synthetic HTTP: copied package runs all five signed packs through real MCP stdio and worker transport
+not ok 24 - synthetic HTTP: copied package runs all five signed packs through real MCP stdio and worker transport
+  ---
+  duration_ms: 2689.8946
+  type: 'test'
+  location: 'E:\\boundx\\tmp\\bxp-grafana-candidate-20261116\\tests\\grafana-observability\\synthetic.test.mjs:104:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Packaged authority CLI rejected the test root: {"code":"AUTHORITY_OPERATION_REJECTED","schemaVersion":"1.0.0","status":"ERROR"}
+    
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    authorityCommand (file:///<CANDIDATE>/tests/grafana-observability/helpers/live-authority.mjs:121:10)
+    createTestAuthority (file:///<CANDIDATE>/tests/grafana-observability/helpers/live-authority.mjs:296:22)
+    createLiveAuthority (file:///<CANDIDATE>/tests/grafana-observability/helpers/live-authority.mjs:134:10)
+    startFixture (file:///<CANDIDATE>/tests/grafana-observability/synthetic.test.mjs:83:21)
+    process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    async TestContext.<anonymous> (file:///<CANDIDATE>/tests/grafana-observability/synthetic.test.mjs:105:19)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: synthetic HTTP: packaged reports preserve empty, stale, partial, denied, drifted, and rate-limited states
+not ok 25 - synthetic HTTP: packaged reports preserve empty, stale, partial, denied, drifted, and rate-limited states
+  ---
+  duration_ms: 2980.174
+  type: 'test'
+  location: 'E:\\boundx\\tmp\\bxp-grafana-candidate-20261116\\tests\\grafana-observability\\synthetic.test.mjs:219:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Packaged authority CLI rejected the test root: {"code":"AUTHORITY_OPERATION_REJECTED","schemaVersion":"1.0.0","status":"ERROR"}
+    
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    authorityCommand (file:///<CANDIDATE>/tests/grafana-observability/helpers/live-authority.mjs:121:10)
+    createTestAuthority (file:///<CANDIDATE>/tests/grafana-observability/helpers/live-authority.mjs:296:22)
+    createLiveAuthority (file:///<CANDIDATE>/tests/grafana-observability/helpers/live-authority.mjs:134:10)
+    startFixture (file:///<CANDIDATE>/tests/grafana-observability/synthetic.test.mjs:83:21)
+    process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    async TestContext.<anonymous> (file:///<CANDIDATE>/tests/grafana-observability/synthetic.test.mjs:220:37)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: synthetic HTTP: current/baseline collection and sensitive provider text remain bounded
+not ok 26 - synthetic HTTP: current/baseline collection and sensitive provider text remain bounded
+  ---
+  duration_ms: 3281.9141
+  type: 'test'
+  location: 'E:\\boundx\\tmp\\bxp-grafana-candidate-20261116\\tests\\grafana-observability\\synthetic.test.mjs:253:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Packaged authority CLI rejected the test root: {"code":"AUTHORITY_OPERATION_REJECTED","schemaVersion":"1.0.0","status":"ERROR"}
+    
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    authorityCommand (file:///<CANDIDATE>/tests/grafana-observability/helpers/live-authority.mjs:121:10)
+    createTestAuthority (file:///<CANDIDATE>/tests/grafana-observability/helpers/live-authority.mjs:296:22)
+    createLiveAuthority (file:///<CANDIDATE>/tests/grafana-observability/helpers/live-authority.mjs:134:10)
+    startFixture (file:///<CANDIDATE>/tests/grafana-observability/synthetic.test.mjs:83:21)
+    process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    async TestContext.<anonymous> (file:///<CANDIDATE>/tests/grafana-observability/synthetic.test.mjs:254:37)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: synthetic HTTP: conflicting signed scalar claims produce a contradictory report
+not ok 27 - synthetic HTTP: conflicting signed scalar claims produce a contradictory report
+  ---
+  duration_ms: 3621.585
+  type: 'test'
+  location: 'E:\\boundx\\tmp\\bxp-grafana-candidate-20261116\\tests\\grafana-observability\\synthetic.test.mjs:284:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Packaged authority CLI rejected the test root: {"code":"AUTHORITY_OPERATION_REJECTED","schemaVersion":"1.0.0","status":"ERROR"}
+    
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    authorityCommand (file:///<CANDIDATE>/tests/grafana-observability/helpers/live-authority.mjs:121:10)
+    createTestAuthority (file:///<CANDIDATE>/tests/grafana-observability/helpers/live-authority.mjs:296:22)
+    createLiveAuthority (file:///<CANDIDATE>/tests/grafana-observability/helpers/live-authority.mjs:134:10)
+    startFixture (file:///<CANDIDATE>/tests/grafana-observability/synthetic.test.mjs:83:21)
+    process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    async TestContext.<anonymous> (file:///<CANDIDATE>/tests/grafana-observability/synthetic.test.mjs:287:37)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+# Subtest: synthetic HTTP: native Tempo and Loki responses cannot bypass enrolled scope or shape
+not ok 28 - synthetic HTTP: native Tempo and Loki responses cannot bypass enrolled scope or shape
+  ---
+  duration_ms: 2542.4057
+  type: 'test'
+  location: 'E:\\boundx\\tmp\\bxp-grafana-candidate-20261116\\tests\\grafana-observability\\synthetic.test.mjs:302:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Packaged authority CLI rejected the test root: {"code":"AUTHORITY_OPERATION_REJECTED","schemaVersion":"1.0.0","status":"ERROR"}
+    
+    
+    1 !== 0
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 0
+  actual: 1
+  operator: 'strictEqual'
+  stack: |-
+    authorityCommand (file:///<CANDIDATE>/tests/grafana-observability/helpers/live-authority.mjs:121:10)
+    createTestAuthority (file:///<CANDIDATE>/tests/grafana-observability/helpers/live-authority.mjs:296:22)
+    createLiveAuthority (file:///<CANDIDATE>/tests/grafana-observability/helpers/live-authority.mjs:134:10)
+    startFixture (file:///<CANDIDATE>/tests/grafana-observability/synthetic.test.mjs:83:21)
+    process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    async TestContext.<anonymous> (file:///<CANDIDATE>/tests/grafana-observability/synthetic.test.mjs:303:37)
+    async Test.run (node:internal/test_runner/test:1389:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:960:7)
+  ...
+1..28
+# tests 32
+# suites 0
+# pass 16
+# fail 10
+# cancelled 0
+# skipped 6
+# todo 0
+# duration_ms 70923.3625

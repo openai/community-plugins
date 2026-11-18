@@ -1,4 +1,10 @@
 plugins/grafana-observability/**/*.source.part-* linguist-generated=true
+# Keep the BoundaryXP npm lock receipt and installed wrapper bytes stable.
+plugins/boundaryxp/** text eol=lf
+tests/boundaryxp/** text eol=lf
+# Preserve indentation on blank lines in captured TAP diagnostic blocks.
+tests/boundaryxp/evidence/*.tap whitespace=-blank-at-eol
+.github/workflows/boundaryxp.yml text eol=lf
 plugins/grafana-observability/native/*.node binary
 # Empty context lines in a unified diff carry a significant leading space.
 vendor/grafana-observability-source/qualification.patch whitespace=-blank-at-eol

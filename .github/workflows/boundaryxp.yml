@@ -1,0 +1,47 @@
+name: BoundaryXP
+
+# Local acceptance is authoritative for this contribution. This optional job
+# never runs on push/PR and is not a required check; maintainers may opt in.
+on:
+  workflow_dispatch:
+    inputs:
+      runner:
+        description: 'Select one platform for the single master job; local evidence is recorded separately.'
+        type: choice
+        default: windows-latest
+        options:
+          - windows-latest
+          - ubuntu-24.04
+
+permissions:
+  contents: read
+
+jobs:
+  boundaryxp-master:
+    name: BoundaryXP package and native MCP
+    runs-on: ${{ inputs.runner }}
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "22.19.0"
+          package-manager-cache: false
+      - name: Validate marketplace
+        run: npm run validate:marketplace
+      - name: Master suite / Node 22.19.0
+        run: npm run test:boundaryxp
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: "24.19.0"
+          package-manager-cache: false
+      - name: Master suite / Node 24.19.0
+        run: npm run test:boundaryxp
+      - name: Audit locked compiled-package dependencies
+        run: npm audit --prefix plugins/boundaryxp/runtime --package-lock-only --omit=dev --registry=https://registry.npmjs.org
+      - name: Audit Linux locked compiled-package dependencies
+        run: npm audit --prefix plugins/boundaryxp/runtime/linux --package-lock-only --omit=dev --registry=https://registry.npmjs.org
+      - name: Verify the tracked plugin and lock were not rewritten
+        run: git diff --exit-code -- plugins/boundaryxp tests/boundaryxp

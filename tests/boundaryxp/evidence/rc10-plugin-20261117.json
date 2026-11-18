@@ -1,0 +1,56 @@
+{
+  "date": "2026-11-17",
+  "plugin_version": "0.3.0",
+  "windows_package": "0.4.0-rc.10",
+  "linux_package": "0.4.0-rc.10-linux.1",
+  "product": "B-345",
+  "master_command": "npm run test:boundaryxp",
+  "matrix": [
+    {"platform":"win32-x64","node":"22.19.0","pass":9,"fail":0,"skip":0},
+    {"platform":"win32-x64","node":"24.19.0","pass":9,"fail":0,"skip":0},
+    {"platform":"linux-x64-glibc2.36","node":"22.19.0","pass":9,"fail":0,"skip":0},
+    {"platform":"linux-x64-glibc2.36","node":"24.19.0","pass":9,"fail":0,"skip":0}
+  ],
+  "tools":21,
+  "codex_git_install":{
+    "source":"joinwell52-AI/community-plugins#codex/boundaryxp-plugin-20261116",
+    "plugin_version":"0.3.0",
+    "installed_copy_called":true,
+    "launcher_sha256":"71f677693d51afc7e2e51ae4df0bae3d51b823148acfbb31d6080d68b50647ff",
+    "runtime_version":"0.4.0-rc.10-linux.1",
+    "custom_dictionaries_retained":5,
+    "model_requests":0
+  },
+  "resources":17,
+  "complete_directory_examples":4,
+  "L2_file_count":9,
+  "L3_file_count":4,
+  "workbench_http":200,
+  "upgrade":{
+    "windows":{"preserved_files":15,"custom_dictionaries":2},
+    "linux":{"preserved_files":62,"custom_dictionaries":5},
+    "original_store_unchanged":true,
+    "profiles_unchanged":true,
+    "copied_audit_log_original_prefix_unchanged":true,
+    "active_old_process_refused":true,
+    "old_reports_readable":true,
+    "stale_revision_recheck_refused":true
+  },
+  "linux_saved_response_replay":{
+    "new_isolated_project":true,
+    "calculated":3,
+    "incomplete":0,
+    "invalid":0,
+    "recheck_report_unchanged":true,
+    "model_requests":0,
+    "fresh_llm_analysis":false
+  },
+  "production_dependency_vulnerabilities":{"windows":0,"linux":0},
+  "marketplace_validation":"PASS",
+  "dispatcher_tests":{"pass":11,"fail":0,"skip":0},
+  "full_marketplace_suite_rerun":false,
+  "hosted_workflow_dispatched":false,
+  "original_core_source_published":false,
+  "existing_user_installations_accessed":false,
+  "accessed_58618":false
+}

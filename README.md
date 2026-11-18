@@ -108,6 +108,13 @@ are picked up.
 
 ## Available plugins
 
+BoundaryXP adds a Windows/Linux x64 local MCP using pinned compiled npm
+rc.10 / rc.10-linux.1 packages (B345), with host LLM analysis, native verification
+and complete L2/L3 directory imports. Plugin 0.3.0 preserves old plugin data through copy migration.
+See its [English](plugins/boundaryxp/README.md) / [中文](plugins/boundaryxp/README.zh-CN.md)
+guides and [local test scope](tests/boundaryxp/README.md). Original Core source
+is not included; first use downloads the locked dependency into plugin-owned storage.
+
 | Plugin                                                                         | Purpose                                                                                                                    | Learn more                                                                                                                |
 | ------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
 | [Grafana Observability](plugins/grafana-observability/README.md)               | Inspect administrator-approved, read-only Grafana evidence for infrastructure, APM, logs, IoT/edge, and business KPIs.     | [Guide](plugins/grafana-observability/README.md) · [23-second demo](docs/media/grafana-production-monitoring-demo-8x.mp4) |

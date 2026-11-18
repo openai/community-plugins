@@ -5,6 +5,7 @@
   "description": "Public Codex plugins and their reproducible validation suites.",
   "type": "module",
   "scripts": {
+    "test:boundaryxp": "node --test --test-concurrency=1 tests/boundaryxp/unit/*.test.mjs tests/boundaryxp/security/*.test.mjs tests/boundaryxp/integration/*.test.mjs",
     "validate": "npm run validate:marketplace && node scripts/validate-grafana.mjs && npm run validate:reviewops-auditor-benchmark && npm run validate:react-native-to-swiftui && npm run validate:autodesk-fusion && npm run validate:pcba-engineering",
     "validate:marketplace": "node scripts/validate-marketplace.mjs",
     "validate:grafana": "node scripts/validate-grafana.mjs",

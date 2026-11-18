@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "boundaryxp": {
+      "command": "node",
+      "args": ["./scripts/launch.mjs"],
+      "cwd": ".",
+      "env_vars": ["BXP_PLUGIN_HOME"],
+      "startup_timeout_sec": 300,
+      "tool_timeout_sec": 180
+    }
+  }
+}
