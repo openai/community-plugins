@@ -18,8 +18,8 @@ The MCP server is `https://api.datacircle.dev/mcp`. It has two read-only tools, 
 
 ## Data boundaries
 
-The plugin sends only the API name or search you ask for. It reads no local file and writes nothing.
+The plugin sends only the API name or search you ask for. The skill writes one file, `datacircle.json`, in the folder it runs in, and reads no other local file.
 
 ## Failure behavior
 
-If the server or the file does not answer, the tools return an error and the plugin changes nothing. Try again later or open https://datacircle.dev.
+If the server does not answer, the tools return an error. If the file's download fails, the skill keeps your last `datacircle.json` as it was. Try again later or open https://datacircle.dev.
