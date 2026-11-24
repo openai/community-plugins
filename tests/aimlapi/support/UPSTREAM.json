@@ -1,0 +1,36 @@
+{
+  "repository": "https://github.com/aimlapi/skills",
+  "commit": "097835b6a408c0d33f7f46f7128539681575317e",
+  "files": {
+    "unit/test_scripts.py": {
+      "source": "tests/test_scripts.py",
+      "sourceSha256": "ab3f72a059cfa9713b7d6914de32481fd8980e24a73a021607f024970df762eb",
+      "sha256": "37876969be0ac0b5287450ec2566b771a023943bf8931b77035db24eb58f0477",
+      "adaptation": "Resolve helper imports in plugins/aimlapi; test_scripts also resolves the upstream content checker in support/."
+    },
+    "unit/test_decisions.py": {
+      "source": "tests/test_decisions.py",
+      "sourceSha256": "58a3a3c7c7312a04048787bd7e3783b4860e27b5dad393dfb87127bf9938e7ab",
+      "sha256": "ad3e82538d16ee75de565fde64a08fa7ac18b7fd13e2f4ca62c6075f41068ee3",
+      "adaptation": "Resolve helper imports in plugins/aimlapi; test_scripts also resolves the upstream content checker in support/."
+    },
+    "unit/test_speech.py": {
+      "source": "tests/test_speech.py",
+      "sourceSha256": "8f25092e863b51f017afa352fe2e2734f76493f4e809ea800152d649071ed3cd",
+      "sha256": "f8aaa56489fbd5e179d19351559f2656c7c7f842925554323b121f8eb55e57c8",
+      "adaptation": "Resolve helper imports in plugins/aimlapi; test_scripts also resolves the upstream content checker in support/."
+    },
+    "security/verify-webhook.test.mjs": {
+      "source": "tests/verify-webhook.test.mjs",
+      "sourceSha256": "74763556bbcaa67ff59b7dfc1a2c2747768ab309ae9b546f2433e7ede1698b48",
+      "sha256": "1e45b8bcc53b6b6ebeb80ffcf91ff5d2ea681352494e71d872a5fb69c8718752",
+      "adaptation": "Resolve the verifier import in plugins/aimlapi."
+    },
+    "support/upstream-check.py": {
+      "source": "tools/check.py",
+      "sourceSha256": "723e4ece37a64a7007567c6c3f7d8c7deb49b201d0b2c10bcade2d3ae225246b",
+      "sha256": "723e4ece37a64a7007567c6c3f7d8c7deb49b201d0b2c10bcade2d3ae225246b",
+      "adaptation": "None; only its content_problems function is used by the upstream tests."
+    }
+  }
+}

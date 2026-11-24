@@ -1,0 +1,18 @@
+AI/ML API skills, helpers, agent metadata, Codex manifest and logo
+Source: https://github.com/aimlapi/skills
+Commit: 097835b6a408c0d33f7f46f7128539681575317e
+Version: 1.0.3
+Publisher: AI/ML API
+License: Apache License 2.0 (the complete upstream LICENSE is included).
+
+The files recorded in UPSTREAM.json are copied without modification. The
+package README, this attribution file and the source receipt were added for
+the community marketplace. No upstream NOTICE file was present at this commit.
+The license does not grant rights to the AI/ML API name or logo.
+
+The companion tests under tests/aimlapi retain upstream tests and their
+published Standard Webhooks HMAC test vector. Test import paths were adapted
+for this repository; mappings and hashes are recorded in
+tests/aimlapi/support/UPSTREAM.json. These public test values are not credentials.
+The vector specification is linked from the upstream skill at:
+https://github.com/standard-webhooks/standard-webhooks/blob/main/spec/standard-webhooks.md
