@@ -116,6 +116,7 @@ are picked up.
 | [Autodesk Fusion](plugins/autodesk-fusion/README.md) | Connect typed CAD/CAM operations, scoped Autodesk data, reviewed cloud recipes and engineering evidence; live qualification required. | [Guide](plugins/autodesk-fusion/README.md) |
 | [Physical Engineering](plugins/physical-engineering/README.md) | Build mechanical CAD from a brief, measure exports, preserve revisions and deliver a repeatable handoff. Custom parts plus a drone assembly example. Preview. | [Guide](plugins/physical-engineering/README.md) · [Two-minute demo](docs/media/physical-engineering/README.md) · [Session runbook](docs/physical-engineering-demo-runbook.md) |
 | [PCBA Engineering](plugins/pcba-engineering/README.md) | Reconcile assembly data, apply bounded revisions, and independently verify an offline PCBA handoff. | [Guide](plugins/pcba-engineering/README.md) · [2:27 demo](docs/media/pcba-engineering/README.md) |
+| [AI/ML API](plugins/aimlapi/README.md) | Choose models and build chat, media, speech, batch, webhook and sandbox integrations with 13 upstream skills. | [Guide](plugins/aimlapi/README.md) |
 
 Grafana Observability requires Codex and Node.js 22.19 or newer. Its manifest
 declares both `Read` and `Write`. `Write` is limited to
