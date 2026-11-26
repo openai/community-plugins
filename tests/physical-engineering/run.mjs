@@ -87,7 +87,10 @@ try {
     assert(!/\/Users\/|\/home\/[^/\s]+\//.test(content), `Personal path in package: ${file}`);
     assert(!/openai(?:-corpws|\.enterprise)?\.slack\.com|mail\.google\.com\/mail\//.test(content),
       `Private research link in package: ${file}`);
-    if (file.endsWith(".md") && !file.endsWith("/README.md")) {
+    // These design documents link to generated parts. The handoff verifies their
+    // local links after export, when the assembly and referenced parts exist.
+    const deliveryDoc = /^fixtures\/[^/]+\/(?:boards|handoff)\.md$/.test(path.relative(plugin, file));
+    if (file.endsWith(".md") && !file.endsWith("/README.md") && !deliveryDoc) {
       for (const match of content.matchAll(/\[[^\]]*\]\(([^)]+)\)/g)) {
         const target = match[1].split("#")[0];
         if (!target || /^[a-z][a-z0-9+.-]*:/i.test(target)) continue;

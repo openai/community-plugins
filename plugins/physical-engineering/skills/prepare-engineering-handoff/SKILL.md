@@ -5,6 +5,8 @@ description: Regenerate a study's checked CAD, source, measurements and BOM, the
 
 # Prepare an engineering handoff
 
+For a complete assembly, run `scripts/engineering.py assembly-build RECIPE_DIR NEW_DIRECTORY`, or `whoop-demo NEW_DIRECTORY` for the Whoop 65 reference. Run `sh DIRECTORY/rebuild.sh NEW_REHEARSAL_DIRECTORY` to compare a fresh regeneration. Present the regenerated viewer, board files, formatted workbook and measured results. See the [assembly guide](../../references/assembly-designs.md).
+
 Use the installed plugin's `scripts/engineering.py` and the selected study.
 Read [compatibility](../../references/compatibility.md) for the profile's scope.
 

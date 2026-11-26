@@ -1,0 +1,9 @@
+ID,Scope,Group,Part,Qty,Unit,Supply,Specification,Source
+BA01,Installed,Enclosure,Vented base,1,ea,Print,One-piece PETG enclosure with four integral board posts and four lid bosses.,print/base.stl
+LI01,Installed,Enclosure,Vented lid,1,ea,Print,2.2 mm thick PETG cover with eight slots and four screw clearances.,print/lid.stl
+PC01,Installed,Electronics,Populated sensor board envelope,1,ea,Design reference,34 × 22 × 1.6 mm custom substrate with modeled sensor package shield and six contact pads. Electronics are a mechanical study.,components/sensor_board.step
+BS01,Installed,Fasteners,Board screw,4,ea,Specify,M2 × 4 mm thread-forming screw for plastic. Modeled head Ø3.56 mm × 1.45 mm; check actual head and pilot fit.,
+LS01,Installed,Fasteners,Lid screw,4,ea,Specify,M2 × 8 mm thread-forming screw for plastic. Modeled head Ø3.56 mm × 1.45 mm; check actual head and pilot fit.,
+MT01,Bench,Printing,PETG filament,,as needed,Supply,Print the base and lid in the supplied bed orientation.,
+TL01,Bench,Assembly,Matching screwdriver,1,ea,Tool,Select the bit for the screw head actually purchased.,
+TL02,Bench,Assembly,Calipers,1,ea,Tool,Measure the printed pilot diameter and board mounting pattern before assembly.,

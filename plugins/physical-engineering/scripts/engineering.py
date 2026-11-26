@@ -768,9 +768,34 @@ def main(argv=None):
             sub.add_argument('--battery', choices=('A', 'B'))
             sub.add_argument('--frame-pitch-x', type=int, choices=(100, 110))
             sub.add_argument('--reason', required=True)
+    starter = commands.add_parser('assembly-init', help='Copy an editable assembly design into a new directory')
+    starter.add_argument('directory')
+    starter.add_argument('--from', dest='template', choices=('sensor-enclosure', 'whoop-65'), default='sensor-enclosure')
+    for name, help_text in (('assembly-build', 'Build and measure an assembly from its editable recipe'),
+                            ('assembly-verify', 'Recheck the CAD, parts, viewer and BOM in an assembly handoff'),
+                            ('whoop-demo', 'Build the bundled complete Whoop 65 assembly')):
+        sub = commands.add_parser(name, help=help_text)
+        if name == 'assembly-build':
+            sub.add_argument('recipe', help='Directory containing assembly.json')
+        sub.add_argument('directory')
+        sub.add_argument('--runtime', default=os.environ.get('PE_RUNTIME') or
+                         str(Path.home() / '.cache' / 'physical-engineering' / 'runtime'))
+        if name != 'assembly-verify':
+            sub.add_argument('--baseline', help='Compare with a previous delivery from the same design and source')
     args = parser.parse_args(argv)
     try:
-        if args.command == 'setup':
+        if args.command.startswith('assembly-') or args.command == 'whoop-demo':
+            import assembly
+            root = study_root(args.directory)
+            if args.command == 'assembly-init':
+                result = assembly.initialize(PACKAGE / 'fixtures' / args.template, root)
+            elif args.command == 'assembly-verify':
+                result = assembly.verify(root, runtime_path(args.runtime))
+            else:
+                recipe = PACKAGE / 'fixtures/whoop-65' if args.command == 'whoop-demo' else study_root(args.recipe)
+                baseline = study_root(args.baseline) if args.baseline else None
+                result = assembly.build(recipe, root, runtime_path(args.runtime), baseline)
+        elif args.command == 'setup':
             result = setup(args.runtime)
         elif args.command == 'reproduce':
             result = reproduce(study_root(args.bundle), study_root(args.destination), runtime_path(args.runtime))
@@ -797,7 +822,7 @@ def main(argv=None):
                         result = {'status': manifest['status'], 'run': str(run), 'error': manifest['error']}
         print(json.dumps(result, indent=2))
         return 0 if result.get('status') not in ('fail', 'unknown') else 2
-    except (Refused, OSError, ValueError, KeyError, subprocess.CalledProcessError) as exc:
+    except (Refused, OSError, ValueError, KeyError, RuntimeError, subprocess.CalledProcessError) as exc:
         print(json.dumps({'status': 'refused', 'reason': str(exc)}), file=sys.stderr)
         return 1
 

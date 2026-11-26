@@ -5,6 +5,8 @@ description: Measure a study's CAD exports against its saved requirements, prese
 
 # Verify an engineering design
 
+For a multi-part assembly delivery, run `scripts/engineering.py assembly-verify DIRECTORY`. It checks the file inventory, remeasures the exported CAD, reopens the formatted BOM and confirms that its local links resolve. To qualify repeatability, run the delivered rebuild script in a fresh directory. See the [assembly guide](../../references/assembly-designs.md).
+
 Use the installed plugin's `scripts/engineering.py verify STUDY`. Resume first;
 confirm the profile, selected geometry and active requirement revision.
 

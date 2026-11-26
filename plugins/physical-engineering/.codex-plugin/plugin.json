@@ -1,6 +1,6 @@
 {
   "name": "physical-engineering",
-  "version": "0.2.0-preview.1",
+  "version": "0.3.0-preview.2",
   "description": "Build mechanical CAD from a brief, measure exported geometry against saved requirements, preserve revisions, and deliver a repeatable handoff.",
   "author": {
     "name": "Tony Loehr",
@@ -21,7 +21,7 @@
   "interface": {
     "displayName": "Physical Engineering",
     "shortDescription": "From brief to checked CAD",
-    "longDescription": "Create mechanical CAD studies through separately installed Text-to-CAD. Preserve requirements and failed runs, measure STEP and STL exports with an independent checker, revise the design, and rebuild a source-based handoff. The mechanical-part profile accepts custom single-solid models and declared dimensional, bore, keepout and mass requirements. A sensor plate is a starter; the drone battery tray and bridge are an optional assembly example with specialized checks. Digital geometry checks do not establish strength, manufacture or hardware qualification.",
+    "longDescription": "Create mechanical CAD studies through separately installed Text-to-CAD. Preserve requirements and failed runs, measure STEP and STL exports with an independent checker, revise the design, and rebuild a source-based handoff. The mechanical-part profile accepts custom single-solid models and declared dimensional, bore, keepout and mass requirements. A sensor plate is a starter; the drone battery tray and bridge are an optional assembly example with specialized checks. Editable assembly recipes produce measured components, board interfaces, print files, an offline viewer and a formatted workbook. Included designs cover a sensor enclosure and a complete Whoop 65 indoor quadcopter. Digital geometry checks do not establish strength, manufacture or hardware qualification.",
     "developerName": "Tony Loehr",
     "category": "Developer Tools",
     "websiteURL": "https://github.com/openai/community-plugins",

@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "id": "whoop-65",
+  "display": {
+    "title": "Whoop 65",
+    "subtitle": "65 mm indoor FPV quadcopter",
+    "focus": "flight_controller",
+    "focus_label": "Flight board",
+    "explode": {
+      "snap_canopy": 0.82,
+      "fpv_camera": 0.57,
+      "snap_dock": 0.32,
+      "flight_controller": 0.18,
+      "battery_pack": -0.44,
+      "battery_retention": -0.28
+    }
+  },
+  "bom": {
+    "title": "Whoop 65",
+    "scopes": [
+      "Aircraft",
+      "Bench"
+    ]
+  },
+  "inspection": {
+    "method": "whoop-65"
+  }
+}

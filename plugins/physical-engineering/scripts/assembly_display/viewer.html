@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{{TITLE}} · Assembly</title>
+<style>
+* {box-sizing:border-box}
+body {margin:0; font:15px/1.4 system-ui,sans-serif; color:#193732; background:#e9ece6}
+main {height:100svh; min-height:375px; position:relative; overflow:hidden; background:radial-gradient(ellipse at 49% 37%,#faf9f3,#dfe6de)}
+canvas,#poster {width:100%;height:100%;position:absolute;inset:0}
+canvas {touch-action:none;cursor:grab} canvas:active {cursor:grabbing} #poster {object-fit:contain}
+header {position:absolute;top:clamp(16px,3vw,44px);left:clamp(18px,4vw,58px);pointer-events:none}
+h1 {font-size:clamp(34px,5vw,74px);letter-spacing:-.065em;line-height:1;font-weight:650;margin:0}
+header p {margin:.42em 0;font-size:clamp(12px,1.6vw,17px);color:#50665e}
+.links {position:absolute;right:clamp(18px,3vw,46px);top:clamp(20px,3.5vw,50px);display:flex;gap:16px}
+a {color:#294d41;text-underline-offset:4px}
+footer {position:absolute;bottom:clamp(12px,3.5vh,36px);width:100%;text-align:center;padding:0 10px;pointer-events:none}
+nav {display:inline-flex;align-items:center;flex-wrap:wrap;justify-content:center;gap:3px;border-radius:22px;background:#f9faf6ed;padding:5px;box-shadow:0 2px 12px #153b2a23;pointer-events:auto}
+button {color:#355448;background:transparent;border:0;border-radius:18px;font:600 13px/1 system-ui;padding:10px 14px;cursor:pointer}
+button[aria-pressed=true] {color:white;background:#264f42} button:hover {box-shadow:inset 0 0 0 1px #8ba194}
+button:focus-visible,a:focus-visible {outline:2px solid #1c7c65;outline-offset:2px} #hint {margin:8px 0 0;color:#536b5d;font-size:12px}
+@media(max-width:600px){.links{font-size:13px;gap:10px}button{padding:9px 10px}header p{max-width:55vw} }
+[hidden] {display:none!important}
+</style>
+<main>
+<img id="poster" src="preview.png" alt="{{TITLE}} assembly">
+<canvas hidden aria-label="Interactive {{TITLE}} assembly"></canvas>
+<header><h1>{{TITLE}}</h1><p>{{SUBTITLE}}</p></header>
+<div class="links"><a href="bom.xlsx">Parts list</a><a href="assembly.step">STEP</a></div>
+<footer><nav aria-label="Assembly view" hidden>
+<button data-view="assembly" aria-pressed="true">Assembly</button><button data-view="exploded" aria-pressed="false">Exploded</button><button data-view="focus" aria-pressed="false">{{FOCUS_LABEL}}</button><button data-view="underside" aria-pressed="false">Underside</button>
+</nav><p id="hint" role="status">Loading the assembly…</p></footer>
+</main>
+<script>
+'use strict';
+const asset = /*__ASSEMBLY__*/null;
+const canvas = document.querySelector('canvas');
+const hint = document.querySelector('#hint');
+function start() {
+  const gl = canvas.getContext('webgl2',{alpha:true,antialias:true});
+  if (!gl) throw Error('WebGL 2 unavailable');
+  const vert = `#version 300 es
+    in vec3 position; in vec3 normal; in vec3 color;
+    uniform mat3 view; uniform vec3 offset; uniform vec2 scale;
+    out vec3 surface; out vec3 lightingNormal;
+    void main(){
+      vec3 p=view*(position+offset);
+      gl_Position=vec4(p.xy*scale,-p.z*0.18,1.);
+      surface=color; lightingNormal=normalize(view*normal);
+    }`;
+  const frag = `#version 300 es
+    precision highp float; in vec3 surface; in vec3 lightingNormal; out vec4 pixel;
+    void main(){
+      vec3 n=normalize(lightingNormal);
+      float diffuse=max(0.,dot(n,normalize(vec3(-0.48,0.80,0.76))));
+      float rim=max(0.,dot(n,normalize(vec3(0.9,0.3,-0.4))));
+      float gloss=pow(max(0.,dot(n,normalize(vec3(-0.27,0.45,0.85)))),32.);
+      pixel=vec4(surface*(0.57+0.52*diffuse+0.15*rim)+0.13*gloss,1.);
+    }`;
+  const program=gl.createProgram();
+  function shader(type,source){
+    const sh=gl.createShader(type);gl.shaderSource(sh,source);gl.compileShader(sh);
+    if(!gl.getShaderParameter(sh,gl.COMPILE_STATUS)) throw Error(gl.getShaderInfoLog(sh));
+    gl.attachShader(program,sh);
+  }
+  shader(gl.VERTEX_SHADER,vert);shader(gl.FRAGMENT_SHADER,frag);gl.linkProgram(program);
+  if(!gl.getProgramParameter(program,gl.LINK_STATUS)) throw Error(gl.getProgramInfoLog(program));
+  gl.useProgram(program);
+  function upload(target,base64) {
+    const decoded=atob(base64), bytes=new Uint8Array(decoded.length);
+    for(let i=0;i<decoded.length;i++) bytes[i]=decoded.charCodeAt(i);
+    gl.bindBuffer(target,gl.createBuffer());gl.bufferData(target,bytes,gl.STATIC_DRAW);
+  }
+  upload(gl.ARRAY_BUFFER,asset.vertices);upload(gl.ELEMENT_ARRAY_BUFFER,asset.indices);
+  ['position','normal','color'].forEach((name,i)=>{
+    const a=gl.getAttribLocation(program,name);gl.enableVertexAttribArray(a);
+    gl.vertexAttribPointer(a,3,gl.FLOAT,false,36,i*12);
+  });
+  const uniform=name=>gl.getUniformLocation(program,name);
+  const view=uniform('view'), scale=uniform('scale'), offset=uniform('offset');
+  gl.enable(gl.DEPTH_TEST);
+  let mode='assembly', yaw, pitch, zoom;
+  function draw(){
+    const ratio=Math.min(devicePixelRatio||1,2);
+    const w=Math.max(1,Math.round(canvas.clientWidth*ratio)), h=Math.max(1,Math.round(canvas.clientHeight*ratio));
+    if(canvas.width!==w || canvas.height!==h){canvas.width=w;canvas.height=h;}
+    gl.viewport(0,0,w,h);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+    const cy=Math.cos(yaw),sy=Math.sin(yaw),cp=Math.cos(pitch),sp=Math.sin(pitch);
+    gl.uniformMatrix3fv(view,false,[cy,-sy*sp,sy*cp,0,cp,sp,-sy,-cy*sp,cy*cp]);
+    const framing=Math.min(0.72,0.76*w/h)*zoom;
+    gl.uniform2f(scale,framing*h/w,framing);
+    for(const group of asset.groups){
+      if(mode==='focus' && group.name!==asset.focus) continue;
+      const center=asset.views[mode].center;
+      const separation=mode==='exploded'?group.explode:0;
+      gl.uniform3f(offset,-center[0],separation-center[1],-center[2]);
+      gl.drawElements(gl.TRIANGLES,group.count,gl.UNSIGNED_INT,group.first*4);
+    }
+  }
+  function setView(name){
+    mode=name;yaw=-2.64;pitch=name==='underside'?-0.69:0.58;
+    zoom=asset.views[name].zoom;
+    document.querySelectorAll('[data-view]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.view===mode)));
+    draw();
+  }
+  document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
+  const pointers=new Map();
+  function distance(){
+    const [a,b]=pointers.values();return Math.hypot(a[0]-b[0],a[1]-b[1]);
+  }
+  function magnify(factor){
+    const base=asset.views[mode].zoom;
+    zoom=Math.min(5*base,Math.max(0.35*base,zoom*factor));
+  }
+  canvas.addEventListener('pointerdown',e=>{
+    canvas.setPointerCapture(e.pointerId);pointers.set(e.pointerId,[e.clientX,e.clientY]);
+  });
+  canvas.addEventListener('pointermove',e=>{
+    const last=pointers.get(e.pointerId);
+    if(!last)return;
+    const previousGap=pointers.size===2?distance():0;
+    pointers.set(e.pointerId,[e.clientX,e.clientY]);
+    if(pointers.size===1){
+      yaw-=(e.clientX-last[0])*0.009;
+      pitch=Math.max(-1.53,Math.min(1.53,pitch+(e.clientY-last[1])*0.009));
+    } else if(previousGap>1) magnify(distance()/previousGap);
+    draw();
+  });
+  canvas.addEventListener('lostpointercapture',e=>pointers.delete(e.pointerId));
+  canvas.addEventListener('wheel',e=>{
+    e.preventDefault();magnify(Math.exp(-e.deltaY*0.0015));draw();
+  },{passive:false});
+  canvas.addEventListener('webglcontextlost',()=>showPoster('The graphics context closed.'));
+  canvas.hidden=false;document.querySelector('#poster').hidden=true;document.querySelector('nav').hidden=false;
+  hint.textContent=matchMedia('(pointer:coarse)').matches?'Drag to orbit · Pinch to zoom':'Drag to orbit · Scroll to zoom';
+  setView('assembly');
+  new ResizeObserver(draw).observe(canvas);document.documentElement.dataset.ready='true';
+}
+function showPoster(message){
+  canvas.hidden=true;document.querySelector('#poster').hidden=false;document.querySelector('nav').hidden=true;
+  hint.textContent=message+' Showing the assembly preview.';document.documentElement.dataset.ready='poster';
+}
+try {start();} catch(error){console.error(error);showPoster('Interactive 3D is unavailable.');}
+</script>
+</html>
