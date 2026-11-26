@@ -152,7 +152,7 @@ try {
     "print(f'Running {count} Physical Engineering tests', flush=True)",
     "result = unittest.TextTestRunner(verbosity=2).run(suite)",
     "sys.exit(0 if result.wasSuccessful() else 1)",
-  ].join("\n"), suite], { stdio: "inherit" });
+  ].join("\n"), suite], { stdio: "inherit", timeout: 35 * 60 * 1000 });
   console.log("Physical Engineering master suite passed.");
 } catch (error) {
   console.error(`ERROR ${error.message}`);
