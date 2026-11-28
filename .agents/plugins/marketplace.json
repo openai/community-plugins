@@ -5,6 +5,12 @@
   },
   "plugins": [
     {
+      "name": "boundaryxp",
+      "source": { "source": "local", "path": "./plugins/boundaryxp" },
+      "policy": { "installation": "AVAILABLE", "authentication": "ON_USE" },
+      "category": "Developer Tools"
+    },
+    {
       "name": "grafana-observability",
       "source": {
         "source": "local",

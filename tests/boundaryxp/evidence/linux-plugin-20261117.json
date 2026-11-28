@@ -1,0 +1,195 @@
+{
+  "date": "2026-11-17",
+  "plugin_version": "0.2.0",
+  "launcher_sha256": "bfccc0093815c7c56551cbe4a4b8013c97c0da42fbf4a814b1d4d43427ce3deb",
+  "packages": {
+    "win32": "0.4.0-rc.9",
+    "linux": "0.4.0-rc.9-linux.1"
+  },
+  "master_runs": [
+    {
+      "platform": "win32",
+      "node": "22.19.0",
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "platform": "win32",
+      "node": "24.19.0",
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "platform": "linux",
+      "node": "22.19.0",
+      "glibc": "2.36",
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "platform": "linux",
+      "node": "24.19.0",
+      "glibc": "2.36",
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0
+    }
+  ],
+  "codex": {
+    "version": "0.169.0-alpha.11.1",
+    "isolated_home": true,
+    "local_marketplace_install": true,
+    "plugin_enabled": true,
+    "case_used_installed_copy": true,
+    "github_marketplace_install": true,
+    "tested_github_head": "02e940ceb05e092f77e0b86551da038f24f66e47",
+    "git_installed_launcher_matches": true,
+    "git_reconnect_preserved_old_result_and_recheck": true,
+    "git_reconnect_preserved_custom_dictionaries": 5,
+    "git_reconnect_profiles_owner_runtime_receipt_unchanged": true,
+    "git_reconnect_model_requests": 0
+  },
+  "full_case": {
+    "status": "PASS",
+    "platform": "linux",
+    "node": "v24.19.0",
+    "plugin_version": "0.2.0",
+    "installed_plugin": true,
+    "project_id": "36155fc7-f289-47bc-91ce-4230fc9fcd70",
+    "result_revision": 7,
+    "recheck_revision": 8,
+    "tools": [
+      "bx_capabilities",
+      "bx_profiles_list",
+      "bx_dictionaries_list",
+      "bx_dictionary_format",
+      "bx_dictionary_validate",
+      "bx_dictionary_import",
+      "bx_dictionaries_bind",
+      "bx_dictionary_lookup",
+      "bx_task_import",
+      "bx_task_validate",
+      "bx_project_create",
+      "bx_projects_list",
+      "bx_project_get",
+      "bx_artifact_get",
+      "bx_analysis_submit",
+      "bx_job_cancel",
+      "bx_job_get",
+      "bx_result_get",
+      "bx_result_recheck",
+      "bx_workbench_open",
+      "bx_project_update"
+    ],
+    "resources": 17,
+    "core": {
+      "total": 3,
+      "calculated": 3,
+      "incomplete": 0,
+      "invalid": 0,
+      "matched": 3,
+      "different": 0,
+      "expectation_not_provided": 0,
+      "invalid_references": 0,
+      "label_encoding_differences": 0,
+      "computed_result_differences": 0,
+      "ambiguous_reference_positions": 0
+    },
+    "source_sha256": "53e2c063712b56552254bbd988b07ae227391fbef0ed8092068f7c1f35dc3779",
+    "response_sha256": "7519fb7676b73a1283bb67fdb68339ece7044a46c812a109507ba3acd4680cc7",
+    "report_sha256": "d7d92530f1a10494260366f53f52075b3f656734539aeed3f13099b9c3a8ab6e",
+    "server_model_requests": 0,
+    "host_response": "CURRENT_ASSISTANT_ANALYSIS_OF_PREPARED_CASE",
+    "original_task_preserved": true,
+    "dictionaries_preserved": true,
+    "cancelled_record_preserved": true,
+    "plugin_reconnect_preserved": true,
+    "ui_same_proposal": true,
+    "ui_dictionary_import": true,
+    "plugin_pr_update_pending": true,
+    "accessed_58618": false,
+    "seven_step_headings": [
+      "## 一、主任务的7+1",
+      "## 二、各子任务的7+1",
+      "## 三、形式模型",
+      "## 四、数学计算一",
+      "## 五、数学计算二",
+      "## 六、关键区别与可满足性",
+      "## 七、最终结果"
+    ],
+    "dictionary_verification": "COMPLETE",
+    "calculations": [
+      {
+        "id": "K1",
+        "result": {
+          "status": "VERIFIED",
+          "basis": "PROGRAM",
+          "method": "CLOSED_SET_SUBSET",
+          "allowed": [
+            "artifact.build",
+            "test.run"
+          ],
+          "requested": [
+            "artifact.build",
+            "test.run"
+          ],
+          "outside": []
+        }
+      },
+      {
+        "id": "K2",
+        "result": {
+          "status": "VIOLATED",
+          "basis": "PROGRAM",
+          "method": "CLOSED_SET_SUBSET",
+          "allowed": [
+            "artifact.build",
+            "test.run"
+          ],
+          "requested": [
+            "deploy.production"
+          ],
+          "outside": [
+            "deploy.production"
+          ]
+        }
+      },
+      {
+        "id": "K3",
+        "result": {
+          "status": "VIOLATED",
+          "basis": "PROGRAM",
+          "method": "ADDITIVE",
+          "total": "6",
+          "limit": "5",
+          "unit": "engineer-hour"
+        }
+      }
+    ]
+  },
+  "windows_existing_test_data": {
+    "status": "PASS",
+    "scenario": "Windows 0.1.0 / 0.2.0 launcher reuse of the same isolated runtime, saved tasks and dictionaries",
+    "preserved_files": 19,
+    "unchanged": true,
+    "existing_user_installations_accessed": false
+  },
+  "production_dependency_audits": {
+    "windows": 0,
+    "linux": 0
+  },
+  "static_validation": "PASS with exact Git LF checkout; initial CRLF Grafana mismatch retained separately",
+  "marketplace_dispatcher": {
+    "passed": 11,
+    "failed": 0
+  },
+  "limitations": [
+    "Host analysis was authored by the current Codex assistant after reading this run's frozen instructions, and submitted over real MCP to the installed plugin. No provider API or mock model response was used.",
+    "Codex CLI marketplace installation was tested; no Linux desktop graphical-client qualification is claimed.",
+    "No macOS, ARM64, musl, cross-OS store migration, private Core source rebuild or full-marketplace-suite success is claimed.",
+    "Glama qualification of the standalone binary is separate from these local plugin checks. No hosted workflow was dispatched."
+  ]
+}

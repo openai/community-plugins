@@ -1,0 +1,8 @@
+{
+  "name": "boundaryxp-plugin-runtime-linux",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Pinned Linux x64 compiled runtime; no lifecycle scripts.",
+  "license": "MIT",
+  "dependencies": { "boundaryxp-mcp": "0.4.0-rc.12-linux.1" }
+}

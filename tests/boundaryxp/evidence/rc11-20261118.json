@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-18",
+  "plugin_version": "0.4.0",
+  "npm_windows": "0.4.0-rc.11",
+  "npm_linux": "0.4.0-rc.11-linux.1",
+  "product_label": "B-348",
+  "suite": "npm run test:boundaryxp",
+  "matrix": [
+    {"platform":"win32-x64","node":"22.19.0","pass":9,"fail":0,"skip":0},
+    {"platform":"win32-x64","node":"24.19.0","pass":9,"fail":0,"skip":0},
+    {"platform":"linux-x64-glibc2.36","node":"22.19.0","pass":9,"fail":0,"skip":0},
+    {"platform":"linux-x64-glibc2.36","node":"24.19.0","pass":9,"fail":0,"skip":0}
+  ],
+  "discovery":{"tools":21,"resources":17},
+  "complete_case":{"platforms":["Windows","Linux"],"mode":"SAVED_CURRENT_CODEX_RESPONSE_REPLAY","nodes":3,"calculated":2,"invalid":0,"statuses":["VERIFIED","VIOLATED"],"result_revision":7,"recheck_revision":8,"original_result_retained":true,"bilingual_reports":true,"server_model_requests":0,"report_sha256":"26e8a827431f6727319417662f7c9230c511d9f0b7a50b60b79a25272e3dbb00"},
+  "copy_migration":{"platforms":["Windows","Linux"],"fixture_runtime":"rc.10","directory_routes":["data-rc10","data-rc9 fallback when rc10 absent"],"target":"data-rc11","original_files_preserved":61,"reconnect":true},
+  "marketplace_validation":"PASS",
+  "npm_dispatcher":{"pass":11,"fail":0,"skip":0},
+  "runtime_audit":{"windows_vulnerabilities":0,"linux_vulnerabilities":0},
+  "initial_setup_failures":["Linux upload omitted marketplace manifest; restored and reran unchanged suite","Node 22.18 attempt correctly rejected; retested with verified official 22.19.0"],
+  "original_core_source_in_plugin":false,
+  "existing_installations_changed":false,
+  "accessed_58618":false,
+  "full_marketplace_green_claimed":false
+}

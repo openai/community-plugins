@@ -1,0 +1,24 @@
+{
+  "name": "boundaryxp",
+  "version": "0.5.0",
+  "description": "Analyze evidence-backed 7+1 task boundaries with the host LLM and verify submitted operands using BoundaryXP's compiled native Core. Windows and Linux x64; platform-specific pinned packages.",
+  "author": { "name": "BoundaryXP", "url": "https://github.com/joinwell52-AI" },
+  "homepage": "https://github.com/joinwell52-AI/BoundaryXP",
+  "repository": "https://github.com/openai/community-plugins",
+  "license": "MIT",
+  "keywords": ["mcp", "boundaryxp", "7+1", "task-boundaries", "verification"],
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "BoundaryXP · 界痕",
+    "shortDescription": "7+1 boundaries and native checks (Windows/Linux x64).",
+    "longDescription": "Use the current host LLM to interpret parent/child tasks, then independently verify supported finite operands with the native Core. Includes 21 MCP tools, 17 resources, custom L2/L3 dictionaries and a local browser workbench. Requires Windows x64 or Linux x64/glibc >=2.36 and Node >=22.19/npm. Downloads the platform-specific pinned compiled npm package on first use into separate plugin-owned storage; no model API key in host mode. Original Core source is not included.",
+    "developerName": "BoundaryXP",
+    "category": "Developer Tools",
+    "websiteURL": "https://github.com/joinwell52-AI/BoundaryXP",
+    "capabilities": ["Read", "Write"],
+    "defaultPrompt": [
+      "Use BoundaryXP MCP to read bx_capabilities in English, list profiles and open its workbench. Do not submit analysis or change existing data.",
+      "通过 BoundaryXP MCP 查看中文工具帮助与 L2/L3 字典格式，打开工作台，暂不提交分析。"
+    ]
+  }
+}
