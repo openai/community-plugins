@@ -1,0 +1,42 @@
+{
+  "status": "pass",
+  "sheets": [
+    "Start here",
+    "Aircraft",
+    "Fixture and recorder",
+    "PCB build",
+    "Bench",
+    "Sources"
+  ],
+  "consolidated_rows": 59,
+  "unique_source_entries": 69,
+  "source_register_entries": 38,
+  "working_xlsx_hyperlinks": 89,
+  "quantity_scenarios": "A 1.00 mm and B 1.40 mm coupon; exactly one per station",
+  "hardware": "2 M3 \u00d7 10 recorder screws, 1 M3 \u00d7 12 stop screw, 1 M3 \u00d7 16 coupon screw; 4 common nuts",
+  "pcba": "1 PCB parent, 1 bare board child, 7 installed SMT parts across 5 MPNs",
+  "source_inputs": {
+    "Aircraft sourcing": {
+      "filename": "whoop-sourcing.csv",
+      "sha256": "0645accfc96d409026c75d160deb14e1ed6161116ecbe85202fcd0387f010b62",
+      "rows": 34
+    },
+    "Fixture BOM": {
+      "filename": "bom.csv",
+      "sha256": "8dc9ce113634a12158afe71293d0cc0a66110a94d781289803db93c6df027dab",
+      "rows": 15
+    },
+    "Real recorder BOM": {
+      "filename": "bom.csv",
+      "sha256": "a20a8a94ef283d38843f0c989d5f7d9481b7f5997ca85c55b400afaa4e93d091",
+      "rows": 12
+    },
+    "PCB purchasing BOM": {
+      "filename": "procurement.csv",
+      "sha256": "caedca2fdce04e435b3d29153dfd059682cf6a875100496bd639630222febb55",
+      "rows": 5
+    }
+  },
+  "sha256": "2472f09b42707216771c22bb1c26a5fdee99071e77916190ddfee573cae415fa",
+  "csv_sha256": "90970755877f1d6f8e5182035d8fa6c2b07b1b699b5a01fad1926295bd4abbcb"
+}

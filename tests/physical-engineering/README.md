@@ -22,6 +22,8 @@ reproduction with independent CAD state. That automated reproduction uses the
 prepared test runtime. It does not establish a fresh dependency installation or
 prove that an installed Codex session loaded the skills and CAD tools.
 
+The complete assembly suite builds the Whoop 65 from a copied package and reproduces it after removing that copy. A second lifecycle starts with an editable sensor enclosure, changes its identity, includes a board attachment and rebuilds from the delivery. Negative cases exercise shifted PCB geometry, incorrect fastener quantities, exchanged coupons, altered workbook cells and missing local links.
+
 Python tests under `unit/`, `integration/` and `security/` need package
 `__init__.py` files so unittest discovery includes them. Keep every automated
 test connected to this master command. Tests use disposable study/CAD state,

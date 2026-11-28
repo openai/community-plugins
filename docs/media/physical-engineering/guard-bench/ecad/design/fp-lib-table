@@ -1,0 +1,1 @@
+(fp_lib_table (version 7) (lib (name "Tabletop")(type "KiCad")(uri "${KIPRJMOD}/Tabletop.pretty")(options "")(descr "Enclosure NPTH")) )

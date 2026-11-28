@@ -1,0 +1,24 @@
+# Guard coupon release bench
+
+Use this fixture to compare two curved guard specimens at the same nominal tip displacement. The fixture carries one coupon, a removable keyed stop and the existing tabletop accelerometer enclosure. Both coupons use the same test station. The 1.00 mm coupon is installed in the [main assembly](assembly.step). The [second assembly](alternate/assembly_140.step) shows the 1.40 mm coupon installed instead.
+
+## Print and assemble
+
+1. Print the [plate](print/plate.stl), [stop](print/travel_stop.stl) and both coupons, [1.00 mm](print/coupon_100.stl) and [1.40 mm](alternate/coupon_140.stl), in their supplied bed orientations. Use one batch of unfilled PETG for the coupons and the same printer, layer height, extrusion settings and seam position. Inspect the sliced toolpaths along the free arc for continuous walls. Mark each specimen on its root, away from the bending arc.
+2. Fit four M3 nuts in the underside hex pockets. Support the loose nuts from below until the screws engage. Install the enclosure through its two ears using the two M3 × 10 mm screws. Seat the accelerometer board inside, fit the lid, orient the cable and leave a consistent slack loop. Check that every nut and screw tip clears the tabletop and that the plate sits flat. CAD tip clearance is 0.50 mm at the root and stop screws and 1.00 mm at the enclosure screws.
+3. Seat the coupon root fully on the two unequal locating pins and install its M3 × 16 mm screw. Seat the coupon against the same side of its locators each time. Place the removable stop on its locators and retain it with the M3 × 12 mm screw. The pins establish position and orientation. The screws hold the parts down. Tighten consistently without distorting the printed seats.
+4. Put the plate on the same firm, flat table for every run. Mark two unobstructed plate-edge clamp positions and use the same pads and clamp setting. Check that the coupon can move clear of the plate. Measure the unloaded tip-to-stop gap along the loading direction with a light-touch gauge. The pin holes have 0.30 mm nominal diametral clearance. Check the gap after each swap or stop reinstallation using a 2.00 mm feeler stack at the tab's contact line. Record the actual gap and coupon wall thickness. If the two coupons give different seated gaps, correct the fit before comparing runs. Remove the feelers before release.
+
+## Run a comparison
+
+1. Record a quiet baseline with the accelerometer mounted. Log the coupon ID, material, measured wall and gap, sensor axis, units, sample rate and filtering.
+2. Push the free-end tab slowly toward the stop in the plate plane, along **−Y**. Push at the center of the flat tab, X = −51 mm, opposite the narrow stop finger. In the nominal model the moving face is at Y = 11 mm and the stop face is at Y = 9 mm. Stop at first contact, pause for the same interval, then lift your finger clear without striking the stop or plate. Leave the stop bolted in place through the recording.
+3. Capture the transient and its decay. Check that the unloaded tab returns to its starting gap. Note any permanent set, slip or second contact with the stop. Repeat with the other coupon in the same locator. Keep the idle coupon off the plate, and alternate the order over repeated trials. Keep cable routing, sensor mounting, clamps and release technique consistent.
+
+Compare peak acceleration on the same axis, the acceleration time history, ring-down duration and dominant frequencies across replicates. A displacement-matched release can store different energy in the two specimens. A force–deflection comparison would require a force measurement. The accelerometer measures response at its mounting location through the enclosure and plate. The CAD establishes nominal geometry. Actual displacement under load, vibration amplitude, decay and frequency require physical measurement.
+
+## Inspect or rebuild
+
+Open the [interactive assembly](viewer.html) or [colored GLB](assembly.glb). The [Excel BOM](bom.xlsx) separates installed items from the second coupon, tools and acquisition equipment. The [sensor setup notes](boards.md) and [reference readback](boards/reference-dimensions.json) document the dimensional inputs.
+
+The [plugin measurements](measurements.json) check installed positions and exported files. The [independent measurements](drawing-measurements.json) check the drawing against exported geometry. Each build runs the drawing check before publication. To reproduce this delivery, use the prepared Physical Engineering runtime and run `sh rebuild.sh /path/to/new-directory` from the handoff. The new directory's `manifest.json` records the comparison. To recheck the archived package, run `python3 source/scripts/engineering.py assembly-verify .` and use the pinned runtime’s Python to run `source/design/geometry/drawing_check.py . --report /path/to/fresh-report.json`.

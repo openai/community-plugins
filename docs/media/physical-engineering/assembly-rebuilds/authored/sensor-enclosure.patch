@@ -1,0 +1,286 @@
+diff --git a/assembly.json b/assembly.json
+index 94a9c7c..1713082 100644
+--- a/assembly.json
++++ b/assembly.json
+@@ -1,9 +1,9 @@
+ {
+   "schema": 1,
+-  "id": "sensor-enclosure",
++  "id": "bench-mounted-sensor-enclosure",
+   "display": {
+-    "title": "Tabletop sensor enclosure",
+-    "subtitle": "Vented housing and reference PCB",
++    "title": "Bench-mounted sensor enclosure",
++    "subtitle": "Removable vented lid and integral mounting ears",
+     "focus": "sensor_board",
+     "focus_label": "Sensor board",
+     "explode": {
+@@ -14,7 +14,7 @@
+     }
+   },
+   "bom": {
+-    "title": "Tabletop sensor enclosure",
++    "title": "Bench-mounted sensor enclosure",
+     "scopes": [
+       "Installed",
+       "Bench"
+diff --git a/boards.md b/boards.md
+index 6453aef..b9a6bb3 100644
+--- a/boards.md
++++ b/boards.md
+@@ -10,3 +10,9 @@
+ | Fasteners | Four M2 × 4 mm screws through the PCB into the integral base posts |
+
+ The STEP assembly includes the substrate, a sensor package, a shield and six contact pads. Their positions define a reference board envelope for the enclosure. An electrical design, fabrication files and measured thermal or airflow performance would require a separate board design and prototype.
++
++## Bench plate interface BM-64
++
++The removable lid stays inside the original 52 × 36 mm footprint. Two integral 3.2 mm-thick external ears fasten the base to a mating bench plate. The drawing specifies two vertical Ø3.40 mm through holes centered on X = −32.00 mm and +32.00 mm at Y = 0.00 mm, a 64.00 mm pitch. The XY origin remains the center of the enclosure and Z = 0 is the bench contact face.
++
++The Bench BOM includes two externally supplied M3 fasteners. Select their length against the actual plate thickness or tapped depth. The plate and its fasteners are external installation hardware. Sample-print the interface and test screw access, clamp load, print strength and retention before installation.
+diff --git a/catalog/parts.csv b/catalog/parts.csv
+index 88c104c..a123784 100644
+--- a/catalog/parts.csv
++++ b/catalog/parts.csv
+@@ -1,5 +1,5 @@
+ ID,Scope,Group,Part,Qty,Unit,Supply,Specification,Source
+-BA01,Installed,Enclosure,Vented base,1,ea,Print,One-piece PETG enclosure with four integral board posts and four lid bosses.,print/base.stl
++BA01,Installed,Enclosure,Bench-mount base,1,ea,Print,"One-piece PETG base with two integral mounting ears, four board posts and four lid bosses. Mounting interface BM-64.",print/base.stl
+ LI01,Installed,Enclosure,Vented lid,1,ea,Print,2.2 mm thick PETG cover with eight slots and four screw clearances.,print/lid.stl
+ PC01,Installed,Electronics,Populated sensor board envelope,1,ea,Design reference,34 × 22 × 1.6 mm custom substrate with modeled sensor package shield and six contact pads. Electronics are a mechanical study.,components/sensor_board.step
+ BS01,Installed,Fasteners,Board screw,4,ea,Specify,M2 × 4 mm thread-forming screw for plastic. Modeled head Ø3.56 mm × 1.45 mm; check actual head and pilot fit.,
+@@ -7,3 +7,4 @@ LS01,Installed,Fasteners,Lid screw,4,ea,Specify,M2 × 8 mm thread-forming screw
+ MT01,Bench,Printing,PETG filament,,as needed,Supply,Print the base and lid in the supplied bed orientation.,
+ TL01,Bench,Assembly,Matching screwdriver,1,ea,Tool,Select the bit for the screw head actually purchased.,
+ TL02,Bench,Assembly,Calipers,1,ea,Tool,Measure the printed pilot diameter and board mounting pattern before assembly.,
++BM01,Bench,Bench interface,M3 bench mounting screw,2,ea,Bench supplied,"One screw per external ear into a matching bench plate. Select length and engagement for the actual plate and 3.2 mm ear; verify head clearance and print fit before assembly.",boards.md
+diff --git a/geometry/build.py b/geometry/build.py
+index 3bcc60f..74d19de 100644
+--- a/geometry/build.py
++++ b/geometry/build.py
+@@ -3,10 +3,17 @@ import argparse
+ from pathlib import Path
+
+ import build123d as bd
++from validation.verify_mounts import require_exported_base
+
+
+ LID_CORNERS = [(-21, -13), (21, -13), (21, 13), (-21, 13)]
+ BOARD_CORNERS = [(-14, -8), (14, -8), (14, 8), (-14, 8)]
++BENCH_BORE_PITCH_MM = 64.0
++EAR_CENTER_X_MM = 32.0
++EAR_ROOT_X_MM = 24.5
++EAR_RADIUS_MM = 5.5
++EAR_THICKNESS_MM = 3.2
++BENCH_HOLE_DIAMETER_MM = 3.4
+
+
+ def panel(width, height, radius, bottom, thickness):
+@@ -22,8 +29,24 @@ def named(part, name, color):
+     return part
+
+
++def add_mounting_ears(base):
++    """Fuse each round-ended external lug to the side wall above the bench face."""
++    neck_length = EAR_CENTER_X_MM - EAR_ROOT_X_MM
++    neck_center = (EAR_CENTER_X_MM + EAR_ROOT_X_MM) / 2
++    for side in (-1, 1):
++        neck = bd.Pos(side * neck_center, 0, EAR_THICKNESS_MM / 2) * bd.Box(
++            neck_length, 2 * EAR_RADIUS_MM, EAR_THICKNESS_MM)
++        rounded_end = cylinder(side * EAR_CENTER_X_MM, 0, 0, EAR_RADIUS_MM, EAR_THICKNESS_MM)
++        base = base.fuse(neck, rounded_end)
++        bore = cylinder(side * BENCH_BORE_PITCH_MM / 2, 0, -0.1,
++                        BENCH_HOLE_DIAMETER_MM / 2, EAR_THICKNESS_MM + 0.2)
++        base = base.cut(bore)
++    return base
++
++
+ def case_parts():
+     base = panel(52, 36, 4, 0, 15) - panel(48, 32, 2.5, 2, 15)
++    base = add_mounting_ears(base)
+     lid = panel(52, 36, 4, 15, 2.2)
+     for x, y in LID_CORNERS:
+         base = base.fuse(cylinder(x, y, 1.9, 2.55, 13.1))
+@@ -73,8 +96,11 @@ def build(output):
+     board_screws = screws(BOARD_CORNERS, 6.6, 4, "board_screws")
+     lid_screws = screws(LID_CORNERS, 17.2, 8, "lid_screws")
+     for part in (base, lid, board):
+-        if not bd.export_step(part, component_dir / f"{part.label}.step"):
++        path = component_dir / f"{part.label}.step"
++        if not bd.export_step(part, path):
+             raise RuntimeError(f"Failed to export {part.label}")
++        if part.label == "base":
++            require_exported_base(path)
+     for part in (base, lid):
+         on_bed = bd.Pos(0, 0, -part.bounding_box().min.Z) * part
+         if not bd.export_stl(on_bed, print_dir / f"{part.label}.stl", tolerance=.015, angular_tolerance=.12):
+diff --git a/geometry/validation/bench-interface.json b/geometry/validation/bench-interface.json
+new file mode 100644
+index 0000000..0f56adb
+--- /dev/null
++++ b/geometry/validation/bench-interface.json
+@@ -0,0 +1,15 @@
++{
++  "drawing": "BM-64 revision A",
++  "datum": "Center of the original 52 by 36 mm base footprint, with Z zero at the bench face",
++  "axes_mm": [[-32.0,0.0],[32.0,0.0]],
++  "axis_coordinate_tolerance_mm": 0.05,
++  "pitch_mm": 64.0,
++  "pitch_tolerance_mm": 0.1,
++  "bore_diameter_mm": 3.4,
++  "bore_diameter_tolerance_mm": 0.05,
++  "ear_z_mm": [0.0,3.2],
++  "ear_z_tolerance_mm": 0.05,
++  "outer_wall_x_mm": 26.0,
++  "minimum_radial_rim_mm": 1.75,
++  "solid_count": 1
++}
+diff --git a/geometry/validation/verify_mounts.py b/geometry/validation/verify_mounts.py
+new file mode 100644
+index 0000000..5ba85e5
+--- /dev/null
++++ b/geometry/validation/verify_mounts.py
+@@ -0,0 +1,119 @@
++"""Verify BM-64 directly on the delivered base STEP using the Open Cascade kernel."""
++import argparse
++import hashlib
++import json
++import math
++from pathlib import Path
++
++import build123d as bd
++from OCP.BRepAdaptor import BRepAdaptor_Surface
++from OCP.GeomAbs import GeomAbs_Cylinder
++
++
++def digest(path):
++    return hashlib.sha256(path.read_bytes()).hexdigest()
++
++
++def inspect_base(solid, req):
++    low, high = req["ear_z_mm"]
++    mid = (low + high) / 2
++    holes = []
++    for face in solid.faces():
++        surf = BRepAdaptor_Surface(face.wrapped)
++        if surf.GetType() != GeomAbs_Cylinder:
++            continue
++        cyl = surf.Cylinder()
++        axis = cyl.Axis()
++        point, direction = axis.Location(), axis.Direction()
++        x, y = point.X(), point.Y()
++        if abs(x) <= req["outer_wall_x_mm"] or abs(direction.Z()) < .99999:
++            continue
++        # An outward ear end also has a cylindrical face. A through bore must
++        # have a clear center and material all around its boundary.
++        if solid.is_inside((x, y, mid)):
++            continue
++        r = cyl.Radius()
++        rim = r + req["minimum_radial_rim_mm"]
++        radial_material = [solid.is_inside((x + rim * math.cos(t * math.pi/8),
++                                           y + rim * math.sin(t * math.pi/8), mid))
++                           for t in range(16)]
++        if not all(radial_material):
++            continue
++        box = face.bounding_box()
++        clear = all(not solid.is_inside((x, y, z)) for z in [low+.01,mid,high-.01])
++        holes.append({"axis_xy_mm":[round(x,5),round(y,5)], "diameter_mm":round(2*r,5),
++                      "face_z_mm":[round(box.min.Z,5),round(box.max.Z,5)],
++                      "clear_through":clear,"continuous_radial_material":all(radial_material)})
++    # A kernel may split one full cylindrical surface at its parameter seam.
++    found = {tuple(h["axis_xy_mm"]):h for h in holes}
++    holes = [found[k] for k in sorted(found)]
++    # Additional points establish that both ear necks actually fuse to the walls.
++    bridges = all(solid.is_inside((s*x,y,mid)) for s in [-1,1] for x in [25,26,27] for y in [-3.4,0,3.4])
++    return holes,bridges
++
++
++def inspect_file(shape, req):
++    solids=shape.solids()
++    if len(solids)!=req["solid_count"]:
++        return {"checks":{"single_valid_connected_base":False},"count":len(solids),"holes":[]}
++    base=solids[0]
++    holes,bridges=inspect_base(base,req)
++    pitch=round(math.dist(*[h["axis_xy_mm"] for h in holes]),5) if len(holes)==2 else None
++    correct_pair=len(holes)==len(req["axes_mm"])
++    checks={
++        "single_valid_connected_base":bool(base.is_valid),
++        "ear_necks_join_both_walls":bridges,
++        "two_external_bores":correct_pair,
++        "drawing_axis_positions":correct_pair and all(
++            abs(a-b)<=req["axis_coordinate_tolerance_mm"]
++            for hole,target in zip(holes,req["axes_mm"]) for a,b in zip(hole["axis_xy_mm"],target)),
++        "drawing_pitch":pitch is not None and abs(pitch-req["pitch_mm"])<=req["pitch_tolerance_mm"],
++        "drawing_bore_diameters":correct_pair and all(
++            abs(h["diameter_mm"]-req["bore_diameter_mm"])<=req["bore_diameter_tolerance_mm"] for h in holes),
++        "through_entire_ear":correct_pair and all(h["clear_through"] and all(
++            abs(a-b)<=req["ear_z_tolerance_mm"] for a,b in zip(h["face_z_mm"],req["ear_z_mm"])) for h in holes),
++        "radial_material_around_both_bores":correct_pair and all(h["continuous_radial_material"] for h in holes)}
++    return {"checks":checks,"count":len(solids),"holes":holes,"pitch_mm":pitch}
++
++
++def require_exported_base(step_path):
++    """Release gate for the authored interface, independent of recipe parameters."""
++    schema=Path(__file__).with_name("bench-interface.json")
++    req=json.loads(schema.read_text())
++    measured=inspect_file(bd.import_step(step_path),req)
++    failure=[name for name,ok in measured["checks"].items() if not ok]
++    if failure:
++        raise ValueError(f"{req['drawing']}: export has axes {[h['axis_xy_mm'] for h in measured['holes']]} "
++                         f"and measured pitch {measured.get('pitch_mm')} mm; drawing requires "
++                         f"{req['axes_mm']} and {req['pitch_mm']} mm. Failed {', '.join(failure)}.")
++    return measured
++
++
++def main():
++    args=argparse.ArgumentParser(description=__doc__)
++    args.add_argument("handoff",type=Path)
++    args.add_argument("--report",required=True,type=Path)
++    opt=args.parse_args()
++    schema=Path(__file__).with_name("bench-interface.json")
++    req=json.loads(schema.read_text())
++    standalone=opt.handoff/"components/base.step"
++    installed=opt.handoff/"assembly.step"
++    component=inspect_file(bd.import_step(standalone),req)
++    assembly=bd.import_step(installed)
++    bases=[child for child in assembly.children if child.label=="base"]
++    if len(bases)!=1:
++        raise ValueError("Expected exactly one installed base named base")
++    placed=inspect_file(bases[0],req)
++    passed=all(component["checks"].values()) and component==placed
++    report={"drawing":req["drawing"],"drawing_sha256":digest(schema),"checker_sha256":digest(Path(__file__)),
++            "status":"pass" if passed else "fail","component_step":{"sha256":digest(standalone),**component},
++            "installed_step":{"sha256":digest(installed),**placed},"component_and_installed_agree":component==placed}
++    opt.report.write_text(json.dumps(report,indent=2)+"\n")
++    print(json.dumps({"status":report["status"],"component_and_installed_agree":report["component_and_installed_agree"],
++                      "axes":[h["axis_xy_mm"] for h in component["holes"]],"pitch_mm":component.get("pitch_mm"),
++                      "failed":[key for key,value in component["checks"].items() if not value]}))
++    raise SystemExit(0 if passed else 1)
++
++
++if __name__=="__main__":
++    main()
+diff --git a/handoff.md b/handoff.md
+index 19400b4..c31a13c 100644
+--- a/handoff.md
++++ b/handoff.md
+@@ -1,4 +1,4 @@
+-# Tabletop sensor enclosure
++# Bench-mounted sensor enclosure
+
+ Open **viewer.html** to rotate the enclosure, separate its layers or inspect the sensor board. The STEP assembly uses millimeters, with the center of the base footprint as its XY datum. The base rests on Z = 0.
+
+@@ -7,3 +7,13 @@ Print **print/base.stl** and **print/lid.stl** in the supplied orientations. Ref
+ **measurements.json** records measured placements, board-to-lid clearance, print and component readback, the named 3D preview meshes and BOM quantities. The printed fit, screw retention and airflow still require prototype testing.
+
+ Rebuild the editable design in a separate folder with the supplied **rebuild.sh** and the pinned CAD runtime.
++
++## Check the mounting revision
++
++Drawing **BM-64 revision A** requires two external mounting ears and through holes at X = ±32.00 mm, Y = 0.00 mm. The design's build script reads back the base STEP and refuses a mismatched interface before it can publish a handoff. The same check runs during the delivered rebuild. To independently inspect both the installed base and its individual STEP export with the prepared CAD runtime, run:
++
++```sh
++"$PE_RUNTIME/bin/python" source/design/geometry/validation/verify_mounts.py . --report /tmp/bench-mount-readback.json
++```
++
++Require this check and the plugin assembly verification to pass before releasing a build. Fit the bench plate and choose two BM01 fasteners for its actual threaded depth. The original board and removable lid keep their mounting pattern and available clearance.

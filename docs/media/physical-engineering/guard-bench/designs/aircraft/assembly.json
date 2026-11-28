@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "id": "whoop-65-guard-revision",
+  "display": {
+    "title": "Whoop 65 \u00b7 revised guards",
+    "subtitle": "1.40 mm radial guard walls \u00b7 65 mm motor diagonal",
+    "focus": "flight_controller",
+    "focus_label": "Flight board",
+    "explode": {
+      "snap_canopy": 0.82,
+      "fpv_camera": 0.57,
+      "snap_dock": 0.32,
+      "flight_controller": 0.18,
+      "battery_pack": -0.44,
+      "battery_retention": -0.28
+    }
+  },
+  "bom": {
+    "title": "Whoop 65 \u00b7 revised guards",
+    "scopes": [
+      "Aircraft",
+      "Bench"
+    ]
+  },
+  "inspection": {
+    "method": "whoop-65"
+  }
+}

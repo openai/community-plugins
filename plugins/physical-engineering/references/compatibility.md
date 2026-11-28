@@ -2,7 +2,7 @@
 
 | Component | Support contract |
 | --- | --- |
-| Physical Engineering | 0.2.0-preview.1 |
+| Physical Engineering | 0.3.0-preview.2 |
 | CAD dependency | Text-to-CAD `cad` and `cad-server` 0.10.3 |
 | Inspected upstream source | `4d42cb0bd9a61b46254bc8cf9bd9ae1f45c3295b` |
 | Python | 3.14 |
@@ -17,6 +17,8 @@ and fixed measurement methods. Its sensor plate is a starter, not a restriction
 to one design. The [custom-part guide](custom-part.md) lists supported checks.
 `drone-module` is a specialized two-part example with a narrower set of accepted
 requirement changes. Both use the same revision, run, export and handoff lifecycle.
+
+The [multi-part workflow](assembly-designs.md) supports editable design recipes with reusable CAD export, independent measurement, BOM, viewer and handoff tools. The sensor enclosure uses declared assembly interfaces. The [Whoop 65 reference](whoop-65.md) uses additional aircraft-specific measurements for its selected hardware. Digital evidence covers modeled interfaces. Physical prototype and electrical tests are separate.
 
 Required release evidence is a cold package start, actual CAD lifecycle tests
 for both profiles, failed-geometry and stale/tampered-input cases, delivered

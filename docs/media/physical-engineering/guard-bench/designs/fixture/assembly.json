@@ -1,0 +1,195 @@
+{
+  "schema": 1,
+  "id": "guard-coupon-bench",
+  "display": {
+    "title": "Guard coupon bench",
+    "subtitle": "Single-station release fixture \u00b7 1.00 mm coupon installed",
+    "focus": "coupon_100",
+    "focus_label": "Guard coupon",
+    "explode": {
+      "plate": 0,
+      "coupon_100": 0.46,
+      "root_screw": 0.83,
+      "travel_stop": 0.28,
+      "stop_screw": 0.65,
+      "sensor_base_proxy": 0.26,
+      "sensor_lid_proxy": 0.61,
+      "sensor_screw_left": 0.51,
+      "sensor_screw_right": 0.51,
+      "root_nut": -0.25,
+      "stop_nut": -0.25,
+      "sensor_nut_left": -0.25,
+      "sensor_nut_right": -0.25
+    }
+  },
+  "bom": {
+    "title": "Guard coupon release bench",
+    "scopes": [
+      "Installed",
+      "Changeover and bench"
+    ]
+  },
+  "inspection": {
+    "parts": {
+      "PL01": [
+        {
+          "node": "plate",
+          "center_mm": [
+            0,
+            0,
+            7
+          ],
+          "component": "components/plate.step",
+          "print": "print/plate.stl"
+        }
+      ],
+      "CP10": [
+        {
+          "node": "coupon_100",
+          "center_mm": [
+            -39,
+            -1.5,
+            13.75
+          ],
+          "component": "components/coupon_100.step",
+          "print": "print/coupon_100.stl"
+        }
+      ],
+      "ST01": [
+        {
+          "node": "travel_stop",
+          "center_mm": [
+            -51,
+            3.5,
+            11.5
+          ],
+          "component": "components/travel_stop.step",
+          "print": "print/travel_stop.stl"
+        }
+      ],
+      "EN01": [
+        {
+          "node": "sensor_base_proxy",
+          "center_mm": [
+            30,
+            0,
+            15.5
+          ],
+          "component": "components/sensor_base_proxy.step"
+        }
+      ],
+      "EN02": [
+        {
+          "node": "sensor_lid_proxy",
+          "center_mm": [
+            30,
+            0,
+            24.825
+          ],
+          "component": "components/sensor_lid_proxy.step"
+        }
+      ],
+      "SC10": [
+        {
+          "node": "sensor_screw_left",
+          "center_mm": [
+            -2,
+            0,
+            7.5
+          ],
+          "component": "components/sensor_screw_left.step"
+        },
+        {
+          "node": "sensor_screw_right",
+          "center_mm": [
+            62,
+            0,
+            7.5
+          ],
+          "component": "components/sensor_screw_right.step"
+        }
+      ],
+      "SC16": [
+        {
+          "node": "root_screw",
+          "center_mm": [
+            -31.5,
+            -12,
+            10
+          ],
+          "component": "components/root_screw.step"
+        }
+      ],
+      "SC12": [
+        {
+          "node": "stop_screw",
+          "center_mm": [
+            -51,
+            2,
+            8
+          ],
+          "component": "components/stop_screw.step"
+        }
+      ],
+      "NT03": [
+        {
+          "node": "root_nut",
+          "center_mm": [
+            -31.5,
+            -12,
+            2.8
+          ],
+          "component": "components/root_nut.step"
+        },
+        {
+          "node": "stop_nut",
+          "center_mm": [
+            -51,
+            2,
+            2.8
+          ],
+          "component": "components/stop_nut.step"
+        },
+        {
+          "node": "sensor_nut_left",
+          "center_mm": [
+            -2,
+            0,
+            2.8
+          ],
+          "component": "components/sensor_nut_left.step"
+        },
+        {
+          "node": "sensor_nut_right",
+          "center_mm": [
+            62,
+            0,
+            2.8
+          ],
+          "component": "components/sensor_nut_right.step"
+        }
+      ]
+    },
+    "unmodeled": {},
+    "gaps": [
+      {
+        "id": "tip-to-stop",
+        "nodes": [
+          "coupon_100",
+          "travel_stop"
+        ],
+        "min_mm": 1.98,
+        "max_mm": 2.02
+      },
+      {
+        "id": "station-to-enclosure",
+        "nodes": [
+          "coupon_100",
+          "sensor_base_proxy"
+        ],
+        "min_mm": 15,
+        "max_mm": 25
+      }
+    ]
+  }
+}

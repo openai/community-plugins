@@ -1,0 +1,13 @@
+ID,Scope,Group,Part,Qty,Unit,Supply,Specification,Source
+BA01,Installed,Enclosure,Recorder housing with service window,1,ea,Print,One PETG print. Front cable window 13 × 7.4 mm. Retains the 64 mm bench pattern and four original PCB support posts.,print/base.stl
+LI01,Installed,Enclosure,Vented lid,1,ea,Print,2.2 mm thick PETG cover with eight slots and four screw clearances.,print/lid.stl
+PC01,Installed,Electronics,Populated bench accelerometer PCB,1,ea,Fabricate and assemble,"34 × 22 × 1.6 mm custom routed board with LIS3DHTR accelerometer, passive components and front-facing JST four-position SH header. See the electrical source for the fitted component BOM.",boards.md
+BS01,Installed,Fasteners,Board screw,4,ea,Specify,M2 × 4 mm thread-forming screw for plastic. Modeled head Ø3.56 mm × 1.45 mm; check actual head and pilot fit.,
+LS01,Installed,Fasteners,Lid screw,4,ea,Specify,M2 × 8 mm thread-forming screw for plastic. Modeled head Ø3.56 mm × 1.45 mm; check actual head and pilot fit.,
+MT01,Bench,Printing,PETG filament,,as needed,Supply,Print the base and lid in the supplied bed orientation.,
+TL01,Bench,Assembly,Matching screwdriver,1,ea,Tool,Select the bit for the screw head actually purchased.,
+TL02,Bench,Assembly,Calipers,1,ea,Tool,Measure the printed pilot diameter and board mounting pattern before assembly.,
+BM01,Bench,Bench interface,M3 bench mounting screw,2,ea,Bench supplied,One screw per external ear into a matching bench plate. Select length and engagement for the actual plate and 3.2 mm ear; verify head clearance and print fit before assembly.,boards.md
+CH01,Bench,Host connection,4-position JST SH plug housing,1,ea,For a field-made harness,SHR-04V-S-B flanged housing for J1. Omit cable-build items when using a wired harness with verified pin mapping.,https://www.jst-mfg.com/product/index.php?lang=en&series=231
+CC01,Bench,Host connection,JST SH crimp contact,4,ea,For a field-made harness,SSH-003T-P0.2-H. Use four contacts and compatible wire; verify terminal crimp quality and pin order.,https://www.jst-mfg.com/product/index.php?lang=en&series=231
+CW01,Bench,Host connection,Hook-up wire,,as needed,For a field-made harness,Four conductors for the host return and bus. Choose #28–32 AWG with 0.4–0.8 mm insulation diameter per the JST SH contact data.,https://www.jst-india.com/downloads/series/eSH_%2821-03-24%29.pdf

@@ -1,0 +1,269 @@
+{
+  "units": "mm",
+  "basis": "Independent B-rep measurement in each source assembly's installed coordinates.",
+  "assemblies": {
+    "whoop-65": {
+      "source": "outputs/physical-demo-002/handoffs/whoop-65/assembly.step",
+      "sha256": "ef5acf8eac3900a7dbff2a22c5cb03c6eb3f130732bcb56fb0d6a1d2627f4090",
+      "root": "Whoop_65_Snap",
+      "measurements": {
+        "occurrence": "whoop_frame",
+        "rim_cylinder_pairs": [
+          {
+            "center_xy_mm": [
+              -22.98097,
+              -22.98097
+            ],
+            "z_span_mm": [
+              7.0,
+              12.5
+            ],
+            "height_mm": 5.5,
+            "inner_radius_mm": 16.3,
+            "outer_radius_mm": 17.7,
+            "radial_wall_mm": 1.4
+          },
+          {
+            "center_xy_mm": [
+              -22.98097,
+              22.98097
+            ],
+            "z_span_mm": [
+              7.0,
+              12.5
+            ],
+            "height_mm": 5.5,
+            "inner_radius_mm": 16.3,
+            "outer_radius_mm": 17.7,
+            "radial_wall_mm": 1.4
+          },
+          {
+            "center_xy_mm": [
+              22.98097,
+              -22.98097
+            ],
+            "z_span_mm": [
+              7.0,
+              12.5
+            ],
+            "height_mm": 5.5,
+            "inner_radius_mm": 16.3,
+            "outer_radius_mm": 17.7,
+            "radial_wall_mm": 1.4
+          },
+          {
+            "center_xy_mm": [
+              22.98097,
+              22.98097
+            ],
+            "z_span_mm": [
+              7.0,
+              12.5
+            ],
+            "height_mm": 5.5,
+            "inner_radius_mm": 16.3,
+            "outer_radius_mm": 17.7,
+            "radial_wall_mm": 1.4
+          }
+        ]
+      }
+    },
+    "sensor-enclosure": {
+      "source": "outputs/physical-demo-002/handoffs/sensor-enclosure/assembly.step",
+      "sha256": "7fcb9b8236bad884c9da43db2aea3d3df6d579b6b2b4a54cf63a79ac255bd397",
+      "root": "Sensor_enclosure",
+      "measurements": {
+        "overall_bounds_mm": [
+          [
+            -36.5,
+            -18.0,
+            0.0
+          ],
+          [
+            36.5,
+            18.0,
+            18.65
+          ]
+        ],
+        "overall_height_mm": 18.65,
+        "base_with_ears_bounds_mm": [
+          [
+            -36.5,
+            -18.0,
+            0.0
+          ],
+          [
+            36.5,
+            18.0,
+            15.0
+          ]
+        ],
+        "body_section_z_mm": 9.0,
+        "body_section_xy_bounds_mm": [
+          [
+            -26.0,
+            -18.0
+          ],
+          [
+            26.0,
+            18.0
+          ]
+        ],
+        "lid_bounds_mm": [
+          [
+            -26.0,
+            -18.0,
+            15.0
+          ],
+          [
+            26.0,
+            18.0,
+            17.2
+          ]
+        ],
+        "lid_thickness_mm": 2.2,
+        "sensor_board_bounds_mm": [
+          [
+            -17.0,
+            -11.0,
+            5.0
+          ],
+          [
+            17.0,
+            11.0,
+            8.8
+          ]
+        ],
+        "mount_ears": [
+          {
+            "center_xy_mm": [
+              -32.0,
+              0.0
+            ],
+            "bore_diameter_mm": 3.4,
+            "bore_z_span_mm": [
+              0.0,
+              3.0
+            ],
+            "outer_arc_radius_mm": 4.5
+          },
+          {
+            "center_xy_mm": [
+              32.0,
+              0.0
+            ],
+            "bore_diameter_mm": 3.4,
+            "bore_z_span_mm": [
+              0.0,
+              3.0
+            ],
+            "outer_arc_radius_mm": 4.5
+          }
+        ],
+        "mount_ear_pitch_mm": 64.0,
+        "lid_through_bores": [
+          {
+            "center_xy_mm": [
+              -21.0,
+              -13.0
+            ],
+            "diameter_mm": 2.3,
+            "z_span_mm": [
+              15.0,
+              17.2
+            ]
+          },
+          {
+            "center_xy_mm": [
+              -21.0,
+              13.0
+            ],
+            "diameter_mm": 2.3,
+            "z_span_mm": [
+              15.0,
+              17.2
+            ]
+          },
+          {
+            "center_xy_mm": [
+              21.0,
+              -13.0
+            ],
+            "diameter_mm": 2.3,
+            "z_span_mm": [
+              15.0,
+              17.2
+            ]
+          },
+          {
+            "center_xy_mm": [
+              21.0,
+              13.0
+            ],
+            "diameter_mm": 2.3,
+            "z_span_mm": [
+              15.0,
+              17.2
+            ]
+          }
+        ],
+        "installed_lid_screw_bounds_mm": {
+          "screw_1": [
+            [
+              -22.78,
+              -14.78,
+              9.2
+            ],
+            [
+              -19.22,
+              -11.22,
+              18.65
+            ]
+          ],
+          "screw_2": [
+            [
+              19.22,
+              -14.78,
+              9.2
+            ],
+            [
+              22.78,
+              -11.22,
+              18.65
+            ]
+          ],
+          "screw_3": [
+            [
+              19.22,
+              11.22,
+              9.2
+            ],
+            [
+              22.78,
+              14.78,
+              18.65
+            ]
+          ],
+          "screw_4": [
+            [
+              -22.78,
+              11.22,
+              9.2
+            ],
+            [
+              -19.22,
+              14.78,
+              18.65
+            ]
+          ]
+        },
+        "installed_lid_screw_head_span_x_mm": [
+          3.56,
+          3.56,
+          3.56,
+          3.56
+        ]
+      }
+    }
+  }
+}

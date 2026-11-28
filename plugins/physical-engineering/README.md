@@ -13,6 +13,10 @@ The plugin runs without the demo, its recording tools or this repository's test 
 | `mechanical-part` | A custom single-solid mechanical part: a plate, mount, spacer or other shape expressed in build123d. Includes a sensor plate starter. | Declared dimensions, envelope, volume/mass, Z-axis through bores and box keepouts; STEP/STL consistency. Source, CAD, measurements, BOM and rebuild command. |
 | `drone-module` | The bundled two-part battery tray and removable electronics bridge. | Specialized interface, clearance, support, insertion, planar-wall and interference checks; also a dimensioned PDF with automated content readback. |
 
+For a **multi-part product**, start with [an editable assembly design](references/assembly-designs.md). One build creates the named STEP and GLB assembly, individual components and prints, a board guide, a formatted Excel BOM, an interactive viewer and a rebuildable handoff. The included sensor enclosure exercises this workflow with a different board, enclosure, hardware and verification rules.
+
+For the **complete tiny whoop aircraft**, use [Whoop 65](references/whoop-65.md). The `whoop-demo` command builds its frame, snap dock, canopy, fitted electronics and propulsion, local interactive viewer, Excel BOM and rebuild receipt in one pass.
+
 The generic profile checks declared properties, not arbitrary engineering intent. A bounding dimension is not a minimum wall thickness; a mass estimate is not a strength calculation. Requirements outside the available measurement methods remain unresolved. Multi-part assemblies need an appropriate specialized checker; the drone's checks do not apply automatically to a new assembly.
 
 The [custom-part guide](references/custom-part.md) defines the model/export contract and the supported requirements. The [drone design rationale](references/design-rationale.md) explains the example's hardware assumptions.

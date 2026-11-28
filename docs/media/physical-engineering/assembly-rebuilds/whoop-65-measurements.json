@@ -1,0 +1,649 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "checks": [
+    {
+      "id": "assembly",
+      "status": "pass",
+      "actual": {
+        "subsystems": 13,
+        "named_leaves": 95,
+        "size_mm": [
+          80.5619,
+          80.5619,
+          34.6608
+        ]
+      },
+      "expected": "Complete named subsystem assembly"
+    },
+    {
+      "id": "bom-installed-quantities",
+      "status": "pass",
+      "actual": {
+        "modeled_aircraft": {
+          "BA01": {
+            "step": 1,
+            "bom": 1,
+            "unit": "ea"
+          },
+          "CA01": {
+            "step": 1,
+            "bom": 1,
+            "unit": "ea"
+          },
+          "CY01": {
+            "step": 1,
+            "bom": 1,
+            "unit": "ea"
+          },
+          "DK01": {
+            "step": 1,
+            "bom": 1,
+            "unit": "ea"
+          },
+          "DS01": {
+            "step": 4,
+            "bom": 4,
+            "unit": "ea"
+          },
+          "FC01": {
+            "step": 1,
+            "bom": 1,
+            "unit": "ea"
+          },
+          "FR01": {
+            "step": 1,
+            "bom": 1,
+            "unit": "ea"
+          },
+          "GM01": {
+            "step": 4,
+            "bom": 4,
+            "unit": "ea"
+          },
+          "MO01": {
+            "step": 4,
+            "bom": 4,
+            "unit": "ea"
+          },
+          "MS01": {
+            "step": 12,
+            "bom": 12,
+            "unit": "ea"
+          },
+          "PR01": {
+            "step": 2,
+            "bom": 2,
+            "unit": "ea"
+          },
+          "PR02": {
+            "step": 2,
+            "bom": 2,
+            "unit": "ea"
+          },
+          "RB01": {
+            "step": 2,
+            "bom": 2,
+            "unit": "ea"
+          },
+          "RP01": {
+            "step": 2,
+            "bom": 2,
+            "unit": "ea"
+          },
+          "WH01": {
+            "step": 4,
+            "bom": 4,
+            "unit": "sets"
+          },
+          "WH02": {
+            "step": 1,
+            "bom": 1,
+            "unit": "ea"
+          },
+          "WH03": {
+            "step": 1,
+            "bom": 1,
+            "unit": "ea"
+          },
+          "WH04": {
+            "step": 1,
+            "bom": 1,
+            "unit": "ea"
+          },
+          "WH05": {
+            "step": 1,
+            "bom": 1,
+            "unit": "ea"
+          }
+        },
+        "unmodeled_aircraft": {
+          "CT01": "Camera retention tape is applied during assembly."
+        },
+        "bench_ids_excluded": [
+          "CS01",
+          "FT01",
+          "FT02",
+          "GR01",
+          "GR02",
+          "GR03",
+          "MT01",
+          "TL01",
+          "TL02",
+          "TL03",
+          "TL04",
+          "US01",
+          "US02",
+          "US03"
+        ]
+      },
+      "expected": "Each modeled aircraft BOM quantity equals the installed STEP occurrence or complete wire-set count."
+    },
+    {
+      "id": "latch-left",
+      "status": "pass",
+      "actual": {
+        "running_gap_mm": 0.35,
+        "radial_capture_mm": 0.73,
+        "vertical_play_mm": 0.25
+      },
+      "expected": "Running gap 0.20\u20130.45 mm, radial capture 0.65\u20130.85 mm, vertical play 0.15\u20130.35 mm."
+    },
+    {
+      "id": "latch-right",
+      "status": "pass",
+      "actual": {
+        "running_gap_mm": 0.35,
+        "radial_capture_mm": 0.73,
+        "vertical_play_mm": 0.25
+      },
+      "expected": "Running gap 0.20\u20130.45 mm, radial capture 0.65\u20130.85 mm, vertical play 0.15\u20130.35 mm."
+    },
+    {
+      "id": "harness",
+      "status": "pass",
+      "actual": {
+        "missing": [],
+        "modeled_connections": 21
+      },
+      "expected": "All 21 reference harness parts installed"
+    },
+    {
+      "id": "battery-support",
+      "status": "pass",
+      "actual": {
+        "pad_gaps_mm": [
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "pouch_above_loops_mm": 0.54
+      },
+      "expected": "Both pad gaps <= 0.025 mm; pouch >= 0.5 mm above loop bottoms"
+    },
+    {
+      "id": "controller-stack",
+      "status": "pass",
+      "actual": {
+        "count": 4,
+        "pitch_mm": [
+          26.0,
+          26.0,
+          26.0,
+          26.0
+        ],
+        "max_offset_mm": 0.0,
+        "min_screw_engagement_mm": 2.2
+      },
+      "expected": "Four 26 mm square PCB, dock, grommet and frame mounts within 0.025 mm; engagement >= 1.5 mm."
+    },
+    {
+      "id": "canopy-fit-fpv_camera",
+      "status": "pass",
+      "actual": {
+        "overlap_mm3": 0.0
+      },
+      "expected": "<= 0.001 mm\u00b3 seated overlap"
+    },
+    {
+      "id": "canopy-fit-flight_controller",
+      "status": "pass",
+      "actual": {
+        "overlap_mm3": 0.0
+      },
+      "expected": "<= 0.001 mm\u00b3 seated overlap"
+    },
+    {
+      "id": "mount-FL",
+      "status": "pass",
+      "actual": {
+        "axes": 3,
+        "max_offset_mm": 0.0,
+        "seat_gap_mm": 0.0,
+        "min_engagement_mm": 1.75
+      },
+      "expected": "Three axes and seat within 0.025 mm; engagement >= 1.5 mm."
+    },
+    {
+      "id": "rotor-FL",
+      "status": "pass",
+      "actual": {
+        "radius_mm": 15.4991,
+        "guard_axis_offset_mm": 0.0,
+        "hub_axis_offset_mm": 0.0,
+        "hub_engagement_mm": 3.81,
+        "frame_dock_canopy_clearances_mm": [
+          0.8,
+          2.14,
+          2.8466
+        ]
+      },
+      "expected": "Radius 15.5 \u00b1 0.15 mm; axes within 0.025 mm; hub engagement >= 3 mm; full disk gaps >= 0.55 mm."
+    },
+    {
+      "id": "mount-FR",
+      "status": "pass",
+      "actual": {
+        "axes": 3,
+        "max_offset_mm": 0.0,
+        "seat_gap_mm": 0.0,
+        "min_engagement_mm": 1.75
+      },
+      "expected": "Three axes and seat within 0.025 mm; engagement >= 1.5 mm."
+    },
+    {
+      "id": "rotor-FR",
+      "status": "pass",
+      "actual": {
+        "radius_mm": 15.4991,
+        "guard_axis_offset_mm": 0.0,
+        "hub_axis_offset_mm": 0.0,
+        "hub_engagement_mm": 3.81,
+        "frame_dock_canopy_clearances_mm": [
+          0.8,
+          2.14,
+          2.8466
+        ]
+      },
+      "expected": "Radius 15.5 \u00b1 0.15 mm; axes within 0.025 mm; hub engagement >= 3 mm; full disk gaps >= 0.55 mm."
+    },
+    {
+      "id": "mount-RL",
+      "status": "pass",
+      "actual": {
+        "axes": 3,
+        "max_offset_mm": 0.0,
+        "seat_gap_mm": 0.0,
+        "min_engagement_mm": 1.75
+      },
+      "expected": "Three axes and seat within 0.025 mm; engagement >= 1.5 mm."
+    },
+    {
+      "id": "rotor-RL",
+      "status": "pass",
+      "actual": {
+        "radius_mm": 15.4991,
+        "guard_axis_offset_mm": 0.0,
+        "hub_axis_offset_mm": 0.0,
+        "hub_engagement_mm": 3.81,
+        "frame_dock_canopy_clearances_mm": [
+          0.8,
+          1.79,
+          2.9793
+        ]
+      },
+      "expected": "Radius 15.5 \u00b1 0.15 mm; axes within 0.025 mm; hub engagement >= 3 mm; full disk gaps >= 0.55 mm."
+    },
+    {
+      "id": "mount-RR",
+      "status": "pass",
+      "actual": {
+        "axes": 3,
+        "max_offset_mm": 0.0,
+        "seat_gap_mm": 0.0,
+        "min_engagement_mm": 1.75
+      },
+      "expected": "Three axes and seat within 0.025 mm; engagement >= 1.5 mm."
+    },
+    {
+      "id": "rotor-RR",
+      "status": "pass",
+      "actual": {
+        "radius_mm": 15.4991,
+        "guard_axis_offset_mm": 0.0,
+        "hub_axis_offset_mm": 0.0,
+        "hub_engagement_mm": 3.81,
+        "frame_dock_canopy_clearances_mm": [
+          0.8,
+          1.79,
+          2.9793
+        ]
+      },
+      "expected": "Radius 15.5 \u00b1 0.15 mm; axes within 0.025 mm; hub engagement >= 3 mm; full disk gaps >= 0.55 mm."
+    },
+    {
+      "id": "wheelbase",
+      "status": "pass",
+      "actual": [
+        65.0,
+        65.0
+      ],
+      "expected": "Two diagonals 65 \u00b1 0.05 mm"
+    },
+    {
+      "id": "glb-assembly",
+      "status": "pass",
+      "actual": {
+        "named_meshes": 95,
+        "max_bounds_drift_mm": 0.0077
+      },
+      "expected": "Indexed triangles for every STEP leaf, installed world bounds within 0.15 mm"
+    },
+    {
+      "id": "component-frame",
+      "status": "pass",
+      "actual": {
+        "solid_count": 1,
+        "valid": true,
+        "volume_mm3": 3978.156,
+        "max_bounds_error_mm": 0.0,
+        "volume_difference_mm3": 0.0
+      },
+      "expected": "Valid component with the assembled solid count, world bounds within 0.01 mm and volume within 0.01 mm\u00b3"
+    },
+    {
+      "id": "component-dock",
+      "status": "pass",
+      "actual": {
+        "solid_count": 1,
+        "valid": true,
+        "volume_mm3": 426.973,
+        "max_bounds_error_mm": 0.0,
+        "volume_difference_mm3": 0.0
+      },
+      "expected": "Valid component with the assembled solid count, world bounds within 0.01 mm and volume within 0.01 mm\u00b3"
+    },
+    {
+      "id": "component-canopy",
+      "status": "pass",
+      "actual": {
+        "solid_count": 1,
+        "valid": true,
+        "volume_mm3": 1026.698,
+        "max_bounds_error_mm": 0.0,
+        "volume_difference_mm3": 0.0
+      },
+      "expected": "Valid component with the assembled solid count, world bounds within 0.01 mm and volume within 0.01 mm\u00b3"
+    },
+    {
+      "id": "component-flight-controller",
+      "status": "pass",
+      "actual": {
+        "solid_count": 31,
+        "valid": true,
+        "volume_mm3": 781.05,
+        "max_bounds_error_mm": 0.0,
+        "volume_difference_mm3": 0.0
+      },
+      "expected": "Valid component with the assembled solid count, world bounds within 0.01 mm and volume within 0.01 mm\u00b3"
+    },
+    {
+      "id": "component-fpv-camera",
+      "status": "pass",
+      "actual": {
+        "solid_count": 7,
+        "valid": true,
+        "volume_mm3": 959.123,
+        "max_bounds_error_mm": 0.0,
+        "volume_difference_mm3": 0.0
+      },
+      "expected": "Valid component with the assembled solid count, world bounds within 0.01 mm and volume within 0.01 mm\u00b3"
+    },
+    {
+      "id": "component-battery-pack",
+      "status": "pass",
+      "actual": {
+        "solid_count": 3,
+        "valid": true,
+        "volume_mm3": 3746.564,
+        "max_bounds_error_mm": 0.0,
+        "volume_difference_mm3": 0.0
+      },
+      "expected": "Valid component with the assembled solid count, world bounds within 0.01 mm and volume within 0.01 mm\u00b3"
+    },
+    {
+      "id": "component-battery-retention",
+      "status": "pass",
+      "actual": {
+        "solid_count": 4,
+        "valid": true,
+        "volume_mm3": 171.198,
+        "max_bounds_error_mm": 0.0,
+        "volume_difference_mm3": 0.0
+      },
+      "expected": "Valid component with the assembled solid count, world bounds within 0.01 mm and volume within 0.01 mm\u00b3"
+    },
+    {
+      "id": "component-stack-hardware",
+      "status": "pass",
+      "actual": {
+        "solid_count": 8,
+        "valid": true,
+        "volume_mm3": 146.628,
+        "max_bounds_error_mm": 0.0,
+        "volume_difference_mm3": 0.0
+      },
+      "expected": "Valid component with the assembled solid count, world bounds within 0.01 mm and volume within 0.01 mm\u00b3"
+    },
+    {
+      "id": "component-wiring",
+      "status": "pass",
+      "actual": {
+        "solid_count": 21,
+        "valid": true,
+        "volume_mm3": 233.428,
+        "max_bounds_error_mm": 0.0,
+        "volume_difference_mm3": 0.0
+      },
+      "expected": "Valid component with the assembled solid count, world bounds within 0.01 mm and volume within 0.01 mm\u00b3"
+    },
+    {
+      "id": "component-propulsion-FL",
+      "status": "pass",
+      "actual": {
+        "solid_count": 17,
+        "valid": true,
+        "volume_mm3": 453.211,
+        "max_bounds_error_mm": 0.0,
+        "volume_difference_mm3": 0.0
+      },
+      "expected": "Valid component with the assembled solid count, world bounds within 0.01 mm and volume within 0.01 mm\u00b3"
+    },
+    {
+      "id": "component-propulsion-FR",
+      "status": "pass",
+      "actual": {
+        "solid_count": 17,
+        "valid": true,
+        "volume_mm3": 453.211,
+        "max_bounds_error_mm": 0.0,
+        "volume_difference_mm3": 0.0
+      },
+      "expected": "Valid component with the assembled solid count, world bounds within 0.01 mm and volume within 0.01 mm\u00b3"
+    },
+    {
+      "id": "component-propulsion-RL",
+      "status": "pass",
+      "actual": {
+        "solid_count": 17,
+        "valid": true,
+        "volume_mm3": 453.211,
+        "max_bounds_error_mm": 0.0,
+        "volume_difference_mm3": 0.0
+      },
+      "expected": "Valid component with the assembled solid count, world bounds within 0.01 mm and volume within 0.01 mm\u00b3"
+    },
+    {
+      "id": "component-propulsion-RR",
+      "status": "pass",
+      "actual": {
+        "solid_count": 17,
+        "valid": true,
+        "volume_mm3": 453.211,
+        "max_bounds_error_mm": 0.0,
+        "volume_difference_mm3": 0.0
+      },
+      "expected": "Valid component with the assembled solid count, world bounds within 0.01 mm and volume within 0.01 mm\u00b3"
+    },
+    {
+      "id": "print-frame",
+      "status": "pass",
+      "actual": {
+        "triangles": 17966,
+        "bad_edges": 0,
+        "duplicate_directed_edges": 0,
+        "degenerate": 0,
+        "connected_components": 1,
+        "volume_mm3": 3974.692,
+        "bed_z_mm": 0.0,
+        "size_mm": [
+          80.5542,
+          80.5581,
+          13.75
+        ],
+        "max_span_error_mm": 0.0077,
+        "relative_volume_error": 0.00087,
+        "surface": {
+          "allowance_mm": 0.1,
+          "unmatched_stl_point_mm": null,
+          "unmatched_step_point_mm": null
+        }
+      },
+      "expected": "One closed, consistently wound mesh on Z=0 \u00b1 0.025 mm. Spans within 0.1 mm. Installed parts within 2% volume and 0.1 mm at bidirectional STEP/STL surface samples."
+    },
+    {
+      "id": "print-dock",
+      "status": "pass",
+      "actual": {
+        "triangles": 10570,
+        "bad_edges": 0,
+        "duplicate_directed_edges": 0,
+        "degenerate": 0,
+        "connected_components": 1,
+        "volume_mm3": 426.943,
+        "bed_z_mm": 0.0,
+        "size_mm": [
+          41.2096,
+          41.2095,
+          6.75
+        ],
+        "max_span_error_mm": 0.0001,
+        "relative_volume_error": 7e-05,
+        "surface": {
+          "allowance_mm": 0.1,
+          "unmatched_stl_point_mm": null,
+          "unmatched_step_point_mm": null
+        }
+      },
+      "expected": "One closed, consistently wound mesh on Z=0 \u00b1 0.025 mm. Spans within 0.1 mm. Installed parts within 2% volume and 0.1 mm at bidirectional STEP/STL surface samples."
+    },
+    {
+      "id": "print-canopy",
+      "status": "pass",
+      "actual": {
+        "triangles": 12784,
+        "bad_edges": 0,
+        "duplicate_directed_edges": 0,
+        "degenerate": 0,
+        "connected_components": 1,
+        "volume_mm3": 1017.336,
+        "bed_z_mm": 0.0,
+        "size_mm": [
+          35.3,
+          29.0817,
+          15.76
+        ],
+        "max_span_error_mm": 0.0012,
+        "relative_volume_error": 0.00912,
+        "surface": {
+          "allowance_mm": 0.1,
+          "unmatched_stl_point_mm": null,
+          "unmatched_step_point_mm": null
+        }
+      },
+      "expected": "One closed, consistently wound mesh on Z=0 \u00b1 0.025 mm. Spans within 0.1 mm. Installed parts within 2% volume and 0.1 mm at bidirectional STEP/STL surface samples."
+    },
+    {
+      "id": "print-coupon-spring",
+      "status": "pass",
+      "actual": {
+        "triangles": 3340,
+        "bad_edges": 0,
+        "duplicate_directed_edges": 0,
+        "degenerate": 0,
+        "connected_components": 1,
+        "volume_mm3": 306.017,
+        "bed_z_mm": 0.0,
+        "size_mm": [
+          9.5997,
+          30.175,
+          6.75
+        ],
+        "expected_coupon_size_mm": [
+          9.6,
+          30.175,
+          6.75
+        ]
+      },
+      "expected": "One closed, consistently wound mesh on Z=0 \u00b1 0.025 mm. Spans within 0.1 mm. Installed parts within 2% volume and 0.1 mm at bidirectional STEP/STL surface samples."
+    },
+    {
+      "id": "print-coupon-catch",
+      "status": "pass",
+      "actual": {
+        "triangles": 1260,
+        "bad_edges": 0,
+        "duplicate_directed_edges": 0,
+        "degenerate": 0,
+        "connected_components": 1,
+        "volume_mm3": 177.916,
+        "bed_z_mm": 0.0,
+        "size_mm": [
+          15.05,
+          10.85,
+          1.35
+        ],
+        "expected_coupon_size_mm": [
+          15.05,
+          10.85,
+          1.35
+        ]
+      },
+      "expected": "One closed, consistently wound mesh on Z=0 \u00b1 0.025 mm. Spans within 0.1 mm. Installed parts within 2% volume and 0.1 mm at bidirectional STEP/STL surface samples."
+    }
+  ],
+  "inputs": {
+    "assembly.step": "5e06c69acb4b093e354dbfdaadb1e1d4b6a4d93ecf2ff84d6633f6909eec5521",
+    "bom.csv": "c6896dadf4eb838c80561a22fb4e3f6d93be334c807b34d54d20e790b8495b2f",
+    "assembly.glb": "4fa96a23a9bb2f554b1370ade693bb7b020e4f8105dd23df5919467f92710e42",
+    "components/frame.step": "edd57eebe297963c89aac042c473c426c13bf0bd735574db7d2b5c9d955d3cc5",
+    "components/dock.step": "a0d9d52bae0cdc8b8012ed9e0bf763a81a91840752b238adc9409a2ce6618655",
+    "components/canopy.step": "4462513181f9c5b6a5a6e297a9f3101484a1f09ba80ca5a5c82f2b1c78f97304",
+    "components/flight-controller.step": "91cc9254d7aa418487b06845f0bd01fe4113dd8406da28630bcd17efed71bc7f",
+    "components/fpv-camera.step": "8e105b1ea3470855b96b9ad1fa6328932c900b84afbe17210329e8bc56dcbc4d",
+    "components/battery-pack.step": "58e10e448ddfe99940b7375ffeadba684d11ce3710e6d0942258ad53de401623",
+    "components/battery-retention.step": "ae8a9641f948185c2f2bdc7780d158f4821b107589a7c1ebde096f620ffac9e2",
+    "components/stack-hardware.step": "99cd427c7ec3bc3e7d499ac23152611b521d28e6fe77fc69e31b9a4532fd3678",
+    "components/wiring.step": "229cba047e6a8c873e345feb2b846a79984c8d07505a1447623ed8f40e83cd2b",
+    "components/propulsion-FL.step": "bb780b8095f69181ea7d53d08f88983a702deb6d3b380b1e2c8d23ffcda33cae",
+    "components/propulsion-FR.step": "f3c682962f8820fc07f55463787ae5d3702a44ee864a3d59a7b2799af3702c36",
+    "components/propulsion-RL.step": "cb94604e945ffb3d2e37236e19405397f68ba9b8942014f73e989ede8afdca61",
+    "components/propulsion-RR.step": "6c114a6ef76cc79683a6603594704187340607579bfea455e403301d8e1cc209",
+    "print/frame.stl": "8ae67595d50adc815ba3e3280f793da16fa716f2cfcbd7cf5a7738a239d7e19a",
+    "print/dock.stl": "8354281fb4008b260eb6f61b28719eef8de093b86144f3dcddca71bc35a7c1f0",
+    "print/canopy.stl": "ad8b3410c69e2e53069e926394df6ed979be9730a325cb6f0183de5c011ad509",
+    "print/coupon-spring.stl": "f2b945c4fa51c455114fcbd685678f2eb07bc8af482f9e934c9c6fbb5974882b",
+    "print/coupon-catch.stl": "4f5dfb30b8a4f8380d32533477a5d3e40cd6a0dd82ed438cbe187ecb22e23747"
+  }
+}

@@ -51,7 +51,7 @@ jobs:
   plugin-suites:
     name: Marketplace plugin suites
     runs-on: macos-latest
-    timeout-minutes: 30
+    timeout-minutes: 50
     env:
       FUSION_TEST_PYTHON: python
       PYTHONDONTWRITEBYTECODE: "1"

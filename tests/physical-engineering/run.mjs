@@ -87,7 +87,10 @@ try {
     assert(!/\/Users\/|\/home\/[^/\s]+\//.test(content), `Personal path in package: ${file}`);
     assert(!/openai(?:-corpws|\.enterprise)?\.slack\.com|mail\.google\.com\/mail\//.test(content),
       `Private research link in package: ${file}`);
-    if (file.endsWith(".md") && !file.endsWith("/README.md")) {
+    // These design documents link to generated parts. The handoff verifies their
+    // local links after export, when the assembly and referenced parts exist.
+    const deliveryDoc = /^fixtures\/[^/]+\/(?:boards|handoff)\.md$/.test(path.relative(plugin, file));
+    if (file.endsWith(".md") && !file.endsWith("/README.md") && !deliveryDoc) {
       for (const match of content.matchAll(/\[[^\]]*\]\(([^)]+)\)/g)) {
         const target = match[1].split("#")[0];
         if (!target || /^[a-z][a-z0-9+.-]*:/i.test(target)) continue;
@@ -149,7 +152,7 @@ try {
     "print(f'Running {count} Physical Engineering tests', flush=True)",
     "result = unittest.TextTestRunner(verbosity=2).run(suite)",
     "sys.exit(0 if result.wasSuccessful() else 1)",
-  ].join("\n"), suite], { stdio: "inherit" });
+  ].join("\n"), suite], { stdio: "inherit", timeout: 35 * 60 * 1000 });
   console.log("Physical Engineering master suite passed.");
 } catch (error) {
   console.error(`ERROR ${error.message}`);

@@ -1,0 +1,54 @@
+{
+  "revision": "GBR mechanical interface A",
+  "units": "millimeters",
+  "board_axes": [
+    [
+      -14,
+      -8
+    ],
+    [
+      -14,
+      8
+    ],
+    [
+      14,
+      -8
+    ],
+    [
+      14,
+      8
+    ]
+  ],
+  "board_hole_diameter": 2.3,
+  "pilot_diameter": 1.7,
+  "post_seat_z": 5.0,
+  "substrate_thickness": 1.6,
+  "minimum_board_to_lid": 3.0,
+  "port": {
+    "wall_plane_y": -17.0,
+    "center_x": 0.0,
+    "center_z": 8.2,
+    "width": 13.0,
+    "height": 7.4,
+    "corner_radius": 1.0
+  },
+  "service_gauge": {
+    "width": 7.0,
+    "height": 2.8,
+    "center_x": 0.0,
+    "center_z": 8.15,
+    "outside_y": -26.0,
+    "basis": "SHR-04V-S-B flanged four-way JST SH nominal housing envelope, JST SH catalog p. 2. Rectangular approach envelope; contacts, leads and insertion forces excluded."
+  },
+  "cad_tolerance": 0.05,
+  "outside_service_allowance": {
+    "width": 9.0,
+    "height": 4.0,
+    "center_z": 8.1,
+    "center_x": 0.0,
+    "outside_y": -26.0,
+    "inside_y": -11.3
+  },
+  "rendered_fr4_core_thickness": 1.51,
+  "stackup_component_seat_above_core_bottom": 1.595
+}

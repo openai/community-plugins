@@ -1,11 +1,19 @@
 ---
 name: engineer-subsystem
-description: Turn a mechanical design brief into a saved CAD study, author or revise its model, and preserve requirements and failed measurements through Text-to-CAD.
+description: Design and verify mechanical parts or complete multi-part CAD assemblies with board interfaces, printable parts and a formatted BOM, including the Whoop 65 reference demo.
 ---
 
 # Engineer a subsystem
 
-Use this workflow for a new mechanical part or the bundled drone assembly.
+## Design a complete assembly
+
+Resolve the installed plugin root two directories above this skill. For a multi-part product with purchased or custom components, start a local design with `scripts/engineering.py assembly-init RECIPE_DIR`. Use the [editable assembly contract](../../references/assembly-designs.md). Author the design geometry, board references, sourced catalog and measurable interfaces for the user's brief. Run `assembly-build RECIPE_DIR NEW_DIRECTORY`, inspect the generated viewer, and return the actual CAD, BOM and measurements. Identify manufacturer models, measured interfaces and unverified assumptions in the handoff. Package any supplied native board files with their provenance.
+
+For the complete reference tiny whoop, TinyWhoop or Whoop 65, run `scripts/engineering.py whoop-demo NEW_DIRECTORY` directly. Choose the installed package exposing this command when multiple marketplaces are enabled. The [Whoop 65 guide](../../references/whoop-65.md) covers setup and the live demo. Use `assembly-init RECIPE_DIR --from whoop-65` when the brief asks to revise this aircraft. Select measurement methods that apply to the new design.
+
+## Design a single part or the two-part module
+
+Use the following study workflow for a custom mechanical part or the two-part drone module.
 Read [the brief](../../references/brief-template.md) and
 [compatibility](../../references/compatibility.md). Resolve the plugin root two
 directories above this skill; assets must work from the installed package.

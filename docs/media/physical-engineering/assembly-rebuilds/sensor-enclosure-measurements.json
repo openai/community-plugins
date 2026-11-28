@@ -1,0 +1,398 @@
+{
+  "schema_version": 1,
+  "status": "pass",
+  "checks": [
+    {
+      "id": "placement-base",
+      "status": "pass",
+      "actual": {
+        "center_mm": [
+          0.0,
+          0.0,
+          7.5
+        ],
+        "bom_id": "BA01"
+      },
+      "expected": {
+        "center_mm": [
+          0.0,
+          0.0,
+          7.5
+        ],
+        "tolerance_mm": 0.05,
+        "valid_nonempty": true
+      }
+    },
+    {
+      "id": "component-base",
+      "status": "pass",
+      "actual": {
+        "solid_count": 1,
+        "valid": true,
+        "volume_mm3": 9016.968,
+        "volume_difference_mm3": 0.0,
+        "bounds_error_mm": 0.0,
+        "symmetric_difference_mm3": 0.0
+      },
+      "expected": "Valid STEP with matching solid count, installed bounds within 0.01 mm and symmetric difference <= 0.001 mm\u00b3."
+    },
+    {
+      "id": "print-base",
+      "status": "pass",
+      "actual": {
+        "triangles": 7632,
+        "bad_edges": 0,
+        "duplicate_directed_edges": 0,
+        "degenerate": 0,
+        "connected_components": 1,
+        "volume_mm3": 9016.012,
+        "bed_z_mm": 0.0,
+        "size_mm": [
+          52.0,
+          36.0,
+          15.0
+        ],
+        "max_span_error_mm": 0.0,
+        "relative_volume_error": 0.00011,
+        "surface": {
+          "allowance_mm": 0.1,
+          "unmatched_stl_point_mm": null,
+          "unmatched_step_point_mm": null
+        }
+      },
+      "expected": "One closed, consistently wound mesh on Z=0 \u00b1 0.025 mm. Spans within 0.1 mm. Installed parts within 2% volume and 0.1 mm at bidirectional STEP/STL surface samples."
+    },
+    {
+      "id": "placement-board_screws/screw_1",
+      "status": "pass",
+      "actual": {
+        "center_mm": [
+          -14.0,
+          -8.0,
+          5.325
+        ],
+        "bom_id": "BS01"
+      },
+      "expected": {
+        "center_mm": [
+          -14.0,
+          -8.0,
+          5.325
+        ],
+        "tolerance_mm": 0.05,
+        "valid_nonempty": true
+      }
+    },
+    {
+      "id": "placement-board_screws/screw_2",
+      "status": "pass",
+      "actual": {
+        "center_mm": [
+          14.0,
+          -8.0,
+          5.325
+        ],
+        "bom_id": "BS01"
+      },
+      "expected": {
+        "center_mm": [
+          14.0,
+          -8.0,
+          5.325
+        ],
+        "tolerance_mm": 0.05,
+        "valid_nonempty": true
+      }
+    },
+    {
+      "id": "placement-board_screws/screw_3",
+      "status": "pass",
+      "actual": {
+        "center_mm": [
+          14.0,
+          8.0,
+          5.325
+        ],
+        "bom_id": "BS01"
+      },
+      "expected": {
+        "center_mm": [
+          14.0,
+          8.0,
+          5.325
+        ],
+        "tolerance_mm": 0.05,
+        "valid_nonempty": true
+      }
+    },
+    {
+      "id": "placement-board_screws/screw_4",
+      "status": "pass",
+      "actual": {
+        "center_mm": [
+          -14.0,
+          8.0,
+          5.325
+        ],
+        "bom_id": "BS01"
+      },
+      "expected": {
+        "center_mm": [
+          -14.0,
+          8.0,
+          5.325
+        ],
+        "tolerance_mm": 0.05,
+        "valid_nonempty": true
+      }
+    },
+    {
+      "id": "placement-lid",
+      "status": "pass",
+      "actual": {
+        "center_mm": [
+          0.0,
+          0.0,
+          16.1
+        ],
+        "bom_id": "LI01"
+      },
+      "expected": {
+        "center_mm": [
+          0.0,
+          0.0,
+          16.1
+        ],
+        "tolerance_mm": 0.05,
+        "valid_nonempty": true
+      }
+    },
+    {
+      "id": "component-lid",
+      "status": "pass",
+      "actual": {
+        "solid_count": 1,
+        "valid": true,
+        "volume_mm3": 3541.14,
+        "volume_difference_mm3": 0.0,
+        "bounds_error_mm": 0.0,
+        "symmetric_difference_mm3": 0.0
+      },
+      "expected": "Valid STEP with matching solid count, installed bounds within 0.01 mm and symmetric difference <= 0.001 mm\u00b3."
+    },
+    {
+      "id": "print-lid",
+      "status": "pass",
+      "actual": {
+        "triangles": 5628,
+        "bad_edges": 0,
+        "duplicate_directed_edges": 0,
+        "degenerate": 0,
+        "connected_components": 1,
+        "volume_mm3": 3541.125,
+        "bed_z_mm": 0.0,
+        "size_mm": [
+          52.0,
+          36.0,
+          2.2
+        ],
+        "max_span_error_mm": 0.0,
+        "relative_volume_error": 0.0,
+        "surface": {
+          "allowance_mm": 0.1,
+          "unmatched_stl_point_mm": null,
+          "unmatched_step_point_mm": null
+        }
+      },
+      "expected": "One closed, consistently wound mesh on Z=0 \u00b1 0.025 mm. Spans within 0.1 mm. Installed parts within 2% volume and 0.1 mm at bidirectional STEP/STL surface samples."
+    },
+    {
+      "id": "placement-lid_screws/screw_1",
+      "status": "pass",
+      "actual": {
+        "center_mm": [
+          -21.0,
+          -13.0,
+          13.925
+        ],
+        "bom_id": "LS01"
+      },
+      "expected": {
+        "center_mm": [
+          -21.0,
+          -13.0,
+          13.925
+        ],
+        "tolerance_mm": 0.05,
+        "valid_nonempty": true
+      }
+    },
+    {
+      "id": "placement-lid_screws/screw_2",
+      "status": "pass",
+      "actual": {
+        "center_mm": [
+          21.0,
+          -13.0,
+          13.925
+        ],
+        "bom_id": "LS01"
+      },
+      "expected": {
+        "center_mm": [
+          21.0,
+          -13.0,
+          13.925
+        ],
+        "tolerance_mm": 0.05,
+        "valid_nonempty": true
+      }
+    },
+    {
+      "id": "placement-lid_screws/screw_3",
+      "status": "pass",
+      "actual": {
+        "center_mm": [
+          21.0,
+          13.0,
+          13.925
+        ],
+        "bom_id": "LS01"
+      },
+      "expected": {
+        "center_mm": [
+          21.0,
+          13.0,
+          13.925
+        ],
+        "tolerance_mm": 0.05,
+        "valid_nonempty": true
+      }
+    },
+    {
+      "id": "placement-lid_screws/screw_4",
+      "status": "pass",
+      "actual": {
+        "center_mm": [
+          -21.0,
+          13.0,
+          13.925
+        ],
+        "bom_id": "LS01"
+      },
+      "expected": {
+        "center_mm": [
+          -21.0,
+          13.0,
+          13.925
+        ],
+        "tolerance_mm": 0.05,
+        "valid_nonempty": true
+      }
+    },
+    {
+      "id": "placement-sensor_board",
+      "status": "pass",
+      "actual": {
+        "center_mm": [
+          0.0,
+          0.0,
+          6.9
+        ],
+        "bom_id": "PC01"
+      },
+      "expected": {
+        "center_mm": [
+          0.0,
+          0.0,
+          6.9
+        ],
+        "tolerance_mm": 0.05,
+        "valid_nonempty": true
+      }
+    },
+    {
+      "id": "component-sensor_board",
+      "status": "pass",
+      "actual": {
+        "solid_count": 9,
+        "valid": true,
+        "volume_mm3": 1277.35,
+        "volume_difference_mm3": 0.0,
+        "bounds_error_mm": 0.0,
+        "symmetric_difference_mm3": 0.0
+      },
+      "expected": "Valid STEP with matching solid count, installed bounds within 0.01 mm and symmetric difference <= 0.001 mm\u00b3."
+    },
+    {
+      "id": "installed-bom",
+      "status": "pass",
+      "actual": {
+        "modeled": {
+          "BA01": {
+            "step": 1,
+            "bom": 1
+          },
+          "BS01": {
+            "step": 4,
+            "bom": 4
+          },
+          "LI01": {
+            "step": 1,
+            "bom": 1
+          },
+          "LS01": {
+            "step": 4,
+            "bom": 4
+          },
+          "PC01": {
+            "step": 1,
+            "bom": 1
+          }
+        },
+        "unmodeled": {},
+        "bench_ids_excluded": [
+          "MT01",
+          "TL01",
+          "TL02"
+        ]
+      },
+      "expected": "Each named STEP occurrence belongs to exactly one installed BOM line."
+    },
+    {
+      "id": "gap-board-to-lid",
+      "status": "pass",
+      "actual": {
+        "nodes": [
+          "sensor_board",
+          "lid"
+        ],
+        "measured_mm": 6.2
+      },
+      "expected": {
+        "min_mm": 6.1,
+        "max_mm": 6.4
+      }
+    },
+    {
+      "id": "glb-assembly",
+      "status": "pass",
+      "actual": {
+        "named_meshes": 14,
+        "max_bounds_drift_mm": 0.0
+      },
+      "expected": "Indexed triangle bounds within 0.15 mm of every installed STEP leaf."
+    }
+  ],
+  "inputs": {
+    "bom.csv": "26740f11e2fdb942e703073a4f5e30029cedecca70374169b42a37f6310914e3",
+    "assembly.step": "958278ae5c86576e346c1ad05da893b4a28939b3b288ea73be9d93e9e79436b9",
+    "components/base.step": "9dedc77010506816bb8d9b2966f78f1ab6dbc804175e3974f7a37eb09e73409a",
+    "print/base.stl": "4fa3fdefbeae792d24615771fd284ba90820f6a5eee620954cc18e843045737e",
+    "components/lid.step": "6fa49f31bb684808289d2accf7ac2e9fd612df635134cb47cbcc7343dd9b8caf",
+    "print/lid.stl": "2784a30db4305fedcc4bf2a543162d3f6b3ce04e52cf78ea09a929b3a1ce74fe",
+    "components/sensor_board.step": "573e34018793e04c440089c250ee58d995d34ea1d4086931fc8725f57c5dc792",
+    "assembly.glb": "653b6e7ca3bab48ec38299e52b812a0a969438177b7c0b5a5deefbbd94b14498"
+  },
+  "recipe_sha256": "3e23a631dd9d0c6b38ab149a92a23af8ae53f229831de7b67c052e60708837eb"
+}
