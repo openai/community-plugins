@@ -5,8 +5,8 @@ import { createHash } from 'node:crypto';
 import { spawn } from 'node:child_process';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
-export const VERSION = '0.4.0-rc.11';
-export const LINUX_VERSION = '0.4.0-rc.11-linux.1';
+export const VERSION = '0.4.0-rc.12';
+export const LINUX_VERSION = '0.4.0-rc.12-linux.1';
 const pluginRoot = fileURLToPath(new URL('../', import.meta.url));
 const owner = { kind: 'BOUNDARYXP_COMMUNITY_PLUGIN', schema: 1 };
 
@@ -127,9 +127,9 @@ export async function prepareData(home, server) {
   // Reuse the shipped migration contract; never rewrite old task/result bytes.
   const packageRoot = path.dirname(server);
   const pin = JSON.parse(await fs.readFile(path.join(packageRoot, 'runtime/MCP-RUNTIME-LOCK.json'), 'utf8'));
-  const target = path.join(home, 'data-rc11');
+  const target = path.join(home, 'data-rc12');
   let source;
-  for (const name of ['data-rc10', 'data-rc9']) {
+  for (const name of ['data-rc11', 'data-rc10', 'data-rc9']) {
     const candidate = path.join(home, name);
     try { await fs.lstat(candidate); source = candidate; break; }
     catch (error) { if (error.code !== 'ENOENT') throw error; }
@@ -140,12 +140,12 @@ export async function prepareData(home, server) {
   try {
     try {
       const marker = JSON.parse(await fs.readFile(path.join(target, 'MCP-B332-OWNED.json'), 'utf8'));
-      if ((await fs.lstat(target)).isSymbolicLink() || marker.kind !== 'MCP_B332_DATA' || marker.runtime_sha256 !== pin.manifest_sha256) throw new Error('BXP_DATA: rc.11 data identity differs; all records retained.');
+      if ((await fs.lstat(target)).isSymbolicLink() || marker.kind !== 'MCP_B332_DATA' || marker.runtime_sha256 !== pin.manifest_sha256) throw new Error('BXP_DATA: rc.12 data identity differs; all records retained.');
       return target;
     } catch (error) { if (error.code !== 'ENOENT') throw error; }
     try {
       await fs.access(target);
-      throw new Error('BXP_DATA: incomplete rc.11 directory retained for inspection.');
+      throw new Error('BXP_DATA: incomplete rc.12 directory retained for inspection.');
     } catch (error) { if (error.code !== 'ENOENT') throw error; }
     if (!source) return target;
     try { await fs.access(source); }
@@ -153,7 +153,7 @@ export async function prepareData(home, server) {
     const marker = JSON.parse(await fs.readFile(path.join(source, 'MCP-B332-OWNED.json'), 'utf8'));
     const { copyRuntimeData } = await import(pathToFileURL(path.join(packageRoot, 'data-migration.mjs')).href);
     copyRuntimeData({ source, destination: target, fromRuntime: marker.runtime_sha256, toRuntime: pin.manifest_sha256 });
-    console.error('BoundaryXP: copied inactive plugin data to rc.11; original tasks, dictionaries and records retained.');
+    console.error('BoundaryXP: copied inactive plugin data to rc.12; original tasks, dictionaries and records retained.');
     return target;
   } finally { await fs.rmdir(lock); }
 }

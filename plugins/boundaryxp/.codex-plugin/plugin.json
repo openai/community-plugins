@@ -1,6 +1,6 @@
 {
   "name": "boundaryxp",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Analyze evidence-backed 7+1 task boundaries with the host LLM and verify submitted operands using BoundaryXP's compiled native Core. Windows and Linux x64; platform-specific pinned packages.",
   "author": { "name": "BoundaryXP", "url": "https://github.com/joinwell52-AI" },
   "homepage": "https://github.com/joinwell52-AI/BoundaryXP",

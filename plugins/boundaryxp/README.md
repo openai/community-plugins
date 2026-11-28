@@ -2,12 +2,12 @@
 
 # BoundaryXP · 7+1 task boundary verification
 
-**Plugin 0.4.0 · MCP rc.11 / B348 · Windows / Linux x64 · Node.js >=22.19 with npm**
+**Plugin 0.5.0 · MCP rc.12 / B353 · Windows / Linux x64 · Node.js >=22.19 with npm**
 
 | Platform | Locked MCP package | Requirements |
 |---|---|---|
-| Windows x64 | `0.4.0-rc.11` | Inactive plugin rc.10 (or rc.9) data is copied; original records retained |
-| Linux x64 | `0.4.0-rc.11-linux.1` | glibc >=2.36 (e.g. Debian 12 / Ubuntu 24.04); no Alpine/musl or ARM64 |
+| Windows x64 | `0.4.0-rc.12` | Inactive plugin rc.11 (then rc.10 or rc.9) data is copied; original records retained |
+| Linux x64 | `0.4.0-rc.12-linux.1` | glibc >=2.36 (e.g. Debian 12 / Ubuntu 24.04); no Alpine/musl or ARM64 |
 
 The launcher selects a separate, exact lockfile for each platform. No macOS support is claimed.
 
@@ -27,7 +27,9 @@ Grafana is a separate plugin in this community repository. BoundaryXP does not
 depend on it, and users do not need to install or configure Grafana. Repository-wide
 Grafana test results are separate from this plugin's native MCP acceptance.
 
-B348 saves full Chinese and English reports from one host analysis with shared calculation receipts. Report language is selected through `bx_result_get`; legacy reports remain readable.
+B353 retains full Chinese and English reports from one host analysis with shared calculation receipts. Report language is selected through `bx_result_get`; legacy reports remain readable.
+
+B353 also conservatively repairs omitted operation kinds, extra path escaping and missing shared budget fields when the required evidence is unambiguous. Raw responses remain preserved. Native Core includes remaining-budget receipts for complete fixed budgets.
 
 ## Installation and first safe prompt
 
@@ -36,9 +38,9 @@ B348 saves full Chinese and English reports from one host analysis with shared c
 [rc.11 Glama verification](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/GLAMA-RC11.md)
 passed build/startup and discovery of 21 tools / 17 resources on November 18.
 Glama release `0.4.0-rc.linux.11.1` maps to npm `0.4.0-rc.11-linux.1`.
-The earlier rc.9 evidence below remains historical, not a substitute for this run.
+This is historical rc.11 evidence; rc.12 Glama rebuilding awaits renewed owner login.
 
-The current standalone **Linux x64** release is rc.11-linux.1 (Node >=22.19,
+The current standalone **Linux x64** release is rc.12-linux.1 (Node >=22.19,
 glibc >=2.36), with 21 tools and 17 resources. The earlier
 `0.4.0-rc.9-linux.1` has separate historical Glama evidence:
 [Glama](https://glama.ai/mcp/servers/joinwell52-AI/BoundaryXP) successfully built
@@ -53,7 +55,7 @@ lockfile is in `runtime/package-lock.json`; Linux uses `runtime/linux/package-lo
 Glama verification concerns the standalone package; this wrapper's separate
 installation and case evidence is documented in the [test guide](../../tests/boundaryxp/README.md).
 Neither verifies semantic accuracy for arbitrary inputs. The earlier Glama build
-is not rc.11 platform validation. [Current rc.11 release acceptance](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/RC11.md).
+is not rc.12 platform validation. [Current rc.12 release acceptance](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/RC12.md).
 
 ### Install on Windows or Linux
 
@@ -103,7 +105,7 @@ digest and job ID. Poll `bx_job_get` and read the returned `result_revision` wit
 the old result. Do not silently retry failed analyses.
 
 For custom dictionaries, call `bx_dictionary_format` for L2 or L3 in `en` or
-`zh-CN`. B348 returns a complete directory document (`files` with paths and text):
+`zh-CN`. B353 returns a complete directory document (`files` with paths and text):
 L2 has 8 JSON files plus README; L3 has 3 JSON files plus README. Validate the
 whole serialized document using `bx_dictionary_validate`, then import exactly
 that document with its returned sha256 using `bx_dictionary_import`. In the UI,
@@ -126,7 +128,7 @@ test data, not permission to build, deploy or execute anything.
   Linux: `$XDG_DATA_HOME/BoundaryXP/CommunityPlugin`, or
   `$HOME/.local/share/BoundaryXP/CommunityPlugin` when XDG_DATA_HOME is unset.
   The selected home contains the npm
-  cache, pinned runtime, empty host profiles and `data-rc11` task/dictionary store.
+  cache, pinned runtime, empty host profiles and `data-rc12` task/dictionary store.
   An older plugin's `data-rc9` is retained after copy migration.
   This is separate from existing standalone installations. No existing tasks,
   dictionary directories, host settings or ports are discovered or changed.
@@ -150,13 +152,13 @@ test data, not permission to build, deploy or execute anything.
 
 ## Updates, removal and safe failures
 
-This plugin pins Windows rc.11 and Linux rc.11-linux.1, not a moving npm tag.
+This plugin pins Windows rc.12 and Linux rc.12-linux.1, not a moving npm tag.
 Close older plugin connections before upgrading. On the first connection, the
-shipped migration helper copies this plugin's inactive `data-rc10` (or `data-rc9` when rc.10 is absent) to `data-rc11`,
+shipped migration helper copies this plugin's inactive `data-rc11` (then `data-rc10`, then `data-rc9` if newer directories are absent) to `data-rc12`,
 verifies file hashes and retains the original directory, profiles and migration
 receipt. Active old processes, inconsistent identities and incomplete target
 directories are refused without killing processes or deleting data. New work
-uses `data-rc11`; reverting to the older plugin reads the old snapshot and does
+uses `data-rc12`; reverting to the older plugin reads the old snapshot and does
 not include work created afterward. `--install-only` downloads the runtime but
 does not migrate data. No standalone installation is scanned. Keep the plugin home when
 updating/removing the plugin; plugin cache deletion does not delete this home.

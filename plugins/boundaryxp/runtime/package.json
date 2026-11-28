@@ -4,5 +4,5 @@
   "private": true,
   "description": "Pinned compiled runtime dependency for the BoundaryXP plugin; no lifecycle scripts.",
   "license": "MIT",
-  "dependencies": { "boundaryxp-mcp": "0.4.0-rc.11" }
+  "dependencies": { "boundaryxp-mcp": "0.4.0-rc.12" }
 }

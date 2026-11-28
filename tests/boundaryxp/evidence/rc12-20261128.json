@@ -1,0 +1,102 @@
+{
+  "date": "2026-11-28",
+  "plugin_version": "0.5.0",
+  "npm_windows": "0.4.0-rc.12",
+  "npm_linux": "0.4.0-rc.12-linux.1",
+  "product_label": "B-353",
+  "suite": "npm run test:boundaryxp",
+  "matrix": [
+    {
+      "platform": "win32-x64",
+      "node": "22.19.0",
+      "pass": 9,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "platform": "win32-x64",
+      "node": "24.19.0",
+      "pass": 9,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "platform": "linux-x64-glibc2.36",
+      "node": "22.19.0",
+      "pass": 9,
+      "fail": 0,
+      "skip": 0
+    },
+    {
+      "platform": "linux-x64-glibc2.36",
+      "node": "24.19.0",
+      "pass": 9,
+      "fail": 0,
+      "skip": 0
+    }
+  ],
+  "discovery": {
+    "tools": 21,
+    "resources": 17
+  },
+  "complete_case": {
+    "platforms": [
+      "Windows",
+      "Linux"
+    ],
+    "mode": "SAVED_CURRENT_CODEX_RESPONSE_REPLAY",
+    "nodes": 3,
+    "calculated": 2,
+    "invalid": 0,
+    "statuses": [
+      "VERIFIED",
+      "VIOLATED"
+    ],
+    "result_revision": 7,
+    "recheck_revision": 8,
+    "original_result_retained": true,
+    "bilingual_reports": true,
+    "server_model_requests": 0,
+    "report_sha256": "c807286585b80769244fdb2f728262c9a57b96ba03c7e83feb466aa636272159"
+  },
+  "copy_migration": {
+    "platforms": [
+      "Windows",
+      "Linux"
+    ],
+    "fixture_runtime": "rc.11",
+    "fixture_origin": "synthetic Windows rc.11 acceptance, copied into isolated homes on both platforms",
+    "directory_routes": [
+      "data-rc11",
+      "data-rc10 fallback",
+      "data-rc9 fallback"
+    ],
+    "target": "data-rc12",
+    "original_files_preserved": 54,
+    "custom_dictionaries": 2,
+    "old_result_readable": true,
+    "original_fixture_unchanged": true,
+    "general_cross_os_migration_qualified": false
+  },
+  "marketplace_validation": "PASS",
+  "npm_dispatcher": {
+    "pass": 11,
+    "fail": 0,
+    "skip": 0
+  },
+  "runtime_audit": {
+    "windows_vulnerabilities": 0,
+    "linux_vulnerabilities": 0
+  },
+  "initial_setup_failures": [
+    "Linux lock generation on Windows rejected os mismatch; generated natively on Linux instead",
+    "First Linux case used absent Windows fixture pathname; rerun with existing saved Linux copy passed",
+    "Existing Linux node22 directory was Node 22.18 and correctly rejected; downloaded official Node 22.19, verified SHA-256, reran unchanged suite"
+  ],
+  "repo_wide_validate": "FAIL: pre-existing unchanged Grafana source part CRLF size 143531 vs 140000 on Windows",
+  "full_marketplace_green_claimed": false,
+  "glama_rc12": "PENDING_OWNER_LOGIN",
+  "original_core_source_in_plugin": false,
+  "existing_installations_changed": false,
+  "accessed_58618": false
+}

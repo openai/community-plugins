@@ -19,8 +19,8 @@ test('catalog, manifest and locked compiled release agree', async () => {
   const pkg = lock.packages['node_modules/boundaryxp-mcp'];
   assert.equal(pkg.version, spec.version);
   assert.deepEqual(pkg.os, [platform]);
-  if (platform === 'win32') assert.equal(pkg.integrity, 'sha512-8aL0J/ZfcvTkRSdMnuekrQmZaf3KdX9kJFzJc1gNmnw8dMS7Y0XBX9z7/xUI1Ae+4g1Qjknn8912UT/TSmMzRA==');
-  if (platform === 'linux') assert.equal(pkg.integrity, 'sha512-ewM1kq3OvE55k+WDfLiXWzWB3lEezpKNHOvAjoP0J9/UILHO9gFmtbPvj/H/ptVpONmfDu3FdKCRchH2h64sag==');
+  if (platform === 'win32') assert.equal(pkg.integrity, 'sha512-FZN3LojfmGdzACnZXF/EYS2pnl0KdlxSOvGNthS3ERMNexMmShoazUb2i4WIz15tTHHuXadSSFUMZBIEU8USDQ==');
+  if (platform === 'linux') assert.equal(pkg.integrity, 'sha512-OxCAOoaDYVo52YP8lOSHpGUEyJySFbTr+Po4A19d8IltKQ4ftJ1+7Rw5lghua7HttGMDRVcXWyt+6ZB4sODmXQ==');
   assert.equal((await read(`${spec.directory}/package.json`)).dependencies['boundaryxp-mcp'], spec.version);
   for (const item of Object.values(lock.packages)) {
     if (item.resolved) { assert.equal(new URL(item.resolved).hostname, 'registry.npmjs.org'); assert.match(item.integrity, /^sha512-/); }

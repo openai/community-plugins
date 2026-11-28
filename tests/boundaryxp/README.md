@@ -1,5 +1,46 @@
 # BoundaryXP plugin checks
 
+## rc.12 / B353 synchronization — November 28, 2026
+
+Plugin **0.5.0** pins Windows **0.4.0-rc.12** and Linux **0.4.0-rc.12-linux.1**.
+The canonical `npm run test:boundaryxp` passed **9/9 with zero skips** on each
+Windows/Linux x64 × Node **22.19.0 / 24.19.0** combination. These were real cold
+npm/native installs with four bilingual directory examples, two custom imports,
+distinct DEV nodes, HTTP workbench and reconnect persistence. Both lock audits
+reported zero vulnerabilities. Marketplace validation and the npm dispatcher
+suite passed (11/11).
+
+Separate complete Windows/Linux plugin case replays produced 2 PROGRAM results
+(DEV-01 VERIFIED, DEV-02 VIOLATED), full Chinese/English reports, retained result
+revision 7 and created recheck revision 8 with zero server model requests. Both
+report SHA-256 values equal
+`c807286585b80769244fdb2f728262c9a57b96ba03c7e83feb466aa636272159`.
+This replays the saved current-Codex case; it is not a new independent model analysis.
+
+The shipped migration helper was exercised through the plugin's `prepareData`
+on both platforms using the same synthetic rc.11 acceptance store. All 54 original
+files and two custom dictionaries were retained; the old result remained readable.
+The rc.11 source takes precedence, then rc.10, then rc.9. Each fallback pathname
+was tested with the rc.11 fixture, not relabeled as an older-runtime qualification.
+The Linux check used the copied synthetic Windows fixture; general cross-OS user
+store migration remains unqualified. Existing installations/configuration were untouched.
+
+Initial setup failures remain recorded: Windows correctly refused Linux lock
+generation, the first Linux replay referenced an absent fixture, and the existing
+Linux Node 22.18 directory correctly failed the >=22.19 guard. Native Linux lock
+generation, the saved Linux response and checksum-verified official Node 22.19
+resolved them without weakening tests.
+
+`npm run validate` still fails the unchanged Grafana source-part size assertion
+on this Windows CRLF checkout (143531 vs 140000); prior baseline evidence is linked
+below. The full marketplace/provider suite is not claimed green or rerun. No
+workflow was dispatched. The last Glama platform result remains rc.11; rc.12
+rebuilding awaits renewed owner login. Original Core source remains private.
+
+[Sanitized rc.12 evidence](evidence/rc12-20261128.json) ·
+[Product acceptance](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/RC12.md).
+Earlier records below retain their original dates and scope.
+
 ## rc.11 / B348 synchronization — November 18, 2026
 
 Plugin **0.4.0** pins public Windows **0.4.0-rc.11** and Linux

@@ -3,8 +3,8 @@
 This MIT plugin contains a launcher, manifests, lockfile and documentation.
 It does not contain the BoundaryXP native Core source, binary, customer data,
 credentials or existing installations. On first use, npm downloads the locked
-Windows `boundaryxp-mcp@0.4.0-rc.10` or Linux x64
-`boundaryxp-mcp@0.4.0-rc.10-linux.1` compiled distribution and its pinned dependencies.
+Windows `boundaryxp-mcp@0.4.0-rc.12` or Linux x64
+`boundaryxp-mcp@0.4.0-rc.12-linux.1` compiled distribution and its pinned dependencies.
 Their npm integrity values are recorded in runtime/package-lock.json and
 runtime/linux/package-lock.json respectively. The Windows lock is unchanged.
 

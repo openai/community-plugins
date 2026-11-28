@@ -2,12 +2,12 @@
 
 # BoundaryXP · 界痕：7+1 任务边界核验
 
-**插件 0.4.0 · MCP rc.11 / B348 · Windows / Linux x64 · Node.js >=22.19（含 npm）**
+**插件 0.5.0 · MCP rc.12 / B353 · Windows / Linux x64 · Node.js >=22.19（含 npm）**
 
 | 平台 | 锁定 MCP 版本 | 条件 |
 |---|---|---|
-| Windows x64 | `0.4.0-rc.11` | 复制已停止使用的插件 rc.10（或 rc.9）数据，保留原记录 |
-| Linux x64 | `0.4.0-rc.11-linux.1` | glibc >=2.36，例如 Debian 12、Ubuntu 24.04 |
+| Windows x64 | `0.4.0-rc.12` | 复制已停止使用的插件 rc.11（其次 rc.10、rc.9）数据，保留原记录 |
+| Linux x64 | `0.4.0-rc.12-linux.1` | glibc >=2.36，例如 Debian 12、Ubuntu 24.04 |
 
 启动器按平台选择独立依赖锁；不支持 macOS、ARM64、Alpine/musl。
 
@@ -16,7 +16,9 @@ LLM 判断、计算回执、原文证据和未知项；计算通过不自动证�
 业务执行权。21 个工具、17 项资源，支持多个同角色子任务、L2/L3 自定义字典和浏览器
 工作台。核心通过 npm 编译包交付，本插件和 PR 不包含核心实现源码。
 
-B348 一次宿主分析保存完整中文、英文报告，共用计算回执；通过 `bx_result_get` 选择报告语言，旧报告继续可读。
+B353 一次宿主分析保存完整中文、英文报告，共用计算回执；通过 `bx_result_get` 选择报告语言，旧报告继续可读。
+
+B353 对运算类型漏交、引文路径重复转义、预算共同字段漏填进行有条件补全，依据不足时不补造；原始响应仍保留。原生 Core 提供完整固定预算的余额回执。
 
 ## 安装与首次使用
 
@@ -24,9 +26,9 @@ B348 一次宿主分析保存完整中文、英文报告，共用计算回执；
 
 [rc.11 Glama 实测](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/GLAMA-RC11.md)
 于 11 月 18 日通过构建、启动及 21 工具 / 17 资源发现。平台发行标记
-`0.4.0-rc.linux.11.1` 对应 npm `0.4.0-rc.11-linux.1`。下方 rc.9 回执保留为历史。
+`0.4.0-rc.linux.11.1` 对应 npm `0.4.0-rc.11-linux.1`。这是 rc.11 的历史证据；rc.12 Glama 重建等待所有者重新登录。
 
-当前 Linux x64 编译版为 rc.11-linux.1，需要 Node >=22.19、glibc >=2.36。
+当前 Linux x64 编译版为 rc.12-linux.1，需要 Node >=22.19、glibc >=2.36。
 此前 `0.4.0-rc.9-linux.1` 的 Glama 平台验证保留为历史证据：
 [Glama](https://glama.ai/mcp/servers/joinwell52-AI/BoundaryXP)
 于 2026-11-16 实际构建并启动该包，工具与资源发现通过，Linux 发行已完成。
@@ -36,8 +38,8 @@ B348 一次宿主分析保存完整中文、英文报告，共用计算回执；
 **本插件封装现支持 Windows 和 Linux x64。** 创建目录或安装之前检查 Node、CPU 和
 Linux glibc。Windows 使用 `runtime/package-lock.json`；Linux 使用 `runtime/linux/package-lock.json`。
 Glama 验证的是独立编译包；本插件另行做安装与完整案例检查，见[测试说明](../../tests/boundaryxp/README.md)。
-这些验证不代表任意任务的语义正确性认证，旧 Glama 构建也不算 rc.11 平台验证。
-见[当前 rc.11 发行验收](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/RC11.md)。
+这些验证不代表任意任务的语义正确性认证，旧 Glama 构建也不算 rc.12 平台验证。
+见[当前 rc.12 发行验收](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/RC12.md)。
 
 ### 安装 Windows 或 Linux 插件
 
@@ -81,7 +83,7 @@ main。保留完整仓库，或稀疏路径填写 `.agents/plugins` 和 `plugins
 - Windows 默认目录仍为 `%LOCALAPPDATA%/BoundaryXP/CommunityPlugin`。
   Linux 为 `$XDG_DATA_HOME/BoundaryXP/CommunityPlugin`；未设 XDG 时使用
   `$HOME/.local/share/BoundaryXP/CommunityPlugin`。目录包含 npm 缓存、锁定运行包、
-  空 host profiles 和 `data-rc11`。旧插件 `data-rc9` 在复制迁移后保留；不扫描独立安装或修改宿主配置、端口。
+  空 host profiles 和 `data-rc12`。旧插件 `data-rc9` 在复制迁移后保留；不扫描独立安装或修改宿主配置、端口。
 - 可用 `BXP_PLUGIN_HOME` 指定专用绝对路径；无本插件标记的非空目录会被拒绝。不要指向
   现有安装目录。Read/Write 权限限于显式提供的任务、所选字典和插件自己的保存记录。
 - 默认使用当前宿主模型，无需另配 API Key。本封装只启用 host 模式，不读取 `.env` 或
@@ -94,10 +96,10 @@ main。保留完整仓库，或稀疏路径填写 `.agents/plugins` 和 `plugins
 
 ## 升级、卸载和排障
 
-Windows 固定 rc.11、Linux 固定 rc.11-linux.1，不跟随浮动标签。升级前关闭旧插件连接；首次连接
-调用包内迁移工具，将本插件已停止使用的 `data-rc10`（没有该目录时使用 `data-rc9`）复制到 `data-rc11`，校验摘要并保留原目录、
+Windows 固定 rc.12、Linux 固定 rc.12-linux.1，不跟随浮动标签。升级前关闭旧插件连接；首次连接
+调用包内迁移工具，将本插件已停止使用的 `data-rc11`（其次选择 `data-rc10`、`data-rc9`）复制到 `data-rc12`，校验摘要并保留原目录、
 配置和迁移回执。旧进程仍活动、身份不匹配或目标目录不完整时拒绝启动，不杀进程、不删除数据。
-新操作写入 `data-rc11`；退回旧插件只能读旧快照，不包含升级后新增工作。
+新操作写入 `data-rc12`；退回旧插件只能读旧快照，不包含升级后新增工作。
 `--install-only` 只下载运行包，不迁移。升级或卸载插件时保留上述插件目录；删除插件缓存不删除数据目录。
 避免两个连接同时操作同一个任务存储。未验收跨操作系统搬迁旧任务库；各平台使用专用目录。
 
