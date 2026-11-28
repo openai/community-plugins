@@ -1,0 +1,145 @@
+diff --git a/assembly.json b/assembly.json
+index 0f51868..ffb8ced 100644
+--- a/assembly.json
++++ b/assembly.json
+@@ -1,9 +1,9 @@
+ {
+   "schema": 1,
+-  "id": "whoop-65",
++  "id": "whoop-65-guard-revision",
+   "display": {
+-    "title": "Whoop 65",
+-    "subtitle": "65 mm indoor FPV quadcopter",
++    "title": "Whoop 65 \u00b7 revised guards",
++    "subtitle": "1.40 mm radial guard walls \u00b7 65 mm motor diagonal",
+     "focus": "flight_controller",
+     "focus_label": "Flight board",
+     "explode": {
+@@ -16,7 +16,7 @@
+     }
+   },
+   "bom": {
+-    "title": "Whoop 65",
++    "title": "Whoop 65 \u00b7 revised guards",
+     "scopes": [
+       "Aircraft",
+       "Bench"
+diff --git a/catalog/parts.csv b/catalog/parts.csv
+index ce0d9f5..ecc7409 100644
+--- a/catalog/parts.csv
++++ b/catalog/parts.csv
+@@ -1,5 +1,5 @@
+ "ID","Scope","Group","Part","Qty","Unit","Supply","Specification","Source"
+-"FR01","Aircraft","Airframe","Guarded frame","1","ea","Print","Unfilled PETG. Includes four motor seats, guards, battery supports and board posts.","print/frame.stl"
++"FR01","Aircraft","Airframe","Guarded frame","1","ea","Print","Unfilled PETG. Revised nominal guard walls 1.40 mm, grown outward. Includes four motor seats, guards, battery supports and board posts.","print/frame.stl"
+ "DK01","Aircraft","Airframe","Fixed snap dock","1","ea","Print","PETG. The dock sits above the board on the stack screws and holds the two canopy catches.","print/dock.stl"
+ "CY01","Aircraft","Airframe","Snap-on camera canopy","1","ea","Print","PETG. The canopy releases from the fixed dock for access to the camera.","print/canopy.stl"
+ "FC01","Aircraft","Avionics","BETAFPV Air 5IN1","1","ea","Buy 1 board kit","01040016_2 · G473 1S flight controller with four ESC channels, OSD, analog VTX and serial ELRS receiver.","https://betafpv.com/products/air-brushless-flight-controller"
+diff --git a/geometry/build.py b/geometry/build.py
+index 0b47173..578790b 100644
+--- a/geometry/build.py
++++ b/geometry/build.py
+@@ -10,6 +10,7 @@ import build123d as bd
+ # The installed source is read-only, including when invoked directly.
+ sys.dont_write_bytecode = True
+
++import check_guard_wall
+ import frame
+ import hardware
+ import snap
+@@ -72,6 +73,8 @@ def build(output):
+     }
+     for name, part in components.items():
+         export_step(part, component_dir / f"{name}.step")
++    if not check_guard_wall.inspect(component_dir / "frame.step", output / "guard-wall.json"):
++        raise ValueError("Exported frame does not meet the revised guard-wall drawing")
+     assembly = bd.Compound(children=list(components.values()), label="Whoop_65_Snap")
+     export_step(assembly, output / "assembly.step")
+     if not bd.export_gltf(
+diff --git a/geometry/check_guard_wall.py b/geometry/check_guard_wall.py
+new file mode 100644
+index 0000000..0d1c170
+--- /dev/null
++++ b/geometry/check_guard_wall.py
+@@ -0,0 +1,49 @@
++"""Measure the four duct rims on an exported frame, independently of the generator."""
++import argparse
++import json
++from pathlib import Path
++
++import build123d as bd
++from OCP.BRepAdaptor import BRepAdaptor_Surface
++from OCP.GeomAbs import GeomAbs_Cylinder
++from OCP.TopAbs import TopAbs_REVERSED
++
++
++def measure(frame_file):
++    frame = bd.import_step(frame_file)
++    rims = {}
++    for face in frame.faces():
++        surface = BRepAdaptor_Surface(face.wrapped)
++        if surface.GetType() != GeomAbs_Cylinder:
++            continue
++        cylinder = surface.Cylinder()
++        radius = cylinder.Radius()
++        if not 15 < radius < 20 or abs(cylinder.Axis().Direction().Z()) < 0.99999:
++            continue
++        x, y = (round(v, 5) for v in cylinder.Location().Coord()[:2])
++        side = 'inner' if face.wrapped.Orientation() == TopAbs_REVERSED else 'outer'
++        rims.setdefault((x, y), {}).setdefault(side, set()).add(round(radius, 5))
++    if len(rims) != 4 or any(set(sides) != {'inner', 'outer'} or any(len(values) != 1 for values in sides.values()) for sides in rims.values()):
++        raise ValueError('Expected four distinct concentric inner and outer vertical duct surfaces')
++    rings = []
++    for (x, y), sides in sorted(rims.items()):
++        inner, outer = next(iter(sides['inner'])), next(iter(sides['outer']))
++        rings.append({'axis_xy_mm':[x, y], 'inner_radius_mm':inner, 'outer_radius_mm':outer, 'radial_wall_mm':round(outer-inner, 5)})
++    box=frame.bounding_box()
++    return {'rings':rings,'frame_xy_span_mm':[round(box.size.X,5),round(box.size.Y,5)],'valid_continuous_frame':len(frame.solids())==1 and frame.is_valid}
++
++
++def inspect(frame_file, report_file):
++    actual=measure(frame_file)
++    accepted=actual['valid_continuous_frame'] and all(abs(rim['radial_wall_mm']-1.40)<=0.01 and abs(rim['inner_radius_mm']-16.30)<=0.01 for rim in actual['rings'])
++    report={'method':'STEP cylindrical faces, grouped by measured shaft-center XY','requirements':{'radial_wall_mm':1.40,'inner_radius_mm':16.30,'cad_tolerance_mm':0.01},'actual':actual,'status':'pass' if accepted else 'fail'}
++    report_file.write_text(json.dumps(report,indent=2)+'\n')
++    return accepted
++
++
++if __name__=='__main__':
++    parser=argparse.ArgumentParser(description=__doc__)
++    parser.add_argument('frame',type=Path)
++    parser.add_argument('report',type=Path)
++    args=parser.parse_args()
++    raise SystemExit(0 if inspect(args.frame,args.report) else 1)
+diff --git a/geometry/frame.py b/geometry/frame.py
+index f5df3a5..e6637b6 100644
+--- a/geometry/frame.py
++++ b/geometry/frame.py
+@@ -12,7 +12,8 @@ MOTOR_OFFSET = 65.0 / math.sqrt(8)
+ FC_OFFSET = 26.0 / math.sqrt(2)
+ PLATE_BOTTOM = -1.25
+ RIM_INNER = 16.30
+-RIM_OUTER = 17.30
++GUARD_WALL = 1.40
++RIM_OUTER = RIM_INNER + GUARD_WALL
+
+
+ def cylinder(x, y, radius, z0, z1):
+diff --git a/handoff.md b/handoff.md
+index 4ac8aa7..aef37a6 100644
+--- a/handoff.md
++++ b/handoff.md
+@@ -1,4 +1,4 @@
+-# Whoop 65 assembly
++# Whoop 65 with revised guards
+
+ Open **viewer.html** for the assembled aircraft, exploded stack, isolated flight board and underside. Drag to orbit and scroll to zoom. Keep the delivery together so the viewer can open the parts workbook and STEP file.
+
+@@ -22,3 +22,7 @@ Print the two latch coupons first and check that the tabs seat, retain and relea
+ Verify the existing delivery with `python3 source/scripts/engineering.py assembly-verify .`. With the pinned runtime prepared, run `sh rebuild.sh /path/to/new-directory`. The script rebuilds from this delivery's source, checks the regenerated assembly, and compares its results and BOM to this baseline. A completed comparison appears in the new manifest. Use `PE_RUNTIME` to select a dedicated runtime. On a new host run `python3 source/scripts/engineering.py setup --runtime "$HOME/.cache/physical-engineering/runtime"` first. The build and viewer can then run offline.
+
+ To revise a part, copy the source directory, edit its design/geometry or design/catalog files, then run `python3 /path/to/copied-source/scripts/engineering.py assembly-build /path/to/copied-source/design /path/to/new-output`. Review any revised interfaces and update their acceptance requirements deliberately.
++
++## Guard revision
++
++The brief specifies 1.40 mm nominal radial wall thickness on all four guards with the existing propellers, motor spacing and guard bores. The geometry grows the outer radii. The design-specific check reopens the frame STEP and writes all four pairs of measured radii and the overall frame span to **guard-wall.json**. The stock aircraft verifier checks the swept disks and motor diagonals separately. Print and bench tests are needed to establish strength, deflection and actual clearance.
