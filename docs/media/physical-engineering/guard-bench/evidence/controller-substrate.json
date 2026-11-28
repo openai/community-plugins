@@ -1,0 +1,42 @@
+{
+  "status": "pass",
+  "historical_substrate_mm": 0.95,
+  "corrected_substrate_mm": 0.8,
+  "corrected_bottom_and_top_z_mm": [
+    3.5,
+    4.3
+  ],
+  "harness_to_matching_terminal_min_distances_mm": {
+    "historical": {
+      "battery_lead_plus": 0.0,
+      "battery_lead_minus": 0.0,
+      "ELRS_receiver_antenna": 0.0,
+      "VTX_coax": 0.0,
+      "camera_harness_1": 0.0,
+      "camera_harness_2": 0.0,
+      "camera_harness_3": 0.0
+    },
+    "corrected": {
+      "battery_lead_plus": 0.0,
+      "battery_lead_minus": 0.0,
+      "ELRS_receiver_antenna": 0.0,
+      "VTX_coax": 0.0,
+      "camera_harness_1": 0.0,
+      "camera_harness_2": 0.0,
+      "camera_harness_3": 0.0
+    }
+  },
+  "digital_geometry_checks": 37,
+  "substrate_checks": 7,
+  "matched_BOM_bytes": true,
+  "rebuild_baseline_verified": true,
+  "unverified_fit": "Modeled compressed grommet geometry, true package outlines, connectors, solder joints, battery retention and physical/electrical performance need received-part and bench measurement.",
+  "earlier_step_sha256": {
+    "assembly.step": "53f08e1b193962f7a88532c503fc13a7721593f97ee6aad758f3ea7b7604f42b",
+    "flight-controller.step": "e17d60ea2d72143291f455d3d3e8762851521419f72c156a4a86fcb0dcc6aa25"
+  },
+  "revised_step_sha256": {
+    "assembly.step": "7b20003be22a993d43eebb849f72e35a28e20842c328cb070641fe9df31b448d",
+    "flight-controller.step": "d8c1255dfe12316bc1e3cddabf79b01e6a157cdddc2c9dd8ee238b48fa4c7dc1"
+  }
+}

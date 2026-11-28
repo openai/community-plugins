@@ -1,0 +1,15 @@
+{
+  "drawing": "BM-64 revision A",
+  "datum": "Center of the original 52 by 36 mm base footprint, with Z zero at the bench face",
+  "axes_mm": [[-32.0,0.0],[32.0,0.0]],
+  "axis_coordinate_tolerance_mm": 0.05,
+  "pitch_mm": 64.0,
+  "pitch_tolerance_mm": 0.1,
+  "bore_diameter_mm": 3.4,
+  "bore_diameter_tolerance_mm": 0.05,
+  "ear_z_mm": [0.0,3.2],
+  "ear_z_tolerance_mm": 0.05,
+  "outer_wall_x_mm": 26.0,
+  "minimum_radial_rim_mm": 1.75,
+  "solid_count": 1
+}

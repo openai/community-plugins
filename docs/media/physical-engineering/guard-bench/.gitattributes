@@ -1,0 +1,3 @@
+# Keep the byte-identical CSV evidence and upstream KiCad copyright files.
+*.csv -text whitespace=cr-at-eol
+ecad/licenses/*.txt -text -whitespace

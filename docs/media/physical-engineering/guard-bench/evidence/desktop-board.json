@@ -1,0 +1,36 @@
+{
+  "task": "Independent from-empty Desktop PCB authoring",
+  "elapsed_seconds": 561,
+  "output_initial_state": "new empty project folder",
+  "kicad": "9.0.2",
+  "findings": {
+    "erc_findings": 0,
+    "drc_findings": 0,
+    "unconnected_items": 0,
+    "schematic_parity_findings": 0
+  },
+  "SDA": {
+    "source_pad": "J1.3",
+    "destination_pad": "U1.6",
+    "copper_centerline_mm": 5.1534,
+    "layers": [
+      "F.Cu"
+    ],
+    "vias_on_this_route": 0
+  },
+  "native_output_sha256": {
+    "guard-accelerometer.kicad_sch": "f334748b259b497e5bb877c2ec6f3ec27405c26e32d98ae263af776bed32c2ed",
+    "guard-accelerometer.kicad_pcb": "ad29828ab0ddb5910ba782e970470d8bb1037c16db7caef3f24cf4d4f34605cb",
+    "gerbers-and-drills.zip": "15373a46606034a3dae0f76c21d92fc5e4c05aa88ac92331a434e8226996603e"
+  },
+  "reviewed_film_design": {
+    "SDA_routed_length_mm": 7.39326,
+    "layers": [
+      "F.Cu",
+      "B.Cu",
+      "F.Cu"
+    ],
+    "vias_on_this_route": 2
+  },
+  "hardware_test": "No board fabrication or electrical test in this run."
+}

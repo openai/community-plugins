@@ -1,0 +1,163 @@
+{
+    "$schema": "https://schemas.kicad.org/drc.v1.json",
+    "coordinate_units": "mm",
+    "date": "2026-11-28T04:32:38+0000",
+    "kicad_version": "9.0.2",
+    "schematic_parity": [
+        {
+            "description": "Footprint attributes don't match symbol: 'Exclude from bill of materials' settings differ.",
+            "items": [
+                {
+                    "description": "Footprint H1",
+                    "pos": {
+                        "x": 86.0,
+                        "y": 92.0
+                    },
+                    "uuid": "765cf0ad-de5f-4b0f-b915-0cc671e6ac1b"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "Footprint attributes don't match symbol: 'Exclude from bill of materials' settings differ.",
+            "items": [
+                {
+                    "description": "Footprint H2",
+                    "pos": {
+                        "x": 114.0,
+                        "y": 92.0
+                    },
+                    "uuid": "6071bd89-d79d-4b2d-9224-bf2fa0e791f7"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "Footprint attributes don't match symbol: 'Exclude from bill of materials' settings differ.",
+            "items": [
+                {
+                    "description": "Footprint H3",
+                    "pos": {
+                        "x": 114.0,
+                        "y": 108.0
+                    },
+                    "uuid": "ae8e61e9-3c70-4b91-a0a4-efc2deed3eb0"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "Footprint attributes don't match symbol: 'Exclude from bill of materials' settings differ.",
+            "items": [
+                {
+                    "description": "Footprint H4",
+                    "pos": {
+                        "x": 86.0,
+                        "y": 108.0
+                    },
+                    "uuid": "29eef3ee-e6c1-4c12-99b3-837942608cee"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        },
+        {
+            "description": "Footprint attributes don't match symbol: 'Exclude from bill of materials' settings differ.",
+            "items": [
+                {
+                    "description": "Footprint TP1",
+                    "pos": {
+                        "x": 106.0,
+                        "y": 99.0
+                    },
+                    "uuid": "f026a929-02bf-44b7-ad03-bcc9d1ceb1ec"
+                }
+            ],
+            "severity": "warning",
+            "type": "footprint_symbol_mismatch"
+        }
+    ],
+    "source": "bench-accelerometer.kicad_pcb",
+    "unconnected_items": [],
+    "violations": [
+        {
+            "description": "Isolated copper fill",
+            "items": [
+                {
+                    "description": "Zone [/GND] on B.Cu",
+                    "pos": {
+                        "x": 83.1,
+                        "y": 89.1
+                    },
+                    "uuid": "cbc25cdc-0646-48b5-a36f-947eb9a9f673"
+                }
+            ],
+            "severity": "warning",
+            "type": "isolated_copper"
+        },
+        {
+            "description": "Board edge clearance violation (board setup constraints edge clearance 0.5000 mm; actual 0.3500 mm)",
+            "items": [
+                {
+                    "description": "Segment on Edge.Cuts",
+                    "pos": {
+                        "x": 115.5,
+                        "y": 111.0
+                    },
+                    "uuid": "f9c9bb25-dad7-4999-a7e7-0cada7fed37d"
+                },
+                {
+                    "description": "Pad MP [/GND] of J1 on F.Cu",
+                    "pos": {
+                        "x": 97.2,
+                        "y": 109.75
+                    },
+                    "uuid": "ec3f86ef-47c8-4aef-bbdf-dece957c423f"
+                }
+            ],
+            "severity": "error",
+            "type": "copper_edge_clearance"
+        },
+        {
+            "description": "Board edge clearance violation (board setup constraints edge clearance 0.5000 mm; actual 0.3500 mm)",
+            "items": [
+                {
+                    "description": "Segment on Edge.Cuts",
+                    "pos": {
+                        "x": 115.5,
+                        "y": 111.0
+                    },
+                    "uuid": "f9c9bb25-dad7-4999-a7e7-0cada7fed37d"
+                },
+                {
+                    "description": "Pad MP [/GND] of J1 on F.Cu",
+                    "pos": {
+                        "x": 102.8,
+                        "y": 109.75
+                    },
+                    "uuid": "b0d0b9af-451c-4dae-a587-78e4d66b4741"
+                }
+            ],
+            "severity": "error",
+            "type": "copper_edge_clearance"
+        },
+        {
+            "description": "Text height out of range (board setup constraints silk text height min height 0.8000 mm; actual 0.7800 mm)",
+            "items": [
+                {
+                    "description": "PCB text '3V3   I2C   0x18' on F.Silkscreen",
+                    "pos": {
+                        "x": 109.9,
+                        "y": 102.9
+                    },
+                    "uuid": "eb4f3595-51f5-4c4a-a4ff-2e245983ede6"
+                }
+            ],
+            "severity": "warning",
+            "type": "text_height"
+        }
+    ]
+}

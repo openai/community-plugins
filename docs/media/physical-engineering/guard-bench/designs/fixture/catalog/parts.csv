@@ -1,0 +1,16 @@
+ID,Scope,Group,Part,Qty,Unit,Supply,Specification,Source
+PL01,Installed,Fixture,Common test plate,1,ea,Print,"160 × 84 × 8 mm plate body with integrated coupon and stop locators, sensor mounting bores and underside nut traps. Use one plate for both conditions.",print/plate.stl
+CP10,Installed,Specimen,Guard coupon A · 1.00 mm wall,1,ea,Print,"R16.30 mm bore, 5.50 mm axial height, nominal 1.00 mm radial wall. Interchanges at the same station as coupon B.",print/coupon_100.stl
+ST01,Installed,Fixture,Removable travel stop,1,ea,Print,Keyed stop for 2.00 mm nominal tip travel. Keep it installed in the same position for all comparison runs.,print/travel_stop.stl
+EN01,Installed,Instrumentation,Existing enclosure base and sensor,1,assembly,Supply existing,Use the assembled sensor enclosure with its fitted accelerometer. Original mechanical envelope in CAD locates the enclosure and ear interface. Sensor electronics are user-supplied.,boards.md
+EN02,Installed,Instrumentation,Existing enclosure lid and screws,1,set,Included with enclosure,Use the existing removable lid and its four screws. CAD envelope includes screw-head height for access checks.,boards.md
+SC10,Installed,Mounting hardware,M3 × 10 mm socket head cap screw,2,ea,Buy,"One per enclosure ear. M3 coarse, nominal 0.50 mm pitch, 10 mm under-head length.",
+SC16,Installed,Mounting hardware,M3 × 16 mm socket head cap screw,1,ea,Buy,"Coupon-root hold-down. M3 coarse, 16 mm under-head length.",
+SC12,Installed,Mounting hardware,M3 × 12 mm socket head cap screw,1,ea,Buy,"Removable hard-stop retention. M3 coarse, 12 mm under-head length.",
+NT03,Installed,Mounting hardware,M3 hex nut,4,ea,Buy,"Standard full-height M3 coarse hex nut, nominal 5.5 mm across flats and 2.4 mm thick. One for each of the four screws.",
+CP14,Changeover and bench,Specimen,Guard coupon B · 1.40 mm wall,1,ea,Print,"Replacement for coupon A. Same root, load direction, 16.30 mm inner radius and 5.50 mm height. Keep the unused coupon off the plate.",alternate/coupon_140.stl
+MT01,Changeover and bench,Material,Unfilled PETG filament,,as needed,Supply,"Print matched coupon pairs from one spool. Use the same plate, stop and fasteners for both conditions.",
+TL01,Changeover and bench,Assembly,Metric hex driver,1,ea,Supply,Match the purchased M3 socket screws. Use a driver appropriate for the existing lid screws as well.,
+TL02,Changeover and bench,Metrology,Calipers and feeler gauges,1,set,Supply,"Check printed wall, locator fit and unloaded gap in the assembled setup. Use light touch on the flexible arm. Remove gauges before release.",
+DA01,Changeover and bench,Acquisition,Accelerometer acquisition and cable,1,set,Supply,"Use a compatible time-synchronized recorder or sensor logger. Record units, orientation, filtering and sample rate.",
+BC01,Changeover and bench,Bench setup,Bench clamps with flat pads,2,ea,Supply,"Use the same table, edge positions and clamp setting for paired tests. Keep pads clear of the coupon and enclosure.",

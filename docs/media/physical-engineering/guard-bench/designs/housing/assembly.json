@@ -1,0 +1,142 @@
+{
+  "schema": 1,
+  "id": "guard-bench-recorder",
+  "display": {
+    "title": "Bench accelerometer",
+    "subtitle": "Side-entry 3.3 V sensor interface and serviceable PCB",
+    "focus": "sensor_board",
+    "focus_label": "Accelerometer PCB",
+    "explode": {
+      "lid": 0.78,
+      "sensor_board": 0.3,
+      "board_screws": 0.41,
+      "lid_screws": 0.94
+    }
+  },
+  "bom": {
+    "title": "Bench accelerometer",
+    "scopes": [
+      "Installed",
+      "Bench"
+    ]
+  },
+  "inspection": {
+    "parts": {
+      "BA01": [
+        {
+          "node": "base",
+          "center_mm": [
+            0,
+            0,
+            7.5
+          ],
+          "component": "components/base.step",
+          "print": "print/base.stl"
+        }
+      ],
+      "LI01": [
+        {
+          "node": "lid",
+          "center_mm": [
+            0,
+            0,
+            16.1
+          ],
+          "component": "components/lid.step",
+          "print": "print/lid.stl"
+        }
+      ],
+      "PC01": [
+        {
+          "node": "sensor_board",
+          "center_mm": [
+            0,
+            0,
+            7.2475
+          ],
+          "component": "components/sensor_board.step"
+        }
+      ],
+      "BS01": [
+        {
+          "node": "board_screws/screw_1",
+          "center_mm": [
+            -14,
+            -8,
+            5.325
+          ]
+        },
+        {
+          "node": "board_screws/screw_2",
+          "center_mm": [
+            14,
+            -8,
+            5.325
+          ]
+        },
+        {
+          "node": "board_screws/screw_3",
+          "center_mm": [
+            14,
+            8,
+            5.325
+          ]
+        },
+        {
+          "node": "board_screws/screw_4",
+          "center_mm": [
+            -14,
+            8,
+            5.325
+          ]
+        }
+      ],
+      "LS01": [
+        {
+          "node": "lid_screws/screw_1",
+          "center_mm": [
+            -21,
+            -13,
+            13.925
+          ]
+        },
+        {
+          "node": "lid_screws/screw_2",
+          "center_mm": [
+            21,
+            -13,
+            13.925
+          ]
+        },
+        {
+          "node": "lid_screws/screw_3",
+          "center_mm": [
+            21,
+            13,
+            13.925
+          ]
+        },
+        {
+          "node": "lid_screws/screw_4",
+          "center_mm": [
+            -21,
+            13,
+            13.925
+          ]
+        }
+      ]
+    },
+    "unmodeled": {},
+    "gaps": [
+      {
+        "id": "populated-board-to-lid",
+        "nodes": [
+          "sensor_board",
+          "lid"
+        ],
+        "min_mm": 3.0,
+        "max_mm": 10.0
+      }
+    ]
+  }
+}
