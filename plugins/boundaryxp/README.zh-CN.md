@@ -24,9 +24,7 @@ B353 对运算类型漏交、引文路径重复转义、预算共同字段漏填
 
 ### Linux MCP 与 Glama 验证
 
-[rc.11 Glama 实测](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/GLAMA-RC11.md)
-于 11 月 18 日通过构建、启动及 21 工具 / 17 资源发现。平台发行标记
-`0.4.0-rc.linux.11.1` 对应 npm `0.4.0-rc.11-linux.1`。这是 rc.11 的历史证据；rc.12 Glama 重建等待所有者重新登录。
+[rc.12 Glama 实测](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/GLAMA-RC12.md)于 11 月 28 日通过构建、启动及 21 工具 / 17 资源发现，耗时 1 分 1.9 秒，18:15 发布为 Latest。平台自动编号 `0.4.0` 对应 npm `0.4.0-rc.12-linux.1`，不是 npm 稳定版；构建 ID 为 `01a221a5-5b6b-758f-99e0-1bde7c002499`。
 
 当前 Linux x64 编译版为 rc.12-linux.1，需要 Node >=22.19、glibc >=2.36。
 此前 `0.4.0-rc.9-linux.1` 的 Glama 平台验证保留为历史证据：

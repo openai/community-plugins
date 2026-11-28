@@ -35,10 +35,7 @@ B353 also conservatively repairs omitted operation kinds, extra path escaping an
 
 ### Linux MCP and Glama verification
 
-[rc.11 Glama verification](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/GLAMA-RC11.md)
-passed build/startup and discovery of 21 tools / 17 resources on November 18.
-Glama release `0.4.0-rc.linux.11.1` maps to npm `0.4.0-rc.11-linux.1`.
-This is historical rc.11 evidence; rc.12 Glama rebuilding awaits renewed owner login.
+[Glama rc.12 evidence](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/GLAMA-RC12.md): build 01a221a5-5b6b-758f-99e0-1bde7c002499 passed on November 28 in 1m 1.9s, pinned to public commit a2064abb41f5dc6f68db7742a8b864d4bfb98268. Native startup and discovery passed (21 tools / 17 resources). Published as Latest at 18:15 UTC+8; Glama automatically assigned platform ID 0.4.0, mapping to npm 0.4.0-rc.12-linux.1, not an npm stable release. Original Core source stays private.
 
 The current standalone **Linux x64** release is rc.12-linux.1 (Node >=22.19,
 glibc >=2.36), with 21 tools and 17 resources. The earlier
@@ -54,8 +51,7 @@ CPU and Linux glibc before creating storage or installing anything. The Windows
 lockfile is in `runtime/package-lock.json`; Linux uses `runtime/linux/package-lock.json`.
 Glama verification concerns the standalone package; this wrapper's separate
 installation and case evidence is documented in the [test guide](../../tests/boundaryxp/README.md).
-Neither verifies semantic accuracy for arbitrary inputs. The earlier Glama build
-is not rc.12 platform validation. [Current rc.12 release acceptance](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/RC12.md).
+Neither verifies semantic accuracy for arbitrary inputs. Earlier dated Glama builds remain historical. [Current rc.12 release acceptance](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/RC12.md).
 
 ### Install on Windows or Linux
 

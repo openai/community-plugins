@@ -34,8 +34,8 @@ resolved them without weakening tests.
 `npm run validate` still fails the unchanged Grafana source-part size assertion
 on this Windows CRLF checkout (143531 vs 140000); prior baseline evidence is linked
 below. The full marketplace/provider suite is not claimed green or rerun. No
-workflow was dispatched. The last Glama platform result remains rc.11; rc.12
-rebuilding awaits renewed owner login. Original Core source remains private.
+workflow was dispatched. Later on November 28, [Glama rc.12 evidence](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/GLAMA-RC12.md): build 01a221a5-5b6b-758f-99e0-1bde7c002499 passed on November 28 in 1m 1.9s, pinned to public commit a2064abb41f5dc6f68db7742a8b864d4bfb98268. Native startup and discovery passed (21 tools / 17 resources). Published as Latest at 18:15 UTC+8; Glama automatically assigned platform ID 0.4.0, mapping to npm 0.4.0-rc.12-linux.1, not an npm stable release. Original Core source stays private.
+The earlier JSON receipt remains the original local-test snapshot.
 
 [Sanitized rc.12 evidence](evidence/rc12-20261128.json) ·
 [Product acceptance](https://github.com/joinwell52-AI/BoundaryXP/blob/main/docs/mcp/RC12.md).
