@@ -4,7 +4,7 @@ An indoor 65 mm quad has two candidate guard walls, 1.00 and 1.40 mm. This compa
 
 ## Present the demo
 
-Play the stage or narrated MP4 from [PR #61](https://github.com/openai/community-plugins/pull/61). The [presenter script](presenting/Presenter-runbook.md) has timed speaking cues and the [printable runbook](presenting/Presenter-runbook.pdf) fits a second screen. Download and open the [standalone HTML prompt deck](presenting/Prompt-runbook.html) for the copy buttons, or use the [plain-text prompts](presenting/Prompt-runbook.md).
+Play the [silent 6:24 stage film](https://github.com/user-attachments/assets/fb31f2b8-419d-4036-bfda-f1f37bc846d7) and follow the [timed reader](presenting/Presenter-runbook.html) on a second screen. Download the HTML reader for its rehearsal controls, or use the [printable PDF](presenting/Presenter-runbook.pdf) and [Markdown script](presenting/Presenter-runbook.md). The narrated edition is on [PR #61](https://github.com/openai/community-plugins/pull/61). Download and open the [standalone HTML prompt deck](presenting/Prompt-runbook.html) for the copy buttons, or use the [plain-text prompts](presenting/Prompt-runbook.md).
 
 A separate 561-second Desktop turn started with an empty output directory and authored its own accelerometer PCB. Its J1.3–U1.6 SDA route measured 5.1534 mm on front copper with zero vias. KiCad reported zero ERC findings, DRC findings, unconnected items and schematic-parity findings. The reviewed film board takes 7.393 mm and two vias between the same pins. The source replay below reproduces the reviewed board. [Independent Desktop board readback](evidence/desktop-board.json)
 

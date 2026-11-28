@@ -1,113 +1,123 @@
 # Four tenths of a millimeter
 
-**Physical Engineering in Codex · Presenter script · 6:24**
+Physical Engineering in Codex · Presenter runbook · 6:24
 
-Play the [silent stage film on PR #61](https://github.com/openai/community-plugins/pull/61) and begin on the first frame. Keep this script on a second screen. Each time in the left margin is a speaking cue. For a live run, use the [copyable prompt deck](Prompt-runbook.html) or the [plain-text prompt runbook](Prompt-runbook.md).
+## 0:00–0:20
 
-## The engineering question
+*On screen — Two guard profiles, then the bench*
 
-Hold on the two guard walls. Ask the audience what they would need to see before choosing one.
+One line of CAD makes this guard forty percent thicker. On this quad, that’s four tenths of a millimeter. Before I print a whole frame, I’d like to bend a sample of each guard, let go, and see whether the plate underneath rings differently.
 
-### 0:00 · The frame and the experiment
+## 0:20–0:47
 
-**0:00**  These two propeller guards differ by four tenths of a millimeter. Which one would you put on an indoor quad?
+*On screen — Codex opens the supplied Whoop*
 
-**0:09**  I want more than a render. Let’s design the frame, an experiment to compare the guards, and the circuit board that can measure the result.
+Here’s my starting point in Codex. Physical Engineering supplies the sixty-five millimeter quad. The motors and camera are already placed. I’m asking for a new printable frame around those parts. The propellers stay, which gives us a decision to make about where the extra plastic goes.
 
-### 0:20 · Start in Codex
+## 0:47–1:00
 
-**0:20**  In Codex, I select Physical Engineering and open the supplied sixty-five millimeter quad. The frame, motor locations and purchased-board envelopes give us a starting point.
+*On screen — The guard radius in frame.py*
 
-**0:32**  The new brief has three jobs. Revise the guard, check the parts we would actually buy, and build a tabletop instrument for a controlled test.
+Look at the inside edge. If I add the plastic there, I’ve just spent half my clearance between the prop and the guard.
 
-### 0:47 · Cut a real print file
+## 1:00–1:20
 
-**0:47**  Here’s the edit in the actual CAD source. Keep the bore fixed. Grow the outside of each ring until its radial wall measures one point four millimeters.
+*On screen — The frame STL rotates. The prop sweeps the bore.*
 
-**0:59**  Codex exports the frame STL, then reopens the STEP. All four walls meet the drawing. A full turn of each propeller still leaves zero point eight millimeters.
+Codex grows the outside instead. Here’s the frame STL. The check reopens the exported solid and sweeps each blade through a full turn. All four still clear by eight tenths of a millimeter. The whole frame gets eight tenths wider.
 
-**1:13**  Across the whole frame, the change costs zero point eight millimeters in width.
+## 1:20–1:44
 
-## Design the experiment
+*On screen — The 5IN1 part number and the two board sections*
 
-Point to the controller part number, then follow the physical chain from the coupon to the plate.
+That flight controller comes in two versions on the same product page. Follow the part number. We picked the five-in-one. Its mounting holes line up, but the modeled board is too thick. The manufacturer specifies point eight millimeters. Codex corrects the board and brings the components on top down with it.
 
-### 1:20 · Let a supplier change the CAD
+## 1:44–1:54
 
-**1:20**  Now follow the flight controller from the workbook back to its manufacturer. This is the five-in-one variant. It has a twenty-six millimeter square mount.
+*On screen — Motor lead beside controller spec*
 
-**1:32**  The model’s substrate is zero point nine five millimeters thick. The supplier specifies zero point eight. Codex changes the board model and checks the exported solid again.
+The motors ship with plugs. This controller takes soldered leads. I want that in the workbook before someone orders four motors.
 
-**1:45**  The motor also comes on a connector. This controller takes soldered motor leads. That decision belongs in the parts list before anyone buys a set.
+## 1:54–2:17
 
-### 1:54 · Build the test fixture
+*On screen — The empty fixture project. Two arc samples share a plate.*
 
-**1:54**  A thicker rim looks convincing on screen. How would we compare it? I give Codex an empty project and ask for a fixture it has to design.
+How do I compare the guards without crashing two aircraft? I give Codex the dimensions of the curved section and an empty folder. It designs a replaceable sample, a plate and the yellow stop. Both samples sit on the same pins. I can swap one without disturbing the sensor.
 
-**2:06**  Both coupons use the same inner arc. They share one locator on the plate. I can swap the sample and keep the sensor in the same place.
+## 2:17–2:40
 
-**2:18**  The removable gauge sets a nominal two millimeter tip displacement. On the bench I would bring the coupon to the stop, release it, and record the plate response.
+*On screen — The stop gap, then four printable parts*
 
-### 2:29 · Put the print files on the table
+I’d push the free end against the stop and let go. The stop sits two millimeters from either sample. The thicker wall may take more force to get there, but I can give both the same starting displacement. Four print files give me the plate, the stop and both samples.
 
-**2:29**  These are the printable parts Codex generated. The two arc sections are separate meshes. The fixture and gauge have their own editable geometry.
+## 2:40–2:56
 
-**2:40**  The drawing check finds the coupon walls, the stop and the mounting holes in the exports. That establishes the test geometry. Repeated releases will tell us how consistent the test is.
+*On screen — The shifted stop reads 2.50 mm*
 
-## Follow the signal
+Watch the thick sample when I shift the stop. The gap goes from two millimeters to two and a half. That’s twenty-five percent more travel for just one of the samples. The drawing check catches it before I print.
 
-Trace connector pin three to the sensor. Pause on the cable passage and let the audience find the collision.
+## 2:56–3:09
 
-### 2:56 · Design the measurement board
+*On screen — The independent PCB plot, then the fitted green board*
 
-**2:56**  Now we need an instrument. The custom board bolts into the enclosure and carries a three-axis accelerometer. The cable supplies power and takes measurements back to a host.
+That plot came from a second, empty Codex project. Same board brief, different routing. The green board coming up is the one fitted to this case.
 
-**3:09**  Here is the actual schematic. We chose an ST accelerometer on a three point three volt I-squared-C bus. The address pin selects hexadecimal eighteen.
+## 3:09–3:32
 
-**3:20**  Follow the two signal nets. Each has a pull-up to the supply. Local capacitors sit close to the sensor power pins. Those choices show up in the board BOM.
+*On screen — The accelerometer schematic and pull-ups*
 
-### 3:32 · Follow the copper
+The chip in the middle measures acceleration on three axes. Four wires run back to the host. Two supply power and ground. The clock and data lines each get a pull-up resistor. That’s enough to power the sensor and read the plate’s motion after a release.
 
-**3:32**  This is the editable KiCad layout. Four mounting holes come from the case. The cable connector needs the front edge. Those two constraints leave the middle for the sensor.
+## 3:32–3:52
 
-**3:45**  Follow the data line from connector pin three to the sensor. The first route connected every pad. Two metal hold-downs still missed the copper-to-edge rule.
+*On screen — The board outline, then the animated SDA route*
 
-**3:59**  Move the connector inward a quarter millimeter and reroute. Clearance reaches zero point six. KiCad reports zero violations and zero unconnected pads.
+The case gives us four fixed mounting holes. The cable enters at the front. Follow the data line from pin three. It drops to the back, comes up through a second via and lands on the sensor.
 
-### 4:10 · Four holes line up. The plug hits.
+## 3:52–4:10
 
-**4:10**  Put the populated board into the housing. The four mounting holes line up. The lid closes. Now try bringing the cable straight through the front wall.
+*On screen — Two connector hold-downs at the board edge*
 
-**4:22**  The old opening is too low. In the exported solid, the plug envelope overlaps twenty-eight point seven cubic millimeters of plastic. The cable needs a different opening.
+Every pad was connected. The error was under the connector’s metal feet. They were too close to the cut edge. Codex moves the connector a quarter millimeter inward. Both feet clear the rule, and the routed board passes KiCad’s checks.
 
-**4:36**  Codex changes that wall and exports the base again. Run exactly the same gauge. The overlap drops to zero.
+## 4:10–4:22
 
-## Make it reproducible
+*On screen — The board seats in the case. The lid clears.*
 
-Show the installed recorder, the purchasing sheet and the clean-source rebuild. End on the unrun experiment.
+The board bolts down. The lid closes. This is where I’d be tempted to hit Print. Look through the front wall. Can I get a plug in there?
 
-### 4:47 · Make the products meet
+## 4:22–4:47
 
-**4:47**  Back on the fixture, the sensor attaches from outside the case, with its lid on. The connector faces the cable exit and the coupons remain accessible.
+*On screen — A yellow plug gauge passes through both openings*
 
-**5:00**  That sixty-four millimeter mounting pitch has its own check. A deliberately wrong sixty millimeter version passed nineteen general checks, then failed the drawing and was refused.
+The yellow block is the space the plug needs on its way to the socket. Its top edge hits the plastic. There’s room on both sides, so Codex makes the opening taller. Run the same gauge again. It clears. On the first print I’d still want to feel the real plug seat.
 
-**5:14**  The working assembly is the repaired one. You can open its model, inspect an individual part, or print just that part’s mesh.
+## 4:47–5:14
 
-### 5:22 · Hand it to another engineer
+*On screen — The closed station, then the failed mounting drawing*
 
-**5:22**  The handoff has three paths to follow. Print the mechanical parts. Source the actual purchased parts. Inspect the original schematic, routed board, Gerber layers and drill file.
+I can reach both mounting screws with the lid on. Here’s a mistake I put in on purpose. The drawing says sixty-four millimeters between those holes. I gave it sixty. Nineteen general checks passed. Two clean through-holes, both in the wrong place. Reading their centers back from the exported part caught it.
 
-**5:34**  The workbook keeps the controller’s included grommets separate from the longer dock screws. Exact part numbers and supplier links sit next to the items. Availability is dated.
+## 5:14–5:34
 
-### 5:50 · Repeat the build. Then run the experiment.
+*On screen — The lid lifts and the assembly handoff opens*
 
-**5:50**  The last test is to put the handoffs in new folders and rebuild. Read the dimensions again from the new exports. Open the new workbooks and compare them with their baselines.
+With the holes fixed, the recorder stays put when I change the coupon. If you took over the build here, you could print the plastic and send the copper layers and drill files to a board shop. You’d still have a purchasing question.
 
-**6:04**  What would I take to the bench? The two coupons, the fixture, and the board. Fit the connector, power the sensor, then record repeated releases on the same plate.
+## 5:34–5:50
 
-**6:17**  That first real vibration trace is the next piece of evidence.
+*On screen — Grommets and dock screws, then fitted electronic parts*
 
-## At the controls
+What comes in the box? The controller includes four grommets. The dock needs four longer screws, bought separately. The next tab lists the parts to populate the sensor board, down to the two pull-ups.
 
-Start the silent film and your timer together. Pause when a question comes in. Resume from the next printed cue. Seek to **3:32** for the routed board, **4:10** for the plug collision, or **5:50** for the delivered-source rebuild. For a solo rehearsal, use the [narrated edition on PR #61](https://github.com/openai/community-plugins/pull/61).
+## 5:50–6:05
+
+*On screen — Results from the clean rebuild*
+
+I handed the source to a fresh Codex run. It rebuilt the station model, both coupon meshes and all three assembly workbooks. Those files matched the originals byte for byte.
+
+## 6:05–6:24
+
+*On screen — Alternate the specimens. Finish with both products in frame.*
+
+I’d start with five releases of the same coupon. That tells me how much scatter comes from my hand and the fixture. Then I’d swap in the thicker one and repeat. Hand me those traces without the labels. Can I tell which guard was on the plate?
